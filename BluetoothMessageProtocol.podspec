@@ -19,15 +19,20 @@ Encoding and Decoding of th Bluetooth Message Protocol.
   s.homepage         = 'https://github.com/khoogheem/BluetoothMessageProtocol'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Kevin A. Hoogheem' => 'kevin@hoogheem.net' }
-  s.source           = { :git => 'https://github.com/FitnessKit/BluetoothMessageProtocol.git', :tag => s.version.to_s }
+  s.source           = { :path => '../', :tag => s.version.to_s }
+#s.source           = { :git => 'https://github.com/FitnessKit/BluetoothMessageProtocol.git', :tag => s.version.to_s }
+
+
 
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
   s.tvos.deployment_target = '10.0'
   s.watchos.deployment_target = '3.0'
 
-  s.source_files = 'BluetoothMessageProtocol/Classes/**/*'
+  s.source_files = 'Source/**/*'
   
 
+  s.dependency 'DataDecoder', '~> 0.6.3'
   s.dependency 'FitnessUnits', '~> 1.0.0'
+
 end
