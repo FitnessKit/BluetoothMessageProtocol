@@ -5,9 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 
@@ -20,9 +17,17 @@ it, simply add the following line to your Podfile:
 pod "BluetoothMessageProtocol"
 ```
 
+Swift Package Manager:
+```swift
+    dependencies: [
+        .Package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", majorVersion: 1)
+    ]
+```
+
+
 ## Author
 
-khoogheem, kevinh@npe-inc.com
+Kevin A. Hoogheem, kevin@hoogheem.net
 
 ## License
 
