@@ -128,7 +128,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
 
         let contactStatus = flags.contact
 
-        var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence(symbol: "BPM"))
+        var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
 
         if flags.isFormatUInt16 == true {
             heartRate.value = Double(decoder.decodeUInt16())

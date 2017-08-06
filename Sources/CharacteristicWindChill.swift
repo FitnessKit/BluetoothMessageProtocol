@@ -1,5 +1,5 @@
 //
-//  CharacteristicAlertLevel.swift
+//  CharacteristicWindChill.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/6/17.
@@ -29,60 +29,46 @@ import FitnessUnits
 
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-/// BLE Alert Level Characteristic
-open class CharacteristicAlertLevel: Characteristic {
+/// BLE Wind Chill Characteristic
+///
+open class CharacteristicWindChill: Characteristic {
 
     public static var name: String {
-        return "Alert Category ID"
+        return "Wind Chill"
     }
 
     public static var uuidString: String {
-        return "2A06"
+        return "2A79"
     }
 
-    public enum AlertLevel: UInt8 {
-        case noAlert        = 0
-        case mildAlert      = 1
-        case highAlert      = 2
+    fileprivate(set) public var windChill: Measurement<UnitTemperature>
 
-        public var stringValue: String {
 
-            switch self {
-            case .noAlert:
-                return "No Alert"
-            case .mildAlert:
-                return "Mild Alert"
-            case .highAlert:
-                return "High Alert"
-            }
-        }
+    public init(windChill: Measurement<UnitTemperature>) {
+
+        self.windChill = windChill
+
+        super.init(name: CharacteristicAltitude.name, uuidString: CharacteristicWindChill.uuidString)
     }
 
-    fileprivate(set) public var alertLevel: AlertLevel
-
-
-    public init(alertLevel: AlertLevel) {
-
-        self.alertLevel = alertLevel
-
-        super.init(name: CharacteristicAlertLevel.name, uuidString: CharacteristicAlertLevel.uuidString)
-    }
-
-    open override class func decode(data: Data) throws -> CharacteristicAlertLevel {
+    open override class func decode(data: Data) throws -> CharacteristicWindChill {
 
         var decoder = DataDecoder(data)
 
-        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8()) ?? .noAlert
+        let windChill: Measurement = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
 
-        return CharacteristicAlertLevel(alertLevel: alertLevel)
+        return CharacteristicWindChill(windChill: windChill)
     }
 
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        msgData.append(alertLevel.rawValue)
+        //Make sure we put this back to Celsius before we create Data
+        let chill = windChill.converted(to: UnitTemperature.celsius).value
+
+        msgData.append(Data(from: Int8(chill)))
         
         return msgData
     }
-
+    
 }

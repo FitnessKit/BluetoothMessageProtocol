@@ -1,5 +1,5 @@
 //
-//  CharacteristicAlertLevel.swift
+//  CharacteristicAltitude.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/6/17.
@@ -29,60 +29,44 @@ import FitnessUnits
 
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-/// BLE Alert Level Characteristic
-open class CharacteristicAlertLevel: Characteristic {
+/// BLE Altitude Characteristic
+///
+/// The Altitude characteristic describes the altitude of the device.
+open class CharacteristicAltitude: Characteristic {
 
     public static var name: String {
-        return "Alert Category ID"
+        return "Altitude"
     }
 
     public static var uuidString: String {
-        return "2A06"
+        return "2AB3"
     }
 
-    public enum AlertLevel: UInt8 {
-        case noAlert        = 0
-        case mildAlert      = 1
-        case highAlert      = 2
+    fileprivate(set) public var altitude: UInt16
 
-        public var stringValue: String {
 
-            switch self {
-            case .noAlert:
-                return "No Alert"
-            case .mildAlert:
-                return "Mild Alert"
-            case .highAlert:
-                return "High Alert"
-            }
-        }
+    public init(altitude: UInt16) {
+
+        self.altitude = altitude
+
+        super.init(name: CharacteristicAltitude.name, uuidString: CharacteristicAltitude.uuidString)
     }
 
-    fileprivate(set) public var alertLevel: AlertLevel
-
-
-    public init(alertLevel: AlertLevel) {
-
-        self.alertLevel = alertLevel
-
-        super.init(name: CharacteristicAlertLevel.name, uuidString: CharacteristicAlertLevel.uuidString)
-    }
-
-    open override class func decode(data: Data) throws -> CharacteristicAlertLevel {
+    open override class func decode(data: Data) throws -> CharacteristicAltitude {
 
         var decoder = DataDecoder(data)
 
-        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8()) ?? .noAlert
+        let altitude: UInt16 = decoder.decodeUInt16()
 
-        return CharacteristicAlertLevel(alertLevel: alertLevel)
+        return CharacteristicAltitude(altitude: altitude)
     }
 
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        msgData.append(alertLevel.rawValue)
-        
+        msgData.append(Data(from: altitude.littleEndian))
+
         return msgData
     }
-
+    
 }

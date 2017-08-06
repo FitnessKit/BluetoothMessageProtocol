@@ -1,5 +1,5 @@
 //
-//  CharacteristicAlertLevel.swift
+//  CharacteristicAlertStatus.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/6/17.
@@ -29,60 +29,52 @@ import FitnessUnits
 
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-/// BLE Alert Level Characteristic
-open class CharacteristicAlertLevel: Characteristic {
+/// BLE Alert Status Characteristic
+open class CharacteristicAlertStatus: Characteristic {
 
     public static var name: String {
-        return "Alert Category ID"
+        return "Alert Status"
     }
 
     public static var uuidString: String {
-        return "2A06"
+        return "2A3F"
     }
 
-    public enum AlertLevel: UInt8 {
-        case noAlert        = 0
-        case mildAlert      = 1
-        case highAlert      = 2
+    public struct AlertStatus: OptionSet {
+        public let rawValue: UInt8
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
 
-        public var stringValue: String {
+        public static let ringerStateActive: AlertStatus        = AlertStatus(rawValue: 1 << 0)
+        public static let vibrateStateActive: AlertStatus       = AlertStatus(rawValue: 1 << 1)
+        public static let displayAlertActive: AlertStatus       = AlertStatus(rawValue: 1 << 2)
 
-            switch self {
-            case .noAlert:
-                return "No Alert"
-            case .mildAlert:
-                return "Mild Alert"
-            case .highAlert:
-                return "High Alert"
-            }
-        }
     }
 
-    fileprivate(set) public var alertLevel: AlertLevel
+    fileprivate(set) public var status: AlertStatus
 
 
-    public init(alertLevel: AlertLevel) {
+    public init(status: AlertStatus) {
 
-        self.alertLevel = alertLevel
+        self.status = status
 
-        super.init(name: CharacteristicAlertLevel.name, uuidString: CharacteristicAlertLevel.uuidString)
+        super.init(name: CharacteristicAlertStatus.name, uuidString: CharacteristicAlertStatus.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicAlertLevel {
+    open override class func decode(data: Data) throws -> CharacteristicAlertStatus {
 
         var decoder = DataDecoder(data)
 
-        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8()) ?? .noAlert
+        let status: AlertStatus = AlertStatus(rawValue: decoder.decodeUInt8())
 
-        return CharacteristicAlertLevel(alertLevel: alertLevel)
+        return CharacteristicAlertStatus(status: status)
     }
 
     open override func encode() throws -> Data {
         var msgData = Data()
-
-        msgData.append(alertLevel.rawValue)
+        
+        msgData.append(status.rawValue)
         
         return msgData
     }
-
+    
 }
