@@ -9,29 +9,32 @@
 Pod::Spec.new do |s|
   s.name             = 'BluetoothMessageProtocol'
   s.version          = '0.1.0'
-  s.summary          = 'Encoding and Decoding of th Bluetooth Message Protocol.'
+  s.summary          = 'Encoding and Decoding of the Bluetooth Message Protocol.'
 
 
   s.description      = <<-DESC
-Encoding and Decoding of th Bluetooth Message Protocol.
+Encoding and Decoding of the Bluetooth Message Protocol.
                        DESC
 
   s.homepage         = 'https://github.com/khoogheem/BluetoothMessageProtocol'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Kevin A. Hoogheem' => 'kevin@hoogheem.net' }
-  s.source           = { :path => '../', :tag => s.version.to_s }
+  s.source           = { :path => '/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol' }
 #s.source           = { :git => 'https://github.com/FitnessKit/BluetoothMessageProtocol.git', :tag => s.version.to_s }
 
-
-
+#Targets
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
   s.tvos.deployment_target = '10.0'
   s.watchos.deployment_target = '3.0'
 
-  s.source_files = 'Source/**/*'
-  
+#Source
+  s.source_files = 'Sources/**/*'
 
+#Required Frameworks
+  s.ios.framework       = [ 'Dispatch' ]
+
+#Dependancy
   s.dependency 'DataDecoder', '~> 0.6.3'
   s.dependency 'FitnessUnits', '~> 1.0.0'
 

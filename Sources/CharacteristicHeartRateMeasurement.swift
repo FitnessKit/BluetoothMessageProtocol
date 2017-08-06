@@ -1,5 +1,5 @@
 //
-//  HeartRateMeasurementCharacteristic.swift
+//  CharacteristicHeartRateMeasurement.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/5/17.
@@ -30,14 +30,14 @@ import FitnessUnits
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 /// BLE Heart Rate Meassurement Characteristic
-open class HeartRateMeasurementCharacteristic: Characteristic {
+open class CharacteristicHeartRateMeasurement: Characteristic {
 
     public static var name: String {
         return "Heart Rate Meassurement"
     }
 
-    public static var uuid: UUID {
-        return UUID(uuidString: "0x2A37")!
+    public static var uuidString: String {
+        return "2A37"
     }
 
     /// Contact Status of Sensor
@@ -116,25 +116,21 @@ open class HeartRateMeasurementCharacteristic: Characteristic {
         self.energyExpended = energyExpended
         self.rrIntervals = rrIntervals
 
-        super.init(name: HeartRateMeasurementCharacteristic.name, uuid: HeartRateMeasurementCharacteristic.uuid)
+        super.init(name: CharacteristicHeartRateMeasurement.name, uuidString: CharacteristicHeartRateMeasurement.uuidString)
     }
 
 
-    open override class func decode(data: Data) throws -> HeartRateMeasurementCharacteristic {
+    open override class func decode(data: Data) throws -> CharacteristicHeartRateMeasurement {
 
         var decoder = DataDecoder(data)
 
-        let flags = decoder.decodeUInt8()
+        let flags = Flags(decoder.decodeUInt8())
 
-        let otherFlags = Flags(flags)
-
-        let contactStatusBits = (flags | 0x06) >> 1
-
-        let contactStatus = ContactStatus(rawValue: contactStatusBits) ?? .notSupported
+        let contactStatus = flags.contact
 
         var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence(symbol: "BPM"))
 
-        if flags & 0x01 == 0 {
+        if flags.formatIsUInt16 == false {
             heartRate.value = Double(decoder.decodeUInt8())
         } else {
             heartRate.value = Double(decoder.decodeUInt16())
@@ -142,7 +138,7 @@ open class HeartRateMeasurementCharacteristic: Characteristic {
 
         var energy: Measurement<UnitEnergy>? = nil
 
-        if flags & 0x08 == 0x08 {
+        if flags.energyExpended == true {
             let expended = decoder.decodeUInt16()
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
@@ -150,9 +146,9 @@ open class HeartRateMeasurementCharacteristic: Characteristic {
         var rrIntervals: [Measurement<UnitDuration>]?
 
         //RR Intervals
-        if flags & 0x10 == 0x10 {
+        if flags.rrPresent == true {
 
-            let seconds = decoder.decodeUInt16()
+            var seconds = decoder.decodeUInt16()
 
             while seconds != 0 {
                 let interval = Measurement(value: Double(seconds), unit: UnitDuration.seconds)
@@ -161,10 +157,17 @@ open class HeartRateMeasurementCharacteristic: Characteristic {
                     rrIntervals = [Measurement<UnitDuration>]()
                 }
                 rrIntervals?.append(interval)
+
+                seconds = decoder.decodeUInt16()
             }
         }
 
-        return HeartRateMeasurementCharacteristic(contactStatus: contactStatus, heartRate: heartRate, energyExpended: energy, rrIntervals: rrIntervals)
+        return CharacteristicHeartRateMeasurement(contactStatus: contactStatus, heartRate: heartRate, energyExpended: energy, rrIntervals: rrIntervals)
+    }
+
+    open override func encode() throws -> Data {
+        //Not Yet Supported
+        throw BluetoothMessageProtocolError.init(.unsupported)
     }
 
 }
