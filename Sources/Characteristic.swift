@@ -31,13 +31,13 @@ open class Characteristic {
     /// Name of the Characteristic
     open internal(set) var name: String
 
-    /// Characteristic UUID
-    open internal(set) var uuid: UUID
+    /// Characteristic UUID String
+    open internal(set) var uuidString: String
 
-    public init(name: String, uuid: UUID) {
+    public init(name: String, uuidString: String) {
 
         self.name = name
-        self.uuid = uuid
+        self.uuidString = uuidString
     }
 
 
@@ -74,7 +74,7 @@ public extension Characteristic {
 
     public var hashValue: Int {
         get {
-            return "\(name)\(uuid.uuidString)".hashValue
+            return "\(name)\(uuidString)".hashValue
         }
     }
 }
@@ -84,7 +84,7 @@ public extension Characteristic {
 
     static public func == (lhs: Characteristic, rhs: Characteristic) -> Bool {
         return (lhs.name == rhs.name) &&
-            (lhs.uuid.uuidString == rhs.uuid.uuidString)
+            (lhs.uuidString == rhs.uuidString)
     }
     
 }

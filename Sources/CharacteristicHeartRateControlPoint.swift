@@ -1,5 +1,5 @@
 //
-//  HeartRateControlPointCharacteristic.swift
+//  CharacteristicHeartRateControlPoint.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/5/17.
@@ -30,7 +30,7 @@ import FitnessUnits
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 /// BLE Heart Rate Control Point Characteristic
-open class HeartRateControlPointCharacteristic: Characteristic {
+open class CharacteristicHeartRateControlPoint: Characteristic {
 
     public static var name: String {
         return "Heart Rate Control Point"
@@ -51,10 +51,10 @@ open class HeartRateControlPointCharacteristic: Characteristic {
 
         self.controlMessage = controlMessage
 
-        super.init(name: HeartRateControlPointCharacteristic.name, uuidString: HeartRateControlPointCharacteristic.uuidString)
+        super.init(name: CharacteristicHeartRateControlPoint.name, uuidString: CharacteristicHeartRateControlPoint.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> HeartRateControlPointCharacteristic {
+    open override class func decode(data: Data) throws -> CharacteristicHeartRateControlPoint {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }

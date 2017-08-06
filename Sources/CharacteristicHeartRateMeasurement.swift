@@ -61,38 +61,38 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     }
 
     fileprivate struct Flags {
-        public var formatIsUInt16: Bool
+        public var isFormatUInt16: Bool
         public var contact: ContactStatus
-        public var energyExpended: Bool
-        public var rrPresent: Bool
+        public var isEnergyExpendedPresent: Bool
+        public var isRRIntervalPresent: Bool
 
         public var uint8Value: UInt8 {
-            var value: UInt8 = UInt8(formatIsUInt16 == true ? 1 : 0)
+            var value: UInt8 = UInt8(isFormatUInt16 == true ? 1 : 0)
             value |= contact.rawValue << 1
-            value |=  UInt8(energyExpended == true ? 1 : 0) << 3
-            value |=  UInt8(rrPresent == true ? 1 : 0) << 4
+            value |=  UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 3
+            value |=  UInt8(isRRIntervalPresent == true ? 1 : 0) << 4
 
             return UInt8(value)
         }
 
         public init(_ value: UInt8) {
-            self.formatIsUInt16 = (value & 0x01).boolValue
+            self.isFormatUInt16 = (value & 0x01).boolValue
 
             let contactStatusBits = (value | 0x06) >> 1
 
             contact = ContactStatus(rawValue: contactStatusBits) ?? .notSupported
 
-            energyExpended = (value & 0x08 == 0x08)
+            isEnergyExpendedPresent = (value & 0x08 == 0x08)
 
-            rrPresent = (value & 0x10 == 0x10)
+            isRRIntervalPresent = (value & 0x10 == 0x10)
 
         }
 
-        public init(formatIsUInt16: Bool, contactStatus: ContactStatus, energyExpended: Bool, rrPresent: Bool) {
-            self.formatIsUInt16 = formatIsUInt16
+        public init(isFormatUInt16: Bool, contactStatus: ContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
+            self.isFormatUInt16 = isFormatUInt16
             self.contact = contactStatus
-            self.energyExpended = energyExpended
-            self.rrPresent = rrPresent
+            self.isEnergyExpendedPresent = isEnergyExpendedPresent
+            self.isRRIntervalPresent = isRRIntervalPresent
         }
     }
 
@@ -130,15 +130,15 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
 
         var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence(symbol: "BPM"))
 
-        if flags.formatIsUInt16 == false {
-            heartRate.value = Double(decoder.decodeUInt8())
-        } else {
+        if flags.isFormatUInt16 == true {
             heartRate.value = Double(decoder.decodeUInt16())
+        } else {
+            heartRate.value = Double(decoder.decodeUInt8())
         }
 
         var energy: Measurement<UnitEnergy>? = nil
 
-        if flags.energyExpended == true {
+        if flags.isEnergyExpendedPresent == true {
             let expended = decoder.decodeUInt16()
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
@@ -146,7 +146,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         var rrIntervals: [Measurement<UnitDuration>]?
 
         //RR Intervals
-        if flags.rrPresent == true {
+        if flags.isRRIntervalPresent == true {
 
             var seconds = decoder.decodeUInt16()
 

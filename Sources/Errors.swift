@@ -27,7 +27,7 @@ import Foundation
 
 public enum ErrorReasons {
 
-    case unsupportedMessage
+    case unsupported
 
     ///
     ///  Data

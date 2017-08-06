@@ -1,5 +1,5 @@
 //
-//  AgeCharacteristic.swift
+//  CharacteristicAge.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/5/17.
@@ -30,7 +30,7 @@ import FitnessUnits
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 /// BLE Age Characteristic
-open class AgeCharacteristic: Characteristic {
+open class CharacteristicAge: Characteristic {
 
     public static var name: String {
         return "Age"
@@ -48,16 +48,16 @@ open class AgeCharacteristic: Characteristic {
 
         self.age = age
 
-        super.init(name: AgeCharacteristic.name, uuidString: AgeCharacteristic.uuidString)
+        super.init(name: CharacteristicAge.name, uuidString: CharacteristicAge.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> AgeCharacteristic {
+    open override class func decode(data: Data) throws -> CharacteristicAge {
 
         var decoder = DataDecoder(data)
 
         let age: UInt8 = decoder.decodeUInt8()
 
-        return AgeCharacteristic(age: age)
+        return CharacteristicAge(age: age)
     }
 
     open override func encode() throws -> Data {

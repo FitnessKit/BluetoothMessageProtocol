@@ -6,8 +6,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 
 
-## Requirements
-
 ## Installation
 
 BluetoothMessageProtocol is available through [CocoaPods](http://cocoapods.org). To install
@@ -23,7 +21,7 @@ Swift Package Manager:
         .Package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", majorVersion: 1)
     ]
 ```
-
+## How to Use
 
 ## Author
 
