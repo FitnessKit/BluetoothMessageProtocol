@@ -26,10 +26,10 @@ import Foundation
 import DataDecoder
 
 
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 /// Bluetooth Manufacturer Specific Data
 ///
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ManufacturerData {
     //kCBAdvDataManufacturerData
 
@@ -45,7 +45,7 @@ open class ManufacturerData {
 
         self.manufacturer = BluetoothManufacturer(rawValue: decoder.decodeUInt16()) ?? .reserved
 
-        let rest = rawData.count - MemoryLayout<UInt16>.size - 1
+        let rest = rawData.count - MemoryLayout<UInt16>.size
 
         self.specificData = decoder.decodeData(length: rest)
     }

@@ -26,11 +26,10 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 /// BLE Wind Chill Characteristic
 ///
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicWindChill: Characteristic {
 
     public static var name: String {

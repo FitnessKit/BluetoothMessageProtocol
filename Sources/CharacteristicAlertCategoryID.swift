@@ -26,10 +26,9 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
+/// BLE Alert Category ID Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-/// BLE Alert Category ID Characteristic
 open class CharacteristicAlertCategoryID: Characteristic {
 
     public static var name: String {
