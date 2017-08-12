@@ -135,6 +135,61 @@ public enum BluetoothManufacturer: UInt16 {
     case lairdTechnologies              = 119
     case nike                           = 120
     case lesswire                       = 121
+    case mStarSemiconductor             = 122
+    case hanlynnTechnologies            = 123
+    case aAndRCambridge                 = 124
+    case seersTechnology                = 125
+    case sportsTrackingTechnologies     = 126
+    case autonetMobile                  = 127
+    case deLormePublishing              = 128
+    case wuXiVimicro                    = 129
+    case sennheiser                     = 130
+    case timeKeepingSystems             = 131
+    case ludusHelsinki                  = 132
+    case blueRadios                     = 133
+    case equinux                        = 134
+    case garmin                         = 135
+    case ecotest                        = 136
+    case gnResound                      = 137
+    case jawbone                        = 138
+    case topconPositioningSystems       = 139
+    case gimbal                         = 140 //Gimbal Inc. (formerly Qualcomm Labs, Inc. and Qualcomm Retail Solutions, Inc.)
+    case zScanSoftware                  = 141
+    case quinticCorp                    = 142
+    case telitWireless                  = 143 //Telit Wireless Solutions GmbH (formerly Stollmann E+V GmbH)
+    case funaiElectric                  = 144
+    case advancedPanmobil               = 145
+    case thinkOptics                    = 146
+    case universalElectronics           = 147
+    case airohaTechnology               = 148
+    case necLighting                    = 149
+    case odmTechnology                  = 150
+    case connecteDevice                 = 151
+    case zero1TV                        = 152
+    case iTechDynamic                   = 153
+    case alpwise                        = 154
+    case jiangsuToppower                = 155
+    case colorfy                        = 156
+    case geoforce                       = 157
+    case bose                           = 158
+    case suunto                         = 159
+    case kennsington                    = 160
+    case srMedizinelektronik            = 161
+    case vertu                          = 162
+    case metaWatch                      = 163
+    case linak                          = 164
+    case otlDynamics                    = 165
+    case pandaOcean                     = 166
+    case visteonCorporation             = 167
+    case arpDevices                     = 168
+    case magnetiMarelli                 = 169
+    case caenRfid                       = 170
+    case ingenieurSystemgruppe          = 171
+    case greenThrottleGames             = 172
+    case peterSystemtechnik             = 173
+    case omegawave                      = 174
+    case cinetix                        = 175
+    case passifSemiconductor            = 176
 
     //Non offical IDs
     case viiiiva                        = 16657 //Not in offical document (four eyes Viiiiva)
@@ -515,6 +570,171 @@ public extension BluetoothManufacturer {
 
         case .lesswire:
             return "lesswire AG"
+
+        case .mStarSemiconductor:
+            return "MStar Semiconductor, Inc."
+
+        case .hanlynnTechnologies:
+            return "Hanlynn Technologies"
+
+        case .aAndRCambridge:
+            return "A & R Cambridge"
+
+        case .seersTechnology:
+            return "Seers Technology Co., Ltd."
+
+        case .sportsTrackingTechnologies:
+            return "Sports Tracking Technologies Ltd."
+
+        case .autonetMobile:
+            return "Autonet Mobile"
+
+        case .deLormePublishing:
+            return "DeLorme Publishing Company, Inc."
+
+        case .wuXiVimicro:
+            return "WuXi Vimicro"
+
+        case .sennheiser:
+            return "Sennheiser Communications A/S"
+
+        case .timeKeepingSystems:
+            return "TimeKeeping Systems, Inc."
+
+        case .ludusHelsinki:
+            return "Ludus Helsinki Ltd."
+
+        case .blueRadios:
+            return "BlueRadios, Inc."
+
+        case .equinux:
+            return "Equinux AG"
+
+        case .garmin:
+            return "Garmin International, Inc."
+
+        case .ecotest:
+            return "Ecotest"
+
+        case .gnResound:
+            return "GN ReSound A/S"
+
+        case .jawbone:
+            return "Jawbone"
+
+        case .topconPositioningSystems:
+            return "Topcon Positioning Systems, LLC"
+
+        case .gimbal:
+            return "Gimbal Inc."
+
+        case .zScanSoftware:
+            return "Zscan Software"
+
+        case .quinticCorp:
+            return "Quintic Corp"
+
+        case .telitWireless:
+            return "Telit Wireless Solutions GmbH"
+
+        case .funaiElectric:
+            return "Funai Electric Co., Ltd."
+
+        case .advancedPanmobil:
+            return "Advanced PANMOBIL systems GmbH & Co. KG"
+
+        case .thinkOptics:
+            return "ThinkOptics, Inc."
+
+        case .universalElectronics:
+            return "Universal Electronics, Inc."
+
+        case .airohaTechnology:
+            return "Airoha Technology Corp."
+
+        case .necLighting:
+            return "NEC Lighting, Ltd."
+
+        case .odmTechnology:
+            return "ODM Technology, Inc."
+
+        case .connecteDevice:
+            return "ConnecteDevice Ltd."
+
+        case .zero1TV:
+            return "zero1.tv GmbH"
+
+        case .iTechDynamic:
+            return "i.Tech Dynamic Global Distribution Ltd."
+
+        case .alpwise:
+            return "Alpwise"
+
+        case .jiangsuToppower:
+            return "Jiangsu Toppower Automotive Electronics Co., Ltd."
+
+        case .colorfy:
+            return "Colorfy, Inc."
+
+        case .geoforce:
+            return "Geoforce Inc."
+
+        case .bose:
+            return "Bose Corporation"
+
+        case .suunto:
+            return "Suunto Oy"
+
+        case .kennsington:
+            return "Kensington Computer Products Group"
+
+        case .srMedizinelektronik:
+            return "SR-Medizinelektronik"
+
+        case .vertu:
+            return "Vertu Corporation Limited"
+
+        case .metaWatch:
+            return "Meta Watch Ltd."
+
+        case .linak:
+            return "LINAK A/S"
+
+        case .otlDynamics:
+            return "OTL Dynamics LLC"
+
+        case .pandaOcean:
+            return "Panda Ocean Inc."
+
+        case .visteonCorporation:
+            return "Visteon Corporation"
+
+        case .arpDevices:
+            return "ARP Devices Limited"
+
+        case .magnetiMarelli:
+            return "Magneti Marelli S.p.A"
+
+        case .caenRfid:
+            return "CAEN RFID srl"
+
+        case .ingenieurSystemgruppe:
+            return "Ingenieur-Systemgruppe Zahn GmbH"
+
+        case .greenThrottleGames:
+            return "Green Throttle Games"
+            
+        case .peterSystemtechnik:
+            return "Peter Systemtechnik GmbH"
+
+        case .omegawave:
+            return "Omegawave Oy"
+
+        case .cinetix:
+            return "Cinetix"
+
+        case .passifSemiconductor:
+            return "Passif Semiconductor Corp"
 
 
         case .viiiiva:

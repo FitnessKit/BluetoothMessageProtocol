@@ -32,10 +32,10 @@ Encoding and Decoding of the Bluetooth Message Protocol.
   s.source_files = 'Sources/**/*'
 
 #Required Frameworks
-  s.ios.framework       = [ 'Dispatch' ]
+#  s.ios.framework       = [ 'Dispatch' ]
 
 #Dependancy
   s.dependency 'DataDecoder', '~> 0.6.3'
-  s.dependency 'FitnessUnits', '~> 1.0.0'
+  s.dependency 'FitnessUnits', '~> 1.1.0'
 
 end

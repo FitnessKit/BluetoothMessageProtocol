@@ -53,9 +53,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
         let man = ManufacturerData(rawData: data)
 
-        guard man.manufacturer == .polar else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Polar"))
-        }
+        guard man.manufacturer == .polar else { throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Polar")) }
 
         if let data = man.specificData {
 
@@ -68,10 +66,14 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
             var heartRate: Double = 0
 
-            if hrTwo != 0 && hrOne != 0 {
+            //Make sure we can Avg the two Heart Rates.
+            //Otherwise take the one that is not zero
+            if hrTwo > 0 && hrOne > 0 {
                 heartRate = (Double(hrOne) + Double(hrTwo)) / 2
-            } else if hrOne == 0 {
+            } else if hrOne <= 0 {
                 heartRate = Double(hrTwo)
+            } else {
+                heartRate = Double(hrOne)
             }
 
             let hr: Measurement = Measurement(value: heartRate, unit: UnitCadence.beatsPerMinute)
@@ -79,7 +81,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             return ManufacturerDataPolarHeartRate(heartRate: hr, rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "NO Manufacturer Specific Data"))
+            throw BluetoothMessageProtocolError.init(.decodeError(msg: "No Manufacturer Specific Data"))
         }
     }
 
