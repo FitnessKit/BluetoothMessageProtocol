@@ -34,7 +34,7 @@ open class ManufacturerData {
     //kCBAdvDataManufacturerData
 
     /// Manufacturer
-    open internal(set) var manufacturer: BluetoothManufacturer
+    open internal(set) var manufacturer: Manufacturer
 
     /// Data
     open internal(set) var specificData: Data?
@@ -43,14 +43,14 @@ open class ManufacturerData {
 
         var decoder = DataDecoder(rawData)
 
-        self.manufacturer = BluetoothManufacturer(rawValue: decoder.decodeUInt16()) ?? .reserved
+        self.manufacturer = Manufacturer(rawValue: decoder.decodeUInt16()) ?? .reserved
 
         let rest = rawData.count - MemoryLayout<UInt16>.size
 
         self.specificData = decoder.decodeData(length: rest)
     }
     
-    public init(manufacturer: BluetoothManufacturer, specificData: Data?) {
+    public init(manufacturer: Manufacturer, specificData: Data?) {
 
         self.manufacturer = manufacturer
         self.specificData = specificData

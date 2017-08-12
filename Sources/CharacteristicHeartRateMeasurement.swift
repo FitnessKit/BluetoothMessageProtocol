@@ -60,12 +60,12 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     }
 
     fileprivate struct Flags {
-        public var isFormatUInt16: Bool
-        public var contact: ContactStatus
-        public var isEnergyExpendedPresent: Bool
-        public var isRRIntervalPresent: Bool
+        private(set) public var isFormatUInt16: Bool
+        private(set) public var contact: ContactStatus
+        private(set) public var isEnergyExpendedPresent: Bool
+        private(set) public var isRRIntervalPresent: Bool
 
-        public var uint8Value: UInt8 {
+        public var rawValue: UInt8 {
             var value: UInt8 = UInt8(isFormatUInt16 == true ? 1 : 0)
             value |= contact.rawValue << 1
             value |=  UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 3
