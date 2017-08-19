@@ -92,8 +92,8 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
                 uuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
             }
 
-            let majorID = decoder.decodeUInt16().littleEndian
-            let minorID = decoder.decodeUInt16().littleEndian
+            let majorID = decoder.decodeUInt16().bigEndian
+            let minorID = decoder.decodeUInt16().bigEndian
 
             let measuredPower = decoder.decodeUInt8()
 
