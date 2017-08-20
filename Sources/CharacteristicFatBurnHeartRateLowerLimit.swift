@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Fat Burn Heart Rate Lower Limit Characteristic
 ///
 /// Lower limit of the heart rate where the user maximizes the fat burn while exersizing
@@ -69,6 +68,5 @@ open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
 
         return msgData
     }
-
 }
 

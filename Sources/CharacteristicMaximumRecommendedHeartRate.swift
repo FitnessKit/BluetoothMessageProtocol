@@ -1,8 +1,8 @@
 //
-//  CharacteristicFatBurnHeartRateUpperLimit.swift
+//  CharacteristicMaximumRecommendedHeartRate.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/19/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,22 +26,22 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Fat Burn Heart Rate Upper Limit Characteristic
+/// BLE Maximum Recommended Heart Rate Characteristic
 ///
-/// Upper limit of the heart rate where the user maximizes the fat burn while exersizing
+/// Maximum recommended heart rate is a threshold that may be set to limit exertion. The maximum recommended heart rate is smaller or equal to the maximal heart rate a user can reach
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
+open class CharacteristicMaximumRecommendedHeartRate: Characteristic {
 
     public static var name: String {
-        return "Fat Burn Heart Rate Upper Limit"
+        return "Maximum Recommended Heart Rate"
     }
 
     public static var uuidString: String {
-        return "2A89"
+        return "2A91"
     }
 
-    /// Fat Burn Heart Rate Upper Limit
+    /// Maximum Recommended Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>
 
 
@@ -49,16 +49,16 @@ open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicFatBurnHeartRateUpperLimit.name, uuidString: CharacteristicFatBurnHeartRateUpperLimit.uuidString)
+        super.init(name: CharacteristicMaximumRecommendedHeartRate.name, uuidString: CharacteristicMaximumRecommendedHeartRate.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicFatBurnHeartRateUpperLimit {
+    open override class func decode(data: Data) throws -> CharacteristicMaximumRecommendedHeartRate {
 
         var decoder = DataDecoder(data)
 
         let heartRate: UInt8 = decoder.decodeUInt8()
 
-        return CharacteristicFatBurnHeartRateUpperLimit(heartRate: heartRate)
+        return CharacteristicMaximumRecommendedHeartRate(heartRate: heartRate)
     }
 
     open override func encode() throws -> Data {
@@ -69,4 +69,3 @@ open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
         return msgData
     }
 }
-

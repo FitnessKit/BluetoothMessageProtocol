@@ -1,8 +1,8 @@
 //
-//  CharacteristicFatBurnHeartRateUpperLimit.swift
+//  CharacteristicModelNumberString.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/19/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,47 +26,41 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Fat Burn Heart Rate Upper Limit Characteristic
+/// BLE Model Number String Characteristic
 ///
-/// Upper limit of the heart rate where the user maximizes the fat burn while exersizing
+/// The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
+open class CharacteristicModelNumberString: Characteristic {
 
     public static var name: String {
-        return "Fat Burn Heart Rate Upper Limit"
+        return "Model Number String"
     }
 
     public static var uuidString: String {
-        return "2A89"
+        return "2A24"
     }
 
-    /// Fat Burn Heart Rate Upper Limit
-    private(set) public var heartRate: Measurement<UnitCadence>
+    /// Model Number
+    fileprivate(set) public var modelNumber: String
 
+    public init(modelNumber: String) {
 
-    public init(heartRate: UInt8) {
+        self.modelNumber = modelNumber
 
-        self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
-
-        super.init(name: CharacteristicFatBurnHeartRateUpperLimit.name, uuidString: CharacteristicFatBurnHeartRateUpperLimit.uuidString)
+        super.init(name: CharacteristicModelNumberString.name, uuidString: CharacteristicModelNumberString.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicFatBurnHeartRateUpperLimit {
+    open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
 
-        var decoder = DataDecoder(data)
+        let modelNumber = data.safeStringValue ?? "Unknown"
 
-        let heartRate: UInt8 = decoder.decodeUInt8()
-
-        return CharacteristicFatBurnHeartRateUpperLimit(heartRate: heartRate)
+        return CharacteristicModelNumberString(modelNumber: modelNumber)
     }
 
     open override func encode() throws -> Data {
-        var msgData = Data()
-
-        msgData.append(Data(from: UInt8(heartRate.value)))
-
-        return msgData
+        //Not Yet Supported
+        throw BluetoothMessageProtocolError.init(.unsupported)
     }
 }
 

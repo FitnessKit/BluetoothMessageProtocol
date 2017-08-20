@@ -33,3 +33,6 @@ internal let kBluetoothDayOfMonthBounds = ClosedRange(uncheckedBounds: (lower: 1
 /// Bounds for Magnetic Declination
 internal let kBluetoothMagneticDeclinationBounds = ClosedRange(uncheckedBounds: (lower: 0, upper: 359.99))
 
+/// Bounds for Measurement Interval
+internal let kBluetoothMeasurementIntervalBounds = ClosedRange(uncheckedBounds: (lower: 1, upper: 65535))
+
