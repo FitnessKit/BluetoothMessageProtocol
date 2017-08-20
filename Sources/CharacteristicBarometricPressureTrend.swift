@@ -79,5 +79,4 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
         
         return msgData
     }
-    
 }

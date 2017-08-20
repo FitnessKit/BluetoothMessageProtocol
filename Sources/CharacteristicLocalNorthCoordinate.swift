@@ -1,8 +1,8 @@
 //
-//  CharacteristicAppearance.swift
+//  CharacteristicLocalNorthCoordinate.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/12/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,44 +26,44 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Appearance Characteristic
+/// BLE Local North Coordinate Characteristic
 ///
+/// The Local North characteristic describes the North coordinate of the device using local coordinate system
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicAppearance: Characteristic {
+open class CharacteristicLocalNorthCoordinate: Characteristic {
 
     public static var name: String {
-        return "Appearance"
+        return "Local North Coordinate"
     }
 
     public static var uuidString: String {
-        return "2A01"
+        return "0x2AB0"
     }
 
-    /// Appearance
-    fileprivate(set) public var appearance: Appearance
+    /// Local North Coordinate
+    fileprivate(set) public var localNorthCoordinate: Int32
 
-    public init(appearance: Appearance) {
+    public init(localNorthCoordinate: Int32) {
 
-        self.appearance = appearance
+        self.localNorthCoordinate = localNorthCoordinate
 
-        super.init(name: CharacteristicAppearance.name, uuidString: CharacteristicAppearance.uuidString)
+        super.init(name: CharacteristicLocalNorthCoordinate.name, uuidString: CharacteristicLocalNorthCoordinate.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicAppearance {
-
+    open override class func decode(data: Data) throws -> CharacteristicLocalNorthCoordinate {
         var decoder = DataDecoder(data)
 
-        let appearance = Appearance(rawValue: decoder.decodeUInt16()) ?? .unknown
+        let local = decoder.decodeInt32()
 
-        return CharacteristicAppearance(appearance: appearance)
+        return CharacteristicLocalNorthCoordinate(localNorthCoordinate: local)
     }
 
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        msgData.append(Data(from: appearance.rawValue.littleEndian))
-        
+        msgData.append(Data(from: localNorthCoordinate.littleEndian))
+
         return msgData
     }
 }

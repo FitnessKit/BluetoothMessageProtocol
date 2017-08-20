@@ -83,5 +83,4 @@ open class CharacteristicAlertLevel: Characteristic {
         
         return msgData
     }
-
 }

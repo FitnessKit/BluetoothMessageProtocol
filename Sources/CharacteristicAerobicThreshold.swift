@@ -66,5 +66,4 @@ open class CharacteristicAerobicThreshold: Characteristic {
         
         return msgData
     }
-    
 }

@@ -68,5 +68,4 @@ open class CharacteristicAnalog: Characteristic {
         
         return msgData
     }
-    
 }

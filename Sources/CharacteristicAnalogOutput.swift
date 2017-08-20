@@ -68,5 +68,4 @@ open class CharacteristicAnalogOutput: Characteristic {
         
         return msgData
     }
-    
 }

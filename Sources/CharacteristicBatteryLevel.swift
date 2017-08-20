@@ -76,5 +76,4 @@ open class CharacteristicBatteryLevel: Characteristic {
 
         return msgData
     }
-    
 }

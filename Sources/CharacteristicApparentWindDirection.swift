@@ -76,5 +76,4 @@ open class CharacteristicApparentWindDirection: Characteristic {
         
         return msgData
     }
-    
 }

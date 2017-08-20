@@ -67,5 +67,4 @@ open class CharacteristicAltitude: Characteristic {
 
         return msgData
     }
-    
 }

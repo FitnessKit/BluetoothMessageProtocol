@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Battery Level State Characteristic
 ///
 @available(swift 3.1)
@@ -96,5 +95,4 @@ open class CharacteristicBatteryLevelState: Characteristic {
 
         return msgData
     }
-    
 }

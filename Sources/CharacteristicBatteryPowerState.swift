@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Battery Power State Characteristic
 ///
 @available(swift 3.1)
@@ -68,5 +67,4 @@ open class CharacteristicBatteryPowerState: Characteristic {
         
         return msgData
     }
-    
 }

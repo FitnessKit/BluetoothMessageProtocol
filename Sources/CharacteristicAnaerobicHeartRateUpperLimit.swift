@@ -66,5 +66,4 @@ open class CharacteristicAnaerobicHeartRateUpperLimit: Characteristic {
         
         return msgData
     }
-    
 }

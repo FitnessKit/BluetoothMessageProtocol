@@ -71,5 +71,4 @@ open class CharacteristicApparentWindSpeed: Characteristic {
         
         return msgData
     }
-    
 }

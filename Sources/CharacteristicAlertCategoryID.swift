@@ -106,5 +106,4 @@ open class CharacteristicAlertCategoryID: Characteristic {
         
         return msgData
     }
-    
 }

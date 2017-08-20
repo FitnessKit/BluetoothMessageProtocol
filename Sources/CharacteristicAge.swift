@@ -66,5 +66,4 @@ open class CharacteristicAge: Characteristic {
         
         return msgData
     }
-    
 }

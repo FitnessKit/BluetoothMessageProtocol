@@ -135,5 +135,4 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
-    
 }

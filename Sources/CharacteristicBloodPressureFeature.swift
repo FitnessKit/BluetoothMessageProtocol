@@ -79,5 +79,4 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         
         return msgData
     }
-    
 }

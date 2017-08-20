@@ -66,5 +66,4 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
         
         return msgData
     }
-    
 }

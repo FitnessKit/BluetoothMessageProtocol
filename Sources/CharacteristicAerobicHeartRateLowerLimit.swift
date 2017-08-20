@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Aerobic Heart Rate Lower Limit Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
@@ -67,5 +66,4 @@ open class CharacteristicAerobicHeartRateLowerLimit: Characteristic {
 
         return msgData
     }
-
 }
