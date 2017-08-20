@@ -1,6 +1,0 @@
-use_frameworks!
-target 'BluetoothMessageProtocol_Tests' do
-  pod 'BluetoothMessageProtocol', :path => '../'
-  
-  
-end
