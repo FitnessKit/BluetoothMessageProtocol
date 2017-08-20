@@ -17,7 +17,7 @@ pod "BluetoothMessageProtocol"
 Swift Package Manager:
 ```swift
     dependencies: [
-        .Package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", majorVersion: 1)
+        .Package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", majorVersion: 0)
     ]
 ```
 ## How to Use

@@ -1,5 +1,5 @@
 //
-//  CharacteristicModelNumberString.swift
+//  CharacteristicObjectName.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/20/17.
@@ -26,40 +26,47 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Model Number String Characteristic
-///
-/// The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor
+/// BLE Object Name Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicModelNumberString: Characteristic {
+open class CharacteristicObjectName: Characteristic {
 
     public static var name: String {
-        return "Model Number String"
+        return "Object Name"
     }
 
     public static var uuidString: String {
-        return "2A24"
+        return "2ABE"
     }
 
-    /// Model Number
-    fileprivate(set) public var modelNumber: String
+    /// Object Name
+    fileprivate(set) public var objectName: String
 
-    public init(modelNumber: String) {
+    public init(objectName: String) {
 
-        self.modelNumber = modelNumber
+        self.objectName = objectName
 
-        super.init(name: CharacteristicModelNumberString.name, uuidString: CharacteristicModelNumberString.uuidString)
+        super.init(name: CharacteristicObjectName.name, uuidString: CharacteristicObjectName.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
+    open override class func decode(data: Data) throws -> CharacteristicObjectName {
 
-        let modelNumber = data.safeStringValue ?? "Unknown"
+        let objectName = data.safeStringValue ?? "Unknown"
 
-        return CharacteristicModelNumberString(modelNumber: modelNumber)
+        return CharacteristicObjectName(objectName: objectName)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        guard kBluetoothObjectNameStringBounds.contains(objectName.characters.count) else {
+            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Object Name must be between \(kBluetoothObjectNameStringBounds.lowerBound) and \(kBluetoothObjectNameStringBounds.upperBound) characters in size."))
+        }
+
+        if let stringData = objectName.data(using: .utf8) {
+            msgData.append(stringData)
+        }
+
+        return msgData
     }
 }

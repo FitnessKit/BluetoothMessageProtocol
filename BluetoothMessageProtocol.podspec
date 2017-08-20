@@ -13,14 +13,13 @@ Pod::Spec.new do |s|
 
 
   s.description      = <<-DESC
-Encoding and Decoding of the Bluetooth Message Protocol.
+Encoding and Decoding of the Bluetooth Message Protocol.  Makes creating apps using BLE easy.
                        DESC
 
-  s.homepage         = 'https://github.com/khoogheem/BluetoothMessageProtocol'
+  s.homepage         = 'https://github.com/FitnessKit/BluetoothMessageProtocol'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Kevin A. Hoogheem' => 'kevin@hoogheem.net' }
-  s.source           = { :path => '/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol' }
-#s.source           = { :git => 'https://github.com/FitnessKit/BluetoothMessageProtocol.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/FitnessKit/BluetoothMessageProtocol.git', :tag => s.version.to_s }
 
 #Targets
   s.ios.deployment_target = '10.0'

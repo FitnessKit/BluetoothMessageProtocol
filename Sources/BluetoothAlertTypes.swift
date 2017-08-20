@@ -1,5 +1,5 @@
 //
-//  CharacteristicModelNumberString.swift
+//  BluetoothAlertTypes.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/20/17.
@@ -21,45 +21,46 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-
 import Foundation
-import DataDecoder
-import FitnessUnits
 
-/// BLE Model Number String Characteristic
-///
-/// The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicModelNumberString: Characteristic {
 
-    public static var name: String {
-        return "Model Number String"
-    }
+/// Bluetooth Alert Categories
+public enum AlertCategory: UInt8 {
+    case simpleAlert        = 0
+    case email              = 1
+    case news               = 2
+    case call               = 3
+    case missedCall         = 4
+    case textMessage        = 5
+    case voiceMail          = 6
+    case schedule           = 7
+    case highPrioritized    = 8
+    case instantMessage     = 9
 
-    public static var uuidString: String {
-        return "2A24"
-    }
+    var stringValue: String {
 
-    /// Model Number
-    fileprivate(set) public var modelNumber: String
-
-    public init(modelNumber: String) {
-
-        self.modelNumber = modelNumber
-
-        super.init(name: CharacteristicModelNumberString.name, uuidString: CharacteristicModelNumberString.uuidString)
-    }
-
-    open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
-
-        let modelNumber = data.safeStringValue ?? "Unknown"
-
-        return CharacteristicModelNumberString(modelNumber: modelNumber)
-    }
-
-    open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        switch self {
+        case .simpleAlert:
+            return "Simple Alert"
+        case .email:
+            return "Email"
+        case .news:
+            return "News"
+        case .call:
+            return "Call"
+        case .missedCall:
+            return "Missed Call"
+        case .textMessage:
+            return "SMS/MMS"
+        case .voiceMail:
+            return "Voice Mail"
+        case .schedule:
+            return "Calendar Alert"
+        case .highPrioritized:
+            return "High Priority"
+        case .instantMessage:
+            return "Instant Message"
+        }
     }
 }
+

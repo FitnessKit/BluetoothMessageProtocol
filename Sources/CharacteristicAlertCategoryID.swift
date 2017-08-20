@@ -39,51 +39,11 @@ open class CharacteristicAlertCategoryID: Characteristic {
         return "2A43"
     }
 
-    public enum Category: UInt8 {
-        case simpleAlert        = 0
-        case email              = 1
-        case news               = 2
-        case call               = 3
-        case missedCall         = 4
-        case textMessage        = 5
-        case voiceMail          = 6
-        case schedule           = 7
-        case highPrioritized    = 8
-        case instantMessage     = 9
-
-        var stringValue: String {
-
-            switch self {
-            case .simpleAlert:
-                return "Simple Alert"
-            case .email:
-                return "Email"
-            case .news:
-                return "News"
-            case .call:
-                return "Call"
-            case .missedCall:
-                return "Missed Call"
-            case .textMessage:
-                return "SMS/MMS"
-            case .voiceMail:
-                return "Voice Mail"
-            case .schedule:
-                return "Calendar Alert"
-            case .highPrioritized:
-                return "High Priority"
-            case .instantMessage:
-                return "Instant Message"
-            }
-        }
-
-    }
-
     /// Alert Type
-    private(set) public var alertType: Category
+    private(set) public var alertType: AlertCategory
 
 
-    public init(alertType: Category) {
+    public init(alertType: AlertCategory) {
 
         self.alertType = alertType
 
@@ -94,7 +54,7 @@ open class CharacteristicAlertCategoryID: Characteristic {
 
         var decoder = DataDecoder(data)
 
-        let alertType: Category = Category(rawValue: decoder.decodeUInt8()) ?? .simpleAlert
+        let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8()) ?? .simpleAlert
 
         return CharacteristicAlertCategoryID(alertType: alertType)
     }

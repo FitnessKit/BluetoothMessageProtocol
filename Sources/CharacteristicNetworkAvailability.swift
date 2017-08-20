@@ -1,5 +1,5 @@
 //
-//  CharacteristicModelNumberString.swift
+//  CharacteristicNetworkAvailability.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/20/17.
@@ -26,40 +26,51 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Model Number String Characteristic
+/// BLE Network Availability Characteristic
 ///
-/// The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor
+/// The Network Availability characteristic represents if network is available or not available
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicModelNumberString: Characteristic {
+open class CharacteristicNetworkAvailability: Characteristic {
 
     public static var name: String {
-        return "Model Number String"
+        return "Network Availability"
     }
 
     public static var uuidString: String {
-        return "2A24"
+        return "2A3E"
     }
 
-    /// Model Number
-    fileprivate(set) public var modelNumber: String
-
-    public init(modelNumber: String) {
-
-        self.modelNumber = modelNumber
-
-        super.init(name: CharacteristicModelNumberString.name, uuidString: CharacteristicModelNumberString.uuidString)
+    public enum Availability: UInt8 {
+        /// No network available
+        case notAvailable       = 0
+        /// One or more networks available
+        case available          = 1
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
+    /// Network Availability
+    fileprivate(set) public var networkAvailable: Availability
 
-        let modelNumber = data.safeStringValue ?? "Unknown"
+    public init(networkAvailable: Availability) {
 
-        return CharacteristicModelNumberString(modelNumber: modelNumber)
+        self.networkAvailable = networkAvailable
+
+        super.init(name: CharacteristicNetworkAvailability.name, uuidString: CharacteristicNetworkAvailability.uuidString)
+    }
+
+    open override class func decode(data: Data) throws -> CharacteristicNetworkAvailability {
+        var decoder = DataDecoder(data)
+
+        let avilability = Availability(rawValue: decoder.decodeUInt8()) ?? .notAvailable
+
+        return CharacteristicNetworkAvailability(networkAvailable: avilability)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(networkAvailable.rawValue)
+
+        return msgData
     }
 }

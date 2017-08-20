@@ -1,5 +1,5 @@
 //
-//  CharacteristicModelNumberString.swift
+//  CharacteristicObjectSize.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/20/17.
@@ -26,40 +26,49 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Model Number String Characteristic
-///
-/// The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor
+/// BLE Object Name Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicModelNumberString: Characteristic {
+open class CharacteristicObjectSize: Characteristic {
 
     public static var name: String {
-        return "Model Number String"
+        return "Object Size"
     }
 
     public static var uuidString: String {
-        return "2A24"
+        return "2AC0"
     }
 
-    /// Model Number
-    fileprivate(set) public var modelNumber: String
+    /// Current Size
+    fileprivate(set) public var currentSize: UInt32
 
-    public init(modelNumber: String) {
+    /// Allocated Size
+    fileprivate(set) public var allocatedSize: UInt32
 
-        self.modelNumber = modelNumber
+    public init(currentSize: UInt32, allocatedSize: UInt32) {
 
-        super.init(name: CharacteristicModelNumberString.name, uuidString: CharacteristicModelNumberString.uuidString)
+        self.currentSize = currentSize
+        self.allocatedSize = allocatedSize
+
+        super.init(name: CharacteristicObjectSize.name, uuidString: CharacteristicObjectSize.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
+    open override class func decode(data: Data) throws -> CharacteristicObjectSize {
+        var decoder = DataDecoder(data)
 
-        let modelNumber = data.safeStringValue ?? "Unknown"
+        let currentSize = decoder.decodeUInt32()
+        let allocatedSize = decoder.decodeUInt32()
 
-        return CharacteristicModelNumberString(modelNumber: modelNumber)
+        return CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(Data(from: currentSize.littleEndian))
+        msgData.append(Data(from: allocatedSize.littleEndian))
+
+        return msgData
     }
 }
+
