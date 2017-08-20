@@ -75,7 +75,7 @@ open class CharacteristicNewAlert: Characteristic {
 
         var alertInfo: String?
         if data.count > 2 {
-            let stringData = data[2...data.count]
+            let stringData = Data(data[2...data.count])
             alertInfo = stringData.safeStringValue
         }
 
