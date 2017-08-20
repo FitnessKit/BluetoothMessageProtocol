@@ -22,6 +22,47 @@ Swift Package Manager:
 ```
 ## How to Use
 
+Example from CoreBluetooth:
+
+```swift
+func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+
+    if let sensorData = characteristic.value {
+        if characteristic.uuid.uuidString == CharacteristicHeartRateMeasurement.uuidString {
+            doDecodeHRMess(sensorData: sensorData)
+        }
+
+        if characteristic.uuid.uuidString == CharacteristicBodySensorLocation.uuidString {
+            doDecodeBody(sensorData: sensorData)
+        }
+    }
+}
+
+func doDecodeHRMess(sensorData: Data) {
+
+    do {
+        let hrData = try CharacteristicHeartRateMeasurement.decode(data: sensorData)
+
+        print("HR: \(hrData.heartRate)")
+
+    } catch  {
+        print(error)
+    }
+}
+
+func doDecodeBody(sensorData: Data) {
+
+    do {
+        let hrData = try CharacteristicBodySensorLocation.decode(data: sensorData)
+
+        print("Location: \(hrData.sensorLocation.stringValue)")
+
+    } catch  {
+        print(error)
+    }
+}
+```
+
 ## Author
 
 Kevin A. Hoogheem, kevin@hoogheem.net

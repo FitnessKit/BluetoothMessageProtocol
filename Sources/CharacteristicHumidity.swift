@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicHumidity.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,48 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Humidity Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicHumidity: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Humidity"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A6F"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Humidity
+    fileprivate(set) public var humidity: Measurement<UnitPercent>
 
-    public init(deviceName: String) {
+    public init(humidity: Measurement<UnitPercent>) {
 
-        self.deviceName = deviceName
+        self.humidity = humidity
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicHumidity.name, uuidString: CharacteristicHumidity.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicHumidity {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        var decoder = DataDecoder(data)
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        let value = Double(decoder.decodeUInt16()) * 0.01
+
+        let humidity: Measurement = Measurement(value: value, unit: UnitPercent.percent)
+
+        return CharacteristicHumidity(humidity: humidity)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        let value = UInt16(humidity.value * 100.0)
+
+        msgData.append(Data(from: value))
+
+        return msgData
     }
 }
 

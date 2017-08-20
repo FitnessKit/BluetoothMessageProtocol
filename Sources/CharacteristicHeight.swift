@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicHeight.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,50 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Height Characteristic
+///
+/// Height of the User
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicHeight: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Height"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A8E"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Height
+    fileprivate(set) public var height: Measurement<UnitLength>
 
-    public init(deviceName: String) {
+    public init(height: Measurement<UnitLength>) {
 
-        self.deviceName = deviceName
+        self.height = height
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicHeight.name, uuidString: CharacteristicHeight.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicHeight {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        var decoder = DataDecoder(data)
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        let meters = Double(decoder.decodeUInt16()) * 0.01
+
+        let height: Measurement = Measurement(value: meters, unit: UnitLength.meters)
+
+        return CharacteristicHeight(height: height)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        //Make sure we put this back to Meters before we create Data
+        let heightVal = UInt16(height.converted(to: UnitLength.meters).value * 100.0)
+
+        msgData.append(Data(from: heightVal))
+
+        return msgData
     }
 }
-

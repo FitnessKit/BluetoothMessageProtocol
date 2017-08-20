@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicLanguage.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,34 +26,36 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Language Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicLanguage: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Language"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2AA2"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Language
+    ///
+    /// The Language definition is based on ISO639-1
+    fileprivate(set) public var language: String
 
-    public init(deviceName: String) {
+    public init(language: String) {
 
-        self.deviceName = deviceName
+        self.language = language
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicLanguage.name, uuidString: CharacteristicLanguage.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicLanguage {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        let language = data.safeStringValue ?? "Unknown"
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        return CharacteristicLanguage(language: language)
     }
 
     open override func encode() throws -> Data {
@@ -61,4 +63,3 @@ open class CharacteristicDeviceName: Characteristic {
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 }
-

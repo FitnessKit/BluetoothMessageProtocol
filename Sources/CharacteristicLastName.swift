@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicLastName.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,34 +26,36 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Last Name Characteristic
+///
+/// Last name of the user
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicLastName: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Last Name"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A90"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Last Name
+    fileprivate(set) public var lastName: String
 
-    public init(deviceName: String) {
+    public init(lastName: String) {
 
-        self.deviceName = deviceName
+        self.lastName = lastName
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicLastName.name, uuidString: CharacteristicLastName.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicLastName {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        let lastName = data.safeStringValue ?? "Unknown"
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        return CharacteristicLastName(lastName: lastName)
     }
 
     open override func encode() throws -> Data {

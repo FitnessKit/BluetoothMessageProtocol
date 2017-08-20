@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicFloorNumber.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,45 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Floor Number Characteristic
+///
+/// The Floor Number characteristic describes in which floor the device is installed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicFloorNumber: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Floor Number"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2AB2"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Floor Number
+    fileprivate(set) public var floorNumber: UInt8
 
-    public init(deviceName: String) {
+    public init(floorNumber: UInt8) {
 
-        self.deviceName = deviceName
+        self.floorNumber = floorNumber
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicFloorNumber.name, uuidString: CharacteristicFloorNumber.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicFloorNumber {
+        var decoder = DataDecoder(data)
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        let floor = decoder.decodeUInt8()
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        return CharacteristicFloorNumber(floorNumber: floor)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
-    }
-}
+        var msgData = Data()
 
+        msgData.append(floorNumber)
+
+        return msgData
+    }
+
+}

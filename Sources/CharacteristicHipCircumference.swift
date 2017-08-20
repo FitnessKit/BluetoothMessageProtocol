@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicHipCircumference.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,51 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Hip Circumference Characteristic
+///
+/// Used with the Waist Circumference value to calculate the Waist to Hip Ratio (WHR)
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicHipCircumference: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Hip Circumference"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A8F"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Hip Circumference
+    fileprivate(set) public var hipCircumference: Measurement<UnitLength>
 
-    public init(deviceName: String) {
+    public init(hipCircumference: Measurement<UnitLength>) {
 
-        self.deviceName = deviceName
+        self.hipCircumference = hipCircumference
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicHipCircumference.name, uuidString: CharacteristicHipCircumference.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicHipCircumference {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        var decoder = DataDecoder(data)
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        let meters = Double(decoder.decodeUInt16()) * 0.01
+
+        let hipCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
+
+        return CharacteristicHipCircumference(hipCircumference: hipCircumference)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        //Make sure we put this back to Meters before we create Data
+        let value = UInt16(hipCircumference.converted(to: UnitLength.meters).value * 100.0)
+
+        msgData.append(Data(from: value))
+
+        return msgData
     }
 }
 

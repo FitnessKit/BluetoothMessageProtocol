@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicHeartRateMax.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,47 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Heart Rate Max Characteristic
+///
+/// Maximum heart rate a user can reach
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicHeartRateMax: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Heart Rate Max"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A8D"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Heart Rate Max
+    private(set) public var maximumHeartRate: Measurement<UnitCadence>
 
-    public init(deviceName: String) {
 
-        self.deviceName = deviceName
+    public init(maximumHeartRate: UInt8) {
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        self.maximumHeartRate = Measurement(value: Double(maximumHeartRate), unit: UnitCadence.beatsPerMinute)
+
+        super.init(name: CharacteristicHeartRateMax.name, uuidString: CharacteristicHeartRateMax.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicHeartRateMax {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        var decoder = DataDecoder(data)
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        let maximumHeartRate: UInt8 = decoder.decodeUInt8()
+
+        return CharacteristicHeartRateMax(maximumHeartRate: maximumHeartRate)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(Data(from: UInt8(maximumHeartRate.value)))
+
+        return msgData
     }
 }
 

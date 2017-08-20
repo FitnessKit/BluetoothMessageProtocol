@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicHeatIndex.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,48 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Heat Index Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicHeatIndex: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Heat Index"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A7A"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Heat Index
+    fileprivate(set) public var heatIndex: Measurement<UnitTemperature>
 
-    public init(deviceName: String) {
+    public init(heatIndex: Measurement<UnitTemperature>) {
 
-        self.deviceName = deviceName
+        self.heatIndex = heatIndex
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicHeatIndex.name, uuidString: CharacteristicHeatIndex.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicHeatIndex {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        var decoder = DataDecoder(data)
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        let heatIndex: Measurement = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
+
+        return CharacteristicHeatIndex(heatIndex: heatIndex)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        //Make sure we put this back to Celsius before we create Data
+        let temperature = heatIndex.converted(to: UnitTemperature.celsius).value
+
+        msgData.append(Data(from: Int8(temperature)))
+
+        return msgData
     }
+
 }
 

@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicGender.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,39 +26,44 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Gender Characteristic
+///
+/// Gender of the user
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicGender: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Gender"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A8C"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Gender
+    fileprivate(set) public var gender: Gender
 
-    public init(deviceName: String) {
+    public init(gender: Gender) {
 
-        self.deviceName = deviceName
+        self.gender = gender
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicGender.name, uuidString: CharacteristicGender.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicGender {
+        var decoder = DataDecoder(data)
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        let gender = Gender(rawValue: decoder.decodeUInt8()) ?? .unspecified
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        return CharacteristicGender(gender: gender)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(gender.rawValue)
+
+        return msgData
     }
 }
-

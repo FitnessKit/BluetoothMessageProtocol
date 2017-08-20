@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  BluetoothGender.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -23,42 +23,14 @@
 //  THE SOFTWARE.
 
 import Foundation
-import DataDecoder
-import FitnessUnits
 
-/// BLE Device Name Characteristic
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
 
-    public static var name: String {
-        return "Device Name"
-    }
-
-    public static var uuidString: String {
-        return "2A00"
-    }
-
-    /// Device Name
-    fileprivate(set) public var deviceName: String
-
-    public init(deviceName: String) {
-
-        self.deviceName = deviceName
-
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
-    }
-
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
-
-        let devicename = data.safeStringValue ?? "Unknown"
-
-        return CharacteristicDeviceName(deviceName: devicename)
-    }
-
-    open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
-    }
+/// Definition of Bluetooth Gender
+public enum Gender: UInt8 {
+    /// Male
+    case male           = 0
+    /// Female
+    case female         = 1
+    /// Unspecified
+    case unspecified    = 2
 }
-

@@ -1,5 +1,5 @@
 //
-//  CharacteristicDeviceName.swift
+//  CharacteristicHardwareRevisionString.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/19/17.
@@ -26,34 +26,36 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Device Name Characteristic
+/// BLE Hardware Revision String Characteristic
+///
+/// The value of this characteristic is a UTF-8 string representing the hardware revision for the hardware within the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
+open class CharacteristicHardwareRevisionString: Characteristic {
 
     public static var name: String {
-        return "Device Name"
+        return "Hardware Revision String"
     }
 
     public static var uuidString: String {
-        return "2A00"
+        return "2A27"
     }
 
-    /// Device Name
-    fileprivate(set) public var deviceName: String
+    /// Hardware Revision
+    fileprivate(set) public var hardwareRevision: String
 
-    public init(deviceName: String) {
+    public init(hardwareRevision: String) {
 
-        self.deviceName = deviceName
+        self.hardwareRevision = hardwareRevision
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicHardwareRevisionString.name, uuidString: CharacteristicHardwareRevisionString.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDeviceName {
+    open override class func decode(data: Data) throws -> CharacteristicHardwareRevisionString {
 
-        let devicename = data.safeStringValue ?? "Unknown"
+        let hardwareRevision = data.safeStringValue ?? "Unknown"
 
-        return CharacteristicDeviceName(deviceName: devicename)
+        return CharacteristicHardwareRevisionString(hardwareRevision: hardwareRevision)
     }
 
     open override func encode() throws -> Data {
