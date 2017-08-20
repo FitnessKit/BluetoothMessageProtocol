@@ -1,8 +1,8 @@
 //
-//  CharacteristicDSTOffset.swift
+//  BluetoothBounds.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/19/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,48 +23,13 @@
 //  THE SOFTWARE.
 
 import Foundation
-import DataDecoder
-import FitnessUnits
 
-/// BLE DST Offset Characteristic
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDSTOffset: Characteristic {
+/// Bounds for a Valid Bluetooth Year
+internal let kBluetoothYearBounds = ClosedRange(uncheckedBounds: (lower: 1582, upper: 9999))
 
-    public static var name: String {
-        return "DST Offset"
-    }
+/// Bounds for Valid Bluetooth Day of Month
+internal let kBluetoothDayOfMonthBounds = ClosedRange(uncheckedBounds: (lower: 1, upper: 31))
 
-    public static var uuidString: String {
-        return "2A0D"
-    }
-
-    /// DST Offset
-    fileprivate(set) public var dstOffset: DSTOffset
-
-    public init(dstOffset: DSTOffset) {
-
-        self.dstOffset = dstOffset
-
-        super.init(name: CharacteristicDSTOffset.name, uuidString: CharacteristicDSTOffset.uuidString)
-    }
-
-    open override class func decode(data: Data) throws -> CharacteristicDSTOffset {
-
-        var decoder = DataDecoder(data)
-
-        let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8()) ?? .unknown
-
-        return CharacteristicDSTOffset(dstOffset: dstOffset)
-    }
-
-    open override func encode() throws -> Data {
-        var msgData = Data()
-
-        msgData.append(dstOffset.rawValue)
-
-        return msgData
-    }
-
-}
+/// Bounds for Magnetic Declination
+internal let kBluetoothMagneticDeclinationBounds = ClosedRange(uncheckedBounds: (lower: 0, upper: 359.99))
 

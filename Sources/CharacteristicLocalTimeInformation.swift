@@ -1,8 +1,8 @@
 //
-//  CharacteristicDSTOffset.swift
+//  CharacteristicLocalTimeInformation.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/19/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,45 +26,53 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE DST Offset Characteristic
+/// BLE Local Time Information Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDSTOffset: Characteristic {
+open class CharacteristicLocalTimeInformation: Characteristic {
 
     public static var name: String {
-        return "DST Offset"
+        return "Local Time Information"
     }
 
     public static var uuidString: String {
-        return "2A0D"
+        return "2A0F"
     }
+
+    /// Timezone
+    ///
+    /// Offset from UTC in number of 15 minutes increments. A value of -128 means that the time zone offset is not known. The offset defined in this characteristic is constant, regardless whether daylight savings is in effect
+    fileprivate(set) public var timeZone: Int8
 
     /// DST Offset
     fileprivate(set) public var dstOffset: DSTOffset
 
-    public init(dstOffset: DSTOffset) {
 
+    public init(timeZone: Int8, dstOffset: DSTOffset) {
+
+        self.timeZone = timeZone
         self.dstOffset = dstOffset
 
-        super.init(name: CharacteristicDSTOffset.name, uuidString: CharacteristicDSTOffset.uuidString)
+        super.init(name: CharacteristicLocalTimeInformation.name, uuidString: CharacteristicLocalTimeInformation.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDSTOffset {
-
+    open override class func decode(data: Data) throws -> CharacteristicLocalTimeInformation {
         var decoder = DataDecoder(data)
+
+        let timez = decoder.decodeInt8()
 
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8()) ?? .unknown
 
-        return CharacteristicDSTOffset(dstOffset: dstOffset)
+        return CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset)
     }
 
     open override func encode() throws -> Data {
         var msgData = Data()
 
+        msgData.append(Data(from: timeZone))
         msgData.append(dstOffset.rawValue)
 
         return msgData
     }
-
 }
 

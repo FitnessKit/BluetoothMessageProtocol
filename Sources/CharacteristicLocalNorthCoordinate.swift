@@ -38,7 +38,7 @@ open class CharacteristicLocalNorthCoordinate: Characteristic {
     }
 
     public static var uuidString: String {
-        return "0x2AB0"
+        return "2AB0"
     }
 
     /// Local North Coordinate

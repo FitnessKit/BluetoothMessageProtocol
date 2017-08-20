@@ -26,11 +26,21 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// Bounds for a Valid Bluetooth Year
-internal let kBluetoothYearBounds = ClosedRange(uncheckedBounds: (lower: 1582, upper: 9999))
 
-/// Bounds for Valid Bluetooth Day of Month
-internal let kBluetoothDayOfMonthBounds = ClosedRange(uncheckedBounds: (lower: 1, upper: 31))
+
+/// Daylight Savings Time Offset
+public enum DSTOffset: UInt8 {
+    /// Standard Time
+    case standardTime           = 0
+    // Half An Hour Daylight Time (+0.5h)
+    case halfHourDaylightTime   = 2
+    /// Daylight Time (+1h)
+    case daylightTime           = 4
+    /// Double Daylight Time (+2h))
+    case doubleDaylightTime     = 8
+    // Unknown
+    case unknown                = 255
+}
 
 
 /// Bluetooth Days of the Week

@@ -1,8 +1,8 @@
 //
-//  CharacteristicDSTOffset.swift
+//  CharacteristicLocationName.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/19/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,45 +26,41 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE DST Offset Characteristic
+/// BLE Location Name Characteristic
+///
+/// The Location Name characteristic describes the name of the location the device is installed in
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDSTOffset: Characteristic {
+open class CharacteristicLocationName: Characteristic {
 
     public static var name: String {
-        return "DST Offset"
+        return "Location Name"
     }
 
     public static var uuidString: String {
-        return "2A0D"
+        return "2AB5"
     }
 
-    /// DST Offset
-    fileprivate(set) public var dstOffset: DSTOffset
+    /// Location Name
+    fileprivate(set) public var locationName: String
 
-    public init(dstOffset: DSTOffset) {
+    public init(locationName: String) {
 
-        self.dstOffset = dstOffset
+        self.locationName = locationName
 
-        super.init(name: CharacteristicDSTOffset.name, uuidString: CharacteristicDSTOffset.uuidString)
+        super.init(name: CharacteristicLocationName.name, uuidString: CharacteristicLocationName.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicDSTOffset {
+    open override class func decode(data: Data) throws -> CharacteristicLocationName {
 
-        var decoder = DataDecoder(data)
+        let locationName = data.safeStringValue ?? "Unknown"
 
-        let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8()) ?? .unknown
-
-        return CharacteristicDSTOffset(dstOffset: dstOffset)
+        return CharacteristicLocationName(locationName: locationName)
     }
 
     open override func encode() throws -> Data {
-        var msgData = Data()
-
-        msgData.append(dstOffset.rawValue)
-
-        return msgData
+        //Not Yet Supported
+        throw BluetoothMessageProtocolError.init(.unsupported)
     }
-
 }
 
