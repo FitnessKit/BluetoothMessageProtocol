@@ -51,7 +51,7 @@ open class CharacteristicEmailAddress: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicEmailAddress {
 
-        let emailAddress = data.safeStringValue ?? "Unknown"
+        let emailAddress = data.safeStringValue ?? ""
 
         return CharacteristicEmailAddress(emailAddress: emailAddress)
     }

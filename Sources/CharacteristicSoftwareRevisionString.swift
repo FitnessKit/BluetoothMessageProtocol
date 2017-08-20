@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicSoftwareRevisionString.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,35 +26,36 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Software Revision String Characteristic
+///
+/// The value of this characteristic is a UTF-8 string representing the software revision for the software within the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicSoftwareRevisionString: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Software Revision String"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A28"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Software Revision
+    fileprivate(set) public var softwareRevision: String
 
-    public init(sensorLocation: BodyLocation) {
+    public init(softwareRevision: String) {
 
-        self.sensorLocation = sensorLocation
+        self.softwareRevision = softwareRevision
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        super.init(name: CharacteristicSoftwareRevisionString.name, uuidString: CharacteristicSoftwareRevisionString.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    open override class func decode(data: Data) throws -> CharacteristicSoftwareRevisionString {
 
-        var decoder = DataDecoder(data)
+        let softwareRevision = data.safeStringValue ?? ""
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
-
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return CharacteristicSoftwareRevisionString(softwareRevision: softwareRevision)
     }
 
     open override func encode() throws -> Data {

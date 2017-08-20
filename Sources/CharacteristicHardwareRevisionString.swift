@@ -53,7 +53,7 @@ open class CharacteristicHardwareRevisionString: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicHardwareRevisionString {
 
-        let hardwareRevision = data.safeStringValue ?? "Unknown"
+        let hardwareRevision = data.safeStringValue ?? ""
 
         return CharacteristicHardwareRevisionString(hardwareRevision: hardwareRevision)
     }

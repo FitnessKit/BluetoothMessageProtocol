@@ -53,7 +53,7 @@ open class CharacteristicLanguage: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicLanguage {
 
-        let language = data.safeStringValue ?? "Unknown"
+        let language = data.safeStringValue ?? ""
 
         return CharacteristicLanguage(language: language)
     }

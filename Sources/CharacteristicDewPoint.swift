@@ -68,5 +68,4 @@ open class CharacteristicDewPoint: Characteristic {
 
         return msgData
     }
-
 }

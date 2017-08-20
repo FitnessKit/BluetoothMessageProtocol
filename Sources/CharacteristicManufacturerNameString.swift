@@ -53,7 +53,7 @@ open class CharacteristicManufacturerNameString: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicManufacturerNameString {
 
-        let name = data.safeStringValue ?? "Unknown"
+        let name = data.safeStringValue ?? ""
 
         return CharacteristicManufacturerNameString(manufacturerName: name)
     }

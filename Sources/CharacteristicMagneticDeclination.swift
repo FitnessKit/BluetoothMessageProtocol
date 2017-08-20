@@ -72,7 +72,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
         }
 
         //put it back to uint16
-        let dec = UInt16(value * 100)
+        let dec = UInt16(value * (1 / 0.01))
 
         msgData.append(Data(from: dec.littleEndian))
 

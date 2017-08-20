@@ -66,7 +66,7 @@ open class CharacteristicHeight: Characteristic {
         var msgData = Data()
 
         //Make sure we put this back to Meters before we create Data
-        let heightVal = UInt16(height.converted(to: UnitLength.meters).value * 100.0)
+        let heightVal = UInt16(height.converted(to: UnitLength.meters).value * (1 / 0.01))
 
         msgData.append(Data(from: heightVal))
 

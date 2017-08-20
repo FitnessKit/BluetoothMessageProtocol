@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicString.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,35 +26,36 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE String Characteristic
+///
+/// A generic UTF8 string which may be used in Services requiring strings
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicString: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "String"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A28"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// String Value
+    fileprivate(set) public var value: String
 
-    public init(sensorLocation: BodyLocation) {
+    public init(value: String) {
 
-        self.sensorLocation = sensorLocation
+        self.value = value
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        super.init(name: CharacteristicString.name, uuidString: CharacteristicString.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    open override class func decode(data: Data) throws -> CharacteristicString {
 
-        var decoder = DataDecoder(data)
+        let value = data.safeStringValue ?? ""
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
-
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return CharacteristicString(value: value)
     }
 
     open override func encode() throws -> Data {
@@ -62,3 +63,4 @@ open class CharacteristicBodySensorLocation: Characteristic {
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 }
+

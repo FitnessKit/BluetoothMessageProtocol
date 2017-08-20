@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicPressure.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,52 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Pressure Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicPressure: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Pressure"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A6D"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Pressure
+    fileprivate(set) public var pressure: Measurement<UnitPressure>
 
-    public init(sensorLocation: BodyLocation) {
+    public init(pressure: Measurement<UnitPressure>) {
 
-        self.sensorLocation = sensorLocation
+        self.pressure = pressure
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        super.init(name: CharacteristicPressure.name, uuidString: CharacteristicPressure.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    open override class func decode(data: Data) throws -> CharacteristicPressure {
 
         var decoder = DataDecoder(data)
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        // put into 0.1 PA then into KiloPascals
+        let value = Double(decoder.decodeUInt32()) * 0.0001
 
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        let pressure: Measurement = Measurement(value: value, unit: UnitPressure.kilopascals)
+
+        return CharacteristicPressure(pressure: pressure)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        //Make sure we put this back to back before we create Data
+        let value = pressure.converted(to: UnitPressure.kilopascals).value
+
+        let pressV = UInt32(value * (1 / 0.0001))
+
+        msgData.append(Data(from: pressV.littleEndian))
+
+        return msgData
     }
 }
+

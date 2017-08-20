@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicPosition2D.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,52 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Position 2D Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicPosition2D: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Position 2D"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2AAF"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Latitude
+    ///
+    /// WGS84 North coordinate
+    fileprivate(set) public var latitude: Int32
 
-    public init(sensorLocation: BodyLocation) {
+    /// Longitude
+    ///
+    /// WGS84 East coordinate
+    fileprivate(set) public var longitude: Int32
 
-        self.sensorLocation = sensorLocation
+    public init(latitude: Int32, longitude: Int32) {
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        self.latitude = latitude
+        self.longitude = longitude
+
+        super.init(name: CharacteristicPosition2D.name, uuidString: CharacteristicPosition2D.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
-
+    open override class func decode(data: Data) throws -> CharacteristicPosition2D {
         var decoder = DataDecoder(data)
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        let lat = decoder.decodeInt32()
+        let lon = decoder.decodeInt32()
 
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return CharacteristicPosition2D(latitude: lat, longitude: lon)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(Data(from: latitude.littleEndian))
+        msgData.append(Data(from: longitude.littleEndian))
+
+        return msgData
     }
 }

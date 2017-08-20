@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicRainfall.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,49 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Rainfall Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicRainfall: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Rainfall"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A78"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Rainfall
+    fileprivate(set) public var rainfall: Measurement<UnitLength>
 
-    public init(sensorLocation: BodyLocation) {
+    public init(rainfall: Measurement<UnitLength>) {
 
-        self.sensorLocation = sensorLocation
+        self.rainfall = rainfall
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        super.init(name: CharacteristicRainfall.name, uuidString: CharacteristicRainfall.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    open override class func decode(data: Data) throws -> CharacteristicRainfall {
 
         var decoder = DataDecoder(data)
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        // put into 0.1 PA then into KiloPascals
+        let value = Double(decoder.decodeUInt16())
 
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        let rainfall: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
+
+        return CharacteristicRainfall(rainfall: rainfall)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        //Make sure we put this back to back before we create Data
+        let value = rainfall.converted(to: UnitLength.millimeters).value
+
+        msgData.append(Data(from: UInt32(value).littleEndian))
+
+        return msgData
     }
 }

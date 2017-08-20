@@ -53,7 +53,7 @@ open class CharacteristicModelNumberString: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
 
-        let modelNumber = data.safeStringValue ?? "Unknown"
+        let modelNumber = data.safeStringValue ?? ""
 
         return CharacteristicModelNumberString(modelNumber: modelNumber)
     }

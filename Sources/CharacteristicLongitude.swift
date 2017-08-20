@@ -69,4 +69,3 @@ open class CharacteristicLongitude: Characteristic {
         return msgData
     }
 }
-

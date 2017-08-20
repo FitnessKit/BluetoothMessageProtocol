@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicRestingHeartRate.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,46 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Resting Heart Rate Characteristic
+///
+/// Lowest Heart Rate a user can reach
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicRestingHeartRate: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Resting Heart Rate"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A92"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Resting Heart Rate
+    private(set) public var heartRate: Measurement<UnitCadence>
 
-    public init(sensorLocation: BodyLocation) {
 
-        self.sensorLocation = sensorLocation
+    public init(heartRate: UInt8) {
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
+
+        super.init(name: CharacteristicRestingHeartRate.name, uuidString: CharacteristicRestingHeartRate.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    open override class func decode(data: Data) throws -> CharacteristicRestingHeartRate {
 
         var decoder = DataDecoder(data)
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        let heartRate: UInt8 = decoder.decodeUInt8()
 
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return CharacteristicRestingHeartRate(heartRate: heartRate)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(Data(from: UInt8(heartRate.value)))
+
+        return msgData
     }
 }

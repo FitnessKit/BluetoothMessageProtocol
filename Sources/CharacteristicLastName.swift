@@ -53,7 +53,7 @@ open class CharacteristicLastName: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicLastName {
 
-        let lastName = data.safeStringValue ?? "Unknown"
+        let lastName = data.safeStringValue ?? ""
 
         return CharacteristicLastName(lastName: lastName)
     }

@@ -51,7 +51,7 @@ open class CharacteristicObjectName: Characteristic {
 
     open override class func decode(data: Data) throws -> CharacteristicObjectName {
 
-        let objectName = data.safeStringValue ?? "Unknown"
+        let objectName = data.safeStringValue ?? ""
 
         return CharacteristicObjectName(objectName: objectName)
     }

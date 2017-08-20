@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicRingerSetting.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,53 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Ringer Setting Characteristic
+///
+/// The Ringer Setting characteristic defines the Setting of the Ringer
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicRingerSetting: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Ringer Setting"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A41"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
-
-    public init(sensorLocation: BodyLocation) {
-
-        self.sensorLocation = sensorLocation
-
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+    public enum RingerSetting: UInt8 {
+        /// Ringer Silent
+        case silent        = 0
+        /// Ringer Normal
+        case normal         = 1
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    /// Ringer Setting
+    private(set) public var setting: RingerSetting
+
+
+    public init(setting: RingerSetting) {
+
+        self.setting = setting
+
+        super.init(name: CharacteristicRingerSetting.name, uuidString: CharacteristicRingerSetting.uuidString)
+    }
+
+    open override class func decode(data: Data) throws -> CharacteristicRingerSetting {
 
         var decoder = DataDecoder(data)
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        let setting = RingerSetting(rawValue: decoder.decodeUInt8()) ?? .silent
 
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return CharacteristicRingerSetting(setting: setting)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(setting.rawValue)
+
+        return msgData
     }
 }

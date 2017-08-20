@@ -88,4 +88,3 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
     }
 
 }
-

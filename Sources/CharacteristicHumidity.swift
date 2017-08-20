@@ -63,7 +63,7 @@ open class CharacteristicHumidity: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let value = UInt16(humidity.value * 100.0)
+        let value = UInt16(humidity.value * (1 / 0.01))
 
         msgData.append(Data(from: value))
 

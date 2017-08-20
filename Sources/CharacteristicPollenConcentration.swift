@@ -1,8 +1,8 @@
 //
-//  CharacteristicBodySensorLocation.swift
+//  CharacteristicPollenConcentration.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/5/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,35 +26,36 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Body Sensor Location Characteristic
+/// BLE Pollen Concentration Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodySensorLocation: Characteristic {
+open class CharacteristicPollenConcentration: Characteristic {
 
     public static var name: String {
-        return "Body Sensor Location"
+        return "Pollen Concentration"
     }
 
     public static var uuidString: String {
-        return "2A38"
+        return "2A75"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Pollen Concentration
+    fileprivate(set) public var concentration: Measurement<UnitVolume>
 
-    public init(sensorLocation: BodyLocation) {
+    public init(concentration: Measurement<UnitVolume>) {
 
-        self.sensorLocation = sensorLocation
+        self.concentration = concentration
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        super.init(name: CharacteristicPollenConcentration.name, uuidString: CharacteristicPollenConcentration.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
+    open override class func decode(data: Data) throws -> CharacteristicPollenConcentration {
 
         var decoder = DataDecoder(data)
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        let concentration: Measurement = Measurement(value: Double(decoder.decodeUInt24()), unit: UnitVolume.cubicMeters)
 
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return CharacteristicPollenConcentration(concentration: concentration)
     }
 
     open override func encode() throws -> Data {
