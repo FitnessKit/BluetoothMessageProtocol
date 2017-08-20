@@ -1,8 +1,8 @@
 //
-//  CharacteristicLastName.swift
+//  CharacteristicLongitude.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 8/19/17.
+//  Created by Kevin Hoogheem on 8/20/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,40 +26,47 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Last Name Characteristic
+/// BLE Longitude Characteristic
 ///
-/// Last name of the user
+/// The Longitude characteristic describes the WGS84 East coordinate of the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicLastName: Characteristic {
+open class CharacteristicLongitude: Characteristic {
 
     public static var name: String {
-        return "Last Name"
+        return "Longitude"
     }
 
     public static var uuidString: String {
-        return "2A90"
+        return "2AAF"
     }
 
-    /// Last Name
-    fileprivate(set) public var lastName: String
+    /// Longitude
+    ///
+    /// WGS84 East coordinate
+    fileprivate(set) public var longitude: Int32
 
-    public init(lastName: String) {
+    public init(longitude: Int32) {
 
-        self.lastName = lastName
+        self.longitude = longitude
 
-        super.init(name: CharacteristicLastName.name, uuidString: CharacteristicLastName.uuidString)
+        super.init(name: CharacteristicLongitude.name, uuidString: CharacteristicLongitude.uuidString)
     }
 
-    open override class func decode(data: Data) throws -> CharacteristicLastName {
+    open override class func decode(data: Data) throws -> CharacteristicLongitude {
+        var decoder = DataDecoder(data)
 
-        let lastName = data.safeStringValue ?? "Unknown"
+        let lon = decoder.decodeInt32()
 
-        return CharacteristicLastName(lastName: lastName)
+        return CharacteristicLongitude(longitude: lon)
     }
 
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        msgData.append(Data(from: longitude.littleEndian))
+
+        return msgData
     }
 }
+
