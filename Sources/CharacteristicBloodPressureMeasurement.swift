@@ -52,24 +52,24 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
     }
 
     /// Systolic Blood Pressure
-    fileprivate(set) public var systolic: Measurement<UnitPressure>
+    private(set) public var systolic: Measurement<UnitPressure>
 
     /// Diastolic Blood Pressure
-    fileprivate(set) public var diastolic: Measurement<UnitPressure>
+    private(set) public var diastolic: Measurement<UnitPressure>
 
     /// Mean Arterial Pressure
-    fileprivate(set) public var meanArterial: Measurement<UnitPressure>
+    private(set) public var meanArterial: Measurement<UnitPressure>
 
     /// Timestamp
-    fileprivate(set) public var timestamp: DateTime?
+    private(set) public var timestamp: DateTime?
 
     /// Pulse Rate
-    fileprivate(set) public var pulseRate: Measurement<UnitCadence>?
+    private(set) public var pulseRate: Measurement<UnitCadence>?
 
     /// User ID
     ///
     /// - note: 255 = Unknown User
-    fileprivate(set) public var userID: UInt8?
+    private(set) public var userID: UInt8?
 
     // TODO: add Measurement Status
 

@@ -53,22 +53,22 @@ open class CharacteristicPnPID: Characteristic {
     /// Vendor ID Source
     ///
     /// Identifies the source of the Vendor ID field
-    fileprivate(set) public var vendorIdSource: VendorSource
+    private(set) public var vendorIdSource: VendorSource
 
     /// Vendor ID
     ///
     /// Identifies the product vendor from the namespace in the Vendor ID Source
-    fileprivate(set) public var vendorId: UInt16
+    private(set) public var vendorId: UInt16
 
     /// Product ID
     ///
     /// Manufacturer managed identifier for this product
-    fileprivate(set) public var productId: UInt16
+    private(set) public var productId: UInt16
 
     /// Product Version
     ///
     /// Manufacturer managed version for this product
-    fileprivate(set) public var productVersion: UInt16
+    private(set) public var productVersion: UInt16
 
     public init(vendorIdSource: VendorSource, vendorId: UInt16, productId: UInt16, productVersion: UInt16) {
 

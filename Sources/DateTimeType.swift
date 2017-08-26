@@ -87,32 +87,32 @@ public struct DateTime {
     /// Year
     ///
     /// Year as defined by the Gregorian calendar. Valid between 1582 and 9999
-    fileprivate(set) public var year: UInt16?
+    private(set) public var year: UInt16?
 
     /// Month
     ///
     /// Month of the year as defined by the Gregorian calendar
-    fileprivate(set) public var month: Month
+    private(set) public var month: Month
 
     /// Day of Month
     ///
     /// Day of the month as defined by the Gregorian calendar
-    fileprivate(set) public var day: UInt8?
+    private(set) public var day: UInt8?
 
     /// Hours
     ///
     /// Number of hours past midnight
-    fileprivate(set) public var hours: UInt8
+    private(set) public var hours: UInt8
 
     /// Minutes
     ///
     /// Number of minutes since the start of the hour
-    fileprivate(set) public var minutes: UInt8
+    private(set) public var minutes: UInt8
 
     /// Seconds
     ///
     /// Number of seconds since the start of the minute
-    fileprivate(set) public var seconds: UInt8
+    private(set) public var seconds: UInt8
 
 }
 

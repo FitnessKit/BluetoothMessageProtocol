@@ -46,7 +46,7 @@ open class CharacteristicApparentWindDirection: Characteristic {
     ///
     /// For example, an apparent wind coming from a direction that is 45 degrees clockwise relative to the heading of the observer is given as 45 degrees; one that is from a direction 45 degrees anti-clockwise relative to the heading of the observer is given as 315 degrees.
     ///
-    fileprivate(set) public var windDirection: Measurement<UnitAngle>
+    private(set) public var windDirection: Measurement<UnitAngle>
 
     public init(windDirection: Measurement<UnitAngle>) {
 

@@ -42,7 +42,8 @@ open class CharacteristicAnalogOutput: Characteristic {
         return "2A59"
     }
 
-    fileprivate(set) public var analogValue: UInt16
+    /// Analog Value
+    private(set) public var analogValue: UInt16
 
 
     public init(analogValue: UInt16) {

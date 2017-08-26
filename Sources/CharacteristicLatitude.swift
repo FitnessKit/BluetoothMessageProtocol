@@ -44,7 +44,7 @@ open class CharacteristicLatitude: Characteristic {
     /// Latitude
     ///
     /// WGS84 North coordinate
-    fileprivate(set) public var latitude: Int32
+    private(set) public var latitude: Int32
 
     public init(latitude: Int32) {
 

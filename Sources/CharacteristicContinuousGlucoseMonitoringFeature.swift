@@ -123,16 +123,16 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     }
 
     /// Supported Features
-    fileprivate(set) public var features: Features
+    private(set) public var features: Features
 
     /// Type of CGM Test
-    fileprivate(set) public var testType: TestType
+    private(set) public var testType: TestType
 
     /// Sample Location
-    fileprivate(set) public var sampleLocation: Location
+    private(set) public var sampleLocation: Location
 
     /// E2E-CRC
-    fileprivate(set) public var crcValue: UInt16?
+    private(set) public var crcValue: UInt16?
 
     public init(features: Features, testType: TestType, sampleLocation: Location, crcValue: UInt16?) {
 

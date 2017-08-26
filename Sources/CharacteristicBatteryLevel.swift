@@ -44,7 +44,7 @@ open class CharacteristicBatteryLevel: Characteristic {
     ///
     /// The current charge level of a battery. 100% represents fully charged while 0% represents fully discharged.
     ///
-    fileprivate(set) public var level: Measurement<UnitPercent>
+    private(set) public var level: Measurement<UnitPercent>
 
     public init(level: Measurement<UnitPercent>) {
 

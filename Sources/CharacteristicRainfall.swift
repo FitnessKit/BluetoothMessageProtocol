@@ -40,7 +40,7 @@ open class CharacteristicRainfall: Characteristic {
     }
 
     /// Rainfall
-    fileprivate(set) public var rainfall: Measurement<UnitLength>
+    private(set) public var rainfall: Measurement<UnitLength>
 
     public init(rainfall: Measurement<UnitLength>) {
 

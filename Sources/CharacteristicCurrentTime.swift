@@ -56,16 +56,16 @@ open class CharacteristicCurrentTime: Characteristic {
     }
 
     /// Time
-    fileprivate(set) public var currentTime: DateTime
+    private(set) public var currentTime: DateTime
 
     /// Day of the Week
-    fileprivate(set) public var dayOfWeek: DayOfWeek
+    private(set) public var dayOfWeek: DayOfWeek
 
     /// Fractional Seconds
-    fileprivate(set) public var fractionalSeconds: Float
+    private(set) public var fractionalSeconds: Float
 
     /// Current Time Adjust Reason
-    fileprivate(set) public var adjustmentReason: AdjustReasons
+    private(set) public var adjustmentReason: AdjustReasons
 
     public init(adjustmentReason: AdjustReasons, currentTime: DateTime, dayOfWeek: DayOfWeek, fractionalSeconds: Float) {
 

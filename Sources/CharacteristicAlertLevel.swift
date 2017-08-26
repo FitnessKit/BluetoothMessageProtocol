@@ -39,9 +39,13 @@ open class CharacteristicAlertLevel: Characteristic {
         return "2A06"
     }
 
+    /// Alert Level Types
     public enum AlertLevel: UInt8 {
+        /// No Alert
         case noAlert        = 0
+        /// Mild Alert
         case mildAlert      = 1
+        /// High Alert
         case highAlert      = 2
 
         public var stringValue: String {
@@ -57,7 +61,8 @@ open class CharacteristicAlertLevel: Characteristic {
         }
     }
 
-    fileprivate(set) public var alertLevel: AlertLevel
+    /// Alert Level
+    private(set) public var alertLevel: AlertLevel
 
 
     public init(alertLevel: AlertLevel) {

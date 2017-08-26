@@ -42,7 +42,7 @@ open class CharacteristicManufacturerNameString: Characteristic {
     }
 
     /// Manufacturer Name
-    fileprivate(set) public var manufacturerName: String
+    private(set) public var manufacturerName: String
 
     public init(manufacturerName: String) {
 

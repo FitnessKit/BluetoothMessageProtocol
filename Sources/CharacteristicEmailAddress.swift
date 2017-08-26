@@ -40,7 +40,7 @@ open class CharacteristicEmailAddress: Characteristic {
     }
 
     /// Email Address
-    fileprivate(set) public var emailAddress: String
+    private(set) public var emailAddress: String
 
     public init(emailAddress: String) {
 

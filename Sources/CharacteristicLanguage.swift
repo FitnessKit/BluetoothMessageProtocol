@@ -42,7 +42,7 @@ open class CharacteristicLanguage: Characteristic {
     /// Language
     ///
     /// The Language definition is based on ISO639-1
-    fileprivate(set) public var language: String
+    private(set) public var language: String
 
     public init(language: String) {
 

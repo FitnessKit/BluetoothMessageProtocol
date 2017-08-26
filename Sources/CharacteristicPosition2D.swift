@@ -42,12 +42,12 @@ open class CharacteristicPosition2D: Characteristic {
     /// Latitude
     ///
     /// WGS84 North coordinate
-    fileprivate(set) public var latitude: Int32
+    private(set) public var latitude: Int32
 
     /// Longitude
     ///
     /// WGS84 East coordinate
-    fileprivate(set) public var longitude: Int32
+    private(set) public var longitude: Int32
 
     public init(latitude: Int32, longitude: Int32) {
 

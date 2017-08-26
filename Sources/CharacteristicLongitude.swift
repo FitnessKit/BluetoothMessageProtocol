@@ -44,7 +44,7 @@ open class CharacteristicLongitude: Characteristic {
     /// Longitude
     ///
     /// WGS84 East coordinate
-    fileprivate(set) public var longitude: Int32
+    private(set) public var longitude: Int32
 
     public init(longitude: Int32) {
 

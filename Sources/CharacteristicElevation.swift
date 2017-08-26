@@ -40,7 +40,7 @@ open class CharacteristicElevation: Characteristic {
     }
 
     /// Elevation
-    fileprivate(set) public var elevation: Measurement<UnitLength>
+    private(set) public var elevation: Measurement<UnitLength>
 
     public init(elevation: Measurement<UnitLength>) {
 

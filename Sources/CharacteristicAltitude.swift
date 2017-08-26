@@ -41,7 +41,8 @@ open class CharacteristicAltitude: Characteristic {
         return "2AB3"
     }
 
-    fileprivate(set) public var altitude: UInt16
+    /// Altitude
+    private(set) public var altitude: UInt16
 
 
     public init(altitude: UInt16) {

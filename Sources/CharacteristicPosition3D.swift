@@ -42,15 +42,15 @@ open class CharacteristicPosition3D: Characteristic {
     /// Latitude
     ///
     /// WGS84 North coordinate
-    fileprivate(set) public var latitude: Int32
+    private(set) public var latitude: Int32
 
     /// Longitude
     ///
     /// WGS84 East coordinate
-    fileprivate(set) public var longitude: Int32
+    private(set) public var longitude: Int32
 
     /// Elevation
-    fileprivate(set) public var elevation: Measurement<UnitLength>
+    private(set) public var elevation: Measurement<UnitLength>
 
     public init(latitude: Int32, longitude: Int32, elevation: Measurement<UnitLength>) {
 

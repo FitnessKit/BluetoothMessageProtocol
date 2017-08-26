@@ -206,6 +206,25 @@ public enum Manufacturer: UInt16 {
     case omegawave                      = 174
     case cinetix                        = 175
     case passifSemiconductor            = 176
+    case sarisCyclingGroup              = 177
+    case bekey                          = 178
+    case clarinoxTechnologies           = 179
+    case bdeTechnology                  = 180
+    case swirlNetworks                  = 181
+    case mesoInternational              = 182
+    case treLab                         = 183
+    case qualcommInnovation             = 184
+    case johnsonControls                = 185
+    case starkeyLaboratories            = 186
+    case sPowerElectronics              = 187
+    case aceSensor                      = 188
+    case aplixCorporation               = 189
+    case aampOfAmerica                  = 190
+    case stalmartTechnology             = 191
+    case amiccomElectronics             = 192
+    case shenzhenExcelsecuData          = 193
+    case geneqInc                       = 194
+    case adidas                         = 195
 
     //Non offical IDs
     case viiiiva                        = 16657 //Not in offical document (four eyes Viiiiva)
@@ -218,7 +237,7 @@ public enum Manufacturer: UInt16 {
 
 public extension Manufacturer {
 
-    public var nameValue: String {
+    public var stringValue: String {
 
         switch self {
         case .ericssonTechnology:
@@ -751,6 +770,63 @@ public extension Manufacturer {
 
         case .passifSemiconductor:
             return "Passif Semiconductor Corp"
+
+        case .sarisCyclingGroup:
+            return "Saris Cycling Group, Inc"
+
+        case .bekey:
+            return "Bekey A/S"
+
+        case .clarinoxTechnologies:
+            return "Clarinox Technologies Pty. Ltd."
+
+        case .bdeTechnology:
+            return "BDE Technology Co., Ltd."
+
+        case .swirlNetworks:
+            return "Swirl Networks"
+
+        case .mesoInternational:
+            return "Meso international"
+
+        case .treLab:
+            return "TreLab Ltd"
+
+        case .qualcommInnovation:
+            return "Qualcomm Innovation Center, Inc. (QuIC)"
+
+        case .johnsonControls:
+            return "Johnson Controls, Inc."
+
+        case .starkeyLaboratories:
+            return "Starkey Laboratories Inc."
+
+        case .sPowerElectronics:
+            return "S-Power Electronics Limited"
+
+        case .aceSensor:
+            return "Ace Sensor Inc"
+
+        case .aplixCorporation:
+            return "Aplix Corporation"
+
+        case .aampOfAmerica:
+            return "AAMP of America"
+
+        case .stalmartTechnology:
+            return "Stalmart Technology Limited"
+
+        case .amiccomElectronics:
+            return "AMICCOM Electronics Corporation"
+
+        case .shenzhenExcelsecuData:
+            return "Shenzhen Excelsecu Data Technology Co.,Ltd"
+
+        case .geneqInc:
+            return "Geneq Inc."
+
+        case .adidas:
+            return "adidas AG"
 
 
         case .viiiiva:

@@ -35,7 +35,8 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
-    fileprivate(set) public var heartRate: Measurement<UnitCadence> = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
+    /// Heartrate
+    private(set) public var heartRate: Measurement<UnitCadence> = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
 
     public init(heartRate: Measurement<UnitCadence>) {
 

@@ -40,7 +40,7 @@ open class CharacteristicHumidity: Characteristic {
     }
 
     /// Humidity
-    fileprivate(set) public var humidity: Measurement<UnitPercent>
+    private(set) public var humidity: Measurement<UnitPercent>
 
     public init(humidity: Measurement<UnitPercent>) {
 

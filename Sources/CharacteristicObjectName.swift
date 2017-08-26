@@ -40,7 +40,7 @@ open class CharacteristicObjectName: Characteristic {
     }
 
     /// Object Name
-    fileprivate(set) public var objectName: String
+    private(set) public var objectName: String
 
     public init(objectName: String) {
 
@@ -59,8 +59,8 @@ open class CharacteristicObjectName: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        guard kBluetoothObjectNameStringBounds.contains(objectName.characters.count) else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Object Name must be between \(kBluetoothObjectNameStringBounds.lowerBound) and \(kBluetoothObjectNameStringBounds.upperBound) characters in size."))
+        guard kObjectNameStringBounds.contains(objectName.characters.count) else {
+            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Object Name must be between \(kObjectNameStringBounds.lowerBound) and \(kObjectNameStringBounds.upperBound) characters in size."))
         }
 
         if let stringData = objectName.data(using: .utf8) {

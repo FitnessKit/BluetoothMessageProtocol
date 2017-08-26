@@ -42,7 +42,7 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
     }
 
     /// Local East Coordinate
-    fileprivate(set) public var localEastCoordinate: Int32
+    private(set) public var localEastCoordinate: Int32
 
     public init(localEastCoordinate: Int32) {
 

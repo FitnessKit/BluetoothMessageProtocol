@@ -40,7 +40,7 @@ open class CharacteristicPollenConcentration: Characteristic {
     }
 
     /// Pollen Concentration
-    fileprivate(set) public var concentration: Measurement<UnitVolume>
+    private(set) public var concentration: Measurement<UnitVolume>
 
     public init(concentration: Measurement<UnitVolume>) {
 

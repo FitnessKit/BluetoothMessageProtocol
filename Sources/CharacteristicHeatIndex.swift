@@ -40,7 +40,7 @@ open class CharacteristicHeatIndex: Characteristic {
     }
 
     /// Heat Index
-    fileprivate(set) public var heatIndex: Measurement<UnitTemperature>
+    private(set) public var heatIndex: Measurement<UnitTemperature>
 
     public init(heatIndex: Measurement<UnitTemperature>) {
 

@@ -39,7 +39,8 @@ open class CharacteristicBodySensorLocation: Characteristic {
         return "2A38"
     }
 
-    fileprivate(set) public var sensorLocation: BodyLocation
+    /// Sensor Location on Body
+    private(set) public var sensorLocation: BodyLocation
 
     public init(sensorLocation: BodyLocation) {
 

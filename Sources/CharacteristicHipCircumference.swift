@@ -42,7 +42,7 @@ open class CharacteristicHipCircumference: Characteristic {
     }
 
     /// Hip Circumference
-    fileprivate(set) public var hipCircumference: Measurement<UnitLength>
+    private(set) public var hipCircumference: Measurement<UnitLength>
 
     public init(hipCircumference: Measurement<UnitLength>) {
 
@@ -73,4 +73,3 @@ open class CharacteristicHipCircumference: Characteristic {
         return msgData
     }
 }
-

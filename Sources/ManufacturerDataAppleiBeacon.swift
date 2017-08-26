@@ -34,16 +34,16 @@ import FitnessUnits
 open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
     /// Proximty UUID
-    fileprivate(set) public var proximityUUID: UUID
+    private(set) public var proximityUUID: UUID
 
     /// Major ID
-    fileprivate(set) public var majorID: UInt16
+    private(set) public var majorID: UInt16
 
     /// Minor ID
-    fileprivate(set) public var minorID: UInt16
+    private(set) public var minorID: UInt16
 
     /// Measured Power
-    fileprivate(set) public var measuredPower: UInt8
+    private(set) public var measuredPower: UInt8
 
     public init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: UInt8) {
 

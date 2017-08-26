@@ -40,7 +40,7 @@ open class CharacteristicDewPoint: Characteristic {
     }
 
     /// Dew Point
-    fileprivate(set) public var dewPoint: Measurement<UnitTemperature>
+    private(set) public var dewPoint: Measurement<UnitTemperature>
 
     public init(dewPoint: Measurement<UnitTemperature>) {
 

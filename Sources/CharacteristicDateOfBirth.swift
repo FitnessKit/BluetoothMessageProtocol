@@ -42,17 +42,17 @@ open class CharacteristicDateOfBirth: Characteristic {
     /// Year
     ///
     /// Year as defined by the Gregorian calendar. Valid between 1582 and 9999
-    fileprivate(set) public var year: UInt16?
+    private(set) public var year: UInt16?
 
     /// Month
     ///
     /// Month of the year as defined by the Gregorian calendar
-    fileprivate(set) public var month: Month
+    private(set) public var month: Month
 
     /// Day of Month
     ///
     /// Day of the month as defined by the Gregorian calendar
-    fileprivate(set) public var day: UInt8?
+    private(set) public var day: UInt8?
 
     public init(year: UInt16?, month: Month, day: UInt8?) {
 

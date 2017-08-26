@@ -40,7 +40,7 @@ open class CharacteristicDeviceName: Characteristic {
     }
 
     /// Device Name
-    fileprivate(set) public var deviceName: String
+    private(set) public var deviceName: String
 
     public init(deviceName: String) {
 

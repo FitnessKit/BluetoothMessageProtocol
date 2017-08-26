@@ -40,7 +40,7 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
     }
 
     /// Database Change Increment
-    fileprivate(set) public var increment: UInt32
+    private(set) public var increment: UInt32
 
     public init(increment: UInt32) {
 

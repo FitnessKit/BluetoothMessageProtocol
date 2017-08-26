@@ -42,7 +42,7 @@ open class CharacteristicSoftwareRevisionString: Characteristic {
     }
 
     /// Software Revision
-    fileprivate(set) public var softwareRevision: String
+    private(set) public var softwareRevision: String
 
     public init(softwareRevision: String) {
 

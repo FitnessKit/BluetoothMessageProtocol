@@ -42,7 +42,7 @@ open class CharacteristicFloorNumber: Characteristic {
     }
 
     /// Floor Number
-    fileprivate(set) public var floorNumber: UInt8
+    private(set) public var floorNumber: UInt8
 
     public init(floorNumber: UInt8) {
 

@@ -41,10 +41,10 @@ open class CharacteristicDayDateTime: Characteristic {
     }
 
     /// Time
-    fileprivate(set) public var time: DateTime
+    private(set) public var time: DateTime
 
     /// Day of the Week
-    fileprivate(set) public var dayOfWeek: DayOfWeek
+    private(set) public var dayOfWeek: DayOfWeek
 
 
     public init(time: DateTime, dayOfWeek: DayOfWeek) {

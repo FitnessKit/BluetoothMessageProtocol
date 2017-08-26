@@ -42,7 +42,7 @@ open class CharacteristicModelNumberString: Characteristic {
     }
 
     /// Model Number
-    fileprivate(set) public var modelNumber: String
+    private(set) public var modelNumber: String
 
     public init(modelNumber: String) {
 

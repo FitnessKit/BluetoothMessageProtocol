@@ -41,7 +41,7 @@ open class CharacteristicBatteryPowerState: Characteristic {
     }
 
     /// Battery Power State
-    fileprivate(set) public var state: BatteryPowerState
+    private(set) public var state: BatteryPowerState
 
     public init(state: BatteryPowerState) {
 

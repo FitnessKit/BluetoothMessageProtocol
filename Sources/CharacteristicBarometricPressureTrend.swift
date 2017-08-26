@@ -40,6 +40,7 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
         return "2AA3"
     }
 
+    /// Barometric Pressure Trends
     public enum BarometricPressureTrend: UInt8 {
         case unknown                            = 0
         case continuouslyFalling                = 1
@@ -54,7 +55,7 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     }
 
     /// Pressure Trend
-    fileprivate(set) public var trend: BarometricPressureTrend
+    private(set) public var trend: BarometricPressureTrend
 
     public init(trend: BarometricPressureTrend) {
 

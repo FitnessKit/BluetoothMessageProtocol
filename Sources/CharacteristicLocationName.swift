@@ -42,7 +42,7 @@ open class CharacteristicLocationName: Characteristic {
     }
 
     /// Location Name
-    fileprivate(set) public var locationName: String
+    private(set) public var locationName: String
 
     public init(locationName: String) {
 

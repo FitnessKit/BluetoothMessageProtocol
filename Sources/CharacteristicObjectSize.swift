@@ -40,10 +40,10 @@ open class CharacteristicObjectSize: Characteristic {
     }
 
     /// Current Size
-    fileprivate(set) public var currentSize: UInt32
+    private(set) public var currentSize: UInt32
 
     /// Allocated Size
-    fileprivate(set) public var allocatedSize: UInt32
+    private(set) public var allocatedSize: UInt32
 
     public init(currentSize: UInt32, allocatedSize: UInt32) {
 

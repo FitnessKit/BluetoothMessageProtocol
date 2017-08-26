@@ -41,7 +41,7 @@ open class CharacteristicAppearance: Characteristic {
     }
 
     /// Appearance
-    fileprivate(set) public var appearance: Appearance
+    private(set) public var appearance: Appearance
 
     public init(appearance: Appearance) {
 

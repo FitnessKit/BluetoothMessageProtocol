@@ -39,6 +39,7 @@ open class CharacteristicAlertStatus: Characteristic {
         return "2A3F"
     }
 
+    /// Types of Alert Status
     public struct AlertStatus: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
@@ -49,7 +50,8 @@ open class CharacteristicAlertStatus: Characteristic {
 
     }
 
-    fileprivate(set) public var status: AlertStatus
+    /// Alert Status Type
+    private(set) public var status: AlertStatus
 
 
     public init(status: AlertStatus) {

@@ -41,7 +41,7 @@ open class CharacteristicApparentWindSpeed: Characteristic {
     }
 
     /// Wind speed
-    fileprivate(set) public var windSpeed: Measurement<UnitSpeed>
+    private(set) public var windSpeed: Measurement<UnitSpeed>
 
     public init(windSpeed: Measurement<UnitSpeed>) {
 

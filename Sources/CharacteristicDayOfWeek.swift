@@ -40,7 +40,7 @@ open class CharacteristicDayOfWeek: Characteristic {
     }
 
     /// Day of the Week
-    fileprivate(set) public var dayOfWeek: DayOfWeek
+    private(set) public var dayOfWeek: DayOfWeek
 
     public init(dayOfWeek: DayOfWeek) {
 

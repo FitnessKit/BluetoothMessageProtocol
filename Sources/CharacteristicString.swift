@@ -42,7 +42,7 @@ open class CharacteristicString: Characteristic {
     }
 
     /// String Value
-    fileprivate(set) public var value: String
+    private(set) public var value: String
 
     public init(value: String) {
 
@@ -63,4 +63,3 @@ open class CharacteristicString: Characteristic {
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 }
-

@@ -39,6 +39,7 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         return "2A49"
     }
 
+    /// Supported Feature Types
     public struct Feature: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
@@ -53,7 +54,7 @@ open class CharacteristicBloodPressureFeature: Characteristic {
     }
 
     /// Supported Features
-    fileprivate(set) public var supportedFeatures: Feature
+    private(set) public var supportedFeatures: Feature
 
 
     public init(status: Feature) {

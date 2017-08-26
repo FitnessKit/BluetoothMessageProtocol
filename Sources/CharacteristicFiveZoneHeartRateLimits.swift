@@ -86,5 +86,4 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
 
         return msgData
     }
-
 }

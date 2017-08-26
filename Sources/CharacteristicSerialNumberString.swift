@@ -42,7 +42,7 @@ open class CharacteristicSerialNumberString: Characteristic {
     }
 
     /// Serial Number
-    fileprivate(set) public var serialNumber: String
+    private(set) public var serialNumber: String
 
     public init(serialNumber: String) {
 

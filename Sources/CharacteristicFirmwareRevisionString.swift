@@ -42,7 +42,7 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
     }
 
     /// Firmware Revision
-    fileprivate(set) public var firmwareRevision: String
+    private(set) public var firmwareRevision: String
 
     public init(firmwareRevision: String) {
 

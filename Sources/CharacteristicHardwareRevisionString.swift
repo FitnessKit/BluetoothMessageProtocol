@@ -42,7 +42,7 @@ open class CharacteristicHardwareRevisionString: Characteristic {
     }
 
     /// Hardware Revision
-    fileprivate(set) public var hardwareRevision: String
+    private(set) public var hardwareRevision: String
 
     public init(hardwareRevision: String) {
 

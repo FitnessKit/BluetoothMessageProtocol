@@ -40,7 +40,7 @@ open class CharacteristicPressure: Characteristic {
     }
 
     /// Pressure
-    fileprivate(set) public var pressure: Measurement<UnitPressure>
+    private(set) public var pressure: Measurement<UnitPressure>
 
     public init(pressure: Measurement<UnitPressure>) {
 

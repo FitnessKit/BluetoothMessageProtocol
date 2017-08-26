@@ -89,8 +89,8 @@ open class CharacteristicNewAlert: Characteristic {
         msgData.append(numberOfAlerts)
 
         if let info = alertInformation {
-            guard kBluetoothNewAlertTextStringBounds.contains(info.characters.count) else {
-                throw BluetoothMessageProtocolError.init(.decodeError(msg: "Alert Information must be between \(kBluetoothNewAlertTextStringBounds.lowerBound) and \(kBluetoothNewAlertTextStringBounds.upperBound) characters in size."))
+            guard kNewAlertTextStringBounds.contains(info.characters.count) else {
+                throw BluetoothMessageProtocolError.init(.decodeError(msg: "Alert Information must be between \(kNewAlertTextStringBounds.lowerBound) and \(kNewAlertTextStringBounds.upperBound) characters in size."))
             }
 
             if let stringData = info.data(using: .utf8) {

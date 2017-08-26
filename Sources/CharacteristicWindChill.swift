@@ -40,7 +40,8 @@ open class CharacteristicWindChill: Characteristic {
         return "2A79"
     }
 
-    fileprivate(set) public var windChill: Measurement<UnitTemperature>
+    /// Wind Chill
+    private(set) public var windChill: Measurement<UnitTemperature>
 
 
     public init(windChill: Measurement<UnitTemperature>) {

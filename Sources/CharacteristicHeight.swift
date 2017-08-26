@@ -42,7 +42,7 @@ open class CharacteristicHeight: Characteristic {
     }
 
     /// Height
-    fileprivate(set) public var height: Measurement<UnitLength>
+    private(set) public var height: Measurement<UnitLength>
 
     public init(height: Measurement<UnitLength>) {
 

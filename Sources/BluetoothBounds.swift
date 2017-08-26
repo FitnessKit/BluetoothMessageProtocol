@@ -37,7 +37,14 @@ internal let kBluetoothMagneticDeclinationBounds = ClosedRange(uncheckedBounds: 
 internal let kBluetoothMeasurementIntervalBounds = ClosedRange(uncheckedBounds: (lower: 1, upper: 65535))
 
 /// Bounds for Net Alert Text String
-internal let kBluetoothNewAlertTextStringBounds = ClosedRange(uncheckedBounds: (lower: 1, upper: 18))
+internal let kNewAlertTextStringBounds = ClosedRange(uncheckedBounds: (lower: 1, upper: 18))
 
 /// Bounds for Object Name String
-internal let kBluetoothObjectNameStringBounds = ClosedRange(uncheckedBounds: (lower: 0, upper: 120))
+internal let kObjectNameStringBounds = ClosedRange(uncheckedBounds: (lower: 0, upper: 120))
+
+/// Bounds for Tx Power Level
+internal let kTxPowerLevelBounds = ClosedRange(uncheckedBounds: (lower: -100, upper: 20))
+
+/// Bounds for Max VO2
+internal let kMaxVO2Bounds = ClosedRange(uncheckedBounds: (lower: 0, upper: 255))
+

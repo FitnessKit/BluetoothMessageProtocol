@@ -40,7 +40,7 @@ open class CharacteristicDSTOffset: Characteristic {
     }
 
     /// DST Offset
-    fileprivate(set) public var dstOffset: DSTOffset
+    private(set) public var dstOffset: DSTOffset
 
     public init(dstOffset: DSTOffset) {
 

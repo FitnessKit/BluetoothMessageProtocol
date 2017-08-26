@@ -49,7 +49,7 @@ open class CharacteristicNetworkAvailability: Characteristic {
     }
 
     /// Network Availability
-    fileprivate(set) public var networkAvailable: Availability
+    private(set) public var networkAvailable: Availability
 
     public init(networkAvailable: Availability) {
 
