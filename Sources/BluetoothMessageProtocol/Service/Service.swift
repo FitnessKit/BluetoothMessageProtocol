@@ -107,9 +107,9 @@ public extension Service {
     }
 
     /// Current Time
-    public class var currentTime: ServiceCurrentTimeService {
+    public class var currentTime: ServiceCurrentTime {
         get {
-            return ServiceCurrentTimeService()
+            return ServiceCurrentTime()
         }
     }
 

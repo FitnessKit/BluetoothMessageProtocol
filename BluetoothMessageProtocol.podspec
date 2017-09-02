@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BluetoothMessageProtocol'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Encoding and Decoding of the Bluetooth Message Protocol.'
 
 
@@ -28,7 +28,7 @@ Encoding and Decoding of the Bluetooth Message Protocol.  Makes creating apps us
   s.watchos.deployment_target = '3.0'
 
 #Source
-  s.source_files = 'Sources/**/*'
+  s.source_files = 'Sources/BluetoothMessageProtocol/**/*'
 
 #Required Frameworks
 #  s.ios.framework       = [ 'Dispatch' ]

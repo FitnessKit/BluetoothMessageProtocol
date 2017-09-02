@@ -45,9 +45,9 @@ open class ServiceBondManagement: Service {
     }
 
     public init() {
-        super.init(name: ServiceBondManagementService.name,
-                   uuidString: ServiceBondManagementService.uuidString,
-                   uniformIdentifier: ServiceBondManagementService.uniformIdentifier
+        super.init(name: ServiceBondManagement.name,
+                   uuidString: ServiceBondManagement.uuidString,
+                   uniformIdentifier: ServiceBondManagement.uniformIdentifier
         )
     }
 }
