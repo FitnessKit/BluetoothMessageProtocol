@@ -89,14 +89,8 @@ open class CharacteristicRowerData: Characteristic {
     /// Resistance Level
     private(set) public var resistanceLevel: Double?
 
-    /// Total Energy
-    private(set) public var totalEnergy: Measurement<UnitEnergy>?
-
-    /// Energy Per Hour
-    private(set) public var energyPerHour: Measurement<UnitEnergy>?
-
-    /// Energy Per Minute
-    private(set) public var energyPerMinute: Measurement<UnitEnergy>?
+    /// Energy Information
+    private(set) public var energy: FitnessMachineEnergy
 
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
@@ -104,14 +98,11 @@ open class CharacteristicRowerData: Characteristic {
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
 
-    /// Elapsed Time
-    private(set) public var elapsedTime: Measurement<UnitDuration>?
-
-    /// Remaining Time
-    private(set) public var remainingTime: Measurement<UnitDuration>?
+    /// Time Information
+    private(set) public var time: FitnessMachineTime
 
 
-    public init(strokeRate: Measurement<UnitCadence>?, strokeCount: UInt16?, averageStrokeRate: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitDuration>?, averagePace: Measurement<UnitDuration>?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, resistanceLevel: Double?, totalEnergy: Measurement<UnitEnergy>?, energyPerHour: Measurement<UnitEnergy>?, energyPerMinute: Measurement<UnitEnergy>?, heartRate: UInt8?, metabolicEquivalent: Double?, elapsedTime: Measurement<UnitDuration>?, remainingTime: Measurement<UnitDuration>?) {
+    public init(strokeRate: Measurement<UnitCadence>?, strokeCount: UInt16?, averageStrokeRate: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitDuration>?, averagePace: Measurement<UnitDuration>?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, resistanceLevel: Double?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.strokeRate = strokeRate
         self.strokeCount = strokeCount
@@ -123,9 +114,7 @@ open class CharacteristicRowerData: Characteristic {
         self.averagePower = averagePower
         self.resistanceLevel = resistanceLevel
 
-        self.totalEnergy = totalEnergy
-        self.energyPerHour = energyPerHour
-        self.energyPerMinute = energyPerMinute
+        self.energy = energy
 
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
@@ -134,8 +123,7 @@ open class CharacteristicRowerData: Characteristic {
         }
 
         self.metabolicEquivalent = metabolicEquivalent
-        self.elapsedTime = elapsedTime
-        self.remainingTime = remainingTime
+        self.time = time
 
         super.init(name: CharacteristicRowerData.name, uuidString: CharacteristicRowerData.uuidString)
     }
@@ -208,8 +196,9 @@ open class CharacteristicRowerData: Characteristic {
 
             let perMinValue = Double(decoder.decodeUInt8())
             energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
-
         }
+
+        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
 
         var heartRate: UInt8?
         if flags.contains(.heartRatePresent) == true {
@@ -233,6 +222,8 @@ open class CharacteristicRowerData: Characteristic {
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
+        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+
         return CharacteristicRowerData(strokeRate: strokeRate,
                                        strokeCount: strokeCount,
                                        averageStrokeRate: averageStrokeRate,
@@ -242,13 +233,10 @@ open class CharacteristicRowerData: Characteristic {
                                        instantaneousPower: iPower,
                                        averagePower: aPower,
                                        resistanceLevel: resistanceLevel,
-                                       totalEnergy: totalEnergy,
-                                       energyPerHour: energyPerHour,
-                                       energyPerMinute: energyPerMinute,
+                                       energy: energy,
                                        heartRate: heartRate,
                                        metabolicEquivalent: mets,
-                                       elapsedTime: elapsedTime,
-                                       remainingTime: remainingTime)
+                                       time: time)
     }
 
     open override func encode() throws -> Data {

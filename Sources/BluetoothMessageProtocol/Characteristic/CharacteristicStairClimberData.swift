@@ -74,14 +74,8 @@ open class CharacteristicStairClimberData: Characteristic {
     /// Stride Count
     private(set) public var strideCount: UInt16?
 
-    /// Total Energy
-    private(set) public var totalEnergy: Measurement<UnitEnergy>?
-
-    /// Energy Per Hour
-    private(set) public var energyPerHour: Measurement<UnitEnergy>?
-
-    /// Energy Per Minute
-    private(set) public var energyPerMinute: Measurement<UnitEnergy>?
+    /// Energy Information
+    private(set) public var energy: FitnessMachineEnergy
 
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
@@ -89,23 +83,18 @@ open class CharacteristicStairClimberData: Characteristic {
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
 
-    /// Elapsed Time
-    private(set) public var elapsedTime: Measurement<UnitDuration>?
-
-    /// Remaining Time
-    private(set) public var remainingTime: Measurement<UnitDuration>?
+    /// Time Information
+    private(set) public var time: FitnessMachineTime
 
 
-    public init(floors: UInt16?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, positiveElevationGain: Measurement<UnitLength>?, strideCount: UInt16?, totalEnergy: Measurement<UnitEnergy>?, energyPerHour: Measurement<UnitEnergy>?, energyPerMinute: Measurement<UnitEnergy>?, heartRate: UInt8?, metabolicEquivalent: Double?, elapsedTime: Measurement<UnitDuration>?, remainingTime: Measurement<UnitDuration>?) {
+    public init(floors: UInt16?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, positiveElevationGain: Measurement<UnitLength>?, strideCount: UInt16?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.floors = floors
         self.stepsPerMinute = stepsPerMinute
         self.averageStepRate = averageStepRate
         self.positiveElevationGain = positiveElevationGain
         self.strideCount = strideCount
-        self.totalEnergy = totalEnergy
-        self.energyPerHour = energyPerHour
-        self.energyPerMinute = energyPerMinute
+        self.energy = energy
 
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
@@ -114,8 +103,7 @@ open class CharacteristicStairClimberData: Characteristic {
         }
 
         self.metabolicEquivalent = metabolicEquivalent
-        self.elapsedTime = elapsedTime
-        self.remainingTime = remainingTime
+        self.time = time
 
         super.init(name: CharacteristicStairClimberData.name, uuidString: CharacteristicStairClimberData.uuidString)
     }
@@ -166,8 +154,9 @@ open class CharacteristicStairClimberData: Characteristic {
 
             let perMinValue = Double(decoder.decodeUInt8())
             energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
-
         }
+
+        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
 
         var heartRate: UInt8?
         if flags.contains(.heartRatePresent) == true {
@@ -191,18 +180,17 @@ open class CharacteristicStairClimberData: Characteristic {
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
+        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+
         return CharacteristicStairClimberData(floors: floors,
                                               stepsPerMinute: stepsPerMinute,
                                               averageStepRate: averageStepRate,
                                               positiveElevationGain: positiveElevationGain,
                                               strideCount: strideCount,
-                                              totalEnergy: totalEnergy,
-                                              energyPerHour: energyPerHour,
-                                              energyPerMinute: energyPerMinute,
+                                              energy: energy,
                                               heartRate: heartRate,
                                               metabolicEquivalent: mets,
-                                              elapsedTime: elapsedTime,
-                                              remainingTime: remainingTime)
+                                              time: time)
     }
 
     open override func encode() throws -> Data {

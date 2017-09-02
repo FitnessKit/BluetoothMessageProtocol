@@ -105,14 +105,8 @@ open class CharacteristicCrossTrainerData: Characteristic {
     /// Average Power
     private(set) public var averagePower: Measurement<UnitPower>?
 
-    /// Total Energy
-    private(set) public var totalEnergy: Measurement<UnitEnergy>?
-
-    /// Energy Per Hour
-    private(set) public var energyPerHour: Measurement<UnitEnergy>?
-
-    /// Energy Per Minute
-    private(set) public var energyPerMinute: Measurement<UnitEnergy>?
+    /// Energy Information
+    private(set) public var energy: FitnessMachineEnergy
 
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
@@ -120,14 +114,11 @@ open class CharacteristicCrossTrainerData: Characteristic {
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
 
-    /// Elapsed Time
-    private(set) public var elapsedTime: Measurement<UnitDuration>?
-
-    /// Remaining Time
-    private(set) public var remainingTime: Measurement<UnitDuration>?
+    /// Time Information
+    private(set) public var time: FitnessMachineTime
 
 
-    public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, strideCount: Double?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, totalEnergy: Measurement<UnitEnergy>?, energyPerHour: Measurement<UnitEnergy>?, energyPerMinute: Measurement<UnitEnergy>?, heartRate: UInt8?, metabolicEquivalent: Double?, elapsedTime: Measurement<UnitDuration>?, remainingTime: Measurement<UnitDuration>?) {
+    public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, strideCount: Double?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
@@ -141,9 +132,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         self.resistanceLevel = resistanceLevel
         self.instantaneousPower = instantaneousPower
         self.averagePower = averagePower
-        self.totalEnergy = totalEnergy
-        self.energyPerHour = energyPerHour
-        self.energyPerMinute = energyPerMinute
+        self.energy = energy
 
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
@@ -152,8 +141,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         }
 
         self.metabolicEquivalent = metabolicEquivalent
-        self.elapsedTime = elapsedTime
-        self.remainingTime = remainingTime
+        self.time = time
 
         super.init(name: CharacteristicCrossTrainerData.name, uuidString: CharacteristicCrossTrainerData.uuidString)
     }
@@ -199,7 +187,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
 
         var pElevaionGain: Measurement<UnitLength>?
         var nElevaionGain: Measurement<UnitLength>?
-        if flags.contains(.totalDistancePresent) == true {
+        if flags.contains(.elevationGainPresent) == true {
             let pValue = Double(decoder.decodeUInt16())
             pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
 
@@ -209,7 +197,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
 
         var inclination: Measurement<UnitPercent>?
         var rampAngle: Measurement<UnitAngle>?
-        if flags.contains(.totalDistancePresent) == true {
+        if flags.contains(.angleSettingpresent) == true {
             let iValue = Double(decoder.decodeInt16()) * 0.1
             inclination = Measurement(value: iValue, unit: UnitPercent.percent)
 
@@ -249,6 +237,8 @@ open class CharacteristicCrossTrainerData: Characteristic {
 
         }
 
+        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
+
         var heartRate: UInt8?
         if flags.contains(.heartRatePresent) == true {
             heartRate = decoder.decodeUInt8()
@@ -258,6 +248,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         if flags.contains(.metabolicEquivalentPresent) == true {
             mets = Double(decoder.decodeUInt8()) * 0.1
         }
+
 
         var elapsedTime: Measurement<UnitDuration>?
         if flags.contains(.elapsedTimePresent) == true {
@@ -270,6 +261,8 @@ open class CharacteristicCrossTrainerData: Characteristic {
             let value = Double(decoder.decodeUInt16())
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
+
+        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
         return CharacteristicCrossTrainerData(instantaneousSpeed: iSpeed,
                                               averageSpeed: avgSpeed,
@@ -284,13 +277,10 @@ open class CharacteristicCrossTrainerData: Characteristic {
                                               resistanceLevel: resistanceLevel,
                                               instantaneousPower: iPower,
                                               averagePower: aPower,
-                                              totalEnergy: totalEnergy,
-                                              energyPerHour: energyPerHour,
-                                              energyPerMinute: energyPerMinute,
+                                              energy: energy,
                                               heartRate: heartRate,
                                               metabolicEquivalent: mets,
-                                              elapsedTime: elapsedTime,
-                                              remainingTime: remainingTime)
+                                              time: time)
     }
 
     open override func encode() throws -> Data {
