@@ -57,7 +57,6 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         public static let weightPresent: Flags              = Flags(rawValue: 1 << 10)
         public static let heightPresent: Flags              = Flags(rawValue: 1 << 11)
         public static let multiplePacketMeasrement: Flags   = Flags(rawValue: 1 << 12)
-
     }
 
     /// Body Fat Percentage
@@ -97,7 +96,7 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
     private(set) public var height: Measurement<UnitLength>?
 
     /// Multiple Packet Measurement
-    private(set) public var multiplePacketMeasurement: Bool = false
+    private(set) public var multiplePacketMeasurement: Bool
 
 
     public init(bodyFat: Measurement<UnitPercent>, currentTime: DateTime?, userID: User?, basalMetabolism: Measurement<UnitEnergy>?, musclePercentage: Measurement<UnitPercent>?, muscleMass: Measurement<UnitMass>?, fatFreeMass: Measurement<UnitMass>?, softLeanMass: Measurement<UnitMass>?, bodyWaterMass: Measurement<UnitMass>?, impedance: Measurement<UnitElectricResistance>?, weight: Measurement<UnitMass>?, height: Measurement<UnitLength>?, multiplePacketMeasurement: Bool) {
