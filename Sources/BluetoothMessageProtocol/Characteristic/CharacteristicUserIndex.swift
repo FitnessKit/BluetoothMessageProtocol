@@ -31,9 +31,6 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicUserIndex: Characteristic {
 
-    /// The special value of 0xFF is used for “Unknown User”.
-    private static let kUnknownUser: UInt8 = 255
-
     public static var name: String {
         return "User Index"
     }
@@ -43,10 +40,10 @@ open class CharacteristicUserIndex: Characteristic {
     }
 
     /// User Index
-    private(set) public var userIndex: UInt8?
+    private(set) public var userIndex: User
 
 
-    public init(userIndex: UInt8?) {
+    public init(userIndex: User) {
 
         self.userIndex = userIndex
 
@@ -59,24 +56,16 @@ open class CharacteristicUserIndex: Characteristic {
 
         let value = decoder.decodeUInt8()
 
-        var userIndex: UInt8?
-        if value != CharacteristicUserIndex.kUnknownUser {
-            userIndex = value
-        }
+        let userIndex: User = User.create(value)
 
         return CharacteristicUserIndex(userIndex: userIndex)
     }
 
     open override func encode() throws -> Data {
-        var indexValue: UInt8 = CharacteristicUserIndex.kUnknownUser
-
-        if let index = userIndex {
-            indexValue = index
-        }
 
         var msgData = Data()
 
-        msgData.append(indexValue)
+        msgData.append(userIndex.rawValue)
 
         return msgData
     }

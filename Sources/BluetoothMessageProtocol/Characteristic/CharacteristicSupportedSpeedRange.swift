@@ -38,7 +38,7 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     }
 
     public static var uuidString: String {
-        return "2AD5"
+        return "2AD4"
     }
 
     /// Minimum Speed

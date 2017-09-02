@@ -67,13 +67,11 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
     private(set) public var pulseRate: Measurement<UnitCadence>?
 
     /// User ID
-    ///
-    /// - note: 255 = Unknown User
-    private(set) public var userID: UInt8?
+    private(set) public var userID: User?
 
     // TODO: add Measurement Status
 
-    public init(systolic: Measurement<UnitPressure>, diastolic: Measurement<UnitPressure>, meanArterial: Measurement<UnitPressure>, timestamp: DateTime?, pulseRate: Measurement<UnitCadence>?, userID: UInt8?) {
+    public init(systolic: Measurement<UnitPressure>, diastolic: Measurement<UnitPressure>, meanArterial: Measurement<UnitPressure>, timestamp: DateTime?, pulseRate: Measurement<UnitCadence>?, userID: User?) {
 
         self.systolic = systolic
         self.diastolic = diastolic
@@ -122,9 +120,9 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
             pulseRate = Measurement(value: pulse, unit: UnitCadence.beatsPerMinute)
         }
 
-        var userID: UInt8?
+        var userID: User?
         if flags.contains(.userIDPresent) == true {
-            userID = decoder.decodeUInt8()
+            userID = User.create(decoder.decodeUInt8())
         }
 
 

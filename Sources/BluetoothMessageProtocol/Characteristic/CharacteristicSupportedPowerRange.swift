@@ -38,7 +38,7 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     }
 
     public static var uuidString: String {
-        return "0x2AD8"
+        return "2AD8"
     }
 
     /// Minimum Power
