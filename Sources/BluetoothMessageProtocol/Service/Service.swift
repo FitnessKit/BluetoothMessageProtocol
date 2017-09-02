@@ -67,7 +67,6 @@ public extension Service {
 
 }
 
-
 // MARK: - Supported Bluetooth SIG Services
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension Service {
@@ -338,3 +337,16 @@ public extension Service {
         }
     }
 }
+
+// MARK: - Non Bluetooth SIG Services
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public extension Service {
+
+    /// Apple MIDI
+    public class var appleMidi: ServiceAppleMidi {
+        get {
+            return ServiceAppleMidi()
+        }
+    }
+}
+
