@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceLocationAndNavigation: Service {
 
+    /// Service Name
     public static var name: String {
         return "Location and Navigation"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "1819"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "org.bluetooth.service.location_and_navigation"
     }

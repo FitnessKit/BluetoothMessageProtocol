@@ -33,10 +33,12 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicV02Max: Characteristic {
 
+    /// Characteristic Name
     public static var name: String {
         return "VO2 Max"
     }
 
+    /// Characteristic UUID
     public static var uuidString: String {
         return "2A96"
     }

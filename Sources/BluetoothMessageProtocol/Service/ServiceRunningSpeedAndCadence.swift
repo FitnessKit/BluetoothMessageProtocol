@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceRunningSpeedAndCadence: Service {
 
+    /// Service Name
     public static var name: String {
         return "Running Speed and Cadence"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "1814"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "org.bluetooth.service.running_speed_and_cadence"
     }

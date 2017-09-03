@@ -26,17 +26,28 @@ import Foundation
 
 /// Bluetooth Alert Categories
 public enum AlertCategory: UInt8 {
+    /// Simple Alert: General text alert or non-text alert
     case simpleAlert        = 0
+    /// Email: Alert when Email messages arrives
     case email              = 1
+    /// News: News feeds such as RSS, Atom
     case news               = 2
+    /// Call: Incoming call
     case call               = 3
+    /// Missed call: Missed Call
     case missedCall         = 4
+    /// SMS/MMS: SMS/MMS message arrives
     case textMessage        = 5
+    /// Voice mail: Voice mail
     case voiceMail          = 6
+    /// Schedule: Alert occurred on calendar, planner
     case schedule           = 7
+    /// High Prioritized Alert: Alert that should be handled as high priority
     case highPrioritized    = 8
+    /// Instant Message: Alert for incoming instant messages
     case instantMessage     = 9
 
+    /// Provides a string value for the alert category
     var stringValue: String {
 
         switch self {

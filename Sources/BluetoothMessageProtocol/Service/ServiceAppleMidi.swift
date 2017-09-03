@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceAppleMidi: Service {
 
+    /// Service Name
     public static var name: String {
         return "Apple MIDI"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "03B80E5A-EDE8-4B33-A751-6CE34EC4C700"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "com.apple.service.apple_midi"
     }

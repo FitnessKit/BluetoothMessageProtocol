@@ -32,13 +32,13 @@ import FitnessUnits
 public enum DSTOffset: UInt8 {
     /// Standard Time
     case standardTime           = 0
-    // Half An Hour Daylight Time (+0.5h)
+    /// Half An Hour Daylight Time (+0.5h)
     case halfHourDaylightTime   = 2
     /// Daylight Time (+1h)
     case daylightTime           = 4
     /// Double Daylight Time (+2h))
     case doubleDaylightTime     = 8
-    // Unknown
+    /// Unknown
     case unknown                = 255
 }
 
@@ -65,18 +65,31 @@ public enum DayOfWeek: UInt8 {
 
 /// Bluetooth Months
 public enum Month: UInt8 {
+    /// Unknow
     case unknown        = 0
+    /// January
     case january        = 1
+    /// February
     case february       = 2
+    /// March
     case march          = 3
+    /// April
     case april          = 4
+    /// May
     case may            = 5
+    /// June
     case june           = 6
+    /// July
     case july           = 7
+    /// August
     case august         = 8
+    /// September
     case september      = 9
+    /// October
     case october        = 10
+    /// November
     case november       = 11
+    /// December
     case december       = 12
 }
 
@@ -155,6 +168,7 @@ public extension DateTime {
 
 public extension DateTime {
 
+    /// Encode DateTime Struct
     public func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

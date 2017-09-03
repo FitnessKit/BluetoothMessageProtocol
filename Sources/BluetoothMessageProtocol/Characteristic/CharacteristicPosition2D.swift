@@ -31,10 +31,12 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicPosition2D: Characteristic {
 
+    /// Characteristic Name
     public static var name: String {
         return "Position 2D"
     }
 
+    /// Characteristic UUID
     public static var uuidString: String {
         return "2AAF"
     }

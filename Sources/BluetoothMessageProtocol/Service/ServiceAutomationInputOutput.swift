@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceAutomationInputOutput: Service {
 
+    /// Service Name
     public static var name: String {
         return "Automation IO"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "1815"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "org.bluetooth.service.automation_io"
     }

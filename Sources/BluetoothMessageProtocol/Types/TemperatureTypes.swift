@@ -28,17 +28,29 @@ import Foundation
 ///
 /// These Temperature Type values correspond to the Temperature Type descriptions used in ISO/IEEE 11073-10408-2008
 public enum TemperatureType: UInt8 {
+    /// Unknown
     case unknown            = 0
+    /// Armpit
     case armpit             = 1
+    /// Body (general)
     case bodyGeneral        = 2
+    /// Ear (usually ear lobe)
     case ear                = 3
+    /// Finger
     case finger             = 4
+    /// Gastro-intestinal Tract
     case gastroIntestinal   = 5
+    /// Mouth
     case mouth              = 6
+    /// Rectum
     case rectum             = 7
+    /// Toe
     case toe                = 8
+    /// Tympanum (ear drum)
     case tympanum           = 9
 
+
+    /// String value for Temperature Type
     var stringValue: String {
 
         switch self {

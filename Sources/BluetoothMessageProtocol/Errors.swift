@@ -26,13 +26,11 @@ import Foundation
 
 
 public enum ErrorReasons {
-
+    /// Unsupported
     case unsupported
-
-    ///
-    ///  Data
-    ///
+    /// Encoding error
     case encodeError(msg: String)
+    /// Decoding error
     case decodeError(msg: String)
 
     //Generic
@@ -40,7 +38,7 @@ public enum ErrorReasons {
 }
 
 public struct BluetoothMessageProtocolError: Error {
-
+    /// Error Type
     public let type: ErrorReasons
 
     init(_ type: ErrorReasons) {

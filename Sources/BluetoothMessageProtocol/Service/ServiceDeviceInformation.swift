@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceDeviceInformation: Service {
 
+    /// Service Name
     public static var name: String {
         return "Device Information"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "180A"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "org.bluetooth.service.device_information"
     }

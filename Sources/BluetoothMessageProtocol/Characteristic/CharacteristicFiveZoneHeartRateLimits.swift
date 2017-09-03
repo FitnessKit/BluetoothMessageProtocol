@@ -33,10 +33,12 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
 
+    /// Characteristic Name
     public static var name: String {
         return "Five Zone Heart Rate Limits"
     }
 
+    /// Characteristic UUID
     public static var uuidString: String {
         return "2A8B"
     }

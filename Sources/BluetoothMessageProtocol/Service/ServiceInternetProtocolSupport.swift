@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceInternetProtocolSupport: Service {
 
+    /// Service Name
     public static var name: String {
         return "Internet Protocol Support"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "1820"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "org.bluetooth.service.internet_protocol_support"
     }

@@ -33,10 +33,12 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicAltitude: Characteristic {
 
+    /// Characteristic Name
     public static var name: String {
         return "Altitude"
     }
 
+    /// Characteristic UUID
     public static var uuidString: String {
         return "2AB3"
     }

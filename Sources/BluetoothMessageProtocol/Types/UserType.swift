@@ -11,9 +11,12 @@ import Foundation
 
 /// Bluetooth User
 public enum User {
+    /// Unknown User
     case unknown
+    /// Users Index/ID Value
     case value(_: UInt8)
 
+    /// Raw Value
     public var rawValue: UInt8 {
         switch self {
         case .unknown:
@@ -23,6 +26,9 @@ public enum User {
         }
     }
 
+    /// Create User
+    ///
+    /// - Returns: User Instance
     public static func create(_ value: UInt8) -> User {
         if value == UInt8.max {
             return User.unknown

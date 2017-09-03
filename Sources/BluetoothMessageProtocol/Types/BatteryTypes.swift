@@ -28,31 +28,51 @@ import Foundation
 /// Battery Power State Information
 public struct BatteryPowerState {
 
+    /// If Power State is supported
     public enum StateSupport: UInt8 {
+        /// Unknown
         case unknown        = 0
+        /// State not supported
         case notSupported   = 1
+        /// State not present
         case notPresent     = 2
+        /// State present
         case present        = 3
     }
 
+    /// Provides Discharge Status
     public enum DischargeStatus: UInt8 {
+        /// Unknown
         case unknown        = 0
+        /// Not supported
         case notSupported   = 1
+        /// Battery not discharging
         case notDischarging = 2
+        /// Battery is discharging
         case discharging    = 3
     }
 
+    /// Charging Status
     public enum ChargingStatus: UInt8 {
+        /// Unknown
         case unknown        = 0
+        /// Not chargeable
         case notChargeable  = 1
+        /// Battery not charging
         case notCharging    = 2
+        /// Battery is charging
         case charging       = 3
     }
 
+    /// Battery Level
     public enum Level: UInt8 {
+        /// Unknown
         case unknown        = 0
+        /// Battery level not supported
         case notSupported   = 1
+        /// Battery level good
         case goodLevel      = 2
+        /// Battery level critically low
         case criticallyLow  = 3
     }
 
@@ -73,7 +93,7 @@ public struct BatteryPowerState {
     /// Level of the Battery
     private(set) public var batteryLevel: Level
 
-
+    /// Raw Value
     public var rawValue: UInt8 {
         var value: UInt8 = stateInfo.rawValue
         value |= dischargeInfo.rawValue << 2

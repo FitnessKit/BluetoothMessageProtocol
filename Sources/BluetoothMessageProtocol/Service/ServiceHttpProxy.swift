@@ -32,14 +32,17 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceHttpProxy: Service {
 
+    /// Service Name
     public static var name: String {
         return "HTTP Proxy"
     }
 
+    /// Service UUID
     public static var uuidString: String {
         return "1823"
     }
 
+    /// Service Uniform Identifier
     public static var uniformIdentifier: String {
         return "org.bluetooth.service.http_proxy"
     }

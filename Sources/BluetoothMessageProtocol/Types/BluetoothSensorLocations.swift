@@ -25,14 +25,23 @@ import Foundation
 
 /// Location of Sensor on Body
 public enum BodyLocation: UInt8 {
+    /// Other
     case other      = 0
+    /// Chest
     case chest      = 1
+    /// Wrist
     case wrist      = 2
+    /// Finger
     case finger     = 3
+    /// Hand
     case hand       = 4
+    /// Ear Lobe
     case earLobe    = 5
+    /// Foot
     case foot       = 6
 
+
+    /// String Value for Body Location
     public var stringValue: String {
 
         switch self {
