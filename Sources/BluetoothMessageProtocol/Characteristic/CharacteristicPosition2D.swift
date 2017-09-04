@@ -59,6 +59,11 @@ open class CharacteristicPosition2D: Characteristic {
         super.init(name: CharacteristicPosition2D.name, uuidString: CharacteristicPosition2D.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPosition2D {
         var decoder = DataDecoder(data)
 
@@ -68,6 +73,10 @@ open class CharacteristicPosition2D: Characteristic {
         return CharacteristicPosition2D(latitude: lat, longitude: lon)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

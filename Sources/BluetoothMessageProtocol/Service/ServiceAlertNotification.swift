@@ -50,6 +50,7 @@ open class ServiceAlertNotification: Service {
         return "org.bluetooth.service.alert_notification"
     }
 
+    /// Creates Alert Notification Service
     public init() {
         super.init(name: ServiceAlertNotification.name,
                    uuidString: ServiceAlertNotification.uuidString,

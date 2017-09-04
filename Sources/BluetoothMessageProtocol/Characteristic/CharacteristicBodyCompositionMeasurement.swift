@@ -46,18 +46,31 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
+        /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
         public static let imperialUnits: Flags              = Flags(rawValue: 1 << 0)
+        /// Time Stamp Present
         public static let timeStampPresent: Flags           = Flags(rawValue: 1 << 1)
+        /// User ID present
         public static let userIDPresent: Flags              = Flags(rawValue: 1 << 2)
+        /// Basal Metabolism present
         public static let basalMetabolismPresent: Flags     = Flags(rawValue: 1 << 3)
+        /// Muscle Percentage present
         public static let musclePercentagePresent: Flags    = Flags(rawValue: 1 << 4)
+        /// Muscle Mass present
         public static let muscleMassPresent: Flags          = Flags(rawValue: 1 << 5)
+        /// Fat Free Mass present
         public static let fatFreeMassPresent: Flags         = Flags(rawValue: 1 << 6)
+        /// Soft Lean Mass present
         public static let softLeanMassPresent: Flags        = Flags(rawValue: 1 << 7)
+        /// Body Water Mass present
         public static let bodyWaterMassPresent: Flags       = Flags(rawValue: 1 << 8)
+        /// Impedance present
         public static let impedancePresent: Flags           = Flags(rawValue: 1 << 9)
+        /// Weight present
         public static let weightPresent: Flags              = Flags(rawValue: 1 << 10)
+        /// Height present
         public static let heightPresent: Flags              = Flags(rawValue: 1 << 11)
+        /// Multiple Packet Measurement
         public static let multiplePacketMeasrement: Flags   = Flags(rawValue: 1 << 12)
     }
 
@@ -120,6 +133,11 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         super.init(name: CharacteristicBodyCompositionMeasurement.name, uuidString: CharacteristicBodyCompositionMeasurement.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBodyCompositionMeasurement {
 
         var decoder = DataDecoder(data)
@@ -249,6 +267,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                                                         multiplePacketMeasurement: multiPacket)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

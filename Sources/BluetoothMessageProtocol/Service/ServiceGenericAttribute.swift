@@ -45,6 +45,7 @@ open class ServiceGenericAttribute: Service {
         return "org.bluetooth.service.generic_attribute"
     }
 
+    /// Creates Generic Attribute Service
     public init() {
         super.init(name: ServiceGenericAttribute.name,
                    uuidString: ServiceGenericAttribute.uuidString,

@@ -47,6 +47,7 @@ open class ServiceMeshProvisioning: Service {
         return "org.bluetooth.service.mesh_provisioning"
     }
 
+    /// Creates Mesh Provisioning Service
     public init() {
         super.init(name: ServiceMeshProvisioning.name,
                    uuidString: ServiceMeshProvisioning.uuidString,

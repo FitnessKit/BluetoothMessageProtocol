@@ -79,6 +79,11 @@ open class CharacteristicTimeUpdateState: Characteristic {
         super.init(name: CharacteristicTimeUpdateState.name, uuidString: CharacteristicTimeUpdateState.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeUpdateState {
 
         var decoder = DataDecoder(data)
@@ -89,6 +94,10 @@ open class CharacteristicTimeUpdateState: Characteristic {
         return CharacteristicTimeUpdateState(currentState: state, result: result)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
         var msgData = Data()

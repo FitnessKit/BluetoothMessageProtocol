@@ -46,13 +46,18 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
+        /// Body Movement Detection feature supported
         public static let bodyMovementDetectionSupported: Feature           = Feature(rawValue: 1 << 0)
+        /// Cuff Fit Detection feature supported
         public static let cuffFitDetectionSupported: Feature                = Feature(rawValue: 1 << 1)
+        /// Irregular Pulse Detection feature supported
         public static let irregularPulseDetectionSupported: Feature         = Feature(rawValue: 1 << 2)
+        /// Pulse Rate Range Detection feature supported
         public static let pulseRateRangeDetectionSupported: Feature         = Feature(rawValue: 1 << 3)
+        /// Measurement Position Detection feature supported
         public static let measurementPositionDetectionSupported: Feature    = Feature(rawValue: 1 << 4)
+        /// Multiple Bonds supported
         public static let multipleBondsSupported: Feature                   = Feature(rawValue: 1 << 5)
-
     }
 
     /// Supported Features
@@ -66,6 +71,11 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         super.init(name: CharacteristicBloodPressureFeature.name, uuidString: CharacteristicBloodPressureFeature.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBloodPressureFeature {
 
         var decoder = DataDecoder(data)
@@ -75,6 +85,10 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         return CharacteristicBloodPressureFeature(status: status)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

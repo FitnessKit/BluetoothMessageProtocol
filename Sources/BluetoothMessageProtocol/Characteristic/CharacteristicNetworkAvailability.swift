@@ -60,6 +60,11 @@ open class CharacteristicNetworkAvailability: Characteristic {
         super.init(name: CharacteristicNetworkAvailability.name, uuidString: CharacteristicNetworkAvailability.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicNetworkAvailability {
         var decoder = DataDecoder(data)
 
@@ -68,6 +73,10 @@ open class CharacteristicNetworkAvailability: Characteristic {
         return CharacteristicNetworkAvailability(networkAvailable: avilability)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

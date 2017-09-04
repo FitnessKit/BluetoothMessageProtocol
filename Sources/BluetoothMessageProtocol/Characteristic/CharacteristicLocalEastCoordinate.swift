@@ -53,6 +53,11 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
         super.init(name: CharacteristicLocalEastCoordinate.name, uuidString: CharacteristicLocalEastCoordinate.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicLocalEastCoordinate {
         var decoder = DataDecoder(data)
 
@@ -61,6 +66,10 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
         return CharacteristicLocalEastCoordinate(localEastCoordinate: local)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

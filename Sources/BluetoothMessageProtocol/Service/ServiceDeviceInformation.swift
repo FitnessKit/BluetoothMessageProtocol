@@ -47,6 +47,7 @@ open class ServiceDeviceInformation: Service {
         return "org.bluetooth.service.device_information"
     }
 
+    /// Creates Device Information Service
     public init() {
         super.init(name: ServiceDeviceInformation.name,
                    uuidString: ServiceDeviceInformation.uuidString,

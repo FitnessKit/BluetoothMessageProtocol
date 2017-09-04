@@ -47,6 +47,7 @@ open class ServiceNextDSTChange: Service {
         return "org.bluetooth.service.next_dst_change"
     }
 
+    /// Creates Next DST Change Service
     public init() {
         super.init(name: ServiceNextDSTChange.name,
                    uuidString: ServiceNextDSTChange.uuidString,

@@ -55,11 +55,20 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
         super.init(name: CharacteristicHeartRateControlPoint.name, uuidString: CharacteristicHeartRateControlPoint.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHeartRateControlPoint {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
         var msgData = Data()

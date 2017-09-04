@@ -62,6 +62,11 @@ open class CharacteristicSupportedPowerRange: Characteristic {
         super.init(name: CharacteristicSupportedPowerRange.name, uuidString: CharacteristicSupportedPowerRange.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedPowerRange {
 
         var decoder = DataDecoder(data)
@@ -78,6 +83,10 @@ open class CharacteristicSupportedPowerRange: Characteristic {
         return CharacteristicSupportedPowerRange(minimum: minimum, maximum: maximum, minimumIncrement: minimumIncrement)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

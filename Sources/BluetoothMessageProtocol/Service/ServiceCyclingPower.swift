@@ -47,6 +47,7 @@ open class ServiceCyclingPower: Service {
         return "org.bluetooth.service.cycling_power"
     }
 
+    /// Creates Cycling Power Service
     public init() {
         super.init(name: ServiceCyclingPower.name,
                    uuidString: ServiceCyclingPower.uuidString,

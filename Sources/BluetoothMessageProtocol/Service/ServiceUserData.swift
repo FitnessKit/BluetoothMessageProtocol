@@ -47,6 +47,7 @@ open class ServiceUserData: Service {
         return "org.bluetooth.service.user_data"
     }
 
+    /// Creates User Data Service
     public init() {
         super.init(name: ServiceUserData.name,
                    uuidString: ServiceUserData.uuidString,

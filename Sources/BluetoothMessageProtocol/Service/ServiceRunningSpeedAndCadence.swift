@@ -47,6 +47,7 @@ open class ServiceRunningSpeedAndCadence: Service {
         return "org.bluetooth.service.running_speed_and_cadence"
     }
 
+    /// Creates Running Speed and Cadence Service
     public init() {
         super.init(name: ServiceRunningSpeedAndCadence.name,
                    uuidString: ServiceRunningSpeedAndCadence.uuidString,

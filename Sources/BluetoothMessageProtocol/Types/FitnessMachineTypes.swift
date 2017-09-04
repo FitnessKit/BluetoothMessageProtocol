@@ -26,8 +26,15 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
+/// Fitness Machine Movement Direction
+public enum FitnessMachineMovementDirection {
+    /// Forward
+    case forward
+    /// Backward
+    case backward
+}
 
-// Fitness Machine Time Information
+/// Fitness Machine Time Information
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineTime {
@@ -37,12 +44,10 @@ public struct FitnessMachineTime {
 
     /// Remaining Time
     private(set) public var remaining: Measurement<UnitDuration>?
-
-
 }
 
 
-// Fitness Machine Energy Information
+/// Fitness Machine Energy Information
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineEnergy {

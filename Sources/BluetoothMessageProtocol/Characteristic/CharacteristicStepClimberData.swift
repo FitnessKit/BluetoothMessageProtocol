@@ -48,14 +48,23 @@ open class CharacteristicStepClimberData: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
+        /// More Data present
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        /// Step per Minute present
         public static let stepPerMinutePresent: Flags           = Flags(rawValue: 1 << 1)
+        /// Average Step Rate Present
         public static let averageStepRatePresent: Flags         = Flags(rawValue: 1 << 2)
+        /// Positive Elevation Gain present
         public static let positiveElevationGainPresent: Flags   = Flags(rawValue: 1 << 3)
+        /// Expended Energy present
         public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 4)
+        /// Heart Rate present
         public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 5)
+        /// Metabolic Equivalent present
         public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 6)
+        /// Elapsed Time present
         public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 7)
+        /// Remaining Time present
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 8)
     }
 
@@ -109,6 +118,11 @@ open class CharacteristicStepClimberData: Characteristic {
         super.init(name: CharacteristicStepClimberData.name, uuidString: CharacteristicStepClimberData.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicStepClimberData {
 
         var decoder = DataDecoder(data)
@@ -191,6 +205,10 @@ open class CharacteristicStepClimberData: Characteristic {
                                              time: time)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

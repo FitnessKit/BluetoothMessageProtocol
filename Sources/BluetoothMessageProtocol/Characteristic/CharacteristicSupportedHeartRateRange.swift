@@ -62,6 +62,11 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
         super.init(name: CharacteristicSupportedHeartRateRange.name, uuidString: CharacteristicSupportedHeartRateRange.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedHeartRateRange {
 
         var decoder = DataDecoder(data)
@@ -73,6 +78,10 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
         return CharacteristicSupportedHeartRateRange(minimum: minimum, maximum: maximum, minimumIncrement: minimumIncrement)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

@@ -51,6 +51,11 @@ open class CharacteristicHumidity: Characteristic {
         super.init(name: CharacteristicHumidity.name, uuidString: CharacteristicHumidity.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHumidity {
 
         var decoder = DataDecoder(data)
@@ -62,6 +67,10 @@ open class CharacteristicHumidity: Characteristic {
         return CharacteristicHumidity(humidity: humidity)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

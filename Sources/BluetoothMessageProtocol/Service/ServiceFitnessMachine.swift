@@ -47,6 +47,7 @@ open class ServiceFitnessMachine: Service {
         return "org.bluetooth.service.fitness_machine"
     }
 
+    /// Creates Fitness Machine Service
     public init() {
         super.init(name: ServiceFitnessMachine.name,
                    uuidString: ServiceFitnessMachine.uuidString,

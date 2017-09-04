@@ -45,10 +45,15 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
+        /// Blood pressure for Systolic, Diastolic and MAP in units of kPa
         public static let unitsIsKilopascals: Flags         = Flags(rawValue: 1 << 0)
+        /// Time Stamp present
         public static let timestampPresent: Flags           = Flags(rawValue: 1 << 1)
+        /// Pulse Rate present
         public static let pulseRatePresent: Flags           = Flags(rawValue: 1 << 2)
+        /// User ID present
         public static let userIDPresent: Flags              = Flags(rawValue: 1 << 3)
+        /// Measurement Status present
         public static let measurementStatusPresent: Flags   = Flags(rawValue: 1 << 4)
 
     }
@@ -85,6 +90,11 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         super.init(name: CharacteristicBloodPressureMeasurement.name, uuidString: CharacteristicBloodPressureMeasurement.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBloodPressureMeasurement {
 
         var decoder = DataDecoder(data)
@@ -131,6 +141,10 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         return CharacteristicBloodPressureMeasurement(systolic: systolic!, diastolic: diastolic!, meanArterial: meanArterial!, timestamp: timestamp, pulseRate: pulseRate, userID: userID)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

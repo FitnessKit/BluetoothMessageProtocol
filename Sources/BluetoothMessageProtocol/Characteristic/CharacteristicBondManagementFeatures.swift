@@ -100,6 +100,11 @@ open class CharacteristicBondManagementFeatures: Characteristic {
         super.init(name: CharacteristicBondManagementFeatures.name, uuidString: CharacteristicBondManagementFeatures.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBondManagementFeatures {
 
         var decoder = DataDecoder(data)
@@ -109,6 +114,10 @@ open class CharacteristicBondManagementFeatures: Characteristic {
         return CharacteristicBondManagementFeatures(features: features)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

@@ -25,6 +25,7 @@
 import Foundation
 
 
+/// BluetoothMessageProtocol Error Reasons
 public enum ErrorReasons {
     /// Unsupported
     case unsupported
@@ -37,6 +38,7 @@ public enum ErrorReasons {
     case generic(String)
 }
 
+/// BluetoothMessageProtocol Error
 public struct BluetoothMessageProtocolError: Error {
     /// Error Type
     public let type: ErrorReasons

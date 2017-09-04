@@ -157,6 +157,11 @@ public extension DateTime {
         return DateTime(year: year, month: month, day: dayOfMonth, hours: hours, minutes: minutes, seconds: seconds)
     }
 
+    /// Decode DateTime
+    ///
+    /// - Parameter data: DateTime Data
+    /// - Returns: DateTime Instance
+    /// - Throws: BluetoothMessageProtocolError
     public static func decode(data: Data) throws -> DateTime {
 
         var decoder = DataDecoder(data)

@@ -38,6 +38,11 @@ open class Service {
     /// Uniform Type Identifier
     open private(set) var uniformIdentifier: String
 
+    /// Creates a Bluetooth Service
+    ///
+    /// - Parameter name: Service Name
+    /// - Parameter uuidString: UUID String
+    /// - Parameter uniformIdentifier: Uniform Type Information
     public init(name: String, uuidString: String, uniformIdentifier: String) {
 
         self.name = name

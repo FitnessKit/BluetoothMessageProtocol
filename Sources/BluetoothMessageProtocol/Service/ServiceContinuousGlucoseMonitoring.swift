@@ -47,6 +47,7 @@ open class ServiceContinuousGlucoseMonitoring: Service {
         return "org.bluetooth.service.continuous_glucose_monitoring"
     }
 
+    /// Creates Continuous Glucose Monitoring Service
     public init() {
         super.init(name: ServiceContinuousGlucoseMonitoring.name,
                    uuidString: ServiceContinuousGlucoseMonitoring.uuidString,

@@ -47,6 +47,7 @@ open class ServiceEnvironmentalSensing: Service {
         return "org.bluetooth.service.environmental_sensing"
     }
 
+    /// Creates Environmental Sensing Service
     public init() {
         super.init(name: ServiceEnvironmentalSensing.name,
                    uuidString: ServiceEnvironmentalSensing.uuidString,

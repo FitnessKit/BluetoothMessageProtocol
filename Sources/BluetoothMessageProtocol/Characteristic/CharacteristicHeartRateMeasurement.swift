@@ -43,9 +43,13 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
 
     /// Contact Status of Sensor
     public enum ContactStatus: UInt8 {
+        /// Sensor Contact feature is not supported in the current connection
         case notSupported       = 0
+        /// Sensor Contact feature is not supported in the current connection
         case stillNotSupportd   = 1
+        /// Sensor Contact feature is supported, but contact is not detected
         case notDetected        = 2
+        /// Sensor Contact feature is supported and contact is detected
         case detected           = 3
 
         public var stringValue: String {
@@ -62,11 +66,16 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     }
 
     fileprivate struct Flags {
+        /// Heart Rate Value Format is set to UINT16. Units: beats per minute (bpm)
         private(set) public var isFormatUInt16: Bool
+        /// Sensor Contact Status
         private(set) public var contact: ContactStatus
+        /// Energy Expended field is present
         private(set) public var isEnergyExpendedPresent: Bool
+        /// One or more RR-Interval values are present
         private(set) public var isRRIntervalPresent: Bool
 
+        /// Rawvalue
         public var rawValue: UInt8 {
             var value: UInt8 = UInt8(isFormatUInt16 == true ? 1 : 0)
             value |= contact.rawValue << 1
@@ -76,6 +85,9 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
             return UInt8(value)
         }
 
+        /// Creates Flags Struct
+        ///
+        /// - Parameter value: UInt8 Flag Data
         public init(_ value: UInt8) {
             self.isFormatUInt16 = (value & 0x01).boolValue
 
@@ -89,6 +101,13 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
 
         }
 
+        /// Creates Flags Structs
+        ///
+        /// - Parameters:
+        ///   - isFormatUInt16: HR Format is UInt16
+        ///   - contactStatus: Contact Status
+        ///   - isEnergyExpendedPresent: Energy Expended Present
+        ///   - isRRIntervalPresent: One or more RR Values Present
         public init(isFormatUInt16: Bool, contactStatus: ContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
             self.isFormatUInt16 = isFormatUInt16
             self.contact = contactStatus
@@ -120,7 +139,11 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         super.init(name: CharacteristicHeartRateMeasurement.name, uuidString: CharacteristicHeartRateMeasurement.uuidString)
     }
 
-
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHeartRateMeasurement {
 
         var decoder = DataDecoder(data)
@@ -166,6 +189,10 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         return CharacteristicHeartRateMeasurement(contactStatus: contactStatus, heartRate: heartRate, energyExpended: energy, rrIntervals: rrIntervals)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

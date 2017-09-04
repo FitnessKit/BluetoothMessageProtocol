@@ -44,15 +44,25 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
 
     /// Barometric Pressure Trends
     public enum BarometricPressureTrend: UInt8 {
+        /// Unknown
         case unknown                            = 0
+        /// Continuously falling
         case continuouslyFalling                = 1
+        /// Continuously rising
         case continuouslyRising                 = 2
+        /// Falling, then steady
         case fallingThenSteady                  = 3
+        /// Rising, then steady
         case risingThenSteady                   = 4
+        /// Falling before a lesser rise
         case fallingBeforeLesserRise            = 5
+        /// Falling before a greater rise
         case fallingBeforeGreaterRise           = 6
+        /// Rising before a greater fall
         case risingBeforeGreaterFall            = 7
+        /// Rising before a lesser fall
         case risingBeforeLesserFall             = 8
+        /// Steady
         case steady                             = 9
     }
 
@@ -66,6 +76,11 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
         super.init(name: CharacteristicBarometricPressureTrend.name, uuidString: CharacteristicBarometricPressureTrend.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBarometricPressureTrend {
 
         var decoder = DataDecoder(data)
@@ -75,6 +90,10 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
         return CharacteristicBarometricPressureTrend(trend: trend)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

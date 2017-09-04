@@ -53,6 +53,11 @@ open class CharacteristicWindChill: Characteristic {
         super.init(name: CharacteristicAltitude.name, uuidString: CharacteristicWindChill.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWindChill {
 
         var decoder = DataDecoder(data)
@@ -62,6 +67,10 @@ open class CharacteristicWindChill: Characteristic {
         return CharacteristicWindChill(windChill: windChill)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

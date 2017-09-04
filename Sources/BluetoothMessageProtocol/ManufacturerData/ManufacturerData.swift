@@ -38,6 +38,9 @@ open class ManufacturerData {
     /// Data
     open internal(set) var specificData: Data?
 
+    /// Creates Manufactur Data Object
+    ///
+    /// - Parameter rawData: Manufacturer Raw Data (everything after 0xFF
     public init(rawData: Data) {
 
         var decoder = DataDecoder(rawData)
@@ -48,7 +51,11 @@ open class ManufacturerData {
 
         self.specificData = decoder.decodeData(length: rest)
     }
-    
+
+    /// Creates Manufactur Data Object
+    ///
+    /// - Parameter manufacturer: Manufacturer enum
+    /// - Parameter specificData: Manufacturer Data
     public init(manufacturer: Manufacturer, specificData: Data?) {
 
         self.manufacturer = manufacturer
@@ -59,7 +66,7 @@ open class ManufacturerData {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: ManufacturerData Instance
-    /// - Throws: Throws BluetoothMessageProtocolError
+    /// - Throws: BluetoothMessageProtocolError
     open class func decode(data: Data) throws -> Self {
         fatalError("*** You must override in your class.")
     }
@@ -67,7 +74,7 @@ open class ManufacturerData {
     /// Encodes the ManufacturerData into Data
     ///
     /// - Returns: Data representation of the ManufacturerData
-    /// - Throws: Throws BluetoothMessageProtocolError
+    /// - Throws: BluetoothMessageProtocolError
     open func encode() throws -> Data {
         fatalError("*** You must override in your class.")
     }

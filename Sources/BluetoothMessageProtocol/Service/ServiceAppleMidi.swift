@@ -47,6 +47,7 @@ open class ServiceAppleMidi: Service {
         return "com.apple.service.apple_midi"
     }
 
+    /// Creates Apple MIDI Service
     public init() {
         super.init(name: ServiceAppleMidi.name,
                    uuidString: ServiceAppleMidi.uuidString,

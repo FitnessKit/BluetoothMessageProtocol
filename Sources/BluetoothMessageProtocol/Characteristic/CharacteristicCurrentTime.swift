@@ -79,6 +79,11 @@ open class CharacteristicCurrentTime: Characteristic {
         super.init(name: CharacteristicCurrentTime.name, uuidString: CharacteristicCurrentTime.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicCurrentTime {
 
         var decoder = DataDecoder(data)
@@ -94,9 +99,12 @@ open class CharacteristicCurrentTime: Characteristic {
         return CharacteristicCurrentTime(adjustmentReason: reasons, currentTime: currenTime, dayOfWeek: weekday, fractionalSeconds: fractions)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 }
-

@@ -47,6 +47,7 @@ open class ServiceBondManagement: Service {
         return "org.bluetooth.service.bond_management"
     }
 
+    /// Creates Bond Management Service
     public init() {
         super.init(name: ServiceBondManagement.name,
                    uuidString: ServiceBondManagement.uuidString,

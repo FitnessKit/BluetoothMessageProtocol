@@ -47,6 +47,7 @@ open class ServiceHttpProxy: Service {
         return "org.bluetooth.service.http_proxy"
     }
 
+    /// Creates HTTP Proxy Service
     public init() {
         super.init(name: ServiceHttpProxy.name,
                    uuidString: ServiceHttpProxy.uuidString,

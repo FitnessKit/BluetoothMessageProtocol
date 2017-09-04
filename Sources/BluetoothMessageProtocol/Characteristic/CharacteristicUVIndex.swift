@@ -52,6 +52,11 @@ open class CharacteristicUVIndex: Characteristic {
         super.init(name: CharacteristicUVIndex.name, uuidString: CharacteristicUVIndex.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUVIndex {
 
         var decoder = DataDecoder(data)
@@ -61,6 +66,10 @@ open class CharacteristicUVIndex: Characteristic {
         return CharacteristicUVIndex(uvIndex: value)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

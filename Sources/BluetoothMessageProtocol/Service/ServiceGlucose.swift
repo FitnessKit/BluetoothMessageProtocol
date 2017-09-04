@@ -47,6 +47,7 @@ open class ServiceGlucose: Service {
         return "org.bluetooth.service.glucose"
     }
 
+    /// Creates Glucose Service
     public init() {
         super.init(name: ServiceGlucose.name,
                    uuidString: ServiceGlucose.uuidString,

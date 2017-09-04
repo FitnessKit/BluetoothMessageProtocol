@@ -54,6 +54,11 @@ open class CharacteristicMaximumRecommendedHeartRate: Characteristic {
         super.init(name: CharacteristicMaximumRecommendedHeartRate.name, uuidString: CharacteristicMaximumRecommendedHeartRate.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicMaximumRecommendedHeartRate {
 
         var decoder = DataDecoder(data)
@@ -63,6 +68,10 @@ open class CharacteristicMaximumRecommendedHeartRate: Characteristic {
         return CharacteristicMaximumRecommendedHeartRate(heartRate: heartRate)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

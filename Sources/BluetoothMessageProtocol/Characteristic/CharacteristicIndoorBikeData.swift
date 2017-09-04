@@ -48,21 +48,33 @@ open class CharacteristicIndoorBikeData: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
+        /// More Data Present
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        /// Instantaneous Cadence present
         public static let instantaneousCadencePresent: Flags    = Flags(rawValue: 1 << 1)
+        /// Average Speed present
         public static let averageSpeedPresent: Flags            = Flags(rawValue: 1 << 2)
+        /// Average Candence present
         public static let averageCadencePresent: Flags          = Flags(rawValue: 1 << 3)
+        /// Total Distance Present
         public static let totalDistancePresent: Flags           = Flags(rawValue: 1 << 4)
+        /// Resistance Level present
         public static let resistanceLevelPresent: Flags         = Flags(rawValue: 1 << 5)
+        /// Instantaneous Power present
         public static let instantaneousPowerPresent: Flags      = Flags(rawValue: 1 << 6)
+        /// Average Power present
         public static let averagePowerPresent: Flags            = Flags(rawValue: 1 << 7)
+        /// Expended Energy present
         public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 8)
+        /// Heart Rate present
         public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 9)
+        /// Metabolic Equivalent present
         public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 10)
+        /// Elapsed Time present
         public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 11)
+        /// Remaining Time present
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 12)
     }
-
 
     /// Instantaneous Speed
     private(set) public var instantaneousSpeed: Measurement<UnitSpeed>?
@@ -125,6 +137,11 @@ open class CharacteristicIndoorBikeData: Characteristic {
         super.init(name: CharacteristicIndoorBikeData.name, uuidString: CharacteristicIndoorBikeData.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicIndoorBikeData {
 
         var decoder = DataDecoder(data)
@@ -234,6 +251,10 @@ open class CharacteristicIndoorBikeData: Characteristic {
                                             time: time)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

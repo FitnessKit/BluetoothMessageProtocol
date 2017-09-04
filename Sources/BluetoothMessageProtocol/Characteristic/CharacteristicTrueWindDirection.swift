@@ -54,6 +54,11 @@ open class CharacteristicTrueWindDirection: Characteristic {
         super.init(name: CharacteristicTrueWindDirection.name, uuidString: CharacteristicTrueWindDirection.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTrueWindDirection {
 
         var decoder = DataDecoder(data)
@@ -65,6 +70,10 @@ open class CharacteristicTrueWindDirection: Characteristic {
         return CharacteristicTrueWindDirection(windDirection: direction)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

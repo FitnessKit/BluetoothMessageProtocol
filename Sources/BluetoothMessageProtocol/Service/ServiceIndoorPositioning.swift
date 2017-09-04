@@ -47,6 +47,7 @@ open class ServiceIndoorPositioning: Service {
         return "org.bluetooth.service.indoor_positioning"
     }
 
+    /// Creates Indoor Positioning Service
     public init() {
         super.init(name: ServiceIndoorPositioning.name,
                    uuidString: ServiceIndoorPositioning.uuidString,

@@ -48,7 +48,9 @@ open class CharacteristicTrainingStatus: Characteristic {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
+        /// Trainint Status String present
         public static let trainingStatusStringPresent: Flags    = Flags(rawValue: 1 << 0)
+        /// Extended String present
         public static let extendedStringPresent: Flags          = Flags(rawValue: 1 << 1)
     }
 
@@ -103,6 +105,11 @@ open class CharacteristicTrainingStatus: Characteristic {
         super.init(name: CharacteristicTrainingStatus.name, uuidString: CharacteristicTrainingStatus.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTrainingStatus {
 
         var decoder = DataDecoder(data)
@@ -119,6 +126,10 @@ open class CharacteristicTrainingStatus: Characteristic {
         return CharacteristicTrainingStatus(status: status, statusString: statusString)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

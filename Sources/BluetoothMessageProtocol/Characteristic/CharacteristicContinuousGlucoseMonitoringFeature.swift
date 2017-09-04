@@ -41,6 +41,7 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         return "2AA8"
     }
 
+    /// Characteristic Supported Features
     public struct Features: OptionSet {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
@@ -146,6 +147,11 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         super.init(name: CharacteristicContinuousGlucoseMonitoringFeature.name, uuidString: CharacteristicContinuousGlucoseMonitoringFeature.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicContinuousGlucoseMonitoringFeature {
 
         var decoder = DataDecoder(data)
@@ -167,6 +173,10 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         return CharacteristicContinuousGlucoseMonitoringFeature(features: features, testType: testType, sampleLocation: sampleLocation, crcValue: crc)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

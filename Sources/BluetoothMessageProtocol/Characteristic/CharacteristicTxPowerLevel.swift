@@ -54,6 +54,11 @@ open class CharacteristicTxPowerLevel: Characteristic {
         super.init(name: CharacteristicTxPowerLevel.name, uuidString: CharacteristicTxPowerLevel.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTxPowerLevel {
 
         var decoder = DataDecoder(data)
@@ -63,6 +68,10 @@ open class CharacteristicTxPowerLevel: Characteristic {
         return CharacteristicTxPowerLevel(txPower: txPower)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
         guard kTxPowerLevelBounds.contains(Int(txPower)) else {

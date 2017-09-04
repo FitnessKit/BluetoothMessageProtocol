@@ -55,6 +55,11 @@ open class CharacteristicAnalogOutput: Characteristic {
         super.init(name: CharacteristicAnalogOutput.name, uuidString: CharacteristicAnalogOutput.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAnalogOutput {
 
         var decoder = DataDecoder(data)
@@ -64,6 +69,10 @@ open class CharacteristicAnalogOutput: Characteristic {
         return CharacteristicAnalogOutput(analogValue: analogValue)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

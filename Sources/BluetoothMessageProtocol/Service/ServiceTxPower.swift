@@ -47,6 +47,7 @@ open class ServiceTxPower: Service {
         return "org.bluetooth.service.tx_power"
     }
 
+    /// Creates Tx Power Service
     public init() {
         super.init(name: ServiceTxPower.name,
                    uuidString: ServiceTxPower.uuidString,

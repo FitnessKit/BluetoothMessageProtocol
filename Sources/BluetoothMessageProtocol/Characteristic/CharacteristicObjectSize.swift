@@ -55,6 +55,11 @@ open class CharacteristicObjectSize: Characteristic {
         super.init(name: CharacteristicObjectSize.name, uuidString: CharacteristicObjectSize.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicObjectSize {
         var decoder = DataDecoder(data)
 
@@ -64,6 +69,10 @@ open class CharacteristicObjectSize: Characteristic {
         return CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

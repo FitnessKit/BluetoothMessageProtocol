@@ -62,6 +62,11 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
         super.init(name: CharacteristicSupportedResistanceLevel.name, uuidString: CharacteristicSupportedResistanceLevel.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedResistanceLevel {
 
         var decoder = DataDecoder(data)
@@ -75,6 +80,10 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
         return CharacteristicSupportedResistanceLevel(minimum: minValue, maximum: maxValue, minimumIncrement: incrValue)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

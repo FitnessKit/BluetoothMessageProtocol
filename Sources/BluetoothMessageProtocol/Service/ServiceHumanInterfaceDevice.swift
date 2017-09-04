@@ -47,6 +47,7 @@ open class ServiceHumanInterfaceDevice: Service {
         return "org.bluetooth.service.human_interface_device"
     }
 
+    /// Creates Human Interface Device Service
     public init() {
         super.init(name: ServiceHumanInterfaceDevice.name,
                    uuidString: ServiceHumanInterfaceDevice.uuidString,

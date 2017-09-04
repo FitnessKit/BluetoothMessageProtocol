@@ -52,6 +52,11 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
         super.init(name: CharacteristicAnaerobicThreshold.name, uuidString: CharacteristicAnaerobicThreshold.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAnaerobicThreshold {
 
         var decoder = DataDecoder(data)
@@ -61,6 +66,10 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
         return CharacteristicAnaerobicThreshold(heartRate: heartRate)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

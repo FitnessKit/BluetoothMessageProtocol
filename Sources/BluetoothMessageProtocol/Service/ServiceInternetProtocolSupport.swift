@@ -47,6 +47,7 @@ open class ServiceInternetProtocolSupport: Service {
         return "org.bluetooth.service.internet_protocol_support"
     }
 
+    /// Creates Internet Protocol Support Service
     public init() {
         super.init(name: ServiceInternetProtocolSupport.name,
                    uuidString: ServiceInternetProtocolSupport.uuidString,

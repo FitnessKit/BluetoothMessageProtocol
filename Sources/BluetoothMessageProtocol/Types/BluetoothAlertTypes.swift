@@ -74,4 +74,3 @@ public enum AlertCategory: UInt8 {
         }
     }
 }
-

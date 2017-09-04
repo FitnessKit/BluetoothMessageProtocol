@@ -47,6 +47,7 @@ open class ServiceHeartRate: Service {
         return "org.bluetooth.service.heart_rate"
     }
 
+    /// Creates Heart Rate Service
     public init() {
         super.init(name: ServiceHeartRate.name,
                    uuidString: ServiceHeartRate.uuidString,

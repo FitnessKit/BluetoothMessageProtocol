@@ -47,6 +47,7 @@ open class ServiceImmediateAlert: Service {
         return "org.bluetooth.service.immediate_alert"
     }
 
+    /// Creates Immediate Alert Service
     public init() {
         super.init(name: ServiceImmediateAlert.name,
                    uuidString: ServiceImmediateAlert.uuidString,

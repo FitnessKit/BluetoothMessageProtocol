@@ -45,6 +45,7 @@ open class ServiceGenericAccess: Service {
         return "org.bluetooth.service.generic_access"
     }
 
+    /// Creates Generic Access Service
     public init() {
         super.init(name: ServiceGenericAccess.name,
                    uuidString: ServiceGenericAccess.uuidString,

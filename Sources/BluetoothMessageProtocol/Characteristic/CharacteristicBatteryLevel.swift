@@ -55,6 +55,11 @@ open class CharacteristicBatteryLevel: Characteristic {
         super.init(name: CharacteristicBatteryLevel.name, uuidString: CharacteristicBatteryLevel.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevel {
 
         var decoder = DataDecoder(data)
@@ -66,6 +71,10 @@ open class CharacteristicBatteryLevel: Characteristic {
         return CharacteristicBatteryLevel(level: level)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
         guard level.value <= 100.0 else {

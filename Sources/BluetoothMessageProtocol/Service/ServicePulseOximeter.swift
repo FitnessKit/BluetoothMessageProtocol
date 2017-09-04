@@ -47,6 +47,7 @@ open class ServicePulseOximeter: Service {
         return "org.bluetooth.service.pulse_oximeter"
     }
 
+    /// Creates Pulse Oximeter Service
     public init() {
         super.init(name: ServicePulseOximeter.name,
                    uuidString: ServicePulseOximeter.uuidString,

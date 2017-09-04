@@ -47,6 +47,7 @@ open class ServiceBodyComposition: Service {
         return "org.bluetooth.service.body_composition"
     }
 
+    /// Creates Body Composition Service
     public init() {
         super.init(name: ServiceBodyComposition.name,
                    uuidString: ServiceBodyComposition.uuidString,

@@ -47,6 +47,7 @@ open class ServiceMeshProxy: Service {
         return "org.bluetooth.service.mesh_proxy"
     }
 
+    /// Creates Mesh Proxy Service
     public init() {
         super.init(name: ServiceMeshProxy.name,
                    uuidString: ServiceMeshProxy.uuidString,

@@ -47,6 +47,7 @@ open class ServiceBattery: Service {
         return "org.bluetooth.service.battery_service"
     }
 
+    /// Creates Battery Service
     public init() {
         super.init(name: ServiceBattery.name,
                    uuidString: ServiceBattery.uuidString,

@@ -52,6 +52,11 @@ open class CharacteristicAlertCategoryID: Characteristic {
         super.init(name: CharacteristicAlertCategoryID.name, uuidString: CharacteristicAlertCategoryID.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAlertCategoryID {
 
         var decoder = DataDecoder(data)
@@ -61,6 +66,10 @@ open class CharacteristicAlertCategoryID: Characteristic {
         return CharacteristicAlertCategoryID(alertType: alertType)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

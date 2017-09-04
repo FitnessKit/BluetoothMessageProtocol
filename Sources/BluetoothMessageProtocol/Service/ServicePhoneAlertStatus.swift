@@ -47,6 +47,7 @@ open class ServicePhoneAlertStatus: Service {
         return "org.bluetooth.service.phone_alert_status"
     }
 
+    /// Creates Phone Alert Status Service
     public init() {
         super.init(name: ServicePhoneAlertStatus.name,
                    uuidString: ServicePhoneAlertStatus.uuidString,

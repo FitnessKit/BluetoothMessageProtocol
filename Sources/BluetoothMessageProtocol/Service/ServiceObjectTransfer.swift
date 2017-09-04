@@ -47,6 +47,7 @@ open class ServiceObjectTransfer: Service {
         return "org.bluetooth.service.object_transfer"
     }
 
+    /// Creates Object Transfer Service
     public init() {
         super.init(name: ServiceObjectTransfer.name,
                    uuidString: ServiceObjectTransfer.uuidString,

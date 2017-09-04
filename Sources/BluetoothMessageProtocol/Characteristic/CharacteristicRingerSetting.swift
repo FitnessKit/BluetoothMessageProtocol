@@ -43,6 +43,7 @@ open class CharacteristicRingerSetting: Characteristic {
         return "2A41"
     }
 
+    /// Ringer Setting Types
     public enum RingerSetting: UInt8 {
         /// Ringer Silent
         case silent        = 0
@@ -61,6 +62,11 @@ open class CharacteristicRingerSetting: Characteristic {
         super.init(name: CharacteristicRingerSetting.name, uuidString: CharacteristicRingerSetting.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicRingerSetting {
 
         var decoder = DataDecoder(data)
@@ -70,6 +76,10 @@ open class CharacteristicRingerSetting: Characteristic {
         return CharacteristicRingerSetting(setting: setting)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

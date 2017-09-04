@@ -47,6 +47,7 @@ open class ServiceTransportDiscovery: Service {
         return "org.bluetooth.service.transport_discovery"
     }
 
+    /// Creates Transport Discovery Service
     public init() {
         super.init(name: ServiceTransportDiscovery.name,
                    uuidString: ServiceTransportDiscovery.uuidString,

@@ -47,6 +47,7 @@ open class ServiceHealthThermometer: Service {
         return "org.bluetooth.service.health_thermometer"
     }
 
+    /// Creates Health Thermometer Service
     public init() {
         super.init(name: ServiceHealthThermometer.name,
                    uuidString: ServiceHealthThermometer.uuidString,

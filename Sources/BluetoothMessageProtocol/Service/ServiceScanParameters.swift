@@ -47,6 +47,7 @@ open class ServiceScanParameters: Service {
         return "org.bluetooth.service.scan_parameters"
     }
 
+    /// Creates Scan Parameters Service
     public init() {
         super.init(name: ServiceScanParameters.name,
                    uuidString: ServiceScanParameters.uuidString,

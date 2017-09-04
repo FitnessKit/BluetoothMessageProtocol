@@ -103,6 +103,10 @@ public struct BatteryPowerState {
         return UInt8(value)
     }
 
+
+    /// Creates a BatteryPowerState Object
+    ///
+    /// - Parameter value: Raw Data
     public init(_ value: UInt8) {
         self.stateInfo = StateSupport(rawValue: (value & 0x3)) ?? .unknown
         self.dischargeInfo = DischargeStatus(rawValue: (value & 0xC) >> 2) ?? .unknown
@@ -110,6 +114,12 @@ public struct BatteryPowerState {
         self.batteryLevel = Level(rawValue: (value & 0xC0) >> 6) ?? .unknown
     }
 
+    /// Creates a BatteryPowerState Object
+    ///
+    /// - Parameter stateInfo: StateSupport enum
+    /// - Parameter dischargeInfo: DischargeStatus eum
+    /// - Parameter chargeInfo: ChargingStatus enum
+    /// - Parameter batteryLevel: Level enum
     public init(stateInfo: StateSupport, dischargeInfo: DischargeStatus, chargeInfo: ChargingStatus, batteryLevel: Level) {
         self.stateInfo = stateInfo
         self.dischargeInfo = dischargeInfo

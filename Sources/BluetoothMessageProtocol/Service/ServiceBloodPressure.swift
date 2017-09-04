@@ -47,6 +47,7 @@ open class ServiceBloodPressure: Service {
         return "org.bluetooth.service.blood_pressure"
     }
 
+    /// Creates Blood Pressure Service
     public init() {
         super.init(name: ServiceBloodPressure.name,
                    uuidString: ServiceBloodPressure.uuidString,

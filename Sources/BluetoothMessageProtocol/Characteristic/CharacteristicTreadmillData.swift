@@ -48,18 +48,31 @@ open class CharacteristicTreadmillData: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
+        /// More Data present
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        /// Average Speed present
         public static let averageSpeedPresent: Flags            = Flags(rawValue: 1 << 1)
+        /// Total Distance Present
         public static let totalDistancePresent: Flags           = Flags(rawValue: 1 << 2)
+        /// Inclination and Ramp Angle Setting present
         public static let angleSettingpresent: Flags            = Flags(rawValue: 1 << 3)
+        /// Elevation Gain present
         public static let elevationGainPresent: Flags           = Flags(rawValue: 1 << 4)
+        /// Instantaneous Pace present
         public static let instantaneousPacePresent: Flags       = Flags(rawValue: 1 << 5)
+        /// Average Pace present
         public static let averagePacePresent: Flags             = Flags(rawValue: 1 << 6)
+        /// Expended Energy present
         public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 7)
+        /// Heart Rate present
         public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 8)
+        /// Metabolic Equivalent present
         public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 9)
+        /// Elapsed Time present
         public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 10)
+        /// Remaining Time present
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 11)
+        /// Force on Belt and Power Output present
         public static let beltForcePowerOutputPresent: Flags    = Flags(rawValue: 1 << 12)
     }
 
@@ -137,6 +150,11 @@ open class CharacteristicTreadmillData: Characteristic {
         super.init(name: CharacteristicTreadmillData.name, uuidString: CharacteristicTreadmillData.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTreadmillData {
 
         var decoder = DataDecoder(data)
@@ -260,6 +278,10 @@ open class CharacteristicTreadmillData: Characteristic {
                                            powerOutput: powerOutput)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

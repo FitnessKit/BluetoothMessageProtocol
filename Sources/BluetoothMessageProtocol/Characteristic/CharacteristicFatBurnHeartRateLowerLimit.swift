@@ -54,6 +54,11 @@ open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
         super.init(name: CharacteristicFatBurnHeartRateLowerLimit.name, uuidString: CharacteristicFatBurnHeartRateLowerLimit.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFatBurnHeartRateLowerLimit {
 
         var decoder = DataDecoder(data)
@@ -63,6 +68,10 @@ open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
         return CharacteristicFatBurnHeartRateLowerLimit(heartRate: heartRate)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

@@ -92,13 +92,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicAlertStatus.swift",
-      "line": 59,
-      "symbol": "CharacteristicAlertStatus.init(status:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicAltitude.swift",
       "line": 50,
       "symbol": "CharacteristicAltitude.init(altitude:)",
@@ -163,77 +156,7 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 47,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.unknown",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 48,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.continuouslyFalling",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 49,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.continuouslyRising",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 50,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.fallingThenSteady",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 51,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.risingThenSteady",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 52,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.fallingBeforeLesserRise",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 53,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.fallingBeforeGreaterRise",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 54,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.risingBeforeGreaterFall",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 55,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.risingBeforeLesserFall",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 56,
-      "symbol": "CharacteristicBarometricPressureTrend.BarometricPressureTrend.steady",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBarometricPressureTrend.swift",
-      "line": 62,
+      "line": 72,
       "symbol": "CharacteristicBarometricPressureTrend.init(trend:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -261,63 +184,21 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 49,
-      "symbol": "CharacteristicBloodPressureFeature.Feature.bodyMovementDetectionSupported",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 50,
-      "symbol": "CharacteristicBloodPressureFeature.Feature.cuffFitDetectionSupported",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 51,
-      "symbol": "CharacteristicBloodPressureFeature.Feature.irregularPulseDetectionSupported",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 52,
-      "symbol": "CharacteristicBloodPressureFeature.Feature.pulseRateRangeDetectionSupported",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 53,
-      "symbol": "CharacteristicBloodPressureFeature.Feature.measurementPositionDetectionSupported",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 54,
-      "symbol": "CharacteristicBloodPressureFeature.Feature.multipleBondsSupported",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureFeature.swift",
-      "line": 62,
+      "line": 67,
       "symbol": "CharacteristicBloodPressureFeature.init(status:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBloodPressureMeasurement.swift",
-      "line": 76,
+      "line": 81,
       "symbol": "CharacteristicBloodPressureMeasurement.init(systolic:diastolic:meanArterial:timestamp:pulseRate:userID:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicBodyCompositionMeasurement.swift",
-      "line": 104,
+      "line": 117,
       "symbol": "CharacteristicBodyCompositionMeasurement.init(bodyFat:currentTime:userID:basalMetabolism:musclePercentage:muscleMass:fatFreeMass:softLeanMass:bodyWaterMass:impedance:weight:height:multiplePacketMeasurement:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -338,29 +219,22 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicContinuousGlucoseMonitoringFeature.swift",
-      "line": 44,
-      "symbol": "CharacteristicContinuousGlucoseMonitoringFeature.Features",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicContinuousGlucoseMonitoringFeature.swift",
-      "line": 110,
+      "line": 111,
       "symbol": "CharacteristicContinuousGlucoseMonitoringFeature.Location",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicContinuousGlucoseMonitoringFeature.swift",
-      "line": 139,
+      "line": 140,
       "symbol": "CharacteristicContinuousGlucoseMonitoringFeature.init(features:testType:sampleLocation:crcValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicCrossTrainerData.swift",
-      "line": 123,
-      "symbol": "CharacteristicCrossTrainerData.init(instantaneousSpeed:averageSpeed:totalDistance:stepsPerMinute:averageStepRate:strideCount:positiveElevationGain:negativeElevationGain:inclination:rampAngle:resistanceLevel:instantaneousPower:averagePower:energy:heartRate:metabolicEquivalent:time:)",
+      "line": 142,
+      "symbol": "CharacteristicCrossTrainerData.init(instantaneousSpeed:averageSpeed:totalDistance:stepsPerMinute:averageStepRate:strideCount:positiveElevationGain:negativeElevationGain:inclination:rampAngle:resistanceLevel:instantaneousPower:averagePower:energy:heartRate:metabolicEquivalent:time:movementDirection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -520,42 +394,14 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 46,
-      "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.notSupported",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 47,
-      "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.stillNotSupportd",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 48,
-      "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.notDetected",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 49,
-      "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.detected",
-      "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 51,
+      "line": 55,
       "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.stringValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 113,
+      "line": 132,
       "symbol": "CharacteristicHeartRateMeasurement.init(contactStatus:heartRate:energyExpended:rrIntervals:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -590,7 +436,7 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicIndoorBikeData.swift",
-      "line": 104,
+      "line": 116,
       "symbol": "CharacteristicIndoorBikeData.init(instantaneousSpeed:averageSpeed:instantaneousCadence:averageCadence:totalDistance:resistanceLevel:instantaneousPower:averagePower:energy:heartRate:metabolicEquivalent:time:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -779,21 +625,14 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicRingerSetting.swift",
-      "line": 46,
-      "symbol": "CharacteristicRingerSetting.RingerSetting",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicRingerSetting.swift",
-      "line": 57,
+      "line": 58,
       "symbol": "CharacteristicRingerSetting.init(setting:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicRowerData.swift",
-      "line": 107,
+      "line": 120,
       "symbol": "CharacteristicRowerData.init(strokeRate:strokeCount:averageStrokeRate:totalDistance:instantaneousPace:averagePace:instantaneousPower:averagePower:resistanceLevel:energy:heartRate:metabolicEquivalent:time:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -828,14 +667,14 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicStairClimberData.swift",
-      "line": 92,
+      "line": 102,
       "symbol": "CharacteristicStairClimberData.init(floors:stepsPerMinute:averageStepRate:positiveElevationGain:strideCount:energy:heartRate:metabolicEquivalent:time:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicStepClimberData.swift",
-      "line": 91,
+      "line": 100,
       "symbol": "CharacteristicStepClimberData.init(floors:stepCount:stepsPerMinute:averageStepRate:positiveElevationGain:energy:heartRate:metabolicEquivalent:time:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -968,14 +807,14 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicTrainingStatus.swift",
-      "line": 98,
+      "line": 100,
       "symbol": "CharacteristicTrainingStatus.init(status:statusString:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicTreadmillData.swift",
-      "line": 113,
+      "line": 126,
       "symbol": "CharacteristicTreadmillData.init(instantaneousSpeed:averageSpeed:totalDistance:inclination:rampAngle:positiveElevationGain:negativeElevationGain:instantaneousPace:averagePace:energy:heartRate:metabolicEquivalent:time:forceOnBelt:powerOutput:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1066,49 +905,21 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Errors.swift",
-      "line": 28,
-      "symbol": "ErrorReasons",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Errors.swift",
-      "line": 37,
+      "line": 38,
       "symbol": "ErrorReasons.generic",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Errors.swift",
-      "line": 40,
-      "symbol": "BluetoothMessageProtocolError",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/ManufacturerData/ManufacturerData.swift",
-      "line": 41,
-      "symbol": "ManufacturerData.init(rawData:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/ManufacturerData/ManufacturerData.swift",
-      "line": 52,
-      "symbol": "ManufacturerData.init(manufacturer:specificData:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/ManufacturerData/ManufacturerData.swift",
-      "line": 80,
+      "line": 87,
       "symbol": "ManufacturerData.hashValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/ManufacturerData/ManufacturerData.swift",
-      "line": 90,
+      "line": 97,
       "symbol": "ManufacturerData.==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
@@ -1129,310 +940,16 @@
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/Service.swift",
-      "line": 41,
-      "symbol": "Service.init(name:uuidString:uniformIdentifier:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/Service.swift",
-      "line": 52,
+      "line": 57,
       "symbol": "Service.hashValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/Service.swift",
-      "line": 62,
+      "line": 67,
       "symbol": "Service.==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceAlertNotification.swift",
-      "line": 53,
-      "symbol": "ServiceAlertNotification.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceAppleMidi.swift",
-      "line": 50,
-      "symbol": "ServiceAppleMidi.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceAutomationInputOutput.swift",
-      "line": 50,
-      "symbol": "ServiceAutomationInputOutput.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceBattery.swift",
-      "line": 50,
-      "symbol": "ServiceBattery.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceBloodPressure.swift",
-      "line": 50,
-      "symbol": "ServiceBloodPressure.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceBodyComposition.swift",
-      "line": 50,
-      "symbol": "ServiceBodyComposition.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceBondManagement.swift",
-      "line": 50,
-      "symbol": "ServiceBondManagement.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceContinuousGlucoseMonitoring.swift",
-      "line": 50,
-      "symbol": "ServiceContinuousGlucoseMonitoring.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceCurrentTime.swift",
-      "line": 50,
-      "symbol": "ServiceCurrentTime.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceCyclingPower.swift",
-      "line": 50,
-      "symbol": "ServiceCyclingPower.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceCyclingSpeedAndCadence.swift",
-      "line": 50,
-      "symbol": "ServiceCyclingSpeedAndCadence.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceDeviceInformation.swift",
-      "line": 50,
-      "symbol": "ServiceDeviceInformation.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceEnvironmentalSensing.swift",
-      "line": 50,
-      "symbol": "ServiceEnvironmentalSensing.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceFitnessMachine.swift",
-      "line": 50,
-      "symbol": "ServiceFitnessMachine.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceGenericAccess.swift",
-      "line": 48,
-      "symbol": "ServiceGenericAccess.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceGenericAttribute.swift",
-      "line": 48,
-      "symbol": "ServiceGenericAttribute.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceGlucose.swift",
-      "line": 50,
-      "symbol": "ServiceGlucose.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceHealthThermometer.swift",
-      "line": 50,
-      "symbol": "ServiceHealthThermometer.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceHeartRate.swift",
-      "line": 50,
-      "symbol": "ServiceHeartRate.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceHttpProxy.swift",
-      "line": 50,
-      "symbol": "ServiceHttpProxy.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceHumanInterfaceDevice.swift",
-      "line": 50,
-      "symbol": "ServiceHumanInterfaceDevice.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceImmediateAlert.swift",
-      "line": 50,
-      "symbol": "ServiceImmediateAlert.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceIndoorPositioning.swift",
-      "line": 50,
-      "symbol": "ServiceIndoorPositioning.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceInternetProtocolSupport.swift",
-      "line": 50,
-      "symbol": "ServiceInternetProtocolSupport.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceLinkLoss.swift",
-      "line": 50,
-      "symbol": "ServiceLinkLoss.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceLocationAndNavigation.swift",
-      "line": 50,
-      "symbol": "ServiceLocationAndNavigation.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceMeshProvisioning.swift",
-      "line": 50,
-      "symbol": "ServiceMeshProvisioning.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceMeshProxy.swift",
-      "line": 50,
-      "symbol": "ServiceMeshProxy.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceNextDSTChange.swift",
-      "line": 50,
-      "symbol": "ServiceNextDSTChange.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceObjectTransfer.swift",
-      "line": 50,
-      "symbol": "ServiceObjectTransfer.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServicePhoneAlertStatus.swift",
-      "line": 50,
-      "symbol": "ServicePhoneAlertStatus.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServicePulseOximeter.swift",
-      "line": 50,
-      "symbol": "ServicePulseOximeter.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceReferenceTimeUpdate.swift",
-      "line": 50,
-      "symbol": "ServiceReferenceTimeUpdate.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceRunningSpeedAndCadence.swift",
-      "line": 50,
-      "symbol": "ServiceRunningSpeedAndCadence.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceScanParameters.swift",
-      "line": 50,
-      "symbol": "ServiceScanParameters.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceTransportDiscovery.swift",
-      "line": 50,
-      "symbol": "ServiceTransportDiscovery.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceTxPower.swift",
-      "line": 50,
-      "symbol": "ServiceTxPower.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceUserData.swift",
-      "line": 50,
-      "symbol": "ServiceUserData.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/ServiceWeightScale.swift",
-      "line": 50,
-      "symbol": "ServiceWeightScale.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/BatteryTypes.swift",
-      "line": 106,
-      "symbol": "BatteryPowerState.init(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/BatteryTypes.swift",
-      "line": 113,
-      "symbol": "BatteryPowerState.init(stateInfo:dischargeInfo:chargeInfo:batteryLevel:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -1440,27 +957,6 @@
       "line": 103,
       "symbol": "SensorLocation.stringValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/DateTimeType.swift",
-      "line": 160,
-      "symbol": "DateTime.decode(data:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineTypes.swift",
-      "line": 33,
-      "symbol": "FitnessMachineTime",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineTypes.swift",
-      "line": 48,
-      "symbol": "FitnessMachineEnergy",
-      "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     }
   ],

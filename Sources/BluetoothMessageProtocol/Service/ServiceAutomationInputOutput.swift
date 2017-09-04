@@ -47,6 +47,7 @@ open class ServiceAutomationInputOutput: Service {
         return "org.bluetooth.service.automation_io"
     }
 
+    /// Creates Automation IO Service
     public init() {
         super.init(name: ServiceAutomationInputOutput.name,
                    uuidString: ServiceAutomationInputOutput.uuidString,

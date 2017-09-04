@@ -56,6 +56,11 @@ open class CharacteristicMeasurementInterval: Characteristic {
         super.init(name: CharacteristicMeasurementInterval.name, uuidString: CharacteristicMeasurementInterval.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicMeasurementInterval {
 
         var decoder = DataDecoder(data)
@@ -67,6 +72,10 @@ open class CharacteristicMeasurementInterval: Characteristic {
         return CharacteristicMeasurementInterval(interval: interval)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Make sure we put this back to Seconds before we create Data
         let value = UInt16(interval.converted(to: UnitDuration.seconds).value)

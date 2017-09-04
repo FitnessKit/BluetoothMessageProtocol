@@ -65,6 +65,11 @@ open class CharacteristicDateOfBirth: Characteristic {
         super.init(name: CharacteristicDateOfBirth.name, uuidString: CharacteristicDateOfBirth.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDateOfBirth {
 
         var decoder = DataDecoder(data)
@@ -87,6 +92,10 @@ open class CharacteristicDateOfBirth: Characteristic {
         return CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

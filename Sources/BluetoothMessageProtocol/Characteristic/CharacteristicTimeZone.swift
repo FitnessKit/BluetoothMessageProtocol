@@ -54,6 +54,11 @@ open class CharacteristicTimeZone: Characteristic {
         super.init(name: CharacteristicTimeZone.name, uuidString: CharacteristicTimeZone.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeZone {
 
         var decoder = DataDecoder(data)
@@ -68,6 +73,10 @@ open class CharacteristicTimeZone: Characteristic {
         return CharacteristicTimeZone(timeZone: timezone)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
         var zoneValue: Int8 = -128

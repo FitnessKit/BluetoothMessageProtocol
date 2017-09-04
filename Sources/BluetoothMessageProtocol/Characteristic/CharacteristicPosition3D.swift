@@ -63,6 +63,11 @@ open class CharacteristicPosition3D: Characteristic {
         super.init(name: CharacteristicPosition3D.name, uuidString: CharacteristicPosition3D.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPosition3D {
         var decoder = DataDecoder(data)
 
@@ -76,6 +81,10 @@ open class CharacteristicPosition3D: Characteristic {
         return CharacteristicPosition3D(latitude: lat, longitude: lon, elevation: elevation)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

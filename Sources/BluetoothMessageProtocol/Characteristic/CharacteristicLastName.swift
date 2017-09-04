@@ -53,6 +53,11 @@ open class CharacteristicLastName: Characteristic {
         super.init(name: CharacteristicLastName.name, uuidString: CharacteristicLastName.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicLastName {
 
         let lastName = data.safeStringValue ?? ""
@@ -60,6 +65,10 @@ open class CharacteristicLastName: Characteristic {
         return CharacteristicLastName(lastName: lastName)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

@@ -54,6 +54,11 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
         super.init(name: CharacteristicTwoZoneHeartRateLimit.name, uuidString: CharacteristicTwoZoneHeartRateLimit.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTwoZoneHeartRateLimit {
 
         var decoder = DataDecoder(data)
@@ -63,6 +68,10 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
         return CharacteristicTwoZoneHeartRateLimit(zoneLimit: zoneLimit)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

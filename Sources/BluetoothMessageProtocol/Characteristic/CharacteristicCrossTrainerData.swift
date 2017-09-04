@@ -49,22 +49,38 @@ open class CharacteristicCrossTrainerData: Characteristic {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
+        /// More Data
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        /// Average Speed present
         public static let avgSpeedPresent: Flags                = Flags(rawValue: 1 << 1)
+        /// Total Distance Present
         public static let totalDistancePresent: Flags           = Flags(rawValue: 1 << 2)
+        /// Step Count present
         public static let stepCountPresent: Flags               = Flags(rawValue: 1 << 3)
+        /// Stride Count present
         public static let strideCountPresent: Flags             = Flags(rawValue: 1 << 4)
+        /// Elevation Gain present
         public static let elevationGainPresent: Flags           = Flags(rawValue: 1 << 5)
+        /// Inclination and Ramp Angle Setting present
         public static let angleSettingpresent: Flags            = Flags(rawValue: 1 << 6)
+        /// Resistance Level Present
         public static let resistanceLevelPresent: Flags         = Flags(rawValue: 1 << 7)
+        /// Instantaneous Power present
         public static let instantPowerPresent: Flags            = Flags(rawValue: 1 << 8)
+        /// Average Power present
         public static let averagePowerPresent: Flags            = Flags(rawValue: 1 << 9)
+        /// Expended Energy present
         public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 10)
+        /// Heart Rate present
         public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 11)
+        /// Metabolic Equivalent present
         public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 12)
+        /// Elapsed Time present
         public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 13)
+        /// Remaining Time present
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 14)
-        public static let movementDirection: Flags              = Flags(rawValue: 1 << 15)
+        /// Movement Direction Backwards
+        public static let backwardDirection: Flags              = Flags(rawValue: 1 << 15)
     }
 
 
@@ -119,8 +135,11 @@ open class CharacteristicCrossTrainerData: Characteristic {
     /// Time Information
     private(set) public var time: FitnessMachineTime
 
+    /// Movement Direction
+    private(set) public var movementDirection: FitnessMachineMovementDirection
 
-    public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, strideCount: Double?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
+
+    public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, strideCount: Double?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime, movementDirection: FitnessMachineMovementDirection) {
 
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
@@ -144,10 +163,16 @@ open class CharacteristicCrossTrainerData: Characteristic {
 
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
+        self.movementDirection = movementDirection
 
         super.init(name: CharacteristicCrossTrainerData.name, uuidString: CharacteristicCrossTrainerData.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicCrossTrainerData {
 
         var decoder = DataDecoder(data)
@@ -266,6 +291,11 @@ open class CharacteristicCrossTrainerData: Characteristic {
 
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
+        var movementDirection: FitnessMachineMovementDirection = .forward
+        if flags.contains(.backwardDirection) == true {
+            movementDirection = .backward
+        }
+
         return CharacteristicCrossTrainerData(instantaneousSpeed: iSpeed,
                                               averageSpeed: avgSpeed,
                                               totalDistance: totalDistance,
@@ -282,9 +312,14 @@ open class CharacteristicCrossTrainerData: Characteristic {
                                               energy: energy,
                                               heartRate: heartRate,
                                               metabolicEquivalent: mets,
-                                              time: time)
+                                              time: time,
+                                              movementDirection: movementDirection)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

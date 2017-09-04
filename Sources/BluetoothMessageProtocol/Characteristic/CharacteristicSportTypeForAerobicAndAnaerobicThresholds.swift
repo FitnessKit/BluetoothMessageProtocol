@@ -82,6 +82,11 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
         super.init(name: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.name, uuidString: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSportTypeForAerobicAndAnaerobicThresholds {
 
         var decoder = DataDecoder(data)
@@ -91,6 +96,10 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
         return CharacteristicSportTypeForAerobicAndAnaerobicThresholds(exercise: exercise)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         var msgData = Data()
 

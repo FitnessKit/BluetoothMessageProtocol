@@ -47,6 +47,7 @@ open class ServiceLocationAndNavigation: Service {
         return "org.bluetooth.service.location_and_navigation"
     }
 
+    /// Creates Location and Navigation Service
     public init() {
         super.init(name: ServiceLocationAndNavigation.name,
                    uuidString: ServiceLocationAndNavigation.uuidString,

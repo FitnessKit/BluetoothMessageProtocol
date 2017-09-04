@@ -51,6 +51,11 @@ open class CharacteristicBodySensorLocation: Characteristic {
         super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
 
         var decoder = DataDecoder(data)
@@ -60,6 +65,10 @@ open class CharacteristicBodySensorLocation: Characteristic {
         return CharacteristicBodySensorLocation(sensorLocation: location)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

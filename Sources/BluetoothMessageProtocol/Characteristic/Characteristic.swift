@@ -46,7 +46,7 @@ open class Characteristic {
 //    ///
 //    /// - Parameter data: Data from sensor
 //    /// - Returns: Bool value based on validation
-//    /// - Throws: Throws BluetoothMessageProtocolError
+//    /// - Throws: BluetoothMessageProtocolError
 //    open class func validate(data: Data) throws -> Bool {
 //        fatalError("*** You must override in your class.")
 //    }
@@ -55,7 +55,7 @@ open class Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: Throws BluetoothMessageProtocolError
+    /// - Throws: BluetoothMessageProtocolError
     open class func decode(data: Data) throws -> Self {
         fatalError("*** You must override in your class.")
     }
@@ -63,7 +63,7 @@ open class Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: Throws BluetoothMessageProtocolError
+    /// - Throws: BluetoothMessageProtocolError
     open func encode() throws -> Data {
         fatalError("*** You must override in your class.")
     }

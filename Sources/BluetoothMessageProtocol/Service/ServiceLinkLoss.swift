@@ -47,6 +47,7 @@ open class ServiceLinkLoss: Service {
         return "org.bluetooth.service.link_loss"
     }
 
+    /// Creates Link Loss Service
     public init() {
         super.init(name: ServiceLinkLoss.name,
                    uuidString: ServiceLinkLoss.uuidString,

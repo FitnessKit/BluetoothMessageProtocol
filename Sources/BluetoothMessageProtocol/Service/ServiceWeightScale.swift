@@ -47,6 +47,7 @@ open class ServiceWeightScale: Service {
         return "org.bluetooth.service.weight_scale"
     }
 
+    /// Creates Weight Scale Service
     public init() {
         super.init(name: ServiceWeightScale.name,
                    uuidString: ServiceWeightScale.uuidString,

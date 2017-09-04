@@ -14,7 +14,7 @@
     <a title="Feature Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">BluetoothMessageProtocol Docs</a> (89% documented)</p>
+        <p><a href="../../index.html">BluetoothMessageProtocol Docs</a> (93% documented)</p>
         <p class="header-right"><a href="https://github.com/FitnessKit/BluetoothMessageProtocol"><img src="../../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -613,6 +613,9 @@
                 <a href="../../Enums/ErrorReasons.html">ErrorReasons</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Enums/FitnessMachineMovementDirection.html">FitnessMachineMovementDirection</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Enums/Gender.html">Gender</a>
               </li>
               <li class="nav-group-task">
@@ -763,14 +766,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Body Movement Detection feature supported</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">bodyMovementDetectionSupported</span><span class="p">:</span> <span class="kt">Feature</span>           <span class="o">=</span> <span class="kt">Feature</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -790,14 +793,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Cuff Fit Detection feature supported</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">cuffFitDetectionSupported</span><span class="p">:</span> <span class="kt">Feature</span>                <span class="o">=</span> <span class="kt">Feature</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -817,14 +820,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Irregular Pulse Detection feature supported</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">irregularPulseDetectionSupported</span><span class="p">:</span> <span class="kt">Feature</span>         <span class="o">=</span> <span class="kt">Feature</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -844,14 +847,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Pulse Rate Range Detection feature supported</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">pulseRateRangeDetectionSupported</span><span class="p">:</span> <span class="kt">Feature</span>         <span class="o">=</span> <span class="kt">Feature</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -871,14 +874,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Measurement Position Detection feature supported</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">measurementPositionDetectionSupported</span><span class="p">:</span> <span class="kt">Feature</span>    <span class="o">=</span> <span class="kt">Feature</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -898,14 +901,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Multiple Bonds supported</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Feature</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">multipleBondsSupported</span><span class="p">:</span> <span class="kt">Feature</span>                   <span class="o">=</span> <span class="kt">Feature</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

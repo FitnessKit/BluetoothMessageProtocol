@@ -54,6 +54,11 @@ open class CharacteristicV02Max: Characteristic {
         super.init(name: CharacteristicV02Max.name, uuidString: CharacteristicV02Max.uuidString)
     }
 
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicV02Max {
 
         var decoder = DataDecoder(data)
@@ -65,6 +70,10 @@ open class CharacteristicV02Max: Characteristic {
         return CharacteristicV02Max(maxVO2: consumption)
     }
 
+    /// Encodes the Characteristic into Data
+    ///
+    /// - Returns: Data representation of the Characteristic
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
         guard kMaxVO2Bounds.contains(Int(maxVO2.value)) else {

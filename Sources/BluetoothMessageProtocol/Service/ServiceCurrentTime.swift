@@ -47,6 +47,7 @@ open class ServiceCurrentTime: Service {
         return "org.bluetooth.service.current_time"
     }
 
+    /// Creates Current Time Service
     public init() {
         super.init(name: ServiceCurrentTime.name,
                    uuidString: ServiceCurrentTime.uuidString,

@@ -14,7 +14,7 @@
     <a title="BatteryPowerState Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">BluetoothMessageProtocol Docs</a> (89% documented)</p>
+        <p><a href="../index.html">BluetoothMessageProtocol Docs</a> (93% documented)</p>
         <p class="header-right"><a href="https://github.com/FitnessKit/BluetoothMessageProtocol"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -613,6 +613,9 @@
                 <a href="../Enums/ErrorReasons.html">ErrorReasons</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/FitnessMachineMovementDirection.html">FitnessMachineMovementDirection</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/Gender.html">Gender</a>
               </li>
               <li class="nav-group-task">
@@ -943,16 +946,35 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a BatteryPowerState Object</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BatteryPowerState</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Raw Data</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -970,16 +992,71 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a BatteryPowerState Object</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">BatteryPowerState</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">stateInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/BatteryPowerState/StateSupport.html">StateSupport</a></span><span class="p">,</span> <span class="nv">dischargeInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/BatteryPowerState/DischargeStatus.html">DischargeStatus</a></span><span class="p">,</span> <span class="nv">chargeInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/BatteryPowerState/ChargingStatus.html">ChargingStatus</a></span><span class="p">,</span> <span class="nv">batteryLevel</span><span class="p">:</span> <span class="kt"><a href="../Structs/BatteryPowerState/Level.html">Level</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stateInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>StateSupport enum</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dischargeInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>DischargeStatus eum</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>chargeInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ChargingStatus enum</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>batteryLevel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Level enum</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

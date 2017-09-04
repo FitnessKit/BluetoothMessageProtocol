@@ -47,6 +47,7 @@ open class ServiceReferenceTimeUpdate: Service {
         return "org.bluetooth.service.reference_time_update"
     }
 
+    /// Creates Reference Time Update Service
     public init() {
         super.init(name: ServiceReferenceTimeUpdate.name,
                    uuidString: ServiceReferenceTimeUpdate.uuidString,
