@@ -46,7 +46,9 @@ open class CharacteristicTrueWindDirection: Characteristic {
     /// Wind direction is reported by the direction from which it originates and is an angle measured clockwise relative to Geographic North. For example, a wind coming from the north is given as 0 degrees, a wind coming from the south is given as 180 degrees, a wind coming from the east is given as 90 degrees and a wind coming from the west is given as 270 degrees
     private(set) public var windDirection: Measurement<UnitAngle>
 
-
+    /// Creates True Wind Direction Characteristic
+    ///
+    /// - Parameter windDirection: True Wind Direction
     public init(windDirection: Measurement<UnitAngle>) {
 
         self.windDirection = windDirection

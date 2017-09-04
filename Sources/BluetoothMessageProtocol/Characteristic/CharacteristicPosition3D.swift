@@ -33,12 +33,12 @@ open class CharacteristicPosition3D: Characteristic {
 
     /// Characteristic Name
     public static var name: String {
-        return "Position 2D"
+        return "Position 3D"
     }
 
     /// Characteristic UUID
     public static var uuidString: String {
-        return "2AAF"
+        return "2A30"
     }
 
     /// Latitude
@@ -54,6 +54,12 @@ open class CharacteristicPosition3D: Characteristic {
     /// Elevation
     private(set) public var elevation: Measurement<UnitLength>
 
+    /// Creates Position 3D Characteristic
+    ///
+    /// - Parameters:
+    ///   - latitude: WGS84 North coordinate
+    ///   - longitude: WGS84 East coordinate
+    ///   - elevation: Elevation
     public init(latitude: Int32, longitude: Int32, elevation: Measurement<UnitLength>) {
 
         self.latitude = latitude

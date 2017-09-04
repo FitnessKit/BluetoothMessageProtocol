@@ -46,6 +46,9 @@ open class CharacteristicSerialNumberString: Characteristic {
     /// Serial Number
     private(set) public var serialNumber: String
 
+    /// Creates Serial Number String Characteristic
+    ///
+    /// - Parameter serialNumber: Serial Number
     public init(serialNumber: String) {
 
         self.serialNumber = serialNumber

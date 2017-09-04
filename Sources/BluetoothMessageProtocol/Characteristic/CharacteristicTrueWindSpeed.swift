@@ -44,7 +44,9 @@ open class CharacteristicTrueWindSpeed: Characteristic {
     /// True Wind Speed
     private(set) public var windSpeed: Measurement<UnitSpeed>
 
-
+    /// Creates True Wind Speed Characteristic
+    ///
+    /// - Parameter windSpeed: True Wind Speed
     public init(windSpeed: Measurement<UnitSpeed>) {
 
         self.windSpeed = windSpeed

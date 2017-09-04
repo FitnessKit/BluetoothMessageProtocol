@@ -56,6 +56,12 @@ open class CharacteristicDateOfBirth: Characteristic {
     /// Day of the month as defined by the Gregorian calendar
     private(set) public var day: UInt8?
 
+    /// Creates Date of Birth Characteristic
+    ///
+    /// - Parameters:
+    ///   - year: Year of Birth
+    ///   - month: Month of Birth
+    ///   - day: Day of Birth
     public init(year: UInt16?, month: Month, day: UInt8?) {
 
         self.year = year

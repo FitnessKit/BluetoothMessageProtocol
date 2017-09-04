@@ -46,15 +46,17 @@ open class CharacteristicAlertStatus: Characteristic {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
+        /// Ringer State active
         public static let ringerStateActive: AlertStatus        = AlertStatus(rawValue: 1 << 0)
+        /// Vibrate State active
         public static let vibrateStateActive: AlertStatus       = AlertStatus(rawValue: 1 << 1)
+        /// Display Alert Status State active
         public static let displayAlertActive: AlertStatus       = AlertStatus(rawValue: 1 << 2)
 
     }
 
     /// Alert Status Type
     private(set) public var status: AlertStatus
-
 
     /// Creates Alert Status Characteristic
     ///

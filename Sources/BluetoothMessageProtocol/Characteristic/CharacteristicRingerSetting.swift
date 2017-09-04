@@ -54,7 +54,9 @@ open class CharacteristicRingerSetting: Characteristic {
     /// Ringer Setting
     private(set) public var setting: RingerSetting
 
-
+    /// Creates Ringer Setting Characteristic
+    ///
+    /// - Parameter setting: Ringer Setting
     public init(setting: RingerSetting) {
 
         self.setting = setting

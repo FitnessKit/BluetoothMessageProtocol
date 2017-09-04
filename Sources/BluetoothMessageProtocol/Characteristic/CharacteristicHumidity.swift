@@ -41,9 +41,12 @@ open class CharacteristicHumidity: Characteristic {
         return "2A6F"
     }
 
-    /// Humidity
+    /// Humidity Percentage
     private(set) public var humidity: Measurement<UnitPercent>
 
+    /// Creates Humidity Characteristic
+    ///
+    /// - Parameter humidity: Humidity Percentage
     public init(humidity: Measurement<UnitPercent>) {
 
         self.humidity = humidity

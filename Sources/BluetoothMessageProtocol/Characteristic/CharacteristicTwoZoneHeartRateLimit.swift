@@ -46,7 +46,9 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
     /// Fat burn / Fitness Limit
     private(set) public var zoneLimit: Measurement<UnitCadence>
 
-
+    /// Creates Two Zone Heart Rate Limit Characteristic
+    ///
+    /// - Parameter zoneLimit: Fat burn / Fitness Limit
     public init(zoneLimit: UInt8) {
 
         self.zoneLimit = Measurement(value: Double(zoneLimit), unit: UnitCadence.beatsPerMinute)

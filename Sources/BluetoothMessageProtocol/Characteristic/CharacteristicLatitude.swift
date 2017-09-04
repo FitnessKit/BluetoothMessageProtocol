@@ -48,6 +48,9 @@ open class CharacteristicLatitude: Characteristic {
     /// WGS84 North coordinate
     private(set) public var latitude: Int32
 
+    /// Creates Latitude Characteristic
+    ///
+    /// - Parameter latitude: WGS84 North coordinate
     public init(latitude: Int32) {
 
         self.latitude = latitude

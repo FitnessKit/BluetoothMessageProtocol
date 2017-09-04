@@ -137,6 +137,13 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     /// E2E-CRC
     private(set) public var crcValue: UInt16?
 
+    /// Creates Continuous Glucose Monitoring Feature Characteristic
+    ///
+    /// - Parameters:
+    ///   - features: Supported Features
+    ///   - testType: Type of CGM Test
+    ///   - sampleLocation: Sample Location
+    ///   - crcValue: E2E-CRC
     public init(features: Features, testType: TestType, sampleLocation: Location, crcValue: UInt16?) {
 
         self.features = features

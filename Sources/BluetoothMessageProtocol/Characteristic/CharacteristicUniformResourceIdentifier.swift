@@ -48,7 +48,9 @@ open class CharacteristicUniformResourceIdentifier: Characteristic {
     /// The URI to be used in the HTTP request
     private(set) public var uri: String
 
-
+    /// Creates URI Characteristic
+    ///
+    /// - Parameter uri: The URI to be used in the HTTP request
     public init(uri: String) {
 
         self.uri = uri

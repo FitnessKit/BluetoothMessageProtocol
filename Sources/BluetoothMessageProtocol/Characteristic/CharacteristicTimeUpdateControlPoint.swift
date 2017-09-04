@@ -41,6 +41,7 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
         return "2A16"
     }
 
+    /// Command Types
     public enum Command: UInt8 {
         /// Get Reference Update
         case getReferenceUpdate     = 1
@@ -51,6 +52,9 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
     /// The Control Command for the Control Point
     private(set) public var controlMessage: Command
 
+    /// Creates Time Update Control Point Characteristic
+    ///
+    /// - Parameter controlMessage: Control Command
     public init(controlMessage: Command) {
 
         self.controlMessage = controlMessage

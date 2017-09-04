@@ -54,8 +54,10 @@ open class CharacteristicCurrentTime: Characteristic {
         public static let changeOfTimeZone: AdjustReasons               = AdjustReasons(rawValue: 1 << 2)
         /// Change of DST (daylight savings time)
         public static let changeofDaylightSavings: AdjustReasons        = AdjustReasons(rawValue: 1 << 3)
-
     }
+
+    /// Current Time Adjust Reason
+    private(set) public var adjustmentReason: AdjustReasons
 
     /// Time
     private(set) public var currentTime: DateTime
@@ -66,9 +68,13 @@ open class CharacteristicCurrentTime: Characteristic {
     /// Fractional Seconds
     private(set) public var fractionalSeconds: Float
 
-    /// Current Time Adjust Reason
-    private(set) public var adjustmentReason: AdjustReasons
-
+    /// Creates Current Time Characteristic
+    ///
+    /// - Parameters:
+    ///   - adjustmentReason: Current Time Adjust Reason
+    ///   - currentTime: Time
+    ///   - dayOfWeek: Day of the Week
+    ///   - fractionalSeconds: Fractional Seconds
     public init(adjustmentReason: AdjustReasons, currentTime: DateTime, dayOfWeek: DayOfWeek, fractionalSeconds: Float) {
 
         self.adjustmentReason = adjustmentReason

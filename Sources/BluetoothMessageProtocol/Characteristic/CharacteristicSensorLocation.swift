@@ -43,10 +43,12 @@ open class CharacteristicSensorLocation: Characteristic {
         return "2A5D"
     }
 
-    /// Ringer Setting
+    /// Sensor Location
     private(set) public var location: SensorLocation
 
-
+    /// Creates Sensor Location Characteristic
+    ///
+    /// - Parameter location: Sensor Location
     public init(location: SensorLocation) {
 
         self.location = location

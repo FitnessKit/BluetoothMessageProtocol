@@ -46,7 +46,9 @@ open class CharacteristicTxPowerLevel: Characteristic {
     /// Tx Power Level
     private(set) public var txPower: Int8
 
-
+    /// Creates Tx Power Level Characteristic
+    ///
+    /// - Parameter txPower: Tx Power Level
     public init(txPower: Int8) {
 
         self.txPower = txPower

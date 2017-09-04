@@ -46,6 +46,9 @@ open class CharacteristicGender: Characteristic {
     /// Gender
     fileprivate(set) public var gender: Gender
 
+    /// Creates Gender Characteristic
+    ///
+    /// - Parameter gender: Gender
     public init(gender: Gender) {
 
         self.gender = gender

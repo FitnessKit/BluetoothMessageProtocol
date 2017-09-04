@@ -44,6 +44,9 @@ open class CharacteristicDeviceName: Characteristic {
     /// Device Name
     private(set) public var deviceName: String
 
+    /// Creates Device Name Characteristic
+    ///
+    /// - Parameter deviceName: Device Name
     public init(deviceName: String) {
 
         self.deviceName = deviceName

@@ -63,7 +63,9 @@ open class CharacteristicBloodPressureFeature: Characteristic {
     /// Supported Features
     private(set) public var supportedFeatures: Feature
 
-
+    /// Creates Blood Pressure Feature Characteristic
+    ///
+    /// - Parameter status: Blood Pressure Features
     public init(status: Feature) {
 
         self.supportedFeatures = status

@@ -46,6 +46,9 @@ open class CharacteristicFirstName: Characteristic {
     /// First Name
     private(set) public var firstName: String
 
+    /// Creates First Name Characteristic
+    ///
+    /// - Parameter firstName: First Name
     public init(firstName: String) {
 
         self.firstName = firstName

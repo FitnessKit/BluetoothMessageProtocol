@@ -46,6 +46,9 @@ open class CharacteristicHeight: Characteristic {
     /// Height
     private(set) public var height: Measurement<UnitLength>
 
+    /// Creates Height Characteristic
+    ///
+    /// - Parameter height: Height
     public init(height: Measurement<UnitLength>) {
 
         self.height = height

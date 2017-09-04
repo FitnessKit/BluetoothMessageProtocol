@@ -52,7 +52,12 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitCadence>
 
-
+    /// Creates Supported Heart Rate Range Characteristic
+    ///
+    /// - Parameters:
+    ///   - minimum: Minimum Heart Rate
+    ///   - maximum: Maximum Heart Rate
+    ///   - minimumIncrement: Minimum Increment
     public init(minimum: UInt8, maximum: UInt8, minimumIncrement: UInt8) {
 
         self.minimum = Measurement(value: Double(minimum), unit: UnitCadence.beatsPerMinute)

@@ -48,6 +48,9 @@ open class CharacteristicLongitude: Characteristic {
     /// WGS84 East coordinate
     private(set) public var longitude: Int32
 
+    /// Creates Longitude Characteristic
+    ///
+    /// - Parameter longitude: WGS84 East coordinate
     public init(longitude: Int32) {
 
         self.longitude = longitude

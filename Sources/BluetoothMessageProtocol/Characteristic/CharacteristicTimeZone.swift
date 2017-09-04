@@ -26,28 +26,30 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Time Update State Characteristic
+/// BLE Time Zone Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicTimeZone: Characteristic {
 
     /// Characteristic Name
     public static var name: String {
-        return "Time Update State"
+        return "Time Zone"
     }
 
     /// Characteristic UUID
     public static var uuidString: String {
-        return "2A17"
+        return "2A0E"
     }
 
     /// Time Zone
     ///
     /// Offset from UTC in number of 15 minutes increments.  The offset defined in this characteristic is constant, regardless whether daylight savings is in effect
-    private(set) public var timeZone: Int8?
+    private(set) public var timeZone: BluetoothTimeZone
 
-
-    public init(timeZone: Int8?) {
+    /// Creates Time Zone Characteristic
+    ///
+    /// - Parameter timeZone: Offset from UTC
+    public init(timeZone: BluetoothTimeZone) {
 
         self.timeZone = timeZone
 
@@ -65,10 +67,7 @@ open class CharacteristicTimeZone: Characteristic {
 
         let value = decoder.decodeInt8()
 
-        var timezone: Int8?
-        if value != -128 {
-            timezone = value
-        }
+        let timezone = BluetoothTimeZone(rawValue: value) ?? .unknown
 
         return CharacteristicTimeZone(timeZone: timezone)
     }
@@ -79,20 +78,9 @@ open class CharacteristicTimeZone: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
 
-        var zoneValue: Int8 = -128
-
-        if let zone = timeZone {
-
-            guard (zone % 15) == 0 else {
-                throw BluetoothMessageProtocolError.init(.decodeError(msg: "Timezone Offset must be in 15 minutes increments"))
-            }
-
-            zoneValue = zone
-        }
-
         var msgData = Data()
 
-        msgData.append(Data(from: zoneValue))
+        msgData.append(Data(from: timeZone.rawValue))
 
         return msgData
     }

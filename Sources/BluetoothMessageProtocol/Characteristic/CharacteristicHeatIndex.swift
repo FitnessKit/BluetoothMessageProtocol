@@ -44,6 +44,9 @@ open class CharacteristicHeatIndex: Characteristic {
     /// Heat Index
     private(set) public var heatIndex: Measurement<UnitTemperature>
 
+    /// Creates Heat Index Characteristic
+    ///
+    /// - Parameter heatIndex: Heat Index
     public init(heatIndex: Measurement<UnitTemperature>) {
 
         self.heatIndex = heatIndex

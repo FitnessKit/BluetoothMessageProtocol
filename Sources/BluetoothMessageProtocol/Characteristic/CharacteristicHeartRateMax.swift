@@ -46,7 +46,9 @@ open class CharacteristicHeartRateMax: Characteristic {
     /// Heart Rate Max
     private(set) public var maximumHeartRate: Measurement<UnitCadence>
 
-
+    /// Creates Heart Rate Max Characteristic
+    ///
+    /// - Parameter maximumHeartRate: Heart Rate Max
     public init(maximumHeartRate: UInt8) {
 
         self.maximumHeartRate = Measurement(value: Double(maximumHeartRate), unit: UnitCadence.beatsPerMinute)

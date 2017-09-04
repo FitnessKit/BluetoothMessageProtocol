@@ -44,6 +44,9 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
     /// Database Change Increment
     private(set) public var increment: UInt32
 
+    /// Creates Database Change Increment Characteristic
+    ///
+    /// - Parameter increment: Database Change Increment
     public init(increment: UInt32) {
 
         self.increment = increment

@@ -44,6 +44,9 @@ open class CharacteristicDayOfWeek: Characteristic {
     /// Day of the Week
     private(set) public var dayOfWeek: DayOfWeek
 
+    /// Creates Day of Week Characteristic
+    ///
+    /// - Parameter dayOfWeek: Day of Week
     public init(dayOfWeek: DayOfWeek) {
 
         self.dayOfWeek = dayOfWeek

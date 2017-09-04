@@ -128,7 +128,13 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     /// RR-Interval
     private(set) public var rrIntervals: [Measurement<UnitDuration>]?
 
-
+    /// Creates Heart Rate Meassurement Characteristic
+    ///
+    /// - Parameters:
+    ///   - contactStatus: Contact status of sensor
+    ///   - heartRate: Heart Rate Value
+    ///   - energyExpended: Energy Expended
+    ///   - rrIntervals: RR-Intervals
     public init(contactStatus: ContactStatus, heartRate: Measurement<UnitCadence>, energyExpended: Measurement<UnitEnergy>? = nil, rrIntervals: [Measurement<UnitDuration>]? = nil) {
 
         self.contactStatus = contactStatus

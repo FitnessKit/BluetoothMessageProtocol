@@ -42,7 +42,6 @@ open class CharacteristicBatteryLevelState: Characteristic {
         return "2A1B"
     }
 
-
     /// Battery Level
     ///
     /// The current charge level of a battery. 100% represents fully charged while 0% represents fully discharged.
@@ -52,6 +51,11 @@ open class CharacteristicBatteryLevelState: Characteristic {
     /// Battery Power State
     private(set) public var state: BatteryPowerState?
 
+    /// Creates Battery Level State Characteristic
+    ///
+    /// - Parameters:
+    ///   - level: Percent Battery level
+    ///   - state: Battery Power State
     public init(level: Measurement<UnitPercent>, state: BatteryPowerState?) {
 
         self.level = level

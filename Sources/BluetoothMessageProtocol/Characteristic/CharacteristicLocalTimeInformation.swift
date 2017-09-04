@@ -49,7 +49,11 @@ open class CharacteristicLocalTimeInformation: Characteristic {
     /// DST Offset
     private(set) public var dstOffset: DSTOffset
 
-
+    /// Creates Local Time Information Characteristic
+    ///
+    /// - Parameters:
+    ///   - timeZone: Timezone Offset from UTC
+    ///   - dstOffset: Daylight Savings Offset
     public init(timeZone: Int8, dstOffset: DSTOffset) {
 
         self.timeZone = timeZone

@@ -83,7 +83,6 @@ open class CharacteristicCrossTrainerData: Characteristic {
         public static let backwardDirection: Flags              = Flags(rawValue: 1 << 15)
     }
 
-
     /// Instantaneous Speed
     private(set) public var instantaneousSpeed: Measurement<UnitSpeed>?
 
@@ -138,7 +137,27 @@ open class CharacteristicCrossTrainerData: Characteristic {
     /// Movement Direction
     private(set) public var movementDirection: FitnessMachineMovementDirection
 
-
+    /// Creates Cross Trainer Data Characteristic
+    ///
+    /// - Parameters:
+    ///   - instantaneousSpeed: Instantaneous Speed
+    ///   - averageSpeed: Average Speed
+    ///   - totalDistance: Total Distance
+    ///   - stepsPerMinute: Step Per Minute
+    ///   - averageStepRate: Average Step Rate
+    ///   - strideCount: Stride Count
+    ///   - positiveElevationGain: Positive Elevation Gain
+    ///   - negativeElevationGain: Negative Elevation Gain
+    ///   - inclination: Inclination
+    ///   - rampAngle: Ramp Angle Setting
+    ///   - resistanceLevel: Resistance Level
+    ///   - instantaneousPower: Instantaneous Power
+    ///   - averagePower: Average Power
+    ///   - energy: Energy Information
+    ///   - heartRate: Heart Rate
+    ///   - metabolicEquivalent: Metabolic Equivalent
+    ///   - time: Time Information
+    ///   - movementDirection: Movement Direction
     public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, strideCount: Double?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime, movementDirection: FitnessMachineMovementDirection) {
 
         self.instantaneousSpeed = instantaneousSpeed

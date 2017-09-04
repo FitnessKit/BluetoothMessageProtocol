@@ -44,6 +44,9 @@ open class CharacteristicDSTOffset: Characteristic {
     /// DST Offset
     private(set) public var dstOffset: DSTOffset
 
+    /// Creates DST Offset Characteristic
+    ///
+    /// - Parameter dstOffset: Daylight Savings Offset
     public init(dstOffset: DSTOffset) {
 
         self.dstOffset = dstOffset

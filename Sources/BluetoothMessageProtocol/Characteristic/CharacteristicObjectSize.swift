@@ -47,6 +47,11 @@ open class CharacteristicObjectSize: Characteristic {
     /// Allocated Size
     private(set) public var allocatedSize: UInt32
 
+    /// Creates Object Size Characteristic
+    ///
+    /// - Parameters:
+    ///   - currentSize: Current Size
+    ///   - allocatedSize: Allocated Size
     public init(currentSize: UInt32, allocatedSize: UInt32) {
 
         self.currentSize = currentSize

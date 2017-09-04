@@ -52,7 +52,12 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitSpeed>
 
-
+    /// Creates Supported Speed Range Characteristic
+    ///
+    /// - Parameters:
+    ///   - minimum: Minimum Speed
+    ///   - maximum: Maximum Speed
+    ///   - minimumIncrement: Minimum Increment
     public init(minimum: Measurement<UnitSpeed>, maximum: Measurement<UnitSpeed>, minimumIncrement: Measurement<UnitSpeed>) {
 
         self.minimum = minimum

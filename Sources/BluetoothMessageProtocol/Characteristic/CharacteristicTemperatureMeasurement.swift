@@ -46,11 +46,13 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
+        /// Temperature Measurement Value in units of Fahrenheit
         public static let unitsFahrenheit: Flags            = Flags(rawValue: 1 << 0)
+        /// Time Stamp field present
         public static let timestampPresent: Flags           = Flags(rawValue: 1 << 1)
+        /// Temperature Type field present
         public static let temperatureTypePresent: Flags     = Flags(rawValue: 1 << 2)
     }
-
 
     /// Temperature
     private(set) public var temperature: Measurement<UnitTemperature>
@@ -61,7 +63,12 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
     /// Temperature Type
     private(set) public var type: TemperatureType?
 
-
+    /// Creates Temperature Measurement Characteristic
+    ///
+    /// - Parameters:
+    ///   - temperature: Temperature
+    ///   - timestamp: Timestamp
+    ///   - type: Temperature Type
     public init(temperature: Measurement<UnitTemperature>, timestamp: DateTime?, type: TemperatureType?) {
 
         self.temperature = temperature

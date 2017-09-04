@@ -46,7 +46,9 @@ open class CharacteristicTemperatureType: Characteristic {
     /// Temperature Type
     private(set) public var type: TemperatureType
 
-
+    /// Creates Temperature Type Characteristic
+    ///
+    /// - Parameter type: Temperature Type
     public init(type: TemperatureType) {
 
         self.type = type

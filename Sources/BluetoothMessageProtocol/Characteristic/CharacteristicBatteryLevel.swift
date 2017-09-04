@@ -48,6 +48,9 @@ open class CharacteristicBatteryLevel: Characteristic {
     ///
     private(set) public var level: Measurement<UnitPercent>
 
+    /// Creates Battery Level Characteristic
+    ///
+    /// - Parameter level: Percent Battery Level
     public init(level: Measurement<UnitPercent>) {
 
         self.level = level

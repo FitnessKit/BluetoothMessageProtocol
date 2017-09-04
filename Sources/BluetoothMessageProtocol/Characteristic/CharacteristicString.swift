@@ -46,6 +46,9 @@ open class CharacteristicString: Characteristic {
     /// String Value
     private(set) public var value: String
 
+    /// Creates String Characteristic
+    ///
+    /// - Parameter value: Generic String
     public init(value: String) {
 
         self.value = value

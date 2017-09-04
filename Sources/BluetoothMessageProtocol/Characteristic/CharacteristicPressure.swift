@@ -44,6 +44,9 @@ open class CharacteristicPressure: Characteristic {
     /// Pressure
     private(set) public var pressure: Measurement<UnitPressure>
 
+    /// Creates Pressure Characteristic
+    ///
+    /// - Parameter pressure: Pressure
     public init(pressure: Measurement<UnitPressure>) {
 
         self.pressure = pressure

@@ -44,6 +44,9 @@ open class CharacteristicEmailAddress: Characteristic {
     /// Email Address
     private(set) public var emailAddress: String
 
+    /// Creates Email Address Characteristic
+    ///
+    /// - Parameter emailAddress: Email Address
     public init(emailAddress: String) {
 
         self.emailAddress = emailAddress

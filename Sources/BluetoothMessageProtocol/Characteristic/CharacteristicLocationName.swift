@@ -46,6 +46,9 @@ open class CharacteristicLocationName: Characteristic {
     /// Location Name
     private(set) public var locationName: String
 
+    /// Creates Location Name Characteristic
+    ///
+    /// - Parameter locationName: Location Name
     public init(locationName: String) {
 
         self.locationName = locationName

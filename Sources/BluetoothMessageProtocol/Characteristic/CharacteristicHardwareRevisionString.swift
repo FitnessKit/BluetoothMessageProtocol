@@ -46,6 +46,9 @@ open class CharacteristicHardwareRevisionString: Characteristic {
     /// Hardware Revision
     private(set) public var hardwareRevision: String
 
+    /// Creates Hardware Revision String Characteristic
+    ///
+    /// - Parameter hardwareRevision: Hardware Revision
     public init(hardwareRevision: String) {
 
         self.hardwareRevision = hardwareRevision

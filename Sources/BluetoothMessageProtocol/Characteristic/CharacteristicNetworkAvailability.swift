@@ -43,6 +43,7 @@ open class CharacteristicNetworkAvailability: Characteristic {
         return "2A3E"
     }
 
+    /// Network Availability Types
     public enum Availability: UInt8 {
         /// No network available
         case notAvailable       = 0
@@ -53,6 +54,9 @@ open class CharacteristicNetworkAvailability: Characteristic {
     /// Network Availability
     private(set) public var networkAvailable: Availability
 
+    /// Creates Network Availability Characteristic
+    ///
+    /// - Parameter networkAvailable: Network Availability
     public init(networkAvailable: Availability) {
 
         self.networkAvailable = networkAvailable

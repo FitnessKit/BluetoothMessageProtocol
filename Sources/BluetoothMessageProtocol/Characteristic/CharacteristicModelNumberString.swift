@@ -46,6 +46,9 @@ open class CharacteristicModelNumberString: Characteristic {
     /// Model Number
     private(set) public var modelNumber: String
 
+    /// Creates Model Number String Characteristic
+    ///
+    /// - Parameter modelNumber: Model Number
     public init(modelNumber: String) {
 
         self.modelNumber = modelNumber

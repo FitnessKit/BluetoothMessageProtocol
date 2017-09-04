@@ -96,7 +96,11 @@ open class CharacteristicTrainingStatus: Characteristic {
     /// Training Status String
     private(set) public var statusString: String?
 
-
+    /// Creates Training Status Characteristic
+    ///
+    /// - Parameters:
+    ///   - status: Training Status
+    ///   - statusString: Training Status String
     public init(status: TrainingStatus, statusString: String?) {
 
         self.status = status

@@ -46,6 +46,9 @@ open class CharacteristicSoftwareRevisionString: Characteristic {
     /// Software Revision
     private(set) public var softwareRevision: String
 
+    /// Creates Software Revision String Characteristic
+    ///
+    /// - Parameter softwareRevision: Software Revision
     public init(softwareRevision: String) {
 
         self.softwareRevision = softwareRevision

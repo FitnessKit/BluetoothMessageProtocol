@@ -46,6 +46,9 @@ open class CharacteristicWeight: Characteristic {
     /// Weight
     private(set) public var weight: Measurement<UnitMass>
 
+    /// Creates Weight Characteristic
+    ///
+    /// - Parameter weight: Weight
     public init(weight: Measurement<UnitMass>) {
 
         self.weight = weight

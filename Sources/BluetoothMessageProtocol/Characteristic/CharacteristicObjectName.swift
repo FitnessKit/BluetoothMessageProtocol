@@ -44,6 +44,9 @@ open class CharacteristicObjectName: Characteristic {
     /// Object Name
     private(set) public var objectName: String
 
+    /// Creates Object Name Characteristic
+    ///
+    /// - Parameter objectName: Object Name
     public init(objectName: String) {
 
         self.objectName = objectName

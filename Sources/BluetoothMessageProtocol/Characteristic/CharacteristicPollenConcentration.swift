@@ -44,6 +44,9 @@ open class CharacteristicPollenConcentration: Characteristic {
     /// Pollen Concentration
     private(set) public var concentration: Measurement<UnitVolume>
 
+    /// Creates Pollen Concentration Characteristic
+    ///
+    /// - Parameter concentration: Pollen Concentration
     public init(concentration: Measurement<UnitVolume>) {
 
         self.concentration = concentration

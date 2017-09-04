@@ -44,6 +44,9 @@ open class CharacteristicDewPoint: Characteristic {
     /// Dew Point
     private(set) public var dewPoint: Measurement<UnitTemperature>
 
+    /// Creates Dew Point Characteristic
+    ///
+    /// - Parameter dewPoint: Dew Point Temperature
     public init(dewPoint: Measurement<UnitTemperature>) {
 
         self.dewPoint = dewPoint

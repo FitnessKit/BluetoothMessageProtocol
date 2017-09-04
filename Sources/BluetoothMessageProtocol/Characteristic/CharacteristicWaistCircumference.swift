@@ -46,6 +46,9 @@ open class CharacteristicWaistCircumference: Characteristic {
     /// Waist Circumference
     private(set) public var waistCircumference: Measurement<UnitLength>
 
+    /// Creates Waist Circumference Characteristic
+    ///
+    /// - Parameter waistCircumference: Waist Circumference
     public init(waistCircumference: Measurement<UnitLength>) {
 
         self.waistCircumference = waistCircumference

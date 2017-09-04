@@ -44,7 +44,9 @@ open class CharacteristicAlertCategoryID: Characteristic {
     /// Alert Type
     private(set) public var alertType: AlertCategory
 
-
+    /// Creates Alert Category ID Characteristic
+    ///
+    /// - Parameter alertType: AlertCategory
     public init(alertType: AlertCategory) {
 
         self.alertType = alertType

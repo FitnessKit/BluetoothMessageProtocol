@@ -46,7 +46,9 @@ open class CharacteristicAltitude: Characteristic {
     /// Altitude
     private(set) public var altitude: UInt16
 
-
+    /// Creates Altitude Characteristic
+    ///
+    /// - Parameter altitude: Altitude
     public init(altitude: UInt16) {
 
         self.altitude = altitude

@@ -44,7 +44,9 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
     /// Aerobic Heart Rate Lower Limit
     private(set) public var heartRate: Measurement<UnitCadence>
 
-
+    /// Creates Anaerobic Threshold Characteristic
+    ///
+    /// - Parameter heartRate: Heart Rate
     public init(heartRate: UInt8) {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)

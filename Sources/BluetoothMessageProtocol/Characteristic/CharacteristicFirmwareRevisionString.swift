@@ -46,6 +46,9 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
     /// Firmware Revision
     private(set) public var firmwareRevision: String
 
+    /// Creates Firmware Revision String Characteristic
+    ///
+    /// - Parameter firmwareRevision: Firmware Revision
     public init(firmwareRevision: String) {
 
         self.firmwareRevision = firmwareRevision

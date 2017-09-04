@@ -45,6 +45,9 @@ open class CharacteristicBatteryPowerState: Characteristic {
     /// Battery Power State
     private(set) public var state: BatteryPowerState
 
+    /// Creates Battery Power State Characteristic
+    ///
+    /// - Parameter state: Battery Power State
     public init(state: BatteryPowerState) {
 
         self.state = state

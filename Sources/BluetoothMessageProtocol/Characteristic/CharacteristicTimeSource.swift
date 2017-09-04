@@ -62,6 +62,9 @@ open class CharacteristicTimeSource: Characteristic {
     /// Time Source
     private(set) public var source: TimeSource
 
+    /// Creates Time Source Characteristic
+    ///
+    /// - Parameter source: Time Source
     public init(source: TimeSource) {
 
         self.source = source

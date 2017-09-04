@@ -112,7 +112,21 @@ open class CharacteristicIndoorBikeData: Characteristic {
     /// Time Information
     private(set) public var time: FitnessMachineTime
 
-
+    /// Creates Indoor Bike Data Characteristic
+    ///
+    /// - Parameters:
+    ///   - instantaneousSpeed: Instantaneous Speed
+    ///   - averageSpeed: Average Speed
+    ///   - instantaneousCadence: Instantaneous Cadence
+    ///   - averageCadence: Average Cadence
+    ///   - totalDistance: Total Distance
+    ///   - resistanceLevel: Instantaneous Power
+    ///   - instantaneousPower: Instantaneous Power
+    ///   - averagePower: Average Power
+    ///   - energy: Energy Information
+    ///   - heartRate: Heart Rate
+    ///   - metabolicEquivalent: Metabolic Equivalent
+    ///   - time: Time Information
     public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, instantaneousCadence: Measurement<UnitCadence>?, averageCadence: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.instantaneousSpeed = instantaneousSpeed

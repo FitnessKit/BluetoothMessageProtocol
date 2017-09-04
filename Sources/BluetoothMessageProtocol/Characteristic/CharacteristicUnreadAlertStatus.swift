@@ -53,7 +53,11 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     /// Provides the number of unread alerts in the server
     private(set) public var numberOfAlerts: UInt8
 
-
+    /// Creates Unread Alert Status Characteristic
+    ///
+    /// - Parameters:
+    ///   - alertType: Category of the unread alert
+    ///   - numberOfAlerts: Number of unread alerts in the server
     public init(alertType: AlertCategory, numberOfAlerts: UInt8) {
 
         self.alertType = alertType

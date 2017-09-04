@@ -46,7 +46,9 @@ open class CharacteristicV02Max: Characteristic {
     /// VO2 Max
     private(set) public var maxVO2: Measurement<UnitOxygenConsumption>
 
-
+    /// Creates VO2 Max Characteristic
+    ///
+    /// - Parameter maxVO2: VO2 Max
     public init(maxVO2: Measurement<UnitOxygenConsumption>) {
 
         self.maxVO2 = maxVO2

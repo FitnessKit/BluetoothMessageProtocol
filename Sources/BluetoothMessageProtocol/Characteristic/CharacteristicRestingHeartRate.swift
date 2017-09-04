@@ -46,7 +46,9 @@ open class CharacteristicRestingHeartRate: Characteristic {
     /// Resting Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>
 
-
+    /// Creates Resting Heart Rate Characteristic
+    ///
+    /// - Parameter heartRate: Resting Heart Rate
     public init(heartRate: UInt8) {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)

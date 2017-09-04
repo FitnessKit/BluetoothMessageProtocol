@@ -70,7 +70,6 @@ open class CharacteristicStairClimberData: Characteristic {
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 9)
     }
 
-
     /// Floors
     private(set) public var floors: UInt16?
 
@@ -98,7 +97,18 @@ open class CharacteristicStairClimberData: Characteristic {
     /// Time Information
     private(set) public var time: FitnessMachineTime
 
-
+    /// Creates Stair Climber Data Characteristic
+    ///
+    /// - Parameters:
+    ///   - floors: Floors climbed
+    ///   - stepsPerMinute: Step Per Minute
+    ///   - averageStepRate: Average Step Rate
+    ///   - positiveElevationGain: Positive Elevation Gain
+    ///   - strideCount: Stride Count
+    ///   - energy: Energy Information
+    ///   - heartRate: Heart Rate
+    ///   - metabolicEquivalent: Metabolic Equivalent
+    ///   - time: Time Information
     public init(floors: UInt16?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, positiveElevationGain: Measurement<UnitLength>?, strideCount: UInt16?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.floors = floors

@@ -46,6 +46,9 @@ open class CharacteristicManufacturerNameString: Characteristic {
     /// Manufacturer Name
     private(set) public var manufacturerName: String
 
+    /// Creates Manufacturer Name String Characteristic
+    ///
+    /// - Parameter manufacturerName: Manufacturer Name
     public init(manufacturerName: String) {
 
         self.manufacturerName = manufacturerName

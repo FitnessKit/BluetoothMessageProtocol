@@ -88,11 +88,12 @@ open class CharacteristicBondManagementFeatures: Characteristic {
         public static let featureExtension: Flags                                   = Flags(rawValue: 1 << 23)
     }
 
-
     /// Bond Management Features
     private(set) public var features: Flags
 
-
+    /// Creates Bond Management Features Characteristic
+    ///
+    /// - Parameter features: Bond Management Features
     public init(features: Flags) {
 
         self.features = features

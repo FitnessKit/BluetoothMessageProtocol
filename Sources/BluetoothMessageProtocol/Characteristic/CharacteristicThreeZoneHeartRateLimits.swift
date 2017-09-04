@@ -53,7 +53,11 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
     /// Moderate (Aerobic) / Hard (Anaerobic) Limit
     private(set) public var moderateHeartRate: Measurement<UnitCadence>
 
-
+    /// Creates Three Zone Heart Rate Limits Characteristic
+    ///
+    /// - Parameters:
+    ///   - lightHeartRate: Light (Fat burn) / Moderate (Aerobic) Limit
+    ///   - moderateHeartRate: Moderate (Aerobic) / Hard (Anaerobic) Limit
     public init(lightHeartRate: UInt8, moderateHeartRate: UInt8) {
 
         self.lightHeartRate = Measurement(value: Double(lightHeartRate), unit: UnitCadence.beatsPerMinute)

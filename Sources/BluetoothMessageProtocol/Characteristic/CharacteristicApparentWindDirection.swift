@@ -50,6 +50,9 @@ open class CharacteristicApparentWindDirection: Characteristic {
     ///
     private(set) public var windDirection: Measurement<UnitAngle>
 
+    /// Creates Apparent Wind Direction Characteristic
+    ///
+    /// - Parameter windDirection: Angle of Wind Direction
     public init(windDirection: Measurement<UnitAngle>) {
 
         self.windDirection = windDirection

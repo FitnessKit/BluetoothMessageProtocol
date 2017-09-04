@@ -44,6 +44,9 @@ open class CharacteristicRainfall: Characteristic {
     /// Rainfall
     private(set) public var rainfall: Measurement<UnitLength>
 
+    /// Creates Rainfall Characteristic
+    ///
+    /// - Parameter rainfall: Rainfall
     public init(rainfall: Measurement<UnitLength>) {
 
         self.rainfall = rainfall

@@ -52,7 +52,12 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitPercent>
 
-
+    /// Creates Supported Inclination Range Characteristic
+    ///
+    /// - Parameters:
+    ///   - minimum: Minimum Inclination
+    ///   - maximum: Maximum Inclination
+    ///   - minimumIncrement: Minimum Increment
     public init(minimum: Measurement<UnitPercent>, maximum: Measurement<UnitPercent>, minimumIncrement: Measurement<UnitPercent>) {
 
         self.minimum = minimum

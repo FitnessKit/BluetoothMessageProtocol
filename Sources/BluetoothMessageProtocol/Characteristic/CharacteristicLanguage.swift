@@ -46,6 +46,9 @@ open class CharacteristicLanguage: Characteristic {
     /// The Language definition is based on ISO639-1
     private(set) public var language: String
 
+    /// Creates Language Characteristic
+    ///
+    /// - Parameter language: The Language based on ISO639-1 value
     public init(language: String) {
 
         self.language = language

@@ -76,7 +76,6 @@ open class CharacteristicRowerData: Characteristic {
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 12)
     }
 
-
     /// Stroke Rate
     private(set) public var strokeRate: Measurement<UnitCadence>?
 
@@ -116,7 +115,22 @@ open class CharacteristicRowerData: Characteristic {
     /// Time Information
     private(set) public var time: FitnessMachineTime
 
-
+    /// Creates Rower Data Characteristic
+    ///
+    /// - Parameters:
+    ///   - strokeRate: Stroke Rate
+    ///   - strokeCount: Stroke Count
+    ///   - averageStrokeRate: Average Stroke Rate
+    ///   - totalDistance: Total Distance
+    ///   - instantaneousPace: Instantaneous Pace
+    ///   - averagePace: Average Pace
+    ///   - instantaneousPower: Instantaneous Power
+    ///   - averagePower: Average Power
+    ///   - resistanceLevel: Resistance Level
+    ///   - energy: Energy Information
+    ///   - heartRate: Heart Rate
+    ///   - metabolicEquivalent: Metabolic Equivalent
+    ///   - time: Time Information
     public init(strokeRate: Measurement<UnitCadence>?, strokeCount: UInt16?, averageStrokeRate: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitDuration>?, averagePace: Measurement<UnitDuration>?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, resistanceLevel: Double?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.strokeRate = strokeRate

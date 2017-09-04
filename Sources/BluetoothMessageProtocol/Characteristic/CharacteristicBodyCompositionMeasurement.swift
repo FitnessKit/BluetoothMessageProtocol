@@ -113,7 +113,22 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
     /// Multiple Packet Measurement
     private(set) public var multiplePacketMeasurement: Bool
 
-
+    /// Creates Body Composition Measurement Characteristic
+    ///
+    /// - Parameters:
+    ///   - bodyFat: Body Fat Percentage
+    ///   - currentTime: Timestamp
+    ///   - userID: User ID
+    ///   - basalMetabolism: Basal Metabolism
+    ///   - musclePercentage: Muscle Percentage
+    ///   - muscleMass: Muscle Mass
+    ///   - fatFreeMass: Fat Free Mass
+    ///   - softLeanMass: Soft Lean Mass
+    ///   - bodyWaterMass: Body Water Mass
+    ///   - impedance: Impedance
+    ///   - weight: Weight
+    ///   - height: Height
+    ///   - multiplePacketMeasurement: Multiple Packet Measurement
     public init(bodyFat: Measurement<UnitPercent>, currentTime: DateTime?, userID: User?, basalMetabolism: Measurement<UnitEnergy>?, musclePercentage: Measurement<UnitPercent>?, muscleMass: Measurement<UnitMass>?, fatFreeMass: Measurement<UnitMass>?, softLeanMass: Measurement<UnitMass>?, bodyWaterMass: Measurement<UnitMass>?, impedance: Measurement<UnitElectricResistance>?, weight: Measurement<UnitMass>?, height: Measurement<UnitLength>?, multiplePacketMeasurement: Bool) {
 
         self.bodyFat = bodyFat

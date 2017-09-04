@@ -44,7 +44,9 @@ open class CharacteristicTemperature: Characteristic {
     /// Temperature
     private(set) public var temperature: Measurement<UnitTemperature>
 
-
+    /// Creates Temperature Characteristic
+    ///
+    /// - Parameter temperature: Temperature
     public init(temperature: Measurement<UnitTemperature>) {
 
         self.temperature = temperature

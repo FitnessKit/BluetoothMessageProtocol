@@ -44,6 +44,9 @@ open class CharacteristicElevation: Characteristic {
     /// Elevation
     private(set) public var elevation: Measurement<UnitLength>
 
+    /// Creates Elevation Characteristic
+    ///
+    /// - Parameter elevation: Elevation
     public init(elevation: Measurement<UnitLength>) {
 
         self.elevation = elevation

@@ -41,13 +41,18 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
         return "2A39"
     }
 
+    /// Control Point Commands
     public enum Command: UInt8 {
+        /// Reset Energy Expended
         case resetEnergyExpended    = 1
     }
 
     /// The Control Command for the Control Point
     public var controlMessage: Command
 
+    /// Creates Heart Rate Control Point Characteristic
+    ///
+    /// - Parameter controlMessage: Control Command
     public init(controlMessage: Command) {
 
         self.controlMessage = controlMessage

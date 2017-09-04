@@ -48,7 +48,9 @@ open class CharacteristicMeasurementInterval: Characteristic {
     /// - note: values from 1 second to 65535 seconds
     private(set) public var interval: Measurement<UnitDuration>
 
-
+    /// Creates Measurement Interval Characteristic
+    ///
+    /// - Parameter interval: Measurement Interval (1 second to 65535 second)
     public init(interval: Measurement<UnitDuration>) {
 
         self.interval = interval

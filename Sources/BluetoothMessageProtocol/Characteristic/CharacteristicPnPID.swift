@@ -43,6 +43,7 @@ open class CharacteristicPnPID: Characteristic {
         return "2A50"
     }
 
+    /// Vendor Source Types
     public enum VendorSource: UInt8 {
         /// Unknown
         case unknown                    = 0
@@ -72,6 +73,13 @@ open class CharacteristicPnPID: Characteristic {
     /// Manufacturer managed version for this product
     private(set) public var productVersion: UInt16
 
+    /// Creates PnP ID Charateristic
+    ///
+    /// - Parameters:
+    ///   - vendorIdSource: Identifies the source of the Vendor ID field
+    ///   - vendorId: Identifies the product vendor from the namespace in the Vendor ID Source
+    ///   - productId: Manufacturer managed identifier for this product
+    ///   - productVersion: Manufacturer managed version for this product
     public init(vendorIdSource: VendorSource, vendorId: UInt16, productId: UInt16, productVersion: UInt16) {
 
         self.vendorIdSource = vendorIdSource

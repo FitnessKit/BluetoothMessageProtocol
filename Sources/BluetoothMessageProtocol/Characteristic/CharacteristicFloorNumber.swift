@@ -46,6 +46,9 @@ open class CharacteristicFloorNumber: Characteristic {
     /// Floor Number
     private(set) public var floorNumber: UInt8
 
+    /// Create Floor Number Characteristic
+    ///
+    /// - Parameter floorNumber: Floor Number
     public init(floorNumber: UInt8) {
 
         self.floorNumber = floorNumber

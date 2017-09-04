@@ -48,7 +48,11 @@ open class CharacteristicDayDateTime: Characteristic {
     /// Day of the Week
     private(set) public var dayOfWeek: DayOfWeek
 
-
+    /// Creates Day Date Time Characteristic
+    ///
+    /// - Parameters:
+    ///   - time: Time
+    ///   - dayOfWeek: Day of Week
     public init(time: DateTime, dayOfWeek: DayOfWeek) {
 
         self.time = time

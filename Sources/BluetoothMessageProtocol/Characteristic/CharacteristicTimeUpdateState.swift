@@ -49,6 +49,7 @@ open class CharacteristicTimeUpdateState: Characteristic {
         case updatePending  = 1
     }
 
+    /// Update Result Types
     public enum UpdateResultType: UInt8 {
         /// Successful
         case successful         = 0
@@ -70,7 +71,11 @@ open class CharacteristicTimeUpdateState: Characteristic {
     /// Result
     private(set) public var result: UpdateResultType
 
-
+    /// Creates Time Update State Characteristic
+    ///
+    /// - Parameters:
+    ///   - currentState: Current State
+    ///   - result: Update Result
     public init(currentState: CurrentStateType, result: UpdateResultType) {
 
         self.currentState = currentState

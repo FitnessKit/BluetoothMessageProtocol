@@ -69,6 +69,9 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     /// Pressure Trend
     private(set) public var trend: BarometricPressureTrend
 
+    /// Creates Barometric Pressure Trend Characteristic
+    ///
+    /// - Parameter trend: Barometric Pressure Trend
     public init(trend: BarometricPressureTrend) {
 
         self.trend = trend

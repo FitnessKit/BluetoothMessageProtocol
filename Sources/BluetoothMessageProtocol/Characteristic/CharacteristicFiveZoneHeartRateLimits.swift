@@ -55,7 +55,13 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
     /// Hard / Maximum Limit
     private(set) public var maximumHeartRate: Measurement<UnitCadence>
 
-
+    /// Creates Five Zone Heart Rate Limits Characteristic
+    ///
+    /// - Parameters:
+    ///   - lightHeartRate: Very light / Light Limit Heart Rate
+    ///   - moderateHeartRate: Light / Moderate Limit Heart Rate
+    ///   - hardHeartRate: Moderate / Hard Limit Heart Rate
+    ///   - maximumHeartRate: Hard / Maximum Limit Heart Rate
     public init(lightHeartRate: UInt8, moderateHeartRate: UInt8, hardHeartRate: UInt8, maximumHeartRate: UInt8) {
 
         self.lightHeartRate = Measurement(value: Double(lightHeartRate), unit: UnitCadence.beatsPerMinute)

@@ -52,7 +52,12 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
     /// Minimum Increment
     private(set) public var minimumIncrement: Double
 
-
+    /// Creates Supported Resistance Level Characteristic
+    ///
+    /// - Parameters:
+    ///   - minimum: Minimum Resistance Level
+    ///   - maximum: Maximum Resistance Level
+    ///   - minimumIncrement: Minimum Increment
     public init(minimum: Double, maximum: Double, minimumIncrement: Double) {
 
         self.minimum = minimum

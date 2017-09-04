@@ -14,7 +14,7 @@
     <a title="CharacteristicStepClimberData Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">BluetoothMessageProtocol Docs</a> (93% documented)</p>
+        <p><a href="../index.html">BluetoothMessageProtocol Docs</a> (99% documented)</p>
         <p class="header-right"><a href="https://github.com/FitnessKit/BluetoothMessageProtocol"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -601,6 +601,9 @@
                 <a href="../Enums/AppearanceCategory.html">AppearanceCategory</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/BluetoothTimeZone.html">BluetoothTimeZone</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/BodyLocation.html">BodyLocation</a>
               </li>
               <li class="nav-group-task">
@@ -676,9 +679,9 @@
 
                 </div>
               </div>
-            <p>BLE Stair Climber Data Characteristic</p>
+            <p>BLE Step Climber Data Characteristic</p>
 
-<p>The Stair Climber Data characteristic is used to send training-related data to the Client from a stair climber (Server).</p>
+<p>The Step Climber Data characteristic is used to send training-related data to the Client from a step climber (Server).</p>
 
           </section>
           <section class="section task-group-section">
@@ -994,16 +997,131 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates Step Climber Data Characteristic</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CharacteristicStepClimberData</span><span class="p">:</span> <span class="kt"><a href="../Classes/Characteristic.html">Characteristic</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">floors</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">?,</span> <span class="nv">stepCount</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">?,</span> <span class="nv">stepsPerMinute</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitCadence</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">averageStepRate</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitCadence</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">positiveElevationGain</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitLength</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">energy</span><span class="p">:</span> <span class="kt"><a href="../Structs/FitnessMachineEnergy.html">FitnessMachineEnergy</a></span><span class="p">,</span> <span class="nv">heartRate</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">?,</span> <span class="nv">metabolicEquivalent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?,</span> <span class="nv">time</span><span class="p">:</span> <span class="kt"><a href="../Structs/FitnessMachineTime.html">FitnessMachineTime</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>floors</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Floors climbed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stepCount</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Step Count</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stepsPerMinute</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Step Per Minute</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>averageStepRate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Average Step Rate</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>positiveElevationGain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Positive Elevation Gain</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>energy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Energy Information</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>heartRate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Heart Rate</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>metabolicEquivalent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Metabolic Equivalent</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>time</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Time Information</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

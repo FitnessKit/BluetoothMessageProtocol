@@ -52,7 +52,12 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitPower>
 
-
+    /// Creates Supported Power Range Characteristic
+    ///
+    /// - Parameters:
+    ///   - minimum: Minimum Power
+    ///   - maximum: Maximum Power
+    ///   - minimumIncrement: Minimum Increment
     public init(minimum: Measurement<UnitPower>, maximum: Measurement<UnitPower>, minimumIncrement: Measurement<UnitPower>) {
 
         self.minimum = minimum

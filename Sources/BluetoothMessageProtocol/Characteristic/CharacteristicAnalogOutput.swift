@@ -47,7 +47,9 @@ open class CharacteristicAnalogOutput: Characteristic {
     /// Analog Value
     private(set) public var analogValue: UInt16
 
-
+    /// Creates Analog Output Characteristic
+    ///
+    /// - Parameter analogValue: Analog Value
     public init(analogValue: UInt16) {
 
         self.analogValue = analogValue

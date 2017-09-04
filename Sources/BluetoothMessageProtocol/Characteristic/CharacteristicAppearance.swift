@@ -45,6 +45,9 @@ open class CharacteristicAppearance: Characteristic {
     /// Appearance
     private(set) public var appearance: Appearance
 
+    /// Creates Appearance Characteristic
+    ///
+    /// - Parameter appearance: Appearance
     public init(appearance: Appearance) {
 
         self.appearance = appearance

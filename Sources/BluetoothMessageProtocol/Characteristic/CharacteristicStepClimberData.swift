@@ -26,21 +26,21 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-/// BLE Stair Climber Data Characteristic
+/// BLE Step Climber Data Characteristic
 ///
-/// The Stair Climber Data characteristic is used to send training-related data to the Client from a stair climber (Server).
+/// The Step Climber Data characteristic is used to send training-related data to the Client from a step climber (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicStepClimberData: Characteristic {
 
     /// Characteristic Name
     public static var name: String {
-        return "Stair Climber Data"
+        return "Step Climber Data"
     }
 
     /// Characteristic UUID
     public static var uuidString: String {
-        return "2AD0"
+        return "2ACF"
     }
 
     /// Flags
@@ -67,7 +67,6 @@ open class CharacteristicStepClimberData: Characteristic {
         /// Remaining Time present
         public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 8)
     }
-
 
     /// Floors
     private(set) public var floors: UInt16?
@@ -96,7 +95,18 @@ open class CharacteristicStepClimberData: Characteristic {
     /// Time Information
     private(set) public var time: FitnessMachineTime
 
-
+    /// Creates Step Climber Data Characteristic
+    ///
+    /// - Parameters:
+    ///   - floors: Floors climbed
+    ///   - stepCount: Step Count
+    ///   - stepsPerMinute: Step Per Minute
+    ///   - averageStepRate: Average Step Rate
+    ///   - positiveElevationGain: Positive Elevation Gain
+    ///   - energy: Energy Information
+    ///   - heartRate: Heart Rate
+    ///   - metabolicEquivalent: Metabolic Equivalent
+    ///   - time: Time Information
     public init(floors: UInt16?, stepCount: UInt16?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, positiveElevationGain: Measurement<UnitLength>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.floors = floors

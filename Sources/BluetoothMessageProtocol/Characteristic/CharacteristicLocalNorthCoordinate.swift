@@ -46,6 +46,9 @@ open class CharacteristicLocalNorthCoordinate: Characteristic {
     /// Local North Coordinate
     private(set) public var localNorthCoordinate: Int32
 
+    /// Creates Local North Coordinate Characteristic
+    ///
+    /// - Parameter localNorthCoordinate: Local North Coordinate
     public init(localNorthCoordinate: Int32) {
 
         self.localNorthCoordinate = localNorthCoordinate

@@ -44,7 +44,9 @@ open class CharacteristicAge: Characteristic {
     /// Age in Years
     private(set) public var age: UInt8
 
-
+    /// Creates Age Characteristic
+    ///
+    /// - Parameter age: Age in years
     public init(age: UInt8) {
 
         self.age = age

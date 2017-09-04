@@ -41,6 +41,7 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         return "2A35"
     }
 
+    /// Flags
     private struct Flags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
@@ -55,7 +56,6 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         public static let userIDPresent: Flags              = Flags(rawValue: 1 << 3)
         /// Measurement Status present
         public static let measurementStatusPresent: Flags   = Flags(rawValue: 1 << 4)
-
     }
 
     /// Systolic Blood Pressure
@@ -78,6 +78,15 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
 
     // TODO: add Measurement Status
 
+    /// Creates Blood Pressure Measurement Characteristic
+    ///
+    /// - Parameters:
+    ///   - systolic: Systolic Blood Pressure
+    ///   - diastolic: Diastolic Blood Pressure
+    ///   - meanArterial: Mean Arterial Pressure
+    ///   - timestamp: Timestamp
+    ///   - pulseRate: Pulse Rate
+    ///   - userID: User ID
     public init(systolic: Measurement<UnitPressure>, diastolic: Measurement<UnitPressure>, meanArterial: Measurement<UnitPressure>, timestamp: DateTime?, pulseRate: Measurement<UnitCadence>?, userID: User?) {
 
         self.systolic = systolic

@@ -76,7 +76,6 @@ open class CharacteristicTreadmillData: Characteristic {
         public static let beltForcePowerOutputPresent: Flags    = Flags(rawValue: 1 << 12)
     }
 
-
     /// Instantaneous Speed
     private(set) public var instantaneousSpeed: Measurement<UnitSpeed>?
 
@@ -122,7 +121,24 @@ open class CharacteristicTreadmillData: Characteristic {
     /// Power Output
     private(set) public var powerOutput: Measurement<UnitPower>?
 
-
+    /// Creates Treadmill Data Characteristic
+    ///
+    /// - Parameters:
+    ///   - instantaneousSpeed: Instantaneous Speed
+    ///   - averageSpeed: Average Speed
+    ///   - totalDistance: Total Distance
+    ///   - inclination: Inclination
+    ///   - rampAngle: Ramp Angle Setting
+    ///   - positiveElevationGain: Positive Elevation Gain
+    ///   - negativeElevationGain: Negative Elevation Gain
+    ///   - instantaneousPace: Instantaneous Pace
+    ///   - averagePace: Average Pace
+    ///   - energy: Energy Information
+    ///   - heartRate: Heart Rate
+    ///   - metabolicEquivalent: Metabolic Equivalent
+    ///   - time: Time Information
+    ///   - forceOnBelt: Force on Belt
+    ///   - powerOutput: Power Output
     public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitSpeed>?, averagePace: Measurement<UnitSpeed>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime, forceOnBelt: Measurement<UnitForce>?, powerOutput: Measurement<UnitPower>?) {
 
         self.instantaneousSpeed = instantaneousSpeed

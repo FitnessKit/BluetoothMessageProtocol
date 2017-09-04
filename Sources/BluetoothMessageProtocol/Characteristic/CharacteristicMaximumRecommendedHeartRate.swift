@@ -46,7 +46,9 @@ open class CharacteristicMaximumRecommendedHeartRate: Characteristic {
     /// Maximum Recommended Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>
 
-
+    /// Creates Maximum Recommended Heart Rate Characteristic
+    ///
+    /// - Parameter heartRate: Maximum Recommended Heart Rate
     public init(heartRate: UInt8) {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)

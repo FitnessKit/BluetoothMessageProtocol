@@ -44,7 +44,9 @@ open class CharacteristicUVIndex: Characteristic {
     /// UV Index
     private(set) public var uvIndex: UInt8
 
-
+    /// Creates UV Index Characteristic
+    ///
+    /// - Parameter uvIndex: UV Index
     public init(uvIndex: UInt8) {
 
         self.uvIndex = uvIndex

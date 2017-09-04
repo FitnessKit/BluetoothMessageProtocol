@@ -46,6 +46,9 @@ open class CharacteristicHipCircumference: Characteristic {
     /// Hip Circumference
     private(set) public var hipCircumference: Measurement<UnitLength>
 
+    /// Creates Hip Circumference Characteristic
+    ///
+    /// - Parameter hipCircumference: Hip Circumference
     public init(hipCircumference: Measurement<UnitLength>) {
 
         self.hipCircumference = hipCircumference

@@ -74,7 +74,9 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
     /// Sport Type for Aerobic and Anaerobic Thresholds
     private(set) public var exercise: SportType
 
-
+    /// Creates Sport Type for Aerobic and Anaerobic Thresholds Characteristic
+    ///
+    /// - Parameter exercise: Sport Type for Aerobic and Anaerobic Thresholds
     public init(exercise: SportType) {
 
         self.exercise = exercise

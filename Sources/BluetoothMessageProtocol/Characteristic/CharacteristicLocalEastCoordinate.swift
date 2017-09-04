@@ -46,6 +46,9 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
     /// Local East Coordinate
     private(set) public var localEastCoordinate: Int32
 
+    /// Creates Local East Coordinate Characteristic
+    ///
+    /// - Parameter localEastCoordinate: Local East Coordinate
     public init(localEastCoordinate: Int32) {
 
         self.localEastCoordinate = localEastCoordinate

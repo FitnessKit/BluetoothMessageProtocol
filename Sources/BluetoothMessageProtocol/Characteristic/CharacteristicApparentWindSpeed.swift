@@ -45,6 +45,9 @@ open class CharacteristicApparentWindSpeed: Characteristic {
     /// Wind speed
     private(set) public var windSpeed: Measurement<UnitSpeed>
 
+    /// Creates Apparent Wind Speed Characteristic
+    ///
+    /// - Parameter windSpeed: Wind Speed
     public init(windSpeed: Measurement<UnitSpeed>) {
 
         self.windSpeed = windSpeed

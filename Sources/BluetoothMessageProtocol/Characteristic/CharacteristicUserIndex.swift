@@ -44,7 +44,9 @@ open class CharacteristicUserIndex: Characteristic {
     /// User Index
     private(set) public var userIndex: User
 
-
+    /// Creates User Index Characteristic
+    ///
+    /// - Parameter userIndex: User Index
     public init(userIndex: User) {
 
         self.userIndex = userIndex

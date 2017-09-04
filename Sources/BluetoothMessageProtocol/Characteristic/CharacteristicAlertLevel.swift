@@ -35,7 +35,7 @@ open class CharacteristicAlertLevel: Characteristic {
 
     /// Characteristic Name
     public static var name: String {
-        return "Alert Category ID"
+        return "Alert Level"
     }
 
     /// Characteristic UUID
@@ -68,7 +68,9 @@ open class CharacteristicAlertLevel: Characteristic {
     /// Alert Level
     private(set) public var alertLevel: AlertLevel
 
-
+    /// Creates Alert Level Characteristic
+    ///
+    /// - Parameter alertLevel: AlertLevel
     public init(alertLevel: AlertLevel) {
 
         self.alertLevel = alertLevel

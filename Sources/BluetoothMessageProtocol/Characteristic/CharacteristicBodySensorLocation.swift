@@ -44,6 +44,9 @@ open class CharacteristicBodySensorLocation: Characteristic {
     /// Sensor Location on Body
     private(set) public var sensorLocation: BodyLocation
 
+    /// Creates Body Sensor Location Characteristic
+    ///
+    /// - Parameter sensorLocation: Body Sensor Location
     public init(sensorLocation: BodyLocation) {
 
         self.sensorLocation = sensorLocation

@@ -45,7 +45,9 @@ open class CharacteristicWindChill: Characteristic {
     /// Wind Chill
     private(set) public var windChill: Measurement<UnitTemperature>
 
-
+    /// Creates Wind Chill Characteristic
+    ///
+    /// - Parameter windChill: Wind Chill
     public init(windChill: Measurement<UnitTemperature>) {
 
         self.windChill = windChill

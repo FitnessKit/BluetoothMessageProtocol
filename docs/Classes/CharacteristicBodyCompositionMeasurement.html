@@ -14,7 +14,7 @@
     <a title="CharacteristicBodyCompositionMeasurement Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">BluetoothMessageProtocol Docs</a> (93% documented)</p>
+        <p><a href="../index.html">BluetoothMessageProtocol Docs</a> (99% documented)</p>
         <p class="header-right"><a href="https://github.com/FitnessKit/BluetoothMessageProtocol"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -601,6 +601,9 @@
                 <a href="../Enums/AppearanceCategory.html">AppearanceCategory</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Enums/BluetoothTimeZone.html">BluetoothTimeZone</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/BodyLocation.html">BodyLocation</a>
               </li>
               <li class="nav-group-task">
@@ -1100,16 +1103,179 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates Body Composition Measurement Characteristic</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">CharacteristicBodyCompositionMeasurement</span><span class="p">:</span> <span class="kt"><a href="../Classes/Characteristic.html">Characteristic</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">bodyFat</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitPercent</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">currentTime</span><span class="p">:</span> <span class="kt"><a href="../Structs/DateTime.html">DateTime</a></span><span class="p">?,</span> <span class="nv">userID</span><span class="p">:</span> <span class="kt"><a href="../Enums/User.html">User</a></span><span class="p">?,</span> <span class="nv">basalMetabolism</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitEnergy</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">musclePercentage</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitPercent</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">muscleMass</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitMass</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">fatFreeMass</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitMass</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">softLeanMass</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitMass</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">bodyWaterMass</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitMass</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">impedance</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitElectricResistance</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">weight</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitMass</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitLength</span><span class="o">&gt;</span><span class="p">?,</span> <span class="nv">multiplePacketMeasurement</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bodyFat</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Body Fat Percentage</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>currentTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Timestamp</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>userID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>User ID</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>basalMetabolism</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Basal Metabolism</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>musclePercentage</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Muscle Percentage</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>muscleMass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Muscle Mass</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fatFreeMass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Fat Free Mass</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>softLeanMass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Soft Lean Mass</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bodyWaterMass</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Body Water Mass</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>impedance</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Impedance</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>weight</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Weight</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Height</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>multiplePacketMeasurement</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Multiple Packet Measurement</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

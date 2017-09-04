@@ -51,6 +51,11 @@ open class CharacteristicPosition2D: Characteristic {
     /// WGS84 East coordinate
     private(set) public var longitude: Int32
 
+    /// Creates Position 2D Characteristic
+    ///
+    /// - Parameters:
+    ///   - latitude: WGS84 North coordinate
+    ///   - longitude: WGS84 East coordinate
     public init(latitude: Int32, longitude: Int32) {
 
         self.latitude = latitude
