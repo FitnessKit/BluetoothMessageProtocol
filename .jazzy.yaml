@@ -63,6 +63,8 @@ custom_categories:
     - ServiceAppleMidi
     - ServiceCycleOps
     - ServiceEliteTrainer
+    - ServiceNordicLegacyDeviceFirmwareUpdate
+    - ServiceNordicSecureDeviceFirmwareUpdate
 
   - name: Characteristics - Bluetooth SIG
     children:

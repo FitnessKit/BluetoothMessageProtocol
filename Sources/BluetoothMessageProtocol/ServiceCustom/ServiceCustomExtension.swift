@@ -49,4 +49,19 @@ public extension Service {
             return ServiceEliteTrainer()
         }
     }
+
+    /// Nordic Legacy Device Firmware Update
+    public class var nordicLegacyDeviceFirmwareUpdate: ServiceNordicLegacyDeviceFirmwareUpdate {
+        get {
+            return ServiceNordicLegacyDeviceFirmwareUpdate()
+        }
+    }
+
+    /// Nordic Secure Device Firmware Update
+    public class var nordicSecureDeviceFirmwareUpdate: ServiceNordicSecureDeviceFirmwareUpdate {
+        get {
+            return ServiceNordicSecureDeviceFirmwareUpdate()
+        }
+    }
+
 }
