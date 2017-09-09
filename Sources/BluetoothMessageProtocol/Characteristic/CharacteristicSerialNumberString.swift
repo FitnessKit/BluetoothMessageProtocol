@@ -53,7 +53,8 @@ open class CharacteristicSerialNumberString: Characteristic {
 
         self.serialNumber = serialNumber
 
-        super.init(name: CharacteristicSerialNumberString.name, uuidString: CharacteristicSerialNumberString.uuidString)
+        super.init(name: CharacteristicSerialNumberString.name,
+                   uuidString: CharacteristicSerialNumberString.uuidString)
     }
 
     /// Deocdes the BLE Data

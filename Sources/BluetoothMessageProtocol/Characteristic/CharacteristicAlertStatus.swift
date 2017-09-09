@@ -65,7 +65,8 @@ open class CharacteristicAlertStatus: Characteristic {
 
         self.status = status
 
-        super.init(name: CharacteristicAlertStatus.name, uuidString: CharacteristicAlertStatus.uuidString)
+        super.init(name: CharacteristicAlertStatus.name,
+                   uuidString: CharacteristicAlertStatus.uuidString)
     }
 
     /// Deocdes the BLE Data

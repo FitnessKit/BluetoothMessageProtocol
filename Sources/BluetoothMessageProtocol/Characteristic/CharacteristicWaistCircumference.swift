@@ -53,7 +53,8 @@ open class CharacteristicWaistCircumference: Characteristic {
 
         self.waistCircumference = waistCircumference
 
-        super.init(name: CharacteristicWaistCircumference.name, uuidString: CharacteristicWaistCircumference.uuidString)
+        super.init(name: CharacteristicWaistCircumference.name,
+                   uuidString: CharacteristicWaistCircumference.uuidString)
     }
 
     /// Deocdes the BLE Data

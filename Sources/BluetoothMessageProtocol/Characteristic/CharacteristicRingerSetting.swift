@@ -61,7 +61,8 @@ open class CharacteristicRingerSetting: Characteristic {
 
         self.setting = setting
 
-        super.init(name: CharacteristicRingerSetting.name, uuidString: CharacteristicRingerSetting.uuidString)
+        super.init(name: CharacteristicRingerSetting.name,
+                   uuidString: CharacteristicRingerSetting.uuidString)
     }
 
     /// Deocdes the BLE Data

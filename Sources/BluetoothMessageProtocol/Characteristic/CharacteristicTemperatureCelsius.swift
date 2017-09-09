@@ -51,7 +51,8 @@ open class CharacteristicTemperatureCelsius: Characteristic {
 
         self.temperature = temperature
 
-        super.init(name: CharacteristicTemperatureCelsius.name, uuidString: CharacteristicTemperatureCelsius.uuidString)
+        super.init(name: CharacteristicTemperatureCelsius.name,
+                   uuidString: CharacteristicTemperatureCelsius.uuidString)
     }
 
     /// Deocdes the BLE Data

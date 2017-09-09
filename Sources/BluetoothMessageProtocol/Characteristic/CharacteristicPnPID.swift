@@ -87,7 +87,8 @@ open class CharacteristicPnPID: Characteristic {
         self.productId = productId
         self.productVersion = productVersion
 
-        super.init(name: CharacteristicPnPID.name, uuidString: CharacteristicPnPID.uuidString)
+        super.init(name: CharacteristicPnPID.name,
+                   uuidString: CharacteristicPnPID.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -104,7 +105,10 @@ open class CharacteristicPnPID: Characteristic {
         let productId = decoder.decodeUInt16()
         let productVersion = decoder.decodeUInt16()
 
-        return CharacteristicPnPID(vendorIdSource: vendorIdSource, vendorId: vendorId, productId: productId, productVersion: productVersion)
+        return CharacteristicPnPID(vendorIdSource: vendorIdSource,
+                                   vendorId: vendorId,
+                                   productId: productId,
+                                   productVersion: productVersion)
     }
 
     /// Encodes the Characteristic into Data

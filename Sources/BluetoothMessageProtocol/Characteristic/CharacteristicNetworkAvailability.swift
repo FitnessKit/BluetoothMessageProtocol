@@ -61,7 +61,8 @@ open class CharacteristicNetworkAvailability: Characteristic {
 
         self.networkAvailable = networkAvailable
 
-        super.init(name: CharacteristicNetworkAvailability.name, uuidString: CharacteristicNetworkAvailability.uuidString)
+        super.init(name: CharacteristicNetworkAvailability.name,
+                   uuidString: CharacteristicNetworkAvailability.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -75,7 +75,8 @@ open class CharacteristicAlertLevel: Characteristic {
 
         self.alertLevel = alertLevel
 
-        super.init(name: CharacteristicAlertLevel.name, uuidString: CharacteristicAlertLevel.uuidString)
+        super.init(name: CharacteristicAlertLevel.name,
+                   uuidString: CharacteristicAlertLevel.uuidString)
     }
 
     /// Deocdes the BLE Data

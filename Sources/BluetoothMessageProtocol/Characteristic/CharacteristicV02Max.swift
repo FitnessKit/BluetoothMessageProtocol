@@ -53,7 +53,8 @@ open class CharacteristicV02Max: Characteristic {
 
         self.maxVO2 = maxVO2
 
-        super.init(name: CharacteristicV02Max.name, uuidString: CharacteristicV02Max.uuidString)
+        super.init(name: CharacteristicV02Max.name,
+                   uuidString: CharacteristicV02Max.uuidString)
     }
 
     /// Deocdes the BLE Data

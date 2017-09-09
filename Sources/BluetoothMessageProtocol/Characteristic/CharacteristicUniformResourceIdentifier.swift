@@ -55,7 +55,8 @@ open class CharacteristicUniformResourceIdentifier: Characteristic {
 
         self.uri = uri
 
-        super.init(name: CharacteristicUniformResourceIdentifier.name, uuidString: CharacteristicUniformResourceIdentifier.uuidString)
+        super.init(name: CharacteristicUniformResourceIdentifier.name,
+                   uuidString: CharacteristicUniformResourceIdentifier.uuidString)
     }
 
     /// Deocdes the BLE Data

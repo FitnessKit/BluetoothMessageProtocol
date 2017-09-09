@@ -53,7 +53,8 @@ open class CharacteristicTimeZone: Characteristic {
 
         self.timeZone = timeZone
 
-        super.init(name: CharacteristicTimeZone.name, uuidString: CharacteristicTimeZone.uuidString)
+        super.init(name: CharacteristicTimeZone.name,
+                   uuidString: CharacteristicTimeZone.uuidString)
     }
 
     /// Deocdes the BLE Data

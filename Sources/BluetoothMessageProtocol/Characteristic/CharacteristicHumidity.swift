@@ -51,7 +51,8 @@ open class CharacteristicHumidity: Characteristic {
 
         self.humidity = humidity
 
-        super.init(name: CharacteristicHumidity.name, uuidString: CharacteristicHumidity.uuidString)
+        super.init(name: CharacteristicHumidity.name,
+                   uuidString: CharacteristicHumidity.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -53,7 +53,8 @@ open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicFatBurnHeartRateLowerLimit.name, uuidString: CharacteristicFatBurnHeartRateLowerLimit.uuidString)
+        super.init(name: CharacteristicFatBurnHeartRateLowerLimit.name,
+                   uuidString: CharacteristicFatBurnHeartRateLowerLimit.uuidString)
     }
 
     /// Deocdes the BLE Data

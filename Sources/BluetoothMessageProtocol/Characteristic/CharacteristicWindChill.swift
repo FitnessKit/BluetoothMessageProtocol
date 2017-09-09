@@ -52,7 +52,8 @@ open class CharacteristicWindChill: Characteristic {
 
         self.windChill = windChill
 
-        super.init(name: CharacteristicAltitude.name, uuidString: CharacteristicWindChill.uuidString)
+        super.init(name: CharacteristicAltitude.name,
+                   uuidString: CharacteristicWindChill.uuidString)
     }
 
     /// Deocdes the BLE Data

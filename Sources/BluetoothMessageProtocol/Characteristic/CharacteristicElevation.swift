@@ -51,7 +51,8 @@ open class CharacteristicElevation: Characteristic {
 
         self.elevation = elevation
 
-        super.init(name: CharacteristicElevation.name, uuidString: CharacteristicElevation.uuidString)
+        super.init(name: CharacteristicElevation.name,
+                   uuidString: CharacteristicElevation.uuidString)
     }
 
     /// Deocdes the BLE Data

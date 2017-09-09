@@ -75,7 +75,8 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
         self.timestamp = timestamp
         self.type = type
 
-        super.init(name: CharacteristicTemperatureMeasurement.name, uuidString: CharacteristicTemperatureMeasurement.uuidString)
+        super.init(name: CharacteristicTemperatureMeasurement.name,
+                   uuidString: CharacteristicTemperatureMeasurement.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -108,7 +109,9 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
             type = TemperatureType(rawValue: decoder.decodeUInt8()) ?? .unknown
         }
 
-        return CharacteristicTemperatureMeasurement(temperature: temperature, timestamp: timestamp, type: type)
+        return CharacteristicTemperatureMeasurement(temperature: temperature,
+                                                    timestamp: timestamp,
+                                                    type: type)
     }
 
     /// Encodes the Characteristic into Data

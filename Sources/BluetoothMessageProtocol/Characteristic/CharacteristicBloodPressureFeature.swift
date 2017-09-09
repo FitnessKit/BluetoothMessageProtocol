@@ -70,7 +70,8 @@ open class CharacteristicBloodPressureFeature: Characteristic {
 
         self.supportedFeatures = status
 
-        super.init(name: CharacteristicBloodPressureFeature.name, uuidString: CharacteristicBloodPressureFeature.uuidString)
+        super.init(name: CharacteristicBloodPressureFeature.name,
+                   uuidString: CharacteristicBloodPressureFeature.uuidString)
     }
 
     /// Deocdes the BLE Data

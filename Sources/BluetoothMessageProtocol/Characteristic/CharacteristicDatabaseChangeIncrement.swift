@@ -51,7 +51,8 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
 
         self.increment = increment
 
-        super.init(name: CharacteristicDatabaseChangeIncrement.name, uuidString: CharacteristicDatabaseChangeIncrement.uuidString)
+        super.init(name: CharacteristicDatabaseChangeIncrement.name,
+                   uuidString: CharacteristicDatabaseChangeIncrement.uuidString)
     }
 
     /// Deocdes the BLE Data

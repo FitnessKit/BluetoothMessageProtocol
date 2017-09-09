@@ -53,7 +53,8 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
 
         self.zoneLimit = Measurement(value: Double(zoneLimit), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicTwoZoneHeartRateLimit.name, uuidString: CharacteristicTwoZoneHeartRateLimit.uuidString)
+        super.init(name: CharacteristicTwoZoneHeartRateLimit.name,
+                   uuidString: CharacteristicTwoZoneHeartRateLimit.uuidString)
     }
 
     /// Deocdes the BLE Data

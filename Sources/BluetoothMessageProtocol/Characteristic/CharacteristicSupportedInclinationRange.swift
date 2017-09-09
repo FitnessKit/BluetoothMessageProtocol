@@ -64,7 +64,8 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
 
-        super.init(name: CharacteristicSupportedInclinationRange.name, uuidString: CharacteristicSupportedInclinationRange.uuidString)
+        super.init(name: CharacteristicSupportedInclinationRange.name,
+                   uuidString: CharacteristicSupportedInclinationRange.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -85,7 +86,9 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
         let incrValue = Double(decoder.decodeUInt16()) * 0.1
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPercent.percent)
 
-        return CharacteristicSupportedInclinationRange(minimum: minimum, maximum: maximum, minimumIncrement: minimumIncrement)
+        return CharacteristicSupportedInclinationRange(minimum: minimum,
+                                                       maximum: maximum,
+                                                       minimumIncrement: minimumIncrement)
     }
 
     /// Encodes the Characteristic into Data

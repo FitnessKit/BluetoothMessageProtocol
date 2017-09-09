@@ -53,7 +53,8 @@ open class CharacteristicLanguage: Characteristic {
 
         self.language = language
 
-        super.init(name: CharacteristicLanguage.name, uuidString: CharacteristicLanguage.uuidString)
+        super.init(name: CharacteristicLanguage.name,
+                   uuidString: CharacteristicLanguage.uuidString)
     }
 
     /// Deocdes the BLE Data

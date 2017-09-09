@@ -59,7 +59,8 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
 
         self.controlMessage = controlMessage
 
-        super.init(name: CharacteristicTimeUpdateControlPoint.name, uuidString: CharacteristicTimeUpdateControlPoint.uuidString)
+        super.init(name: CharacteristicTimeUpdateControlPoint.name,
+                   uuidString: CharacteristicTimeUpdateControlPoint.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -106,7 +106,8 @@ open class CharacteristicTrainingStatus: Characteristic {
         self.status = status
         self.statusString = statusString
 
-        super.init(name: CharacteristicTrainingStatus.name, uuidString: CharacteristicTrainingStatus.uuidString)
+        super.init(name: CharacteristicTrainingStatus.name,
+                   uuidString: CharacteristicTrainingStatus.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -127,7 +128,8 @@ open class CharacteristicTrainingStatus: Characteristic {
             statusString = stringData.safeStringValue
         }
 
-        return CharacteristicTrainingStatus(status: status, statusString: statusString)
+        return CharacteristicTrainingStatus(status: status,
+                                            statusString: statusString)
     }
 
     /// Encodes the Characteristic into Data

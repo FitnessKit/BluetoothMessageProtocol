@@ -53,7 +53,8 @@ open class CharacteristicTxPowerLevel: Characteristic {
 
         self.txPower = txPower
 
-        super.init(name: CharacteristicTxPowerLevel.name, uuidString: CharacteristicTxPowerLevel.uuidString)
+        super.init(name: CharacteristicTxPowerLevel.name,
+                   uuidString: CharacteristicTxPowerLevel.uuidString)
     }
 
     /// Deocdes the BLE Data

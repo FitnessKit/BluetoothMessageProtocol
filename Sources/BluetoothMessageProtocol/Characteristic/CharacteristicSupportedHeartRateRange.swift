@@ -64,7 +64,8 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
         self.maximum = Measurement(value: Double(maximum), unit: UnitCadence.beatsPerMinute)
         self.minimumIncrement = Measurement(value: Double(minimumIncrement), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicSupportedHeartRateRange.name, uuidString: CharacteristicSupportedHeartRateRange.uuidString)
+        super.init(name: CharacteristicSupportedHeartRateRange.name,
+                   uuidString: CharacteristicSupportedHeartRateRange.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -80,7 +81,9 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
         let maximum: UInt8 = decoder.decodeUInt8()
         let minimumIncrement: UInt8 = decoder.decodeUInt8()
 
-        return CharacteristicSupportedHeartRateRange(minimum: minimum, maximum: maximum, minimumIncrement: minimumIncrement)
+        return CharacteristicSupportedHeartRateRange(minimum: minimum,
+                                                     maximum: maximum,
+                                                     minimumIncrement: minimumIncrement)
     }
 
     /// Encodes the Characteristic into Data

@@ -63,7 +63,8 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
         self.lightHeartRate = Measurement(value: Double(lightHeartRate), unit: UnitCadence.beatsPerMinute)
         self.moderateHeartRate = Measurement(value: Double(moderateHeartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicThreeZoneHeartRateLimits.name, uuidString: CharacteristicThreeZoneHeartRateLimits.uuidString)
+        super.init(name: CharacteristicThreeZoneHeartRateLimits.name,
+                   uuidString: CharacteristicThreeZoneHeartRateLimits.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -78,7 +79,8 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
         let lightHeartRate: UInt8 = decoder.decodeUInt8()
         let moderateHeartRate: UInt8 = decoder.decodeUInt8()
 
-        return CharacteristicThreeZoneHeartRateLimits(lightHeartRate: lightHeartRate, moderateHeartRate: moderateHeartRate)
+        return CharacteristicThreeZoneHeartRateLimits(lightHeartRate: lightHeartRate,
+                                                      moderateHeartRate: moderateHeartRate)
     }
 
     /// Encodes the Characteristic into Data

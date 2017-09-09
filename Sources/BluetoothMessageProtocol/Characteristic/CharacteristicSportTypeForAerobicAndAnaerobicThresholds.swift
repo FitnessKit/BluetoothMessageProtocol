@@ -81,7 +81,8 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
 
         self.exercise = exercise
 
-        super.init(name: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.name, uuidString: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.uuidString)
+        super.init(name: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.name,
+                   uuidString: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.uuidString)
     }
 
     /// Deocdes the BLE Data

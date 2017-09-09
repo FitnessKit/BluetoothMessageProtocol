@@ -81,7 +81,8 @@ open class CharacteristicTimeUpdateState: Characteristic {
         self.currentState = currentState
         self.result = result
 
-        super.init(name: CharacteristicTimeUpdateState.name, uuidString: CharacteristicTimeUpdateState.uuidString)
+        super.init(name: CharacteristicTimeUpdateState.name,
+                   uuidString: CharacteristicTimeUpdateState.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -96,7 +97,8 @@ open class CharacteristicTimeUpdateState: Characteristic {
         let state = CurrentStateType(rawValue: decoder.decodeUInt8()) ?? .idle
         let result = UpdateResultType(rawValue: decoder.decodeUInt8()) ?? .successful
 
-        return CharacteristicTimeUpdateState(currentState: state, result: result)
+        return CharacteristicTimeUpdateState(currentState: state,
+                                             result: result)
     }
 
     /// Encodes the Characteristic into Data

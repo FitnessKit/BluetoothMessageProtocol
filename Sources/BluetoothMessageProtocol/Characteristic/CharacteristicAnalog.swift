@@ -54,7 +54,8 @@ open class CharacteristicAnalog: Characteristic {
 
         self.analogValue = analogValue
 
-        super.init(name: CharacteristicAnalog.name, uuidString: CharacteristicAnalog.uuidString)
+        super.init(name: CharacteristicAnalog.name,
+                   uuidString: CharacteristicAnalog.uuidString)
     }
 
     /// Deocdes the BLE Data

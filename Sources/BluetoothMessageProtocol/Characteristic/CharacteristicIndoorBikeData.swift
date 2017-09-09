@@ -148,7 +148,8 @@ open class CharacteristicIndoorBikeData: Characteristic {
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
 
-        super.init(name: CharacteristicIndoorBikeData.name, uuidString: CharacteristicIndoorBikeData.uuidString)
+        super.init(name: CharacteristicIndoorBikeData.name,
+                   uuidString: CharacteristicIndoorBikeData.uuidString)
     }
 
     /// Deocdes the BLE Data

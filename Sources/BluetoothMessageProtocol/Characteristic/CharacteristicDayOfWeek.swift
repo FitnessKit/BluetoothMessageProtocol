@@ -51,7 +51,8 @@ open class CharacteristicDayOfWeek: Characteristic {
 
         self.dayOfWeek = dayOfWeek
 
-        super.init(name: CharacteristicDayOfWeek.name, uuidString: CharacteristicDayOfWeek.uuidString)
+        super.init(name: CharacteristicDayOfWeek.name,
+                   uuidString: CharacteristicDayOfWeek.uuidString)
     }
 
     /// Deocdes the BLE Data

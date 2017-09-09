@@ -51,7 +51,8 @@ open class CharacteristicBodySensorLocation: Characteristic {
 
         self.sensorLocation = sensorLocation
 
-        super.init(name: CharacteristicBodySensorLocation.name, uuidString: CharacteristicBodySensorLocation.uuidString)
+        super.init(name: CharacteristicBodySensorLocation.name,
+                   uuidString: CharacteristicBodySensorLocation.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -163,7 +163,8 @@ open class CharacteristicTreadmillData: Characteristic {
         self.forceOnBelt = forceOnBelt
         self.powerOutput = powerOutput
 
-        super.init(name: CharacteristicTreadmillData.name, uuidString: CharacteristicTreadmillData.uuidString)
+        super.init(name: CharacteristicTreadmillData.name,
+                   uuidString: CharacteristicTreadmillData.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -69,7 +69,8 @@ open class CharacteristicTimeSource: Characteristic {
 
         self.source = source
 
-        super.init(name: CharacteristicTimeSource.name, uuidString: CharacteristicTimeSource.uuidString)
+        super.init(name: CharacteristicTimeSource.name,
+                   uuidString: CharacteristicTimeSource.uuidString)
     }
 
     /// Deocdes the BLE Data

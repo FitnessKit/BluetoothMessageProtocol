@@ -57,7 +57,8 @@ open class CharacteristicObjectSize: Characteristic {
         self.currentSize = currentSize
         self.allocatedSize = allocatedSize
 
-        super.init(name: CharacteristicObjectSize.name, uuidString: CharacteristicObjectSize.uuidString)
+        super.init(name: CharacteristicObjectSize.name,
+                   uuidString: CharacteristicObjectSize.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -71,7 +72,8 @@ open class CharacteristicObjectSize: Characteristic {
         let currentSize = decoder.decodeUInt32()
         let allocatedSize = decoder.decodeUInt32()
 
-        return CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize)
+        return CharacteristicObjectSize(currentSize: currentSize,
+                                        allocatedSize: allocatedSize)
     }
 
     /// Encodes the Characteristic into Data

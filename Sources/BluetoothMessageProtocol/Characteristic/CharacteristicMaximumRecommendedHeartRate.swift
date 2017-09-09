@@ -53,7 +53,8 @@ open class CharacteristicMaximumRecommendedHeartRate: Characteristic {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicMaximumRecommendedHeartRate.name, uuidString: CharacteristicMaximumRecommendedHeartRate.uuidString)
+        super.init(name: CharacteristicMaximumRecommendedHeartRate.name,
+                   uuidString: CharacteristicMaximumRecommendedHeartRate.uuidString)
     }
 
     /// Deocdes the BLE Data

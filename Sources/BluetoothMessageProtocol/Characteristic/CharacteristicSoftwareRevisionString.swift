@@ -53,7 +53,8 @@ open class CharacteristicSoftwareRevisionString: Characteristic {
 
         self.softwareRevision = softwareRevision
 
-        super.init(name: CharacteristicSoftwareRevisionString.name, uuidString: CharacteristicSoftwareRevisionString.uuidString)
+        super.init(name: CharacteristicSoftwareRevisionString.name,
+                   uuidString: CharacteristicSoftwareRevisionString.uuidString)
     }
 
     /// Deocdes the BLE Data

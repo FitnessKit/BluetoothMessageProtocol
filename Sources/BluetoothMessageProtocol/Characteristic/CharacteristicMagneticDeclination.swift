@@ -53,7 +53,8 @@ open class CharacteristicMagneticDeclination: Characteristic {
 
         self.declination = declination
 
-        super.init(name: CharacteristicMagneticDeclination.name, uuidString: CharacteristicMagneticDeclination.uuidString)
+        super.init(name: CharacteristicMagneticDeclination.name,
+                   uuidString: CharacteristicMagneticDeclination.uuidString)
     }
 
     /// Deocdes the BLE Data

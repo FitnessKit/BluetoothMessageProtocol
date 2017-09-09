@@ -98,7 +98,8 @@ open class CharacteristicBondManagementFeatures: Characteristic {
 
         self.features = features
 
-        super.init(name: CharacteristicBondManagementFeatures.name, uuidString: CharacteristicBondManagementFeatures.uuidString)
+        super.init(name: CharacteristicBondManagementFeatures.name,
+                   uuidString: CharacteristicBondManagementFeatures.uuidString)
     }
 
     /// Deocdes the BLE Data

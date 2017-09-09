@@ -69,7 +69,8 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
         self.hardHeartRate = Measurement(value: Double(hardHeartRate), unit: UnitCadence.beatsPerMinute)
         self.maximumHeartRate = Measurement(value: Double(maximumHeartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicFiveZoneHeartRateLimits.name, uuidString: CharacteristicFiveZoneHeartRateLimits.uuidString)
+        super.init(name: CharacteristicFiveZoneHeartRateLimits.name,
+                   uuidString: CharacteristicFiveZoneHeartRateLimits.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -86,7 +87,10 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
         let hardHeartRate: UInt8 = decoder.decodeUInt8()
         let maximumHeartRate: UInt8 = decoder.decodeUInt8()
 
-        return CharacteristicFiveZoneHeartRateLimits(lightHeartRate: lightHeartRate, moderateHeartRate: moderateHeartRate, hardHeartRate: hardHeartRate, maximumHeartRate: maximumHeartRate)
+        return CharacteristicFiveZoneHeartRateLimits(lightHeartRate: lightHeartRate,
+                                                     moderateHeartRate: moderateHeartRate,
+                                                     hardHeartRate: hardHeartRate,
+                                                     maximumHeartRate: maximumHeartRate)
     }
 
     /// Encodes the Characteristic into Data

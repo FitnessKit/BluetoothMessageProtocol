@@ -51,7 +51,8 @@ open class CharacteristicRainfall: Characteristic {
 
         self.rainfall = rainfall
 
-        super.init(name: CharacteristicRainfall.name, uuidString: CharacteristicRainfall.uuidString)
+        super.init(name: CharacteristicRainfall.name,
+                   uuidString: CharacteristicRainfall.uuidString)
     }
 
     /// Deocdes the BLE Data

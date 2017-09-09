@@ -145,7 +145,8 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         self.height = height
         self.multiplePacketMeasurement = multiplePacketMeasurement
 
-        super.init(name: CharacteristicBodyCompositionMeasurement.name, uuidString: CharacteristicBodyCompositionMeasurement.uuidString)
+        super.init(name: CharacteristicBodyCompositionMeasurement.name,
+                   uuidString: CharacteristicBodyCompositionMeasurement.uuidString)
     }
 
     /// Deocdes the BLE Data

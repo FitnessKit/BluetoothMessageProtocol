@@ -58,7 +58,8 @@ open class CharacteristicDayDateTime: Characteristic {
         self.time = time
         self.dayOfWeek = dayOfWeek
 
-        super.init(name: CharacteristicDayDateTime.name, uuidString: CharacteristicDayDateTime.uuidString)
+        super.init(name: CharacteristicDayDateTime.name,
+                   uuidString: CharacteristicDayDateTime.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -74,7 +75,8 @@ open class CharacteristicDayDateTime: Characteristic {
 
         let weekday = DayOfWeek(rawValue: decoder.decodeUInt8()) ?? .unknown
 
-        return CharacteristicDayDateTime(time: time, dayOfWeek: weekday)
+        return CharacteristicDayDateTime(time: time,
+                                         dayOfWeek: weekday)
     }
 
     /// Encodes the Characteristic into Data

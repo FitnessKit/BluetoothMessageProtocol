@@ -151,7 +151,8 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         self.sampleLocation = sampleLocation
         self.crcValue = crcValue
 
-        super.init(name: CharacteristicContinuousGlucoseMonitoringFeature.name, uuidString: CharacteristicContinuousGlucoseMonitoringFeature.uuidString)
+        super.init(name: CharacteristicContinuousGlucoseMonitoringFeature.name,
+                   uuidString: CharacteristicContinuousGlucoseMonitoringFeature.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -177,7 +178,10 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
             crc = crcValue
         }
 
-        return CharacteristicContinuousGlucoseMonitoringFeature(features: features, testType: testType, sampleLocation: sampleLocation, crcValue: crc)
+        return CharacteristicContinuousGlucoseMonitoringFeature(features: features,
+                                                                testType: testType,
+                                                                sampleLocation: sampleLocation,
+                                                                crcValue: crc)
     }
 
     /// Encodes the Characteristic into Data

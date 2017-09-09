@@ -51,7 +51,8 @@ open class CharacteristicHeatIndex: Characteristic {
 
         self.heatIndex = heatIndex
 
-        super.init(name: CharacteristicHeatIndex.name, uuidString: CharacteristicHeatIndex.uuidString)
+        super.init(name: CharacteristicHeatIndex.name,
+                   uuidString: CharacteristicHeatIndex.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -55,7 +55,8 @@ open class CharacteristicBatteryLevel: Characteristic {
 
         self.level = level
 
-        super.init(name: CharacteristicBatteryLevel.name, uuidString: CharacteristicBatteryLevel.uuidString)
+        super.init(name: CharacteristicBatteryLevel.name,
+                   uuidString: CharacteristicBatteryLevel.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -63,7 +63,8 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
         self.alertType = alertType
         self.numberOfAlerts = numberOfAlerts
 
-        super.init(name: CharacteristicUnreadAlertStatus.name, uuidString: CharacteristicUnreadAlertStatus.uuidString)
+        super.init(name: CharacteristicUnreadAlertStatus.name,
+                   uuidString: CharacteristicUnreadAlertStatus.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -79,7 +80,8 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
 
         let numberOfAlerts = decoder.decodeUInt8()
 
-        return CharacteristicUnreadAlertStatus(alertType: alertType, numberOfAlerts: numberOfAlerts)
+        return CharacteristicUnreadAlertStatus(alertType: alertType,
+                                               numberOfAlerts: numberOfAlerts)
     }
 
     /// Encodes the Characteristic into Data

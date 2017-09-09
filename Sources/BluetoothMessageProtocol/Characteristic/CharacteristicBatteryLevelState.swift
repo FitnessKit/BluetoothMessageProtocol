@@ -61,7 +61,8 @@ open class CharacteristicBatteryLevelState: Characteristic {
         self.level = level
         self.state = state
 
-        super.init(name: CharacteristicBatteryLevelState.name, uuidString: CharacteristicBatteryLevelState.uuidString)
+        super.init(name: CharacteristicBatteryLevelState.name,
+                   uuidString: CharacteristicBatteryLevelState.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -87,7 +88,8 @@ open class CharacteristicBatteryLevelState: Characteristic {
             state = BatteryPowerState(stateValue)
         }
 
-        return CharacteristicBatteryLevelState(level: level, state: state)
+        return CharacteristicBatteryLevelState(level: level,
+                                               state: state)
     }
 
     /// Encodes the Characteristic into Data

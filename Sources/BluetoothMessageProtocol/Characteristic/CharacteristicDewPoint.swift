@@ -51,7 +51,8 @@ open class CharacteristicDewPoint: Characteristic {
 
         self.dewPoint = dewPoint
 
-        super.init(name: CharacteristicDewPoint.name, uuidString: CharacteristicDewPoint.uuidString)
+        super.init(name: CharacteristicDewPoint.name,
+                   uuidString: CharacteristicDewPoint.uuidString)
     }
 
     /// Deocdes the BLE Data

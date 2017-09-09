@@ -53,7 +53,8 @@ open class CharacteristicTrueWindDirection: Characteristic {
 
         self.windDirection = windDirection
 
-        super.init(name: CharacteristicTrueWindDirection.name, uuidString: CharacteristicTrueWindDirection.uuidString)
+        super.init(name: CharacteristicTrueWindDirection.name,
+                   uuidString: CharacteristicTrueWindDirection.uuidString)
     }
 
     /// Deocdes the BLE Data

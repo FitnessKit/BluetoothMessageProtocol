@@ -53,7 +53,8 @@ open class CharacteristicModelNumberString: Characteristic {
 
         self.modelNumber = modelNumber
 
-        super.init(name: CharacteristicModelNumberString.name, uuidString: CharacteristicModelNumberString.uuidString)
+        super.init(name: CharacteristicModelNumberString.name,
+                   uuidString: CharacteristicModelNumberString.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -64,7 +64,8 @@ open class CharacteristicSupportedPowerRange: Characteristic {
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
 
-        super.init(name: CharacteristicSupportedPowerRange.name, uuidString: CharacteristicSupportedPowerRange.uuidString)
+        super.init(name: CharacteristicSupportedPowerRange.name,
+                   uuidString: CharacteristicSupportedPowerRange.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -85,7 +86,9 @@ open class CharacteristicSupportedPowerRange: Characteristic {
         let incrValue = Double(decoder.decodeUInt16())
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPower.watts)
 
-        return CharacteristicSupportedPowerRange(minimum: minimum, maximum: maximum, minimumIncrement: minimumIncrement)
+        return CharacteristicSupportedPowerRange(minimum: minimum,
+                                                 maximum: maximum,
+                                                 minimumIncrement: minimumIncrement)
     }
 
     /// Encodes the Characteristic into Data

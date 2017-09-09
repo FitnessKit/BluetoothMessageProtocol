@@ -51,7 +51,8 @@ open class CharacteristicPollenConcentration: Characteristic {
 
         self.concentration = concentration
 
-        super.init(name: CharacteristicPollenConcentration.name, uuidString: CharacteristicPollenConcentration.uuidString)
+        super.init(name: CharacteristicPollenConcentration.name,
+                   uuidString: CharacteristicPollenConcentration.uuidString)
     }
 
     /// Deocdes the BLE Data

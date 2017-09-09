@@ -96,7 +96,8 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         self.pulseRate = pulseRate
         self.userID = userID
 
-        super.init(name: CharacteristicBloodPressureMeasurement.name, uuidString: CharacteristicBloodPressureMeasurement.uuidString)
+        super.init(name: CharacteristicBloodPressureMeasurement.name,
+                   uuidString: CharacteristicBloodPressureMeasurement.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -110,13 +111,13 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
 
         let flags = Flags(rawValue: decoder.decodeUInt8())
 
-        var systolic: Measurement<UnitPressure>?
+        var systolic: Measurement<UnitPressure>
         let systolicV = Double(decoder.decodeSFloatValue())
 
-        var diastolic: Measurement<UnitPressure>?
+        var diastolic: Measurement<UnitPressure>
         let diastolicV = Double(decoder.decodeSFloatValue())
 
-        var meanArterial: Measurement<UnitPressure>?
+        var meanArterial: Measurement<UnitPressure>
         let meanArterialV = Double(decoder.decodeSFloatValue())
 
 
@@ -147,7 +148,12 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         }
 
 
-        return CharacteristicBloodPressureMeasurement(systolic: systolic!, diastolic: diastolic!, meanArterial: meanArterial!, timestamp: timestamp, pulseRate: pulseRate, userID: userID)
+        return CharacteristicBloodPressureMeasurement(systolic: systolic,
+                                                      diastolic: diastolic,
+                                                      meanArterial: meanArterial,
+                                                      timestamp: timestamp,
+                                                      pulseRate: pulseRate,
+                                                      userID: userID)
     }
 
     /// Encodes the Characteristic into Data

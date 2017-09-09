@@ -52,7 +52,8 @@ open class CharacteristicBatteryPowerState: Characteristic {
 
         self.state = state
 
-        super.init(name: CharacteristicBatteryPowerState.name, uuidString: CharacteristicBatteryPowerState.uuidString)
+        super.init(name: CharacteristicBatteryPowerState.name,
+                   uuidString: CharacteristicBatteryPowerState.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -177,7 +177,8 @@ open class CharacteristicWeightScaleFeature: Characteristic {
         self.weightResolution = weightResolution
         self.heightResolution = heightResolution
 
-        super.init(name: CharacteristicWeightScaleFeature.name, uuidString: CharacteristicWeightScaleFeature.uuidString)
+        super.init(name: CharacteristicWeightScaleFeature.name,
+                   uuidString: CharacteristicWeightScaleFeature.uuidString)
     }
 
     /// Deocdes the BLE Data

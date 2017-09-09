@@ -53,7 +53,8 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
 
         self.localEastCoordinate = localEastCoordinate
 
-        super.init(name: CharacteristicLocalEastCoordinate.name, uuidString: CharacteristicLocalEastCoordinate.uuidString)
+        super.init(name: CharacteristicLocalEastCoordinate.name,
+                   uuidString: CharacteristicLocalEastCoordinate.uuidString)
     }
 
     /// Deocdes the BLE Data

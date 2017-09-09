@@ -53,7 +53,8 @@ open class CharacteristicWeight: Characteristic {
 
         self.weight = weight
 
-        super.init(name: CharacteristicWeight.name, uuidString: CharacteristicWeight.uuidString)
+        super.init(name: CharacteristicWeight.name,
+                   uuidString: CharacteristicWeight.uuidString)
     }
 
     /// Deocdes the BLE Data

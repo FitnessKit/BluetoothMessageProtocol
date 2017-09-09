@@ -82,7 +82,8 @@ open class CharacteristicCurrentTime: Characteristic {
         self.dayOfWeek = dayOfWeek
         self.fractionalSeconds = fractionalSeconds
 
-        super.init(name: CharacteristicCurrentTime.name, uuidString: CharacteristicCurrentTime.uuidString)
+        super.init(name: CharacteristicCurrentTime.name,
+                   uuidString: CharacteristicCurrentTime.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -102,7 +103,10 @@ open class CharacteristicCurrentTime: Characteristic {
 
         let reasons = AdjustReasons(rawValue: decoder.decodeUInt8())
 
-        return CharacteristicCurrentTime(adjustmentReason: reasons, currentTime: currenTime, dayOfWeek: weekday, fractionalSeconds: fractions)
+        return CharacteristicCurrentTime(adjustmentReason: reasons,
+                                         currentTime: currenTime,
+                                         dayOfWeek: weekday,
+                                         fractionalSeconds: fractions)
     }
 
     /// Encodes the Characteristic into Data

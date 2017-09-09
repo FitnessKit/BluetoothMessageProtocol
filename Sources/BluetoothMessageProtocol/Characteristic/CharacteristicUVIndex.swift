@@ -51,7 +51,8 @@ open class CharacteristicUVIndex: Characteristic {
 
         self.uvIndex = uvIndex
 
-        super.init(name: CharacteristicUVIndex.name, uuidString: CharacteristicUVIndex.uuidString)
+        super.init(name: CharacteristicUVIndex.name,
+                   uuidString: CharacteristicUVIndex.uuidString)
     }
 
     /// Deocdes the BLE Data

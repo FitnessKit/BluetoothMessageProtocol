@@ -51,7 +51,8 @@ open class CharacteristicTrueWindSpeed: Characteristic {
 
         self.windSpeed = windSpeed
 
-        super.init(name: CharacteristicTrueWindSpeed.name, uuidString: CharacteristicTrueWindSpeed.uuidString)
+        super.init(name: CharacteristicTrueWindSpeed.name,
+                   uuidString: CharacteristicTrueWindSpeed.uuidString)
     }
 
     /// Deocdes the BLE Data

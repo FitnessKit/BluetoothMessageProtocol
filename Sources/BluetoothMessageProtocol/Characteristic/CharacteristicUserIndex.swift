@@ -51,7 +51,8 @@ open class CharacteristicUserIndex: Characteristic {
 
         self.userIndex = userIndex
 
-        super.init(name: CharacteristicUserIndex.name, uuidString: CharacteristicUserIndex.uuidString)
+        super.init(name: CharacteristicUserIndex.name,
+                   uuidString: CharacteristicUserIndex.uuidString)
     }
 
     /// Deocdes the BLE Data

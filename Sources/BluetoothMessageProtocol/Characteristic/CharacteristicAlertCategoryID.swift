@@ -51,7 +51,8 @@ open class CharacteristicAlertCategoryID: Characteristic {
 
         self.alertType = alertType
 
-        super.init(name: CharacteristicAlertCategoryID.name, uuidString: CharacteristicAlertCategoryID.uuidString)
+        super.init(name: CharacteristicAlertCategoryID.name,
+                   uuidString: CharacteristicAlertCategoryID.uuidString)
     }
 
     /// Deocdes the BLE Data

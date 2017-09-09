@@ -57,7 +57,8 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
 
         self.controlMessage = controlMessage
 
-        super.init(name: CharacteristicHeartRateControlPoint.name, uuidString: CharacteristicHeartRateControlPoint.uuidString)
+        super.init(name: CharacteristicHeartRateControlPoint.name,
+                   uuidString: CharacteristicHeartRateControlPoint.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -53,7 +53,8 @@ open class CharacteristicManufacturerNameString: Characteristic {
 
         self.manufacturerName = manufacturerName
 
-        super.init(name: CharacteristicManufacturerNameString.name, uuidString: CharacteristicManufacturerNameString.uuidString)
+        super.init(name: CharacteristicManufacturerNameString.name,
+                   uuidString: CharacteristicManufacturerNameString.uuidString)
     }
 
     /// Deocdes the BLE Data

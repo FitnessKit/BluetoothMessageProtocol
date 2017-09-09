@@ -70,7 +70,8 @@ open class CharacteristicNewAlert: Characteristic {
         self.numberOfAlerts = numberOfAlerts
         self.alertInformation = alertInformation
 
-        super.init(name: CharacteristicNewAlert.name, uuidString: CharacteristicNewAlert.uuidString)
+        super.init(name: CharacteristicNewAlert.name,
+                   uuidString: CharacteristicNewAlert.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -91,7 +92,9 @@ open class CharacteristicNewAlert: Characteristic {
             alertInfo = stringData.safeStringValue
         }
 
-        return CharacteristicNewAlert(alertType: alertType, numberOfAlerts: numberOfAlerts, alertInformation: alertInfo)
+        return CharacteristicNewAlert(alertType: alertType,
+                                      numberOfAlerts: numberOfAlerts,
+                                      alertInformation: alertInfo)
     }
 
     /// Encodes the Characteristic into Data

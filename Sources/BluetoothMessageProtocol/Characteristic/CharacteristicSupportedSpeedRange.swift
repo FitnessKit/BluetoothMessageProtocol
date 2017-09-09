@@ -64,7 +64,8 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
 
-        super.init(name: CharacteristicSupportedSpeedRange.name, uuidString: CharacteristicSupportedSpeedRange.uuidString)
+        super.init(name: CharacteristicSupportedSpeedRange.name,
+                   uuidString: CharacteristicSupportedSpeedRange.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -85,7 +86,9 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
         let incrValue = Double(decoder.decodeUInt16()) * 0.01
         let minimumIncrement = Measurement(value: incrValue, unit: UnitSpeed.kilometersPerHour)
 
-        return CharacteristicSupportedSpeedRange(minimum: minimum, maximum: maximum, minimumIncrement: minimumIncrement)
+        return CharacteristicSupportedSpeedRange(minimum: minimum,
+                                                 maximum: maximum,
+                                                 minimumIncrement: minimumIncrement)
     }
 
     /// Encodes the Characteristic into Data

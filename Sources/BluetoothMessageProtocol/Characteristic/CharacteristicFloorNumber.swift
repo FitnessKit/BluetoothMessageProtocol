@@ -53,7 +53,8 @@ open class CharacteristicFloorNumber: Characteristic {
 
         self.floorNumber = floorNumber
 
-        super.init(name: CharacteristicFloorNumber.name, uuidString: CharacteristicFloorNumber.uuidString)
+        super.init(name: CharacteristicFloorNumber.name,
+                   uuidString: CharacteristicFloorNumber.uuidString)
     }
 
     /// Deocdes the BLE Data

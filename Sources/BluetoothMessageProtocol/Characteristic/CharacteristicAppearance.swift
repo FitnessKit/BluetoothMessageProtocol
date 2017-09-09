@@ -52,7 +52,8 @@ open class CharacteristicAppearance: Characteristic {
 
         self.appearance = appearance
 
-        super.init(name: CharacteristicAppearance.name, uuidString: CharacteristicAppearance.uuidString)
+        super.init(name: CharacteristicAppearance.name,
+                   uuidString: CharacteristicAppearance.uuidString)
     }
 
     /// Deocdes the BLE Data

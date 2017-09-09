@@ -142,7 +142,8 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         self.energyExpended = energyExpended
         self.rrIntervals = rrIntervals
 
-        super.init(name: CharacteristicHeartRateMeasurement.name, uuidString: CharacteristicHeartRateMeasurement.uuidString)
+        super.init(name: CharacteristicHeartRateMeasurement.name,
+                   uuidString: CharacteristicHeartRateMeasurement.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -192,7 +193,10 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
             }
         }
 
-        return CharacteristicHeartRateMeasurement(contactStatus: contactStatus, heartRate: heartRate, energyExpended: energy, rrIntervals: rrIntervals)
+        return CharacteristicHeartRateMeasurement(contactStatus: contactStatus,
+                                                  heartRate: heartRate,
+                                                  energyExpended: energy,
+                                                  rrIntervals: rrIntervals)
     }
 
     /// Encodes the Characteristic into Data

@@ -66,7 +66,8 @@ open class CharacteristicPosition3D: Characteristic {
         self.longitude = longitude
         self.elevation = elevation
 
-        super.init(name: CharacteristicPosition3D.name, uuidString: CharacteristicPosition3D.uuidString)
+        super.init(name: CharacteristicPosition3D.name,
+                   uuidString: CharacteristicPosition3D.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -84,7 +85,9 @@ open class CharacteristicPosition3D: Characteristic {
 
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 
-        return CharacteristicPosition3D(latitude: lat, longitude: lon, elevation: elevation)
+        return CharacteristicPosition3D(latitude: lat,
+                                        longitude: lon,
+                                        elevation: elevation)
     }
 
     /// Encodes the Characteristic into Data

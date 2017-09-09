@@ -51,7 +51,8 @@ open class CharacteristicDSTOffset: Characteristic {
 
         self.dstOffset = dstOffset
 
-        super.init(name: CharacteristicDSTOffset.name, uuidString: CharacteristicDSTOffset.uuidString)
+        super.init(name: CharacteristicDSTOffset.name,
+                   uuidString: CharacteristicDSTOffset.uuidString)
     }
 
     /// Deocdes the BLE Data

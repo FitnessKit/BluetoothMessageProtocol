@@ -53,7 +53,8 @@ open class CharacteristicLastName: Characteristic {
 
         self.lastName = lastName
 
-        super.init(name: CharacteristicLastName.name, uuidString: CharacteristicLastName.uuidString)
+        super.init(name: CharacteristicLastName.name,
+                   uuidString: CharacteristicLastName.uuidString)
     }
 
     /// Deocdes the BLE Data

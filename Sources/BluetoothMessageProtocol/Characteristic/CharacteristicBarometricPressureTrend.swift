@@ -76,7 +76,8 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
 
         self.trend = trend
 
-        super.init(name: CharacteristicBarometricPressureTrend.name, uuidString: CharacteristicBarometricPressureTrend.uuidString)
+        super.init(name: CharacteristicBarometricPressureTrend.name,
+                   uuidString: CharacteristicBarometricPressureTrend.uuidString)
     }
 
     /// Deocdes the BLE Data

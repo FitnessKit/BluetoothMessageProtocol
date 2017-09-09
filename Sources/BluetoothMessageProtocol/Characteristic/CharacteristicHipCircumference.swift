@@ -53,7 +53,8 @@ open class CharacteristicHipCircumference: Characteristic {
 
         self.hipCircumference = hipCircumference
 
-        super.init(name: CharacteristicHipCircumference.name, uuidString: CharacteristicHipCircumference.uuidString)
+        super.init(name: CharacteristicHipCircumference.name,
+                   uuidString: CharacteristicHipCircumference.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -53,7 +53,8 @@ open class CharacteristicGender: Characteristic {
 
         self.gender = gender
 
-        super.init(name: CharacteristicGender.name, uuidString: CharacteristicGender.uuidString)
+        super.init(name: CharacteristicGender.name,
+                   uuidString: CharacteristicGender.uuidString)
     }
 
     /// Deocdes the BLE Data

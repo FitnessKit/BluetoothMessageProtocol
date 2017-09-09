@@ -51,7 +51,8 @@ open class CharacteristicDeviceName: Characteristic {
 
         self.deviceName = deviceName
 
-        super.init(name: CharacteristicDeviceName.name, uuidString: CharacteristicDeviceName.uuidString)
+        super.init(name: CharacteristicDeviceName.name,
+                   uuidString: CharacteristicDeviceName.uuidString)
     }
 
     /// Deocdes the BLE Data

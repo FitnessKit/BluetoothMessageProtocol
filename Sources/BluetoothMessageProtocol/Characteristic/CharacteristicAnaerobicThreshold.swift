@@ -51,7 +51,8 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicAnaerobicThreshold.name, uuidString: CharacteristicAnaerobicThreshold.uuidString)
+        super.init(name: CharacteristicAnaerobicThreshold.name,
+                   uuidString: CharacteristicAnaerobicThreshold.uuidString)
     }
 
     /// Deocdes the BLE Data

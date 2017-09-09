@@ -55,7 +55,8 @@ open class CharacteristicMeasurementInterval: Characteristic {
 
         self.interval = interval
 
-        super.init(name: CharacteristicMeasurementInterval.name, uuidString: CharacteristicMeasurementInterval.uuidString)
+        super.init(name: CharacteristicMeasurementInterval.name,
+                   uuidString: CharacteristicMeasurementInterval.uuidString)
     }
 
     /// Deocdes the BLE Data

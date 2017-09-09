@@ -64,7 +64,8 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
 
-        super.init(name: CharacteristicSupportedResistanceLevel.name, uuidString: CharacteristicSupportedResistanceLevel.uuidString)
+        super.init(name: CharacteristicSupportedResistanceLevel.name,
+                   uuidString: CharacteristicSupportedResistanceLevel.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -82,7 +83,9 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
 
         let incrValue = Double(decoder.decodeUInt16()) * 0.1
 
-        return CharacteristicSupportedResistanceLevel(minimum: minValue, maximum: maxValue, minimumIncrement: incrValue)
+        return CharacteristicSupportedResistanceLevel(minimum: minValue,
+                                                      maximum: maxValue,
+                                                      minimumIncrement: incrValue)
     }
 
     /// Encodes the Characteristic into Data

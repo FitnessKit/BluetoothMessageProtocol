@@ -125,7 +125,8 @@ open class CharacteristicStepClimberData: Characteristic {
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
 
-        super.init(name: CharacteristicStepClimberData.name, uuidString: CharacteristicStepClimberData.uuidString)
+        super.init(name: CharacteristicStepClimberData.name,
+                   uuidString: CharacteristicStepClimberData.uuidString)
     }
 
     /// Deocdes the BLE Data

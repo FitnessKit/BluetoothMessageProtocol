@@ -53,7 +53,8 @@ open class CharacteristicRestingHeartRate: Characteristic {
 
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
-        super.init(name: CharacteristicRestingHeartRate.name, uuidString: CharacteristicRestingHeartRate.uuidString)
+        super.init(name: CharacteristicRestingHeartRate.name,
+                   uuidString: CharacteristicRestingHeartRate.uuidString)
     }
 
     /// Deocdes the BLE Data

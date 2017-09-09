@@ -68,7 +68,8 @@ open class CharacteristicDateOfBirth: Characteristic {
         self.month = month
         self.day = day
 
-        super.init(name: CharacteristicDateOfBirth.name, uuidString: CharacteristicDateOfBirth.uuidString)
+        super.init(name: CharacteristicDateOfBirth.name,
+                   uuidString: CharacteristicDateOfBirth.uuidString)
     }
 
     /// Deocdes the BLE Data

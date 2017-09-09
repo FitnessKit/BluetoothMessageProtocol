@@ -51,7 +51,8 @@ open class CharacteristicEmailAddress: Characteristic {
 
         self.emailAddress = emailAddress
 
-        super.init(name: CharacteristicEmailAddress.name, uuidString: CharacteristicEmailAddress.uuidString)
+        super.init(name: CharacteristicEmailAddress.name,
+                   uuidString: CharacteristicEmailAddress.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -61,7 +61,8 @@ open class CharacteristicPosition2D: Characteristic {
         self.latitude = latitude
         self.longitude = longitude
 
-        super.init(name: CharacteristicPosition2D.name, uuidString: CharacteristicPosition2D.uuidString)
+        super.init(name: CharacteristicPosition2D.name,
+                   uuidString: CharacteristicPosition2D.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -75,7 +76,8 @@ open class CharacteristicPosition2D: Characteristic {
         let lat = decoder.decodeInt32()
         let lon = decoder.decodeInt32()
 
-        return CharacteristicPosition2D(latitude: lat, longitude: lon)
+        return CharacteristicPosition2D(latitude: lat,
+                                        longitude: lon)
     }
 
     /// Encodes the Characteristic into Data

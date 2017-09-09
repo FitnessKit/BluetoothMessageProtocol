@@ -53,7 +53,8 @@ open class CharacteristicLocationName: Characteristic {
 
         self.locationName = locationName
 
-        super.init(name: CharacteristicLocationName.name, uuidString: CharacteristicLocationName.uuidString)
+        super.init(name: CharacteristicLocationName.name,
+                   uuidString: CharacteristicLocationName.uuidString)
     }
 
     /// Deocdes the BLE Data

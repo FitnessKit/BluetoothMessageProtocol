@@ -55,7 +55,8 @@ open class CharacteristicLatitude: Characteristic {
 
         self.latitude = latitude
 
-        super.init(name: CharacteristicLatitude.name, uuidString: CharacteristicLatitude.uuidString)
+        super.init(name: CharacteristicLatitude.name,
+                   uuidString: CharacteristicLatitude.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -51,7 +51,8 @@ open class CharacteristicPressure: Characteristic {
 
         self.pressure = pressure
 
-        super.init(name: CharacteristicPressure.name, uuidString: CharacteristicPressure.uuidString)
+        super.init(name: CharacteristicPressure.name,
+                   uuidString: CharacteristicPressure.uuidString)
     }
 
     /// Deocdes the BLE Data

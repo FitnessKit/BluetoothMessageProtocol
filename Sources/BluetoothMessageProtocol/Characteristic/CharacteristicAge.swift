@@ -51,7 +51,8 @@ open class CharacteristicAge: Characteristic {
 
         self.age = age
 
-        super.init(name: CharacteristicAge.name, uuidString: CharacteristicAge.uuidString)
+        super.init(name: CharacteristicAge.name,
+                   uuidString: CharacteristicAge.uuidString)
     }
 
     /// Deocdes the BLE Data

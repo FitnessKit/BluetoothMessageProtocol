@@ -87,7 +87,8 @@ open class CharacteristicWeightMeasurement: Characteristic {
         self.bmi = bmi
         self.height = height
 
-        super.init(name: CharacteristicWeightMeasurement.name, uuidString: CharacteristicWeightMeasurement.uuidString)
+        super.init(name: CharacteristicWeightMeasurement.name,
+                   uuidString: CharacteristicWeightMeasurement.uuidString)
     }
 
     /// Deocdes the BLE Data

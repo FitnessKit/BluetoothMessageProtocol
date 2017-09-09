@@ -53,7 +53,8 @@ open class CharacteristicHeight: Characteristic {
 
         self.height = height
 
-        super.init(name: CharacteristicHeight.name, uuidString: CharacteristicHeight.uuidString)
+        super.init(name: CharacteristicHeight.name,
+                   uuidString: CharacteristicHeight.uuidString)
     }
 
     /// Deocdes the BLE Data

@@ -184,7 +184,8 @@ open class CharacteristicCrossTrainerData: Characteristic {
         self.time = time
         self.movementDirection = movementDirection
 
-        super.init(name: CharacteristicCrossTrainerData.name, uuidString: CharacteristicCrossTrainerData.uuidString)
+        super.init(name: CharacteristicCrossTrainerData.name,
+                   uuidString: CharacteristicCrossTrainerData.uuidString)
     }
 
     /// Deocdes the BLE Data

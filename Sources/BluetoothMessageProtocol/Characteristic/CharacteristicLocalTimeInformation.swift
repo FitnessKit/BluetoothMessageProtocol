@@ -59,7 +59,8 @@ open class CharacteristicLocalTimeInformation: Characteristic {
         self.timeZone = timeZone
         self.dstOffset = dstOffset
 
-        super.init(name: CharacteristicLocalTimeInformation.name, uuidString: CharacteristicLocalTimeInformation.uuidString)
+        super.init(name: CharacteristicLocalTimeInformation.name,
+                   uuidString: CharacteristicLocalTimeInformation.uuidString)
     }
 
     /// Deocdes the BLE Data
@@ -74,7 +75,8 @@ open class CharacteristicLocalTimeInformation: Characteristic {
 
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8()) ?? .unknown
 
-        return CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset)
+        return CharacteristicLocalTimeInformation(timeZone: timez,
+                                                  dstOffset: dstOffset)
     }
 
     /// Encodes the Characteristic into Data
