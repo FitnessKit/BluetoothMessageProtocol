@@ -38,6 +38,9 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     /// Heartrate
     private(set) public var heartRate: Measurement<UnitCadence> = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
 
+    /// Creates Polar Heart Rate Manufacturer Specific Data class
+    ///
+    /// - Parameter heartRate: Heartrate
     public init(heartRate: Measurement<UnitCadence>) {
 
         self.heartRate = heartRate
@@ -50,6 +53,11 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
         super.init(manufacturer: .polar, specificData: rawData)
     }
 
+    /// Decodes Polar Heart Rate Manufacturer Specific Data
+    ///
+    /// - Parameter data: Manufacturer Specific Data
+    /// - Returns: ManufacturerDataPolarHeartRate
+    /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> ManufacturerDataPolarHeartRate {
 
         let man = ManufacturerData(rawData: data)
@@ -86,10 +94,12 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
         }
     }
 
-
+    /// Encodes Polar Heart Rate Manufacturer Specific Data
+    ///
+    /// - Returns: Manufacturer Specific Data
+    /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
-
 }

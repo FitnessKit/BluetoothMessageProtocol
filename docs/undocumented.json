@@ -64,20 +64,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/ManufacturerData/ManufacturerDataAppleiBeacon.swift",
-      "line": 48,
-      "symbol": "ManufacturerDataAppleiBeacon.init(proximityUUID:majorID:minorID:measuredPower:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/ManufacturerData/ManufacturerDataPolarHeartRate.swift",
-      "line": 41,
-      "symbol": "ManufacturerDataPolarHeartRate.init(heartRate:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service.swift",
       "line": 57,
       "symbol": "Service.hashValue",

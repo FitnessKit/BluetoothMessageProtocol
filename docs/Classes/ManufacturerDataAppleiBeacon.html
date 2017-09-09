@@ -859,16 +859,71 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates an Apple iBeacon Manufacturer Specific Data Class</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleiBeacon</span><span class="p">:</span> <span class="kt"><a href="../Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">proximityUUID</span><span class="p">:</span> <span class="kt">UUID</span><span class="p">,</span> <span class="nv">majorID</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">minorID</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">measuredPower</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>proximityUUID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Proximty UUID</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>majorID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Major ID</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>minorID</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Minor ID</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>measuredPower</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Measured Power</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -886,7 +941,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Decodes Apple iBeacon Manufacturer Specific Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -908,12 +969,16 @@
                               </td>
                               <td>
                                 <div>
-                                  
+                                  <p>Manufacturer Specific Data</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>ManufacturerDataAppleiBeacon</p>
                       </div>
                     </section>
                   </div>
@@ -931,13 +996,675 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Encodes Apple iBeacon Manufacturer Specific Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Manufacturer Specific Data</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21estimoteProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/estimoteProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21estimoteProximityUUIDV10Foundation4UUID">estimoteProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Estimote Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">estimoteProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon23beaconBitsProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/beaconBitsProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon23beaconBitsProximityUUIDV10Foundation4UUID">beaconBitsProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Beacon Bits Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">beaconBitsProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21beaconGoProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/beaconGoProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21beaconGoProximityUUIDV10Foundation4UUID">beaconGoProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Beacon Go Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">beaconGoProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon23beaconstacProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/beaconstacProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon23beaconstacProximityUUIDV10Foundation4UUID">beaconstacProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Beaconstac Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">beaconstacProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon22blueSenseProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/blueSenseProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon22blueSenseProximityUUIDV10Foundation4UUID">blueSenseProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Blue Sense Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">blueSenseProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon30brickyardWirelessProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/brickyardWirelessProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon30brickyardWirelessProximityUUIDV10Foundation4UUID">brickyardWirelessProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Brickyard Wireless Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">brickyardWirelessProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon25brightBeaconProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/brightBeaconProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon25brightBeaconProximityUUIDV10Foundation4UUID">brightBeaconProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Bright Beacon Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">brightBeaconProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon19ekoorBProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/ekoorBProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon19ekoorBProximityUUIDV10Foundation4UUID">ekoorBProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ekoor B Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">ekoorBProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon20ekoorLRProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/ekoorLRProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon20ekoorLRProximityUUIDV10Foundation4UUID">ekoorLRProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ekoor LR Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">ekoorLRProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon18enoteProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/enoteProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon18enoteProximityUUIDV10Foundation4UUID">enoteProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enote Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">enoteProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon17essiProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/essiProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon17essiProximityUUIDV10Foundation4UUID">essiProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Essi Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">essiProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon17geLoProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/geLoProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon17geLoProximityUUIDV10Foundation4UUID">geLoProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>GeLo Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">geLoProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21glimwormProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/glimwormProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21glimwormProximityUUIDV10Foundation4UUID">glimwormProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Glimworm Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">glimwormProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon20kontaktProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/kontaktProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon20kontaktProximityUUIDV10Foundation4UUID">kontaktProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Kontakt Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">kontaktProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21locosLabProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/locosLabProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21locosLabProximityUUIDV10Foundation4UUID">locosLabProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Locos Lab Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">locosLabProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon33northPoleEngineeringProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/northPoleEngineeringProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon33northPoleEngineeringProximityUUIDV10Foundation4UUID">northPoleEngineeringProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>North Pole Engineering WASP Beacon Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">northPoleEngineeringProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21orangeSaProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/orangeSaProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21orangeSaProximityUUIDV10Foundation4UUID">orangeSaProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Orange Sa Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">orangeSaProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon19radiusProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/radiusProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon19radiusProximityUUIDV10Foundation4UUID">radiusProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Radius Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">radiusProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon17recoProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/recoProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon17recoProximityUUIDV10Foundation4UUID">recoProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reco Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">recoProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21roximityProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/roximityProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon21roximityProximityUUIDV10Foundation4UUID">roximityProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Roximity Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">roximityProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon24ticatagTiBeProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/ticatagTiBeProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon24ticatagTiBeProximityUUIDV10Foundation4UUID">ticatagTiBeProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ticatag TiBe  Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">ticatagTiBeProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon44ticatagTiBeConnectButtonClickedProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/ticatagTiBeConnectButtonClickedProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon44ticatagTiBeConnectButtonClickedProximityUUIDV10Foundation4UUID">ticatagTiBeConnectButtonClickedProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ticatag TiBe Connect Button Clicked Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">ticatagTiBeConnectButtonClickedProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon50ticatagTiBeConnectButtonDoubleClickedProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/ticatagTiBeConnectButtonDoubleClickedProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon50ticatagTiBeConnectButtonDoubleClickedProximityUUIDV10Foundation4UUID">ticatagTiBeConnectButtonDoubleClickedProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ticatag TiBe Connect Button Double Clicked Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">ticatagTiBeConnectButtonDoubleClickedProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon41ticatagTiBeConnectButtonHeldProximityUUIDV10Foundation4UUID"></a>
+                    <a name="//apple_ref/swift/Variable/ticatagTiBeConnectButtonHeldProximityUUID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC24BluetoothMessageProtocol28ManufacturerDataAppleiBeacon41ticatagTiBeConnectButtonHeldProximityUUIDV10Foundation4UUID">ticatagTiBeConnectButtonHeldProximityUUID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ticatag TiBe Connect Button Held Proximity UUID</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">ticatagTiBeConnectButtonHeldProximityUUID</span><span class="p">:</span> <span class="kt">UUID</span></code></pre>
 
                         </div>
                       </div>

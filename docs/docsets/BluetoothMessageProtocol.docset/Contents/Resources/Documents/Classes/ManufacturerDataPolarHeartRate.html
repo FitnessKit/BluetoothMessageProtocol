@@ -781,16 +781,35 @@ Polar H10 supported</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates Polar Heart Rate Manufacturer Specific Data class</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataPolarHeartRate</span><span class="p">:</span> <span class="kt"><a href="../Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">heartRate</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitCadence</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>heartRate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Heartrate</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -808,7 +827,13 @@ Polar H10 supported</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Decodes Polar Heart Rate Manufacturer Specific Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -830,12 +855,16 @@ Polar H10 supported</p>
                               </td>
                               <td>
                                 <div>
-                                  
+                                  <p>Manufacturer Specific Data</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>ManufacturerDataPolarHeartRate</p>
                       </div>
                     </section>
                   </div>
@@ -853,7 +882,13 @@ Polar H10 supported</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Encodes Polar Heart Rate Manufacturer Specific Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -862,6 +897,10 @@ Polar H10 supported</p>
                           <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="n">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Manufacturer Specific Data</p>
                       </div>
                     </section>
                   </div>
