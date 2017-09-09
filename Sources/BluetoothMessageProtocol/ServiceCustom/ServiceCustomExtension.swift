@@ -64,4 +64,61 @@ public extension Service {
         }
     }
 
+    /// Texas Instruments Firmware Update
+    public class var texasInstrumentsFirmwareUpdate: ServiceTexasInstrumentsFirmwareUpdate {
+        get {
+            return ServiceTexasInstrumentsFirmwareUpdate()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Accelerometer
+    public class var texasInstrumentsSensorTagAccelerometer: ServiceTexasInstrumentsSensorTagAccelerometer {
+        get {
+            return ServiceTexasInstrumentsSensorTagAccelerometer()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Barometer
+    public class var texasInstrumentsSensorTagBarometer: ServiceTexasInstrumentsSensorTagBarometer {
+        get {
+            return ServiceTexasInstrumentsSensorTagBarometer()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Connection Control
+    public class var texasInstrumentsSensorTagControl: ServiceTexasInstrumentsSensorTagControl {
+        get {
+            return ServiceTexasInstrumentsSensorTagControl()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Gyroscope
+    public class var texasInstrumentsSensorTagGyroscope: ServiceTexasInstrumentsSensorTagGyroscope {
+        get {
+            return ServiceTexasInstrumentsSensorTagGyroscope()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Humidity
+    public class var texasInstrumentsSensorTagHumidity: ServiceTexasInstrumentsSensorTagHumidity {
+        get {
+            return ServiceTexasInstrumentsSensorTagHumidity()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Magnetometer
+    public class var texasInstrumentsSensorTagMagnetometer: ServiceTexasInstrumentsSensorTagMagnetometer {
+        get {
+            return ServiceTexasInstrumentsSensorTagMagnetometer()
+        }
+    }
+
+    /// Texas Instruments Sensor Tag Temperature
+    public class var texasInstrumentsSensorTagTemperature: ServiceTexasInstrumentsSensorTagTemperature {
+        get {
+            return ServiceTexasInstrumentsSensorTagTemperature()
+        }
+    }
+
+
 }

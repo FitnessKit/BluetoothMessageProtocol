@@ -65,6 +65,14 @@ custom_categories:
     - ServiceEliteTrainer
     - ServiceNordicLegacyDeviceFirmwareUpdate
     - ServiceNordicSecureDeviceFirmwareUpdate
+    - ServiceTexasInstrumentsFirmwareUpdate
+    - ServiceTexasInstrumentsSensorTagAccelerometer
+    - ServiceTexasInstrumentsSensorTagBarometer
+    - ServiceTexasInstrumentsSensorTagControl
+    - ServiceTexasInstrumentsSensorTagGyroscope
+    - ServiceTexasInstrumentsSensorTagHumidity
+    - ServiceTexasInstrumentsSensorTagMagnetometer
+    - ServiceTexasInstrumentsSensorTagTemperature
 
   - name: Characteristics - Bluetooth SIG
     children:
