@@ -7,7 +7,7 @@ readme: README.md
 output: docs
 clean: true
 
-copyright: '© 2016 Kevin A. Hoogheem'
+copyright: '© 2017 Kevin A. Hoogheem'
 
 xcodebuild_arguments: [-scheme, BluetoothMessageProtocol]
 
@@ -61,6 +61,8 @@ custom_categories:
   - name: Services - Custom
     children:
     - ServiceAppleMidi
+    - ServiceCycleOps
+    - ServiceEliteTrainer
 
   - name: Characteristics - Bluetooth SIG
     children:
@@ -178,6 +180,8 @@ custom_categories:
     - CharacteristicV02Max
     - CharacteristicWaistCircumference
     - CharacteristicWeight
+    - CharacteristicWeightMeasurement
+    - CharacteristicWeightScaleFeature
     - CharacteristicWindChill
 
   - name: Manufacturer Data

@@ -65,15 +65,20 @@ open class CharacteristicWeightMeasurement: Characteristic {
     /// User ID
     private(set) public var userId: User
 
-    /// BMI
+    /// Body Mass Index (BMI)
     private(set) public var bmi: Double?
 
     /// Height
     private(set) public var height: Measurement<UnitLength>?
 
-    /// Creates Weight Characteristic
+    /// Creates Weight Measurement Characteristic
     ///
-    /// - Parameter weight: Weight
+    /// - Parameters:
+    ///   - weight: Weight
+    ///   - timestamp: Timestamp
+    ///   - userId: User ID
+    ///   - bmi: Body Mass Index
+    ///   - height: Height
     public init(weight: Measurement<UnitMass>, timestamp: DateTime?, userId: User, bmi: Double?, height: Measurement<UnitLength>?) {
 
         self.weight = weight

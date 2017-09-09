@@ -83,5 +83,4 @@ open class CharacteristicWindChill: Characteristic {
         
         return msgData
     }
-    
 }
