@@ -1,27 +1,6 @@
 {
   "warnings": [
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/Characteristic.swift",
-      "line": 38,
-      "symbol": "Characteristic.init(name:uuidString:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/Characteristic.swift",
-      "line": 76,
-      "symbol": "Characteristic.hashValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/Characteristic.swift",
-      "line": 86,
-      "symbol": "Characteristic.==(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicAlertLevel.swift",
       "line": 55,
       "symbol": "CharacteristicAlertLevel.AlertLevel.stringValue",
@@ -40,6 +19,27 @@
       "line": 55,
       "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.stringValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic.swift",
+      "line": 38,
+      "symbol": "Characteristic.init(name:uuidString:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic.swift",
+      "line": 76,
+      "symbol": "Characteristic.hashValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic.swift",
+      "line": 86,
+      "symbol": "Characteristic.==(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -78,14 +78,14 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/Service.swift",
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service.swift",
       "line": 57,
       "symbol": "Service.hashValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service/Service.swift",
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Service.swift",
       "line": 67,
       "symbol": "Service.==(_:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.static",
