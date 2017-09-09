@@ -1,8 +1,8 @@
 //
-//  ServiceAppleMidi.swift
+//  ServiceCycleOps.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 9/2/17.
+//  Created by Kevin Hoogheem on 9/9/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,33 +25,31 @@
 import Foundation
 
 
-/// BLE Apple MIDI Service
-///
-/// The Apple MIDI Service is used to send and receive MIDI data.
+/// BLE CycleOps Bike Trainer Service
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceAppleMidi: Service {
+open class ServiceCycleOps: Service {
 
     /// Service Name
     public static var name: String {
-        return "Apple MIDI"
+        return "CycleOps Bike Trainer"
     }
 
     /// Service UUID
     public static var uuidString: String {
-        return "03B80E5A-EDE8-4B33-A751-6CE34EC4C700"
+        return "C0F4013A-A837-4165-BAB9-654EF70747C6"
     }
 
     /// Service Uniform Identifier
     public static var uniformIdentifier: String {
-        return "com.apple.service.apple_midi"
+        return "com.cycleops.service.bike_trainer"
     }
 
-    /// Creates Apple MIDI Service
+    /// Creates CycleOps Bike Trainer Service
     public init() {
-        super.init(name: ServiceAppleMidi.name,
-                   uuidString: ServiceAppleMidi.uuidString,
-                   uniformIdentifier: ServiceAppleMidi.uniformIdentifier
+        super.init(name: ServiceCycleOps.name,
+                   uuidString: ServiceCycleOps.uuidString,
+                   uniformIdentifier: ServiceCycleOps.uniformIdentifier
         )
     }
 }

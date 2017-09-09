@@ -1,8 +1,8 @@
 //
-//  Service.swift
+//  ServiceCustomExtension.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 9/2/17.
+//  Created by Kevin Hoogheem on 9/9/17.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,51 +24,29 @@
 
 import Foundation
 
-/// Bluetooth Service base Class
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class Service {
 
-    /// Name of the Service
-    open internal(set) var name: String
-
-    /// Service UUID String
-    open internal(set) var uuidString: String
-
-    /// Uniform Type Identifier
-    open private(set) var uniformIdentifier: String
-
-    /// Creates a Bluetooth Service
-    ///
-    /// - Parameter name: Service Name
-    /// - Parameter uuidString: UUID String
-    /// - Parameter uniformIdentifier: Uniform Type Information
-    public init(name: String, uuidString: String, uniformIdentifier: String) {
-
-        self.name = name
-        self.uuidString = uuidString
-        self.uniformIdentifier = uniformIdentifier
-    }
-}
-
+// MARK: - Non Bluetooth SIG Services
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension Service {
 
-    public var hashValue: Int {
+    /// Apple MIDI
+    public class var appleMidi: ServiceAppleMidi {
         get {
-            return "\(name)\(uuidString)\(uniformIdentifier)".hashValue
+            return ServiceAppleMidi()
+        }
+    }
+
+    /// CycleOps Bike Trainer
+    public class var cycleOps: ServiceCycleOps {
+        get {
+            return ServiceCycleOps()
+        }
+    }
+
+    /// Elite Trainer
+    public class var eliteTrainer: ServiceEliteTrainer {
+        get {
+            return ServiceEliteTrainer()
         }
     }
 }
-
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public extension Service {
-
-    static public func == (lhs: Service, rhs: Service) -> Bool {
-        return (lhs.name == rhs.name) &&
-            (lhs.uuidString == rhs.uuidString) &&
-            (lhs.uniformIdentifier == rhs.uniformIdentifier)
-    }
-
-}
-
