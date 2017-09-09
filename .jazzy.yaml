@@ -12,9 +12,13 @@ copyright: '© 2016 Kevin A. Hoogheem'
 xcodebuild_arguments: [-scheme, BluetoothMessageProtocol]
 
 custom_categories:
-  - name: Services - Bluetooth SIG
+  - name: Base
     children:
     - Service
+    - Characteristic
+
+  - name: Services - Bluetooth SIG
+    children:
     - ServiceGenericAccess
     - ServiceGenericAttribute
     - ServiceImmediateAlert
@@ -60,7 +64,6 @@ custom_categories:
 
   - name: Characteristics - Bluetooth SIG
     children:
-    - Characteristic
     - CharacteristicAerobicHeartRateLowerLimit
     - CharacteristicAerobicHeartRateUpperLimit
     - CharacteristicAerobicThreshold
