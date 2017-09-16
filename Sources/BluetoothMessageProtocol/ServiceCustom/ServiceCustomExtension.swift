@@ -50,6 +50,13 @@ public extension Service {
         }
     }
 
+    /// Google Glass
+    public class var googleGlass: ServiceGoogleGlass {
+        get {
+            return ServiceGoogleGlass()
+        }
+    }
+
     /// Nordic Legacy Device Firmware Update
     public class var nordicLegacyDeviceFirmwareUpdate: ServiceNordicLegacyDeviceFirmwareUpdate {
         get {
