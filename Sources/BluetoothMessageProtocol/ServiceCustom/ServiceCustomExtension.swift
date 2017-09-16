@@ -120,5 +120,17 @@ public extension Service {
         }
     }
 
+    /// Wahoo Fitness Equipment Service
+    public class var wahooFitnessEquipment: ServiceWahooFitnessEquipment {
+        get {
+            return ServiceWahooFitnessEquipment()
+        }
+    }
 
+    /// Wahoo Fitness GEM Module Firmware Update
+    public class var wahooFitnessGEMModuleFirmwareUpdate: ServiceWahooFitnessGEMModuleFirmwareUpdate {
+        get {
+            return ServiceWahooFitnessGEMModuleFirmwareUpdate()
+        }
+    }
 }
