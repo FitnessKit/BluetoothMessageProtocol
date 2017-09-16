@@ -64,6 +64,10 @@ custom_categories:
     - ServiceCycleOps
     - ServiceEliteTrainer
     - ServiceGoogleGlass
+    - ServiceMyoClassifierEvent
+    - ServiceMyoControl
+    - ServiceMyoImu
+    - ServiceMyoRawEMGData
     - ServiceNordicLegacyDeviceFirmwareUpdate
     - ServiceNordicSecureDeviceFirmwareUpdate
     - ServiceTexasInstrumentsFirmwareUpdate

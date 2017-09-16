@@ -57,6 +57,34 @@ public extension Service {
         }
     }
 
+    /// Myo Armband Classifier Event
+    public class var myArmbandClassifierEvent: ServiceMyoClassifierEvent {
+        get {
+            return ServiceMyoClassifierEvent()
+        }
+    }
+
+    /// Myo Armband Control
+    public class var myoArmbandControl: ServiceMyoControl {
+        get {
+            return ServiceMyoControl()
+        }
+    }
+
+    /// Myo Armband IMU
+    public class var myoArmbandImu: ServiceMyoImu {
+        get {
+            return ServiceMyoImu()
+        }
+    }
+
+    /// Myo Armband Raw EMG Data
+    public class var myoArmbandRawEMGData: ServiceMyoRawEMGData {
+        get {
+            return ServiceMyoRawEMGData()
+        }
+    }
+
     /// Nordic Legacy Device Firmware Update
     public class var nordicLegacyDeviceFirmwareUpdate: ServiceNordicLegacyDeviceFirmwareUpdate {
         get {
