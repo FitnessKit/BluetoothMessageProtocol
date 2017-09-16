@@ -139,13 +139,6 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension ManufacturerDataAppleiBeacon {
 
-    /// Estimote Proximity UUID
-    public class var estimoteProximityUUID: UUID {
-        get {
-            return UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
-        }
-    }
-
     /// Beacon Bits Proximity UUID
     public class var beaconBitsProximityUUID: UUID {
         get {
@@ -153,8 +146,15 @@ public extension ManufacturerDataAppleiBeacon {
         }
     }
 
-    /// Beacon Go Proximity UUID
-    public class var beaconGoProximityUUID: UUID {
+    /// Beacon Go Portable Proximity UUID
+    public class var beaconGoPortableProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "E6BF275E-0BB3-43E5-BF88-517F13A5A162")!
+        }
+    }
+
+    /// Beacon Go USB Proximity UUID
+    public class var beaconGoUsbProximityUUID: UUID {
         get {
             return UUID(uuidString: "F6322B94-D58A-F34E-B1A5-17C69CFBE32E")!
         }
@@ -174,6 +174,13 @@ public extension ManufacturerDataAppleiBeacon {
         }
     }
 
+    /// BlueUp Proximity UUID
+    public class var blueUpProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "ACFD065E-C3C0-11E3-9BBE-1A514932AC01")!
+        }
+    }
+
     /// Brickyard Wireless Proximity UUID
     public class var brickyardWirelessProximityUUID: UUID {
         get {
@@ -183,6 +190,13 @@ public extension ManufacturerDataAppleiBeacon {
 
     /// Bright Beacon Proximity UUID
     public class var brightBeaconProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!
+        }
+    }
+
+    /// Cobi Beacon Proximity UUID
+    public class var cobiBeaconProximityUUID: UUID {
         get {
             return UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!
         }
@@ -213,6 +227,27 @@ public extension ManufacturerDataAppleiBeacon {
     public class var essiProximityUUID: UUID {
         get {
             return UUID(uuidString: "A7AE2EB7-1F00-4168-B99B-A749BAC1CA64")!
+        }
+    }
+
+    /// Estimote Proximity UUID
+    public class var estimoteProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
+        }
+    }
+
+    /// Estimote Virtual iOS Proximity UUID
+    public class var estimoteVirtualiOSProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "8492E75F-4FD6-469D-B132-043FE94921D8")!
+        }
+    }
+
+    /// Estimote Virtual macOS Proximity UUID
+    public class var estimoteVirtualMacOSProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "08D4A950-80F0-4D42-A14B-D53E063516E6")!
         }
     }
 
@@ -306,5 +341,13 @@ public extension ManufacturerDataAppleiBeacon {
             return UUID(uuidString: "801DDF60-A557-43B5-BBA1-D4ABEFC13066")!
         }
     }
+
+    /// TwoCanoes Proximity UUID
+    public class var twoCanoesProximityUUID: UUID {
+        get {
+            return UUID(uuidString: "92AB49BE-4127-42F4-B532-90FAF1E26491")!
+        }
+    }
+
 
 }
