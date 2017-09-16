@@ -1568,7 +1568,126 @@ public enum Manufacturer: UInt16 {
     case worldMoto                              = 768
     /// Giatec Scientific Inc.
     case giatecScientific                       = 769
-
+    /// Loop Devices, Inc
+    case loopDevices                            = 770
+    /// IACA electronique
+    case iacaElectronique                       = 771
+    /// Martians Inc
+    case martians                               = 772
+    /// Swipp ApS
+    case swipp                                  = 773
+    /// Life Laboratory Inc.
+    case lifeLaboratory                         = 774
+    /// FUJI INDUSTRIAL CO.,LTD.
+    case fujiIndustrial                         = 775
+    /// Surefire, LLC
+    case surefire                               = 776
+    /// Dolby Labs
+    case dolbyLabs                              = 777
+    /// Ellisys
+    case ellisys                                = 778
+    /// Magnitude Lighting Converters
+    case magnitudeLightingConverters            = 779
+    /// Hilti AG
+    case hilti                                  = 780
+    /// Devdata S.r.l.
+    case davdata                                = 781
+    /// Deviceworx
+    case deviceworx                             = 782
+    /// Shortcut Labs
+    case shortcutLabs                           = 783
+    /// SGL Italia S.r.l.
+    case sglItalia                              = 784
+    /// PEEQ DATA
+    case peeqData                               = 785
+    /// Ducere Technologies Pvt Ltd
+    case ducereTechnologies                     = 786
+    /// DiveNav, Inc.
+    case diveNav                                = 787
+    /// RIIG AI Sp. z o.o.
+    case riigAi                                 = 788
+    /// Thermo Fisher Scientific
+    case thermoFisher                           = 789
+    /// AG Measurematics Pvt. Ltd.
+    case agMeasurematics                        = 790
+    /// CHUO Electronics CO., LTD.
+    case chuoElectronics                        = 791
+    /// Aspenta International
+    case aspentaInternational                   = 792
+    /// Eugster Frismag AG
+    case eugsterFrismag                         = 793
+    /// Amber wireless GmbH
+    case amberWireless                          = 794
+    /// HQ Inc
+    case hqInc                                  = 795
+    /// Lab Sensor Solutions
+    case labSensorSolutions                     = 796
+    /// Enterlab ApS
+    case enterlab                               = 797
+    /// Eyefi, Inc.
+    case eyeFi                                  = 798
+    /// MetaSystem S.p.A.
+    case metaSystems                            = 799
+    /// SONO ELECTRONICS. CO., LTD
+    case sonoElectronics                        = 800
+    /// Jewelbots
+    case jewelbots                              = 801
+    /// Compumedics Limited
+    case compumedics                            = 802
+    /// Rotor Bike Components
+    case rotorBikeComponents                    = 803
+    /// Astro, Inc.
+    case astroInc                               = 804
+    /// Amotus Solutions
+    case amotusSolutions                        = 805
+    /// Healthwear Technologies (Changzhou)Ltd
+    case healthwearTechnologies                 = 806
+    /// Essex Electronics
+    case essexElectronics                       = 807
+    /// Grundfos A/S
+    case grundfos                               = 808
+    /// Eargo, Inc
+    case eargoInc                               = 809
+    /// Electronic Design Lab
+    case electronicDesignLab                    = 810
+    /// ESYLUX
+    case esylux                                 = 811
+    /// NIPPON SMT.CO.,Ltd
+    case nipponSmt                              = 812
+    /// BM innovations GmbH
+    case bmInnovations                          = 813
+    /// indoormap
+    case indoormap                              = 814
+    /// OttoQ Inc
+    case ottoQ                                  = 815
+    /// North Pole Engineering
+    case northPoleEngineering                   = 816
+    /// 3flares Technologies Inc.
+    case threeFlaresTechnologies                = 817
+    /// Electrocompaniet A.S.
+    case electrocompaniet                       = 818
+    /// Mul-T-Lock
+    case mulTLock                               = 819
+    /// Corentium AS
+    case corentium                              = 820
+    /// Enlighted Inc
+    case enlightedInc                           = 821
+    /// GISTIC
+    case gistic                                 = 822
+    /// AJP2 Holdings, LLC
+    case ajp2Holdings                           = 823
+    /// COBI GmbH
+    case cobi                                   = 824
+    /// Blue Sky Scientific, LLC
+    case blueSkyScientificLlc                   = 825
+    /// Appception, Inc.
+    case appception                             = 826
+    /// Courtney Thorne Limited
+    case courtneyThorne                         = 827
+    /// Virtuosys
+    case virtuosys                              = 828
+    /// TPV Technology Limited
+    case tpvTechnologyLimited                   = 829
 
 
     //Non offical IDs
@@ -3146,7 +3265,126 @@ public extension Manufacturer {
             return "World Moto Inc."
         case .giatecScientific:
             return "Giatec Scientific Inc."
-
+        case .loopDevices:
+            return "Loop Devices, Inc"
+        case .iacaElectronique:
+            return "IACA electronique"
+        case .martians:
+            return "Martians Inc"
+        case .swipp:
+            return "Swipp ApS"
+        case .lifeLaboratory:
+            return "Life Laboratory Inc."
+        case .fujiIndustrial:
+            return "FUJI INDUSTRIAL CO.,LTD"
+        case .surefire:
+            return "Surefire, LLC"
+        case .dolbyLabs:
+            return "Dolby Labs"
+        case .ellisys:
+            return "Ellisys"
+        case .magnitudeLightingConverters:
+            return "Magnitude Lighting Converters"
+        case .hilti:
+            return "Hilti AG"
+        case .davdata:
+            return "Devdata S.r.l."
+        case .deviceworx:
+            return "Deviceworx"
+        case .shortcutLabs:
+            return "Shortcut Labs"
+        case .sglItalia:
+            return "SGL Italia S.r.l/"
+        case .peeqData:
+            return "PEEQ DATA"
+        case .ducereTechnologies:
+            return "Ducere Technologies Pvt Ltd"
+        case .diveNav:
+            return "DiveNav, Inc."
+        case .riigAi:
+            return "RIIG AI Sp. z o.o."
+        case .thermoFisher:
+            return "Thermo Fisher Scientific"
+        case .agMeasurematics:
+            return "AG Measurematics Pvt. Ltd."
+        case .chuoElectronics:
+            return "CHUO Electronics CO., LTD."
+        case .aspentaInternational:
+            return "Aspenta International"
+        case .eugsterFrismag:
+            return "Eugster Frismag AG"
+        case .amberWireless:
+            return "Amber wireless GmbH"
+        case .hqInc:
+            return "HQ Inc"
+        case .labSensorSolutions:
+            return "Lab Sensor Solutions"
+        case .enterlab:
+            return "Enterlab ApS"
+        case .eyeFi:
+            return "Eyefi, Inc."
+        case .metaSystems:
+            return "MetaSystem S.p.A."
+        case .sonoElectronics:
+            return "SONO ELECTRONICS. CO., LTD"
+        case .jewelbots:
+            return "Jewelbots"
+        case .compumedics:
+            return "Compumedics Limited"
+        case .rotorBikeComponents:
+            return "Rotor Bike Components"
+        case .astroInc:
+            return "Astro, Inc."
+        case .amotusSolutions:
+            return "Amotus Solutions"
+        case .healthwearTechnologies:
+            return "Healthwear Technologies (Changzhou)Ltd"
+        case .essexElectronics:
+            return "Essex Electronics"
+        case .grundfos:
+            return "Grundfos A/S"
+        case .eargoInc:
+            return "Eargo, Inc"
+        case .electronicDesignLab:
+            return "Electronic Design Lab"
+        case .esylux:
+            return "ESYLUX"
+        case .nipponSmt:
+            return "NIPPON SMT.CO.,Ltd"
+        case .bmInnovations:
+            return "BM innovations GmbH"
+        case .indoormap:
+            return "indoormap"
+        case .ottoQ:
+            return "OttoQ Inc"
+        case .northPoleEngineering:
+            return "North Pole Engineering"
+        case .threeFlaresTechnologies:
+            return "3flares Technologies Inc."
+        case .electrocompaniet:
+            return "Electrocompaniet A.S."
+        case .mulTLock:
+            return "Mul-T-Lock"
+        case .corentium:
+            return "Corentium AS"
+        case .enlightedInc:
+            return "Enlighted Inc"
+        case .gistic:
+            return "GISTIC"
+        case .ajp2Holdings:
+            return "AJP2 Holdings, LLC"
+        case .cobi:
+            return "COBI GmbH"
+        case .blueSkyScientificLlc:
+            return "Blue Sky Scientific, LLC"
+        case .appception:
+            return "Appception, Inc."
+        case .courtneyThorne:
+            return "Courtney Thorne Limited"
+        case .virtuosys:
+            return "Virtuosys"
+        case .tpvTechnologyLimited:
+            return "TPV Technology Limited"
 
 
         case .viiiiva:
