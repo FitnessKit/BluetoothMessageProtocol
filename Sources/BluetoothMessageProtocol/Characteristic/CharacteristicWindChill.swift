@@ -52,7 +52,7 @@ open class CharacteristicWindChill: Characteristic {
 
         self.windChill = windChill
 
-        super.init(name: CharacteristicAltitude.name,
+        super.init(name: CharacteristicWindChill.name,
                    uuidString: CharacteristicWindChill.uuidString)
     }
 

@@ -64,6 +64,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
         guard man.manufacturer == .polar else { throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Polar")) }
 
+        // TODO: Put in check for data size. OH1 sends out different data on scan vs passive
         if let data = man.specificData {
 
             var decoder = DataDecoder(data)

@@ -2028,7 +2028,84 @@ public enum Manufacturer: UInt16 {
     case iotInstruments                         = 998
     /// TRUE Fitness Technology
     case trueFitnessTechnology                  = 999
-
+    /// Reiner Kartengeraete GmbH & Co. KG.
+    case reinerKartengeraete                    = 1000
+    /// SHENZHEN LEMONJOY TECHNOLOGY CO., LTD.
+    case shenzhenLemonJoyTechnology             = 1001
+    /// Hello Inc.
+    case helloInc                               = 1002
+    /// Evollve Inc.
+    case evollveInc                             = 1003
+    /// Jigowatts Inc.
+    case jigowatts                              = 1004
+    /// BASIC MICRO.COM,INC.
+    case basicMicro                             = 1005
+    /// CUBE TECHNOLOGIES
+    case cubeTechnologies                       = 1006
+    /// foolography GmbH
+    case foolography                            = 1007
+    /// CLINK
+    case cLink                                  = 1008
+    /// Hestan Smart Cooking Inc.
+    case hestanSmartCooking                     = 1009
+    /// WindowMaster A/S
+    case windowMaster                           = 1010
+    /// Flowscape AB
+    case flowscape                              = 1011
+    /// PAL Technologies Ltd
+    case palTechnologies                        = 1012
+    /// WHERE, Inc.
+    case whereInc                               = 1013
+    /// Iton Technology Corp.
+    case itonTechnology                         = 1014
+    /// Owl Labs Inc.
+    case owlLabs                                = 1015
+    /// Rockford Corp.
+    case rockford                               = 1016
+    /// Becon Technologies Co.,Ltd.
+    case beconTechnologies                      = 1017
+    /// Vyassoft Technologies Inc
+    case vyassoftTechnologies                   = 1018
+    /// Nox Medical
+    case noxMedical                             = 1019
+    /// Kimberly-Clark
+    case kimberlyClark                          = 1020
+    /// Trimble Navigation Ltd.
+    case trimbleNavigation                      = 1021
+    /// Littelfuse
+    case littleFuse                             = 1022
+    /// Withings
+    case withings                               = 1023
+    /// i-developer IT Beratung UG
+    case iDeveloperIT                           = 1024
+    /// Sears Holdings Corporation
+    case searsHoldings                          = 1026
+    /// Gantner Electronic GmbH
+    case gantnerElectronic                      = 1027
+    /// Authomate Inc
+    case authomate                              = 1028
+    /// Vertex International, Inc.
+    case vertexInternational                    = 1029
+    /// Airtago
+    case airtago                                = 1030
+    /// Swiss Audio SA
+    case swissAudio                             = 1031
+    /// ToGetHome Inc.
+    case toGetHome                              = 1032
+    /// AXIS
+    case axis                                   = 1033
+    /// Openmatics
+    case openmatics                             = 1034
+    /// Jana Care Inc.
+    case janaCare                               = 1035
+    /// Senix Corporation
+    case senixCorporation                       = 1036
+    /// NorthStar Battery Company, LLC
+    case northStarBatteryCompany                = 1037
+    /// SKF (U.K.) Limited
+    case skfUK                                  = 1038
+    /// CO-AX Technology, Inc.
+    case coAxTechnology                         = 1039
 
 
     //Non offical IDs
@@ -4066,9 +4143,86 @@ public extension Manufacturer {
             return "IoT Instruments Oy"
         case .trueFitnessTechnology:
             return "TRUE Fitness Technology"
+        case .reinerKartengeraete:
+            return "Reiner Kartengeraete GmbH & Co. KG."
+        case .shenzhenLemonJoyTechnology:
+            return "SHENZHEN LEMONJOY TECHNOLOGY CO., LTD."
+        case .helloInc:
+            return "Hello Inc."
+        case .evollveInc:
+            return "Evollve Inc."
+        case .jigowatts:
+            return "Jigowatts Inc."
+        case .basicMicro:
+            return "BASIC MICRO.COM,INC"
+        case .cubeTechnologies:
+            return "CUBE TECHNOLOGIES"
+        case .foolography:
+            return "foolography GmbH"
+        case .cLink:
+            return "CLINK"
+        case .hestanSmartCooking:
+            return "Hestan Smart Cooking Inc."
+        case .windowMaster:
+            return "WindowMaster A/S"
+        case .flowscape:
+            return "Flowscape AB"
+        case .palTechnologies:
+            return "PAL Technologies Ltd"
+        case .whereInc:
+            return "WHERE, Inc."
+        case .itonTechnology:
+            return "Iton Technology Corp."
+        case .owlLabs:
+            return "Owl Labs Inc."
+        case .rockford:
+            return "Rockford Corp."
+        case .beconTechnologies:
+            return "Becon Technologies Co.,Ltd."
+        case .vyassoftTechnologies:
+            return "Vyassoft Technologies Inc."
+        case .noxMedical:
+            return "Nox Medical"
+        case .kimberlyClark:
+            return "Kimberly-Clark"
+        case .trimbleNavigation:
+            return "Trimble Navigation Ltd."
+        case .littleFuse:
+            return "Littelfuse"
+        case .withings:
+            return "Withings"
+        case .iDeveloperIT:
+            return "i-developer IT Beratung UG"
+        case .searsHoldings:
+            return "Sears Holdings Corporation"
+        case .gantnerElectronic:
+            return "Gantner Electronic GmbH"
+        case .authomate:
+            return "Authomate Inc"
+        case .vertexInternational:
+            return "Vertex International, Inc."
+        case .airtago:
+            return "Airtago"
+        case .swissAudio:
+            return "Rockfo."
+        case .toGetHome:
+            return "ToGetHome Inc."
+        case .axis:
+            return "AXIS"
+        case .openmatics:
+            return "Openmatics"
+        case .janaCare:
+            return "Jana Care Inc."
+        case .senixCorporation:
+            return "Senix Corporation"
+        case .northStarBatteryCompany:
+            return "NorthStar Battery Company, LLC"
+        case .skfUK:
+            return "SKF (U.K.) Limited"
+        case .coAxTechnology:
+            return "CO-AX Technology, Inc."
 
 
-            
 
         case .viiiiva:
             return "4iiii Innovations - Viiiiva"
