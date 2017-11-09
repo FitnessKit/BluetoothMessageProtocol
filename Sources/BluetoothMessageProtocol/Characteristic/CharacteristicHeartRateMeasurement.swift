@@ -182,7 +182,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
             var seconds = decoder.decodeUInt16()
 
             while seconds != 0 {
-                let interval = Measurement(value: Double(seconds), unit: UnitDuration.seconds)
+                let interval = Measurement(value: (Double(seconds) / 1024), unit: UnitDuration.seconds)
 
                 if rrIntervals == nil {
                     rrIntervals = [Measurement<UnitDuration>]()
