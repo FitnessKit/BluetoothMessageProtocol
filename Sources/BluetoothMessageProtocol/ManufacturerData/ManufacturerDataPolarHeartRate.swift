@@ -64,8 +64,12 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
         guard man.manufacturer == .polar else { throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Polar")) }
 
-        // TODO: Put in check for data size. OH1 sends out different data on scan vs passive
         if let data = man.specificData {
+
+            //OH1 sends out different data on scan vs passive.  The smaller one has the HR data in it.
+            //OH1 sends 5 Bytes.
+            //H7/H10 sends 6 Bytes.
+            guard data.count <= 6 else { throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer Data is not compatable for HR Decode.")) }
 
             var decoder = DataDecoder(data)
 
