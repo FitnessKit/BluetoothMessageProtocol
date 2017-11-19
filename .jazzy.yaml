@@ -9,7 +9,7 @@ clean: true
 
 copyright: '© 2017 Kevin A. Hoogheem'
 
-xcodebuild_arguments: [-scheme, BluetoothMessageProtocol]
+xcodebuild_arguments: [-scheme,BluetoothMessageProtocol-Package]
 
 custom_categories:
   - name: Base
@@ -203,6 +203,7 @@ custom_categories:
 
   - name: Manufacturer Data
     children:
+    - CompanyIdentifier
     - Manufacturer
     - ManufacturerData
     - ManufacturerDataAppleiBeacon

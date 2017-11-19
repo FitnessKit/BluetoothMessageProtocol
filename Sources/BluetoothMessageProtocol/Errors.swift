@@ -33,6 +33,8 @@ public enum ErrorReasons {
     case encodeError(msg: String)
     /// Decoding error
     case decodeError(msg: String)
+    /// Company ID Already registered
+    case companyRegistration(msg: String)
 
     //Generic
     case generic(String)

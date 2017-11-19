@@ -33,7 +33,7 @@ import DataDecoder
 open class ManufacturerData {
 
     /// Manufacturer
-    open internal(set) var manufacturer: Manufacturer
+    open internal(set) var manufacturer: CompanyIdentifier
 
     /// Data
     open internal(set) var specificData: Data?
@@ -45,7 +45,12 @@ open class ManufacturerData {
 
         var decoder = DataDecoder(rawData)
 
-        self.manufacturer = Manufacturer(rawValue: decoder.decodeUInt16()) ?? .reserved
+        if let company = CompanyIdentifier.company(id: decoder.decodeUInt16()) {
+            self.manufacturer = company
+        } else {
+            //Create a CompanyIdentifer with the ID... set name to unknown.
+            self.manufacturer = CompanyIdentifier(id: decoder.decodeUInt16(), name: "Unknown")
+        }
 
         let rest = rawData.count - MemoryLayout<UInt16>.size
 
@@ -56,7 +61,7 @@ open class ManufacturerData {
     ///
     /// - Parameter manufacturer: Manufacturer enum
     /// - Parameter specificData: Manufacturer Data
-    public init(manufacturer: Manufacturer, specificData: Data?) {
+    public init(manufacturer: CompanyIdentifier, specificData: Data?) {
 
         self.manufacturer = manufacturer
         self.specificData = specificData
@@ -86,7 +91,7 @@ public extension ManufacturerData {
 
     public var hashValue: Int {
         get {
-            return manufacturer.rawValue.hashValue
+            return manufacturer.hashValue
         }
     }
 }

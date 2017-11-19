@@ -124,7 +124,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
         var msgData = Data()
 
-        msgData.append(Data(from: Manufacturer.apple.rawValue))
+        msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(2) //Type Proximity
         msgData.append(Data(from: proximityUUID.uuidString))
         msgData.append(Data(from: majorID.bigEndian))

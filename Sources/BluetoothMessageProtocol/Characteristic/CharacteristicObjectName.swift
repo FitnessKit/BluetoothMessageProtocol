@@ -74,7 +74,7 @@ open class CharacteristicObjectName: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        guard kObjectNameStringBounds.contains(objectName.characters.count) else {
+        guard kObjectNameStringBounds.contains(objectName.count) else {
             throw BluetoothMessageProtocolError.init(.decodeError(msg: "Object Name must be between \(kObjectNameStringBounds.lowerBound) and \(kObjectNameStringBounds.upperBound) characters in size."))
         }
 

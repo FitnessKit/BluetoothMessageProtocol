@@ -84,8 +84,7 @@ public extension Characteristic {
 public extension Characteristic {
 
     static public func == (lhs: Characteristic, rhs: Characteristic) -> Bool {
-        return (lhs.name == rhs.name) &&
-            (lhs.uuidString == rhs.uuidString)
+        return (lhs.name == rhs.name) && (lhs.uuidString == rhs.uuidString)
     }
     
 }
