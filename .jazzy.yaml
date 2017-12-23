@@ -204,7 +204,6 @@ custom_categories:
   - name: Manufacturer Data
     children:
     - CompanyIdentifier
-    - Manufacturer
     - ManufacturerData
     - ManufacturerDataAppleiBeacon
     - ManufacturerDataPolarHeartRate

@@ -1,5 +1,5 @@
 //
-//  ManufacturerSupportedExtension.swift
+//  CompanyIdentifierSupportedExtension.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 11/18/17.
