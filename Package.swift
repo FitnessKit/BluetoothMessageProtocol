@@ -20,6 +20,13 @@ let package = Package(
                 "DataDecoder",
             ]
         ),
+        .testTarget(
+            name: "BluetoothMessageProtocolTests",
+            dependencies: [
+                "BluetoothMessageProtocol"
+                ]
+        ),
+
     ],
     swiftLanguageVersions: [3, 4]
 )

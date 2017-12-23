@@ -1,5 +1,5 @@
 //
-//  BluetoothManufacturer.swift
+//  CompanyIdentifier.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 8/6/17.
