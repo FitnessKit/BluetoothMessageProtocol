@@ -61,6 +61,13 @@ public enum DayOfWeek: UInt8 {
     case saturday       = 6
     /// Sunday
     case sunday         = 7
+
+    public static var fromCurrentDate: DayOfWeek {
+
+        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: Date())
+
+        return DayOfWeek(rawValue: UInt8(comp.weekday ?? 0)) ?? DayOfWeek.unknown
+    }
 }
 
 /// Bluetooth Months
@@ -127,6 +134,45 @@ public struct DateTime {
     /// Number of seconds since the start of the minute
     private(set) public var seconds: UInt8
 
+    public init(year: UInt16?, month: Month, day: UInt8?, hours: UInt8, minutes: UInt8, seconds: UInt8) {
+
+        self.year = year
+        self.month = month
+        self.day = day
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+    }
+
+    /// Creates a DateTime Object from the current date
+    ///
+    /// Dates are represented in the Gregorian Calendar
+    public static var fromCurrentDate: DateTime {
+
+        let comps = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                                    from: Date())
+
+        return DateTime(year: UInt16(comps.year ?? 2000),
+                        month: Month(rawValue: UInt8(comps.month ?? 1)) ?? Month.january,
+                        day: UInt8(comps.day ?? 1),
+                        hours: UInt8(comps.hour ?? 0),
+                        minutes: UInt8(comps.minute ?? 0),
+                        seconds: UInt8(comps.second ?? 0))
+
+    }
+
+    public init(_ from: Date) {
+
+        let comps = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                                    from: from)
+
+        self = DateTime(year: UInt16(comps.year ?? 2000),
+                        month: Month(rawValue: UInt8(comps.month ?? 1)) ?? Month.january,
+                        day: UInt8(comps.day ?? 1),
+                        hours: UInt8(comps.hour ?? 0),
+                        minutes: UInt8(comps.minute ?? 0),
+                        seconds: UInt8(comps.second ?? 0))
+    }
 }
 
 public extension DateTime {
@@ -171,12 +217,52 @@ public extension DateTime {
 
 }
 
+extension DateTime: Equatable {
+
+    public static func ==(lhs: DateTime, rhs: DateTime) -> Bool {
+
+        if lhs.year == rhs.year &&
+            lhs.month.rawValue == rhs.month.rawValue &&
+            lhs.day == rhs.day &&
+            lhs.hours == rhs.hours &&
+            lhs.minutes == rhs.minutes &&
+            lhs.seconds == rhs.seconds {
+            return true
+        }
+        return false
+    }
+}
+
 public extension DateTime {
 
     /// Encode DateTime Struct
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        guard let year = year else {
+            throw BluetoothMessageProtocolError.init(message: "Year can not be nil for encoding")
+        }
+
+        guard kBluetoothYearBounds.contains(Int(year)) else {
+            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Year must be between 1582 and 9999"))
+        }
+
+        guard let day = day else {
+            throw BluetoothMessageProtocolError.init(message: "Day can not be nil for encoding")
+        }
+
+        guard kBluetoothDayOfMonthBounds.contains(Int(day)) else {
+            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Day must be between \(kBluetoothDayOfMonthBounds.lowerBound) and \(kBluetoothDayOfMonthBounds.upperBound)"))
+        }
+
+        msgData.append(Data(from: UInt16(year)))
+        msgData.append(month.rawValue)
+        msgData.append(day)
+        msgData.append(hours)
+        msgData.append(minutes)
+        msgData.append(seconds)
+
+        return msgData
     }
 
 }

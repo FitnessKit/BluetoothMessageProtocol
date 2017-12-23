@@ -114,7 +114,18 @@ open class CharacteristicCurrentTime: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        var msgData = Data()
+
+        let dateTimeData = try currentTime.encode()
+        msgData.append(dateTimeData)
+
+        msgData.append(dayOfWeek.rawValue)
+
+        let frac = UInt8(fractionalSeconds * 256)
+        msgData.append(frac)
+
+        msgData.append(adjustmentReason.rawValue)
+
+        return msgData
     }
 }
