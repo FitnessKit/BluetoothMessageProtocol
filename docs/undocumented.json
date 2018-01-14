@@ -15,13 +15,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic/CharacteristicHeartRateMeasurement.swift",
-      "line": 55,
-      "symbol": "CharacteristicHeartRateMeasurement.ContactStatus.stringValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Characteristic.swift",
       "line": 38,
       "symbol": "Characteristic.init(name:uuidString:)",
@@ -180,6 +173,13 @@
       "line": 164,
       "symbol": "DateTime.init(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/HeartRateTypes.swift",
+      "line": 39,
+      "symbol": "HeartRateContactStatus.stringValue",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     }
   ],

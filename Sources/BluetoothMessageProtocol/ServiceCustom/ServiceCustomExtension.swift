@@ -99,6 +99,20 @@ public extension Service {
         }
     }
 
+    /// North Pole Engineering AWE Diagnostics
+    public class var northPoleAweDiagnostics: ServiceNorthPoleAweDiagnostics {
+        get {
+            return ServiceNorthPoleAweDiagnostics()
+        }
+    }
+
+    /// North Pole Engineering AWE Heart Rate
+    public class var northPoleAweHeartRate: ServiceNorthPoleAweHeartRate {
+        get {
+            return ServiceNorthPoleAweHeartRate()
+        }
+    }
+
     /// Texas Instruments Firmware Update
     public class var texasInstrumentsFirmwareUpdate: ServiceTexasInstrumentsFirmwareUpdate {
         get {

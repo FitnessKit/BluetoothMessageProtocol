@@ -41,35 +41,11 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         return "2A37"
     }
 
-    /// Contact Status of Sensor
-    public enum ContactStatus: UInt8 {
-        /// Sensor Contact feature is not supported in the current connection
-        case notSupported       = 0
-        /// Sensor Contact feature is not supported in the current connection
-        case stillNotSupportd   = 1
-        /// Sensor Contact feature is supported, but contact is not detected
-        case notDetected        = 2
-        /// Sensor Contact feature is supported and contact is detected
-        case detected           = 3
-
-        public var stringValue: String {
-
-            switch self {
-            case .notSupported, .stillNotSupportd:
-                return "Sensor Contact feature is not supported"
-            case .notDetected:
-                return "Sensor Contact not detected"
-            case .detected:
-                return "Sensor Contact detected"
-            }
-        }
-    }
-
-    fileprivate struct Flags {
+    private struct Flags {
         /// Heart Rate Value Format is set to UINT16. Units: beats per minute (bpm)
         private(set) public var isFormatUInt16: Bool
         /// Sensor Contact Status
-        private(set) public var contact: ContactStatus
+        private(set) public var contact: HeartRateContactStatus
         /// Energy Expended field is present
         private(set) public var isEnergyExpendedPresent: Bool
         /// One or more RR-Interval values are present
@@ -93,7 +69,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
 
             let contactStatusBits = (value | 0x06) >> 1
 
-            contact = ContactStatus(rawValue: contactStatusBits) ?? .notSupported
+            contact = HeartRateContactStatus(rawValue: contactStatusBits) ?? .notSupported
 
             isEnergyExpendedPresent = (value & 0x08 == 0x08)
 
@@ -108,7 +84,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         ///   - contactStatus: Contact Status
         ///   - isEnergyExpendedPresent: Energy Expended Present
         ///   - isRRIntervalPresent: One or more RR Values Present
-        public init(isFormatUInt16: Bool, contactStatus: ContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
+        public init(isFormatUInt16: Bool, contactStatus: HeartRateContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
             self.isFormatUInt16 = isFormatUInt16
             self.contact = contactStatus
             self.isEnergyExpendedPresent = isEnergyExpendedPresent
@@ -117,7 +93,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     }
 
     /// Contact status of sensor
-    private(set) public var contactStatus: ContactStatus = .notSupported
+    private(set) public var contactStatus: HeartRateContactStatus = .notSupported
 
     /// Heart Rate Value
     private(set) public var heartRate: Measurement<UnitCadence>
@@ -135,7 +111,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     ///   - heartRate: Heart Rate Value
     ///   - energyExpended: Energy Expended
     ///   - rrIntervals: RR-Intervals
-    public init(contactStatus: ContactStatus, heartRate: Measurement<UnitCadence>, energyExpended: Measurement<UnitEnergy>? = nil, rrIntervals: [Measurement<UnitDuration>]? = nil) {
+    public init(contactStatus: HeartRateContactStatus, heartRate: Measurement<UnitCadence>, energyExpended: Measurement<UnitEnergy>? = nil, rrIntervals: [Measurement<UnitDuration>]? = nil) {
 
         self.contactStatus = contactStatus
         self.heartRate = heartRate

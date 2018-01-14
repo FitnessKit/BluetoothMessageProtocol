@@ -70,6 +70,8 @@ custom_categories:
     - ServiceMyoRawEMGData
     - ServiceNordicLegacyDeviceFirmwareUpdate
     - ServiceNordicSecureDeviceFirmwareUpdate
+    - ServiceNorthPoleAweDiagnostics
+    - ServiceNorthPoleAweHeartRate
     - ServiceTexasInstrumentsFirmwareUpdate
     - ServiceTexasInstrumentsSensorTagAccelerometer
     - ServiceTexasInstrumentsSensorTagBarometer
@@ -201,9 +203,16 @@ custom_categories:
     - CharacteristicWeightScaleFeature
     - CharacteristicWindChill
 
+  - name: Characteristic - Custom
+    children:
+    - CharacteristicNorthPoleAweDiagnostics
+    - CharacteristicNorthPoleAweHeartRateMeasurement
+    - CharacteristicNorthPoleAweWorkoutInformation
+
   - name: Manufacturer Data
     children:
     - CompanyIdentifier
     - ManufacturerData
+    - ManufacturerDataAltBeacon
     - ManufacturerDataAppleiBeacon
     - ManufacturerDataPolarHeartRate

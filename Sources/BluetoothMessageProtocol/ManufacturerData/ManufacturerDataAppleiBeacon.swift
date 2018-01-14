@@ -43,7 +43,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
     private(set) public var minorID: UInt16
 
     /// Measured Power
-    private(set) public var measuredPower: UInt8
+    private(set) public var measuredPower: Int8
 
     /// Creates an Apple iBeacon Manufacturer Specific Data Class
     ///
@@ -52,7 +52,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
     ///   - majorID: Major ID
     ///   - minorID: Minor ID
     ///   - measuredPower: Measured Power
-    public init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: UInt8) {
+    public init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: Int8) {
 
         self.proximityUUID = proximityUUID
         self.majorID = majorID
@@ -62,7 +62,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
         super.init(manufacturer: .apple, specificData: nil)
     }
 
-    internal init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: UInt8, rawData: Data) {
+    internal init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: Int8, rawData: Data) {
         self.proximityUUID = proximityUUID
         self.majorID = majorID
         self.minorID = minorID
@@ -109,7 +109,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
             let majorID = decoder.decodeUInt16().bigEndian
             let minorID = decoder.decodeUInt16().bigEndian
 
-            let measuredPower = decoder.decodeUInt8()
+            let measuredPower = decoder.decodeInt8()
 
             return ManufacturerDataAppleiBeacon(proximityUUID: uuid, majorID: majorID, minorID: minorID, measuredPower: measuredPower, rawData: data)
 
@@ -131,7 +131,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
         msgData.append(Data(from: proximityUUID.uuidString))
         msgData.append(Data(from: majorID.bigEndian))
         msgData.append(Data(from: minorID.bigEndian))
-        msgData.append(measuredPower)
+        msgData.append(UInt8(measuredPower))
 
         return msgData
     }

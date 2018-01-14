@@ -27,5 +27,17 @@ import Foundation
 /// Apple Manufactuer Specific Data Types
 public enum AppleDeviceType: UInt8 {
     /// iBeacon
-    case iBeaccon = 2
+    case iBeaccon               = 2
+    /// AirDrop
+    case airDrop                = 5
+    /// AirPods
+    case airPod                 = 7
+    /// AirPlay Destination
+    case airPlayDestination     = 9
+    /// AirPlay Source
+    case airPlaySource          = 10
+    /// Handoff
+    case handoff                = 12
+    /// Nearby
+    case nearby                 = 16
 }
