@@ -39,7 +39,7 @@ open class ServiceNorthPoleAweDiagnostics: Service {
 
     /// Service UUID
     public static var uuidString: String {
-        return "4B486500-6E5F-7274-6870-6F6C65656E67"
+        return "4B486500-6E6F-7274-6870-6F6C65656E67"
     }
 
     /// Service Uniform Identifier
