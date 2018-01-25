@@ -33,6 +33,8 @@ import FitnessUnits
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
 
+    private static let commandRange = ClosedRange(uncheckedBounds: (lower: 1, upper: 254))
+
     /// Characteristic Name
     public static var name: String {
         return "AWE Workout Information"
@@ -44,16 +46,19 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
     }
 
     private struct Flags {
-        /// Are Points Included
+        /// Points Present
         private(set) public var isPointsPresent: Bool
-        /// Sensor Contact Status
+        /// Energy Expended (Calories) Present
         private(set) public var isEnergyExpendedPresent: Bool
+        /// Command Present
+        private(set) public var isCommandPresent: Bool
 
         /// Rawvalue
         public var rawValue: UInt8 {
             var value: UInt8 = UInt8(isPointsPresent == true ? 1 : 0)
 
             value |= UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 1
+            value |= UInt8(isCommandPresent == true ? 1 : 0) << 2
 
             return UInt8(value)
         }
@@ -64,6 +69,7 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
         public init(_ value: UInt8) {
             self.isPointsPresent = (value & 0x01 == 0x01)
             self.isEnergyExpendedPresent = (value & 0x02 == 0x02)
+            self.isCommandPresent = (value & 0x04 == 0x04)
         }
 
         /// Creates Flags Structs
@@ -71,9 +77,10 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
         /// - Parameters:
         ///   - isPointsPresent: Points Present
         ///   - isEnergyExpendedPresent: Energy Expended Present
-        public init(isPointsPresent: Bool, isEnergyExpendedPresent: Bool) {
+        public init(isPointsPresent: Bool, isEnergyExpendedPresent: Bool, isCommandPresent: Bool) {
             self.isPointsPresent = isPointsPresent
             self.isEnergyExpendedPresent = isEnergyExpendedPresent
+            self.isCommandPresent = isCommandPresent
         }
     }
 
@@ -83,15 +90,29 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
     /// Energy Expanded
     private(set) public var energyExpended: Measurement<UnitEnergy>?
 
+    /// Command
+    ///
+    /// Values of 0 and 255 are Invalid
+    private(set) public var command: UInt8?
+
     /// Creates Workout Information Characteristic
     ///
     /// - Parameters:
     ///   - points: Points Earned
     ///   - energyExpended: Energy Expended
-    public init(points: UInt16?, energyExpended: Measurement<UnitEnergy>?) {
+    ///   - command: Command
+    public init(points: UInt16?, energyExpended: Measurement<UnitEnergy>?, command: UInt8?) {
 
         self.points = points
         self.energyExpended = energyExpended
+
+        if let command = command {
+            if CharacteristicNorthPoleAweWorkoutInformation.commandRange.contains(Int(command)) {
+                self.command = command
+            }
+        } else {
+            self.command = nil
+        }
 
         super.init(name: CharacteristicNorthPoleAweWorkoutInformation.name,
                    uuidString: CharacteristicNorthPoleAweWorkoutInformation.uuidString)
@@ -120,8 +141,17 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
 
+        var command: UInt8? = nil
+        if flags.isCommandPresent == true {
+            let value = decoder.decodeUInt8()
+            if CharacteristicNorthPoleAweWorkoutInformation.commandRange.contains(Int(value)) {
+                command = value
+            }
+        }
+
         return CharacteristicNorthPoleAweWorkoutInformation(points: points,
-                                                            energyExpended: energy)
+                                                            energyExpended: energy,
+                                                            command: command)
     }
 
     /// Encodes the Characteristic into Data
