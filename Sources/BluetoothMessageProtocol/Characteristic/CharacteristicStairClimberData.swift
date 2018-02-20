@@ -48,7 +48,7 @@ open class CharacteristicStairClimberData: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
-        /// More Data present
+        /// More Data not present (is defined opposite of the norm)
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
         /// Step per Minute present
         public static let stepPerMinutePresent: Flags           = Flags(rawValue: 1 << 1)
@@ -143,7 +143,8 @@ open class CharacteristicStairClimberData: Characteristic {
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
         var floors: UInt16?
-        if flags.contains(.moreData) == true {
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
             floors = decoder.decodeUInt16()
         }
 

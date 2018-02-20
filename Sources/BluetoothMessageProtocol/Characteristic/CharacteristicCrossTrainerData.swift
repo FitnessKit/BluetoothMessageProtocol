@@ -49,7 +49,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
-        /// More Data
+        /// More Data not present (is defined opposite of the norm)
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
         /// Average Speed present
         public static let avgSpeedPresent: Flags                = Flags(rawValue: 1 << 1)
@@ -200,7 +200,8 @@ open class CharacteristicCrossTrainerData: Characteristic {
         let flags = Flags(rawValue: UInt32(decoder.decodeUInt24()))
 
         var iSpeed: Measurement<UnitSpeed>?
-        if flags.contains(.moreData) == true {
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
             let value = Double(decoder.decodeUInt16()) * 0.01
             iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
         }

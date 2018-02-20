@@ -48,7 +48,7 @@ open class CharacteristicRowerData: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
-        /// More Data Present
+        /// More Data not present (is defined opposite of the norm)
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
         /// Average Stroke present
         public static let averageStrokePresent: Flags           = Flags(rawValue: 1 << 1)
@@ -171,7 +171,8 @@ open class CharacteristicRowerData: Characteristic {
 
         var strokeRate: Measurement<UnitCadence>?
         var strokeCount: UInt16?
-        if flags.contains(.moreData) == true {
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
             let value = Double(decoder.decodeUInt8()) * 0.5
             strokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
 

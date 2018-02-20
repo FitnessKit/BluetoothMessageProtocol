@@ -68,7 +68,7 @@ func doDecodeBody(sensorData: Data) {
 
 ## Author
 
-Kevin A. Hoogheem, kevin@hoogheem.net
+Kevin A. Hoogheem
 
 ## License
 

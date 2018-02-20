@@ -48,7 +48,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
-        /// More Data Present
+        /// More Data not present (is defined opposite of the norm)
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
         /// Instantaneous Cadence present
         public static let instantaneousCadencePresent: Flags    = Flags(rawValue: 1 << 1)
@@ -164,7 +164,8 @@ open class CharacteristicIndoorBikeData: Characteristic {
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
         var iSpeed: Measurement<UnitSpeed>?
-        if flags.contains(.moreData) == true {
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
             let value = Double(decoder.decodeUInt16()) * 0.01
             iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
         }
