@@ -20,43 +20,44 @@ custom_categories:
   - name: Services - Bluetooth SIG
     children:
     - ServiceGenericAccess
-    - ServiceGenericAttribute
-    - ServiceImmediateAlert
-    - ServiceLinkLoss
-    - ServiceTxPower
-    - ServiceCurrentTime
-    - ServiceReferenceTimeUpdate
-    - ServiceNextDSTChange
-    - ServiceGlucose
-    - ServiceHealthThermometer
-    - ServiceDeviceInformation
-    - ServiceHeartRate
-    - ServicePhoneAlertStatus
+    - ServiceAlertNotification
+    - ServiceAutomationInputOutput
     - ServiceBattery
     - ServiceBloodPressure
-    - ServiceAlertNotification
-    - ServiceHumanInterfaceDevice
-    - ServiceScanParameters
-    - ServiceRunningSpeedAndCadence
-    - ServiceAutomationInputOutput
-    - ServiceCyclingSpeedAndCadence
-    - ServiceCyclingPower
-    - ServiceLocationAndNavigation
-    - ServiceEnvironmentalSensing
     - ServiceBodyComposition
-    - ServiceUserData
-    - ServiceWeightScale
     - ServiceBondManagement
     - ServiceContinuousGlucoseMonitoring
-    - ServiceInternetProtocolSupport
-    - ServiceIndoorPositioning
-    - ServicePulseOximeter
-    - ServiceHttpProxy
-    - ServiceTransportDiscovery
-    - ServiceObjectTransfer
+    - ServiceCurrentTime
+    - ServiceCyclingPower
+    - ServiceCyclingSpeedAndCadence
+    - ServiceDeviceInformation
+    - ServiceEnvironmentalSensing
     - ServiceFitnessMachine
+    - ServiceGenericAttribute
+    - ServiceGlucose
+    - ServiceHealthThermometer
+    - ServiceHeartRate
+    - ServiceHttpProxy
+    - ServiceHumanInterfaceDevice
+    - ServiceImmediateAlert
+    - ServiceIndoorPositioning
+    - ServiceInternetProtocolSupport
+    - ServiceLinkLoss
+    - ServiceLocationAndNavigation
     - ServiceMeshProvisioning
     - ServiceMeshProxy
+    - ServiceNextDSTChange
+    - ServiceObjectTransfer
+    - ServicePhoneAlertStatus
+    - ServicePulseOximeter
+    - ServiceReconnectionConfiguration
+    - ServiceReferenceTimeUpdate
+    - ServiceRunningSpeedAndCadence
+    - ServiceScanParameters
+    - ServiceTransportDiscovery
+    - ServiceTxPower
+    - ServiceUserData
+    - ServiceWeightScale
    
   - name: Services - Custom
     children:
