@@ -133,6 +133,7 @@ custom_categories:
     - CharacteristicFirmwareRevisionString
     - CharacteristicFirstName
     - CharacteristicFitnessMachineFeature
+    - CharacteristicFitnessMachineStatus
     - CharacteristicFiveZoneHeartRateLimits
     - CharacteristicFloorNumber
     - CharacteristicGender
@@ -223,3 +224,24 @@ custom_categories:
     - ManufacturerDataAltBeacon
     - ManufacturerDataAppleiBeacon
     - ManufacturerDataPolarHeartRate
+
+  - name: Fitness Machine Status
+    children:
+    - FitnessMachineStatusCode
+    - FitnessMachineStatus
+    - FitnessMachineStatusGeneric
+    - FitnessMachineStatusStopPause
+    - FitnessMachineStatusTargetSpeed
+    - FitnessMachineStatusTargetIncline
+    - FitnessMachineStatusTargetResistanceLevel
+    - FitnessMachineStatusTargetPower
+    - FitnessMachineStatusTargetHeartRate
+    - FitnessMachineStatusTargetedExpendedEnergyChanged
+    - FitnessMachineStatusTargetedSteps
+    - FitnessMachineStatusTargetedStrides
+    - FitnessMachineStatusTargetedDistance  
+    - FitnessMachineStatusTargetedTrainingTime
+    - FitnessMachineStatusWheelCircumference
+    - FitnessMachineStatusSpinDown
+    - FitnessMachineStatusTargetedCadence
+

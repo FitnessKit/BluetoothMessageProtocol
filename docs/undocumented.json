@@ -125,6 +125,118 @@
       "symbol": "DateTime.init(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 43,
+      "symbol": "FitnessMachineStatusGeneric.init(code:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 51,
+      "symbol": "FitnessMachineStatusStopPause.Control",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 66,
+      "symbol": "FitnessMachineStatusStopPause.init(code:controlInformation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 83,
+      "symbol": "FitnessMachineStatusTargetSpeed.init(code:speed:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 100,
+      "symbol": "FitnessMachineStatusTargetIncline.init(code:incline:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 117,
+      "symbol": "FitnessMachineStatusTargetResistanceLevel.init(code:resistanceLevel:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 135,
+      "symbol": "FitnessMachineStatusTargetPower.init(code:power:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 152,
+      "symbol": "FitnessMachineStatusTargetHeartRate.init(code:heartrate:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 169,
+      "symbol": "FitnessMachineStatusTargetedExpendedEnergyChanged.init(code:energy:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 186,
+      "symbol": "FitnessMachineStatusTargetedSteps.init(code:steps:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 203,
+      "symbol": "FitnessMachineStatusTargetedStrides.init(code:strides:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 220,
+      "symbol": "FitnessMachineStatusTargetedDistance.init(code:distance:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 237,
+      "symbol": "FitnessMachineStatusTargetedTrainingTime.init(code:time:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 254,
+      "symbol": "FitnessMachineStatusWheelCircumference.init(code:circumference:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 273,
+      "symbol": "FitnessMachineStatusTargetedCadence.init(code:cadence:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol/Sources/BluetoothMessageProtocol/Types/FitnessMachineStatus/FitnessMachineStatusValue.swift",
+      "line": 303,
+      "symbol": "FitnessMachineStatusSpinDown.init(code:status:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
     }
   ],
   "source_directory": "/Users/kevinh/Developer/GitHub/FitnessKit/BluetoothMessageProtocol"
