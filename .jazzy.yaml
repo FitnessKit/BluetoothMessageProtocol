@@ -132,6 +132,7 @@ custom_categories:
     - CharacteristicFatBurnHeartRateUpperLimit
     - CharacteristicFirmwareRevisionString
     - CharacteristicFirstName
+    - CharacteristicFitnessMachineFeature
     - CharacteristicFiveZoneHeartRateLimits
     - CharacteristicFloorNumber
     - CharacteristicGender
