@@ -52,6 +52,11 @@ public struct FitnessMachineTime {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineEnergy {
 
+    /// Energy Data Not available
+    internal static let energyNotAvailable: UInt16 = UInt16.max
+    /// Energy Per Minute Data Not available
+    internal static let energyPerMinuteNotAvailable: UInt16 = UInt16(UInt8.max)
+
     /// Total Energy
     private(set) public var total: Measurement<UnitEnergy>?
 

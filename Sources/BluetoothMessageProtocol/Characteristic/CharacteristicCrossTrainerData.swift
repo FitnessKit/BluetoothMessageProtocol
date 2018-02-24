@@ -200,122 +200,149 @@ open class CharacteristicCrossTrainerData: Characteristic {
         let flags = Flags(rawValue: UInt32(decoder.decodeUInt24()))
 
         var iSpeed: Measurement<UnitSpeed>?
-        /// Available only when More data is NOT present
-        if flags.contains(.moreData) == false {
-            let value = Double(decoder.decodeUInt16()) * 0.01
-            iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
-        }
-
         var avgSpeed: Measurement<UnitSpeed>?
-        if flags.contains(.avgSpeedPresent) == true {
-            let value = Double(decoder.decodeUInt16()) * 0.01
-            avgSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
-        }
-
         var totalDistance: Measurement<UnitLength>?
-        if flags.contains(.totalDistancePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            totalDistance = Measurement(value: value, unit: UnitLength.meters)
-        }
-
         var stepsPerMinute: Measurement<UnitCadence>?
         var averageStepRate: Measurement<UnitCadence>?
-        if flags.contains(.stepCountPresent) == true {
-            let spmValue = Double(decoder.decodeUInt16())
-            stepsPerMinute = Measurement(value: spmValue, unit: UnitCadence.stepsPerMinute)
-
-            let avgValue = Double(decoder.decodeUInt16())
-            averageStepRate = Measurement(value: avgValue, unit: UnitCadence.stepsPerMinute)
-        }
-
         var strideCount: Double?
-        if flags.contains(.strideCountPresent) == true {
-            strideCount = Double(decoder.decodeUInt16()) * 0.1
-        }
-
         var pElevaionGain: Measurement<UnitLength>?
         var nElevaionGain: Measurement<UnitLength>?
-        if flags.contains(.elevationGainPresent) == true {
-            let pValue = Double(decoder.decodeUInt16())
-            pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
-
-            let nValue = Double(decoder.decodeUInt16())
-            nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
-        }
-
         var inclination: Measurement<UnitPercent>?
         var rampAngle: Measurement<UnitAngle>?
-        if flags.contains(.angleSettingpresent) == true {
-            let iValue = Double(decoder.decodeInt16()) * 0.1
-            inclination = Measurement(value: iValue, unit: UnitPercent.percent)
-
-            let rValue = Double(decoder.decodeInt16()) * 0.1
-            rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
-        }
-
         var resistanceLevel: Double?
-        if flags.contains(.resistanceLevelPresent) == true {
-            resistanceLevel = Double(decoder.decodeInt16()) * 0.1
-        }
-
         var iPower: Measurement<UnitPower>?
-        if flags.contains(.instantPowerPresent) == true {
-            let value = Double(decoder.decodeInt16())
-            iPower = Measurement(value: value, unit: UnitPower.watts)
-        }
-
         var aPower: Measurement<UnitPower>?
-        if flags.contains(.averagePowerPresent) == true {
-            let value = Double(decoder.decodeInt16())
-            aPower = Measurement(value: value, unit: UnitPower.watts)
-        }
-
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
         var energyPerMinute: Measurement<UnitEnergy>?
-        if flags.contains(.expendedEnergyPresent) == true {
-            let tValue = Double(decoder.decodeUInt16())
-            totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
-
-            let perHourValue = Double(decoder.decodeUInt16())
-            energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
-
-            let perMinValue = Double(decoder.decodeUInt8())
-            energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
-
-        }
-
-        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
-
         var heartRate: UInt8?
-        if flags.contains(.heartRatePresent) == true {
-            heartRate = decoder.decodeUInt8()
-        }
-
         var mets: Double?
-        if flags.contains(.metabolicEquivalentPresent) == true {
-            mets = Double(decoder.decodeUInt8()) * 0.1
-        }
-
-
         var elapsedTime: Measurement<UnitDuration>?
-        if flags.contains(.elapsedTimePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
-
         var remainingTime: Measurement<UnitDuration>?
-        if flags.contains(.remainingTimePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
 
-        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
+
+            let value = Double(decoder.decodeUInt16()) * 0.01
+            iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+
+        } else {
+
+            if flags.contains(.avgSpeedPresent) == true {
+                let value = Double(decoder.decodeUInt16()) * 0.01
+                avgSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+            }
+
+            if flags.contains(.totalDistancePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                totalDistance = Measurement(value: value, unit: UnitLength.meters)
+            }
+
+            if flags.contains(.stepCountPresent) == true {
+                let steps = decoder.decodeUInt16()
+                let stepRate = decoder.decodeUInt16()
+
+                if steps != UInt16.max {
+                    let spmValue = Double(steps)
+                    stepsPerMinute = Measurement(value: spmValue, unit: UnitCadence.stepsPerMinute)
+                }
+
+                if stepRate != UInt16.max {
+                    let avgValue = Double(stepRate)
+                    averageStepRate = Measurement(value: avgValue, unit: UnitCadence.stepsPerMinute)
+                }
+            }
+
+            if flags.contains(.strideCountPresent) == true {
+                strideCount = Double(decoder.decodeUInt16()) * 0.1
+            }
+
+            if flags.contains(.elevationGainPresent) == true {
+                let pValue = Double(decoder.decodeUInt16())
+                pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
+
+                let nValue = Double(decoder.decodeUInt16())
+                nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
+            }
+
+            if flags.contains(.angleSettingpresent) == true {
+                let incline = decoder.decodeInt16()
+                let ramp = decoder.decodeInt16()
+
+                if incline != Int16.max {
+                    let iValue = Double(incline) * 0.1
+                    inclination = Measurement(value: iValue, unit: UnitPercent.percent)
+                }
+
+                if ramp != Int16.max {
+                    let rValue = Double(ramp) * 0.1
+                    rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
+                }
+            }
+
+            if flags.contains(.resistanceLevelPresent) == true {
+                resistanceLevel = Double(decoder.decodeInt16()) * 0.1
+            }
+
+            if flags.contains(.instantPowerPresent) == true {
+                let value = Double(decoder.decodeInt16())
+                iPower = Measurement(value: value, unit: UnitPower.watts)
+            }
+
+            if flags.contains(.averagePowerPresent) == true {
+                let value = Double(decoder.decodeInt16())
+                aPower = Measurement(value: value, unit: UnitPower.watts)
+            }
+
+            if flags.contains(.expendedEnergyPresent) == true {
+                let total = decoder.decodeUInt16()
+                let perHour = decoder.decodeUInt16()
+                let perMin = decoder.decodeUInt16()
+
+                if total != FitnessMachineEnergy.energyNotAvailable {
+                    let tValue = Double(total)
+                    totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
+                }
+
+                if perHour != FitnessMachineEnergy.energyNotAvailable {
+                    let perHourValue = Double(perHour)
+                    energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
+                }
+
+                if perMin != FitnessMachineEnergy.energyPerMinuteNotAvailable {
+                    let perMinValue = Double(perMin)
+                    energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
+                }
+            }
+
+
+            if flags.contains(.heartRatePresent) == true {
+                heartRate = decoder.decodeUInt8()
+            }
+
+            if flags.contains(.metabolicEquivalentPresent) == true {
+                mets = Double(decoder.decodeUInt8()) * 0.1
+            }
+
+            if flags.contains(.elapsedTimePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
+            }
+
+            if flags.contains(.remainingTimePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
+            }
+        }
 
         var movementDirection: FitnessMachineMovementDirection = .forward
         if flags.contains(.backwardDirection) == true {
             movementDirection = .backward
         }
+
+
+        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
+        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
         return CharacteristicCrossTrainerData(instantaneousSpeed: iSpeed,
                                               averageSpeed: avgSpeed,

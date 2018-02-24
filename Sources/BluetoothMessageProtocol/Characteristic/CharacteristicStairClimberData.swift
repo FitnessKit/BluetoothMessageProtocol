@@ -143,72 +143,86 @@ open class CharacteristicStairClimberData: Characteristic {
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
         var floors: UInt16?
-        /// Available only when More data is NOT present
-        if flags.contains(.moreData) == false {
-            floors = decoder.decodeUInt16()
-        }
-
         var stepsPerMinute: Measurement<UnitCadence>?
-        if flags.contains(.stepPerMinutePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
-        }
-
         var averageStepRate: Measurement<UnitCadence>?
-        if flags.contains(.averageStepRatePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
-        }
-
         var positiveElevationGain: Measurement<UnitLength>?
-        if flags.contains(.positiveElevationGainPresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
-        }
-
         var strideCount: UInt16?
-        if flags.contains(.strideCountPresent) == true {
-            strideCount = decoder.decodeUInt16()
-        }
-
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
         var energyPerMinute: Measurement<UnitEnergy>?
-        if flags.contains(.expendedEnergyPresent) == true {
-            let tValue = Double(decoder.decodeUInt16())
-            totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
+        var heartRate: UInt8?
+        var mets: Double?
+        var elapsedTime: Measurement<UnitDuration>?
+        var remainingTime: Measurement<UnitDuration>?
 
-            let perHourValue = Double(decoder.decodeUInt16())
-            energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
 
-            let perMinValue = Double(decoder.decodeUInt8())
-            energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
+            floors = decoder.decodeUInt16()
+
+        } else {
+
+            if flags.contains(.stepPerMinutePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
+            }
+
+            if flags.contains(.averageStepRatePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
+            }
+
+            if flags.contains(.positiveElevationGainPresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
+            }
+
+            if flags.contains(.strideCountPresent) == true {
+                strideCount = decoder.decodeUInt16()
+            }
+
+            if flags.contains(.expendedEnergyPresent) == true {
+                let total = decoder.decodeUInt16()
+                let perHour = decoder.decodeUInt16()
+                let perMin = decoder.decodeUInt16()
+
+                if total != FitnessMachineEnergy.energyNotAvailable {
+                    let tValue = Double(total)
+                    totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
+                }
+
+                if perHour != FitnessMachineEnergy.energyNotAvailable {
+                    let perHourValue = Double(perHour)
+                    energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
+                }
+
+                if perMin != FitnessMachineEnergy.energyPerMinuteNotAvailable {
+                    let perMinValue = Double(perMin)
+                    energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
+                }
+            }
+
+            if flags.contains(.heartRatePresent) == true {
+                heartRate = decoder.decodeUInt8()
+            }
+
+            if flags.contains(.metabolicEquivalentPresent) == true {
+                mets = Double(decoder.decodeUInt8()) * 0.1
+            }
+
+            if flags.contains(.elapsedTimePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
+            }
+
+            if flags.contains(.remainingTimePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
+            }
         }
+
 
         let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
-
-        var heartRate: UInt8?
-        if flags.contains(.heartRatePresent) == true {
-            heartRate = decoder.decodeUInt8()
-        }
-
-        var mets: Double?
-        if flags.contains(.metabolicEquivalentPresent) == true {
-            mets = Double(decoder.decodeUInt8()) * 0.1
-        }
-
-        var elapsedTime: Measurement<UnitDuration>?
-        if flags.contains(.elapsedTimePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
-
-        var remainingTime: Measurement<UnitDuration>?
-        if flags.contains(.remainingTimePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
-
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
         return CharacteristicStairClimberData(floors: floors,

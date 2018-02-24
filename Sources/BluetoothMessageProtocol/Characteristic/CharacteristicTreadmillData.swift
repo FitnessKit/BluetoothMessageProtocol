@@ -179,105 +179,126 @@ open class CharacteristicTreadmillData: Characteristic {
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
         var iSpeed: Measurement<UnitSpeed>?
-        /// Available only when More data is NOT present
-        if flags.contains(.moreData) == false {
-            let value = Double(decoder.decodeUInt16()) * 0.01
-            iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
-        }
-
         var avgSpeed: Measurement<UnitSpeed>?
-        if flags.contains(.averageSpeedPresent) == true {
-            let value = Double(decoder.decodeUInt16()) * 0.01
-            avgSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
-        }
-
         var totalDistance: Measurement<UnitLength>?
-        if flags.contains(.totalDistancePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            totalDistance = Measurement(value: value, unit: UnitLength.meters)
-        }
-
         var inclination: Measurement<UnitPercent>?
         var rampAngle: Measurement<UnitAngle>?
-        if flags.contains(.angleSettingpresent) == true {
-            let iValue = Double(decoder.decodeInt16()) * 0.1
-            inclination = Measurement(value: iValue, unit: UnitPercent.percent)
-
-            let rValue = Double(decoder.decodeInt16()) * 0.1
-            rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
-        }
-
         var pElevaionGain: Measurement<UnitLength>?
         var nElevaionGain: Measurement<UnitLength>?
-        if flags.contains(.elevationGainPresent) == true {
-            let pValue = Double(decoder.decodeUInt16())
-            pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
-
-            let nValue = Double(decoder.decodeUInt16())
-            nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
-        }
-
         var instantaneousPace: Measurement<UnitSpeed>?
-        if flags.contains(.instantaneousPacePresent) == true {
-            let value = Double(decoder.decodeUInt8()) * 0.1
-            instantaneousPace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
-        }
-
         var averagePace: Measurement<UnitSpeed>?
-        if flags.contains(.instantaneousPacePresent) == true {
-            let value = Double(decoder.decodeUInt8()) * 0.1
-            averagePace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
-        }
-
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
         var energyPerMinute: Measurement<UnitEnergy>?
-        if flags.contains(.expendedEnergyPresent) == true {
-            let tValue = Double(decoder.decodeUInt16())
-            totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
-
-            let perHourValue = Double(decoder.decodeUInt16())
-            energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
-
-            let perMinValue = Double(decoder.decodeUInt8())
-            energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
-        }
-
-        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
-
         var heartRate: UInt8?
-        if flags.contains(.heartRatePresent) == true {
-            heartRate = decoder.decodeUInt8()
-        }
-
         var mets: Double?
-        if flags.contains(.metabolicEquivalentPresent) == true {
-            mets = Double(decoder.decodeUInt8()) * 0.1
-        }
-
         var elapsedTime: Measurement<UnitDuration>?
-        if flags.contains(.elapsedTimePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
-
         var remainingTime: Measurement<UnitDuration>?
-        if flags.contains(.remainingTimePresent) == true {
-            let value = Double(decoder.decodeUInt16())
-            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
-
-        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
-
         var forceOnBelt: Measurement<UnitForce>?
         var powerOutput: Measurement<UnitPower>?
-        if flags.contains(.beltForcePowerOutputPresent) == true {
-            let bValue = Double(decoder.decodeInt16())
-            forceOnBelt = Measurement(value: bValue, unit: UnitForce.newton)
 
-            let value = Double(decoder.decodeInt16())
-            powerOutput = Measurement(value: value, unit: UnitPower.watts)
+        /// Available only when More data is NOT present
+        if flags.contains(.moreData) == false {
+
+            let value = Double(decoder.decodeUInt16()) * 0.01
+            iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+
+        } else {
+
+            if flags.contains(.averageSpeedPresent) == true {
+                let value = Double(decoder.decodeUInt16()) * 0.01
+                avgSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+            }
+
+            if flags.contains(.totalDistancePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                totalDistance = Measurement(value: value, unit: UnitLength.meters)
+            }
+
+            if flags.contains(.angleSettingpresent) == true {
+                let incline = decoder.decodeInt16()
+                let ramp = decoder.decodeInt16()
+
+                if incline != Int16.max {
+                    let iValue = Double(incline) * 0.1
+                    inclination = Measurement(value: iValue, unit: UnitPercent.percent)
+                }
+
+                if ramp != Int16.max {
+                    let rValue = Double(ramp) * 0.1
+                    rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
+                }
+            }
+
+            if flags.contains(.elevationGainPresent) == true {
+                let pValue = Double(decoder.decodeUInt16())
+                pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
+
+                let nValue = Double(decoder.decodeUInt16())
+                nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
+            }
+
+            if flags.contains(.instantaneousPacePresent) == true {
+                let value = Double(decoder.decodeUInt8()) * 0.1
+                instantaneousPace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
+            }
+
+            if flags.contains(.instantaneousPacePresent) == true {
+                let value = Double(decoder.decodeUInt8()) * 0.1
+                averagePace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
+            }
+
+            if flags.contains(.expendedEnergyPresent) == true {
+                let total = decoder.decodeUInt16()
+                let perHour = decoder.decodeUInt16()
+                let perMin = decoder.decodeUInt16()
+
+                if total != FitnessMachineEnergy.energyNotAvailable {
+                    let tValue = Double(total)
+                    totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
+                }
+
+                if perHour != FitnessMachineEnergy.energyNotAvailable {
+                    let perHourValue = Double(perHour)
+                    energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
+                }
+
+                if perMin != FitnessMachineEnergy.energyPerMinuteNotAvailable {
+                    let perMinValue = Double(perMin)
+                    energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
+                }
+            }
+
+            if flags.contains(.heartRatePresent) == true {
+                heartRate = decoder.decodeUInt8()
+            }
+
+            if flags.contains(.metabolicEquivalentPresent) == true {
+                mets = Double(decoder.decodeUInt8()) * 0.1
+            }
+
+            if flags.contains(.elapsedTimePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
+            }
+
+            if flags.contains(.remainingTimePresent) == true {
+                let value = Double(decoder.decodeUInt16())
+                remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
+            }
+
+            if flags.contains(.beltForcePowerOutputPresent) == true {
+                let bValue = Double(decoder.decodeInt16())
+                forceOnBelt = Measurement(value: bValue, unit: UnitForce.newton)
+
+                let value = Double(decoder.decodeInt16())
+                powerOutput = Measurement(value: value, unit: UnitPower.watts)
+            }
         }
+
+
+        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
+        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
         return CharacteristicTreadmillData(instantaneousSpeed: iSpeed,
                                            averageSpeed: avgSpeed,
