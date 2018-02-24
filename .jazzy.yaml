@@ -15,6 +15,7 @@ custom_categories:
   - name: Base
     children:
     - Service
+    - ServiceData
     - Characteristic
 
   - name: Services - Bluetooth SIG
@@ -83,6 +84,10 @@ custom_categories:
     - ServiceTexasInstrumentsSensorTagTemperature
     - ServiceWahooFitnessEquipment
     - ServiceWahooFitnessGEMModuleFirmwareUpdate
+
+  - name: ServiceData - Bluetooth SIG
+    children:
+    - ServiceDataFitnessMachine
 
   - name: Characteristics - Bluetooth SIG
     children:

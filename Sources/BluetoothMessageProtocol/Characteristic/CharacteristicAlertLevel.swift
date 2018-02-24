@@ -52,6 +52,7 @@ open class CharacteristicAlertLevel: Characteristic {
         /// High Alert
         case highAlert      = 2
 
+        /// String Value for AlertLevel
         public var stringValue: String {
 
             switch self {

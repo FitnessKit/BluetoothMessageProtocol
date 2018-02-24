@@ -51,9 +51,9 @@ open class Characteristic {
 //        fatalError("*** You must override in your class.")
 //    }
 
-    /// Deocdes the BLE Data
+    /// Deocdes the Characteristic Data
     ///
-    /// - Parameter data: Data from sensor
+    /// - Parameter data: Data from sensor characteristic
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open class func decode(data: Data) throws -> Self {

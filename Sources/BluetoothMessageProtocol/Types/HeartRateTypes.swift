@@ -36,6 +36,7 @@ public enum HeartRateContactStatus: UInt8 {
     /// Sensor Contact feature is supported and contact is detected
     case detected           = 3
 
+    /// String Value for Contact Status
     public var stringValue: String {
 
         switch self {

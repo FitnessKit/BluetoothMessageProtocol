@@ -26,6 +26,9 @@ import Foundation
 
 internal var allCompanyIdentifiers: [CompanyIdentifier] = [CompanyIdentifier]()
 
+/// BLE Company Identifier
+///
+/// Provides the Company Assigned ID and Name
 open class CompanyIdentifier {
 
     /// Company ID

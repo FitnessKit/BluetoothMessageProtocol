@@ -108,6 +108,7 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         case controlSolutions           = 10
     }
 
+    /// Location of Continuous Glucose Monitors
     public enum Location: UInt8 {
         /// Reserved for future use
         case reserved                   = 0

@@ -36,7 +36,7 @@ public enum ErrorReasons {
     /// Company ID Already registered
     case companyRegistration(msg: String)
 
-    //Generic
+    /// Generic Error
     case generic(String)
 }
 
