@@ -77,10 +77,10 @@ open class CharacteristicIndoorBikeData: Characteristic {
     }
 
     /// Instantaneous Speed
-    private(set) public var instantaneousSpeed: Measurement<UnitSpeed>?
+    private(set) public var instantaneousSpeed: FitnessMachineSpeedType?
 
     /// Average Speed
-    private(set) public var averageSpeed: Measurement<UnitSpeed>?
+    private(set) public var averageSpeed: FitnessMachineSpeedType?
 
     /// Instantaneous Cadence
     private(set) public var instantaneousCadence: Measurement<UnitCadence>?
@@ -95,10 +95,10 @@ open class CharacteristicIndoorBikeData: Characteristic {
     private(set) public var resistanceLevel: Double?
 
     /// Instantaneous Power
-    private(set) public var instantaneousPower: Measurement<UnitPower>?
+    private(set) public var instantaneousPower: FitnessMachinePowerType?
 
     /// Average Power
-    private(set) public var averagePower: Measurement<UnitPower>?
+    private(set) public var averagePower: FitnessMachinePowerType?
 
     /// Energy Information
     private(set) public var energy: FitnessMachineEnergy
@@ -127,7 +127,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
     ///   - heartRate: Heart Rate
     ///   - metabolicEquivalent: Metabolic Equivalent
     ///   - time: Time Information
-    public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, instantaneousCadence: Measurement<UnitCadence>?, averageCadence: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, resistanceLevel: Double?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
+    public init(instantaneousSpeed: FitnessMachineSpeedType?, averageSpeed: FitnessMachineSpeedType?, instantaneousCadence: Measurement<UnitCadence>?, averageCadence: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, resistanceLevel: Double?, instantaneousPower: FitnessMachinePowerType?, averagePower: FitnessMachinePowerType?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
@@ -163,14 +163,14 @@ open class CharacteristicIndoorBikeData: Characteristic {
 
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
-        var iSpeed: Measurement<UnitSpeed>?
-        var avgSpeed: Measurement<UnitSpeed>?
+        var iSpeed: FitnessMachineSpeedType?
+        var avgSpeed: FitnessMachineSpeedType?
         var instantaneousCadence: Measurement<UnitCadence>?
         var averageCadence: Measurement<UnitCadence>?
         var totalDistance: Measurement<UnitLength>?
         var resistanceLevel: Double?
-        var iPower: Measurement<UnitPower>?
-        var aPower: Measurement<UnitPower>?
+        var iPower: FitnessMachinePowerType?
+        var aPower: FitnessMachinePowerType?
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
         var energyPerMinute: Measurement<UnitEnergy>?
@@ -182,14 +182,12 @@ open class CharacteristicIndoorBikeData: Characteristic {
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
             
-            let value = Double(decoder.decodeUInt16()) * 0.01
-            iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+            iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
 
         } else {
 
             if flags.contains(.averageSpeedPresent) == true {
-                let value = Double(decoder.decodeUInt16()) * 0.01
-                avgSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+                avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
             }
 
             if flags.contains(.instantaneousCadencePresent) == true {
@@ -212,13 +210,11 @@ open class CharacteristicIndoorBikeData: Characteristic {
             }
 
             if flags.contains(.instantaneousPowerPresent) == true {
-                let value = Double(decoder.decodeInt16())
-                iPower = Measurement(value: value, unit: UnitPower.watts)
+                iPower = FitnessMachinePowerType.create(decoder.decodeInt16())
             }
 
             if flags.contains(.averagePowerPresent) == true {
-                let value = Double(decoder.decodeInt16())
-                aPower = Measurement(value: value, unit: UnitPower.watts)
+                aPower = FitnessMachinePowerType.create(decoder.decodeInt16())
             }
 
             if flags.contains(.expendedEnergyPresent) == true {

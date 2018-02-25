@@ -76,67 +76,89 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
         if let opCode = opCode {
             switch opCode {
             case .stopPauseByUser:
-                let control = FitnessMachineStatusStopPause.Control(rawValue: decoder.decodeUInt8()) ?? .reserved
-                statusValue = FitnessMachineStatusStopPause(code: opCode, controlInformation: control)
+                let control = FitnessMachineStopPauseType(rawValue: decoder.decodeUInt8()) ?? .reserved
+                statusValue = FitnessMachineStatusStopPause(controlInformation: control)
 
             case .targetSpeedChanged:
-                let value = Double(decoder.decodeUInt16())  * 0.01
-                let speed: Measurement = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
-                statusValue = FitnessMachineStatusTargetSpeed(code: opCode, speed: speed)
+                let speed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
+                statusValue = FitnessMachineStatusTargetSpeed(speed: speed)
 
             case .targetInclineChanaged:
-                let value = Double(decoder.decodeInt16()) * 0.1
-                let incline: Measurement = Measurement(value: value, unit: UnitPercent.percent)
-                statusValue = FitnessMachineStatusTargetIncline(code: opCode, incline: incline)
+                let incline = FitnessMachineInclinationType.create(decoder.decodeInt16())
+                statusValue = FitnessMachineStatusTargetIncline(incline: incline)
 
             case .targetResistanceLevelChanged:
-                let level = Double(decoder.decodeUInt8()) * 0.1
-                statusValue = FitnessMachineStatusTargetResistanceLevel(code: opCode, resistanceLevel: level)
+                let rLevel = FitnessMachineTargetResistanceLevelType.create(decoder.decodeUInt8())
+                statusValue = FitnessMachineStatusTargetResistanceLevel(resistanceLevel: rLevel)
 
             case .targetPowerChanged:
-                let value = Double(decoder.decodeInt16())
-                let power = Measurement(value: value, unit: UnitPower.watts)
-                statusValue = FitnessMachineStatusTargetPower(code: opCode, power: power)
+                let power = FitnessMachinePowerType.create(decoder.decodeInt16())
+                statusValue = FitnessMachineStatusTargetPower(power: power)
 
             case .targetHeartRateChanged:
                 let hr = decoder.decodeUInt8()
-                statusValue = FitnessMachineStatusTargetHeartRate(code: opCode, heartrate: hr)
+                statusValue = FitnessMachineStatusTargetHeartRate(heartrate: hr)
 
             case .targetedExpendedEnergyChanged:
-                let value = Double(decoder.decodeUInt16())
-                let energy = Measurement(value: value, unit: UnitEnergy.calories)
-                statusValue = FitnessMachineStatusTargetedExpendedEnergyChanged(code: opCode, energy: energy)
+                let energy = FitnessMachineTargetExpendedEnergy.create(decoder.decodeUInt16())
+                statusValue = FitnessMachineStatusTargetedExpendedEnergyChanged(energy: energy)
 
             case .targetedStepsChanged:
                 let value = decoder.decodeUInt16()
-                statusValue = FitnessMachineStatusTargetedSteps(code: opCode, steps: value)
+                statusValue = FitnessMachineStatusTargetedSteps(steps: value)
 
             case .targetedStridesChanged:
                 let value = decoder.decodeUInt16()
-                statusValue = FitnessMachineStatusTargetedStrides(code: opCode, strides: value)
+                statusValue = FitnessMachineStatusTargetedStrides(strides: value)
 
             case .targetedDistanceChanged:
-                let value = Double(decoder.decodeUInt24())
-                let distance = Measurement(value: value, unit: UnitLength.meters)
-                statusValue = FitnessMachineStatusTargetedDistance(code: opCode, distance: distance)
+                let distance = FitnessMachineTargetDistance.create(UInt32(decoder.decodeUInt24()))
+                statusValue = FitnessMachineStatusTargetedDistance(distance: distance)
 
             case .targetedTrainingTimeChanged:
-                let value = Double(decoder.decodeUInt16())
-                let time = Measurement(value: value, unit: UnitDuration.seconds)
-                statusValue = FitnessMachineStatusTargetedTrainingTime(code: opCode, time: time)
+                let time = FitnessMachineTargetTime.create(decoder.decodeUInt16())
+                statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
+
+            case .targetedTimeInTwoHrZoneChanged:
+                let burn = decoder.decodeUInt16()
+                let fitness = decoder.decodeUInt16()
+                let time = FitnessMachineTargetTimeInTwoHrZone.create(fatBurnZone: burn, fitnessZone: fitness)
+                statusValue = FitnessMachineStatusTargetedTimeInTwoHrZoneChanged(time: time)
+
+            case .targetedTimeInThreeHrZoneChanged:
+                let light = decoder.decodeUInt16()
+                let moderate = decoder.decodeUInt16()
+                let hard = decoder.decodeUInt16()
+                let time = FitnessMachineTargetTimeInThreeHrZone.create(lightZone: light,
+                                                                        moderateZone: moderate,
+                                                                        hardZone: hard)
+                statusValue = FitnessMachineStatusTargetedTimeInThreeHrZoneChanged(time: time)
+
+            case .targetedTimeInFiveHrZoneChanged:
+                let veryLight = decoder.decodeUInt16()
+                let light = decoder.decodeUInt16()
+                let moderate = decoder.decodeUInt16()
+                let hard = decoder.decodeUInt16()
+                let max = decoder.decodeUInt16()
+                let time = FitnessMachineTargetTimeInFiveHrZone.create(veryLightZone: veryLight,
+                                                                       lightZone: light,
+                                                                       moderateZone: moderate,
+                                                                       hardZone: hard,
+                                                                       maximumZone: max)
+                statusValue = FitnessMachineStatusTargetedTimeInFiveHrZoneChanged(time: time)
+
 
             case .wheelCircumferenceChanged:
-                let value = Double(decoder.decodeUInt16()) * 0.1
-                let circumference = Measurement(value: value, unit: UnitLength.millimeters)
-                statusValue = FitnessMachineStatusWheelCircumference(code: opCode, circumference: circumference)
+                let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16())
+                statusValue = FitnessMachineStatusWheelCircumference(circumference: circumference)
 
             case .spinDownStatus:
                 let status = FitnessMachineStatusSpinDown.SpinDownStatus(rawValue: decoder.decodeUInt8()) ?? .reserved
-                statusValue = FitnessMachineStatusSpinDown(code: opCode, status: status)
+                statusValue = FitnessMachineStatusSpinDown(status: status)
 
             case .targetedCadenceChanged:
-                let value = Double(decoder.decodeUInt16()) * 0.5
-                statusValue = FitnessMachineStatusTargetedCadence(code: opCode, cadence: value)
+                let cadence = FitnessMachineTargetCadence.create(decoder.decodeUInt16())
+                statusValue = FitnessMachineStatusTargetedCadence(cadence: cadence)
 
             default:
                 statusValue = FitnessMachineStatusGeneric(code: opCode)

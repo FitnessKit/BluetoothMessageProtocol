@@ -34,6 +34,19 @@ public enum FitnessMachineMovementDirection {
     case backward
 }
 
+/// Fitness Machine Stop/Pause Type
+///
+/// Used in Control Point and Status
+public enum FitnessMachineStopPauseType: UInt8 {
+    /// Reserved
+    case reserved       = 0
+    /// Stop
+    case stop           = 1
+    /// Pause
+    case pause          = 2
+}
+
+
 /// Fitness Machine Time Information
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
@@ -45,7 +58,6 @@ public struct FitnessMachineTime {
     /// Remaining Time
     private(set) public var remaining: Measurement<UnitDuration>?
 }
-
 
 /// Fitness Machine Energy Information
 @available(swift 3.1)
@@ -65,5 +77,108 @@ public struct FitnessMachineEnergy {
 
     /// Energy Per Minute
     private(set) public var perMinute: Measurement<UnitEnergy>?
+}
 
+/// Fitness Machine Inclination Type
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachineInclinationType {
+
+    /// Target Incline
+    private(set) public var incline: Measurement<UnitPercent>
+
+    internal static func create(_ value: Int16) -> FitnessMachineInclinationType {
+        let value = Double(value) * 0.1
+        let incline: Measurement = Measurement(value: value, unit: UnitPercent.percent)
+        return FitnessMachineInclinationType(incline: incline)
+    }
+
+    internal func encode() throws -> Data {
+        var msgData = Data()
+
+        let incline = self.incline.value * (1 / 0.1)
+        let value = Int16(incline)
+
+        msgData.append(Data(from: value.littleEndian))
+
+        return msgData
+    }
+}
+
+/// Fitness Machine Power Type
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachinePowerType {
+
+    /// Target Power
+    private(set) public var power: Measurement<UnitPower>
+
+    internal static func create(_ value: Int16) -> FitnessMachinePowerType {
+        let pvalue = Double(value)
+        let power = Measurement(value: pvalue, unit: UnitPower.watts)
+        return FitnessMachinePowerType(power: power)
+    }
+
+    internal func encode() throws -> Data {
+        var msgData = Data()
+
+        let power = self.power.converted(to: UnitPower.watts).value
+        let value = Int16(power)
+
+        msgData.append(Data(from: value.littleEndian))
+
+        return msgData
+    }
+}
+
+/// Fitness Machine Speed Type
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachineSpeedType {
+
+    /// Target Speed
+    private(set) public var speed: Measurement<UnitSpeed>
+
+    internal static func create(_ value: UInt16) -> FitnessMachineSpeedType {
+        let value = Double(value) * 0.01
+        let speed: Measurement = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+        return FitnessMachineSpeedType(speed: speed)
+    }
+
+    internal func encode() throws -> Data {
+        var msgData = Data()
+
+        let newSpeed = speed.converted(to: UnitSpeed.kilometersPerHour).value * 1 / 0.01
+        let value = UInt16(newSpeed)
+
+        msgData.append(Data(from: value.littleEndian))
+
+        return msgData
+    }
+}
+
+/// Fitness Machine Wheel Circumference Type
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachineWheelCircumferenceType {
+
+    /// Wheel Circumference
+    private(set) public var circumference: Measurement<UnitLength>
+
+    internal static func create(_ value: UInt16) -> FitnessMachineWheelCircumferenceType {
+        let value = Double(value) * 0.1
+        let circumference: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
+        return FitnessMachineWheelCircumferenceType(circumference: circumference)
+    }
+
+    internal func encode() throws -> Data {
+        var msgData = Data()
+
+        let circumference = self.circumference.converted(to: UnitLength.millimeters).value * 1 / 0.1
+        let value = UInt16(circumference)
+
+        msgData.append(Data(from: value.littleEndian))
+
+        return msgData
+    }
 }

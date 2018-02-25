@@ -44,10 +44,10 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     }
 
     /// Minimum Power
-    private(set) public var minimum: Measurement<UnitPower>
+    private(set) public var minimum: FitnessMachinePowerType
 
     /// Maximum Power
-    private(set) public var maximum: Measurement<UnitPower>
+    private(set) public var maximum: FitnessMachinePowerType
 
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitPower>
@@ -58,7 +58,7 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     ///   - minimum: Minimum Power
     ///   - maximum: Maximum Power
     ///   - minimumIncrement: Minimum Increment
-    public init(minimum: Measurement<UnitPower>, maximum: Measurement<UnitPower>, minimumIncrement: Measurement<UnitPower>) {
+    public init(minimum: FitnessMachinePowerType, maximum: FitnessMachinePowerType, minimumIncrement: Measurement<UnitPower>) {
 
         self.minimum = minimum
         self.maximum = maximum
@@ -77,11 +77,8 @@ open class CharacteristicSupportedPowerRange: Characteristic {
 
         var decoder = DataDecoder(data)
 
-        let minValue = Double(decoder.decodeInt16())
-        let minimum = Measurement(value: minValue, unit: UnitPower.watts)
-
-        let maxValue = Double(decoder.decodeInt16())
-        let maximum = Measurement(value: maxValue, unit: UnitPower.watts)
+        let minimum = FitnessMachinePowerType.create(decoder.decodeInt16())
+        let maximum = FitnessMachinePowerType.create(decoder.decodeInt16())
 
         let incrValue = Double(decoder.decodeUInt16())
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPower.watts)
@@ -98,12 +95,12 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = minimum.converted(to: UnitPower.watts).value
-        let maxValue = maximum.converted(to: UnitPower.watts).value
+        let minValue = try minimum.encode()
+        let maxValue = try maximum.encode()
         let incrValue = UInt16(minimumIncrement.converted(to: UnitPower.watts).value)
 
-        msgData.append(Data(from: Int16(minValue).littleEndian))
-        msgData.append(Data(from: Int16(maxValue).littleEndian))
+        msgData.append(minValue)
+        msgData.append(maxValue)
         msgData.append(Data(from: incrValue.littleEndian))
 
         return msgData

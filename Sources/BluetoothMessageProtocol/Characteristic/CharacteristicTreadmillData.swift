@@ -77,16 +77,16 @@ open class CharacteristicTreadmillData: Characteristic {
     }
 
     /// Instantaneous Speed
-    private(set) public var instantaneousSpeed: Measurement<UnitSpeed>?
+    private(set) public var instantaneousSpeed: FitnessMachineSpeedType?
 
     /// Average Speed
-    private(set) public var averageSpeed: Measurement<UnitSpeed>?
+    private(set) public var averageSpeed: FitnessMachineSpeedType?
 
     /// Total Distance
     private(set) public var totalDistance: Measurement<UnitLength>?
 
     /// Inclination
-    private(set) public var inclination: Measurement<UnitPercent>?
+    private(set) public var inclination: FitnessMachineInclinationType?
 
     /// Ramp Angle Setting
     private(set) public var rampAngle: Measurement<UnitAngle>?
@@ -119,7 +119,7 @@ open class CharacteristicTreadmillData: Characteristic {
     private(set) public var forceOnBelt: Measurement<UnitForce>?
 
     /// Power Output
-    private(set) public var powerOutput: Measurement<UnitPower>?
+    private(set) public var powerOutput: FitnessMachinePowerType?
 
     /// Creates Treadmill Data Characteristic
     ///
@@ -139,7 +139,7 @@ open class CharacteristicTreadmillData: Characteristic {
     ///   - time: Time Information
     ///   - forceOnBelt: Force on Belt
     ///   - powerOutput: Power Output
-    public init(instantaneousSpeed: Measurement<UnitSpeed>?, averageSpeed: Measurement<UnitSpeed>?, totalDistance: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitSpeed>?, averagePace: Measurement<UnitSpeed>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime, forceOnBelt: Measurement<UnitForce>?, powerOutput: Measurement<UnitPower>?) {
+    public init(instantaneousSpeed: FitnessMachineSpeedType?, averageSpeed: FitnessMachineSpeedType?, totalDistance: Measurement<UnitLength>?, inclination: FitnessMachineInclinationType?, rampAngle: Measurement<UnitAngle>?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitSpeed>?, averagePace: Measurement<UnitSpeed>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime, forceOnBelt: Measurement<UnitForce>?, powerOutput: FitnessMachinePowerType?) {
 
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
@@ -178,10 +178,10 @@ open class CharacteristicTreadmillData: Characteristic {
 
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
-        var iSpeed: Measurement<UnitSpeed>?
-        var avgSpeed: Measurement<UnitSpeed>?
+        var iSpeed: FitnessMachineSpeedType?
+        var avgSpeed: FitnessMachineSpeedType?
         var totalDistance: Measurement<UnitLength>?
-        var inclination: Measurement<UnitPercent>?
+        var inclination: FitnessMachineInclinationType?
         var rampAngle: Measurement<UnitAngle>?
         var pElevaionGain: Measurement<UnitLength>?
         var nElevaionGain: Measurement<UnitLength>?
@@ -195,19 +195,17 @@ open class CharacteristicTreadmillData: Characteristic {
         var elapsedTime: Measurement<UnitDuration>?
         var remainingTime: Measurement<UnitDuration>?
         var forceOnBelt: Measurement<UnitForce>?
-        var powerOutput: Measurement<UnitPower>?
+        var powerOutput: FitnessMachinePowerType?
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
 
-            let value = Double(decoder.decodeUInt16()) * 0.01
-            iSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+            iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
 
         } else {
 
             if flags.contains(.averageSpeedPresent) == true {
-                let value = Double(decoder.decodeUInt16()) * 0.01
-                avgSpeed = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
+                avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
             }
 
             if flags.contains(.totalDistancePresent) == true {
@@ -220,8 +218,8 @@ open class CharacteristicTreadmillData: Characteristic {
                 let ramp = decoder.decodeInt16()
 
                 if incline != Int16.max {
-                    let iValue = Double(incline) * 0.1
-                    inclination = Measurement(value: iValue, unit: UnitPercent.percent)
+                    let iValue = FitnessMachineInclinationType.create(incline)
+                    inclination = iValue
                 }
 
                 if ramp != Int16.max {
@@ -243,7 +241,7 @@ open class CharacteristicTreadmillData: Characteristic {
                 instantaneousPace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
             }
 
-            if flags.contains(.instantaneousPacePresent) == true {
+            if flags.contains(.averagePacePresent) == true {
                 let value = Double(decoder.decodeUInt8()) * 0.1
                 averagePace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
             }
@@ -291,8 +289,7 @@ open class CharacteristicTreadmillData: Characteristic {
                 let bValue = Double(decoder.decodeInt16())
                 forceOnBelt = Measurement(value: bValue, unit: UnitForce.newton)
 
-                let value = Double(decoder.decodeInt16())
-                powerOutput = Measurement(value: value, unit: UnitPower.watts)
+                powerOutput = FitnessMachinePowerType.create(decoder.decodeInt16())
             }
         }
 

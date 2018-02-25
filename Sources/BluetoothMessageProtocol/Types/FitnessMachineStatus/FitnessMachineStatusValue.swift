@@ -50,6 +50,10 @@ public struct FitnessMachineStatusGeneric: FitnessMachineStatus {
         self.statusCode = code
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -62,26 +66,21 @@ public struct FitnessMachineStatusGeneric: FitnessMachineStatus {
 /// Status Value for Fitness Machine Stopped or Paused by the User
 public struct FitnessMachineStatusStopPause: FitnessMachineStatus {
 
-    public enum Control: UInt8 {
-        /// Reserved
-        case reserved       = 0
-        /// Stop
-        case stop           = 1
-        /// Pause
-        case pause          = 2
-    }
-
     /// Status Code
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// Control
-    private(set) public var controlInformation: Control
+    private(set) public var controlInformation: FitnessMachineStopPauseType
 
-    public init(code: FitnessMachineStatusCode, controlInformation: Control) {
-        self.statusCode = code
+    public init(controlInformation: FitnessMachineStopPauseType) {
+        self.statusCode = .stopPauseByUser
         self.controlInformation = controlInformation
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -90,7 +89,6 @@ public struct FitnessMachineStatusStopPause: FitnessMachineStatus {
 
         return msgData
     }
-
 }
 
 /// Status Value for Fitness Machine Target Incline Changed
@@ -102,16 +100,26 @@ public struct FitnessMachineStatusTargetSpeed: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Target Speed Value
-    private(set) public var speed: Measurement<UnitSpeed>
+    private(set) public var speed: FitnessMachineSpeedType
 
-    public init(code: FitnessMachineStatusCode, speed: Measurement<UnitSpeed>) {
-        self.statusCode = code
+    public init(speed: FitnessMachineSpeedType) {
+        self.statusCode = .targetSpeedChanged
         self.speed = speed
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let speed = try self.speed.encode()
+
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(speed)
+
+        return msgData
     }
 }
 
@@ -124,16 +132,26 @@ public struct FitnessMachineStatusTargetIncline: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Target Incline Value
-    private(set) public var incline: Measurement<UnitPercent>
+    private(set) public var incline: FitnessMachineInclinationType
 
-    public init(code: FitnessMachineStatusCode, incline: Measurement<UnitPercent>) {
-        self.statusCode = code
+    public init(incline: FitnessMachineInclinationType) {
+        self.statusCode = .targetInclineChanaged
         self.incline = incline
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let incline = try self.incline.encode()
+
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(incline)
+
+        return msgData
     }
 }
 
@@ -146,16 +164,26 @@ public struct FitnessMachineStatusTargetResistanceLevel: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Target Resistance Level Value
-    private(set) public var resistanceLevel: Double
+    private(set) public var resistanceLevel: FitnessMachineTargetResistanceLevelType
 
-    public init(code: FitnessMachineStatusCode, resistanceLevel: Double) {
-        self.statusCode = code
+    public init(resistanceLevel: FitnessMachineTargetResistanceLevelType) {
+        self.statusCode = .targetResistanceLevelChanged
         self.resistanceLevel = resistanceLevel
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let resistanceLevel = try self.resistanceLevel.encode()
+
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(resistanceLevel)
+
+        return msgData
     }
 }
 
@@ -169,16 +197,25 @@ public struct FitnessMachineStatusTargetPower: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Target Power
-    private(set) public var power: Measurement<UnitPower>
+    private(set) public var power: FitnessMachinePowerType
 
-    public init(code: FitnessMachineStatusCode, power: Measurement<UnitPower>) {
-        self.statusCode = code
+    public init(power: FitnessMachinePowerType) {
+        self.statusCode = .targetPowerChanged
         self.power = power
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let power = try self.power.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(power)
+
+        return msgData
     }
 }
 
@@ -193,11 +230,15 @@ public struct FitnessMachineStatusTargetHeartRate: FitnessMachineStatus {
     /// New Target Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>
 
-    public init(code: FitnessMachineStatusCode, heartrate: UInt8) {
-        self.statusCode = code
+    public init(heartrate: UInt8) {
+        self.statusCode = .targetHeartRateChanged
         self.heartRate = Measurement(value: Double(heartrate), unit: UnitCadence.beatsPerMinute)
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -217,13 +258,17 @@ public struct FitnessMachineStatusTargetedExpendedEnergyChanged: FitnessMachineS
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Target Energy Expended
-    private(set) public var energy: Measurement<UnitEnergy>
+    private(set) public var energy: FitnessMachineTargetExpendedEnergy
 
-    public init(code: FitnessMachineStatusCode, energy: Measurement<UnitEnergy>) {
-        self.statusCode = code
+    public init(energy: FitnessMachineTargetExpendedEnergy) {
+        self.statusCode = .targetedExpendedEnergyChanged
         self.energy = energy
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
@@ -241,11 +286,15 @@ public struct FitnessMachineStatusTargetedSteps: FitnessMachineStatus {
     /// New Targeted Number of Steps
     private(set) public var steps: UInt16
 
-    public init(code: FitnessMachineStatusCode, steps: UInt16) {
-        self.statusCode = code
+    public init(steps: UInt16) {
+        self.statusCode = .targetedStepsChanged
         self.steps = steps
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -267,11 +316,15 @@ public struct FitnessMachineStatusTargetedStrides: FitnessMachineStatus {
     /// New Targeted Number of Strides
     private(set) public var strides: UInt16
 
-    public init(code: FitnessMachineStatusCode, strides: UInt16) {
-        self.statusCode = code
+    public init(strides: UInt16) {
+        self.statusCode = .targetedStridesChanged
         self.strides = strides
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -291,16 +344,25 @@ public struct FitnessMachineStatusTargetedDistance: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Targeted Distance
-    private(set) public var distance: Measurement<UnitLength>
+    private(set) public var distance: FitnessMachineTargetDistance
 
-    public init(code: FitnessMachineStatusCode, distance: Measurement<UnitLength>) {
-        self.statusCode = code
+    public init(distance: FitnessMachineTargetDistance) {
+        self.statusCode = .targetedDistanceChanged
         self.distance = distance
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let distance = try self.distance.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(distance)
+
+        return msgData
     }
 }
 
@@ -313,16 +375,118 @@ public struct FitnessMachineStatusTargetedTrainingTime: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Targeted Training Time
-    private(set) public var time: Measurement<UnitDuration>
+    private(set) public var time: FitnessMachineTargetTime
 
-    public init(code: FitnessMachineStatusCode, time: Measurement<UnitDuration>) {
-        self.statusCode = code
+    public init(time: FitnessMachineTargetTime) {
+        self.statusCode = .targetedTrainingTimeChanged
         self.time = time
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let time = try self.time.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(time)
+
+        return msgData
+    }
+}
+
+/// Status Value for Fitness Machine Targeted Time in Two Heart Rate Zone Changed
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachineStatusTargetedTimeInTwoHrZoneChanged: FitnessMachineStatus {
+
+    /// Status Code
+    private(set) public var statusCode: FitnessMachineStatusCode
+
+    /// New Targeted Time in Two Heart Rate Zone
+    private(set) public var time: FitnessMachineTargetTimeInTwoHrZone
+
+    public init(time: FitnessMachineTargetTimeInTwoHrZone) {
+        self.statusCode = .targetedTimeInTwoHrZoneChanged
+        self.time = time
+    }
+
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        let time = try self.time.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(time)
+
+        return msgData
+    }
+}
+
+/// Status Value for Fitness Machine Targeted Time in Three Heart Rate Zone Changed
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachineStatusTargetedTimeInThreeHrZoneChanged: FitnessMachineStatus {
+
+    /// Status Code
+    private(set) public var statusCode: FitnessMachineStatusCode
+
+    /// New Targeted Time in Three Heart Rate Zone
+    private(set) public var time: FitnessMachineTargetTimeInThreeHrZone
+
+    public init(time: FitnessMachineTargetTimeInThreeHrZone) {
+        self.statusCode = .targetedTimeInThreeHrZoneChanged
+        self.time = time
+    }
+
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        let time = try self.time.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(time)
+
+        return msgData
+    }
+}
+
+/// Status Value for Fitness Machine Targeted Time in Five Heart Rate Zone Changed
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+public struct FitnessMachineStatusTargetedTimeInFiveHrZoneChanged: FitnessMachineStatus {
+
+    /// Status Code
+    private(set) public var statusCode: FitnessMachineStatusCode
+
+    /// New Targeted Time in Five Heart Rate Zone
+    private(set) public var time: FitnessMachineTargetTimeInFiveHrZone
+
+    public init(time: FitnessMachineTargetTimeInFiveHrZone) {
+        self.statusCode = .targetedTimeInFiveHrZoneChanged
+        self.time = time
+    }
+
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        let time = try self.time.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(time)
+
+        return msgData
     }
 }
 
@@ -335,16 +499,25 @@ public struct FitnessMachineStatusWheelCircumference: FitnessMachineStatus {
     private(set) public var statusCode: FitnessMachineStatusCode
 
     /// New Wheel Circumference
-    private(set) public var circumference: Measurement<UnitLength>
+    private(set) public var circumference: FitnessMachineWheelCircumferenceType
 
-    public init(code: FitnessMachineStatusCode, circumference: Measurement<UnitLength>) {
-        self.statusCode = code
+    public init(circumference: FitnessMachineWheelCircumferenceType) {
+        self.statusCode = .wheelCircumferenceChanged
         self.circumference = circumference
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        let circumference = try self.circumference.encode()
+        var msgData = Data()
+
+        msgData.append(statusCode.rawValue)
+        msgData.append(circumference)
+
+        return msgData
     }
 }
 
@@ -371,11 +544,15 @@ public struct FitnessMachineStatusSpinDown: FitnessMachineStatus {
     /// Spin Down Status
     private(set) public var status: SpinDownStatus
 
-    public init(code: FitnessMachineStatusCode, status: SpinDownStatus) {
-        self.statusCode = code
+    public init(status: SpinDownStatus) {
+        self.statusCode = .spinDownStatus
         self.status = status
     }
 
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() -> Data {
         var msgData = Data()
 
@@ -397,13 +574,17 @@ public struct FitnessMachineStatusTargetedCadence: FitnessMachineStatus {
     /// New Targeted Cadence
     ///
     /// Units 1/minute
-    private(set) public var cadence: Double
+    private(set) public var cadence: FitnessMachineTargetCadence
 
-    public init(code: FitnessMachineStatusCode, cadence: Double) {
-        self.statusCode = code
+    public init(cadence: FitnessMachineTargetCadence) {
+        self.statusCode = .targetedCadenceChanged
         self.cadence = cadence
     }
-
+    
+    /// Encodes Status into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)

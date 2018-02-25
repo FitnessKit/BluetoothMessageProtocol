@@ -25,7 +25,6 @@
 import Foundation
 
 
-
 /// Fitness Machine Status Code
 public enum FitnessMachineStatusCode: UInt8 {
     /// Reserved

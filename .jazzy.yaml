@@ -225,6 +225,31 @@ custom_categories:
     - ManufacturerDataAppleiBeacon
     - ManufacturerDataPolarHeartRate
 
+  - name: Fitness Machine Control
+    children:
+    - FitnessMachineControlCode
+    - FitnessMachineControlProcedure
+    - FitnessMachineProcedureRequestControl
+    - FitnessMachineProcedureReset
+    - FitnessMachineProcedureSetTargetSpeed
+    - FitnessMachineProcedureSetTargetInclination
+    - FitnessMachineProcedureSetTargetResistanceLevel
+    - FitnessMachineProcedureSetTargetPower
+    - FitnessMachineProcedureSetTargetHeartRate
+    - FitnessMachineProcedureStartResume
+    - FitnessMachineProcedureStopPause
+    - FitnessMachineProcedureSetTargetedExpendedEnergy
+    - FitnessMachineProcedureSetTargetedNumberOfSteps
+    - FitnessMachineProcedureSetTargetedNumberOfStrides 
+    - FitnessMachineProcedureSetTargetedDistance
+    - FitnessMachineProcedureSetTargetedTrainingTime
+    - FitnessMachineProcedureSetTargetedTimeInTwoHrZone
+    - FitnessMachineProcedureSetTargetedTimeInThreeHrZone
+    - FitnessMachineProcedureSetTargetedTimeInFiveHrZone
+    - FitnessMachineProcedureSeWheelCircumference
+    - FitnessMachineProcedureSetSpinDownControl
+    - FitnessMachineProcedureSetTargetedCadence
+
   - name: Fitness Machine Status
     children:
     - FitnessMachineStatusCode
@@ -241,7 +266,27 @@ custom_categories:
     - FitnessMachineStatusTargetedStrides
     - FitnessMachineStatusTargetedDistance  
     - FitnessMachineStatusTargetedTrainingTime
+    - FitnessMachineStatusTargetedTimeInTwoHrZoneChanged
+    - FitnessMachineStatusTargetedTimeInThreeHrZoneChanged
+    - FitnessMachineStatusTargetedTimeInFiveHrZoneChanged
     - FitnessMachineStatusWheelCircumference
     - FitnessMachineStatusSpinDown
     - FitnessMachineStatusTargetedCadence
 
+  - name: Fitness Machine Types
+    children:
+    - FitnessMachineEnergy
+    - FitnessMachineInclinationType
+    - FitnessMachineMovementDirection
+    - FitnessMachinePowerType
+    - FitnessMachineTargetCadence
+    - FitnessMachineTargetDistance
+    - FitnessMachineTargetResistanceLevelType
+    - FitnessMachineTargetTime
+    - FitnessMachineTargetTimeInTwoHrZone
+    - FitnessMachineTargetTimeInThreeHrZone
+    - FitnessMachineTargetTimeInFiveHrZone
+    - FitnessMachineTime
+    - FitnessMachineStopPauseType
+    - FitnessMachineSpeedType
+    - FitnessMachineWheelCircumferenceType

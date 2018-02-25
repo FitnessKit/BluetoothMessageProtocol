@@ -95,10 +95,10 @@ open class CharacteristicRowerData: Characteristic {
     private(set) public var averagePace: Measurement<UnitDuration>?
 
     /// Instantaneous Power
-    private(set) public var instantaneousPower: Measurement<UnitPower>?
+    private(set) public var instantaneousPower: FitnessMachinePowerType?
 
     /// Average Power
-    private(set) public var averagePower: Measurement<UnitPower>?
+    private(set) public var averagePower: FitnessMachinePowerType?
 
     /// Resistance Level
     private(set) public var resistanceLevel: Double?
@@ -131,7 +131,7 @@ open class CharacteristicRowerData: Characteristic {
     ///   - heartRate: Heart Rate
     ///   - metabolicEquivalent: Metabolic Equivalent
     ///   - time: Time Information
-    public init(strokeRate: Measurement<UnitCadence>?, strokeCount: UInt16?, averageStrokeRate: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitDuration>?, averagePace: Measurement<UnitDuration>?, instantaneousPower: Measurement<UnitPower>?, averagePower: Measurement<UnitPower>?, resistanceLevel: Double?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
+    public init(strokeRate: Measurement<UnitCadence>?, strokeCount: UInt16?, averageStrokeRate: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitDuration>?, averagePace: Measurement<UnitDuration>?, instantaneousPower: FitnessMachinePowerType?, averagePower: FitnessMachinePowerType?, resistanceLevel: Double?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
 
         self.strokeRate = strokeRate
         self.strokeCount = strokeCount
@@ -175,8 +175,8 @@ open class CharacteristicRowerData: Characteristic {
         var totalDistance: Measurement<UnitLength>?
         var instantaneousPace: Measurement<UnitDuration>?
         var averagePace: Measurement<UnitDuration>?
-        var iPower: Measurement<UnitPower>?
-        var aPower: Measurement<UnitPower>?
+        var iPower: FitnessMachinePowerType?
+        var aPower: FitnessMachinePowerType?
         var resistanceLevel: Double?
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
@@ -217,13 +217,11 @@ open class CharacteristicRowerData: Characteristic {
             }
 
             if flags.contains(.instantaneousPowerPresent) == true {
-                let value = Double(decoder.decodeInt16())
-                iPower = Measurement(value: value, unit: UnitPower.watts)
+                iPower = FitnessMachinePowerType.create(decoder.decodeInt16())
             }
 
             if flags.contains(.averagePowerPresent) == true {
-                let value = Double(decoder.decodeInt16())
-                aPower = Measurement(value: value, unit: UnitPower.watts)
+                aPower = FitnessMachinePowerType.create(decoder.decodeInt16())
             }
 
             if flags.contains(.resistanceLevelPresent) == true {

@@ -44,13 +44,13 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     }
 
     /// Minimum Speed
-    private(set) public var minimum: Measurement<UnitSpeed>
+    private(set) public var minimum: FitnessMachineSpeedType
 
     /// Maximum Speed
-    private(set) public var maximum: Measurement<UnitSpeed>
+    private(set) public var maximum: FitnessMachineSpeedType
 
     /// Minimum Increment
-    private(set) public var minimumIncrement: Measurement<UnitSpeed>
+    private(set) public var minimumIncrement: FitnessMachineSpeedType
 
     /// Creates Supported Speed Range Characteristic
     ///
@@ -58,7 +58,7 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     ///   - minimum: Minimum Speed
     ///   - maximum: Maximum Speed
     ///   - minimumIncrement: Minimum Increment
-    public init(minimum: Measurement<UnitSpeed>, maximum: Measurement<UnitSpeed>, minimumIncrement: Measurement<UnitSpeed>) {
+    public init(minimum: FitnessMachineSpeedType, maximum: FitnessMachineSpeedType, minimumIncrement: FitnessMachineSpeedType) {
 
         self.minimum = minimum
         self.maximum = maximum
@@ -77,14 +77,9 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
 
         var decoder = DataDecoder(data)
 
-        let minValue = Double(decoder.decodeInt16()) * 0.01
-        let minimum = Measurement(value: minValue, unit: UnitSpeed.kilometersPerHour)
-
-        let maxValue = Double(decoder.decodeInt16()) * 0.01
-        let maximum = Measurement(value: maxValue, unit: UnitSpeed.kilometersPerHour)
-
-        let incrValue = Double(decoder.decodeUInt16()) * 0.01
-        let minimumIncrement = Measurement(value: incrValue, unit: UnitSpeed.kilometersPerHour)
+        let minimum = FitnessMachineSpeedType.create(decoder.decodeUInt16())
+        let maximum = FitnessMachineSpeedType.create(decoder.decodeUInt16())
+        let minimumIncrement = FitnessMachineSpeedType.create(decoder.decodeUInt16())
 
         return CharacteristicSupportedSpeedRange(minimum: minimum,
                                                  maximum: maximum,
@@ -98,13 +93,13 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = minimum.converted(to: UnitSpeed.kilometersPerHour).value * (1 / 0.01)
-        let maxValue = maximum.converted(to: UnitSpeed.kilometersPerHour).value * (1 / 0.01)
-        let incrValue = UInt16(minimumIncrement.converted(to: UnitSpeed.kilometersPerHour).value * (1 / 0.01))
+        let minValue = try minimum.encode()
+        let maxValue = try maximum.encode()
+        let incrValue = try minimumIncrement.encode()
 
-        msgData.append(Data(from: Int16(minValue).littleEndian))
-        msgData.append(Data(from: Int16(maxValue).littleEndian))
-        msgData.append(Data(from: incrValue.littleEndian))
+        msgData.append(minValue)
+        msgData.append(maxValue)
+        msgData.append(incrValue)
 
         return msgData
     }

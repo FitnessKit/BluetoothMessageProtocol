@@ -44,10 +44,10 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     }
 
     /// Minimum Inclination
-    private(set) public var minimum: Measurement<UnitPercent>
+    private(set) public var minimum: FitnessMachineInclinationType
 
     /// Maximum Inclination
-    private(set) public var maximum: Measurement<UnitPercent>
+    private(set) public var maximum: FitnessMachineInclinationType
 
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitPercent>
@@ -58,7 +58,7 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     ///   - minimum: Minimum Inclination
     ///   - maximum: Maximum Inclination
     ///   - minimumIncrement: Minimum Increment
-    public init(minimum: Measurement<UnitPercent>, maximum: Measurement<UnitPercent>, minimumIncrement: Measurement<UnitPercent>) {
+    public init(minimum: FitnessMachineInclinationType, maximum: FitnessMachineInclinationType, minimumIncrement: Measurement<UnitPercent>) {
 
         self.minimum = minimum
         self.maximum = maximum
@@ -77,12 +77,9 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
 
         var decoder = DataDecoder(data)
 
-        let minValue = Double(decoder.decodeInt16()) * 0.1
-        let minimum = Measurement(value: minValue, unit: UnitPercent.percent)
-
-        let maxValue = Double(decoder.decodeInt16()) * 0.1
-        let maximum = Measurement(value: maxValue, unit: UnitPercent.percent)
-
+        let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16())
+        let maximum = FitnessMachineInclinationType.create(decoder.decodeInt16())
+        
         let incrValue = Double(decoder.decodeUInt16()) * 0.1
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPercent.percent)
 
@@ -98,12 +95,12 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = Int16(minimum.value * (1 / 0.1))
-        let maxValue = Int16(maximum.value * (1 / 0.1))
-        let incrValue = UInt16(maximum.value * (1 / 0.1))
+        let minValue = try minimum.encode()
+        let maxValue = try maximum.encode()
+        let incrValue = UInt16(minimumIncrement.value * (1 / 0.1))
 
-        msgData.append(Data(from: minValue.littleEndian))
-        msgData.append(Data(from: maxValue.littleEndian))
+        msgData.append(minValue)
+        msgData.append(maxValue)
         msgData.append(Data(from: incrValue.littleEndian))
 
         return msgData
