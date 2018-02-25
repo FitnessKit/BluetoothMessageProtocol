@@ -1304,7 +1304,7 @@ public extension CompanyIdentifier {
     public class var defa: CompanyIdentifier { return CompanyIdentifier(id: 635, name: "DEFA AS") }
     /// Aseptika Ltd
     public class var aseptika: CompanyIdentifier { return CompanyIdentifier(id: 636, name: "Aseptika Ltd") }
-    // HUAWEI Technologies Co., Ltd
+    /// HUAWEI Technologies Co., Ltd
     public class var huawei: CompanyIdentifier { return CompanyIdentifier(id: 637, name: "HUAWEI Technologies Co., Ltd") }
     /// HabitAware, LLC
     public class var habitAware: CompanyIdentifier { return CompanyIdentifier(id: 638, name: "HabitAware, LLC") }

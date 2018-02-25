@@ -46,6 +46,9 @@ public struct FitnessMachineStatusGeneric: FitnessMachineStatus {
     /// Status Code
     private(set) public var statusCode: FitnessMachineStatusCode
 
+    /// Create Fitness Machine Generic Status
+    ///
+    /// - Parameter code: FitnessMachineStatusCode
     public init(code: FitnessMachineStatusCode) {
         self.statusCode = code
     }
@@ -72,6 +75,9 @@ public struct FitnessMachineStatusStopPause: FitnessMachineStatus {
     /// Control
     private(set) public var controlInformation: FitnessMachineStopPauseType
 
+    /// Create Fitness Machine Status for Stopped or Paused by the User
+    ///
+    /// - Parameter controlInformation: FitnessMachineStopPauseType
     public init(controlInformation: FitnessMachineStopPauseType) {
         self.statusCode = .stopPauseByUser
         self.controlInformation = controlInformation
@@ -91,7 +97,7 @@ public struct FitnessMachineStatusStopPause: FitnessMachineStatus {
     }
 }
 
-/// Status Value for Fitness Machine Target Incline Changed
+/// Status Value for Fitness Machine Target Speed Changed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineStatusTargetSpeed: FitnessMachineStatus {
@@ -102,6 +108,9 @@ public struct FitnessMachineStatusTargetSpeed: FitnessMachineStatus {
     /// New Target Speed Value
     private(set) public var speed: FitnessMachineSpeedType
 
+    /// Create Fitness Machine Status for Target Speed Changed
+    ///
+    /// - Parameter speed: FitnessMachineSpeedType
     public init(speed: FitnessMachineSpeedType) {
         self.statusCode = .targetSpeedChanged
         self.speed = speed
@@ -134,6 +143,9 @@ public struct FitnessMachineStatusTargetIncline: FitnessMachineStatus {
     /// New Target Incline Value
     private(set) public var incline: FitnessMachineInclinationType
 
+    /// Create Fitness Machine Status for Target Incline Changed
+    ///
+    /// - Parameter incline: FitnessMachineInclinationType
     public init(incline: FitnessMachineInclinationType) {
         self.statusCode = .targetInclineChanaged
         self.incline = incline
@@ -155,7 +167,7 @@ public struct FitnessMachineStatusTargetIncline: FitnessMachineStatus {
     }
 }
 
-/// Status Value for Fitness Machine Target Incline Changed
+/// Status Value for Fitness Machine Target Resistance Level Changed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineStatusTargetResistanceLevel: FitnessMachineStatus {
@@ -166,6 +178,9 @@ public struct FitnessMachineStatusTargetResistanceLevel: FitnessMachineStatus {
     /// New Target Resistance Level Value
     private(set) public var resistanceLevel: FitnessMachineTargetResistanceLevelType
 
+    /// Create Fitness Machine Status for Target Resistance Level Changed
+    ///
+    /// - Parameter resistanceLevel: FitnessMachineTargetResistanceLevelType
     public init(resistanceLevel: FitnessMachineTargetResistanceLevelType) {
         self.statusCode = .targetResistanceLevelChanged
         self.resistanceLevel = resistanceLevel
@@ -188,7 +203,7 @@ public struct FitnessMachineStatusTargetResistanceLevel: FitnessMachineStatus {
 }
 
 
-/// Status Value for Fitness Machine Target Heart Rate Changed
+/// Status Value for Fitness Machine Target Power Changed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineStatusTargetPower: FitnessMachineStatus {
@@ -199,6 +214,9 @@ public struct FitnessMachineStatusTargetPower: FitnessMachineStatus {
     /// New Target Power
     private(set) public var power: FitnessMachinePowerType
 
+    /// Create Fitness Machine Status for Target Power Changed
+    ///
+    /// - Parameter power: FitnessMachinePowerType
     public init(power: FitnessMachinePowerType) {
         self.statusCode = .targetPowerChanged
         self.power = power
@@ -230,6 +248,9 @@ public struct FitnessMachineStatusTargetHeartRate: FitnessMachineStatus {
     /// New Target Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>
 
+    /// Create Fitness Machine Status for Target Heart Rate Changed
+    ///
+    /// - Parameter heartrate: Heart Rate in BPM
     public init(heartrate: UInt8) {
         self.statusCode = .targetHeartRateChanged
         self.heartRate = Measurement(value: Double(heartrate), unit: UnitCadence.beatsPerMinute)
@@ -260,6 +281,9 @@ public struct FitnessMachineStatusTargetedExpendedEnergyChanged: FitnessMachineS
     /// New Target Energy Expended
     private(set) public var energy: FitnessMachineTargetExpendedEnergy
 
+    /// Create Fitness Machine Status for Target Expended Energy Changed
+    ///
+    /// - Parameter energy: FitnessMachineTargetExpendedEnergy
     public init(energy: FitnessMachineTargetExpendedEnergy) {
         self.statusCode = .targetedExpendedEnergyChanged
         self.energy = energy
@@ -286,6 +310,9 @@ public struct FitnessMachineStatusTargetedSteps: FitnessMachineStatus {
     /// New Targeted Number of Steps
     private(set) public var steps: UInt16
 
+    /// Create Fitness Machine Status for Targeted Number of Steps Changed
+    ///
+    /// - Parameter steps: Number of Steps
     public init(steps: UInt16) {
         self.statusCode = .targetedStepsChanged
         self.steps = steps
@@ -316,6 +343,9 @@ public struct FitnessMachineStatusTargetedStrides: FitnessMachineStatus {
     /// New Targeted Number of Strides
     private(set) public var strides: UInt16
 
+    /// Create Fitness Machine Status for Targeted Number of Strides Changed
+    ///
+    /// - Parameter strides: Number of Strides
     public init(strides: UInt16) {
         self.statusCode = .targetedStridesChanged
         self.strides = strides
@@ -346,6 +376,9 @@ public struct FitnessMachineStatusTargetedDistance: FitnessMachineStatus {
     /// New Targeted Distance
     private(set) public var distance: FitnessMachineTargetDistance
 
+    /// Create Fitness Machine Status for Targeted Distance Changed
+    ///
+    /// - Parameter distance: FitnessMachineTargetDistance
     public init(distance: FitnessMachineTargetDistance) {
         self.statusCode = .targetedDistanceChanged
         self.distance = distance
@@ -366,7 +399,7 @@ public struct FitnessMachineStatusTargetedDistance: FitnessMachineStatus {
     }
 }
 
-/// Status Value for Fitness Machine Targeted Distance Changed
+/// Status Value for Fitness Machine Targeted Training Time Changed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineStatusTargetedTrainingTime: FitnessMachineStatus {
@@ -377,6 +410,9 @@ public struct FitnessMachineStatusTargetedTrainingTime: FitnessMachineStatus {
     /// New Targeted Training Time
     private(set) public var time: FitnessMachineTargetTime
 
+    /// Create Fitness Machine Status for Targeted Training Time Changed
+    ///
+    /// - Parameter time: FitnessMachineTargetTime
     public init(time: FitnessMachineTargetTime) {
         self.statusCode = .targetedTrainingTimeChanged
         self.time = time
@@ -408,6 +444,9 @@ public struct FitnessMachineStatusTargetedTimeInTwoHrZoneChanged: FitnessMachine
     /// New Targeted Time in Two Heart Rate Zone
     private(set) public var time: FitnessMachineTargetTimeInTwoHrZone
 
+    /// Create Fitness Machine Status for Targeted Time in Two Heart Rate Zone Changed
+    ///
+    /// - Parameter time: FitnessMachineTargetTimeInTwoHrZone
     public init(time: FitnessMachineTargetTimeInTwoHrZone) {
         self.statusCode = .targetedTimeInTwoHrZoneChanged
         self.time = time
@@ -439,6 +478,9 @@ public struct FitnessMachineStatusTargetedTimeInThreeHrZoneChanged: FitnessMachi
     /// New Targeted Time in Three Heart Rate Zone
     private(set) public var time: FitnessMachineTargetTimeInThreeHrZone
 
+    /// Create Fitness Machine Status for Targeted Time in Three Heart Rate Zone Changed
+    ///
+    /// - Parameter time: FitnessMachineTargetTimeInThreeHrZone
     public init(time: FitnessMachineTargetTimeInThreeHrZone) {
         self.statusCode = .targetedTimeInThreeHrZoneChanged
         self.time = time
@@ -470,6 +512,9 @@ public struct FitnessMachineStatusTargetedTimeInFiveHrZoneChanged: FitnessMachin
     /// New Targeted Time in Five Heart Rate Zone
     private(set) public var time: FitnessMachineTargetTimeInFiveHrZone
 
+    /// Create Fitness Machine Status for Targeted Time in Five Heart Rate Zone Changed
+    ///
+    /// - Parameter time: FitnessMachineTargetTimeInFiveHrZone
     public init(time: FitnessMachineTargetTimeInFiveHrZone) {
         self.statusCode = .targetedTimeInFiveHrZoneChanged
         self.time = time
@@ -501,6 +546,9 @@ public struct FitnessMachineStatusWheelCircumference: FitnessMachineStatus {
     /// New Wheel Circumference
     private(set) public var circumference: FitnessMachineWheelCircumferenceType
 
+    /// Create Fitness Machine Status for Wheel Circumference Changed
+    ///
+    /// - Parameter circumference: FitnessMachineWheelCircumferenceType
     public init(circumference: FitnessMachineWheelCircumferenceType) {
         self.statusCode = .wheelCircumferenceChanged
         self.circumference = circumference
@@ -544,6 +592,9 @@ public struct FitnessMachineStatusSpinDown: FitnessMachineStatus {
     /// Spin Down Status
     private(set) public var status: SpinDownStatus
 
+    /// Create Fitness Machine Status for Machine Spin Down Status
+    ///
+    /// - Parameter status: SpinDownStatus
     public init(status: SpinDownStatus) {
         self.statusCode = .spinDownStatus
         self.status = status
@@ -576,6 +627,9 @@ public struct FitnessMachineStatusTargetedCadence: FitnessMachineStatus {
     /// Units 1/minute
     private(set) public var cadence: FitnessMachineTargetCadence
 
+    /// Create Fitness Machine Status for Targeted Cadence Changed
+    ///
+    /// - Parameter cadence: FitnessMachineTargetCadence
     public init(cadence: FitnessMachineTargetCadence) {
         self.statusCode = .targetedCadenceChanged
         self.cadence = cadence

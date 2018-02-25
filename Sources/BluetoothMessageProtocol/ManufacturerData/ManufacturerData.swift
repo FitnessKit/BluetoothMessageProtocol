@@ -89,6 +89,10 @@ open class ManufacturerData {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension ManufacturerData {
 
+    /// The hash value.
+    ///
+    /// Hash values are not guaranteed to be equal across different executions of
+    /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
         get {
             return manufacturer.hashValue
@@ -99,6 +103,14 @@ public extension ManufacturerData {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension ManufacturerData {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     static public func == (lhs: ManufacturerData, rhs: ManufacturerData) -> Bool {
         return (lhs.manufacturer == rhs.manufacturer)
     }

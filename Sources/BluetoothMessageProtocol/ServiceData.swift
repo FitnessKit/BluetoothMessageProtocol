@@ -69,6 +69,10 @@ open class ServiceData {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension ServiceData {
 
+    /// The hash value.
+    ///
+    /// Hash values are not guaranteed to be equal across different executions of
+    /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
         get {
             return "\(name)\(uuidString)".hashValue
@@ -79,6 +83,14 @@ public extension ServiceData {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension ServiceData {
 
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
     static public func == (lhs: ServiceData, rhs: ServiceData) -> Bool {
         return (lhs.name == rhs.name) &&
             (lhs.uuidString == rhs.uuidString)
