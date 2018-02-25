@@ -25,7 +25,7 @@
 import Foundation
 import FitnessUnits
 
-/// Protocl for Fitness Machine Status Values
+/// Protocol for Fitness Machine Status Values
 public protocol FitnessMachineStatus {
 
     /// Status Code

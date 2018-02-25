@@ -70,6 +70,11 @@ open class ServiceDataFitnessMachine: ServiceData {
     private(set) public var equipmentSupported: EquipmentType
 
 
+    /// Service Data for Fitness Machine
+    ///
+    /// - Parameters:
+    ///   - fitnessMachineAvailable: If Fitness Machine is Available
+    ///   - equipmentSupported: Supported Equipment Type
     public init(fitnessMachineAvailable: Bool, equipmentSupported: EquipmentType) {
         self.fitnessMachineAvailable = fitnessMachineAvailable
         self.equipmentSupported = equipmentSupported

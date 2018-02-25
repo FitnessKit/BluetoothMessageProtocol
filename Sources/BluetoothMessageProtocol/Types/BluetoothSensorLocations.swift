@@ -100,6 +100,7 @@ public enum SensorLocation: UInt8 {
     /// Chain Ring
     case chainRing          = 16
 
+    /// String Representation
     public var stringValue: String {
 
         switch self {

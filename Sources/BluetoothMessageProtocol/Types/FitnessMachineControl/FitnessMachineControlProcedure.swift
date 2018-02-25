@@ -25,7 +25,7 @@
 import Foundation
 
 
-/// Protocl for Fitness Machine Control Point Procedure
+/// Protocol for Fitness Machine Control Point Procedure
 public protocol FitnessMachineControlProcedure {
 
     /// Control Code
@@ -44,6 +44,7 @@ public struct FitnessMachineProcedureRequestControl: FitnessMachineControlProced
     /// Control Code
     private(set) public var controlCode: FitnessMachineControlCode
 
+    /// Create Procecure for Requesting Control
     public init() {
         self.controlCode = .reqeustControl
     }
@@ -67,6 +68,7 @@ public struct FitnessMachineProcedureReset: FitnessMachineControlProcedure {
     /// Control Code
     private(set) public var controlCode: FitnessMachineControlCode
 
+    /// Create Procecure for Reset
     public init() {
         self.controlCode = .reset
     }
@@ -95,6 +97,9 @@ public struct FitnessMachineProcedureSetTargetSpeed: FitnessMachineControlProced
     /// Target Speed
     private(set) public var target: FitnessMachineSpeedType
 
+    /// Create Procecure for Set the Target Speed
+    ///
+    /// - Parameter target: Target Speed
     public init(target: FitnessMachineSpeedType) {
         self.controlCode = .setTargetSpeed
         self.target = target
@@ -126,6 +131,9 @@ public struct FitnessMachineProcedureSetTargetInclination: FitnessMachineControl
     /// Target Inclination
     private(set) public var target: FitnessMachineInclinationType
 
+    /// Create Procecure for Set the Target Inclination
+    ///
+    /// - Parameter target: Target Inclination
     public init(target: FitnessMachineInclinationType) {
         self.controlCode = .setTargetInclination
         self.target = target
@@ -157,6 +165,9 @@ public struct FitnessMachineProcedureSetTargetResistanceLevel: FitnessMachineCon
     /// Target Resistance Level
     private(set) public var target: FitnessMachineTargetResistanceLevelType
 
+    /// Create Procecure for Set the Target Resistance Level
+    ///
+    /// - Parameter target: Target Resistance Level
     public init(target: FitnessMachineTargetResistanceLevelType) {
         self.controlCode = .setTargetResistanceLevel
         self.target = target
@@ -188,6 +199,9 @@ public struct FitnessMachineProcedureSetTargetPower: FitnessMachineControlProced
     /// Target Power
     private(set) public var target: FitnessMachinePowerType
 
+    /// Create Procecure for Set the Target Resistance Power
+    ///
+    /// - Parameter target: Target Power
     public init(target: FitnessMachinePowerType) {
         self.controlCode = .setTargetPower
         self.target = target
@@ -219,6 +233,9 @@ public struct FitnessMachineProcedureSetTargetHeartRate: FitnessMachineControlPr
     /// Target Power
     private(set) public var target: UInt8
 
+    /// Create Procecure for Set the Target Heart Rate
+    ///
+    /// - Parameter target: Target Heart Rate
     public init(target: UInt8) {
         self.controlCode = .setTargetHeartRate
         self.target = target
@@ -246,6 +263,7 @@ public struct FitnessMachineProcedureStartResume: FitnessMachineControlProcedure
     /// Control Code
     private(set) public var controlCode: FitnessMachineControlCode
 
+    /// Create Procecure for Start/Resume
     public init() {
         self.controlCode = .startResume
     }
@@ -274,6 +292,9 @@ public struct FitnessMachineProcedureStopPause: FitnessMachineControlProcedure {
     /// Command
     private(set) public var target: FitnessMachineStopPauseType
 
+    /// Create Procecure for Stop/Pause
+    ///
+    /// - Parameter target: Stop - Pause
     public init(target: FitnessMachineStopPauseType) {
         self.controlCode = .stopPause
         self.target = target
@@ -293,7 +314,7 @@ public struct FitnessMachineProcedureStopPause: FitnessMachineControlProcedure {
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted expended energy
+/// Fitness Machine Procecure for Set the Targeted Expended Energy
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedExpendedEnergy: FitnessMachineControlProcedure {
@@ -304,6 +325,9 @@ public struct FitnessMachineProcedureSetTargetedExpendedEnergy: FitnessMachineCo
     /// Target Expended Energy
     private(set) public var target: FitnessMachineTargetExpendedEnergy
 
+    /// Create Procecure for Set the Targeted Expended Energy
+    ///
+    /// - Parameter target: Targeted Expended Energy
     public init(target: FitnessMachineTargetExpendedEnergy) {
         self.controlCode = .setTargetedExpendedEnergy
         self.target = target
@@ -324,7 +348,7 @@ public struct FitnessMachineProcedureSetTargetedExpendedEnergy: FitnessMachineCo
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted number of steps
+/// Fitness Machine Procecure for Set the Targeted Number of Steps
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedNumberOfSteps: FitnessMachineControlProcedure {
@@ -335,6 +359,9 @@ public struct FitnessMachineProcedureSetTargetedNumberOfSteps: FitnessMachineCon
     /// Target Steps
     private(set) public var target: UInt16
 
+    /// Create Procecure for Set the Targeted Number of Steps
+    ///
+    /// - Parameter target: Targeted Number of Steps
     public init(target: UInt16) {
         self.controlCode = .setTargetedNumberOfSteps
         self.target = target
@@ -354,7 +381,7 @@ public struct FitnessMachineProcedureSetTargetedNumberOfSteps: FitnessMachineCon
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted number of strides
+/// Fitness Machine Procecure for Set the Targeted Number of Strides
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedNumberOfStrides: FitnessMachineControlProcedure {
@@ -365,6 +392,9 @@ public struct FitnessMachineProcedureSetTargetedNumberOfStrides: FitnessMachineC
     /// Target Steps
     private(set) public var target: UInt16
 
+    /// Create Procecure for Set the Targeted Number of Strides
+    ///
+    /// - Parameter target: Targeted Number of Strides
     public init(target: UInt16) {
         self.controlCode = .setTargetedNumberOfStrides
         self.target = target
@@ -384,7 +414,7 @@ public struct FitnessMachineProcedureSetTargetedNumberOfStrides: FitnessMachineC
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted distance
+/// Fitness Machine Procecure for Set the Targeted Distance
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedDistance: FitnessMachineControlProcedure {
@@ -395,6 +425,9 @@ public struct FitnessMachineProcedureSetTargetedDistance: FitnessMachineControlP
     /// Target Distance
     private(set) public var target: FitnessMachineTargetDistance
 
+    /// Create Procecure for Set the Targeted Distance
+    ///
+    /// - Parameter target: Targeted Distance
     public init(target: FitnessMachineTargetDistance) {
         self.controlCode = .setTargetedDistance
         self.target = target
@@ -415,7 +448,7 @@ public struct FitnessMachineProcedureSetTargetedDistance: FitnessMachineControlP
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted Training Time
+/// Fitness Machine Procecure for Set the Targeted Training Time
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedTrainingTime: FitnessMachineControlProcedure {
@@ -426,6 +459,9 @@ public struct FitnessMachineProcedureSetTargetedTrainingTime: FitnessMachineCont
     /// Target Training Time
     private(set) public var target: FitnessMachineTargetTime
 
+    /// Create Procecure for Set the Targeted Training Time
+    ///
+    /// - Parameter target: Targeted Training Time
     public init(target: FitnessMachineTargetTime) {
         self.controlCode = .setTargetedTrainingTime
         self.target = target
@@ -446,7 +482,7 @@ public struct FitnessMachineProcedureSetTargetedTrainingTime: FitnessMachineCont
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted Time in Two Heart Rate Zone
+/// Fitness Machine Procecure for Set the Targeted Time in Two Heart Rate Zone
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedTimeInTwoHrZone: FitnessMachineControlProcedure {
@@ -457,6 +493,9 @@ public struct FitnessMachineProcedureSetTargetedTimeInTwoHrZone: FitnessMachineC
     /// Target Time in Two Heart Rate Zone
     private(set) public var target: FitnessMachineTargetTimeInTwoHrZone
 
+    /// Create Procecure for Set the Targeted Time in Two Heart Rate Zone
+    ///
+    /// - Parameter target: Targeted Time in Two Heart Rate Zone
     public init(target: FitnessMachineTargetTimeInTwoHrZone) {
         self.controlCode = .setTargetedTimeInTwoHrZone
         self.target = target
@@ -477,7 +516,7 @@ public struct FitnessMachineProcedureSetTargetedTimeInTwoHrZone: FitnessMachineC
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted Time in Three Heart Rate Zone
+/// Fitness Machine Procecure for Set the Targeted Time in Three Heart Rate Zone
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedTimeInThreeHrZone: FitnessMachineControlProcedure {
@@ -488,6 +527,9 @@ public struct FitnessMachineProcedureSetTargetedTimeInThreeHrZone: FitnessMachin
     /// Target Time in Three Heart Rate Zone
     private(set) public var target: FitnessMachineTargetTimeInThreeHrZone
 
+    /// Create Procecure for Set the Targeted Time in Three Heart Rate Zone
+    ///
+    /// - Parameter target: Targeted Time in Three Heart Rate Zone
     public init(target: FitnessMachineTargetTimeInThreeHrZone) {
         self.controlCode = .setTargetedTimeInThreeHrZone
         self.target = target
@@ -508,7 +550,7 @@ public struct FitnessMachineProcedureSetTargetedTimeInThreeHrZone: FitnessMachin
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted Time in Five Heart Rate Zone
+/// Fitness Machine Procecure for Set the Targeted Time in Five Heart Rate Zone
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedTimeInFiveHrZone: FitnessMachineControlProcedure {
@@ -519,6 +561,9 @@ public struct FitnessMachineProcedureSetTargetedTimeInFiveHrZone: FitnessMachine
     /// Target Time in Five Heart Rate Zone
     private(set) public var target: FitnessMachineTargetTimeInFiveHrZone
 
+    /// Create Procecure for Set the Targeted Time in Five Heart Rate Zone
+    ///
+    /// - Parameter target: Targeted Time in Five Heart Rate Zone
     public init(target: FitnessMachineTargetTimeInFiveHrZone) {
         self.controlCode = .setTargetedTimeInFiveHrZone
         self.target = target
@@ -550,6 +595,9 @@ public struct FitnessMachineProcedureSeWheelCircumference: FitnessMachineControl
     /// Target wheel circumference
     private(set) public var target: FitnessMachineWheelCircumferenceType
 
+    /// Create Procecure for Set the wheel circumference for a training session
+    ///
+    /// - Parameter target: wheel circumference
     public init(target: FitnessMachineWheelCircumferenceType) {
         self.controlCode = .setWheelCircumference
         self.target = target
@@ -570,7 +618,7 @@ public struct FitnessMachineProcedureSeWheelCircumference: FitnessMachineControl
     }
 }
 
-/// Fitness Machine Procecure for Control the spin down procedure
+/// Fitness Machine Procecure for Control the Spin Down Procedure
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetSpinDownControl: FitnessMachineControlProcedure {
@@ -588,6 +636,9 @@ public struct FitnessMachineProcedureSetSpinDownControl: FitnessMachineControlPr
     /// Spin Down Control
     private(set) public var target: Control
 
+    /// Create Procecure for Control the Spin Down Procedure
+    ///
+    /// - Parameter target: Spin Down Control
     public init(target: Control) {
         self.controlCode = .setSpinDownControl
         self.target = target
@@ -607,7 +658,7 @@ public struct FitnessMachineProcedureSetSpinDownControl: FitnessMachineControlPr
     }
 }
 
-/// Fitness Machine Procecure for Set the targeted cadence for a training session
+/// Fitness Machine Procecure for Set the Targeted Cadence for a Training Session
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineProcedureSetTargetedCadence: FitnessMachineControlProcedure {
@@ -618,6 +669,9 @@ public struct FitnessMachineProcedureSetTargetedCadence: FitnessMachineControlPr
     /// Target cadence
     private(set) public var target: FitnessMachineTargetCadence
 
+    /// Create Procecure for Set the Targeted Cadence for a Training Session
+    ///
+    /// - Parameter target: Targeted Cadence
     public init(target: FitnessMachineTargetCadence) {
         self.controlCode = .setTargetedCadence
         self.target = target
@@ -638,3 +692,72 @@ public struct FitnessMachineProcedureSetTargetedCadence: FitnessMachineControlPr
     }
 }
 
+/// Fitness Machine Procecure to identify the response to the Control Point
+public struct FitnessMachineProcedureResponse: FitnessMachineControlProcedure {
+
+    /// Control Response Result Codes
+    public enum ResultCode: UInt8 {
+        /// Reserved
+        case reserved               = 0
+        /// Success
+        case success                = 1
+        /// Op Code not supported
+        case notSupported           = 2
+        /// Invalid Parameter
+        case invalidParameter       = 3
+        /// Operationm Failed
+        case operationFailed        = 4
+        /// Control Not Permitted
+        case controlNotPermitted    = 5
+
+        /// If the Result Code can have Params
+        ///
+        /// Does not mean that it does have params
+        /// one still needs to look at the FitnessMachineControlCode
+        /// to determine if there is a optional param value on response
+        internal var mayIncludeParam: Bool {
+            switch self {
+            case .success:
+                return true
+            default:
+                return false
+            }
+        }
+    }
+
+    /// Control Code
+    private(set) public var controlCode: FitnessMachineControlCode
+
+    /// Requested Code
+    ///
+    /// This is the FitnessMachineControlCode which is being Responded to
+    private(set) public var requestCode: FitnessMachineControlCode
+
+    /// Result of the Requested Procedure
+    private(set) public var resultCode: ResultCode
+
+    /// Response Parameter
+    private(set) public var responseParam: FitnessMachineControlResponseType?
+
+    /// Create Control Procedure for Response
+    ///
+    /// - Parameters:
+    ///   - requestCode: Code Requested which is being responded to
+    ///   - resultCode: Result Code for response
+    ///   - responseParam: Optional Parameter for response
+    public init(requestCode: FitnessMachineControlCode, resultCode: ResultCode, responseParam: FitnessMachineControlResponseType?) {
+        self.controlCode = .responseCode
+        self.requestCode = requestCode
+        self.resultCode = resultCode
+        self.responseParam = responseParam
+    }
+
+    /// Encodes Control Procedure into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        //Not Yet Supported
+        throw BluetoothMessageProtocolError.init(.unsupported)
+    }
+}

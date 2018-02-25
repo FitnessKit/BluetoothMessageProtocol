@@ -249,6 +249,12 @@ custom_categories:
     - FitnessMachineProcedureSeWheelCircumference
     - FitnessMachineProcedureSetSpinDownControl
     - FitnessMachineProcedureSetTargetedCadence
+    - FitnessMachineProcedureResponse
+
+  - name: Fitness Machine Control Response Type
+    children:
+    - FitnessMachineControlResponseType
+    - FitnessMachineControlResponseTypeSpinDown
 
   - name: Fitness Machine Status
     children:

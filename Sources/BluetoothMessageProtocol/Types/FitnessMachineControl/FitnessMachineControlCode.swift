@@ -72,3 +72,19 @@ public enum FitnessMachineControlCode: UInt8 {
     /// Used to identify the response to this Control Point
     case responseCode                       = 128
 }
+
+@available(swift 3.1)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+internal extension FitnessMachineControlCode {
+
+    /// Param Response Type for Optional Param value in ResponseCode
+    internal var responeCodeParamType: FitnessMachineControlResponseType.Type? {
+        switch self {
+        case .setSpinDownControl:
+            return FitnessMachineControlResponseTypeSpinDown.self
+        default:
+            return nil
+        }
+    }
+}
+

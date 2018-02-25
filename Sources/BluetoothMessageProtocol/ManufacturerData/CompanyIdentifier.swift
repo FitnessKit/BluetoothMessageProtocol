@@ -37,6 +37,11 @@ open class CompanyIdentifier {
     /// Company Name
     open internal(set) var name: String
 
+    /// Creates Bluetooth Company Assigned Identifier
+    ///
+    /// - Parameters:
+    ///   - id: Assigned ID
+    ///   - name: Assigned Company Name
     public init(id: UInt16, name: String) {
 
         self.companyID = id

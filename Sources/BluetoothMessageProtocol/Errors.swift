@@ -45,10 +45,16 @@ public struct BluetoothMessageProtocolError: Error {
     /// Error Type
     public let type: ErrorReasons
 
+    /// Creates BluetoothMessageProtocol Error
+    ///
+    /// - Parameter type: Error Reason
     public init(_ type: ErrorReasons) {
         self.type = type
     }
 
+    /// Creates BluetoothMessageProtocol Error
+    ///
+    /// - Parameter message: String Message
     public init(message: String) {
         self.type = .generic(message)
     }

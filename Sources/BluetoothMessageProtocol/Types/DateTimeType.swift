@@ -62,6 +62,7 @@ public enum DayOfWeek: UInt8 {
     /// Sunday
     case sunday         = 7
 
+    /// Uses Current System Date to create DayOfWeek
     public static var fromCurrentDate: DayOfWeek {
 
         let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: Date())
@@ -134,6 +135,15 @@ public struct DateTime {
     /// Number of seconds since the start of the minute
     private(set) public var seconds: UInt8
 
+    /// Create Bluetooth Date Time Type
+    ///
+    /// - Parameters:
+    ///   - year: Year
+    ///   - month: Month
+    ///   - day: Day
+    ///   - hours: Hour
+    ///   - minutes: Minutes
+    ///   - seconds: Seconds
     public init(year: UInt16?, month: Month, day: UInt8?, hours: UInt8, minutes: UInt8, seconds: UInt8) {
 
         self.year = year
@@ -161,6 +171,9 @@ public struct DateTime {
 
     }
 
+    /// Create Bluetooth Date Time Type
+    ///
+    /// - Parameter from: Date
     public init(_ from: Date) {
 
         let comps = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second],
@@ -219,7 +232,15 @@ public extension DateTime {
 
 extension DateTime: Equatable {
 
-    public static func ==(lhs: DateTime, rhs: DateTime) -> Bool {
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: DateTime, rhs: DateTime) -> Bool {
 
         if lhs.year == rhs.year &&
             lhs.month.rawValue == rhs.month.rawValue &&
