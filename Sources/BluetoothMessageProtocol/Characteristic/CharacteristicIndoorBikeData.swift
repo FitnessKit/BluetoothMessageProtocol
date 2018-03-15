@@ -50,10 +50,10 @@ open class CharacteristicIndoorBikeData: Characteristic {
 
         /// More Data not present (is defined opposite of the norm)
         public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
-        /// Instantaneous Cadence present
-        public static let instantaneousCadencePresent: Flags    = Flags(rawValue: 1 << 1)
         /// Average Speed present
-        public static let averageSpeedPresent: Flags            = Flags(rawValue: 1 << 2)
+        public static let averageSpeedPresent: Flags            = Flags(rawValue: 1 << 1)
+        /// Instantaneous Cadence present
+        public static let instantaneousCadencePresent: Flags    = Flags(rawValue: 1 << 2)
         /// Average Candence present
         public static let averageCadencePresent: Flags          = Flags(rawValue: 1 << 3)
         /// Total Distance Present
@@ -195,7 +195,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
                 instantaneousCadence = Measurement(value: value, unit: UnitCadence.revolutionsPerMinute)
             }
 
-            if flags.contains(.instantaneousCadencePresent) == true {
+            if flags.contains(.averageCadencePresent) == true {
                 let value = Double(decoder.decodeUInt16()) * 0.5
                 averageCadence = Measurement(value: value, unit: UnitCadence.revolutionsPerMinute)
             }
