@@ -14,9 +14,11 @@ xcodebuild_arguments: [-scheme,BluetoothMessageProtocol-Package]
 custom_categories:
   - name: Base
     children:
+    - MemberIdentifier
+    - Characteristic
+    - CompanyIdentifier
     - Service
     - ServiceData
-    - Characteristic
 
   - name: Services - Bluetooth SIG
     children:
@@ -222,7 +224,6 @@ custom_categories:
 
   - name: Manufacturer Data
     children:
-    - CompanyIdentifier
     - ManufacturerData
     - ManufacturerDataAltBeacon
     - ManufacturerDataAppleiBeacon
