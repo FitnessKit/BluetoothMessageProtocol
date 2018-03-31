@@ -113,6 +113,13 @@ public extension Service {
         }
     }
 
+    /// Tacx ANT-FEC
+    public class var tacxAntFec: ServiceTacxAntFec {
+        get {
+            return ServiceTacxAntFec()
+        }
+    }
+
     /// Texas Instruments Firmware Update
     public class var texasInstrumentsFirmwareUpdate: ServiceTexasInstrumentsFirmwareUpdate {
         get {

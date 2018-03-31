@@ -74,6 +74,7 @@ custom_categories:
     - ServiceNordicSecureDeviceFirmwareUpdate
     - ServiceNorthPoleAweDiagnostics
     - ServiceNorthPoleAweHeartRate
+    - ServiceTacxAntFec
     - ServiceTexasInstrumentsFirmwareUpdate
     - ServiceTexasInstrumentsSensorTagAccelerometer
     - ServiceTexasInstrumentsSensorTagBarometer
@@ -216,6 +217,8 @@ custom_categories:
     - CharacteristicNorthPoleAweDiagnostics
     - CharacteristicNorthPoleAweHeartRateMeasurement
     - CharacteristicNorthPoleAweWorkoutInformation
+    - CharacteristicTacxAntFecReceive
+    - CharacteristicTacxAntFecSend
 
   - name: Manufacturer Data
     children:
