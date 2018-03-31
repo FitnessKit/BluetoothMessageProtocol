@@ -111,7 +111,11 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
             let measuredPower = decoder.decodeInt8()
 
-            return ManufacturerDataAppleiBeacon(proximityUUID: uuid, majorID: majorID, minorID: minorID, measuredPower: measuredPower, rawData: data)
+            return ManufacturerDataAppleiBeacon(proximityUUID: uuid,
+                                                majorID: majorID,
+                                                minorID: minorID,
+                                                measuredPower: measuredPower,
+                                                rawData: data)
 
         } else {
             throw BluetoothMessageProtocolError.init(.decodeError(msg: "No Manufacturer Specific Data"))
