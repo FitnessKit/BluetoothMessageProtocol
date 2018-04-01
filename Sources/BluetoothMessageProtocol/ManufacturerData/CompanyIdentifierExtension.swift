@@ -3052,4 +3052,74 @@ public extension CompanyIdentifier {
     public class var pressurePro: CompanyIdentifier { return CompanyIdentifier(id: 1511, name: "PressurePro") }
     /// COWBOY
     public class var cowboy: CompanyIdentifier { return CompanyIdentifier(id: 1512, name: "COWBOY") }
+    /// iconmobile GmbH
+    public class var iconmobile: CompanyIdentifier { return CompanyIdentifier(id: 1513, name: "iconmobile GmbH") }
+    /// ACS-Control-System GmbH
+    public class var acsControlSystem: CompanyIdentifier { return CompanyIdentifier(id: 1514, name: "ACS-Control-System GmbH") }
+    /// Bayerische Motoren Werke AG
+    public class var bmw: CompanyIdentifier { return CompanyIdentifier(id: 1515, name: "Bayerische Motoren Werke AG") }
+    /// Gycom Svenska AB
+    public class var gycomSvenska: CompanyIdentifier { return CompanyIdentifier(id: 1516, name: "Gycom Svenska AB") }
+    /// Fuji Xerox Co., Ltd
+    public class var fujiXerox: CompanyIdentifier { return CompanyIdentifier(id: 1517, name: "Fuji Xerox Co., Ltd") }
+    /// Glide Inc.
+    public class var glide: CompanyIdentifier { return CompanyIdentifier(id: 1518, name: "Glide Inc.") }
+    /// SIKOM AS
+    public class var sikom: CompanyIdentifier { return CompanyIdentifier(id: 1519, name: "SIKOM AS") }
+    /// beken
+    public class var beken: CompanyIdentifier { return CompanyIdentifier(id: 1520, name: "beken") }
+    /// The Linux Foundation
+    public class var linuxFoundation: CompanyIdentifier { return CompanyIdentifier(id: 1521, name: "The Linux Foundation") }
+    /// Try and E CO.,LTD.
+    public class var tryAndE: CompanyIdentifier { return CompanyIdentifier(id: 1522, name: "Try and E CO.,LTD") }
+    /// SeeScan
+    public class var seeScan: CompanyIdentifier { return CompanyIdentifier(id: 1523, name: "SeeScan") }
+    /// Clearity, LLC
+    public class var clearity: CompanyIdentifier { return CompanyIdentifier(id: 1524, name: "Clearity, LLC") }
+    /// GS TAG
+    public class var gsTag: CompanyIdentifier { return CompanyIdentifier(id: 1525, name: "GS TAG") }
+    /// DPTechnics
+    public class var dpTechnics: CompanyIdentifier { return CompanyIdentifier(id: 1526, name: "DPTechnics") }
+    /// TRACMO, INC.
+    public class var tracmo: CompanyIdentifier { return CompanyIdentifier(id: 1527, name: "TRACMO, INC.") }
+    /// Anki Inc.
+    public class var anki: CompanyIdentifier { return CompanyIdentifier(id: 1528, name: "Anki Inc.") }
+    /// Hagleitner Hygiene International GmbH
+    public class var hagleitnerHygiene: CompanyIdentifier { return CompanyIdentifier(id: 1529, name: "Hagleitner Hygiene International GmbH") }
+    /// Konami Sports Life Co., Ltd.
+    public class var konamiSportsLife: CompanyIdentifier { return CompanyIdentifier(id: 1530, name: "Konami Sports Life Co., Ltd.") }
+    /// Arblet Inc.
+    public class var arblet: CompanyIdentifier { return CompanyIdentifier(id: 1531, name: "Arblet Inc.") }
+    /// Masbando GmbH
+    public class var masbando: CompanyIdentifier { return CompanyIdentifier(id: 1532, name: "Masbando GmbH") }
+    /// Innoseis
+    public class var innoseis: CompanyIdentifier { return CompanyIdentifier(id: 1533, name: "Innoseis") }
+    /// Niko
+    public class var niko: CompanyIdentifier { return CompanyIdentifier(id: 1534, name: "Niko") }
+    /// Wellnomics Ltd
+    public class var wellnomics: CompanyIdentifier { return CompanyIdentifier(id: 1535, name: "Wellnomics Ltd") }
+    /// iRobot Corporation
+    public class var iRobotCorporation: CompanyIdentifier { return CompanyIdentifier(id: 1536, name: "iRobot Corporation") }
+    /// Schrader Electronics
+    public class var schraderElectronics: CompanyIdentifier { return CompanyIdentifier(id: 1537, name: "Schrader Electronics") }
+    /// Geberit International AG
+    public class var geberitInternational: CompanyIdentifier { return CompanyIdentifier(id: 1538, name: "Geberit International AG") }
+    /// Fourth Evolution Inc
+    public class var fourthEvolution: CompanyIdentifier { return CompanyIdentifier(id: 1539, name: "Fourth Evolution Inc") }
+    /// Cell2Jack LLC
+    public class var cell2Jack: CompanyIdentifier { return CompanyIdentifier(id: 1540, name: "Cell2Jack LLC") }
+    /// FMW electronic Futterer u. Maier-Wolf OHG
+    public class var fmwElectronicFutterer: CompanyIdentifier { return CompanyIdentifier(id: 1541, name: "FMW electronic Futterer u. Maier-Wolf OHG") }
+    /// John Deere
+    public class var johnDeere: CompanyIdentifier { return CompanyIdentifier(id: 1542, name: "John Deere") }
+    /// Rookery Technology Ltd
+    public class var rookeryTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1543, name: "Rookery Technology Ltd") }
+    /// KeySafe-Cloud
+    public class var keySafeCloud: CompanyIdentifier { return CompanyIdentifier(id: 1544, name: "KeySafe-Cloud") }
+    /// Bchi Labortechnik AG
+    public class var bchiLabortechnik: CompanyIdentifier { return CompanyIdentifier(id: 1545, name: "Bchi Labortechnik AG") }
+    /// IQAir AG
+    public class var iQAir: CompanyIdentifier { return CompanyIdentifier(id: 1546, name: "IQAir AG") }
+    /// Triax Technologies Inc
+    public class var triaxTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1547, name: "Triax Technologies Inc") }
 }
