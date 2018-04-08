@@ -28,7 +28,7 @@ import Foundation
 /// BLE Link Loss Service
 ///
 /// This service defines behavior when a link is lost between two devices.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceLinkLoss: Service {
 

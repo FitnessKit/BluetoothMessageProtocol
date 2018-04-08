@@ -25,9 +25,9 @@
 import Foundation
 
 /// Bluetooth Service base Class
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class Service {
+open class Service: Encodable {
 
     /// Name of the Service
     open internal(set) var name: String

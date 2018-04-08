@@ -28,7 +28,8 @@ internal var allMemberIdentifiers: [MemberIdentifier] = [MemberIdentifier]()
 /// BLE 16 Bit UUIDs For Members
 ///
 /// Provides the Members UUID 16 Assigned Numbers
-open class MemberIdentifier {
+@available(swift 4.0)
+open class MemberIdentifier: Encodable {
 
     /// Members Assigned UUID 16 Number
     open internal(set) var assignedNumber: UInt16

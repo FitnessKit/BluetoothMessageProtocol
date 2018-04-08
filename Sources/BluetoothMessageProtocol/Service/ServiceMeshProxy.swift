@@ -28,7 +28,7 @@ import Foundation
 /// BLE Mesh Proxy Service
 ///
 /// The Mesh Proxy Service is used to enable a server to send and receive Proxy PDUs with a client.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceMeshProxy: Service {
 

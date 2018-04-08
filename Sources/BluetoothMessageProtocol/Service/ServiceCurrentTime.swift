@@ -28,7 +28,7 @@ import Foundation
 /// BLE Current Time Service
 ///
 /// This service defines how the current time can be exposed using the Generic Attribute Profile (GATT).
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceCurrentTime: Service {
 

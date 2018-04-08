@@ -28,7 +28,7 @@ import Foundation
 /// BLE Immediate Alert Service
 ///
 /// This service exposes a control point to allow a peer device to cause the device to immediately alert.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceImmediateAlert: Service {
 

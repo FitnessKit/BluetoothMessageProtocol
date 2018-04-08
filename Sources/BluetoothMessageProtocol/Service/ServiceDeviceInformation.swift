@@ -28,7 +28,7 @@ import Foundation
 /// BLE Device Information Service
 ///
 /// The Device Information Service exposes manufacturer and/or vendor information about a device.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceDeviceInformation: Service {
 

@@ -28,7 +28,7 @@ import Foundation
 /// BLE Location and Navigation Service
 ///
 /// This service exposes location and navigation-related data from a Location and Navigation sensor intended for outdoor activity applications.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceLocationAndNavigation: Service {
 

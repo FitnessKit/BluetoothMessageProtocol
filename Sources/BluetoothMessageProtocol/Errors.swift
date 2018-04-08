@@ -59,3 +59,34 @@ public struct BluetoothMessageProtocolError: Error {
         self.type = .generic(message)
     }
 }
+
+@available(swift 4.0)
+extension BluetoothMessageProtocolError: Encodable {
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: StringKey.self)
+
+        let errkey = StringKey(stringValue: "message")!
+        let typeKey = StringKey(stringValue: "error")!
+
+        switch type {
+        case .unsupported:
+            try container.encode("unsupported", forKey: typeKey)
+        case .encodeError(let msg):
+            try container.encode("Encode Error", forKey: typeKey)
+            try container.encode(msg, forKey: errkey)
+
+        case .decodeError(let msg):
+            try container.encode("Decode Error", forKey: typeKey)
+            try container.encode(msg, forKey: errkey)
+
+        case .companyRegistration(let msg):
+            try container.encode("Company Registration", forKey: typeKey)
+            try container.encode(msg, forKey: errkey)
+
+        case .generic(let msg):
+            try container.encode("Generic", forKey: typeKey)
+            try container.encode(msg, forKey: errkey)
+        }
+    }
+}

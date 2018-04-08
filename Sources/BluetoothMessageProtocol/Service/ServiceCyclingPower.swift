@@ -28,7 +28,7 @@ import Foundation
 /// BLE Cycling Power Service
 ///
 /// This service exposes power- and force-related data and optionally speed- and cadence-related data from a Cycling Power sensor intended for sports and fitness applications.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceCyclingPower: Service {
 

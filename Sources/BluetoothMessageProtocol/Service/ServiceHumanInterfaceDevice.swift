@@ -28,7 +28,7 @@ import Foundation
 /// BLE Human Interface Device Service
 ///
 /// This service exposes the HID reports and other HID data intended for HID Hosts and HID Devices.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceHumanInterfaceDevice: Service {
 

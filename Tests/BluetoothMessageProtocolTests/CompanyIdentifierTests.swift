@@ -21,7 +21,6 @@ class CompanyIdentifierTests: XCTestCase {
 
         } catch  {
         }
-
     }
 
     func testCompanyDups() {
@@ -37,7 +36,6 @@ class CompanyIdentifierTests: XCTestCase {
         }
 
         print("CompanyIdentifier Count: \(CompanyIdentifier.supportedCompanyIdentifers.count)")
-
     }
 
     func testFindCompany() {
@@ -53,8 +51,6 @@ class CompanyIdentifierTests: XCTestCase {
         if CompanyIdentifier.company(id: 65534) != nil {
             XCTFail()
         }
-
-
     }
 
 

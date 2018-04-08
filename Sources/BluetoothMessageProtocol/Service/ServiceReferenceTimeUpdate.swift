@@ -28,7 +28,7 @@ import Foundation
 /// BLE Reference Time Update Service
 ///
 /// This service defines how a client can request an update from a reference time source from a time server using the Generic Attribute Profile (GATT).
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceReferenceTimeUpdate: Service {
 

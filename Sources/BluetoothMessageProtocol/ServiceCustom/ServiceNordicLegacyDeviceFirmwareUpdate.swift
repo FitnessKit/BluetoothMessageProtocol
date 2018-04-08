@@ -26,7 +26,7 @@ import Foundation
 
 
 /// BLE Nordic Legacy Device Firmware Update Service
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceNordicLegacyDeviceFirmwareUpdate: Service {
 

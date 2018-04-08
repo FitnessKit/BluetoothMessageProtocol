@@ -28,7 +28,7 @@ import Foundation
 /// BLE Apple MIDI Service
 ///
 /// The Apple MIDI Service is used to send and receive MIDI data.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceAppleMidi: Service {
 

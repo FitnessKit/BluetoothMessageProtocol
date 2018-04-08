@@ -29,7 +29,8 @@ internal var allCompanyIdentifiers: [CompanyIdentifier] = [CompanyIdentifier]()
 /// BLE Company Identifier
 ///
 /// Provides the Company Assigned ID and Name
-open class CompanyIdentifier {
+@available(swift 4.0)
+open class CompanyIdentifier: Encodable {
 
     /// Company ID
     open internal(set) var companyID: UInt16

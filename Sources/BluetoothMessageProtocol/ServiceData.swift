@@ -26,9 +26,9 @@ import Foundation
 
 
 /// Bluetooth Service Data AD Type base Class
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceData {
+open class ServiceData: Encodable {
 
     /// Name of the Service Data AD Type
     open internal(set) var name: String

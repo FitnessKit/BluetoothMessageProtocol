@@ -31,7 +31,7 @@ import Foundation
 ///  - The different types of alerts with the short text messages.
 ///  - The information how many count of new alert messages.
 ///  - The information how many count of unread alerts.
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceAlertNotification: Service {
 

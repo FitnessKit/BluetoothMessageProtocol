@@ -29,7 +29,7 @@ import FitnessUnits
 
 /// BLE Fitness Machine Service Data
 ///
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceDataFitnessMachine: ServiceData {
 
@@ -44,7 +44,7 @@ open class ServiceDataFitnessMachine: ServiceData {
     }
 
     /// Options for Equipment Type Supported by Service
-    public struct EquipmentType: OptionSet {
+    public struct EquipmentType: OptionSet, Encodable {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
@@ -60,6 +60,11 @@ open class ServiceDataFitnessMachine: ServiceData {
         public static let rowerSupported: EquipmentType         = EquipmentType(rawValue: 1 << 4)
         /// Indoor Bike Supported
         public static let indoorBikeSupported: EquipmentType    = EquipmentType(rawValue: 1 << 5)
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            try container.encode(rawValue)
+        }
     }
 
 
@@ -125,4 +130,18 @@ open class ServiceDataFitnessMachine: ServiceData {
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 
+    open override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: StringKey.self)
+
+        let dataKey = StringKey(stringValue: "data")!
+        let fitKey = StringKey(stringValue: "fitnessMachineAvailable")!
+        let eqipKey = StringKey(stringValue: "equipmentSupported")!
+
+        try super.encode(to: encoder)
+
+        var unitContainer = container.nestedContainer(keyedBy: StringKey.self, forKey: dataKey)
+        try unitContainer.encode(fitnessMachineAvailable, forKey: fitKey)
+        try unitContainer.encode(equipmentSupported, forKey: eqipKey)
+    }
 }
+

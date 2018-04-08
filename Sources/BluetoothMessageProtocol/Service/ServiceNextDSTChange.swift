@@ -28,7 +28,7 @@ import Foundation
 /// BLE Next Daylight Savings Time (DST) Change Service
 ///
 /// This service defines how the information about an upcoming DST change can be exposed using the Generic Attribute Profile (GATT).
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceNextDSTChange: Service {
 
