@@ -88,7 +88,7 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
                 statusValue = FitnessMachineStatusTargetIncline(incline: incline)
 
             case .targetResistanceLevelChanged:
-                let rLevel = FitnessMachineTargetResistanceLevelType.create(decoder.decodeUInt8())
+                let rLevel = FitnessMachineTargetResistanceLevelType.create(decoder.decodeInt16())
                 statusValue = FitnessMachineStatusTargetResistanceLevel(resistanceLevel: rLevel)
 
             case .targetPowerChanged:

@@ -36,7 +36,9 @@ public struct FitnessMachineTargetResistanceLevelType {
     /// Target Resistance Level
     private(set) public var level: Double
 
-    internal static func create(_ value: UInt8) -> FitnessMachineTargetResistanceLevelType {
+    internal static func create(_ value: Int16) -> FitnessMachineTargetResistanceLevelType {
+        /// Per ESR11
+        /// E9135 – Resistance level format is SINT16
         let level = Double(value) * 0.1
         return FitnessMachineTargetResistanceLevelType(level: level)
     }
@@ -44,8 +46,8 @@ public struct FitnessMachineTargetResistanceLevelType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let incline = self.level * 1 / 0.1
-        let value = UInt8(incline)
+        let resitance = self.level * 1 / 0.1
+        let value = Int16(resitance)
 
         msgData.append(Data(from: value.littleEndian))
 
