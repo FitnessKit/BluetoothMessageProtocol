@@ -3122,4 +3122,30 @@ public extension CompanyIdentifier {
     public class var iQAir: CompanyIdentifier { return CompanyIdentifier(id: 1546, name: "IQAir AG") }
     /// Triax Technologies Inc
     public class var triaxTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1547, name: "Triax Technologies Inc") }
+    /// Vuzix Corporation
+    public class var vuzixCorporation: CompanyIdentifier { return CompanyIdentifier(id: 1548, name: "Vuzix Corporation") }
+    /// TDK Corporation
+    public class var tdkCoporation: CompanyIdentifier { return CompanyIdentifier(id: 1549, name: "TDK Corporation") }
+    /// Blueair AB
+    public class var blueair: CompanyIdentifier { return CompanyIdentifier(id: 1550, name: "Blueair AB") }
+    /// Philips Lighting B.V.
+    public class var philipsLighting: CompanyIdentifier { return CompanyIdentifier(id: 1551, name: "Philips Lighting B.V.") }
+    /// ADH GUARDIAN USA LLC
+    public class var adhGuardian: CompanyIdentifier { return CompanyIdentifier(id: 1552, name: "ADH GUARDIAN USA LLC") }
+    /// Beurer GmbH
+    public class var beurer: CompanyIdentifier { return CompanyIdentifier(id: 1553, name: "Beurer GmbH") }
+    /// Playfinity AS
+    public class var playfinity: CompanyIdentifier { return CompanyIdentifier(id: 1554, name: "Playfinity AS") }
+    /// Hans Dinslage GmbH
+    public class var hansDinslage: CompanyIdentifier { return CompanyIdentifier(id: 1555, name: "Hans Dinslage GmbH") }
+    /// OnAsset Intelligence, Inc.
+    public class var onAssetIntelligence: CompanyIdentifier { return CompanyIdentifier(id: 1556, name: "OnAsset Intelligence, Inc.") }
+    /// INTER ACTION Corporation
+    public class var interActionCorporation: CompanyIdentifier { return CompanyIdentifier(id: 1557, name: "INTER ACTION Corporation") }
+    /// OS42 UG (haftungsbeschraenkt)
+    public class var os42UG: CompanyIdentifier { return CompanyIdentifier(id: 1558, name: "OS42 UG (haftungsbeschraenkt)") }
+    /// WIZCONNECTED COMPANY LIMITED
+    public class var wizconnected: CompanyIdentifier { return CompanyIdentifier(id: 1559, name: "WIZCONNECTED COMPANY LIMITED") }
+    /// Audio-Technica Corporation
+    public class var audioTechnica: CompanyIdentifier { return CompanyIdentifier(id: 1560, name: "Audio-Technica Corporation") }
 }
