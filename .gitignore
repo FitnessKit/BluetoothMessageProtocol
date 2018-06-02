@@ -1,6 +1,4 @@
-
-reated by https://www.gitignore.io/api/swiftpackagemanager,osx,swift
-
+docs/undocumented.json
 ### OSX ###
 *.DS_Store
 .AppleDouble
