@@ -3148,4 +3148,102 @@ public extension CompanyIdentifier {
     public class var wizconnected: CompanyIdentifier { return CompanyIdentifier(id: 1559, name: "WIZCONNECTED COMPANY LIMITED") }
     /// Audio-Technica Corporation
     public class var audioTechnica: CompanyIdentifier { return CompanyIdentifier(id: 1560, name: "Audio-Technica Corporation") }
+    /// Six Guys Labs, s.r.o.
+    public class var sixGuysLabs: CompanyIdentifier { return CompanyIdentifier(id: 1561, name: "Six Guys Labs, s.r.o.") }
+    /// R.W. Beckett Corporation
+    public class var rwBeckett: CompanyIdentifier { return CompanyIdentifier(id: 1562, name: "R.W. Beckett Corporation") }
+    /// silex technology, inc
+    public class var silexTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1563, name: "silex technology, inc") }
+    /// Univations Limited
+    public class var univationsLimited: CompanyIdentifier { return CompanyIdentifier(id: 1564, name: "Univations Limited") }
+    /// SENS Innovation ApS
+    public class var sensInnovation: CompanyIdentifier { return CompanyIdentifier(id: 1565, name: "SENS Innovation ApS") }
+    /// Diamond Kinetics, Inc
+    public class var diamondKinetics: CompanyIdentifier { return CompanyIdentifier(id: 1566, name: "Diamond Kinetics, Inc") }
+    /// Phrame Inc.
+    public class var phrameInc: CompanyIdentifier { return CompanyIdentifier(id: 1567, name: "Phrame Inc.") }
+    /// Forciot Oy
+    public class var forciot: CompanyIdentifier { return CompanyIdentifier(id: 1568, name: "Forciot Oy") }
+    /// Noordung d.o.o.
+    public class var noordung: CompanyIdentifier { return CompanyIdentifier(id: 1569, name: "Noordung d.o.o.") }
+    /// Beam Labs, LLC
+    public class var beamLabs: CompanyIdentifier { return CompanyIdentifier(id: 1570, name: "Beam Labs, LLC") }
+    /// Philadelphia Scientific (U.K.) Limited
+    public class var philadelphiaScientific: CompanyIdentifier { return CompanyIdentifier(id: 1571, name: "Philadelphia Scientific (U.K.) Limited") }
+    /// Biovotion AG
+    public class var biovotion: CompanyIdentifier { return CompanyIdentifier(id: 1572, name: "Biovotion AG") }
+    /// Square Panda, Inc.
+    public class var squarePanda: CompanyIdentifier { return CompanyIdentifier(id: 1573, name: "Square Panda, Inc.") }
+    /// Amplifico
+    public class var amplifico: CompanyIdentifier { return CompanyIdentifier(id: 1574, name: "Amplifico") }
+    /// WEG S.A.
+    public class var weg: CompanyIdentifier { return CompanyIdentifier(id: 1575, name: "WEG S.A.") }
+    /// Ensto Oy
+    public class var ensto: CompanyIdentifier { return CompanyIdentifier(id: 1576, name: "Ensto Oy") }
+    /// PHONEPE PVT LTD
+    public class var phonepe: CompanyIdentifier { return CompanyIdentifier(id: 1577, name: "PHONEPE PVT LTD") }
+    /// Lunatico Astronomia SL
+    public class var lunaticoAstronomia: CompanyIdentifier { return CompanyIdentifier(id: 1578, name: "Lunatico Astronomia SL") }
+    /// MinebeaMitsumi Inc.
+    public class var minebeaMitsumi: CompanyIdentifier { return CompanyIdentifier(id: 1579, name: "MinebeaMitsumi Inc.") }
+    /// ASPion GmbH
+    public class var aspion: CompanyIdentifier { return CompanyIdentifier(id: 1580, name: "ASPion GmbH") }
+    /// Vossloh-Schwabe Deutschland GmbH
+    public class var vosslohSchwabe: CompanyIdentifier { return CompanyIdentifier(id: 1581, name: "Vossloh-Schwabe Deutschland GmbH") }
+    /// Procept
+    public class var procept: CompanyIdentifier { return CompanyIdentifier(id: 1582, name: "Procept") }
+    /// ONKYO Corporation
+    public class var onkyo: CompanyIdentifier { return CompanyIdentifier(id: 1583, name: "ONKYO Corporation") }
+    /// Asthrea D.O.O.
+    public class var asthrea: CompanyIdentifier { return CompanyIdentifier(id: 1584, name: "Asthrea D.O.O.") }
+    /// Fortiori Design LLC
+    public class var fortioriDesign: CompanyIdentifier { return CompanyIdentifier(id: 1585, name: "Fortiori Design LLC") }
+    /// Hugo Muller GmbH & Co KG
+    public class var hugoMuller: CompanyIdentifier { return CompanyIdentifier(id: 1586, name: "Hugo Muller GmbH & Co KG") }
+    /// Wangi Lai PLT
+    public class var wangiLai: CompanyIdentifier { return CompanyIdentifier(id: 1587, name: "Wangi Lai PLT") }
+    /// Fanstel Corp
+    public class var fanstelCorp: CompanyIdentifier { return CompanyIdentifier(id: 1588, name: "Fanstel Corp") }
+    /// Crookwood
+    public class var crookwood: CompanyIdentifier { return CompanyIdentifier(id: 1589, name: "Crookwood") }
+    /// ELECTRONICA INTEGRAL DE SONIDO S.A.
+    public class var electronicaIntegral: CompanyIdentifier { return CompanyIdentifier(id: 1590, name: "ELECTRONICA INTEGRAL DE SONIDO S.A.") }
+    /// GiP Innovation Tools GmbH
+    public class var gipInnovationTools: CompanyIdentifier { return CompanyIdentifier(id: 1591, name: "GiP Innovation Tools GmbH") }
+    /// LX SOLUTIONS PTY LIMITED
+    public class var lxSolutions: CompanyIdentifier { return CompanyIdentifier(id: 1592, name: "LX SOLUTIONS PTY LIMITED") }
+    /// Shenzhen Minew Technologies Co., Ltd.
+    public class var shenzhenMinew: CompanyIdentifier { return CompanyIdentifier(id: 1593, name: "Shenzhen Minew Technologies Co., Ltd.") }
+    /// Prolojik Limited
+    public class var prolojik: CompanyIdentifier { return CompanyIdentifier(id: 1594, name: "Prolojik Limited") }
+    /// Kromek Group Plc
+    public class var kromekGroup: CompanyIdentifier { return CompanyIdentifier(id: 1595, name: "Kromek Group Plc") }
+    /// Contec Medical Systems Co., Ltd.
+    public class var contecMedicalSystems: CompanyIdentifier { return CompanyIdentifier(id: 1596, name: "Contec Medical Systems Co., Ltd.") }
+    /// Xradio Technology Co.,Ltd.
+    public class var xradioTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1597, name: "Xradio Technology Co.,Ltd.") }
+    /// The Indoor Lab, LLC
+    public class var theIndoorLab: CompanyIdentifier { return CompanyIdentifier(id: 1598, name: "The Indoor Lab, LLC") }
+    /// LDL TECHNOLOGY
+    public class var ldlTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1599, name: "LDL TECHNOLOGY") }
+    /// Parkifi
+    public class var parkifi: CompanyIdentifier { return CompanyIdentifier(id: 1600, name: "Parkifi") }
+    /// Revenue Collection Systems FRANCE SAS
+    public class var revenueCollectionSystems: CompanyIdentifier { return CompanyIdentifier(id: 1601, name: "Revenue Collection Systems FRANCE SAS") }
+    /// Bluetrum Technology Co.,Ltd
+    public class var bluetrumTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1602, name: "Bluetrum Technology Co.,Ltd") }
+    /// makita corporation
+    public class var makita: CompanyIdentifier { return CompanyIdentifier(id: 1603, name: "makita corporation") }
+    /// Apogee Instruments
+    public class var apogeeInstruments: CompanyIdentifier { return CompanyIdentifier(id: 1604, name: "Apogee Instruments") }
+    /// BM3
+    public class var bm3: CompanyIdentifier { return CompanyIdentifier(id: 1605, name: "BM3") }
+    /// SGV Group Holding GmbH & Co. KG
+    public class var sgvGroupHolding: CompanyIdentifier { return CompanyIdentifier(id: 1606, name: "SGV Group Holding GmbH & Co. KG") }
+    /// MED-EL
+    public class var medEl: CompanyIdentifier { return CompanyIdentifier(id: 1607, name: "MED-EL") }
+    /// Ultune Technologies
+    public class var ultuneTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1608, name: "Ultune Technologies") }
+    /// Ryeex Technology Co.,Ltd.
+    public class var ryeexTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1609, name: "Ryeex Technology Co.,Ltd.") }
 }
