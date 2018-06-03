@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Tx Power Service
 ///
 /// This service exposes a device’s current transmit power level when in a connection.

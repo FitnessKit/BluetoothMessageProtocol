@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Definition of Bluetooth Gender
 public enum Gender: UInt8 {
     /// Male

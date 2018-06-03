@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Immediate Alert Service
 ///
 /// This service exposes a control point to allow a peer device to cause the device to immediately alert.

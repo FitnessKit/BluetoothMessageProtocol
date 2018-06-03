@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE North Pole AWE Diagnostics
 ///
 /// The North Pole AWE Diagnostics exposes diagnostics information about the AWE.

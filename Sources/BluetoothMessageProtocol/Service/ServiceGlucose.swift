@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Glucose Service
 ///
 /// This service exposes glucose and other data from a glucose sensor for use in consumer and professional healthcare applications.

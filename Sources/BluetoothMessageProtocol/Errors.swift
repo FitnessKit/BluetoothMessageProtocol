@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BluetoothMessageProtocol Error Reasons
 public enum ErrorReasons {
     /// Unsupported

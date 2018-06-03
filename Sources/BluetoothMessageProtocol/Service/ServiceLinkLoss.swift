@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Link Loss Service
 ///
 /// This service defines behavior when a link is lost between two devices.

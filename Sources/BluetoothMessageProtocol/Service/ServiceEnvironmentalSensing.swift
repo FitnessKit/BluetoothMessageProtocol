@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Environmental Sensing Service
 ///
 /// This service exposes measurement data from an environmental sensor intended for sports and fitness applications. A wide range of environmental parameters is supported.

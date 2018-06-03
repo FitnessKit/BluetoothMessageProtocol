@@ -40,7 +40,6 @@ public enum BodyLocation: UInt8 {
     /// Foot
     case foot       = 6
 
-
     /// String Value for Body Location
     public var stringValue: String {
 

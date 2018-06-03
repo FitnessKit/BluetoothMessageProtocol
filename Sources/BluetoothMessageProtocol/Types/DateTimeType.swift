@@ -26,8 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
-
 /// Daylight Savings Time Offset
 public enum DSTOffset: UInt8 {
     /// Standard Time
@@ -41,7 +39,6 @@ public enum DSTOffset: UInt8 {
     /// Unknown
     case unknown                = 255
 }
-
 
 /// Bluetooth Days of the Week
 public enum DayOfWeek: UInt8 {
@@ -100,7 +97,6 @@ public enum Month: UInt8 {
     /// December
     case december       = 12
 }
-
 
 /// Bluetooth Date Time Type
 public struct DateTime {
@@ -285,5 +281,4 @@ public extension DateTime {
 
         return msgData
     }
-
 }

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Human Interface Device Service
 ///
 /// This service exposes the HID reports and other HID data intended for HID Hosts and HID Devices.

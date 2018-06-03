@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Fitness Machine Service Data
 ///
 @available(swift 4.0)

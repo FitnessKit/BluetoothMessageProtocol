@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Location and Navigation Service
 ///
 /// This service exposes location and navigation-related data from a Location and Navigation sensor intended for outdoor activity applications.

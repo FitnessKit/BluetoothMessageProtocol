@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 // MARK: - Supported
 public extension CompanyIdentifier {
 

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Device Information Service
 ///
 /// The Device Information Service exposes manufacturer and/or vendor information about a device.

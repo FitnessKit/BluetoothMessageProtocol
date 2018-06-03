@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Continuous Glucose Monitoring Service
 ///
 /// This service exposes glucose and other data from a personal Continuous Glucose Monitoring (CGM) sensor for use in consumer healthcare applications.

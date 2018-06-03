@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Running Speed and Cadence Service
 ///
 /// This service exposes speed, cadence and other data from a Running Speed and Cadence Sensor intended for fitness applications.

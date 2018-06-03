@@ -59,9 +59,7 @@ public extension Service {
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
-        get {
-            return "\(name)\(uuidString)\(uniformIdentifier)".hashValue
-        }
+        return "\(name)\(uuidString)\(uniformIdentifier)".hashValue
     }
 }
 

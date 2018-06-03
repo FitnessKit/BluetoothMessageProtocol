@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE HTTP Proxy Service
 ///
 /// This service allows a Client device, typically a sensor, to communicate with a Web Server through a gateway device. The gateway device implements the HTTP Proxy Service and therefore provides the services available through the Internet to the Client sensor device.

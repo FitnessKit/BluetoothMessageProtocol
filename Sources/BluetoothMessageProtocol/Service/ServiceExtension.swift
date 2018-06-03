@@ -24,281 +24,202 @@
 
 import Foundation
 
-
 // MARK: - Supported Bluetooth SIG Services
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension Service {
 
     /// Generic Access
     public class var genericAccess: ServiceGenericAccess {
-        get {
-            return ServiceGenericAccess()
-        }
+        return ServiceGenericAccess()
     }
 
     /// Alert Notification
     public class var alertNotification: ServiceAlertNotification {
-        get {
-            return ServiceAlertNotification()
-        }
+        return ServiceAlertNotification()
     }
 
     /// Automation IO
     public class var automationInputOutput: ServiceAutomationInputOutput {
-        get {
-            return ServiceAutomationInputOutput()
-        }
+        return ServiceAutomationInputOutput()
     }
 
     /// Battery
     public class var battery: ServiceBattery {
-        get {
-            return ServiceBattery()
-        }
+        return ServiceBattery()
     }
 
     /// Blood Pressure
     public class var bloodPressure: ServiceBloodPressure {
-        get {
-            return ServiceBloodPressure()
-        }
+        return ServiceBloodPressure()
     }
 
     /// Body Composition
     public class var bodyComposition: ServiceBodyComposition {
-        get {
-            return ServiceBodyComposition()
-        }
+        return ServiceBodyComposition()
     }
 
     /// Bond Management
     public class var bondManagement: ServiceBondManagement {
-        get {
-            return ServiceBondManagement()
-        }
+        return ServiceBondManagement()
     }
 
     /// Continuous Glucose Monitoring
     public class var continuousGlucoseMonitoring: ServiceContinuousGlucoseMonitoring {
-        get {
-            return ServiceContinuousGlucoseMonitoring()
-        }
+        return ServiceContinuousGlucoseMonitoring()
     }
 
     /// Current Time
     public class var currentTime: ServiceCurrentTime {
-        get {
-            return ServiceCurrentTime()
-        }
+        return ServiceCurrentTime()
     }
 
     /// Cycling Power
     public class var cyclingPower: ServiceCyclingPower {
-        get {
-            return ServiceCyclingPower()
-        }
+        return ServiceCyclingPower()
     }
 
     /// Cycling Speed and Cadence
     public class var cyclingSpeedAndCadence: ServiceCyclingSpeedAndCadence {
-        get {
-            return ServiceCyclingSpeedAndCadence()
-        }
+        return ServiceCyclingSpeedAndCadence()
     }
 
     /// Device Information
     public class var deviceInformation: ServiceDeviceInformation {
-        get {
-            return ServiceDeviceInformation()
-        }
+        return ServiceDeviceInformation()
     }
 
     /// Environmental Sensing
     public class var environmentalSensing: ServiceEnvironmentalSensing {
-        get {
-            return ServiceEnvironmentalSensing()
-        }
+        return ServiceEnvironmentalSensing()
     }
 
     /// Fitness Machine
     public class var fitnessMachine: ServiceFitnessMachine {
-        get {
-            return ServiceFitnessMachine()
-        }
+        return ServiceFitnessMachine()
     }
 
     /// Generic Attribute
     public class var genericAttribute: ServiceGenericAttribute {
-        get {
-            return ServiceGenericAttribute()
-        }
+        return ServiceGenericAttribute()
     }
 
     /// Glucose
     public class var glucose: ServiceGlucose {
-        get {
-            return ServiceGlucose()
-        }
+        return ServiceGlucose()
     }
 
     /// Health Thermometer
     public class var healthThermometer: ServiceHealthThermometer {
-        get {
-            return ServiceHealthThermometer()
-        }
+        return ServiceHealthThermometer()
     }
 
     /// Heart Rate
     public class var heartRate: ServiceHeartRate {
-        get {
-            return ServiceHeartRate()
-        }
+        return ServiceHeartRate()
     }
 
     /// HTTP Proxy
     public class var httpProxy: ServiceHttpProxy {
-        get {
-            return ServiceHttpProxy()
-        }
+        return ServiceHttpProxy()
     }
 
     /// Human Interface Device
     public class var humanInterfaceDevice: ServiceHumanInterfaceDevice {
-        get {
-            return ServiceHumanInterfaceDevice()
-        }
+        return ServiceHumanInterfaceDevice()
     }
 
     /// Immediate Alert
     public class var immediateAlert: ServiceImmediateAlert {
-        get {
-            return ServiceImmediateAlert()
-        }
+        return ServiceImmediateAlert()
     }
 
     /// Indoor Positioning
     public class var indoorPositioning: ServiceIndoorPositioning {
-        get {
-            return ServiceIndoorPositioning()
-        }
+        return ServiceIndoorPositioning()
     }
 
     /// Internet Protocol Support
     public class var internetProtocolSupport: ServiceInternetProtocolSupport {
-        get {
-            return ServiceInternetProtocolSupport()
-        }
+        return ServiceInternetProtocolSupport()
     }
 
     /// Link Loss
     public class var linkLoss: ServiceLinkLoss {
-        get {
-            return ServiceLinkLoss()
-        }
+        return ServiceLinkLoss()
     }
 
     /// Location and Navigation
     public class var locationAndNavigation: ServiceLocationAndNavigation {
-        get {
-            return ServiceLocationAndNavigation()
-        }
+        return ServiceLocationAndNavigation()
     }
 
     /// Mesh Provisioning
     public class var meshProvisioning: ServiceMeshProvisioning {
-        get {
-            return ServiceMeshProvisioning()
-        }
+        return ServiceMeshProvisioning()
     }
 
     /// Mesh Proxy
     public class var meshProxy: ServiceMeshProxy {
-        get {
-            return ServiceMeshProxy()
-        }
+        return ServiceMeshProxy()
     }
 
     /// Next Daylight Savings Time (DST) Change
     public class var nextDSTChange: ServiceNextDSTChange {
-        get {
-            return ServiceNextDSTChange()
-        }
+        return ServiceNextDSTChange()
     }
 
     /// Object Transfer
     public class var objectTransfer: ServiceObjectTransfer {
-        get {
-            return ServiceObjectTransfer()
-        }
+        return ServiceObjectTransfer()
     }
 
     /// Phone Alert Status
     public class var phoneAlertStatus: ServicePhoneAlertStatus {
-        get {
-            return ServicePhoneAlertStatus()
-        }
+        return ServicePhoneAlertStatus()
     }
 
     /// Pulse Oximeter
     public class var pulseOximeter: ServicePulseOximeter {
-        get {
-            return ServicePulseOximeter()
-        }
+        return ServicePulseOximeter()
     }
 
     /// ReconnectionConfiguration
     public class var reconnectionConfiguration: ServiceReconnectionConfiguration {
-        get {
-            return ServiceReconnectionConfiguration()
-        }
+        return ServiceReconnectionConfiguration()
     }
 
     /// Reference Time Update
     public class var referenceTimeUpdate: ServiceReferenceTimeUpdate {
-        get {
-            return ServiceReferenceTimeUpdate()
-        }
+        return ServiceReferenceTimeUpdate()
     }
 
     /// Running Speed and Cadence
     public class var runningSpeedAndCadence: ServiceRunningSpeedAndCadence {
-        get {
-            return ServiceRunningSpeedAndCadence()
-        }
+        return ServiceRunningSpeedAndCadence()
     }
 
     /// Scan Parameters
     public class var scanParameters: ServiceScanParameters {
-        get {
-            return ServiceScanParameters()
-        }
+        return ServiceScanParameters()
     }
 
     /// Transport Discovery
     public class var transportDiscovery: ServiceTransportDiscovery {
-        get {
-            return ServiceTransportDiscovery()
-        }
+        return ServiceTransportDiscovery()
     }
 
     /// Tx Power
     public class var txPower: ServiceTxPower {
-        get {
-            return ServiceTxPower()
-        }
+        return ServiceTxPower()
     }
 
     /// User Data
     public class var userData: ServiceUserData {
-        get {
-            return ServiceUserData()
-        }
+        return ServiceUserData()
     }
 
     /// Weight Scale
     public class var weightScale: ServiceWeightScale {
-        get {
-            return ServiceWeightScale()
-        }
+        return ServiceWeightScale()
     }
 }

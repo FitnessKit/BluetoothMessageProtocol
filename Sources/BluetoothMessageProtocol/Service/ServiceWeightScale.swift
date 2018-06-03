@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Weight Scale Service
 ///
 /// This service exposes weight and related data from a weight scale intended for consumer healthcare and sports/fitness applications.

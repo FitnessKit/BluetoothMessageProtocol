@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Contact Status of Heart Rate Sensor
 public enum HeartRateContactStatus: UInt8 {
     /// Sensor Contact feature is not supported in the current connection

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Protocol for Fitness Machine Control Point Procedure
 public protocol FitnessMachineControlProcedure {
 

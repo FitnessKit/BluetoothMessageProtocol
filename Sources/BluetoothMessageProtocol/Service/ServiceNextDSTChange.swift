@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Next Daylight Savings Time (DST) Change Service
 ///
 /// This service defines how the information about an upcoming DST change can be exposed using the Generic Attribute Profile (GATT).

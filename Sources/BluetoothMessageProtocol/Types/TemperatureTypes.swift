@@ -49,7 +49,6 @@ public enum TemperatureType: UInt8 {
     /// Tympanum (ear drum)
     case tympanum           = 9
 
-
     /// String value for Temperature Type
     var stringValue: String {
 

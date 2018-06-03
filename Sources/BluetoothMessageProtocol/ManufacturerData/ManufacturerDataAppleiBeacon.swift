@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// Apple iBeacon Manufacturer Specific Data
 ///
 @available(swift 3.1)

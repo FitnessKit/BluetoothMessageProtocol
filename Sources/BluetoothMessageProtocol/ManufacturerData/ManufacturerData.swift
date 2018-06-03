@@ -25,7 +25,6 @@
 import Foundation
 import DataDecoder
 
-
 /// Bluetooth Manufacturer Specific Data
 ///
 @available(swift 3.1)
@@ -94,9 +93,7 @@ public extension ManufacturerData {
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
-        get {
-            return manufacturer.hashValue
-        }
+        return manufacturer.hashValue
     }
 }
 

@@ -24,7 +24,7 @@
 
 import Foundation
 
-
+/// CodingKey for String Values
 public struct StringKey: CodingKey {
     public var stringValue: String
     public var intValue: Int? {

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Fitness Machine Control Point Codes
 public enum FitnessMachineControlCode: UInt8 {
     /// Initiates the procedure to request the control of a fitness machine

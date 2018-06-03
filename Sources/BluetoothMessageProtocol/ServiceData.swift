@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Bluetooth Service Data AD Type base Class
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
@@ -74,9 +73,7 @@ public extension ServiceData {
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
-        get {
-            return "\(name)\(uuidString)".hashValue
-        }
+        return "\(name)\(uuidString)".hashValue
     }
 }
 

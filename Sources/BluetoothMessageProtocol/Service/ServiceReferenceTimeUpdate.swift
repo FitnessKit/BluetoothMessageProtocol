@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Reference Time Update Service
 ///
 /// This service defines how a client can request an update from a reference time source from a time server using the Generic Attribute Profile (GATT).

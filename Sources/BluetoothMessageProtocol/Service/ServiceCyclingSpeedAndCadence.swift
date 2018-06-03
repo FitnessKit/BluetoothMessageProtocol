@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Cycling Speed and Cadence Service
 ///
 /// This service exposes speed-related and cadence-related data from a Cycling Speed and Cadence sensor intended for fitness applications.

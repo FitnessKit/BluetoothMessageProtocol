@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 // MARK: - Non Assigned Companies
 public extension CompanyIdentifier {
     //Non offical IDs

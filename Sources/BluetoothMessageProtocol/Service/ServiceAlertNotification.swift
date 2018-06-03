@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Alert Notification Service
 ///
 /// Alert Notification service exposes:

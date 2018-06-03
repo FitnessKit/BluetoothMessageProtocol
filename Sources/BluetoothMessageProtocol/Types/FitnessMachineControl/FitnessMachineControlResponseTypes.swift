@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Protocol for Fitness Machine Response Parameter Values
 public protocol FitnessMachineControlResponseType {
 

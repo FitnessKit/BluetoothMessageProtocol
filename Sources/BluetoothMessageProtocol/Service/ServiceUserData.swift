@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE User Data Service
 ///
 /// This service exposes user-related data in the sports and fitness environment. This allows remote access and update of user data by a Client as well as the synchronization of user data between a Server and a Client.

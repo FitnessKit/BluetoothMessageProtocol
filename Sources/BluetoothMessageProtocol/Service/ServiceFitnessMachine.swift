@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Fitness Machine Service
 ///
 /// This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client.

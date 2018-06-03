@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE AWE Workout Information Characteristic
 ///
 @available(swift 3.1)

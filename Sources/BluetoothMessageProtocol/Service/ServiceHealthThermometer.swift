@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Health Thermometer Service
 ///
 /// The Health Thermometer service exposes temperature and other data from a thermometer intended for healthcare and fitness applications.

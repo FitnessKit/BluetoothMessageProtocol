@@ -21,6 +21,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+
 import Foundation
 
 internal var allMemberIdentifiers: [MemberIdentifier] = [MemberIdentifier]()
@@ -57,9 +58,7 @@ extension MemberIdentifier: Hashable {
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
-        get {
-            return "\(name)\(assignedNumber)".hashValue
-        }
+        return "\(name)\(assignedNumber)".hashValue
     }
 }
 

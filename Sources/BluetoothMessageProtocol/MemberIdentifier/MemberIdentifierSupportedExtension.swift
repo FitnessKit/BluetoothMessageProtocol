@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 import Foundation
 
-
 // MARK: - Supported
 public extension MemberIdentifier {
 

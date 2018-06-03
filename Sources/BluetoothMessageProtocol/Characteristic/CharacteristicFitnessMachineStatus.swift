@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Fitness Machine Status Characteristic
 ///
 /// The Fitness Machine Status characteristic is used to send the status of the Server

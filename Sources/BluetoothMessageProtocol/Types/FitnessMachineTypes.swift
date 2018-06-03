@@ -66,6 +66,7 @@ public struct FitnessMachineEnergy {
 
     /// Energy Data Not available
     internal static let energyNotAvailable: UInt16 = UInt16.max
+    
     /// Energy Per Minute Data Not available
     internal static let energyPerMinuteNotAvailable: UInt16 = UInt16(UInt8.max)
 
@@ -77,6 +78,38 @@ public struct FitnessMachineEnergy {
 
     /// Energy Per Minute
     private(set) public var perMinute: Measurement<UnitEnergy>?
+}
+
+internal extension FitnessMachineEnergy {
+
+    internal static func decode(decoder: inout DataDecoder) throws -> FitnessMachineEnergy {
+
+        var totalEnergy: Measurement<UnitEnergy>?
+        var energyPerHour: Measurement<UnitEnergy>?
+        var energyPerMinute: Measurement<UnitEnergy>?
+
+        let total = decoder.decodeUInt16()
+        let perHour = decoder.decodeUInt16()
+        let perMin = decoder.decodeUInt16()
+
+        if total != FitnessMachineEnergy.energyNotAvailable {
+            let tValue = Double(total)
+            totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
+        }
+
+        if perHour != FitnessMachineEnergy.energyNotAvailable {
+            let perHourValue = Double(perHour)
+            energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
+        }
+
+        if perMin != FitnessMachineEnergy.energyPerMinuteNotAvailable {
+            let perMinValue = Double(perMin)
+            energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
+        }
+
+        return FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
+    }
+
 }
 
 /// Fitness Machine Inclination Type

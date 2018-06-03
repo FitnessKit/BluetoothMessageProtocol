@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Heart Rate Service
 ///
 /// This service exposes heart rate and other data from a Heart Rate Sensor intended for fitness applications.

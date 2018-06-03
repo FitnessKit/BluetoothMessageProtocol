@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Object Transfer Service
 ///
 /// This service provides management and control features supporting bulk data transfers which occur via a separate L2CAP connection oriented channel. The Client is enabled to create and delete objects and to execute an action using the currently selected object. The selected object can be written, updated or read via an Object Transfer Channel opened by the Client. The generation of a checksum covering a part or the whole of the object contents is included as an optional feature. This service provides a general method for a Client to select and initiate the transfer of any type of object.

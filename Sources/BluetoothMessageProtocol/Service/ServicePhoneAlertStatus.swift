@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Phone Alert Status Service
 ///
 /// This service dexposes the phone alert status when in a connection.

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Battery Power State Information
 public struct BatteryPowerState {
 

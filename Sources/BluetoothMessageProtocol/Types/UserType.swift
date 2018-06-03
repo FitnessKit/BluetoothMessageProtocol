@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// Bluetooth User
 public enum User {
     /// Unknown User

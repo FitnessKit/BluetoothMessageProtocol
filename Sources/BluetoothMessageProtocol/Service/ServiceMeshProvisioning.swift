@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Mesh Provisioning Service
 ///
 /// The Mesh Provisioning Service allows a Provisioning Client to provision a Provisioning Server to allow it to participate in the mesh network.

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Pulse Oximeter Service
 ///
 /// This Service specification proposes a pulse oximetry server for use in consumer and professional healthcare applications.

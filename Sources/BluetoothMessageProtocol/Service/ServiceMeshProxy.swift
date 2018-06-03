@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Mesh Proxy Service
 ///
 /// The Mesh Proxy Service is used to enable a server to send and receive Proxy PDUs with a client.

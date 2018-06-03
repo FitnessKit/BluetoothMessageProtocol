@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE AWE Diagnostic Characteristic
 ///
 @available(swift 3.1)
@@ -98,7 +97,6 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
         super.init(name: CharacteristicNorthPoleAweDiagnostics.name,
                    uuidString: CharacteristicNorthPoleAweDiagnostics.uuidString)
     }
-
 
     /// Deocdes the BLE Data
     ///

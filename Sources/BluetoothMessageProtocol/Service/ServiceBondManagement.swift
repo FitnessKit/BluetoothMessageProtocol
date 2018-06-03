@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Bond Management Service
 ///
 /// This Specification proposes that this service will enable users to manage their bonds on devices with a limited user interface.

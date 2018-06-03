@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Cycling Power Service
 ///
 /// This service exposes power- and force-related data and optionally speed- and cadence-related data from a Cycling Power sensor intended for sports and fitness applications.

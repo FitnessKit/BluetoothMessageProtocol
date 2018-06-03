@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Transport Discovery Service
 ///
 /// This service enables a device using Bluetooth low energy wireless technology to expose services that are available on a transport other than Bluetooth low energy. When used together with a higher level specification (e.g., a specification which references and makes use of TDS), the information provided by this service can be used to facilitate discovery and utilization of BR/EDR or transports not defined by the Bluetooth SIG such as those defined by the Wi-Fi Alliance® or other organizations.

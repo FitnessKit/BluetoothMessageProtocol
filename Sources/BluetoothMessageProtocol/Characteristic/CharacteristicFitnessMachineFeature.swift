@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Fitness Machine Features Characteristic
 ///
 /// The Fitness Machine Feature characteristic exposes which optional features are supported by the Server implementation

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Automation IO Service
 ///
 /// The Automation IO service is used to expose the analog inputs/outputs and digital input/outputs of a generic IO module (IOM).

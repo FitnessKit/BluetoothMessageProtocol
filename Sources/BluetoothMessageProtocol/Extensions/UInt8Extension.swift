@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 internal extension UInt8 {
     var boolValue: Bool {
         switch self {

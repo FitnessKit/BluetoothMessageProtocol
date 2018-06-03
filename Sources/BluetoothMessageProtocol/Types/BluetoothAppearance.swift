@@ -77,7 +77,6 @@ public enum AppearanceCategory: String {
     case outdoorSportsActivity  = "Outdoor Sports Activity"
 }
 
-
 /// Appearance
 ///
 public enum Appearance: UInt16 {

@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Apple MIDI Service
 ///
 /// The Apple MIDI Service is used to send and receive MIDI data.

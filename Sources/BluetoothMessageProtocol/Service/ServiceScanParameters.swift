@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Scan Parameters Service
 ///
 /// This service enables a GATT Client to store the LE scan parameters it is using on a GATT Server device so that the GATT Server can utilize the information to adjust behavior to optimize power consumption and/or reconnection latency.

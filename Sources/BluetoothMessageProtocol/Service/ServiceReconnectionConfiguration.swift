@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Reconnection Configuration Service
 ///
 /// This service enables the control of certain communication parameters of a Bluetooth Low Energy peripheral device.

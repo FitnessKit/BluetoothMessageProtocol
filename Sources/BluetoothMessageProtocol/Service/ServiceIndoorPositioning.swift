@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Indoor Positioning Service
 ///
 /// The Indoor Positioning Service exposes location information to support e.g. mobile handsets to position themselves in an environment where GPS signal is not available, like indoor premises.

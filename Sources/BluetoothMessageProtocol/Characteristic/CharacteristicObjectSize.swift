@@ -89,4 +89,3 @@ open class CharacteristicObjectSize: Characteristic {
         return msgData
     }
 }
-

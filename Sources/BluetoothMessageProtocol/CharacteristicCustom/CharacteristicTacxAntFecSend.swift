@@ -26,7 +26,6 @@ import Foundation
 import DataDecoder
 import FitnessUnits
 
-
 /// BLE Tacx ANT-FEC Send Characteristic
 ///
 @available(swift 3.1)

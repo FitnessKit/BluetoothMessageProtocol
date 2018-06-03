@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Blood Pressure Service
 ///
 /// This service exposes blood pressure and other data from a blood pressure monitor intended for healthcare applications.

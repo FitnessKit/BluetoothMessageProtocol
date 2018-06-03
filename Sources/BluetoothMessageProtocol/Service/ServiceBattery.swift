@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// BLE Battery Service
 ///
 /// The Battery Service exposes the state of a battery within a device.
