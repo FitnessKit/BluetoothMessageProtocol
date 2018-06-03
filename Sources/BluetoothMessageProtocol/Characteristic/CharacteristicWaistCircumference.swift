@@ -50,7 +50,6 @@ open class CharacteristicWaistCircumference: Characteristic {
     ///
     /// - Parameter waistCircumference: Waist Circumference
     public init(waistCircumference: Measurement<UnitLength>) {
-
         self.waistCircumference = waistCircumference
 
         super.init(name: CharacteristicWaistCircumference.name,
@@ -63,7 +62,6 @@ open class CharacteristicWaistCircumference: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWaistCircumference {
-
         var decoder = DataDecoder(data)
 
         let meters = Double(decoder.decodeUInt16()) * 0.01

@@ -48,7 +48,6 @@ open class CharacteristicTemperatureCelsius: Characteristic {
     ///
     /// - Parameter temperature: Temperature
     public init(temperature: Measurement<UnitTemperature>) {
-
         self.temperature = temperature
 
         super.init(name: CharacteristicTemperatureCelsius.name,
@@ -61,7 +60,6 @@ open class CharacteristicTemperatureCelsius: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTemperatureCelsius {
-
         var decoder = DataDecoder(data)
 
         let tmpValue = Double(decoder.decodeInt16())

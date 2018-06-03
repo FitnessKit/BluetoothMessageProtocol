@@ -109,8 +109,16 @@ open class CharacteristicStairClimberData: Characteristic {
     ///   - heartRate: Heart Rate
     ///   - metabolicEquivalent: Metabolic Equivalent
     ///   - time: Time Information
-    public init(floors: UInt16?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, positiveElevationGain: Measurement<UnitLength>?, strideCount: UInt16?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
-
+    public init(floors: UInt16?,
+                stepsPerMinute: Measurement<UnitCadence>?,
+                averageStepRate: Measurement<UnitCadence>?,
+                positiveElevationGain: Measurement<UnitLength>?,
+                strideCount: UInt16?,
+                energy: FitnessMachineEnergy,
+                heartRate: UInt8?,
+                metabolicEquivalent: Double?,
+                time: FitnessMachineTime)
+    {
         self.floors = floors
         self.stepsPerMinute = stepsPerMinute
         self.averageStepRate = averageStepRate
@@ -137,7 +145,6 @@ open class CharacteristicStairClimberData: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicStairClimberData {
-
         var decoder = DataDecoder(data)
 
         let flags = Flags(rawValue: decoder.decodeUInt16())
@@ -157,46 +164,46 @@ open class CharacteristicStairClimberData: Characteristic {
             floors = decoder.decodeUInt16()
         }
 
-        if flags.contains(.stepPerMinutePresent) == true {
+        if flags.contains(.stepPerMinutePresent) {
             let value = Double(decoder.decodeUInt16())
             stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
         }
 
-        if flags.contains(.averageStepRatePresent) == true {
+        if flags.contains(.averageStepRatePresent) {
             let value = Double(decoder.decodeUInt16())
             averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
         }
 
-        if flags.contains(.positiveElevationGainPresent) == true {
+        if flags.contains(.positiveElevationGainPresent) {
             let value = Double(decoder.decodeUInt16())
             positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
         }
 
-        if flags.contains(.strideCountPresent) == true {
+        if flags.contains(.strideCountPresent) {
             strideCount = decoder.decodeUInt16()
         }
 
         var fitEnergy: FitnessMachineEnergy
-        if flags.contains(.expendedEnergyPresent) == true {
+        if flags.contains(.expendedEnergyPresent) {
             fitEnergy = try FitnessMachineEnergy.decode(decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
 
-        if flags.contains(.heartRatePresent) == true {
+        if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8()
         }
 
-        if flags.contains(.metabolicEquivalentPresent) == true {
+        if flags.contains(.metabolicEquivalentPresent) {
             mets = Double(decoder.decodeUInt8()) * 0.1
         }
 
-        if flags.contains(.elapsedTimePresent) == true {
+        if flags.contains(.elapsedTimePresent) {
             let value = Double(decoder.decodeUInt16())
             elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
-        if flags.contains(.remainingTimePresent) == true {
+        if flags.contains(.remainingTimePresent) {
             let value = Double(decoder.decodeUInt16())
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }

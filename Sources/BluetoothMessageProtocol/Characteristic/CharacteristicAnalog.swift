@@ -51,7 +51,6 @@ open class CharacteristicAnalog: Characteristic {
     ///
     /// - Parameter analogValue: Analog Data
     public init(analogValue: UInt16) {
-
         self.analogValue = analogValue
 
         super.init(name: CharacteristicAnalog.name,
@@ -64,7 +63,6 @@ open class CharacteristicAnalog: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAnalog {
-
         var decoder = DataDecoder(data)
 
         let analogValue = decoder.decodeUInt16()

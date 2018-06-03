@@ -50,7 +50,6 @@ open class CharacteristicTxPowerLevel: Characteristic {
     ///
     /// - Parameter txPower: Tx Power Level
     public init(txPower: Int8) {
-
         self.txPower = txPower
 
         super.init(name: CharacteristicTxPowerLevel.name,
@@ -63,7 +62,6 @@ open class CharacteristicTxPowerLevel: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTxPowerLevel {
-
         var decoder = DataDecoder(data)
 
         let txPower = decoder.decodeInt8()

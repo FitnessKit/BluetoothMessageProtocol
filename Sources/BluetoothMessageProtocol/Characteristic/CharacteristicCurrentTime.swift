@@ -76,7 +76,6 @@ open class CharacteristicCurrentTime: Characteristic {
     ///   - dayOfWeek: Day of the Week
     ///   - fractionalSeconds: Fractional Seconds
     public init(adjustmentReason: AdjustReasons, currentTime: DateTime, dayOfWeek: DayOfWeek, fractionalSeconds: Float) {
-
         self.adjustmentReason = adjustmentReason
         self.currentTime = currentTime
         self.dayOfWeek = dayOfWeek
@@ -92,7 +91,6 @@ open class CharacteristicCurrentTime: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicCurrentTime {
-
         var decoder = DataDecoder(data)
 
         let currenTime = try DateTime.decode(decoder: &decoder)

@@ -50,7 +50,6 @@ open class CharacteristicGender: Characteristic {
     ///
     /// - Parameter gender: Gender
     public init(gender: Gender) {
-
         self.gender = gender
 
         super.init(name: CharacteristicGender.name,

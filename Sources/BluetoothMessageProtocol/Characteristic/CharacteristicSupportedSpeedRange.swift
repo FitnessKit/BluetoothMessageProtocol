@@ -59,7 +59,6 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     ///   - maximum: Maximum Speed
     ///   - minimumIncrement: Minimum Increment
     public init(minimum: FitnessMachineSpeedType, maximum: FitnessMachineSpeedType, minimumIncrement: FitnessMachineSpeedType) {
-
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
@@ -74,7 +73,6 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedSpeedRange {
-
         var decoder = DataDecoder(data)
 
         let minimum = FitnessMachineSpeedType.create(decoder.decodeUInt16())

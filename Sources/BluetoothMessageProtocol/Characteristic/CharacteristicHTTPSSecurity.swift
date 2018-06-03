@@ -49,7 +49,6 @@ open class CharacteristicHTTPSSecurity: Characteristic {
     ///
     /// - Parameter security: HTTPS Security
     public init(security: Bool) {
-
         self.security = security
 
         super.init(name: CharacteristicHTTPSSecurity.name,

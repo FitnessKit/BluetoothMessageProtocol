@@ -50,7 +50,6 @@ open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
     ///
     /// - Parameter heartRate: Fat Burn Heart Rate Upper Limit
     public init(heartRate: UInt8) {
-
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
         super.init(name: CharacteristicFatBurnHeartRateUpperLimit.name,
@@ -63,7 +62,6 @@ open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFatBurnHeartRateUpperLimit {
-
         var decoder = DataDecoder(data)
 
         let heartRate: UInt8 = decoder.decodeUInt8()

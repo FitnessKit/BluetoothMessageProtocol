@@ -81,7 +81,6 @@ open class CharacteristicPnPID: Characteristic {
     ///   - productId: Manufacturer managed identifier for this product
     ///   - productVersion: Manufacturer managed version for this product
     public init(vendorIdSource: VendorSource, vendorId: UInt16, productId: UInt16, productVersion: UInt16) {
-
         self.vendorIdSource = vendorIdSource
         self.vendorId = vendorId
         self.productId = productId
@@ -126,4 +125,3 @@ open class CharacteristicPnPID: Characteristic {
         return msgData
     }
 }
-

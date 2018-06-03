@@ -129,8 +129,20 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
     ///   - weight: Weight
     ///   - height: Height
     ///   - multiplePacketMeasurement: Multiple Packet Measurement
-    public init(bodyFat: Measurement<UnitPercent>, currentTime: DateTime?, userID: User?, basalMetabolism: Measurement<UnitEnergy>?, musclePercentage: Measurement<UnitPercent>?, muscleMass: Measurement<UnitMass>?, fatFreeMass: Measurement<UnitMass>?, softLeanMass: Measurement<UnitMass>?, bodyWaterMass: Measurement<UnitMass>?, impedance: Measurement<UnitElectricResistance>?, weight: Measurement<UnitMass>?, height: Measurement<UnitLength>?, multiplePacketMeasurement: Bool) {
-
+    public init(bodyFat: Measurement<UnitPercent>,
+                currentTime: DateTime?,
+                userID: User?,
+                basalMetabolism: Measurement<UnitEnergy>?,
+                musclePercentage: Measurement<UnitPercent>?,
+                muscleMass: Measurement<UnitMass>?,
+                fatFreeMass: Measurement<UnitMass>?,
+                softLeanMass: Measurement<UnitMass>?,
+                bodyWaterMass: Measurement<UnitMass>?,
+                impedance: Measurement<UnitElectricResistance>?,
+                weight: Measurement<UnitMass>?,
+                height: Measurement<UnitLength>?,
+                multiplePacketMeasurement: Bool)
+    {
         self.bodyFat = bodyFat
         self.currentTime = currentTime
         self.userID = userID
@@ -155,7 +167,6 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBodyCompositionMeasurement {
-
         var decoder = DataDecoder(data)
 
         let flags = Flags(rawValue: decoder.decodeUInt16())
@@ -164,31 +175,31 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         let bFat = Measurement(value: bfatValue, unit: UnitPercent.percent)
 
         var currentTime: DateTime?
-        if flags.contains(.timeStampPresent) == true {
+        if flags.contains(.timeStampPresent) {
             currentTime = try DateTime.decode(decoder: &decoder)
         }
 
         var userID: User?
-        if flags.contains(.userIDPresent) == true {
+        if flags.contains(.userIDPresent) {
             userID = User.create(decoder.decodeUInt8())
         }
 
         var basalMetabolism: Measurement<UnitEnergy>?
-        if flags.contains(.basalMetabolismPresent) == true {
+        if flags.contains(.basalMetabolismPresent) {
             let value = Double(decoder.decodeUInt16())
             basalMetabolism = Measurement(value: value, unit: UnitEnergy.kilojoules)
         }
 
         var musclePercentage: Measurement<UnitPercent>?
-        if flags.contains(.musclePercentagePresent) == true {
+        if flags.contains(.musclePercentagePresent) {
             let value = Double(decoder.decodeUInt16()) * 0.1
             musclePercentage = Measurement(value: value, unit: UnitPercent.percent)
         }
 
         var muscleMass: Measurement<UnitMass>?
-        if flags.contains(.muscleMassPresent) == true {
+        if flags.contains(.muscleMassPresent) {
 
-            if flags.contains(.imperialUnits) == true {
+            if flags.contains(.imperialUnits) {
                 let value = Double(decoder.decodeUInt16()) * 0.01
                 muscleMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
@@ -198,9 +209,9 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         }
 
         var fatFreeMass: Measurement<UnitMass>?
-        if flags.contains(.fatFreeMassPresent) == true {
+        if flags.contains(.fatFreeMassPresent) {
 
-            if flags.contains(.imperialUnits) == true {
+            if flags.contains(.imperialUnits) {
                 let value = Double(decoder.decodeUInt16()) * 0.01
                 fatFreeMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
@@ -210,9 +221,9 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         }
 
         var softLeanMass: Measurement<UnitMass>?
-        if flags.contains(.softLeanMassPresent) == true {
+        if flags.contains(.softLeanMassPresent) {
 
-            if flags.contains(.imperialUnits) == true {
+            if flags.contains(.imperialUnits) {
                 let value = Double(decoder.decodeUInt16()) * 0.01
                 softLeanMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
@@ -222,9 +233,9 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         }
 
         var bodyWaterMass: Measurement<UnitMass>?
-        if flags.contains(.bodyWaterMassPresent) == true {
+        if flags.contains(.bodyWaterMassPresent) {
 
-            if flags.contains(.imperialUnits) == true {
+            if flags.contains(.imperialUnits) {
                 let value = Double(decoder.decodeUInt16()) * 0.01
                 bodyWaterMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
@@ -234,15 +245,15 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         }
 
         var impedance: Measurement<UnitElectricResistance>?
-        if flags.contains(.impedancePresent) == true {
+        if flags.contains(.impedancePresent) {
             let value = Double(decoder.decodeUInt16()) * 0.1
             impedance = Measurement(value: value, unit: UnitElectricResistance.ohms)
         }
 
         var weight: Measurement<UnitMass>?
-        if flags.contains(.weightPresent) == true {
+        if flags.contains(.weightPresent) {
 
-            if flags.contains(.imperialUnits) == true {
+            if flags.contains(.imperialUnits) {
                 let value = Double(decoder.decodeUInt16()) * 0.01
                 weight = Measurement(value: value, unit: UnitMass.pounds)
             } else {
@@ -252,9 +263,9 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         }
 
         var height: Measurement<UnitLength>?
-        if flags.contains(.heightPresent) == true {
+        if flags.contains(.heightPresent) {
 
-            if flags.contains(.imperialUnits) == true {
+            if flags.contains(.imperialUnits) {
                 let value = Double(decoder.decodeUInt16()) * 0.01
                 height = Measurement(value: value, unit: UnitLength.inches)
             } else {
@@ -263,10 +274,7 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
             }
         }
 
-        var multiPacket: Bool = false
-        if flags.contains(.multiplePacketMeasrement) == true {
-            multiPacket = true
-        }
+        let multiPacket = flags.contains(.multiplePacketMeasrement)
 
         return CharacteristicBodyCompositionMeasurement(bodyFat: bFat,
                                                         currentTime: currentTime,

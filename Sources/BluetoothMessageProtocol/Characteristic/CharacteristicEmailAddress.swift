@@ -48,7 +48,6 @@ open class CharacteristicEmailAddress: Characteristic {
     ///
     /// - Parameter emailAddress: Email Address
     public init(emailAddress: String) {
-
         self.emailAddress = emailAddress
 
         super.init(name: CharacteristicEmailAddress.name,
@@ -61,7 +60,6 @@ open class CharacteristicEmailAddress: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicEmailAddress {
-
         let emailAddress = data.safeStringValue ?? ""
 
         return CharacteristicEmailAddress(emailAddress: emailAddress)

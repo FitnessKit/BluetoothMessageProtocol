@@ -59,7 +59,6 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
     ///   - maximum: Maximum Resistance Level
     ///   - minimumIncrement: Minimum Increment
     public init(minimum: Double, maximum: Double, minimumIncrement: Double) {
-
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
@@ -74,7 +73,6 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedResistanceLevel {
-
         var decoder = DataDecoder(data)
 
         let minValue = Double(decoder.decodeInt16()) * 0.1

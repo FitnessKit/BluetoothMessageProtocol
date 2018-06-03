@@ -54,7 +54,6 @@ open class CharacteristicApparentWindDirection: Characteristic {
     ///
     /// - Parameter windDirection: Angle of Wind Direction
     public init(windDirection: Measurement<UnitAngle>) {
-
         self.windDirection = windDirection
 
         super.init(name: CharacteristicApparentWindDirection.name,
@@ -67,7 +66,6 @@ open class CharacteristicApparentWindDirection: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicApparentWindDirection {
-
         var decoder = DataDecoder(data)
 
         let direction = Double(decoder.decodeUInt16()) * 0.01

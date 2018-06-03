@@ -77,7 +77,6 @@ open class CharacteristicTimeUpdateState: Characteristic {
     ///   - currentState: Current State
     ///   - result: Update Result
     public init(currentState: CurrentStateType, result: UpdateResultType) {
-
         self.currentState = currentState
         self.result = result
 
@@ -91,7 +90,6 @@ open class CharacteristicTimeUpdateState: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeUpdateState {
-
         var decoder = DataDecoder(data)
 
         let state = CurrentStateType(rawValue: decoder.decodeUInt8()) ?? .idle
@@ -106,7 +104,6 @@ open class CharacteristicTimeUpdateState: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(currentState.rawValue)

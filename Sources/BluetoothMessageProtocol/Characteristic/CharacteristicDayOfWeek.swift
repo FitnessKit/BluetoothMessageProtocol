@@ -48,7 +48,6 @@ open class CharacteristicDayOfWeek: Characteristic {
     ///
     /// - Parameter dayOfWeek: Day of Week
     public init(dayOfWeek: DayOfWeek) {
-
         self.dayOfWeek = dayOfWeek
 
         super.init(name: CharacteristicDayOfWeek.name,
@@ -61,7 +60,6 @@ open class CharacteristicDayOfWeek: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDayOfWeek {
-
         var decoder = DataDecoder(data)
 
         let weekday = DayOfWeek(rawValue: decoder.decodeUInt8()) ?? .unknown

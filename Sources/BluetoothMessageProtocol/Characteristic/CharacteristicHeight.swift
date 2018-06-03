@@ -50,7 +50,6 @@ open class CharacteristicHeight: Characteristic {
     ///
     /// - Parameter height: Height
     public init(height: Measurement<UnitLength>) {
-
         self.height = height
 
         super.init(name: CharacteristicHeight.name,
@@ -63,12 +62,11 @@ open class CharacteristicHeight: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHeight {
-
         var decoder = DataDecoder(data)
 
         let meters = Double(decoder.decodeUInt16()) * 0.01
 
-        let height: Measurement = Measurement(value: meters, unit: UnitLength.meters)
+        let height = Measurement(value: meters, unit: UnitLength.meters)
 
         return CharacteristicHeight(height: height)
     }

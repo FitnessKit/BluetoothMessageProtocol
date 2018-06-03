@@ -78,7 +78,6 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
     ///
     /// - Parameter exercise: Sport Type for Aerobic and Anaerobic Thresholds
     public init(exercise: SportType) {
-
         self.exercise = exercise
 
         super.init(name: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.name,
@@ -91,7 +90,6 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSportTypeForAerobicAndAnaerobicThresholds {
-
         var decoder = DataDecoder(data)
 
         let exercise = SportType(rawValue: decoder.decodeUInt8()) ?? .unspecified

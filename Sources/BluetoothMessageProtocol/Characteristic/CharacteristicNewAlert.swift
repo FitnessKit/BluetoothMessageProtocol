@@ -65,7 +65,6 @@ open class CharacteristicNewAlert: Characteristic {
     ///   - numberOfAlerts: Number of New Alerts
     ///   - alertInformation: Brief text information for the last alert
     public init(alertType: AlertCategory, numberOfAlerts: UInt8, alertInformation: String?) {
-
         self.alertType = alertType
         self.numberOfAlerts = numberOfAlerts
         self.alertInformation = alertInformation

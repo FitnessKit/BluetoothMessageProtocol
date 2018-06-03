@@ -73,7 +73,6 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     ///
     /// - Parameter trend: Barometric Pressure Trend
     public init(trend: BarometricPressureTrend) {
-
         self.trend = trend
 
         super.init(name: CharacteristicBarometricPressureTrend.name,
@@ -86,7 +85,6 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBarometricPressureTrend {
-
         var decoder = DataDecoder(data)
 
         let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8()) ?? .unknown

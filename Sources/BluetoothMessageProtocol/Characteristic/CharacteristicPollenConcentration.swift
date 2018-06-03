@@ -48,7 +48,6 @@ open class CharacteristicPollenConcentration: Characteristic {
     ///
     /// - Parameter concentration: Pollen Concentration
     public init(concentration: Measurement<UnitVolume>) {
-
         self.concentration = concentration
 
         super.init(name: CharacteristicPollenConcentration.name,
@@ -61,10 +60,9 @@ open class CharacteristicPollenConcentration: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPollenConcentration {
-
         var decoder = DataDecoder(data)
 
-        let concentration: Measurement = Measurement(value: Double(decoder.decodeUInt24()), unit: UnitVolume.cubicMeters)
+        let concentration = Measurement(value: Double(decoder.decodeUInt24()), unit: UnitVolume.cubicMeters)
 
         return CharacteristicPollenConcentration(concentration: concentration)
     }

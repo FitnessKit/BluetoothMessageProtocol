@@ -48,7 +48,6 @@ open class CharacteristicHeatIndex: Characteristic {
     ///
     /// - Parameter heatIndex: Heat Index
     public init(heatIndex: Measurement<UnitTemperature>) {
-
         self.heatIndex = heatIndex
 
         super.init(name: CharacteristicHeatIndex.name,
@@ -61,10 +60,9 @@ open class CharacteristicHeatIndex: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHeatIndex {
-
         var decoder = DataDecoder(data)
 
-        let heatIndex: Measurement = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
+        let heatIndex = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
 
         return CharacteristicHeatIndex(heatIndex: heatIndex)
     }
@@ -83,6 +81,4 @@ open class CharacteristicHeatIndex: Characteristic {
 
         return msgData
     }
-
 }
-

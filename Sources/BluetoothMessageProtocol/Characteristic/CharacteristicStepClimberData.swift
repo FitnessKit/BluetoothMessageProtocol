@@ -107,8 +107,16 @@ open class CharacteristicStepClimberData: Characteristic {
     ///   - heartRate: Heart Rate
     ///   - metabolicEquivalent: Metabolic Equivalent
     ///   - time: Time Information
-    public init(floors: UInt16?, stepCount: UInt16?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, positiveElevationGain: Measurement<UnitLength>?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
-
+    public init(floors: UInt16?,
+                stepCount: UInt16?,
+                stepsPerMinute: Measurement<UnitCadence>?,
+                averageStepRate: Measurement<UnitCadence>?,
+                positiveElevationGain: Measurement<UnitLength>?,
+                energy: FitnessMachineEnergy,
+                heartRate: UInt8?,
+                metabolicEquivalent: Double?,
+                time: FitnessMachineTime)
+    {
         self.floors = floors
         self.stepCount = stepCount
         self.stepsPerMinute = stepsPerMinute
@@ -145,9 +153,6 @@ open class CharacteristicStepClimberData: Characteristic {
         var stepsPerMinute: Measurement<UnitCadence>?
         var averageStepRate: Measurement<UnitCadence>?
         var positiveElevationGain: Measurement<UnitLength>?
-        var totalEnergy: Measurement<UnitEnergy>?
-        var energyPerHour: Measurement<UnitEnergy>?
-        var energyPerMinute: Measurement<UnitEnergy>?
         var heartRate: UInt8?
         var mets: Double?
         var elapsedTime: Measurement<UnitDuration>?
@@ -155,69 +160,50 @@ open class CharacteristicStepClimberData: Characteristic {
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-
             floors = decoder.decodeUInt16()
             stepCount = decoder.decodeUInt16()
-
-        } else {
-
-            if flags.contains(.stepPerMinutePresent) == true {
-                let value = Double(decoder.decodeUInt16())
-                stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
-            }
-
-            if flags.contains(.averageStepRatePresent) == true {
-                let value = Double(decoder.decodeUInt16())
-                averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
-            }
-
-            if flags.contains(.positiveElevationGainPresent) == true {
-                let value = Double(decoder.decodeUInt16())
-                positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
-            }
-
-            if flags.contains(.expendedEnergyPresent) == true {
-                let total = decoder.decodeUInt16()
-                let perHour = decoder.decodeUInt16()
-                let perMin = decoder.decodeUInt16()
-
-                if total != FitnessMachineEnergy.energyNotAvailable {
-                    let tValue = Double(total)
-                    totalEnergy = Measurement(value: tValue, unit: UnitEnergy.kilocalories)
-                }
-
-                if perHour != FitnessMachineEnergy.energyNotAvailable {
-                    let perHourValue = Double(perHour)
-                    energyPerHour = Measurement(value: perHourValue, unit: UnitEnergy.kilocalories)
-                }
-
-                if perMin != FitnessMachineEnergy.energyPerMinuteNotAvailable {
-                    let perMinValue = Double(perMin)
-                    energyPerMinute = Measurement(value: perMinValue, unit: UnitEnergy.kilocalories)
-                }
-            }
-
-            if flags.contains(.heartRatePresent) == true {
-                heartRate = decoder.decodeUInt8()
-            }
-
-            if flags.contains(.metabolicEquivalentPresent) == true {
-                mets = Double(decoder.decodeUInt8()) * 0.1
-            }
-
-            if flags.contains(.elapsedTimePresent) == true {
-                let value = Double(decoder.decodeUInt16())
-                elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-            }
-
-            if flags.contains(.remainingTimePresent) == true {
-                let value = Double(decoder.decodeUInt16())
-                remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-            }
-
         }
 
-        let energy = FitnessMachineEnergy(total: totalEnergy, perHour: energyPerHour, perMinute: energyPerMinute)
+        if flags.contains(.stepPerMinutePresent) {
+            let value = Double(decoder.decodeUInt16())
+            stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
+        }
+
+        if flags.contains(.averageStepRatePresent) {
+            let value = Double(decoder.decodeUInt16())
+            averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
+        }
+
+        if flags.contains(.positiveElevationGainPresent) {
+            let value = Double(decoder.decodeUInt16())
+            positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
+        }
+
+        var fitEnergy: FitnessMachineEnergy
+        if flags.contains(.expendedEnergyPresent) {
+            fitEnergy = try FitnessMachineEnergy.decode(decoder: &decoder)
+        } else {
+            fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
+        }
+
+        if flags.contains(.heartRatePresent) {
+            heartRate = decoder.decodeUInt8()
+        }
+
+        if flags.contains(.metabolicEquivalentPresent) {
+            mets = Double(decoder.decodeUInt8()) * 0.1
+        }
+
+        if flags.contains(.elapsedTimePresent) {
+            let value = Double(decoder.decodeUInt16())
+            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
+        }
+
+        if flags.contains(.remainingTimePresent) {
+            let value = Double(decoder.decodeUInt16())
+            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
+        }
+
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
         return CharacteristicStepClimberData(floors: floors,
@@ -225,7 +211,7 @@ open class CharacteristicStepClimberData: Characteristic {
                                              stepsPerMinute: stepsPerMinute,
                                              averageStepRate: averageStepRate,
                                              positiveElevationGain: positiveElevationGain,
-                                             energy: energy,
+                                             energy: fitEnergy,
                                              heartRate: heartRate,
                                              metabolicEquivalent: mets,
                                              time: time)

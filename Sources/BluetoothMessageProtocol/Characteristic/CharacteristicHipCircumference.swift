@@ -50,7 +50,6 @@ open class CharacteristicHipCircumference: Characteristic {
     ///
     /// - Parameter hipCircumference: Hip Circumference
     public init(hipCircumference: Measurement<UnitLength>) {
-
         self.hipCircumference = hipCircumference
 
         super.init(name: CharacteristicHipCircumference.name,
@@ -63,7 +62,6 @@ open class CharacteristicHipCircumference: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHipCircumference {
-
         var decoder = DataDecoder(data)
 
         let meters = Double(decoder.decodeUInt16()) * 0.01

@@ -77,7 +77,6 @@ open class CharacteristicHTTPControlPoint: Characteristic {
     ///
     /// - Parameter opCode: OpCode Commands
     public init(opCode: Command) {
-
         self.opCode = opCode
 
         super.init(name: CharacteristicHTTPControlPoint.name,

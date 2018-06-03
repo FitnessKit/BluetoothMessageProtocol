@@ -131,8 +131,20 @@ open class CharacteristicRowerData: Characteristic {
     ///   - heartRate: Heart Rate
     ///   - metabolicEquivalent: Metabolic Equivalent
     ///   - time: Time Information
-    public init(strokeRate: Measurement<UnitCadence>?, strokeCount: UInt16?, averageStrokeRate: Measurement<UnitCadence>?, totalDistance: Measurement<UnitLength>?, instantaneousPace: Measurement<UnitDuration>?, averagePace: Measurement<UnitDuration>?, instantaneousPower: FitnessMachinePowerType?, averagePower: FitnessMachinePowerType?, resistanceLevel: Double?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime) {
-
+    public init(strokeRate: Measurement<UnitCadence>?,
+                strokeCount: UInt16?,
+                averageStrokeRate: Measurement<UnitCadence>?,
+                totalDistance: Measurement<UnitLength>?,
+                instantaneousPace: Measurement<UnitDuration>?,
+                averagePace: Measurement<UnitDuration>?,
+                instantaneousPower: FitnessMachinePowerType?,
+                averagePower: FitnessMachinePowerType?,
+                resistanceLevel: Double?,
+                energy: FitnessMachineEnergy,
+                heartRate: UInt8?,
+                metabolicEquivalent: Double?,
+                time: FitnessMachineTime)
+    {
         self.strokeRate = strokeRate
         self.strokeCount = strokeCount
         self.averageStrokeRate = averageStrokeRate
@@ -164,7 +176,6 @@ open class CharacteristicRowerData: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicRowerData {
-
         var decoder = DataDecoder(data)
 
         let flags = Flags(rawValue: decoder.decodeUInt16())
@@ -185,67 +196,65 @@ open class CharacteristicRowerData: Characteristic {
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-
             let value = Double(decoder.decodeUInt8()) * 0.5
             strokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
 
             strokeCount = decoder.decodeUInt16()
-
         }
 
-        if flags.contains(.averageStrokePresent) == true {
+        if flags.contains(.averageStrokePresent) {
             let value = Double(decoder.decodeUInt8()) * 0.5
             averageStrokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
         }
 
-        if flags.contains(.totalDistancePresent) == true {
+        if flags.contains(.totalDistancePresent) {
             let value = Double(decoder.decodeUInt16())
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
-        if flags.contains(.instantaneousPacePresent) == true {
+        if flags.contains(.instantaneousPacePresent) {
             let value = Double(decoder.decodeUInt16())
             instantaneousPace = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
-        if flags.contains(.averagePacePresent) == true {
+        if flags.contains(.averagePacePresent) {
             let value = Double(decoder.decodeUInt16())
             averagePace = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
-        if flags.contains(.instantaneousPowerPresent) == true {
+        if flags.contains(.instantaneousPowerPresent) {
             iPower = FitnessMachinePowerType.create(decoder.decodeInt16())
         }
 
-        if flags.contains(.averagePowerPresent) == true {
+        if flags.contains(.averagePowerPresent) {
             aPower = FitnessMachinePowerType.create(decoder.decodeInt16())
         }
 
-        if flags.contains(.resistanceLevelPresent) == true {
+        if flags.contains(.resistanceLevelPresent) {
             resistanceLevel = Double(decoder.decodeInt16()) * 0.1
         }
 
         var fitEnergy: FitnessMachineEnergy
-        if flags.contains(.expendedEnergyPresent) == true {
+        if flags.contains(.expendedEnergyPresent) {
             fitEnergy = try FitnessMachineEnergy.decode(decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
 
-        if flags.contains(.heartRatePresent) == true {
+        if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8()
         }
 
-        if flags.contains(.metabolicEquivalentPresent) == true {
+        if flags.contains(.metabolicEquivalentPresent) {
             mets = Double(decoder.decodeUInt8()) * 0.1
         }
 
-        if flags.contains(.elapsedTimePresent) == true {
+        if flags.contains(.elapsedTimePresent) {
             let value = Double(decoder.decodeUInt16())
             elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
-        if flags.contains(.remainingTimePresent) == true {
+        if flags.contains(.remainingTimePresent) {
             let value = Double(decoder.decodeUInt16())
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }

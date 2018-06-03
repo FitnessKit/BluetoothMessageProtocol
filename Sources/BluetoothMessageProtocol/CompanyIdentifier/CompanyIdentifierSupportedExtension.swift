@@ -1634,7 +1634,6 @@ public extension CompanyIdentifier {
         allCompanyIdentifiers.append(.ultuneTechnologies)
         allCompanyIdentifiers.append(.ryeexTechnology)
 
-
         //Non offical IDs
         allCompanyIdentifiers.append(.viiiiva)
         allCompanyIdentifiers.append(.exogal)

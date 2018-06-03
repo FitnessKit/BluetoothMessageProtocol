@@ -63,7 +63,6 @@ open class CharacteristicDateOfBirth: Characteristic {
     ///   - month: Month of Birth
     ///   - day: Day of Birth
     public init(year: UInt16?, month: Month, day: UInt8?) {
-
         self.year = year
         self.month = month
         self.day = day
@@ -78,7 +77,6 @@ open class CharacteristicDateOfBirth: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDateOfBirth {
-
         var decoder = DataDecoder(data)
 
         var year: UInt16?

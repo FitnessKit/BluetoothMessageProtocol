@@ -57,7 +57,6 @@ open class CharacteristicPosition2D: Characteristic {
     ///   - latitude: WGS84 North coordinate
     ///   - longitude: WGS84 East coordinate
     public init(latitude: Int32, longitude: Int32) {
-
         self.latitude = latitude
         self.longitude = longitude
 

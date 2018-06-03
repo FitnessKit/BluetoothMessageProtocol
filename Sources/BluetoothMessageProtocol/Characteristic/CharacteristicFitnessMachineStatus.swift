@@ -53,7 +53,6 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
     /// - Parameters:
     ///   - status: Fitness Machine Status Value
     public init(status: FitnessMachineStatus?) {
-
         self.status = status
 
         super.init(name: CharacteristicFitnessMachineStatus.name,

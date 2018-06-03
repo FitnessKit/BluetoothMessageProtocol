@@ -50,8 +50,8 @@ open class CharacteristicRestingHeartRate: Characteristic {
     ///
     /// - Parameter heartRate: Resting Heart Rate
     public init(heartRate: UInt8) {
-
-        self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
+        self.heartRate = Measurement(value: Double(heartRate),
+                                     unit: UnitCadence.beatsPerMinute)
 
         super.init(name: CharacteristicRestingHeartRate.name,
                    uuidString: CharacteristicRestingHeartRate.uuidString)
@@ -63,7 +63,6 @@ open class CharacteristicRestingHeartRate: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicRestingHeartRate {
-
         var decoder = DataDecoder(data)
 
         let heartRate: UInt8 = decoder.decodeUInt8()

@@ -48,7 +48,6 @@ open class CharacteristicRainfall: Characteristic {
     ///
     /// - Parameter rainfall: Rainfall
     public init(rainfall: Measurement<UnitLength>) {
-
         self.rainfall = rainfall
 
         super.init(name: CharacteristicRainfall.name,
@@ -61,7 +60,6 @@ open class CharacteristicRainfall: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicRainfall {
-
         var decoder = DataDecoder(data)
 
         // put into 0.1 PA then into KiloPascals

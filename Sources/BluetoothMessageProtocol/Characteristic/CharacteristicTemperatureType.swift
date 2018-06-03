@@ -50,7 +50,6 @@ open class CharacteristicTemperatureType: Characteristic {
     ///
     /// - Parameter type: Temperature Type
     public init(type: TemperatureType) {
-
         self.type = type
 
         super.init(name: CharacteristicTemperatureType.name,
@@ -65,7 +64,7 @@ open class CharacteristicTemperatureType: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicTemperatureType {
         var decoder = DataDecoder(data)
 
-        let type: TemperatureType = TemperatureType(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let type = TemperatureType(rawValue: decoder.decodeUInt8()) ?? .unknown
         
         return CharacteristicTemperatureType(type: type)
     }

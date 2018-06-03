@@ -48,7 +48,6 @@ open class CharacteristicUVIndex: Characteristic {
     ///
     /// - Parameter uvIndex: UV Index
     public init(uvIndex: UInt8) {
-
         self.uvIndex = uvIndex
 
         super.init(name: CharacteristicUVIndex.name,
@@ -61,7 +60,6 @@ open class CharacteristicUVIndex: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUVIndex {
-
         var decoder = DataDecoder(data)
 
         let value = decoder.decodeUInt8()

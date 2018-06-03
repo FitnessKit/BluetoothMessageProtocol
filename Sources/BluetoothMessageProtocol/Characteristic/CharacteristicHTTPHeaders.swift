@@ -49,7 +49,6 @@ open class CharacteristicHTTPHeaders: Characteristic {
     ///
     /// - Parameter headers: The HTTP Headers
     public init(headers: String) {
-
         self.headers = headers
 
         super.init(name: CharacteristicHTTPHeaders.name,
@@ -62,7 +61,6 @@ open class CharacteristicHTTPHeaders: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHTTPHeaders {
-
         let header = data.safeStringValue ?? ""
 
         return CharacteristicHTTPHeaders(headers: header)

@@ -57,7 +57,6 @@ open class CharacteristicBatteryLevelState: Characteristic {
     ///   - level: Percent Battery level
     ///   - state: Battery Power State
     public init(level: Measurement<UnitPercent>, state: BatteryPowerState?) {
-
         self.level = level
         self.state = state
 
@@ -71,12 +70,11 @@ open class CharacteristicBatteryLevelState: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevelState {
-
         var decoder = DataDecoder(data)
 
         let percent = Double(decoder.decodeUInt8())
 
-        let level: Measurement = Measurement(value: percent, unit: UnitPercent.percent)
+        let level = Measurement(value: percent, unit: UnitPercent.percent)
 
         //Might be better to check the size of data.. 
         //but if they are all unknown it is the same as not being there..

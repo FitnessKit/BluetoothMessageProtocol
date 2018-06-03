@@ -53,7 +53,6 @@ open class CharacteristicObjectSize: Characteristic {
     ///   - currentSize: Current Size
     ///   - allocatedSize: Allocated Size
     public init(currentSize: UInt32, allocatedSize: UInt32) {
-
         self.currentSize = currentSize
         self.allocatedSize = allocatedSize
 

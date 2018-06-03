@@ -50,7 +50,6 @@ open class CharacteristicSerialNumberString: Characteristic {
     ///
     /// - Parameter serialNumber: Serial Number
     public init(serialNumber: String) {
-
         self.serialNumber = serialNumber
 
         super.init(name: CharacteristicSerialNumberString.name,
@@ -63,7 +62,6 @@ open class CharacteristicSerialNumberString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSerialNumberString {
-
         let serialNumber = data.safeStringValue ?? ""
 
         return CharacteristicSerialNumberString(serialNumber: serialNumber)

@@ -66,7 +66,6 @@ open class CharacteristicTimeSource: Characteristic {
     ///
     /// - Parameter source: Time Source
     public init(source: TimeSource) {
-
         self.source = source
 
         super.init(name: CharacteristicTimeSource.name,
@@ -79,7 +78,6 @@ open class CharacteristicTimeSource: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeSource {
-
         var decoder = DataDecoder(data)
 
         let source = TimeSource(rawValue: decoder.decodeUInt8()) ?? .unknown

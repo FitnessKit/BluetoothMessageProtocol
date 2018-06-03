@@ -58,8 +58,10 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     ///   - minimum: Minimum Power
     ///   - maximum: Maximum Power
     ///   - minimumIncrement: Minimum Increment
-    public init(minimum: FitnessMachinePowerType, maximum: FitnessMachinePowerType, minimumIncrement: Measurement<UnitPower>) {
-
+    public init(minimum: FitnessMachinePowerType,
+                maximum: FitnessMachinePowerType,
+                minimumIncrement: Measurement<UnitPower>)
+    {
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
@@ -74,7 +76,6 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedPowerRange {
-
         var decoder = DataDecoder(data)
 
         let minimum = FitnessMachinePowerType.create(decoder.decodeInt16())

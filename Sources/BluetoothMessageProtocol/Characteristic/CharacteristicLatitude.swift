@@ -52,7 +52,6 @@ open class CharacteristicLatitude: Characteristic {
     ///
     /// - Parameter latitude: WGS84 North coordinate
     public init(latitude: Int32) {
-
         self.latitude = latitude
 
         super.init(name: CharacteristicLatitude.name,

@@ -50,7 +50,6 @@ open class CharacteristicAltitude: Characteristic {
     ///
     /// - Parameter altitude: Altitude
     public init(altitude: UInt16) {
-
         self.altitude = altitude
 
         super.init(name: CharacteristicAltitude.name,
@@ -63,7 +62,6 @@ open class CharacteristicAltitude: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAltitude {
-
         var decoder = DataDecoder(data)
 
         let altitude: UInt16 = decoder.decodeUInt16()

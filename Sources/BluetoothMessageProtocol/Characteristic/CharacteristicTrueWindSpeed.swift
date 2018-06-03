@@ -48,7 +48,6 @@ open class CharacteristicTrueWindSpeed: Characteristic {
     ///
     /// - Parameter windSpeed: True Wind Speed
     public init(windSpeed: Measurement<UnitSpeed>) {
-
         self.windSpeed = windSpeed
 
         super.init(name: CharacteristicTrueWindSpeed.name,
@@ -61,7 +60,6 @@ open class CharacteristicTrueWindSpeed: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTrueWindSpeed {
-
         var decoder = DataDecoder(data)
 
         let value = Double(decoder.decodeUInt16()) * 0.01
@@ -85,4 +83,3 @@ open class CharacteristicTrueWindSpeed: Characteristic {
         return msgData
     }
 }
-

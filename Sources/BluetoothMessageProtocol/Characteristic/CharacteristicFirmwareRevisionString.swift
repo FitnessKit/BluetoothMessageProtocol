@@ -50,7 +50,6 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
     ///
     /// - Parameter firmwareRevision: Firmware Revision
     public init(firmwareRevision: String) {
-
         self.firmwareRevision = firmwareRevision
 
         super.init(name: CharacteristicFirmwareRevisionString.name,
@@ -63,7 +62,6 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFirmwareRevisionString {
-
         let firmwareRevision = data.safeStringValue ?? ""
 
         return CharacteristicFirmwareRevisionString(firmwareRevision: firmwareRevision)
@@ -77,6 +75,4 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
-
 }
-

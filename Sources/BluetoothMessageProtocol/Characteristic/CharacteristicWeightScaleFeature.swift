@@ -169,8 +169,12 @@ open class CharacteristicWeightScaleFeature: Characteristic {
     ///   - bmiSupported: Body Mass Index (BMI) Supported
     ///   - weightResolution: Weight Measurement Resolution
     ///   - heightResolution: Height Measurement Resolution
-    public init(timestampSupported: Bool, multipleUsersSupported: Bool, bmiSupported: Bool, weightResolution: WeightResolution, heightResolution: HeightResolution) {
-
+    public init(timestampSupported: Bool,
+                multipleUsersSupported: Bool,
+                bmiSupported: Bool,
+                weightResolution: WeightResolution,
+                heightResolution: HeightResolution)
+    {
         self.isTimestampSupported = timestampSupported
         self.isMultipleUsersSupported = multipleUsersSupported
         self.isBMISupported = bmiSupported
@@ -187,7 +191,6 @@ open class CharacteristicWeightScaleFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWeightScaleFeature {
-
         var decoder = DataDecoder(data)
 
         let value = decoder.decodeUInt32()

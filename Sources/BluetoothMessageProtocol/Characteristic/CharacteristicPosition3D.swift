@@ -61,7 +61,6 @@ open class CharacteristicPosition3D: Characteristic {
     ///   - longitude: WGS84 East coordinate
     ///   - elevation: Elevation
     public init(latitude: Int32, longitude: Int32, elevation: Measurement<UnitLength>) {
-
         self.latitude = latitude
         self.longitude = longitude
         self.elevation = elevation

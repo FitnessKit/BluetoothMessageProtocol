@@ -55,7 +55,6 @@ open class CharacteristicLocalTimeInformation: Characteristic {
     ///   - timeZone: Timezone Offset from UTC
     ///   - dstOffset: Daylight Savings Offset
     public init(timeZone: Int8, dstOffset: DSTOffset) {
-
         self.timeZone = timeZone
         self.dstOffset = dstOffset
 
@@ -92,4 +91,3 @@ open class CharacteristicLocalTimeInformation: Characteristic {
         return msgData
     }
 }
-

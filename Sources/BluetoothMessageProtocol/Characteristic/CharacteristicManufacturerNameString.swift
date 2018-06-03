@@ -50,7 +50,6 @@ open class CharacteristicManufacturerNameString: Characteristic {
     ///
     /// - Parameter manufacturerName: Manufacturer Name
     public init(manufacturerName: String) {
-
         self.manufacturerName = manufacturerName
 
         super.init(name: CharacteristicManufacturerNameString.name,
@@ -63,7 +62,6 @@ open class CharacteristicManufacturerNameString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicManufacturerNameString {
-
         let name = data.safeStringValue ?? ""
 
         return CharacteristicManufacturerNameString(manufacturerName: name)

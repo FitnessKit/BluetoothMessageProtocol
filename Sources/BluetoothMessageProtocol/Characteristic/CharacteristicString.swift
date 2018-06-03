@@ -50,7 +50,6 @@ open class CharacteristicString: Characteristic {
     ///
     /// - Parameter value: Generic String
     public init(value: String) {
-
         self.value = value
 
         super.init(name: CharacteristicString.name,
@@ -63,7 +62,6 @@ open class CharacteristicString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicString {
-
         let value = data.safeStringValue ?? ""
 
         return CharacteristicString(value: value)

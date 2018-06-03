@@ -79,7 +79,9 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
         let man = ManufacturerData(rawData: data)
 
-        guard man.manufacturer == .apple else { throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Apple")) }
+        guard man.manufacturer == .apple else {
+            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Apple"))
+        }
 
         if let data = man.specificData {
             //Apple iBeacon  Advert: Btye0 - 76 (apples id) byte2: Type (2 is proximity) Byte2: 15 remaining length

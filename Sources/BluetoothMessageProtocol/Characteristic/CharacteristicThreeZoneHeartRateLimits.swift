@@ -59,7 +59,6 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
     ///   - lightHeartRate: Light (Fat burn) / Moderate (Aerobic) Limit
     ///   - moderateHeartRate: Moderate (Aerobic) / Hard (Anaerobic) Limit
     public init(lightHeartRate: UInt8, moderateHeartRate: UInt8) {
-
         self.lightHeartRate = Measurement(value: Double(lightHeartRate), unit: UnitCadence.beatsPerMinute)
         self.moderateHeartRate = Measurement(value: Double(moderateHeartRate), unit: UnitCadence.beatsPerMinute)
 
@@ -73,7 +72,6 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicThreeZoneHeartRateLimits {
-
         var decoder = DataDecoder(data)
 
         let lightHeartRate: UInt8 = decoder.decodeUInt8()

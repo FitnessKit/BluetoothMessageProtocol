@@ -49,7 +49,6 @@ open class CharacteristicWindChill: Characteristic {
     ///
     /// - Parameter windChill: Wind Chill
     public init(windChill: Measurement<UnitTemperature>) {
-
         self.windChill = windChill
 
         super.init(name: CharacteristicWindChill.name,
@@ -62,10 +61,9 @@ open class CharacteristicWindChill: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWindChill {
-
         var decoder = DataDecoder(data)
 
-        let windChill: Measurement = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
+        let windChill = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
 
         return CharacteristicWindChill(windChill: windChill)
     }

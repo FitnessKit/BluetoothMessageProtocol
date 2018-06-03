@@ -50,8 +50,8 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
     ///
     /// - Parameter zoneLimit: Fat burn / Fitness Limit
     public init(zoneLimit: UInt8) {
-
-        self.zoneLimit = Measurement(value: Double(zoneLimit), unit: UnitCadence.beatsPerMinute)
+        self.zoneLimit = Measurement(value: Double(zoneLimit),
+                                     unit: UnitCadence.beatsPerMinute)
 
         super.init(name: CharacteristicTwoZoneHeartRateLimit.name,
                    uuidString: CharacteristicTwoZoneHeartRateLimit.uuidString)
@@ -63,7 +63,6 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTwoZoneHeartRateLimit {
-
         var decoder = DataDecoder(data)
 
         let zoneLimit: UInt8 = decoder.decodeUInt8()

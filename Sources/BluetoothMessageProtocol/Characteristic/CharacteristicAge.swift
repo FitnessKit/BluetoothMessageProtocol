@@ -48,7 +48,6 @@ open class CharacteristicAge: Characteristic {
     ///
     /// - Parameter age: Age in years
     public init(age: UInt8) {
-
         self.age = age
 
         super.init(name: CharacteristicAge.name,
@@ -61,7 +60,6 @@ open class CharacteristicAge: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAge {
-
         var decoder = DataDecoder(data)
 
         let age: UInt8 = decoder.decodeUInt8()

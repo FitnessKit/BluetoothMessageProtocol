@@ -154,17 +154,16 @@ public struct DateTime {
     ///
     /// Dates are represented in the Gregorian Calendar
     public static var fromCurrentDate: DateTime {
+        return DateTime(Date())
+    }
 
-        let comps = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                                    from: Date())
-
-        return DateTime(year: UInt16(comps.year ?? 2000),
+    private init(_ comps: DateComponents) {
+        self = DateTime(year: UInt16(comps.year ?? 2000),
                         month: Month(rawValue: UInt8(comps.month ?? 1)) ?? Month.january,
                         day: UInt8(comps.day ?? 1),
                         hours: UInt8(comps.hour ?? 0),
                         minutes: UInt8(comps.minute ?? 0),
                         seconds: UInt8(comps.second ?? 0))
-
     }
 
     /// Create Bluetooth Date Time Type
@@ -175,12 +174,7 @@ public struct DateTime {
         let comps = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second],
                                                                     from: from)
 
-        self = DateTime(year: UInt16(comps.year ?? 2000),
-                        month: Month(rawValue: UInt8(comps.month ?? 1)) ?? Month.january,
-                        day: UInt8(comps.day ?? 1),
-                        hours: UInt8(comps.hour ?? 0),
-                        minutes: UInt8(comps.minute ?? 0),
-                        seconds: UInt8(comps.second ?? 0))
+        self = DateTime(comps)
     }
 }
 

@@ -59,7 +59,6 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     ///   - alertType: Category of the unread alert
     ///   - numberOfAlerts: Number of unread alerts in the server
     public init(alertType: AlertCategory, numberOfAlerts: UInt8) {
-
         self.alertType = alertType
         self.numberOfAlerts = numberOfAlerts
 
@@ -73,10 +72,9 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUnreadAlertStatus {
-
         var decoder = DataDecoder(data)
 
-        let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8()) ?? .simpleAlert
+        let alertType = AlertCategory(rawValue: decoder.decodeUInt8()) ?? .simpleAlert
 
         let numberOfAlerts = decoder.decodeUInt8()
 
@@ -89,7 +87,6 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(alertType.rawValue)

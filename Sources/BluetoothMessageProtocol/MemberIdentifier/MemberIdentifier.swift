@@ -48,7 +48,6 @@ open class MemberIdentifier: Encodable {
         self.assignedNumber = assignedNumber
         self.name = name
     }
-
 }
 
 extension MemberIdentifier: Hashable {

@@ -48,7 +48,6 @@ open class CharacteristicAlertCategoryID: Characteristic {
     ///
     /// - Parameter alertType: AlertCategory
     public init(alertType: AlertCategory) {
-
         self.alertType = alertType
 
         super.init(name: CharacteristicAlertCategoryID.name,
@@ -61,7 +60,6 @@ open class CharacteristicAlertCategoryID: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAlertCategoryID {
-
         var decoder = DataDecoder(data)
 
         let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8()) ?? .simpleAlert

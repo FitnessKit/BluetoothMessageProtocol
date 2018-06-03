@@ -48,7 +48,6 @@ open class CharacteristicUserIndex: Characteristic {
     ///
     /// - Parameter userIndex: User Index
     public init(userIndex: User) {
-
         self.userIndex = userIndex
 
         super.init(name: CharacteristicUserIndex.name,
@@ -61,12 +60,11 @@ open class CharacteristicUserIndex: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUserIndex {
-
         var decoder = DataDecoder(data)
 
         let value = decoder.decodeUInt8()
 
-        let userIndex: User = User.create(value)
+        let userIndex = User.create(value)
 
         return CharacteristicUserIndex(userIndex: userIndex)
     }
@@ -76,7 +74,6 @@ open class CharacteristicUserIndex: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(userIndex.rawValue)

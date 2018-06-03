@@ -48,7 +48,6 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
     ///
     /// - Parameter heartRate: Heart Rate
     public init(heartRate: UInt8) {
-
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
 
         super.init(name: CharacteristicAnaerobicThreshold.name,
@@ -61,10 +60,9 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAnaerobicThreshold {
-
         var decoder = DataDecoder(data)
 
-        let heartRate: UInt8 = decoder.decodeUInt8()
+        let heartRate = decoder.decodeUInt8()
 
         return CharacteristicAnaerobicThreshold(heartRate: heartRate)
     }

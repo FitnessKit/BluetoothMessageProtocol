@@ -68,7 +68,6 @@ open class CharacteristicHTTPStatusCode: Characteristic {
     ///   - statusCode: Status Code
     ///   - dataStatus: Data Status
     public init(statusCode: UInt16, dataStatus: DataStatus) {
-
         self.statusCode = statusCode
         self.dataStatus = dataStatus
 

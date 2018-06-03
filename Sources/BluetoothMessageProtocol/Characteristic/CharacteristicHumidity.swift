@@ -48,7 +48,6 @@ open class CharacteristicHumidity: Characteristic {
     ///
     /// - Parameter humidity: Humidity Percentage
     public init(humidity: Measurement<UnitPercent>) {
-
         self.humidity = humidity
 
         super.init(name: CharacteristicHumidity.name,
@@ -61,7 +60,6 @@ open class CharacteristicHumidity: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHumidity {
-
         var decoder = DataDecoder(data)
 
         let value = Double(decoder.decodeUInt16()) * 0.01

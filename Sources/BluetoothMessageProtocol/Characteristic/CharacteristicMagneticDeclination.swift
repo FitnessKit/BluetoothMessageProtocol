@@ -50,7 +50,6 @@ open class CharacteristicMagneticDeclination: Characteristic {
     ///
     /// - Parameter declination: Magnetic Declination
     public init(declination: Measurement<UnitAngle>) {
-
         self.declination = declination
 
         super.init(name: CharacteristicMagneticDeclination.name,

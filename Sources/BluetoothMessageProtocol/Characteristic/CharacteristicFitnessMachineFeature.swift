@@ -137,7 +137,6 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     ///   - supportedMachineFeatures: Supported Machine Features
     ///   - supportedTargetSettings: Supported Target Settings Features
     public init(supportedMachineFeatures: MachineFeatures, supportedTargetSettings: TargetFeatures) {
-
         self.supportedMachineFeatures = supportedMachineFeatures
         self.supportedTargetSettings = supportedTargetSettings
 
@@ -151,7 +150,6 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFitnessMachineFeature {
-
         var decoder = DataDecoder(data)
 
         let features = MachineFeatures(rawValue: decoder.decodeUInt32())

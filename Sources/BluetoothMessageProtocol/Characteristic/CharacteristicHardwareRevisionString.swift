@@ -50,7 +50,6 @@ open class CharacteristicHardwareRevisionString: Characteristic {
     ///
     /// - Parameter hardwareRevision: Hardware Revision
     public init(hardwareRevision: String) {
-
         self.hardwareRevision = hardwareRevision
 
         super.init(name: CharacteristicHardwareRevisionString.name,
@@ -63,7 +62,6 @@ open class CharacteristicHardwareRevisionString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHardwareRevisionString {
-
         let hardwareRevision = data.safeStringValue ?? ""
 
         return CharacteristicHardwareRevisionString(hardwareRevision: hardwareRevision)

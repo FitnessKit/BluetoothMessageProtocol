@@ -80,7 +80,6 @@ open class CharacteristicWeightMeasurement: Characteristic {
     ///   - bmi: Body Mass Index
     ///   - height: Height
     public init(weight: Measurement<UnitMass>, timestamp: DateTime?, userId: User, bmi: Double?, height: Measurement<UnitLength>?) {
-
         self.weight = weight
         self.timestamp = timestamp
         self.userId = userId
@@ -97,14 +96,13 @@ open class CharacteristicWeightMeasurement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWeightMeasurement {
-
         var decoder = DataDecoder(data)
 
         let flags = Flags(rawValue: decoder.decodeUInt8())
 
         var weight: Measurement<UnitMass>
         var value = Double(decoder.decodeUInt16())
-        if flags.contains(.unitsImperial) == true {
+        if flags.contains(.unitsImperial) {
             value = value * 0.01
             weight = Measurement(value: value, unit: UnitMass.pounds)
         } else {
@@ -113,12 +111,12 @@ open class CharacteristicWeightMeasurement: Characteristic {
         }
 
         var timestamp: DateTime?
-        if flags.contains(.timestampPresent) == true {
+        if flags.contains(.timestampPresent) {
             timestamp = try DateTime.decode(decoder: &decoder)
         }
 
         var userID: User
-        if flags.contains(.userIdPresent) == true {
+        if flags.contains(.userIdPresent) {
             let value = decoder.decodeUInt8()
             userID = User.create(value)
         } else {
@@ -127,11 +125,11 @@ open class CharacteristicWeightMeasurement: Characteristic {
 
         var bmi: Double?
         var height: Measurement<UnitLength>?
-        if flags.contains(.bmiHeightPresent) == true {
+        if flags.contains(.bmiHeightPresent) {
             bmi = Double(decoder.decodeUInt16()) * 0.1
 
             var value = Double(decoder.decodeUInt16())
-            if flags.contains(.unitsImperial) == true {
+            if flags.contains(.unitsImperial) {
                 value = value * 0.1
                 height = Measurement(value: value, unit: UnitLength.inches)
             } else {

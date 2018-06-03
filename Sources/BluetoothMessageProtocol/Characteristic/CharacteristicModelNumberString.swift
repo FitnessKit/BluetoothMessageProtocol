@@ -50,7 +50,6 @@ open class CharacteristicModelNumberString: Characteristic {
     ///
     /// - Parameter modelNumber: Model Number
     public init(modelNumber: String) {
-
         self.modelNumber = modelNumber
 
         super.init(name: CharacteristicModelNumberString.name,
@@ -63,7 +62,6 @@ open class CharacteristicModelNumberString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicModelNumberString {
-
         let modelNumber = data.safeStringValue ?? ""
 
         return CharacteristicModelNumberString(modelNumber: modelNumber)

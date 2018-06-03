@@ -83,7 +83,6 @@ public struct FitnessMachineEnergy {
 internal extension FitnessMachineEnergy {
 
     internal static func decode(decoder: inout DataDecoder) throws -> FitnessMachineEnergy {
-
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
         var energyPerMinute: Measurement<UnitEnergy>?

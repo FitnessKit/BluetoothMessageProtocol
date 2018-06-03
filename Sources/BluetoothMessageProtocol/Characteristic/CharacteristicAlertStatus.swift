@@ -52,7 +52,6 @@ open class CharacteristicAlertStatus: Characteristic {
         public static let vibrateStateActive: AlertStatus       = AlertStatus(rawValue: 1 << 1)
         /// Display Alert Status State active
         public static let displayAlertActive: AlertStatus       = AlertStatus(rawValue: 1 << 2)
-
     }
 
     /// Alert Status Type
@@ -62,7 +61,6 @@ open class CharacteristicAlertStatus: Characteristic {
     ///
     /// - Parameter status: AlertStatus options
     public init(status: AlertStatus) {
-
         self.status = status
 
         super.init(name: CharacteristicAlertStatus.name,
@@ -75,7 +73,6 @@ open class CharacteristicAlertStatus: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAlertStatus {
-
         var decoder = DataDecoder(data)
 
         let status: AlertStatus = AlertStatus(rawValue: decoder.decodeUInt8())

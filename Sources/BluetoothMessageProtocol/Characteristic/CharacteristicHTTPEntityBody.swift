@@ -49,7 +49,6 @@ open class CharacteristicHTTPEntityBody: Characteristic {
     ///
     /// - Parameter body: The HTTP Entity Body
     public init(body: String) {
-
         self.body = body
 
         super.init(name: CharacteristicHTTPEntityBody.name,
@@ -62,7 +61,6 @@ open class CharacteristicHTTPEntityBody: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHTTPEntityBody {
-
         let body = data.safeStringValue ?? ""
 
         return CharacteristicHTTPEntityBody(body: body)

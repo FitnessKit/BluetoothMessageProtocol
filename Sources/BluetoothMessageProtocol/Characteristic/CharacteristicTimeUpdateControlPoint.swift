@@ -56,7 +56,6 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
     ///
     /// - Parameter controlMessage: Control Command
     public init(controlMessage: Command) {
-
         self.controlMessage = controlMessage
 
         super.init(name: CharacteristicTimeUpdateControlPoint.name,
@@ -78,7 +77,6 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(controlMessage.rawValue)

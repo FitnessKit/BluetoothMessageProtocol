@@ -95,7 +95,6 @@ open class CharacteristicBondManagementFeatures: Characteristic {
     ///
     /// - Parameter features: Bond Management Features
     public init(features: Flags) {
-
         self.features = features
 
         super.init(name: CharacteristicBondManagementFeatures.name,
@@ -108,7 +107,6 @@ open class CharacteristicBondManagementFeatures: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBondManagementFeatures {
-
         var decoder = DataDecoder(data)
 
         let features = Flags(rawValue: decoder.decodeUInt32())

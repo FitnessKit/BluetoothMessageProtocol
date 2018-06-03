@@ -50,7 +50,6 @@ open class CharacteristicTimeZone: Characteristic {
     ///
     /// - Parameter timeZone: Offset from UTC
     public init(timeZone: BluetoothTimeZone) {
-
         self.timeZone = timeZone
 
         super.init(name: CharacteristicTimeZone.name,
@@ -63,7 +62,6 @@ open class CharacteristicTimeZone: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeZone {
-
         var decoder = DataDecoder(data)
 
         let value = decoder.decodeInt8()
@@ -78,7 +76,6 @@ open class CharacteristicTimeZone: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(Data(from: timeZone.rawValue))

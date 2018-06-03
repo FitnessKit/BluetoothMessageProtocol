@@ -68,7 +68,6 @@ open class CharacteristicDayDateTime: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDayDateTime {
-
         var decoder = DataDecoder(data)
 
         let time = try DateTime.decode(decoder: &decoder)

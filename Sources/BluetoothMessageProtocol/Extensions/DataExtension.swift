@@ -67,7 +67,7 @@ internal extension Data {
 
         var hexString = String()
         for byte in bytes {
-            if formatted == true {
+            if formatted {
                 hexString += String(format: "[%02x] ", byte)
             }else {
                 hexString += String(format: "%02x ", byte)

@@ -48,7 +48,6 @@ open class CharacteristicDewPoint: Characteristic {
     ///
     /// - Parameter dewPoint: Dew Point Temperature
     public init(dewPoint: Measurement<UnitTemperature>) {
-
         self.dewPoint = dewPoint
 
         super.init(name: CharacteristicDewPoint.name,
@@ -61,10 +60,10 @@ open class CharacteristicDewPoint: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDewPoint {
-
         var decoder = DataDecoder(data)
 
-        let dewpoint: Measurement = Measurement(value: Double(decoder.decodeInt8()), unit: UnitTemperature.celsius)
+        let dewpoint: Measurement = Measurement(value: Double(decoder.decodeInt8()),
+                                                unit: UnitTemperature.celsius)
 
         return CharacteristicDewPoint(dewPoint: dewpoint)
     }

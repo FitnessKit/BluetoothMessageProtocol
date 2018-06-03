@@ -49,7 +49,6 @@ open class CharacteristicBatteryPowerState: Characteristic {
     ///
     /// - Parameter state: Battery Power State
     public init(state: BatteryPowerState) {
-
         self.state = state
 
         super.init(name: CharacteristicBatteryPowerState.name,
@@ -62,7 +61,6 @@ open class CharacteristicBatteryPowerState: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBatteryPowerState {
-
         var decoder = DataDecoder(data)
 
         let state = BatteryPowerState(decoder.decodeUInt8())
@@ -75,7 +73,6 @@ open class CharacteristicBatteryPowerState: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(state.rawValue)

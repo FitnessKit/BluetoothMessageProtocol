@@ -58,7 +58,6 @@ open class CharacteristicRingerSetting: Characteristic {
     ///
     /// - Parameter setting: Ringer Setting
     public init(setting: RingerSetting) {
-
         self.setting = setting
 
         super.init(name: CharacteristicRingerSetting.name,
@@ -71,7 +70,6 @@ open class CharacteristicRingerSetting: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicRingerSetting {
-
         var decoder = DataDecoder(data)
 
         let setting = RingerSetting(rawValue: decoder.decodeUInt8()) ?? .silent

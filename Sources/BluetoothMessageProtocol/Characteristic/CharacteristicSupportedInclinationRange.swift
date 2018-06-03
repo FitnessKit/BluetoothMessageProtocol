@@ -58,8 +58,10 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     ///   - minimum: Minimum Inclination
     ///   - maximum: Maximum Inclination
     ///   - minimumIncrement: Minimum Increment
-    public init(minimum: FitnessMachineInclinationType, maximum: FitnessMachineInclinationType, minimumIncrement: Measurement<UnitPercent>) {
-
+    public init(minimum: FitnessMachineInclinationType,
+                maximum: FitnessMachineInclinationType,
+                minimumIncrement: Measurement<UnitPercent>)
+    {
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
@@ -74,7 +76,6 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedInclinationRange {
-
         var decoder = DataDecoder(data)
 
         let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16())

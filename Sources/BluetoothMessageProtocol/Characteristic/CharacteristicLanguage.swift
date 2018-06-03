@@ -50,7 +50,6 @@ open class CharacteristicLanguage: Characteristic {
     ///
     /// - Parameter language: The Language based on ISO639-1 value
     public init(language: String) {
-
         self.language = language
 
         super.init(name: CharacteristicLanguage.name,
@@ -63,7 +62,6 @@ open class CharacteristicLanguage: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicLanguage {
-
         let language = data.safeStringValue ?? ""
 
         return CharacteristicLanguage(language: language)

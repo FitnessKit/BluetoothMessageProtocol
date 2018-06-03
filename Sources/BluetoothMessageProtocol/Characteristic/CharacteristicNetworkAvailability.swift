@@ -58,7 +58,6 @@ open class CharacteristicNetworkAvailability: Characteristic {
     ///
     /// - Parameter networkAvailable: Network Availability
     public init(networkAvailable: Availability) {
-
         self.networkAvailable = networkAvailable
 
         super.init(name: CharacteristicNetworkAvailability.name,

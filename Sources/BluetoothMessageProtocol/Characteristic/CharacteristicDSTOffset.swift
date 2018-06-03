@@ -48,7 +48,6 @@ open class CharacteristicDSTOffset: Characteristic {
     ///
     /// - Parameter dstOffset: Daylight Savings Offset
     public init(dstOffset: DSTOffset) {
-
         self.dstOffset = dstOffset
 
         super.init(name: CharacteristicDSTOffset.name,
@@ -61,7 +60,6 @@ open class CharacteristicDSTOffset: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDSTOffset {
-
         var decoder = DataDecoder(data)
 
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8()) ?? .unknown

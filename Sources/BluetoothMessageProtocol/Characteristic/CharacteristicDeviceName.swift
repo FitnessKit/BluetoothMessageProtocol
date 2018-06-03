@@ -48,7 +48,6 @@ open class CharacteristicDeviceName: Characteristic {
     ///
     /// - Parameter deviceName: Device Name
     public init(deviceName: String) {
-
         self.deviceName = deviceName
 
         super.init(name: CharacteristicDeviceName.name,
@@ -61,7 +60,6 @@ open class CharacteristicDeviceName: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDeviceName {
-
         let devicename = data.safeStringValue ?? ""
 
         return CharacteristicDeviceName(deviceName: devicename)

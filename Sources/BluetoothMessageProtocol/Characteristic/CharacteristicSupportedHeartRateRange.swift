@@ -59,9 +59,12 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
     ///   - maximum: Maximum Heart Rate
     ///   - minimumIncrement: Minimum Increment
     public init(minimum: UInt8, maximum: UInt8, minimumIncrement: UInt8) {
+        self.minimum = Measurement(value: Double(minimum),
+                                   unit: UnitCadence.beatsPerMinute)
 
-        self.minimum = Measurement(value: Double(minimum), unit: UnitCadence.beatsPerMinute)
-        self.maximum = Measurement(value: Double(maximum), unit: UnitCadence.beatsPerMinute)
+        self.maximum = Measurement(value: Double(maximum),
+                                   unit: UnitCadence.beatsPerMinute)
+
         self.minimumIncrement = Measurement(value: Double(minimumIncrement), unit: UnitCadence.beatsPerMinute)
 
         super.init(name: CharacteristicSupportedHeartRateRange.name,
@@ -74,12 +77,11 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedHeartRateRange {
-
         var decoder = DataDecoder(data)
 
-        let minimum: UInt8 = decoder.decodeUInt8()
-        let maximum: UInt8 = decoder.decodeUInt8()
-        let minimumIncrement: UInt8 = decoder.decodeUInt8()
+        let minimum = decoder.decodeUInt8()
+        let maximum = decoder.decodeUInt8()
+        let minimumIncrement = decoder.decodeUInt8()
 
         return CharacteristicSupportedHeartRateRange(minimum: minimum,
                                                      maximum: maximum,

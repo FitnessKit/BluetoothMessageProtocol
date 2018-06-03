@@ -48,7 +48,6 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
     ///
     /// - Parameter increment: Database Change Increment
     public init(increment: UInt32) {
-
         self.increment = increment
 
         super.init(name: CharacteristicDatabaseChangeIncrement.name,
@@ -61,7 +60,6 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDatabaseChangeIncrement {
-
         var decoder = DataDecoder(data)
 
         let increment = decoder.decodeUInt32()

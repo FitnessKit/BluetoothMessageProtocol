@@ -50,7 +50,6 @@ open class CharacteristicWeight: Characteristic {
     ///
     /// - Parameter weight: Weight
     public init(weight: Measurement<UnitMass>) {
-
         self.weight = weight
 
         super.init(name: CharacteristicWeight.name,
@@ -63,12 +62,11 @@ open class CharacteristicWeight: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWeight {
-
         var decoder = DataDecoder(data)
 
         let value = Double(decoder.decodeUInt16()) * 0.005
 
-        let weight: Measurement = Measurement(value: value, unit: UnitMass.kilograms)
+        let weight = Measurement(value: value, unit: UnitMass.kilograms)
 
         return CharacteristicWeight(weight: weight)
     }

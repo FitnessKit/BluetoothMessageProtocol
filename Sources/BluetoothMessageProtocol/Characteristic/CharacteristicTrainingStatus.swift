@@ -102,7 +102,6 @@ open class CharacteristicTrainingStatus: Characteristic {
     ///   - status: Training Status
     ///   - statusString: Training Status String
     public init(status: TrainingStatus, statusString: String?) {
-
         self.status = status
         self.statusString = statusString
 
@@ -116,14 +115,13 @@ open class CharacteristicTrainingStatus: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTrainingStatus {
-
         var decoder = DataDecoder(data)
 
         let flags = Flags(rawValue: decoder.decodeUInt8())
         let status = TrainingStatus(rawValue: decoder.decodeUInt8()) ?? .other
 
         var statusString: String?
-        if flags.contains([.trainingStatusStringPresent]) == true {
+        if flags.contains([.trainingStatusStringPresent]) {
             let stringData = Data(data[2...data.count])
             statusString = stringData.safeStringValue
         }
@@ -139,7 +137,7 @@ open class CharacteristicTrainingStatus: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        var flags: Flags = Flags()
+        var flags = Flags()
 
         if let _ = statusString {
             flags.update(with: .trainingStatusStringPresent)
@@ -149,7 +147,7 @@ open class CharacteristicTrainingStatus: Characteristic {
         msgData.append(status.rawValue)
 
         if let stringData = statusString?.data(using: .utf8) {
-            if flags.contains(.trainingStatusStringPresent) == true {
+            if flags.contains(.trainingStatusStringPresent) {
                 msgData.append(stringData)
             }
         }

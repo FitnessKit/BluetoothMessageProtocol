@@ -50,7 +50,6 @@ open class CharacteristicFloorNumber: Characteristic {
     ///
     /// - Parameter floorNumber: Floor Number
     public init(floorNumber: UInt8) {
-
         self.floorNumber = floorNumber
 
         super.init(name: CharacteristicFloorNumber.name,

@@ -52,7 +52,6 @@ open class CharacteristicLongitude: Characteristic {
     ///
     /// - Parameter longitude: WGS84 East coordinate
     public init(longitude: Int32) {
-
         self.longitude = longitude
 
         super.init(name: CharacteristicLongitude.name,

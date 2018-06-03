@@ -50,7 +50,6 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
     ///
     /// - Parameter localEastCoordinate: Local East Coordinate
     public init(localEastCoordinate: Int32) {
-
         self.localEastCoordinate = localEastCoordinate
 
         super.init(name: CharacteristicLocalEastCoordinate.name,

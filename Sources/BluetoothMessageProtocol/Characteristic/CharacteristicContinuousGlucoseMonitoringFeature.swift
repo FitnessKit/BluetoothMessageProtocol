@@ -146,7 +146,6 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     ///   - sampleLocation: Sample Location
     ///   - crcValue: E2E-CRC
     public init(features: Features, testType: TestType, sampleLocation: Location, crcValue: UInt16?) {
-
         self.features = features
         self.testType = testType
         self.sampleLocation = sampleLocation
@@ -162,7 +161,6 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicContinuousGlucoseMonitoringFeature {
-
         var decoder = DataDecoder(data)
 
         let featureVal = decoder.decodeUInt24()

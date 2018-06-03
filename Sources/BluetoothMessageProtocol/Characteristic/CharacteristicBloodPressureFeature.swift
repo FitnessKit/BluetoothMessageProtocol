@@ -67,7 +67,6 @@ open class CharacteristicBloodPressureFeature: Characteristic {
     ///
     /// - Parameter status: Blood Pressure Features
     public init(status: Feature) {
-
         self.supportedFeatures = status
 
         super.init(name: CharacteristicBloodPressureFeature.name,
@@ -80,10 +79,9 @@ open class CharacteristicBloodPressureFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBloodPressureFeature {
-
         var decoder = DataDecoder(data)
 
-        let status: Feature = Feature(rawValue: decoder.decodeUInt8())
+        let status = Feature(rawValue: decoder.decodeUInt8())
 
         return CharacteristicBloodPressureFeature(status: status)
     }

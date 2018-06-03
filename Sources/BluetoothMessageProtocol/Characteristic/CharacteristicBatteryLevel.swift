@@ -52,7 +52,6 @@ open class CharacteristicBatteryLevel: Characteristic {
     ///
     /// - Parameter level: Percent Battery Level
     public init(level: Measurement<UnitPercent>) {
-
         self.level = level
 
         super.init(name: CharacteristicBatteryLevel.name,
@@ -65,12 +64,11 @@ open class CharacteristicBatteryLevel: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevel {
-
         var decoder = DataDecoder(data)
 
         let percent = Double(decoder.decodeUInt8())
 
-        let level: Measurement = Measurement(value: percent, unit: UnitPercent.percent)
+        let level = Measurement(value: percent, unit: UnitPercent.percent)
 
         return CharacteristicBatteryLevel(level: level)
     }

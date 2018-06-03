@@ -54,7 +54,6 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
     ///
     /// - Parameter controlMessage: Control Command
     public init(controlMessage: Command) {
-
         self.controlMessage = controlMessage
 
         super.init(name: CharacteristicHeartRateControlPoint.name,
@@ -76,7 +75,6 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
-
         var msgData = Data()
 
         msgData.append(controlMessage.rawValue)

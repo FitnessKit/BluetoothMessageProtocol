@@ -52,7 +52,6 @@ open class CharacteristicUniformResourceIdentifier: Characteristic {
     ///
     /// - Parameter uri: The URI to be used in the HTTP request
     public init(uri: String) {
-
         self.uri = uri
 
         super.init(name: CharacteristicUniformResourceIdentifier.name,
@@ -65,7 +64,6 @@ open class CharacteristicUniformResourceIdentifier: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUniformResourceIdentifier {
-
         let uri = data.safeStringValue ?? ""
 
         return CharacteristicUniformResourceIdentifier(uri: uri)

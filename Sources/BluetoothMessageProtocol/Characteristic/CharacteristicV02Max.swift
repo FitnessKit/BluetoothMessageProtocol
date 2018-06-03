@@ -50,7 +50,6 @@ open class CharacteristicV02Max: Characteristic {
     ///
     /// - Parameter maxVO2: VO2 Max
     public init(maxVO2: Measurement<UnitOxygenConsumption>) {
-
         self.maxVO2 = maxVO2
 
         super.init(name: CharacteristicV02Max.name,
@@ -63,7 +62,6 @@ open class CharacteristicV02Max: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicV02Max {
-
         var decoder = DataDecoder(data)
 
         let value = Double(decoder.decodeUInt8())
@@ -92,4 +90,3 @@ open class CharacteristicV02Max: Characteristic {
         return msgData
     }
 }
-

@@ -50,7 +50,6 @@ open class CharacteristicLocationName: Characteristic {
     ///
     /// - Parameter locationName: Location Name
     public init(locationName: String) {
-
         self.locationName = locationName
 
         super.init(name: CharacteristicLocationName.name,
@@ -63,7 +62,6 @@ open class CharacteristicLocationName: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicLocationName {
-
         let locationName = data.safeStringValue ?? ""
 
         return CharacteristicLocationName(locationName: locationName)
@@ -78,4 +76,3 @@ open class CharacteristicLocationName: Characteristic {
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
 }
-

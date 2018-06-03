@@ -50,7 +50,6 @@ open class CharacteristicSoftwareRevisionString: Characteristic {
     ///
     /// - Parameter softwareRevision: Software Revision
     public init(softwareRevision: String) {
-
         self.softwareRevision = softwareRevision
 
         super.init(name: CharacteristicSoftwareRevisionString.name,
@@ -63,7 +62,6 @@ open class CharacteristicSoftwareRevisionString: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSoftwareRevisionString {
-
         let softwareRevision = data.safeStringValue ?? ""
 
         return CharacteristicSoftwareRevisionString(softwareRevision: softwareRevision)

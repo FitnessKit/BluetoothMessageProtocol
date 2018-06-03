@@ -158,8 +158,25 @@ open class CharacteristicCrossTrainerData: Characteristic {
     ///   - metabolicEquivalent: Metabolic Equivalent
     ///   - time: Time Information
     ///   - movementDirection: Movement Direction
-    public init(instantaneousSpeed: FitnessMachineSpeedType?, averageSpeed: FitnessMachineSpeedType?, totalDistance: Measurement<UnitLength>?, stepsPerMinute: Measurement<UnitCadence>?, averageStepRate: Measurement<UnitCadence>?, strideCount: Double?, positiveElevationGain: Measurement<UnitLength>?, negativeElevationGain: Measurement<UnitLength>?, inclination: Measurement<UnitPercent>?, rampAngle: Measurement<UnitAngle>?, resistanceLevel: Double?, instantaneousPower: FitnessMachinePowerType?, averagePower: FitnessMachinePowerType?, energy: FitnessMachineEnergy, heartRate: UInt8?, metabolicEquivalent: Double?, time: FitnessMachineTime, movementDirection: FitnessMachineMovementDirection) {
-
+    public init(instantaneousSpeed: FitnessMachineSpeedType?,
+                averageSpeed: FitnessMachineSpeedType?,
+                totalDistance: Measurement<UnitLength>?,
+                stepsPerMinute: Measurement<UnitCadence>?,
+                averageStepRate: Measurement<UnitCadence>?,
+                strideCount: Double?,
+                positiveElevationGain: Measurement<UnitLength>?,
+                negativeElevationGain: Measurement<UnitLength>?,
+                inclination: Measurement<UnitPercent>?,
+                rampAngle: Measurement<UnitAngle>?,
+                resistanceLevel: Double?,
+                instantaneousPower: FitnessMachinePowerType?,
+                averagePower: FitnessMachinePowerType?,
+                energy: FitnessMachineEnergy,
+                heartRate: UInt8?,
+                metabolicEquivalent: Double?,
+                time: FitnessMachineTime,
+                movementDirection: FitnessMachineMovementDirection)
+    {
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
         self.totalDistance = totalDistance
@@ -194,7 +211,6 @@ open class CharacteristicCrossTrainerData: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicCrossTrainerData {
-
         var decoder = DataDecoder(data)
 
         let flags = Flags(rawValue: UInt32(decoder.decodeUInt24()))
@@ -219,21 +235,19 @@ open class CharacteristicCrossTrainerData: Characteristic {
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-
             iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
-
         }
 
-        if flags.contains(.avgSpeedPresent) == true {
+        if flags.contains(.avgSpeedPresent) {
             avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
         }
 
-        if flags.contains(.totalDistancePresent) == true {
+        if flags.contains(.totalDistancePresent) {
             let value = Double(decoder.decodeUInt16())
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
-        if flags.contains(.stepCountPresent) == true {
+        if flags.contains(.stepCountPresent) {
             let steps = decoder.decodeUInt16()
             let stepRate = decoder.decodeUInt16()
 
@@ -248,11 +262,11 @@ open class CharacteristicCrossTrainerData: Characteristic {
             }
         }
 
-        if flags.contains(.strideCountPresent) == true {
+        if flags.contains(.strideCountPresent) {
             strideCount = Double(decoder.decodeUInt16()) * 0.1
         }
 
-        if flags.contains(.elevationGainPresent) == true {
+        if flags.contains(.elevationGainPresent) {
             let pValue = Double(decoder.decodeUInt16())
             pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
 
@@ -260,7 +274,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
             nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
         }
 
-        if flags.contains(.angleSettingpresent) == true {
+        if flags.contains(.angleSettingpresent) {
             let incline = decoder.decodeInt16()
             let ramp = decoder.decodeInt16()
 
@@ -275,45 +289,45 @@ open class CharacteristicCrossTrainerData: Characteristic {
             }
         }
 
-        if flags.contains(.resistanceLevelPresent) == true {
+        if flags.contains(.resistanceLevelPresent) {
             resistanceLevel = Double(decoder.decodeInt16()) * 0.1
         }
 
-        if flags.contains(.instantPowerPresent) == true {
+        if flags.contains(.instantPowerPresent) {
             iPower = FitnessMachinePowerType.create(decoder.decodeInt16())
         }
 
-        if flags.contains(.averagePowerPresent) == true {
+        if flags.contains(.averagePowerPresent) {
             aPower = FitnessMachinePowerType.create(decoder.decodeInt16())
         }
 
         var fitEnergy: FitnessMachineEnergy
-        if flags.contains(.expendedEnergyPresent) == true {
+        if flags.contains(.expendedEnergyPresent) {
             fitEnergy = try FitnessMachineEnergy.decode(decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
 
-        if flags.contains(.heartRatePresent) == true {
+        if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8()
         }
 
-        if flags.contains(.metabolicEquivalentPresent) == true {
+        if flags.contains(.metabolicEquivalentPresent) {
             mets = Double(decoder.decodeUInt8()) * 0.1
         }
 
-        if flags.contains(.elapsedTimePresent) == true {
+        if flags.contains(.elapsedTimePresent) {
             let value = Double(decoder.decodeUInt16())
             elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
-        if flags.contains(.remainingTimePresent) == true {
+        if flags.contains(.remainingTimePresent) {
             let value = Double(decoder.decodeUInt16())
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
         var movementDirection: FitnessMachineMovementDirection = .forward
-        if flags.contains(.backwardDirection) == true {
+        if flags.contains(.backwardDirection) {
             movementDirection = .backward
         }
 
