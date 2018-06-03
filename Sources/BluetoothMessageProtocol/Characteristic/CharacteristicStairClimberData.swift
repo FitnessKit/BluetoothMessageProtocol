@@ -195,7 +195,7 @@ open class CharacteristicStairClimberData: Characteristic {
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = Double(decoder.decodeUInt8()) * 0.1
+            mets = decoder.decodeUInt8().resolution(0.1)
         }
 
         if flags.contains(.elapsedTimePresent) {

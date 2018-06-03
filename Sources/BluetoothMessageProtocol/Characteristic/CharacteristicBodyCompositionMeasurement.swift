@@ -171,7 +171,7 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
 
         let flags = Flags(rawValue: decoder.decodeUInt16())
 
-        let bfatValue = Double(decoder.decodeUInt16()) * 0.1
+        let bfatValue = decoder.decodeUInt16().resolution(0.1)
         let bFat = Measurement(value: bfatValue, unit: UnitPercent.percent)
 
         var currentTime: DateTime?
@@ -192,7 +192,7 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
 
         var musclePercentage: Measurement<UnitPercent>?
         if flags.contains(.musclePercentagePresent) {
-            let value = Double(decoder.decodeUInt16()) * 0.1
+            let value = decoder.decodeUInt16().resolution(0.1)
             musclePercentage = Measurement(value: value, unit: UnitPercent.percent)
         }
 
@@ -200,10 +200,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         if flags.contains(.muscleMassPresent) {
 
             if flags.contains(.imperialUnits) {
-                let value = Double(decoder.decodeUInt16()) * 0.01
+                let value = decoder.decodeUInt16().resolution(0.01)
                 muscleMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
-                let value = Double(decoder.decodeUInt16()) * 0.005
+                let value = decoder.decodeUInt16().resolution(0.005)
                 muscleMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
@@ -212,10 +212,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         if flags.contains(.fatFreeMassPresent) {
 
             if flags.contains(.imperialUnits) {
-                let value = Double(decoder.decodeUInt16()) * 0.01
+                let value = decoder.decodeUInt16().resolution(0.01)
                 fatFreeMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
-                let value = Double(decoder.decodeUInt16()) * 0.005
+                let value = decoder.decodeUInt16().resolution(0.005)
                 fatFreeMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
@@ -224,10 +224,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         if flags.contains(.softLeanMassPresent) {
 
             if flags.contains(.imperialUnits) {
-                let value = Double(decoder.decodeUInt16()) * 0.01
+                let value = decoder.decodeUInt16().resolution(0.01)
                 softLeanMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
-                let value = Double(decoder.decodeUInt16()) * 0.005
+                let value = decoder.decodeUInt16().resolution(0.005)
                 softLeanMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
@@ -236,17 +236,17 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         if flags.contains(.bodyWaterMassPresent) {
 
             if flags.contains(.imperialUnits) {
-                let value = Double(decoder.decodeUInt16()) * 0.01
+                let value = decoder.decodeUInt16().resolution(0.01)
                 bodyWaterMass = Measurement(value: value, unit: UnitMass.pounds)
             } else {
-                let value = Double(decoder.decodeUInt16()) * 0.005
+                let value = decoder.decodeUInt16().resolution(0.005)
                 bodyWaterMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
 
         var impedance: Measurement<UnitElectricResistance>?
         if flags.contains(.impedancePresent) {
-            let value = Double(decoder.decodeUInt16()) * 0.1
+            let value = decoder.decodeUInt16().resolution(0.1)
             impedance = Measurement(value: value, unit: UnitElectricResistance.ohms)
         }
 
@@ -254,10 +254,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         if flags.contains(.weightPresent) {
 
             if flags.contains(.imperialUnits) {
-                let value = Double(decoder.decodeUInt16()) * 0.01
+                let value = decoder.decodeUInt16().resolution(0.01)
                 weight = Measurement(value: value, unit: UnitMass.pounds)
             } else {
-                let value = Double(decoder.decodeUInt16()) * 0.005
+                let value = decoder.decodeUInt16().resolution(0.005)
                 weight = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
@@ -266,10 +266,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         if flags.contains(.heightPresent) {
 
             if flags.contains(.imperialUnits) {
-                let value = Double(decoder.decodeUInt16()) * 0.01
+                let value = decoder.decodeUInt16().resolution(0.01)
                 height = Measurement(value: value, unit: UnitLength.inches)
             } else {
-                let value = Double(decoder.decodeUInt16()) * 0.001
+                let value = decoder.decodeUInt16().resolution(0.001)
                 height = Measurement(value: value, unit: UnitLength.meters)
             }
         }

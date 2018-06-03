@@ -120,7 +120,7 @@ public struct FitnessMachineInclinationType {
     private(set) public var incline: Measurement<UnitPercent>
 
     internal static func create(_ value: Int16) -> FitnessMachineInclinationType {
-        let value = Double(value) * 0.1
+        let value = value.resolution(0.1)
         let incline: Measurement = Measurement(value: value, unit: UnitPercent.percent)
         return FitnessMachineInclinationType(incline: incline)
     }
@@ -172,7 +172,7 @@ public struct FitnessMachineSpeedType {
     private(set) public var speed: Measurement<UnitSpeed>
 
     internal static func create(_ value: UInt16) -> FitnessMachineSpeedType {
-        let value = Double(value) * 0.01
+        let value = value.resolution(0.01)
         let speed: Measurement = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
         return FitnessMachineSpeedType(speed: speed)
     }
@@ -198,7 +198,7 @@ public struct FitnessMachineWheelCircumferenceType {
     private(set) public var circumference: Measurement<UnitLength>
 
     internal static func create(_ value: UInt16) -> FitnessMachineWheelCircumferenceType {
-        let value = Double(value) * 0.1
+        let value = value.resolution(0.1)
         let circumference: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
         return FitnessMachineWheelCircumferenceType(circumference: circumference)
     }

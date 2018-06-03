@@ -41,57 +41,6 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
         return "4B486401-6E6F-7274-6870-6F6C65656E67"
     }
 
-    private struct Flags {
-        /// Heart Rate Value Format is set to UINT16. Units: beats per minute (bpm)
-        private(set) public var isFormatUInt16: Bool
-        /// Sensor Contact Status
-        private(set) public var contact: HeartRateContactStatus
-        /// Energy Expended field is present
-        private(set) public var isEnergyExpendedPresent: Bool
-        /// One or more RR-Interval values are present
-        private(set) public var isRRIntervalPresent: Bool
-
-        /// Rawvalue
-        public var rawValue: UInt8 {
-            var value: UInt8 = UInt8(isFormatUInt16 == true ? 1 : 0)
-            value |= contact.rawValue << 1
-            value |=  UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 3
-            value |=  UInt8(isRRIntervalPresent == true ? 1 : 0) << 4
-
-            return UInt8(value)
-        }
-
-        /// Creates Flags Struct
-        ///
-        /// - Parameter value: UInt8 Flag Data
-        public init(_ value: UInt8) {
-            self.isFormatUInt16 = (value & 0x01).boolValue
-
-            let contactStatusBits = (value | 0x06) >> 1
-
-            contact = HeartRateContactStatus(rawValue: contactStatusBits) ?? .notSupported
-
-            isEnergyExpendedPresent = (value & 0x08 == 0x08)
-
-            isRRIntervalPresent = (value & 0x10 == 0x10)
-
-        }
-
-        /// Creates Flags Structs
-        ///
-        /// - Parameters:
-        ///   - isFormatUInt16: HR Format is UInt16
-        ///   - contactStatus: Contact Status
-        ///   - isEnergyExpendedPresent: Energy Expended Present
-        ///   - isRRIntervalPresent: One or more RR Values Present
-        public init(isFormatUInt16: Bool, contactStatus: HeartRateContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
-            self.isFormatUInt16 = isFormatUInt16
-            self.contact = contactStatus
-            self.isEnergyExpendedPresent = isEnergyExpendedPresent
-            self.isRRIntervalPresent = isRRIntervalPresent
-        }
-    }
-
     /// Contact status of sensor
     private(set) public var contactStatus: HeartRateContactStatus = .notSupported
 
@@ -145,10 +94,10 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
         let energyPresent = self.energyExpended == nil ? false : true
 
         // For now just not send RR Values.. Since they are not used
-        let flags = Flags.init(isFormatUInt16: false,
-                               contactStatus: self.contactStatus,
-                               isEnergyExpendedPresent: energyPresent,
-                               isRRIntervalPresent: false)
+        let flags = HeartRateMeasurementFlags.init(isFormatUInt16: false,
+                                                   contactStatus: self.contactStatus,
+                                                   isEnergyExpendedPresent: energyPresent,
+                                                   isRRIntervalPresent: false)
 
         msgData.append(flags.rawValue)
         msgData.append(UInt8(heartRate.value))

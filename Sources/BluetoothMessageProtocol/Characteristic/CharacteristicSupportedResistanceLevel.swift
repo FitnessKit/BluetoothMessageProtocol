@@ -75,11 +75,11 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicSupportedResistanceLevel {
         var decoder = DataDecoder(data)
 
-        let minValue = Double(decoder.decodeInt16()) * 0.1
+        let minValue = decoder.decodeInt16().resolution(0.1)
 
-        let maxValue = Double(decoder.decodeInt16()) * 0.1
+        let maxValue = decoder.decodeInt16().resolution(0.1)
 
-        let incrValue = Double(decoder.decodeUInt16()) * 0.1
+        let incrValue = decoder.decodeUInt16().resolution(0.1)
 
         return CharacteristicSupportedResistanceLevel(minimum: minValue,
                                                       maximum: maxValue,

@@ -263,7 +263,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         }
 
         if flags.contains(.strideCountPresent) {
-            strideCount = Double(decoder.decodeUInt16()) * 0.1
+            strideCount = decoder.decodeUInt16().resolution(0.1)
         }
 
         if flags.contains(.elevationGainPresent) {
@@ -279,18 +279,18 @@ open class CharacteristicCrossTrainerData: Characteristic {
             let ramp = decoder.decodeInt16()
 
             if incline != Int16.max {
-                let iValue = Double(incline) * 0.1
+                let iValue = incline.resolution(0.1)
                 inclination = Measurement(value: iValue, unit: UnitPercent.percent)
             }
 
             if ramp != Int16.max {
-                let rValue = Double(ramp) * 0.1
+                let rValue = ramp.resolution(0.1)
                 rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
             }
         }
 
         if flags.contains(.resistanceLevelPresent) {
-            resistanceLevel = Double(decoder.decodeInt16()) * 0.1
+            resistanceLevel = decoder.decodeInt16().resolution(0.1)
         }
 
         if flags.contains(.instantPowerPresent) {
@@ -313,7 +313,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = Double(decoder.decodeUInt8()) * 0.1
+            mets = decoder.decodeUInt8().resolution(0.1)
         }
 
         if flags.contains(.elapsedTimePresent) {

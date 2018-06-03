@@ -37,7 +37,7 @@ public struct FitnessMachineTargetResistanceLevelType {
     internal static func create(_ value: Int16) -> FitnessMachineTargetResistanceLevelType {
         /// Per ESR11
         /// E9135 – Resistance level format is SINT16
-        let level = Double(value) * 0.1
+        let level = value.resolution(0.1)
         return FitnessMachineTargetResistanceLevelType(level: level)
     }
 

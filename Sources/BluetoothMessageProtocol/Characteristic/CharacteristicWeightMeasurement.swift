@@ -126,7 +126,7 @@ open class CharacteristicWeightMeasurement: Characteristic {
         var bmi: Double?
         var height: Measurement<UnitLength>?
         if flags.contains(.bmiHeightPresent) {
-            bmi = Double(decoder.decodeUInt16()) * 0.1
+            bmi = decoder.decodeUInt16().resolution(0.1)
 
             var value = Double(decoder.decodeUInt16())
             if flags.contains(.unitsImperial) {

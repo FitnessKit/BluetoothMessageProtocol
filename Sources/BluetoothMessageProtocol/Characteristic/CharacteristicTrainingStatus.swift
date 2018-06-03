@@ -139,7 +139,7 @@ open class CharacteristicTrainingStatus: Characteristic {
 
         var flags = Flags()
 
-        if let _ = statusString {
+        if statusString != nil {
             flags.update(with: .trainingStatusStringPresent)
         }
 

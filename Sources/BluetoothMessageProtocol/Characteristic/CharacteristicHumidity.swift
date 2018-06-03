@@ -62,9 +62,9 @@ open class CharacteristicHumidity: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicHumidity {
         var decoder = DataDecoder(data)
 
-        let value = Double(decoder.decodeUInt16()) * 0.01
+        let value = decoder.decodeUInt16().resolution(0.01)
 
-        let humidity: Measurement = Measurement(value: value, unit: UnitPercent.percent)
+        let humidity = Measurement(value: value, unit: UnitPercent.percent)
 
         return CharacteristicHumidity(humidity: humidity)
     }

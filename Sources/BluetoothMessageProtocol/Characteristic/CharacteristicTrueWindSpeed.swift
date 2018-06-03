@@ -62,7 +62,7 @@ open class CharacteristicTrueWindSpeed: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicTrueWindSpeed {
         var decoder = DataDecoder(data)
 
-        let value = Double(decoder.decodeUInt16()) * 0.01
+        let value = decoder.decodeUInt16().resolution(0.01)
 
         let speed = Measurement(value: value, unit: UnitSpeed.metersPerSecond)
 

@@ -64,7 +64,7 @@ open class CharacteristicHipCircumference: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicHipCircumference {
         var decoder = DataDecoder(data)
 
-        let meters = Double(decoder.decodeUInt16()) * 0.01
+        let meters = decoder.decodeUInt16().resolution(0.01)
 
         let hipCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 

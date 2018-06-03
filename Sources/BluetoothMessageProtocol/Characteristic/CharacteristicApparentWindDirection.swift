@@ -68,9 +68,9 @@ open class CharacteristicApparentWindDirection: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicApparentWindDirection {
         var decoder = DataDecoder(data)
 
-        let direction = Double(decoder.decodeUInt16()) * 0.01
+        let direction = decoder.decodeUInt16().resolution(0.01)
 
-        let wind: Measurement = Measurement(value: direction, unit: UnitAngle.degrees)
+        let wind = Measurement(value: direction, unit: UnitAngle.degrees)
 
         return CharacteristicApparentWindDirection(windDirection: wind)
     }

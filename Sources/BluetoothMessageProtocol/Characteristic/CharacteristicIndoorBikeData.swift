@@ -211,7 +211,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
         }
 
         if flags.contains(.resistanceLevelPresent) {
-            resistanceLevel = Double(decoder.decodeInt16()) * 0.1
+            resistanceLevel = decoder.decodeInt16().resolution(0.1)
         }
 
         if flags.contains(.instantaneousPowerPresent) {
@@ -234,7 +234,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = Double(decoder.decodeUInt8()) * 0.1
+            mets = decoder.decodeUInt8().resolution(0.1)
         }
 
         if flags.contains(.elapsedTimePresent) {
