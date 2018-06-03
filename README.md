@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![License](https://img.shields.io/cocoapods/l/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
-
+[![Readme Score](http://readme-score-api.herokuapp.com/score.svg?url=https://github.com/fitnesskit/bluetoothmessageprotocol)](http://clayallsopp.github.io/readme-score?url=https://github.com/fitnesskit/bluetoothmessageprotocol)
 
 This is not a BLE Manager for your phone.  There are plenty of those out there.  BluetoothMessageProtocol provides functions for encoding and decoding Bluetooth Characteristic data.
 
