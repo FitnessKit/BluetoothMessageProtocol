@@ -26,7 +26,7 @@ Swift Package Manager:
 ```
 ## How to Use
 
-Example from CoreBluetooth:
+Each Bluetooth Characteristic has an encode and decode method.  When you receive the data from a sensor you call the static decode method to turn the data into a Characteristic Object as seen below in the example:
 
 ```swift
 func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -69,8 +69,8 @@ func doDecodeBody(sensorData: Data) {
 
 ## Author
 
-Kevin A. Hoogheem
+This package is developed and maintained by Kevin A. Hoogheem
 
 ## License
 
-BluetoothMessageProtocol is available under the MIT license. See the LICENSE file for more info.
+BluetoothMessageProtocol is available under the [MIT license](http://opensource.org/licenses/MIT)

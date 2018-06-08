@@ -353,7 +353,7 @@
                         <div class="abstract">
                           <p>Creates a DateTime Object from the current date</p>
 
-<p>Dates are represented in the Gregorian Calendar</p>
+<p>Dates are represented in the Gregorian Calendar using current timezone</p>
 
                         </div>
                         <div class="declaration">
@@ -370,9 +370,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol8DateTimeVAC10Foundation0D0Vcfc"></a>
-                      <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol8DateTimeVAC10Foundation0D0Vcfc">init(_:)</a>
+                      <a name="/s:24BluetoothMessageProtocol8DateTimeVAC10Foundation0D0V_AD8CalendarV8calendartcfc"></a>
+                      <a name="//apple_ref/swift/Method/init(_:calendar:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol8DateTimeVAC10Foundation0D0V_AD8CalendarV8calendartcfc">init(_:calendar:)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -387,7 +387,7 @@
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">from</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">calendar</span><span class="p">:</span> <span class="kt">Calendar</span> <span class="o">=</span> <span class="kt">Calendar</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="o">.</span><span class="n">gregorian</span><span class="p">))</span></code></pre>
 
                           </div>
                         </div>
@@ -404,6 +404,18 @@
                                 <td>
                                   <div>
                                     <p>Date</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>calendar</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Calendar used for Date</p>
                                   </div>
                                 </td>
                               </tr>

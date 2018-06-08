@@ -82,10 +82,8 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             let hrOne = decoder.decodeUInt8()
             let hrTwo = decoder.decodeUInt8()
 
-            var heartRate: Double = 0
+            var heartRate = safeAverage(valueOne: hrOne, valueTwo: hrTwo)
 
-            //Make sure we can Avg the two Heart Rates.
-            //Otherwise take the one that is not zero
             if hrTwo > 0 && hrOne > 0 {
                 heartRate = (Double(hrOne) + Double(hrTwo)) / 2
             } else if hrOne <= 0 {
@@ -111,4 +109,26 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
         //Not Yet Supported
         throw BluetoothMessageProtocolError.init(.unsupported)
     }
+}
+
+/// Provides a Safe Average Number
+///
+/// Takes an Average of the two numbers, if either is zero it will use the non zero number
+///
+/// - Parameters:
+///   - valueOne: Value One for Average
+///   - valueTwo: Value Two for Average
+/// - Returns: Average of the Two numbers.
+fileprivate func safeAverage(valueOne: UInt8, valueTwo: UInt8) -> Double {
+    var avg: Double = 0
+
+    if valueTwo > 0 && valueOne > 0 {
+        avg = Double(valueOne + valueTwo) / 2
+    } else if valueOne <= 0 {
+        avg = Double(valueTwo)
+    } else {
+        avg = Double(valueOne)
+    }
+
+    return avg
 }

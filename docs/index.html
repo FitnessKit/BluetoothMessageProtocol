@@ -68,7 +68,7 @@
 </code></pre>
 <h2 id='how-to-use' class='heading'>How to Use</h2>
 
-<p>Example from CoreBluetooth:</p>
+<p>Each Bluetooth Characteristic has an encode and decode method.  When you receive the data from a sensor you call the static decode method to turn the data into a Characteristic Object as seen below in the example:</p>
 <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">peripheral</span><span class="p">(</span><span class="n">_</span> <span class="nv">peripheral</span><span class="p">:</span> <span class="kt">CBPeripheral</span><span class="p">,</span> <span class="n">didUpdateValueFor</span> <span class="nv">characteristic</span><span class="p">:</span> <span class="kt">CBCharacteristic</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span> <span class="p">{</span>
 
     <span class="k">if</span> <span class="k">let</span> <span class="nv">sensorData</span> <span class="o">=</span> <span class="n">characteristic</span><span class="o">.</span><span class="n">value</span> <span class="p">{</span>
@@ -108,10 +108,10 @@
 </code></pre>
 <h2 id='author' class='heading'>Author</h2>
 
-<p>Kevin A. Hoogheem</p>
+<p>This package is developed and maintained by Kevin A. Hoogheem</p>
 <h2 id='license' class='heading'>License</h2>
 
-<p>BluetoothMessageProtocol is available under the MIT license. See the LICENSE file for more info.</p>
+<p>BluetoothMessageProtocol is available under the <a href="http://opensource.org/licenses/MIT">MIT license</a></p>
 
             </section>
           </section>

@@ -152,7 +152,7 @@ public struct DateTime {
 
     /// Creates a DateTime Object from the current date
     ///
-    /// Dates are represented in the Gregorian Calendar
+    /// Dates are represented in the Gregorian Calendar using current timezone
     public static var fromCurrentDate: DateTime {
         return DateTime(Date())
     }
@@ -168,11 +168,13 @@ public struct DateTime {
 
     /// Create Bluetooth Date Time Type
     ///
-    /// - Parameter from: Date
-    public init(_ from: Date) {
+    /// - Parameters:
+    ///   - from: Date
+    ///   - calendar: Calendar used for Date
+    public init(_ from: Date, calendar: Calendar = Calendar(identifier: .gregorian)) {
 
-        let comps = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second],
-                                                                    from: from)
+        let comps = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                            from: from)
 
         self = DateTime(comps)
     }
