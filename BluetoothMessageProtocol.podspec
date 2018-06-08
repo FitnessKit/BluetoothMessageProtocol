@@ -36,6 +36,6 @@ Encoding and Decoding of the Bluetooth Message Protocol.  Makes creating apps us
 
 #Dependancy
   s.dependency 'DataDecoder', '~> 4.0.3'
-  s.dependency 'FitnessUnits', '~> 2.0.0'
+  s.dependency 'FitnessUnits', '~> 2.0.2'
 
 end
