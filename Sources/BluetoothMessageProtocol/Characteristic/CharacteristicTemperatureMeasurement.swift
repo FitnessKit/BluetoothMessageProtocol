@@ -47,11 +47,11 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Temperature Measurement Value in units of Fahrenheit
-        public static let unitsFahrenheit: Flags            = Flags(rawValue: 1 << 0)
+        public static let unitsFahrenheit            = Flags(rawValue: 1 << 0)
         /// Time Stamp field present
-        public static let timestampPresent: Flags           = Flags(rawValue: 1 << 1)
+        public static let timestampPresent           = Flags(rawValue: 1 << 1)
         /// Temperature Type field present
-        public static let temperatureTypePresent: Flags     = Flags(rawValue: 1 << 2)
+        public static let temperatureTypePresent     = Flags(rawValue: 1 << 2)
     }
 
     /// Temperature
@@ -118,6 +118,6 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

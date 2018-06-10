@@ -47,15 +47,15 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Blood pressure for Systolic, Diastolic and MAP in units of kPa
-        public static let unitsIsKilopascals: Flags         = Flags(rawValue: 1 << 0)
+        public static let unitsIsKilopascals        = Flags(rawValue: 1 << 0)
         /// Time Stamp present
-        public static let timestampPresent: Flags           = Flags(rawValue: 1 << 1)
+        public static let timestampPresent          = Flags(rawValue: 1 << 1)
         /// Pulse Rate present
-        public static let pulseRatePresent: Flags           = Flags(rawValue: 1 << 2)
+        public static let pulseRatePresent          = Flags(rawValue: 1 << 2)
         /// User ID present
-        public static let userIDPresent: Flags              = Flags(rawValue: 1 << 3)
+        public static let userIDPresent             = Flags(rawValue: 1 << 3)
         /// Measurement Status present
-        public static let measurementStatusPresent: Flags   = Flags(rawValue: 1 << 4)
+        public static let measurementStatusPresent  = Flags(rawValue: 1 << 4)
     }
 
     /// Systolic Blood Pressure
@@ -165,6 +165,6 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

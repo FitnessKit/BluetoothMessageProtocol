@@ -69,7 +69,7 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeUpdateControlPoint {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 
     /// Encodes the Characteristic into Data

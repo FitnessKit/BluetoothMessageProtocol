@@ -47,39 +47,39 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /// Calibration Supported
-        public static let calibrationSupported: Features                    = Features(rawValue: 1 << 0)
+        public static let calibrationSupported                  = Features(rawValue: 1 << 0)
         /// Patient High/Low Alerts supported
-        public static let patientAlertsSupported: Features                  = Features(rawValue: 1 << 1)
+        public static let patientAlertsSupported                = Features(rawValue: 1 << 1)
         /// Hypo Alerts supported
-        public static let hypoAlertsSupported: Features                     = Features(rawValue: 1 << 2)
+        public static let hypoAlertsSupported                   = Features(rawValue: 1 << 2)
         /// Hyper Alerts supported
-        public static let hyperAlertsSupported: Features                    = Features(rawValue: 1 << 3)
+        public static let hyperAlertsSupported                  = Features(rawValue: 1 << 3)
         /// Rate of Increase/Decrease Alerts supported
-        public static let rateAlertsSupported: Features                     = Features(rawValue: 1 << 4)
+        public static let rateAlertsSupported                   = Features(rawValue: 1 << 4)
         /// Device Specific Alert supported
-        public static let deviceSpecificAlertsSupported: Features           = Features(rawValue: 1 << 5)
+        public static let deviceSpecificAlertsSupported         = Features(rawValue: 1 << 5)
         /// Sensor Malfunction Detection supported
-        public static let sensorMalfunctionDetectionSupported: Features     = Features(rawValue: 1 << 6)
+        public static let sensorMalfunctionDetectionSupported   = Features(rawValue: 1 << 6)
         /// Sensor Temperature High-Low Detection supported
-        public static let sensorTemperatureDetectionSupported: Features     = Features(rawValue: 1 << 7)
+        public static let sensorTemperatureDetectionSupported   = Features(rawValue: 1 << 7)
         /// Sensor Result High-Low Detection supported
-        public static let sensorResultsDetectionSupported: Features         = Features(rawValue: 1 << 8)
+        public static let sensorResultsDetectionSupported       = Features(rawValue: 1 << 8)
         /// Low Battery Detection supported
-        public static let lowBatteryDetectionSupported: Features            = Features(rawValue: 1 << 9)
+        public static let lowBatteryDetectionSupported          = Features(rawValue: 1 << 9)
         /// Sensor Type Error Detection supported
-        public static let sensorTypeErrorDetectionSupported: Features       = Features(rawValue: 1 << 10)
+        public static let sensorTypeErrorDetectionSupported     = Features(rawValue: 1 << 10)
         /// General Device Fault supported
-        public static let generalDefaultFaultSupported: Features            = Features(rawValue: 1 << 11)
+        public static let generalDefaultFaultSupported          = Features(rawValue: 1 << 11)
         /// E2E-CRC supported
-        public static let e2eCRCSupported: Features                         = Features(rawValue: 1 << 12)
+        public static let e2eCRCSupported                       = Features(rawValue: 1 << 12)
         /// Multiple Bond supported
-        public static let multipleBondSupported: Features                   = Features(rawValue: 1 << 13)
+        public static let multipleBondSupported                 = Features(rawValue: 1 << 13)
         /// Multiple Sessions supported
-        public static let multipleSessionsSupported: Features               = Features(rawValue: 1 << 14)
+        public static let multipleSessionsSupported             = Features(rawValue: 1 << 14)
         /// CGM Trend Information supported
-        public static let trendInformationSupported: Features               = Features(rawValue: 1 << 15)
+        public static let trendInformationSupported             = Features(rawValue: 1 << 15)
         /// CGM Quality supported
-        public static let qualitySupported: Features                        = Features(rawValue: 1 << 16)
+        public static let qualitySupported                      = Features(rawValue: 1 << 16)
     }
 
     /// Type of Continuous Glucose Monitor
@@ -189,6 +189,6 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

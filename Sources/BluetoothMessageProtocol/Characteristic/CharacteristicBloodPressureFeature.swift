@@ -47,17 +47,17 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Body Movement Detection feature supported
-        public static let bodyMovementDetectionSupported: Feature           = Feature(rawValue: 1 << 0)
+        public static let bodyMovementDetectionSupported            = Feature(rawValue: 1 << 0)
         /// Cuff Fit Detection feature supported
-        public static let cuffFitDetectionSupported: Feature                = Feature(rawValue: 1 << 1)
+        public static let cuffFitDetectionSupported                 = Feature(rawValue: 1 << 1)
         /// Irregular Pulse Detection feature supported
-        public static let irregularPulseDetectionSupported: Feature         = Feature(rawValue: 1 << 2)
+        public static let irregularPulseDetectionSupported          = Feature(rawValue: 1 << 2)
         /// Pulse Rate Range Detection feature supported
-        public static let pulseRateRangeDetectionSupported: Feature         = Feature(rawValue: 1 << 3)
+        public static let pulseRateRangeDetectionSupported          = Feature(rawValue: 1 << 3)
         /// Measurement Position Detection feature supported
-        public static let measurementPositionDetectionSupported: Feature    = Feature(rawValue: 1 << 4)
+        public static let measurementPositionDetectionSupported     = Feature(rawValue: 1 << 4)
         /// Multiple Bonds supported
-        public static let multipleBondsSupported: Feature                   = Feature(rawValue: 1 << 5)
+        public static let multipleBondsSupported                    = Feature(rawValue: 1 << 5)
     }
 
     /// Supported Features

@@ -67,7 +67,7 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHeartRateControlPoint {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 
     /// Encodes the Characteristic into Data

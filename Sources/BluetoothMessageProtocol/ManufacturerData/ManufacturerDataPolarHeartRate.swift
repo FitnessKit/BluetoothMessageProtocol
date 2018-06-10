@@ -63,7 +63,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .polar else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Polar"))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "Manufacturer is not Polar"))
         }
 
         if let data = man.specificData {
@@ -72,7 +72,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             //OH1 sends 5 Bytes.
             //H7/H10 sends 6 Bytes.
             guard data.count <= 6 else {
-                throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer Data is not compatable for HR Decode."))
+                throw BluetoothMessageProtocolError(.decodeError(msg: "Manufacturer Data is not compatable for HR Decode."))
             }
 
             var decoder = DataDecoder(data)
@@ -97,7 +97,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             return ManufacturerDataPolarHeartRate(heartRate: hr, rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "No Manufacturer Specific Data"))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "No Manufacturer Specific Data"))
         }
     }
 
@@ -107,7 +107,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }
 

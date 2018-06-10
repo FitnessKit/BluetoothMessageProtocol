@@ -82,7 +82,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
         let value = declination.converted(to: UnitAngle.degrees).value
 
         guard kBluetoothMagneticDeclinationBounds.contains(value) else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Magnetic Declination must be between \(kBluetoothMagneticDeclinationBounds.lowerBound) and \(kBluetoothMagneticDeclinationBounds.upperBound) degress"))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "Magnetic Declination must be between \(kBluetoothMagneticDeclinationBounds.lowerBound) and \(kBluetoothMagneticDeclinationBounds.upperBound) degress"))
         }
 
         //put it back to uint16

@@ -49,31 +49,31 @@ open class CharacteristicTreadmillData: Characteristic {
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
         /// More Data not present (is defined opposite of the norm)
-        public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        public static let moreData                       = Flags(rawValue: 1 << 0)
         /// Average Speed present
-        public static let averageSpeedPresent: Flags            = Flags(rawValue: 1 << 1)
+        public static let averageSpeedPresent            = Flags(rawValue: 1 << 1)
         /// Total Distance Present
-        public static let totalDistancePresent: Flags           = Flags(rawValue: 1 << 2)
+        public static let totalDistancePresent           = Flags(rawValue: 1 << 2)
         /// Inclination and Ramp Angle Setting present
-        public static let angleSettingpresent: Flags            = Flags(rawValue: 1 << 3)
+        public static let angleSettingpresent            = Flags(rawValue: 1 << 3)
         /// Elevation Gain present
-        public static let elevationGainPresent: Flags           = Flags(rawValue: 1 << 4)
+        public static let elevationGainPresent           = Flags(rawValue: 1 << 4)
         /// Instantaneous Pace present
-        public static let instantaneousPacePresent: Flags       = Flags(rawValue: 1 << 5)
+        public static let instantaneousPacePresent       = Flags(rawValue: 1 << 5)
         /// Average Pace present
-        public static let averagePacePresent: Flags             = Flags(rawValue: 1 << 6)
+        public static let averagePacePresent             = Flags(rawValue: 1 << 6)
         /// Expended Energy present
-        public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 7)
+        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 7)
         /// Heart Rate present
-        public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 8)
+        public static let heartRatePresent               = Flags(rawValue: 1 << 8)
         /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 9)
+        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 9)
         /// Elapsed Time present
-        public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 10)
+        public static let elapsedTimePresent             = Flags(rawValue: 1 << 10)
         /// Remaining Time present
-        public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 11)
+        public static let remainingTimePresent           = Flags(rawValue: 1 << 11)
         /// Force on Belt and Power Output present
-        public static let beltForcePowerOutputPresent: Flags    = Flags(rawValue: 1 << 12)
+        public static let beltForcePowerOutputPresent    = Flags(rawValue: 1 << 12)
     }
 
     /// Instantaneous Speed
@@ -311,6 +311,6 @@ open class CharacteristicTreadmillData: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

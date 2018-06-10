@@ -47,13 +47,13 @@ open class CharacteristicCurrentTime: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Manual time update
-        public static let manualTimeUpdate: AdjustReasons               = AdjustReasons(rawValue: 1 << 0)
+        public static let manualTimeUpdate              = AdjustReasons(rawValue: 1 << 0)
         /// External reference time update
-        public static let externalReferenceTimeUpdate: AdjustReasons    = AdjustReasons(rawValue: 1 << 1)
+        public static let externalReferenceTimeUpdate   = AdjustReasons(rawValue: 1 << 1)
         /// Change of time zone
-        public static let changeOfTimeZone: AdjustReasons               = AdjustReasons(rawValue: 1 << 2)
+        public static let changeOfTimeZone              = AdjustReasons(rawValue: 1 << 2)
         /// Change of DST (daylight savings time)
-        public static let changeofDaylightSavings: AdjustReasons        = AdjustReasons(rawValue: 1 << 3)
+        public static let changeofDaylightSavings       = AdjustReasons(rawValue: 1 << 3)
     }
 
     /// Current Time Adjust Reason

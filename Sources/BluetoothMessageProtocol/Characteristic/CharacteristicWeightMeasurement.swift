@@ -47,13 +47,13 @@ open class CharacteristicWeightMeasurement: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
-        public static let unitsImperial: Flags          = Flags(rawValue: 1 << 0)
+        public static let unitsImperial          = Flags(rawValue: 1 << 0)
         /// Time stamp present
-        public static let timestampPresent: Flags       = Flags(rawValue: 1 << 1)
+        public static let timestampPresent       = Flags(rawValue: 1 << 1)
         /// User ID present
-        public static let userIdPresent: Flags          = Flags(rawValue: 1 << 1)
+        public static let userIdPresent          = Flags(rawValue: 1 << 1)
         /// BMI and Height present
-        public static let bmiHeightPresent: Flags       = Flags(rawValue: 1 << 1)
+        public static let bmiHeightPresent       = Flags(rawValue: 1 << 1)
     }
 
     /// Weight
@@ -151,6 +151,6 @@ open class CharacteristicWeightMeasurement: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

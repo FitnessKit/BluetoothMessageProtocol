@@ -295,7 +295,7 @@ public struct FitnessMachineStatusTargetedExpendedEnergyChanged: FitnessMachineS
     /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }
 
@@ -641,6 +641,6 @@ public struct FitnessMachineStatusTargetedCadence: FitnessMachineStatus {
     /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

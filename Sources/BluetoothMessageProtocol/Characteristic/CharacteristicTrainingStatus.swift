@@ -49,9 +49,9 @@ open class CharacteristicTrainingStatus: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Training Status String present
-        public static let trainingStatusStringPresent: Flags    = Flags(rawValue: 1 << 0)
+        public static let trainingStatusStringPresent    = Flags(rawValue: 1 << 0)
         /// Extended String present
-        public static let extendedStringPresent: Flags          = Flags(rawValue: 1 << 1)
+        public static let extendedStringPresent          = Flags(rawValue: 1 << 1)
     }
 
     /// Training Status

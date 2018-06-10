@@ -47,31 +47,31 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
         /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
-        public static let imperialUnits: Flags              = Flags(rawValue: 1 << 0)
+        public static let imperialUnits             = Flags(rawValue: 1 << 0)
         /// Time Stamp Present
-        public static let timeStampPresent: Flags           = Flags(rawValue: 1 << 1)
+        public static let timeStampPresent          = Flags(rawValue: 1 << 1)
         /// User ID present
-        public static let userIDPresent: Flags              = Flags(rawValue: 1 << 2)
+        public static let userIDPresent             = Flags(rawValue: 1 << 2)
         /// Basal Metabolism present
-        public static let basalMetabolismPresent: Flags     = Flags(rawValue: 1 << 3)
+        public static let basalMetabolismPresent    = Flags(rawValue: 1 << 3)
         /// Muscle Percentage present
-        public static let musclePercentagePresent: Flags    = Flags(rawValue: 1 << 4)
+        public static let musclePercentagePresent   = Flags(rawValue: 1 << 4)
         /// Muscle Mass present
-        public static let muscleMassPresent: Flags          = Flags(rawValue: 1 << 5)
+        public static let muscleMassPresent         = Flags(rawValue: 1 << 5)
         /// Fat Free Mass present
-        public static let fatFreeMassPresent: Flags         = Flags(rawValue: 1 << 6)
+        public static let fatFreeMassPresent        = Flags(rawValue: 1 << 6)
         /// Soft Lean Mass present
-        public static let softLeanMassPresent: Flags        = Flags(rawValue: 1 << 7)
+        public static let softLeanMassPresent       = Flags(rawValue: 1 << 7)
         /// Body Water Mass present
-        public static let bodyWaterMassPresent: Flags       = Flags(rawValue: 1 << 8)
+        public static let bodyWaterMassPresent      = Flags(rawValue: 1 << 8)
         /// Impedance present
-        public static let impedancePresent: Flags           = Flags(rawValue: 1 << 9)
+        public static let impedancePresent          = Flags(rawValue: 1 << 9)
         /// Weight present
-        public static let weightPresent: Flags              = Flags(rawValue: 1 << 10)
+        public static let weightPresent             = Flags(rawValue: 1 << 10)
         /// Height present
-        public static let heightPresent: Flags              = Flags(rawValue: 1 << 11)
+        public static let heightPresent             = Flags(rawValue: 1 << 11)
         /// Multiple Packet Measurement
-        public static let multiplePacketMeasrement: Flags   = Flags(rawValue: 1 << 12)
+        public static let multiplePacketMeasrement  = Flags(rawValue: 1 << 12)
     }
 
     /// Body Fat Percentage
@@ -297,6 +297,6 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

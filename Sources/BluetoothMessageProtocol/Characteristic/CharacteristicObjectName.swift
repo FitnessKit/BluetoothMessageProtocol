@@ -73,7 +73,7 @@ open class CharacteristicObjectName: Characteristic {
         var msgData = Data()
 
         guard kObjectNameStringBounds.contains(objectName.count) else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Object Name must be between \(kObjectNameStringBounds.lowerBound) and \(kObjectNameStringBounds.upperBound) characters in size."))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "Object Name must be between \(kObjectNameStringBounds.lowerBound) and \(kObjectNameStringBounds.upperBound) characters in size."))
         }
 
         if let stringData = objectName.data(using: .utf8) {

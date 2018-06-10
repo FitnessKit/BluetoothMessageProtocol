@@ -49,25 +49,25 @@ open class CharacteristicStairClimberData: Characteristic {
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
         /// More Data not present (is defined opposite of the norm)
-        public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        public static let moreData                       = Flags(rawValue: 1 << 0)
         /// Step per Minute present
-        public static let stepPerMinutePresent: Flags           = Flags(rawValue: 1 << 1)
+        public static let stepPerMinutePresent           = Flags(rawValue: 1 << 1)
         /// Average Step Rate Present
-        public static let averageStepRatePresent: Flags         = Flags(rawValue: 1 << 2)
+        public static let averageStepRatePresent         = Flags(rawValue: 1 << 2)
         /// Positive Elevation Gain present
-        public static let positiveElevationGainPresent: Flags   = Flags(rawValue: 1 << 3)
+        public static let positiveElevationGainPresent   = Flags(rawValue: 1 << 3)
         /// Stride Count Present
-        public static let strideCountPresent: Flags             = Flags(rawValue: 1 << 4)
+        public static let strideCountPresent             = Flags(rawValue: 1 << 4)
         /// Expended Energy present
-        public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 5)
+        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 5)
         /// Heart Rate present
-        public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 6)
+        public static let heartRatePresent               = Flags(rawValue: 1 << 6)
         /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 7)
+        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 7)
         /// Elapsed Time present
-        public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 8)
+        public static let elapsedTimePresent             = Flags(rawValue: 1 << 8)
         /// Remaining Time present
-        public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 9)
+        public static let remainingTimePresent           = Flags(rawValue: 1 << 9)
     }
 
     /// Floors
@@ -227,6 +227,6 @@ open class CharacteristicStairClimberData: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

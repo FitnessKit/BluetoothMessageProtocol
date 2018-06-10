@@ -47,45 +47,45 @@ open class CharacteristicBondManagementFeatures: Characteristic {
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /// Delete Bond of current connection (BR/EDR and LE) supported
-        public static let deleteBondCurrentConnectionSupported: Flags               = Flags(rawValue: 1 << 0)
+        public static let deleteBondCurrentConnectionSupported               = Flags(rawValue: 1 << 0)
         /// Authorization Code required for Delete bond of current connection (BR/EDR and LE)
-        public static let authorizationDeleteBondRequired: Flags                    = Flags(rawValue: 1 << 1)
+        public static let authorizationDeleteBondRequired                    = Flags(rawValue: 1 << 1)
         /// Delete bond of current connection (BR/EDR transport only) supported
-        public static let deleteBondCurrentConnectionBREDROnlySupported: Flags      = Flags(rawValue: 1 << 2)
+        public static let deleteBondCurrentConnectionBREDROnlySupported      = Flags(rawValue: 1 << 2)
         /// Authorization Code required for Delete bond of current connection (BR/EDR transport only)
-        public static let authorizationDeleteBondBREDRRequired: Flags               = Flags(rawValue: 1 << 3)
+        public static let authorizationDeleteBondBREDRRequired               = Flags(rawValue: 1 << 3)
         /// Delete bond of current connection (LE transport only) supported
-        public static let deleteBondCurrentConnectionLEOnlySupported: Flags         = Flags(rawValue: 1 << 4)
+        public static let deleteBondCurrentConnectionLEOnlySupported         = Flags(rawValue: 1 << 4)
         /// Authorization Code required for Delete bond of current connection (LE transport only)
-        public static let authorizationDeleteBondLEOnlyRequired: Flags              = Flags(rawValue: 1 << 5)
+        public static let authorizationDeleteBondLEOnlyRequired              = Flags(rawValue: 1 << 5)
         /// Remove all bonds on server (BR/EDR and LE) supported
-        public static let removeBondsOnServerSupported: Flags                       = Flags(rawValue: 1 << 6)
+        public static let removeBondsOnServerSupported                       = Flags(rawValue: 1 << 6)
         /// Authorization Code required for Remove all bonds on server (BR/EDR and LE) supported
-        public static let authorizationRemoveBondsOnServerRequired: Flags           = Flags(rawValue: 1 << 7)
+        public static let authorizationRemoveBondsOnServerRequired           = Flags(rawValue: 1 << 7)
         /// Remove all bonds on server (BR/EDR transport only) supported
-        public static let removeBondsOnServerBREDRSupported: Flags                  = Flags(rawValue: 1 << 8)
+        public static let removeBondsOnServerBREDRSupported                 = Flags(rawValue: 1 << 8)
         /// Authorization Code required for Remove all bonds on server (BR/EDR transport only) supported
-        public static let authorizationRemoveBondsOnServerBREDRRequired: Flags      = Flags(rawValue: 1 << 9)
+        public static let authorizationRemoveBondsOnServerBREDRRequired     = Flags(rawValue: 1 << 9)
         /// Remove all bonds on server (LE transport only) supported
-        public static let removeBondsOnServerLEOnlySupported: Flags                 = Flags(rawValue: 1 << 10)
+        public static let removeBondsOnServerLEOnlySupported                = Flags(rawValue: 1 << 10)
         /// Authorization Code required for Remove all bonds on server (LE transport only) supported
-        public static let authorizationRemoveBondsOnServerLEOnlyRequired: Flags     = Flags(rawValue: 1 << 11)
+        public static let authorizationRemoveBondsOnServerLEOnlyRequired     = Flags(rawValue: 1 << 11)
         /// Remove all but the active bond on server (BR/EDR and LE) supported
-        public static let removeNonActiveBondsSupported: Flags                      = Flags(rawValue: 1 << 12)
+        public static let removeNonActiveBondsSupported                      = Flags(rawValue: 1 << 12)
         /// Authorization Code required for Remove all but the active bond on server (BR/EDR and LE) supported
-        public static let authorizationRemoveNonActiveBondsSupported: Flags         = Flags(rawValue: 1 << 13)
+        public static let authorizationRemoveNonActiveBondsSupported         = Flags(rawValue: 1 << 13)
         /// Remove all but the active bond on server (BR/EDR transport only) supported
-        public static let removeNonActiveBondsBREDRSupported: Flags                 = Flags(rawValue: 1 << 14)
+        public static let removeNonActiveBondsBREDRSupported                 = Flags(rawValue: 1 << 14)
         /// Authorization Code required for Remove all but the active bond on server (BR/EDR transport only) supported
-        public static let authorizationRemoveNonActiveBondsBREDRSupported:Flags     = Flags(rawValue: 1 << 15)
+        public static let authorizationRemoveNonActiveBondsBREDRSupported   = Flags(rawValue: 1 << 15)
         /// Remove all but the active bond on server (LE transport only) supported
-        public static let removeNonActiveBondsLEOnlySupported: Flags                = Flags(rawValue: 1 << 16)
+        public static let removeNonActiveBondsLEOnlySupported               = Flags(rawValue: 1 << 16)
         /// Authorization Code required for Remove all but the active bond on server (LE transport only) supported
-        public static let authorizationRemoveNonActiveBondsLEOnlySupported: Flags   = Flags(rawValue: 1 << 17)
+        public static let authorizationRemoveNonActiveBondsLEOnlySupported  = Flags(rawValue: 1 << 17)
         /// Identify yourself supported
-        public static let identifyYourselfSupported: Flags                          = Flags(rawValue: 1 << 18)
+        public static let identifyYourselfSupported                         = Flags(rawValue: 1 << 18)
         /// Feature Extension
-        public static let featureExtension: Flags                                   = Flags(rawValue: 1 << 23)
+        public static let featureExtension                                  = Flags(rawValue: 1 << 23)
     }
 
     /// Bond Management Features
@@ -120,6 +120,6 @@ open class CharacteristicBondManagementFeatures: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

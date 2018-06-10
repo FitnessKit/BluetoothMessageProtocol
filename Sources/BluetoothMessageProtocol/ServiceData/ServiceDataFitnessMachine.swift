@@ -48,17 +48,17 @@ open class ServiceDataFitnessMachine: ServiceData {
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
         /// Treadmill Supported
-        public static let treadmillSupported: EquipmentType     = EquipmentType(rawValue: 1 << 0)
+        public static let treadmillSupported     = EquipmentType(rawValue: 1 << 0)
         /// Cross Trainer Supported
-        public static let crossTrainerSupported: EquipmentType  = EquipmentType(rawValue: 1 << 1)
+        public static let crossTrainerSupported  = EquipmentType(rawValue: 1 << 1)
         /// Step Climber Supported
-        public static let stepClimberSupported: EquipmentType   = EquipmentType(rawValue: 1 << 2)
+        public static let stepClimberSupported   = EquipmentType(rawValue: 1 << 2)
         /// Stair Climber Supported
-        public static let stairClimberSupported: EquipmentType  = EquipmentType(rawValue: 1 << 3)
+        public static let stairClimberSupported  = EquipmentType(rawValue: 1 << 3)
         /// Rower Supported
-        public static let rowerSupported: EquipmentType         = EquipmentType(rawValue: 1 << 4)
+        public static let rowerSupported         = EquipmentType(rawValue: 1 << 4)
         /// Indoor Bike Supported
-        public static let indoorBikeSupported: EquipmentType    = EquipmentType(rawValue: 1 << 5)
+        public static let indoorBikeSupported    = EquipmentType(rawValue: 1 << 5)
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
@@ -100,7 +100,7 @@ open class ServiceDataFitnessMachine: ServiceData {
             public init(rawValue: UInt8) { self.rawValue = rawValue }
 
             /// Fitness Machine Available
-            public static let available: Flags        = Flags(rawValue: 1 << 0)
+            public static let available        = Flags(rawValue: 1 << 0)
         }
 
         var decoder = DataDecoder(data)
@@ -126,7 +126,7 @@ open class ServiceDataFitnessMachine: ServiceData {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 
     open override func encode(to encoder: Encoder) throws {

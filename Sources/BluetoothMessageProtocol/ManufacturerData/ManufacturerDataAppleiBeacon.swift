@@ -80,7 +80,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .apple else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "Manufacturer is not Apple"))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "Manufacturer is not Apple"))
         }
 
         if let data = man.specificData {
@@ -95,7 +95,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
             let type = decoder.decodeUInt8()
 
             guard type == AppleDeviceType.iBeaccon.rawValue else {
-                throw BluetoothMessageProtocolError.init(.decodeError(msg: "Type wrong for iBeacon"))
+                throw BluetoothMessageProtocolError(.decodeError(msg: "Type wrong for iBeacon"))
             }
 
             let uuidData = decoder.decodeData(length: 12)
@@ -119,7 +119,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
                                                 rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "No Manufacturer Specific Data"))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "No Manufacturer Specific Data"))
         }
     }
 

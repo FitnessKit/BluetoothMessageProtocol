@@ -49,31 +49,31 @@ open class CharacteristicIndoorBikeData: Characteristic {
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
         /// More Data not present (is defined opposite of the norm)
-        public static let moreData: Flags                       = Flags(rawValue: 1 << 0)
+        public static let moreData                      = Flags(rawValue: 1 << 0)
         /// Average Speed present
-        public static let averageSpeedPresent: Flags            = Flags(rawValue: 1 << 1)
+        public static let averageSpeedPresent           = Flags(rawValue: 1 << 1)
         /// Instantaneous Cadence present
-        public static let instantaneousCadencePresent: Flags    = Flags(rawValue: 1 << 2)
+        public static let instantaneousCadencePresent   = Flags(rawValue: 1 << 2)
         /// Average Candence present
-        public static let averageCadencePresent: Flags          = Flags(rawValue: 1 << 3)
+        public static let averageCadencePresent         = Flags(rawValue: 1 << 3)
         /// Total Distance Present
-        public static let totalDistancePresent: Flags           = Flags(rawValue: 1 << 4)
+        public static let totalDistancePresent          = Flags(rawValue: 1 << 4)
         /// Resistance Level present
-        public static let resistanceLevelPresent: Flags         = Flags(rawValue: 1 << 5)
+        public static let resistanceLevelPresent        = Flags(rawValue: 1 << 5)
         /// Instantaneous Power present
-        public static let instantaneousPowerPresent: Flags      = Flags(rawValue: 1 << 6)
+        public static let instantaneousPowerPresent     = Flags(rawValue: 1 << 6)
         /// Average Power present
-        public static let averagePowerPresent: Flags            = Flags(rawValue: 1 << 7)
+        public static let averagePowerPresent           = Flags(rawValue: 1 << 7)
         /// Expended Energy present
-        public static let expendedEnergyPresent: Flags          = Flags(rawValue: 1 << 8)
+        public static let expendedEnergyPresent         = Flags(rawValue: 1 << 8)
         /// Heart Rate present
-        public static let heartRatePresent: Flags               = Flags(rawValue: 1 << 9)
+        public static let heartRatePresent              = Flags(rawValue: 1 << 9)
         /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent: Flags     = Flags(rawValue: 1 << 10)
+        public static let metabolicEquivalentPresent    = Flags(rawValue: 1 << 10)
         /// Elapsed Time present
-        public static let elapsedTimePresent: Flags             = Flags(rawValue: 1 << 11)
+        public static let elapsedTimePresent            = Flags(rawValue: 1 << 11)
         /// Remaining Time present
-        public static let remainingTimePresent: Flags           = Flags(rawValue: 1 << 12)
+        public static let remainingTimePresent          = Flags(rawValue: 1 << 12)
     }
 
     /// Instantaneous Speed
@@ -269,6 +269,6 @@ open class CharacteristicIndoorBikeData: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

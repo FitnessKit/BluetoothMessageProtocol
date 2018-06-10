@@ -49,39 +49,39 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /// Average Speed Supported
-        public static let averageSpeedSupported: MachineFeatures    = MachineFeatures(rawValue: 1 << 0)
+        public static let averageSpeedSupported     = MachineFeatures(rawValue: 1 << 0)
         /// Cadence Supported
-        public static let cadenceSupported: MachineFeatures         = MachineFeatures(rawValue: 1 << 1)
+        public static let cadenceSupported          = MachineFeatures(rawValue: 1 << 1)
         /// Total Distance Supported
-        public static let totalDistanceSupported: MachineFeatures   = MachineFeatures(rawValue: 1 << 2)
+        public static let totalDistanceSupported    = MachineFeatures(rawValue: 1 << 2)
         /// Inclination Supported
-        public static let inclinationSupported: MachineFeatures     = MachineFeatures(rawValue: 1 << 3)
+        public static let inclinationSupported      = MachineFeatures(rawValue: 1 << 3)
         /// Elevation Gain Supported
-        public static let elevationGainSupported: MachineFeatures   = MachineFeatures(rawValue: 1 << 4)
+        public static let elevationGainSupported    = MachineFeatures(rawValue: 1 << 4)
         /// Pace Supported
-        public static let paceSupported: MachineFeatures            = MachineFeatures(rawValue: 1 << 5)
+        public static let paceSupported             = MachineFeatures(rawValue: 1 << 5)
         /// Step Count Supported
-        public static let stepCountSupported: MachineFeatures       = MachineFeatures(rawValue: 1 << 6)
+        public static let stepCountSupported        = MachineFeatures(rawValue: 1 << 6)
         /// Resistance Level Supported
-        public static let resistanceLevelSupported: MachineFeatures = MachineFeatures(rawValue: 1 << 7)
+        public static let resistanceLevelSupported  = MachineFeatures(rawValue: 1 << 7)
         /// Stride Count Supported
-        public static let strideCountSupported: MachineFeatures     = MachineFeatures(rawValue: 1 << 8)
+        public static let strideCountSupported      = MachineFeatures(rawValue: 1 << 8)
         /// Expended Energy Supported
-        public static let expendedEnergySupported: MachineFeatures  = MachineFeatures(rawValue: 1 << 9)
+        public static let expendedEnergySupported   = MachineFeatures(rawValue: 1 << 9)
         /// Heart Rate Measurement Supported
-        public static let heartRateSupported: MachineFeatures       = MachineFeatures(rawValue: 1 << 10)
+        public static let heartRateSupported        = MachineFeatures(rawValue: 1 << 10)
         /// Metabolic Equivalent Supported
-        public static let metsSupported: MachineFeatures            = MachineFeatures(rawValue: 1 << 11)
+        public static let metsSupported             = MachineFeatures(rawValue: 1 << 11)
         /// Elapsed Time Supported
-        public static let elapsedTimeSupported: MachineFeatures     = MachineFeatures(rawValue: 1 << 12)
+        public static let elapsedTimeSupported      = MachineFeatures(rawValue: 1 << 12)
         /// Remaining Time Supported
-        public static let remainingTimeSupported: MachineFeatures   = MachineFeatures(rawValue: 1 << 13)
+        public static let remainingTimeSupported    = MachineFeatures(rawValue: 1 << 13)
         /// Power Measurement Supported
-        public static let powerSupported: MachineFeatures           = MachineFeatures(rawValue: 1 << 14)
+        public static let powerSupported            = MachineFeatures(rawValue: 1 << 14)
         /// Force on Belt and Power Output Supported
-        public static let forceOnBeltSupported: MachineFeatures     = MachineFeatures(rawValue: 1 << 15)
+        public static let forceOnBeltSupported      = MachineFeatures(rawValue: 1 << 15)
         /// User Data Retention Supported
-        public static let userDataSupported: MachineFeatures        = MachineFeatures(rawValue: 1 << 16)
+        public static let userDataSupported         = MachineFeatures(rawValue: 1 << 16)
     }
 
     /// Target Settings Features
@@ -90,39 +90,39 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
         public init(rawValue: UInt32) { self.rawValue = rawValue }
 
         /// Speed Target Setting Supported
-        public static let speedSupported: TargetFeatures                = TargetFeatures(rawValue: 1 << 0)
+        public static let speedSupported                = TargetFeatures(rawValue: 1 << 0)
         /// Inclination Target Setting Supported
-        public static let inclinationSupported: TargetFeatures          = TargetFeatures(rawValue: 1 << 1)
+        public static let inclinationSupported          = TargetFeatures(rawValue: 1 << 1)
         /// Resistance Target Setting Supported
-        public static let resistanceSupported: TargetFeatures           = TargetFeatures(rawValue: 1 << 2)
+        public static let resistanceSupported           = TargetFeatures(rawValue: 1 << 2)
         /// Power Target Setting Supported
-        public static let powerSupported: TargetFeatures                = TargetFeatures(rawValue: 1 << 3)
+        public static let powerSupported                = TargetFeatures(rawValue: 1 << 3)
         /// Heart Rate Target Setting Supported
-        public static let heartRateSupported: TargetFeatures            = TargetFeatures(rawValue: 1 << 4)
+        public static let heartRateSupported            = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Expended Energy Configuration Supported
-        public static let expendedEnergySupported: TargetFeatures       = TargetFeatures(rawValue: 1 << 4)
+        public static let expendedEnergySupported       = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Step Number Configuration Supported
-        public static let stepNumberSupported: TargetFeatures           = TargetFeatures(rawValue: 1 << 4)
+        public static let stepNumberSupported           = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Stride Number Configuration Supported
-        public static let strideNumberSupported: TargetFeatures         = TargetFeatures(rawValue: 1 << 4)
+        public static let strideNumberSupported         = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Distance Configuration Supported
-        public static let distanceSupported: TargetFeatures             = TargetFeatures(rawValue: 1 << 4)
+        public static let distanceSupported             = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Training Time Configuration Supported
-        public static let trainingTimeSupported: TargetFeatures         = TargetFeatures(rawValue: 1 << 4)
+        public static let trainingTimeSupported         = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Time in Two Heart Rate Zones Configuration Supported
-        public static let timeInTwoHRZoneSupported: TargetFeatures      = TargetFeatures(rawValue: 1 << 4)
+        public static let timeInTwoHRZoneSupported      = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Time in Three Heart Rate Zones Configuration Supported
-        public static let timeInThreeHRZoneSupported: TargetFeatures    = TargetFeatures(rawValue: 1 << 4)
+        public static let timeInThreeHRZoneSupported    = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Time in Fie Heart Rate Zones Configuration Supported
-        public static let timeInFiveHRZoneSupported: TargetFeatures     = TargetFeatures(rawValue: 1 << 4)
+        public static let timeInFiveHRZoneSupported     = TargetFeatures(rawValue: 1 << 4)
         /// Indoor Bike Simulation Parameters Supported
-        public static let indoorBikeSimulationSupported: TargetFeatures = TargetFeatures(rawValue: 1 << 4)
+        public static let indoorBikeSimulationSupported = TargetFeatures(rawValue: 1 << 4)
         /// Wheel Circumference Configuration Supported
-        public static let wheelCircumferenceSupported: TargetFeatures   = TargetFeatures(rawValue: 1 << 4)
+        public static let wheelCircumferenceSupported   = TargetFeatures(rawValue: 1 << 4)
         /// Spin Down Control Supported
-        public static let spinDownControlSupported: TargetFeatures      = TargetFeatures(rawValue: 1 << 4)
+        public static let spinDownControlSupported      = TargetFeatures(rawValue: 1 << 4)
         /// Targeted Cadence Configuration Supported
-        public static let cadenceConfigSupported: TargetFeatures        = TargetFeatures(rawValue: 1 << 4)
+        public static let cadenceConfigSupported        = TargetFeatures(rawValue: 1 << 4)
     }
 
     /// Supported Machine Features
@@ -165,6 +165,6 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

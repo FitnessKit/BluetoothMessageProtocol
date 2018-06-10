@@ -757,6 +757,6 @@ public struct FitnessMachineProcedureResponse: FitnessMachineControlProcedure {
     /// - Throws: BluetoothMessageProtocolError
     public func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

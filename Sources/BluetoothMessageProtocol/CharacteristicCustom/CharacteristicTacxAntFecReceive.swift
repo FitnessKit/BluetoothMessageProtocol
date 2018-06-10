@@ -68,7 +68,7 @@ open class CharacteristicTacxAntFecReceive: Characteristic {
 
         /// Check to make sure the Sync byte is correct
         guard sync == 0xA4 else {
-            throw BluetoothMessageProtocolError.init(.decodeError(msg: "ANT Sync mismatch."))
+            throw BluetoothMessageProtocolError(.decodeError(msg: "ANT Sync mismatch."))
         }
 
         /// Just return the data
@@ -81,6 +81,6 @@ open class CharacteristicTacxAntFecReceive: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         /// We don't need to ever encode it
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 }

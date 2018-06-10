@@ -97,7 +97,7 @@ open class CharacteristicBatteryLevelState: Characteristic {
     open override func encode() throws -> Data {
 
         guard level.value <= 100.0 else {
-            throw BluetoothMessageProtocolError.init(.encodeError(msg: "Battery level greater then max allow 100%"))
+            throw BluetoothMessageProtocolError(.encodeError(msg: "Battery level greater then max allow 100%"))
         }
 
         var msgData = Data()

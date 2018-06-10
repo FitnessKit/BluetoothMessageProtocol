@@ -96,7 +96,7 @@ public extension CompanyIdentifier {
         }
 
         if let _ = id {
-            throw BluetoothMessageProtocolError.init(.companyRegistration(msg: "Company already registered"))
+            throw BluetoothMessageProtocolError(.companyRegistration(msg: "Company already registered"))
         }
 
         if CompanyIdentifier.supportedCompanyIdentifers.contains(company) == false {

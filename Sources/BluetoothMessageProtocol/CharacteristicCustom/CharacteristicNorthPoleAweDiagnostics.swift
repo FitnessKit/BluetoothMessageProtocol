@@ -143,7 +143,7 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         /// Writes not supported, so we don't have to provide Encode
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 
 }

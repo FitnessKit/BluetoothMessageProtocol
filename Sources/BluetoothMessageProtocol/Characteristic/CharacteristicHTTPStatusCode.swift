@@ -46,13 +46,13 @@ open class CharacteristicHTTPStatusCode: Characteristic {
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// The response-header and entity-header fields were received in the HTTP response and stored in the HTTP Headers characteristic for the Client to read
-        public static let headersReceived: DataStatus   = DataStatus(rawValue: 1 << 0)
+        public static let headersReceived   = DataStatus(rawValue: 1 << 0)
         /// The response-header and entity-header fields exceeded 512 octets in length and the first 512 octets were saved in the HTTP Headers characteristic
-        public static let headersTruncated: DataStatus  = DataStatus(rawValue: 1 << 1)
+        public static let headersTruncated  = DataStatus(rawValue: 1 << 1)
         /// The entity-body field was received in the HTTP response and stored in the HTTP Entity Body characteristic for the Client to read
-        public static let bodyReceived: DataStatus      = DataStatus(rawValue: 1 << 2)
+        public static let bodyReceived      = DataStatus(rawValue: 1 << 2)
         /// The entity-body field exceeded 512 octets in length and the first 512 octets were saved in the HTTP Headers characteristic
-        public static let bodyTruncated: DataStatus     = DataStatus(rawValue: 1 << 3)
+        public static let bodyTruncated     = DataStatus(rawValue: 1 << 3)
 
     }
 

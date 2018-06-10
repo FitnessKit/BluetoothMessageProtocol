@@ -81,7 +81,7 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweHeartRateMeasurement {
         /// Data from the AWE Heart Rate Measurement is not Notified or read.
         /// We don't need to ever decode it
-        throw BluetoothMessageProtocolError.init(.unsupported)
+        throw BluetoothMessageProtocolError(.unsupported)
     }
 
     /// Encodes the Characteristic into Data
