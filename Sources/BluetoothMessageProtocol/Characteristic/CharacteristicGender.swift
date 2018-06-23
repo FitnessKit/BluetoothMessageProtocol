@@ -62,9 +62,9 @@ open class CharacteristicGender: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicGender {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let gender = Gender(rawValue: decoder.decodeUInt8()) ?? .unspecified
+        let gender = Gender(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
 
         return CharacteristicGender(gender: gender)
     }

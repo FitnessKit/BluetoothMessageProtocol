@@ -77,19 +77,19 @@ open class CharacteristicDateOfBirth: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDateOfBirth {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
         var year: UInt16?
 
-        let yr = decoder.decodeUInt16()
+        let yr = decoder.decodeUInt16(data)
         if kBluetoothYearBounds.contains(Int(yr)) {
             year = yr
         }
 
-        let month = Month(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let month = Month(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
         var dayOfMonth: UInt8?
-        let day = decoder.decodeUInt8()
+        let day = decoder.decodeUInt8(data)
         if kBluetoothDayOfMonthBounds.contains(Int(day)) {
             dayOfMonth = day
         }

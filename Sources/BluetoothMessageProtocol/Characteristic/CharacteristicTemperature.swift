@@ -60,9 +60,9 @@ open class CharacteristicTemperature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTemperature {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let tmpValue = decoder.decodeInt16().resolution(0.01)
+        let tmpValue = decoder.decodeInt16(data).resolution(0.01)
         let temp = Measurement(value: tmpValue, unit: UnitTemperature.celsius)
 
         return CharacteristicTemperature(temperature: temp)

@@ -161,18 +161,18 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicContinuousGlucoseMonitoringFeature {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let featureVal = decoder.decodeUInt24()
+        let featureVal = decoder.decodeUInt24(data)
         let features: Features = Features(rawValue: UInt32(featureVal))
 
-        let nibble = decoder.decodeNibble()
+        let nibble = decoder.decodeNibble(data)
         let testType = TestType(rawValue: nibble.lower) ?? .reserved
         let sampleLocation = Location(rawValue: nibble.upper) ?? .notAvailable
 
         var crc: UInt16?
 
-        let crcValue = decoder.decodeUInt16()
+        let crcValue = decoder.decodeUInt16(data)
         if crcValue != UInt16.max {
             crc = crcValue
         }

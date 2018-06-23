@@ -62,9 +62,9 @@ open class CharacteristicWaistCircumference: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWaistCircumference {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let meters = decoder.decodeUInt16().resolution(0.01)
+        let meters = decoder.decodeUInt16(data).resolution(0.01)
 
         let waistCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 

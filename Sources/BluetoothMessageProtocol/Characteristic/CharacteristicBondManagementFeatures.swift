@@ -107,9 +107,9 @@ open class CharacteristicBondManagementFeatures: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBondManagementFeatures {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let features = Flags(rawValue: decoder.decodeUInt32())
+        let features = Flags(rawValue: decoder.decodeUInt32(data))
 
         return CharacteristicBondManagementFeatures(features: features)
     }

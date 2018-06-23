@@ -61,9 +61,9 @@ open class CharacteristicBatteryPowerState: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBatteryPowerState {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let state = BatteryPowerState(decoder.decodeUInt8())
+        let state = BatteryPowerState(decoder.decodeUInt8(data))
 
         return CharacteristicBatteryPowerState(state: state)
     }

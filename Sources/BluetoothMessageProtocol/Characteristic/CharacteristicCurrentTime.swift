@@ -91,15 +91,15 @@ open class CharacteristicCurrentTime: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicCurrentTime {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let currenTime = try DateTime.decode(decoder: &decoder)
+        let currenTime = try DateTime.decode(data, decoder: &decoder)
 
-        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
-        let fractions = Float(decoder.decodeUInt8()) * ( 1 / 256)
+        let fractions = Float(decoder.decodeUInt8(data)) * ( 1 / 256)
 
-        let reasons = AdjustReasons(rawValue: decoder.decodeUInt8())
+        let reasons = AdjustReasons(rawValue: decoder.decodeUInt8(data))
 
         return CharacteristicCurrentTime(adjustmentReason: reasons,
                                          currentTime: currenTime,

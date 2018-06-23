@@ -70,10 +70,10 @@ open class CharacteristicPosition2D: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPosition2D {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let lat = decoder.decodeInt32()
-        let lon = decoder.decodeInt32()
+        let lat = decoder.decodeInt32(data)
+        let lon = decoder.decodeInt32(data)
 
         return CharacteristicPosition2D(latitude: lat,
                                         longitude: lon)

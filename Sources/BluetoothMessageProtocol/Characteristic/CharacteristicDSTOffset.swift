@@ -60,9 +60,9 @@ open class CharacteristicDSTOffset: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDSTOffset {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
         return CharacteristicDSTOffset(dstOffset: dstOffset)
     }

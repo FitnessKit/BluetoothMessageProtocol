@@ -77,11 +77,11 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedHeartRateRange {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let minimum = decoder.decodeUInt8()
-        let maximum = decoder.decodeUInt8()
-        let minimumIncrement = decoder.decodeUInt8()
+        let minimum = decoder.decodeUInt8(data)
+        let maximum = decoder.decodeUInt8(data)
+        let minimumIncrement = decoder.decodeUInt8(data)
 
         return CharacteristicSupportedHeartRateRange(minimum: minimum,
                                                      maximum: maximum,

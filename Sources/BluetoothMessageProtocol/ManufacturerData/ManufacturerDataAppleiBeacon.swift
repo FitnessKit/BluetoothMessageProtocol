@@ -90,15 +90,15 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
             //2 bytes - Minor ID
             //1 byte - TX Power (Measured Power)
 
-            var decoder = DataDecoder(data)
+            var decoder = DecodeData()
 
-            let type = decoder.decodeUInt8()
+            let type = decoder.decodeUInt8(data)
 
             guard type == AppleDeviceType.iBeaccon.rawValue else {
                 throw BluetoothMessageProtocolError(.decodeError(msg: "Type wrong for iBeacon"))
             }
 
-            let subType = decoder.decodeUInt8()
+            let subType = decoder.decodeUInt8(data)
 
             // subtype must be 0x15 - 21
             guard subType == 21 else {
@@ -107,11 +107,11 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
             /// Build the UUID String
             var uuidString: String = ""
-            uuidString += decoder.decodeData(length: 4).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(length: 2).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(length: 2).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(length: 2).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(length: 6).hexadecimalString(packed: true)
+            uuidString += decoder.decodeData(data, length: 4).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(data, length: 6).hexadecimalString(packed: true)
 
             var uuid = UUID(uuidString: uuidString)
 
@@ -119,10 +119,10 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
                 uuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
             }
 
-            let majorID = decoder.decodeUInt16().bigEndian
-            let minorID = decoder.decodeUInt16().bigEndian
+            let majorID = decoder.decodeUInt16(data).bigEndian
+            let minorID = decoder.decodeUInt16(data).bigEndian
 
-            let measuredPower = decoder.decodeInt8()
+            let measuredPower = decoder.decodeInt8(data)
 
             return ManufacturerDataAppleiBeacon(proximityUUID: uuid!,
                                                 majorID: majorID,

@@ -81,10 +81,10 @@ open class CharacteristicHTTPStatusCode: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHTTPStatusCode {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let statusCode = decoder.decodeUInt16()
-        let dataStatus = DataStatus(rawValue: decoder.decodeUInt8())
+        let statusCode = decoder.decodeUInt16(data)
+        let dataStatus = DataStatus(rawValue: decoder.decodeUInt8(data))
 
         return CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus)
     }

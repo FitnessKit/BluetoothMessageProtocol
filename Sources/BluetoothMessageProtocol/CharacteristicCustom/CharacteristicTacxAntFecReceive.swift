@@ -62,9 +62,9 @@ open class CharacteristicTacxAntFecReceive: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTacxAntFecReceive {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let sync = decoder.decodeUInt8()
+        let sync = decoder.decodeUInt8(data)
 
         /// Check to make sure the Sync byte is correct
         guard sync == 0xA4 else {

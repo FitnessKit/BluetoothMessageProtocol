@@ -68,11 +68,11 @@ open class CharacteristicDayDateTime: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDayDateTime {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let time = try DateTime.decode(decoder: &decoder)
+        let time = try DateTime.decode(data, decoder: &decoder)
 
-        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
         return CharacteristicDayDateTime(time: time,
                                          dayOfWeek: weekday)

@@ -72,11 +72,11 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUnreadAlertStatus {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let alertType = AlertCategory(rawValue: decoder.decodeUInt8()) ?? .simpleAlert
+        let alertType = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
 
-        let numberOfAlerts = decoder.decodeUInt8()
+        let numberOfAlerts = decoder.decodeUInt8(data)
 
         return CharacteristicUnreadAlertStatus(alertType: alertType,
                                                numberOfAlerts: numberOfAlerts)

@@ -62,9 +62,9 @@ open class CharacteristicFatBurnHeartRateUpperLimit: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFatBurnHeartRateUpperLimit {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let heartRate: UInt8 = decoder.decodeUInt8()
+        let heartRate: UInt8 = decoder.decodeUInt8(data)
 
         return CharacteristicFatBurnHeartRateUpperLimit(heartRate: heartRate)
     }

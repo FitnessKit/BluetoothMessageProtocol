@@ -85,9 +85,9 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBarometricPressureTrend {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
         return CharacteristicBarometricPressureTrend(trend: trend)
     }

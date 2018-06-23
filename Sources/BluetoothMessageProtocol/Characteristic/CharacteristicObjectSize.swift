@@ -66,10 +66,10 @@ open class CharacteristicObjectSize: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicObjectSize {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let currentSize = decoder.decodeUInt32()
-        let allocatedSize = decoder.decodeUInt32()
+        let currentSize = decoder.decodeUInt32(data)
+        let allocatedSize = decoder.decodeUInt32(data)
 
         return CharacteristicObjectSize(currentSize: currentSize,
                                         allocatedSize: allocatedSize)

@@ -82,14 +82,14 @@ public struct FitnessMachineEnergy {
 
 internal extension FitnessMachineEnergy {
 
-    internal static func decode(decoder: inout DataDecoder) throws -> FitnessMachineEnergy {
+    internal static func decode(_ data: Data, decoder: inout DecodeData) throws -> FitnessMachineEnergy {
         var totalEnergy: Measurement<UnitEnergy>?
         var energyPerHour: Measurement<UnitEnergy>?
         var energyPerMinute: Measurement<UnitEnergy>?
 
-        let total = decoder.decodeUInt16()
-        let perHour = decoder.decodeUInt16()
-        let perMin = decoder.decodeUInt16()
+        let total = decoder.decodeUInt16(data)
+        let perHour = decoder.decodeUInt16(data)
+        let perMin = decoder.decodeUInt16(data)
 
         if total != FitnessMachineEnergy.energyNotAvailable {
             let tValue = Double(total)

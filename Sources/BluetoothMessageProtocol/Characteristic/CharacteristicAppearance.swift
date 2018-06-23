@@ -61,9 +61,9 @@ open class CharacteristicAppearance: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAppearance {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let appearance = Appearance(rawValue: decoder.decodeUInt16()) ?? .unknown
+        let appearance = Appearance(rawValue: decoder.decodeUInt16(data)) ?? .unknown
 
         return CharacteristicAppearance(appearance: appearance)
     }

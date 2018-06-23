@@ -62,9 +62,9 @@ open class CharacteristicFloorNumber: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFloorNumber {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let floor = decoder.decodeUInt8()
+        let floor = decoder.decodeUInt8(data)
 
         return CharacteristicFloorNumber(floorNumber: floor)
     }

@@ -75,12 +75,12 @@ open class CharacteristicPosition3D: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPosition3D {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let lat = decoder.decodeInt32()
-        let lon = decoder.decodeInt32()
+        let lat = decoder.decodeInt32(data)
+        let lon = decoder.decodeInt32(data)
 
-        let meters = Double(decoder.decodeInt24()) * 0.01
+        let meters = Double(decoder.decodeInt24(data)) * 0.01
 
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 

@@ -182,28 +182,28 @@ public struct DateTime {
 
 public extension DateTime {
 
-    internal static func decode(decoder: inout DataDecoder) throws -> DateTime {
+    internal static func decode(_ data: Data, decoder: inout DecodeData) throws -> DateTime {
         
         var year: UInt16?
 
-        let yr = decoder.decodeUInt16()
+        let yr = decoder.decodeUInt16(data)
         if kBluetoothYearBounds.contains(Int(yr)) {
             year = yr
         }
 
-        let month = Month(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let month = Month(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
         var dayOfMonth: UInt8?
-        let day = decoder.decodeUInt8()
+        let day = decoder.decodeUInt8(data)
         if kBluetoothDayOfMonthBounds.contains(Int(day)) {
             dayOfMonth = day
         }
 
-        let hours = decoder.decodeUInt8()
+        let hours = decoder.decodeUInt8(data)
 
-        let minutes = decoder.decodeUInt8()
+        let minutes = decoder.decodeUInt8(data)
 
-        let seconds = decoder.decodeUInt8()
+        let seconds = decoder.decodeUInt8(data)
 
         return DateTime(year: year, month: month, day: dayOfMonth, hours: hours, minutes: minutes, seconds: seconds)
     }
@@ -215,9 +215,9 @@ public extension DateTime {
     /// - Throws: BluetoothMessageProtocolError
     public static func decode(data: Data) throws -> DateTime {
 
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        return try decode(decoder: &decoder)
+        return try decode(data, decoder: &decoder)
     }
 
 }

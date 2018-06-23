@@ -191,9 +191,9 @@ open class CharacteristicWeightScaleFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWeightScaleFeature {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let value = decoder.decodeUInt32()
+        let value = decoder.decodeUInt32(data)
 
         let timestamp = (value & 0x01 == 0x01)
         let multiUsers = (value & 0x02 == 0x02)

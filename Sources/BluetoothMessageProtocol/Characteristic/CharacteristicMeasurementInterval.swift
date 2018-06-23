@@ -64,9 +64,9 @@ open class CharacteristicMeasurementInterval: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicMeasurementInterval {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let value = Double(decoder.decodeUInt16())
+        let value = Double(decoder.decodeUInt16(data))
 
         let interval = Measurement(value: value, unit: UnitDuration.seconds)
 

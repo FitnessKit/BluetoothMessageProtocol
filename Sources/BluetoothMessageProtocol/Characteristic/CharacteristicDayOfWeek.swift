@@ -60,9 +60,9 @@ open class CharacteristicDayOfWeek: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicDayOfWeek {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
         return CharacteristicDayOfWeek(dayOfWeek: weekday)
     }

@@ -60,9 +60,9 @@ open class CharacteristicHumidity: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHumidity {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let value = decoder.decodeUInt16().resolution(0.01)
+        let value = decoder.decodeUInt16(data).resolution(0.01)
 
         let humidity = Measurement(value: value, unit: UnitPercent.percent)
 

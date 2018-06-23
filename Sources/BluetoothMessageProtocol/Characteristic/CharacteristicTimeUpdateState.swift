@@ -90,10 +90,10 @@ open class CharacteristicTimeUpdateState: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeUpdateState {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let state = CurrentStateType(rawValue: decoder.decodeUInt8()) ?? .idle
-        let result = UpdateResultType(rawValue: decoder.decodeUInt8()) ?? .successful
+        let state = CurrentStateType(rawValue: decoder.decodeUInt8(data)) ?? .idle
+        let result = UpdateResultType(rawValue: decoder.decodeUInt8(data)) ?? .successful
 
         return CharacteristicTimeUpdateState(currentState: state,
                                              result: result)

@@ -103,9 +103,9 @@ open class ServiceDataFitnessMachine: ServiceData {
             public static let available        = Flags(rawValue: 1 << 0)
         }
 
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt8())
+        let flags = Flags(rawValue: decoder.decodeUInt8(data))
 
         var ftmsAvailable = false
         if flags.contains(.available) == true {
@@ -113,7 +113,7 @@ open class ServiceDataFitnessMachine: ServiceData {
         }
 
         var supported: EquipmentType = EquipmentType()
-        supported = EquipmentType(rawValue: decoder.decodeUInt16())
+        supported = EquipmentType(rawValue: decoder.decodeUInt16(data))
 
         return ServiceDataFitnessMachine(fitnessMachineAvailable: ftmsAvailable,
                                          equipmentSupported: supported)

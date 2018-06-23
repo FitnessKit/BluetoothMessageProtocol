@@ -60,10 +60,10 @@ open class CharacteristicPressure: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPressure {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
         // put into 0.1 PA then into KiloPascals
-        let value = Double(decoder.decodeUInt32()) * 0.0001
+        let value = Double(decoder.decodeUInt32(data)) * 0.0001
 
         let pressure: Measurement = Measurement(value: value, unit: UnitPressure.kilopascals)
 

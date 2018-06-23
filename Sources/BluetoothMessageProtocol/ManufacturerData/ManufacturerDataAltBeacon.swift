@@ -83,19 +83,19 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
 
         if let data = man.specificData {
 
-            var decoder = DataDecoder(data)
+            var decoder = DecodeData()
 
-            let beaconCode = decoder.decodeUInt16().bigEndian
+            let beaconCode = decoder.decodeUInt16(data).bigEndian
 
             if beaconCode != 0xBEAC {
                 throw BluetoothMessageProtocolError(.decodeError(msg: "Not an AltBeacon Message"))
             }
 
-            let beacData = decoder.decodeData(length: 20)
+            let beacData = decoder.decodeData(data, length: 20)
             let beacBytes = [UInt8](beacData)
 
-            let referencePower = decoder.decodeInt8()
-            let manData = decoder.decodeUInt8()
+            let referencePower = decoder.decodeInt8(data)
+            let manData = decoder.decodeUInt8(data)
 
             return ManufacturerDataAltBeacon(manufacturer: man.manufacturer,
                                              beaconID: beacBytes,

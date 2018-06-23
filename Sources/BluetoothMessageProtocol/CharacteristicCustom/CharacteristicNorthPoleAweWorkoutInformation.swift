@@ -123,26 +123,26 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweWorkoutInformation {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(decoder.decodeUInt8())
+        let flags = Flags(decoder.decodeUInt8(data))
 
         var points: UInt16? = nil
 
         if flags.isPointsPresent == true {
-            points = decoder.decodeUInt16()
+            points = decoder.decodeUInt16(data)
         }
 
         var energy: Measurement<UnitEnergy>? = nil
 
         if flags.isEnergyExpendedPresent == true {
-            let expended = decoder.decodeUInt16()
+            let expended = decoder.decodeUInt16(data)
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
 
         var command: UInt8? = nil
         if flags.isCommandPresent == true {
-            let value = decoder.decodeUInt8()
+            let value = decoder.decodeUInt8(data)
             if CharacteristicNorthPoleAweWorkoutInformation.commandRange.contains(Int(value)) {
                 command = value
             }

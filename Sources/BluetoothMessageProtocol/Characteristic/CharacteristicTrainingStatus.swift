@@ -115,10 +115,10 @@ open class CharacteristicTrainingStatus: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTrainingStatus {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt8())
-        let status = TrainingStatus(rawValue: decoder.decodeUInt8()) ?? .other
+        let flags = Flags(rawValue: decoder.decodeUInt8(data))
+        let status = TrainingStatus(rawValue: decoder.decodeUInt8(data)) ?? .other
 
         var statusString: String?
         if flags.contains([.trainingStatusStringPresent]) {

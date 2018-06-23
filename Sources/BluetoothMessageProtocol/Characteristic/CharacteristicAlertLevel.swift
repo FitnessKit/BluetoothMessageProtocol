@@ -85,9 +85,9 @@ open class CharacteristicAlertLevel: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAlertLevel {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8()) ?? .noAlert
+        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8(data)) ?? .noAlert
 
         return CharacteristicAlertLevel(alertLevel: alertLevel)
     }

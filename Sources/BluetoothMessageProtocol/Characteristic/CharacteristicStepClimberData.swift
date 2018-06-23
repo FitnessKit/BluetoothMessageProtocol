@@ -144,9 +144,9 @@ open class CharacteristicStepClimberData: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicStepClimberData {
 
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt16())
+        let flags = Flags(rawValue: decoder.decodeUInt16(data))
 
         var floors: UInt16?
         var stepCount: UInt16?
@@ -160,47 +160,47 @@ open class CharacteristicStepClimberData: Characteristic {
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-            floors = decoder.decodeUInt16()
-            stepCount = decoder.decodeUInt16()
+            floors = decoder.decodeUInt16(data)
+            stepCount = decoder.decodeUInt16(data)
         }
 
         if flags.contains(.stepPerMinutePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
         }
 
         if flags.contains(.averageStepRatePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
         }
 
         if flags.contains(.positiveElevationGainPresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
         }
 
         var fitEnergy: FitnessMachineEnergy
         if flags.contains(.expendedEnergyPresent) {
-            fitEnergy = try FitnessMachineEnergy.decode(decoder: &decoder)
+            fitEnergy = try FitnessMachineEnergy.decode(data, decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
 
         if flags.contains(.heartRatePresent) {
-            heartRate = decoder.decodeUInt8()
+            heartRate = decoder.decodeUInt8(data)
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8().resolution(0.1)
+            mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
         if flags.contains(.elapsedTimePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
         if flags.contains(.remainingTimePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 

@@ -187,9 +187,9 @@ open class CharacteristicTreadmillData: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTreadmillData {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt16())
+        let flags = Flags(rawValue: decoder.decodeUInt16(data))
 
         var iSpeed: FitnessMachineSpeedType?
         var avgSpeed: FitnessMachineSpeedType?
@@ -209,21 +209,21 @@ open class CharacteristicTreadmillData: Characteristic {
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-            iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
+            iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
 
         if flags.contains(.averageSpeedPresent) {
-            avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
+            avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
 
         if flags.contains(.totalDistancePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
         if flags.contains(.angleSettingpresent) {
-            let incline = decoder.decodeInt16()
-            let ramp = decoder.decodeInt16()
+            let incline = decoder.decodeInt16(data)
+            let ramp = decoder.decodeInt16(data)
 
             if incline != Int16.max {
                 let iValue = FitnessMachineInclinationType.create(incline)
@@ -237,53 +237,53 @@ open class CharacteristicTreadmillData: Characteristic {
         }
 
         if flags.contains(.elevationGainPresent) {
-            let pValue = Double(decoder.decodeUInt16())
+            let pValue = Double(decoder.decodeUInt16(data))
             pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
 
-            let nValue = Double(decoder.decodeUInt16())
+            let nValue = Double(decoder.decodeUInt16(data))
             nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
         }
 
         if flags.contains(.instantaneousPacePresent) {
-            let value = decoder.decodeUInt8().resolution(0.1)
+            let value = decoder.decodeUInt8(data).resolution(0.1)
             instantaneousPace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
         }
 
         if flags.contains(.averagePacePresent) {
-            let value = decoder.decodeUInt8().resolution(0.1)
+            let value = decoder.decodeUInt8(data).resolution(0.1)
             averagePace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
         }
 
         var fitEnergy: FitnessMachineEnergy
         if flags.contains(.expendedEnergyPresent) {
-            fitEnergy = try FitnessMachineEnergy.decode(decoder: &decoder)
+            fitEnergy = try FitnessMachineEnergy.decode(data, decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
 
         if flags.contains(.heartRatePresent) {
-            heartRate = decoder.decodeUInt8()
+            heartRate = decoder.decodeUInt8(data)
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8().resolution(0.1)
+            mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
         if flags.contains(.elapsedTimePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
         if flags.contains(.remainingTimePresent) {
-            let value = Double(decoder.decodeUInt16())
+            let value = Double(decoder.decodeUInt16(data))
             remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
         }
 
         if flags.contains(.beltForcePowerOutputPresent) {
-            let bValue = Double(decoder.decodeInt16())
+            let bValue = Double(decoder.decodeInt16(data))
             forceOnBelt = Measurement(value: bValue, unit: UnitForce.newton)
 
-            powerOutput = FitnessMachinePowerType.create(decoder.decodeInt16())
+            powerOutput = FitnessMachinePowerType.create(decoder.decodeInt16(data))
         }
 
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)

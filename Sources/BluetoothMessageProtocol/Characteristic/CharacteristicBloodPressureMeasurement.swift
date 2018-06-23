@@ -111,18 +111,18 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBloodPressureMeasurement {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt8())
+        let flags = Flags(rawValue: decoder.decodeUInt8(data))
 
         var systolic: Measurement<UnitPressure>
-        let systolicV = Double(decoder.decodeSFloatValue())
+        let systolicV = Double(decoder.decodeSFloatValue(data))
 
         var diastolic: Measurement<UnitPressure>
-        let diastolicV = Double(decoder.decodeSFloatValue())
+        let diastolicV = Double(decoder.decodeSFloatValue(data))
 
         var meanArterial: Measurement<UnitPressure>
-        let meanArterialV = Double(decoder.decodeSFloatValue())
+        let meanArterialV = Double(decoder.decodeSFloatValue(data))
 
 
         if flags.contains(.unitsIsKilopascals) {
@@ -137,18 +137,18 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
 
         var timestamp: DateTime?
         if flags.contains(.timestampPresent) {
-            timestamp = try DateTime.decode(decoder: &decoder)
+            timestamp = try DateTime.decode(data, decoder: &decoder)
         }
 
         var pulseRate: Measurement<UnitCadence>?
         if flags.contains(.pulseRatePresent) {
-            let pulse = Double(decoder.decodeSFloatValue())
+            let pulse = Double(decoder.decodeSFloatValue(data))
             pulseRate = Measurement(value: pulse, unit: UnitCadence.beatsPerMinute)
         }
 
         var userID: User?
         if flags.contains(.userIDPresent) {
-            userID = User.create(decoder.decodeUInt8())
+            userID = User.create(decoder.decodeUInt8(data))
         }
 
         return CharacteristicBloodPressureMeasurement(systolic: systolic,

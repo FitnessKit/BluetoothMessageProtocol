@@ -60,9 +60,9 @@ open class CharacteristicPollenConcentration: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPollenConcentration {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let concentration = Measurement(value: Double(decoder.decodeUInt24()), unit: UnitVolume.cubicMeters)
+        let concentration = Measurement(value: Double(decoder.decodeUInt24(data)), unit: UnitVolume.cubicMeters)
 
         return CharacteristicPollenConcentration(concentration: concentration)
     }

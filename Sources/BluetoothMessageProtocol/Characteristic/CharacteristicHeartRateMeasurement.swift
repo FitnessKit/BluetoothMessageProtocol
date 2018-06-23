@@ -80,24 +80,24 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicHeartRateMeasurement {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = HeartRateMeasurementFlags(decoder.decodeUInt8())
+        let flags = HeartRateMeasurementFlags(decoder.decodeUInt8(data))
 
         let contactStatus = flags.contact
 
         var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
 
         if flags.isFormatUInt16 {
-            heartRate.value = Double(decoder.decodeUInt16())
+            heartRate.value = Double(decoder.decodeUInt16(data))
         } else {
-            heartRate.value = Double(decoder.decodeUInt8())
+            heartRate.value = Double(decoder.decodeUInt8(data))
         }
 
         var energy: Measurement<UnitEnergy>? = nil
 
         if flags.isEnergyExpendedPresent {
-            let expended = decoder.decodeUInt16()
+            let expended = decoder.decodeUInt16(data)
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
 
@@ -106,7 +106,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
         //RR Intervals
         if flags.isRRIntervalPresent {
 
-            var seconds = decoder.decodeUInt16()
+            var seconds = decoder.decodeUInt16(data)
 
             while seconds != 0 {
                 let interval = Measurement(value: (Double(seconds) / 1024), unit: UnitDuration.seconds)
@@ -116,7 +116,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
                 }
                 rrIntervals?.append(interval)
 
-                seconds = decoder.decodeUInt16()
+                seconds = decoder.decodeUInt16(data)
             }
         }
 

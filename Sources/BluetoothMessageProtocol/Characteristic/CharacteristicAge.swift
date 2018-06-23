@@ -60,9 +60,9 @@ open class CharacteristicAge: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAge {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let age: UInt8 = decoder.decodeUInt8()
+        let age: UInt8 = decoder.decodeUInt8(data)
 
         return CharacteristicAge(age: age)
     }

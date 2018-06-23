@@ -72,10 +72,10 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicThreeZoneHeartRateLimits {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let lightHeartRate: UInt8 = decoder.decodeUInt8()
-        let moderateHeartRate: UInt8 = decoder.decodeUInt8()
+        let lightHeartRate: UInt8 = decoder.decodeUInt8(data)
+        let moderateHeartRate: UInt8 = decoder.decodeUInt8(data)
 
         return CharacteristicThreeZoneHeartRateLimits(lightHeartRate: lightHeartRate,
                                                       moderateHeartRate: moderateHeartRate)

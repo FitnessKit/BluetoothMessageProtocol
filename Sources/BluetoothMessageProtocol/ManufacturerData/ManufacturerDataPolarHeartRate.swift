@@ -75,12 +75,12 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
                 throw BluetoothMessageProtocolError(.decodeError(msg: "Manufacturer Data is not compatable for HR Decode."))
             }
 
-            var decoder = DataDecoder(data)
+            var decoder = DecodeData()
 
-            let _ = decoder.decodeUInt16()
+            let _ = decoder.decodeUInt16(data)
 
-            let hrOne = decoder.decodeUInt8()
-            let hrTwo = decoder.decodeUInt8()
+            let hrOne = decoder.decodeUInt8(data)
+            let hrTwo = decoder.decodeUInt8(data)
 
             var heartRate = safeAverage(valueOne: hrOne, valueTwo: hrTwo)
 

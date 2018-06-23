@@ -62,9 +62,9 @@ open class CharacteristicTimeZone: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTimeZone {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let value = decoder.decodeInt8()
+        let value = decoder.decodeInt8(data)
 
         let timezone = BluetoothTimeZone(rawValue: value) ?? .unknown
 

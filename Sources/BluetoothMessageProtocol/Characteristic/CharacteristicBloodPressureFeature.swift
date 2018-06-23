@@ -79,9 +79,9 @@ open class CharacteristicBloodPressureFeature: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBloodPressureFeature {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let status = Feature(rawValue: decoder.decodeUInt8())
+        let status = Feature(rawValue: decoder.decodeUInt8(data))
 
         return CharacteristicBloodPressureFeature(status: status)
     }

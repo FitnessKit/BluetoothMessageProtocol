@@ -70,9 +70,9 @@ open class CharacteristicBatteryLevelState: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevelState {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let percent = Double(decoder.decodeUInt8())
+        let percent = Double(decoder.decodeUInt8(data))
 
         let level = Measurement(value: percent, unit: UnitPercent.percent)
 
@@ -80,7 +80,7 @@ open class CharacteristicBatteryLevelState: Characteristic {
         //but if they are all unknown it is the same as not being there..
         var state: BatteryPowerState?
 
-        let stateValue = decoder.decodeUInt8()
+        let stateValue = decoder.decodeUInt8(data)
 
         if stateValue > 0 {
             state = BatteryPowerState(stateValue)

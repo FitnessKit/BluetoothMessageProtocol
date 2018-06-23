@@ -60,9 +60,9 @@ open class CharacteristicAnaerobicThreshold: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicAnaerobicThreshold {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let heartRate = decoder.decodeUInt8()
+        let heartRate = decoder.decodeUInt8(data)
 
         return CharacteristicAnaerobicThreshold(heartRate: heartRate)
     }

@@ -70,9 +70,9 @@ open class CharacteristicNetworkAvailability: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicNetworkAvailability {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let avilability = Availability(rawValue: decoder.decodeUInt8()) ?? .notAvailable
+        let avilability = Availability(rawValue: decoder.decodeUInt8(data)) ?? .notAvailable
 
         return CharacteristicNetworkAvailability(networkAvailable: avilability)
     }

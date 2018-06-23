@@ -60,9 +60,9 @@ open class CharacteristicBodySensorLocation: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let location = BodyLocation(rawValue: decoder.decodeUInt8()) ?? .other
+        let location = BodyLocation(rawValue: decoder.decodeUInt8(data)) ?? .other
 
         return CharacteristicBodySensorLocation(sensorLocation: location)
     }

@@ -64,9 +64,9 @@ open class CharacteristicLongitude: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicLongitude {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let lon = decoder.decodeInt32()
+        let lon = decoder.decodeInt32(data)
 
         return CharacteristicLongitude(longitude: lon)
     }

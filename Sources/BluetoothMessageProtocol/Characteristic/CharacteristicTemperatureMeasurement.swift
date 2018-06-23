@@ -84,11 +84,11 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicTemperatureMeasurement {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt8())
+        let flags = Flags(rawValue: decoder.decodeUInt8(data))
 
-        let tmpValue = Double(decoder.decodeFloatValue())
+        let tmpValue = Double(decoder.decodeFloatValue(data))
         var temperature: Measurement<UnitTemperature>
 
         if flags.contains(.unitsFahrenheit) {
@@ -99,12 +99,12 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
 
         var timestamp: DateTime?
         if flags.contains(.timestampPresent) {
-            timestamp = try DateTime.decode(decoder: &decoder)
+            timestamp = try DateTime.decode(data, decoder: &decoder)
         }
 
         var type: TemperatureType?
         if flags.contains(.temperatureTypePresent) {
-            type = TemperatureType(rawValue: decoder.decodeUInt8()) ?? .unknown
+            type = TemperatureType(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         }
 
         return CharacteristicTemperatureMeasurement(temperature: temperature,

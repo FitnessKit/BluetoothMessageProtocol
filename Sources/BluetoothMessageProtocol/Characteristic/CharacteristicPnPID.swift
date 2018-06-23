@@ -96,13 +96,13 @@ open class CharacteristicPnPID: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicPnPID {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let vendorIdSource = VendorSource(rawValue: decoder.decodeUInt8()) ?? .unknown
+        let vendorIdSource = VendorSource(rawValue: decoder.decodeUInt8(data)) ?? .unknown
 
-        let vendorId = decoder.decodeUInt16()
-        let productId = decoder.decodeUInt16()
-        let productVersion = decoder.decodeUInt16()
+        let vendorId = decoder.decodeUInt16(data)
+        let productId = decoder.decodeUInt16(data)
+        let productVersion = decoder.decodeUInt16(data)
 
         return CharacteristicPnPID(vendorIdSource: vendorIdSource,
                                    vendorId: vendorId,

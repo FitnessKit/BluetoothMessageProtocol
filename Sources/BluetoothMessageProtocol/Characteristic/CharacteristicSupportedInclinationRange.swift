@@ -76,12 +76,12 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSupportedInclinationRange {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16())
-        let maximum = FitnessMachineInclinationType.create(decoder.decodeInt16())
+        let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
+        let maximum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
         
-        let incrValue = decoder.decodeUInt16().resolution(0.1)
+        let incrValue = decoder.decodeUInt16(data).resolution(0.1)
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPercent.percent)
 
         return CharacteristicSupportedInclinationRange(minimum: minimum,

@@ -62,9 +62,9 @@ open class CharacteristicLocalNorthCoordinate: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicLocalNorthCoordinate {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let local = decoder.decodeInt32()
+        let local = decoder.decodeInt32(data)
 
         return CharacteristicLocalNorthCoordinate(localNorthCoordinate: local)
     }

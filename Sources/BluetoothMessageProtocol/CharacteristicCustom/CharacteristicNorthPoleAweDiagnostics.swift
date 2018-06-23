@@ -105,25 +105,25 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweDiagnostics {
 
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let swaps = decoder.decodeUInt16()
+        let swaps = decoder.decodeUInt16(data)
 
-        let programDate = Date(timeIntervalSince1970: TimeInterval(decoder.decodeUInt32()))
-        let totalOpTime = decoder.decodeUInt32()
+        let programDate = Date(timeIntervalSince1970: TimeInterval(decoder.decodeUInt32(data)))
+        let totalOpTime = decoder.decodeUInt32(data)
 
         var advertTime: Measurement<UnitDuration>
-        let advertValue = Double(decoder.decodeUInt32())
+        let advertValue = Double(decoder.decodeUInt32(data))
         advertTime = Measurement(value: advertValue, unit: UnitDuration.seconds)
 
         var connectTime: Measurement<UnitDuration>
-        let connectValue = Double(decoder.decodeUInt32())
+        let connectValue = Double(decoder.decodeUInt32(data))
         connectTime = Measurement(value: connectValue, unit: UnitDuration.seconds)
 
-        let successFW = decoder.decodeUInt8()
-        let failedFW = decoder.decodeUInt8()
+        let successFW = decoder.decodeUInt8(data)
+        let failedFW = decoder.decodeUInt8(data)
 
-        let percent = Double(decoder.decodeUInt8())
+        let percent = Double(decoder.decodeUInt8(data))
         let battLvl: Measurement = Measurement(value: percent, unit: UnitPercent.percent)
 
 

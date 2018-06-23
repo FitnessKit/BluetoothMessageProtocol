@@ -42,18 +42,18 @@ open class ManufacturerData: Encodable {
     /// - Parameter rawData: Manufacturer Raw Data (everything after 0xFF
     public init(rawData: Data) {
 
-        var decoder = DataDecoder(rawData)
+        var decoder = DecodeData()
 
-        if let company = CompanyIdentifier.company(id: decoder.decodeUInt16()) {
+        if let company = CompanyIdentifier.company(id: decoder.decodeUInt16(rawData)) {
             self.manufacturer = company
         } else {
             //Create a CompanyIdentifer with the ID... set name to unknown.
-            self.manufacturer = CompanyIdentifier(id: decoder.decodeUInt16(), name: "Unknown")
+            self.manufacturer = CompanyIdentifier(id: decoder.decodeUInt16(rawData), name: "Unknown")
         }
 
         let rest = rawData.count - MemoryLayout<UInt16>.size
 
-        self.specificData = decoder.decodeData(length: rest)
+        self.specificData = decoder.decodeData(rawData, length: rest)
     }
 
     /// Creates Manufactur Data Object

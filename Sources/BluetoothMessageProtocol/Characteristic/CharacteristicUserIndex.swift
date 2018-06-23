@@ -60,9 +60,9 @@ open class CharacteristicUserIndex: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicUserIndex {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let value = decoder.decodeUInt8()
+        let value = decoder.decodeUInt8(data)
 
         let userIndex = User.create(value)
 

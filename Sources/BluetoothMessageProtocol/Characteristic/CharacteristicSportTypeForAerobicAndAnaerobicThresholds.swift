@@ -90,9 +90,9 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicSportTypeForAerobicAndAnaerobicThresholds {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let exercise = SportType(rawValue: decoder.decodeUInt8()) ?? .unspecified
+        let exercise = SportType(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
 
         return CharacteristicSportTypeForAerobicAndAnaerobicThresholds(exercise: exercise)
     }

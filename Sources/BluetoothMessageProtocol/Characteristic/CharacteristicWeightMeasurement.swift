@@ -96,12 +96,12 @@ open class CharacteristicWeightMeasurement: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicWeightMeasurement {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let flags = Flags(rawValue: decoder.decodeUInt8())
+        let flags = Flags(rawValue: decoder.decodeUInt8(data))
 
         var weight: Measurement<UnitMass>
-        var value = Double(decoder.decodeUInt16())
+        var value = Double(decoder.decodeUInt16(data))
         if flags.contains(.unitsImperial) {
             value = value * 0.01
             weight = Measurement(value: value, unit: UnitMass.pounds)
@@ -112,12 +112,12 @@ open class CharacteristicWeightMeasurement: Characteristic {
 
         var timestamp: DateTime?
         if flags.contains(.timestampPresent) {
-            timestamp = try DateTime.decode(decoder: &decoder)
+            timestamp = try DateTime.decode(data, decoder: &decoder)
         }
 
         var userID: User
         if flags.contains(.userIdPresent) {
-            let value = decoder.decodeUInt8()
+            let value = decoder.decodeUInt8(data)
             userID = User.create(value)
         } else {
             userID = User.unknown
@@ -126,9 +126,9 @@ open class CharacteristicWeightMeasurement: Characteristic {
         var bmi: Double?
         var height: Measurement<UnitLength>?
         if flags.contains(.bmiHeightPresent) {
-            bmi = decoder.decodeUInt16().resolution(0.1)
+            bmi = decoder.decodeUInt16(data).resolution(0.1)
 
-            var value = Double(decoder.decodeUInt16())
+            var value = Double(decoder.decodeUInt16(data))
             if flags.contains(.unitsImperial) {
                 value = value * 0.1
                 height = Measurement(value: value, unit: UnitLength.inches)

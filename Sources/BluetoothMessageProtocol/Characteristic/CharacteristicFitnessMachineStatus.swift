@@ -65,79 +65,79 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicFitnessMachineStatus {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
         var statusValue: FitnessMachineStatus?
 
-        let opCode = FitnessMachineStatusCode(rawValue: decoder.decodeUInt8())
+        let opCode = FitnessMachineStatusCode(rawValue: decoder.decodeUInt8(data))
 
         if let opCode = opCode {
             switch opCode {
             case .stopPauseByUser:
-                let control = FitnessMachineStopPauseType(rawValue: decoder.decodeUInt8()) ?? .reserved
+                let control = FitnessMachineStopPauseType(rawValue: decoder.decodeUInt8(data)) ?? .reserved
                 statusValue = FitnessMachineStatusStopPause(controlInformation: control)
 
             case .targetSpeedChanged:
-                let speed = FitnessMachineSpeedType.create(decoder.decodeUInt16())
+                let speed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetSpeed(speed: speed)
 
             case .targetInclineChanaged:
-                let incline = FitnessMachineInclinationType.create(decoder.decodeInt16())
+                let incline = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
                 statusValue = FitnessMachineStatusTargetIncline(incline: incline)
 
             case .targetResistanceLevelChanged:
-                let rLevel = FitnessMachineTargetResistanceLevelType.create(decoder.decodeInt16())
+                let rLevel = FitnessMachineTargetResistanceLevelType.create(decoder.decodeInt16(data))
                 statusValue = FitnessMachineStatusTargetResistanceLevel(resistanceLevel: rLevel)
 
             case .targetPowerChanged:
-                let power = FitnessMachinePowerType.create(decoder.decodeInt16())
+                let power = FitnessMachinePowerType.create(decoder.decodeInt16(data))
                 statusValue = FitnessMachineStatusTargetPower(power: power)
 
             case .targetHeartRateChanged:
-                let hr = decoder.decodeUInt8()
+                let hr = decoder.decodeUInt8(data)
                 statusValue = FitnessMachineStatusTargetHeartRate(heartrate: hr)
 
             case .targetedExpendedEnergyChanged:
-                let energy = FitnessMachineTargetExpendedEnergy.create(decoder.decodeUInt16())
+                let energy = FitnessMachineTargetExpendedEnergy.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetedExpendedEnergyChanged(energy: energy)
 
             case .targetedStepsChanged:
-                let value = decoder.decodeUInt16()
+                let value = decoder.decodeUInt16(data)
                 statusValue = FitnessMachineStatusTargetedSteps(steps: value)
 
             case .targetedStridesChanged:
-                let value = decoder.decodeUInt16()
+                let value = decoder.decodeUInt16(data)
                 statusValue = FitnessMachineStatusTargetedStrides(strides: value)
 
             case .targetedDistanceChanged:
-                let distance = FitnessMachineTargetDistance.create(UInt32(decoder.decodeUInt24()))
+                let distance = FitnessMachineTargetDistance.create(UInt32(decoder.decodeUInt24(data)))
                 statusValue = FitnessMachineStatusTargetedDistance(distance: distance)
 
             case .targetedTrainingTimeChanged:
-                let time = FitnessMachineTargetTime.create(decoder.decodeUInt16())
+                let time = FitnessMachineTargetTime.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
 
             case .targetedTimeInTwoHrZoneChanged:
-                let burn = decoder.decodeUInt16()
-                let fitness = decoder.decodeUInt16()
+                let burn = decoder.decodeUInt16(data)
+                let fitness = decoder.decodeUInt16(data)
                 let time = FitnessMachineTargetTimeInTwoHrZone.create(fatBurnZone: burn, fitnessZone: fitness)
                 statusValue = FitnessMachineStatusTargetedTimeInTwoHrZoneChanged(time: time)
 
             case .targetedTimeInThreeHrZoneChanged:
-                let light = decoder.decodeUInt16()
-                let moderate = decoder.decodeUInt16()
-                let hard = decoder.decodeUInt16()
+                let light = decoder.decodeUInt16(data)
+                let moderate = decoder.decodeUInt16(data)
+                let hard = decoder.decodeUInt16(data)
                 let time = FitnessMachineTargetTimeInThreeHrZone.create(lightZone: light,
                                                                         moderateZone: moderate,
                                                                         hardZone: hard)
                 statusValue = FitnessMachineStatusTargetedTimeInThreeHrZoneChanged(time: time)
 
             case .targetedTimeInFiveHrZoneChanged:
-                let veryLight = decoder.decodeUInt16()
-                let light = decoder.decodeUInt16()
-                let moderate = decoder.decodeUInt16()
-                let hard = decoder.decodeUInt16()
-                let max = decoder.decodeUInt16()
+                let veryLight = decoder.decodeUInt16(data)
+                let light = decoder.decodeUInt16(data)
+                let moderate = decoder.decodeUInt16(data)
+                let hard = decoder.decodeUInt16(data)
+                let max = decoder.decodeUInt16(data)
                 let time = FitnessMachineTargetTimeInFiveHrZone.create(veryLightZone: veryLight,
                                                                        lightZone: light,
                                                                        moderateZone: moderate,
@@ -147,15 +147,15 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
 
 
             case .wheelCircumferenceChanged:
-                let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16())
+                let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusWheelCircumference(circumference: circumference)
 
             case .spinDownStatus:
-                let status = FitnessMachineStatusSpinDown.SpinDownStatus(rawValue: decoder.decodeUInt8()) ?? .reserved
+                let status = FitnessMachineStatusSpinDown.SpinDownStatus(rawValue: decoder.decodeUInt8(data)) ?? .reserved
                 statusValue = FitnessMachineStatusSpinDown(status: status)
 
             case .targetedCadenceChanged:
-                let cadence = FitnessMachineTargetCadence.create(decoder.decodeUInt16())
+                let cadence = FitnessMachineTargetCadence.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetedCadence(cadence: cadence)
 
             default:

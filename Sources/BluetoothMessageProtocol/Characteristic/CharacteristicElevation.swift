@@ -60,9 +60,9 @@ open class CharacteristicElevation: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicElevation {
-        var decoder = DataDecoder(data)
+        var decoder = DecodeData()
 
-        let meters = Double(decoder.decodeInt24()) * 0.01
+        let meters = Double(decoder.decodeInt24(data)) * 0.01
 
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 
