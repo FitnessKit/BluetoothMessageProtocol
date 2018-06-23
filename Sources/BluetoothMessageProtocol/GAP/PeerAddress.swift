@@ -29,7 +29,7 @@ import Foundation
 public struct PeerAddress: Encodable {
 
     /// Type of Peer Address
-    public enum PeerType: UInt8 {
+    public enum PeerType: UInt8, Encodable {
         /// Public
         case `public`                   = 0
         /// Random Static
@@ -51,30 +51,5 @@ public struct PeerAddress: Encodable {
     public init(type: PeerType, address: String) {
         self.type = type
         self.address = address
-    }
-}
-
-@available(swift 4.0)
-extension PeerAddress.PeerType: Encodable {
-
-    public var description: String {
-        return String(describing: self)
-    }
-
-    enum CodeKeys: CodingKey {
-        case type
-        case value
-    }
-
-//    public init(from decoder: Decoder) throws {
-//        fatalError("init(from:) has not been implemented")
-//    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodeKeys.self)
-
-        /// KAH - Prefer the name of the type over a raw value
-        try container.encode(self.description, forKey: .type)
-        try container.encode(self.rawValue, forKey: .value)
     }
 }
