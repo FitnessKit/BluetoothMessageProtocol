@@ -53,3 +53,22 @@ public struct PeerAddress: Encodable {
         self.address = address
     }
 }
+
+@available(swift 4.0)
+extension PeerAddress.PeerType {
+
+    public var description: String {
+        return String(describing: self)
+    }
+
+    //    public init(from decoder: Decoder) throws {
+    //        fatalError("init(from:) has not been implemented")
+    //    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        try container.encode(self.description, forKey: .type)
+        try container.encode(self.rawValue, forKey: .value)
+    }
+}

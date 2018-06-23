@@ -39,3 +39,9 @@ public struct StringKey: CodingKey {
         self.stringValue = intValue.description
     }
 }
+
+/// CodingKey with a Type and Value
+public enum TypeValueCodingKeys: CodingKey {
+    case type
+    case value
+}

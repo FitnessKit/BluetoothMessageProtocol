@@ -40,3 +40,23 @@ public enum GapAdvertisingType: UInt8 {
     // Unknown
     case unknown                    = 255
 }
+
+@available(swift 4.0)
+extension GapAdvertisingType: Encodable {
+
+    public var description: String {
+        return String(describing: self)
+    }
+
+//    public init(from decoder: Decoder) throws {
+//        fatalError("init(from:) has not been implemented")
+//    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        try container.encode(self.description, forKey: .type)
+        try container.encode(self.rawValue, forKey: .value)
+
+    }
+}

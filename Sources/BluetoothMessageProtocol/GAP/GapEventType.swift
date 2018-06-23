@@ -40,3 +40,22 @@ public enum GapEventType: UInt16 {
     /// Unknown
     case unknown                = 0xFFFF
 }
+
+@available(swift 4.0)
+extension GapEventType: Encodable {
+
+    public var description: String {
+        return String(describing: self)
+    }
+
+//    public init(from decoder: Decoder) throws {
+//        fatalError("init(from:) has not been implemented")
+//    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        try container.encode(self.description, forKey: .type)
+        try container.encode(self.rawValue, forKey: .value)
+    }
+}
