@@ -25,10 +25,11 @@
 import Foundation
 
 /// Battery Power State Information
-public struct BatteryPowerState {
+@available(swift 4.0)
+public struct BatteryPowerState: Codable {
 
     /// If Power State is supported
-    public enum StateSupport: UInt8 {
+    public enum StateSupport: UInt8, Codable {
         /// Unknown
         case unknown        = 0
         /// State not supported
@@ -37,10 +38,15 @@ public struct BatteryPowerState {
         case notPresent     = 2
         /// State present
         case present        = 3
+
+        /// String Value for the Enum
+        public var description: String {
+            return String(describing: self)
+        }
     }
 
     /// Provides Discharge Status
-    public enum DischargeStatus: UInt8 {
+    public enum DischargeStatus: UInt8, Codable {
         /// Unknown
         case unknown        = 0
         /// Not supported
@@ -49,10 +55,15 @@ public struct BatteryPowerState {
         case notDischarging = 2
         /// Battery is discharging
         case discharging    = 3
+
+        /// String Value for the Enum
+        public var description: String {
+            return String(describing: self)
+        }
     }
 
     /// Charging Status
-    public enum ChargingStatus: UInt8 {
+    public enum ChargingStatus: UInt8, Codable {
         /// Unknown
         case unknown        = 0
         /// Not chargeable
@@ -61,10 +72,15 @@ public struct BatteryPowerState {
         case notCharging    = 2
         /// Battery is charging
         case charging       = 3
+
+        /// String Value for the Enum
+        public var description: String {
+            return String(describing: self)
+        }
     }
 
     /// Battery Level
-    public enum Level: UInt8 {
+    public enum Level: UInt8, Codable {
         /// Unknown
         case unknown        = 0
         /// Battery level not supported
@@ -73,6 +89,11 @@ public struct BatteryPowerState {
         case goodLevel      = 2
         /// Battery level critically low
         case criticallyLow  = 3
+
+        /// String Value for the Enum
+        public var description: String {
+            return String(describing: self)
+        }
     }
 
 

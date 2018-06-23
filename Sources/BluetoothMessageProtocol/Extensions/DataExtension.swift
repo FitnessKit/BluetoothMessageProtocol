@@ -60,8 +60,9 @@ internal extension Data {
     /// - Parameters:
     ///   - formatted: Use Formatting where data is "[0x00][0x00]"
     ///   - uselower: Lowercase string
+    ///   - packed: Packs the data together (no spaces)
     /// - Returns: HEX Formatted String
-    func hexadecimalString(formatted: Bool = false, uselower: Bool = false) -> String {
+    func hexadecimalString(formatted: Bool = false, uselower: Bool = false, packed: Bool = false) -> String {
         var bytes = [UInt8](repeating: 0, count: count)
         copyBytes(to: &bytes, count: count)
 
@@ -74,11 +75,14 @@ internal extension Data {
             }
         }
 
+        if packed {
+            hexString = hexString.replacingOccurrences(of: " ", with: "")
+        }
+
         if uselower {
             return hexString.lowercased() as String
         }else {
             return hexString.uppercased() as String
         }
     }
-
 }

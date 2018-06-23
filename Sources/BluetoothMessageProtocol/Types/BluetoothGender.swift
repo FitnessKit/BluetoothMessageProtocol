@@ -25,11 +25,21 @@
 import Foundation
 
 /// Definition of Bluetooth Gender
-public enum Gender: UInt8 {
+@available(swift 4.0)
+public enum Gender: UInt8, Codable {
     /// Male
     case male           = 0
     /// Female
     case female         = 1
     /// Unspecified
     case unspecified    = 2
+}
+
+extension Gender {
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
+    }
+
 }

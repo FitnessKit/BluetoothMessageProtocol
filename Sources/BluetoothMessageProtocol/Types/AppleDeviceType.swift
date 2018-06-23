@@ -25,7 +25,8 @@
 import Foundation
 
 /// Apple Manufactuer Specific Data Types
-public enum AppleDeviceType: UInt8 {
+@available(swift 4.0)
+public enum AppleDeviceType: UInt8, Codable {
     /// iBeacon
     case iBeaccon               = 2
     /// AirDrop
@@ -40,4 +41,12 @@ public enum AppleDeviceType: UInt8 {
     case handoff                = 12
     /// Nearby
     case nearby                 = 16
+}
+
+extension AppleDeviceType {
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
+    }
 }

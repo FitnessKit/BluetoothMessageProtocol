@@ -77,9 +77,19 @@ public enum AppearanceCategory: String {
     case outdoorSportsActivity  = "Outdoor Sports Activity"
 }
 
+extension AppearanceCategory {
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
+    }
+
+}
+
 /// Appearance
 ///
-public enum Appearance: UInt16 {
+@available(swift 4.0)
+public enum Appearance: UInt16, Codable {
     /// Unknown
     case unknown                                    = 0
     /// Generic Phone
@@ -380,4 +390,13 @@ public enum Appearance: UInt16 {
     case locationPod                                = 5187
     /// Location and Navigation Pod
     case locationNavigationPod                      = 5188
+}
+
+extension Appearance {
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
+    }
+
 }

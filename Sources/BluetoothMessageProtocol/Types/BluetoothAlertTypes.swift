@@ -25,7 +25,8 @@
 import Foundation
 
 /// Bluetooth Alert Categories
-public enum AlertCategory: UInt8 {
+@available(swift 4.0)
+public enum AlertCategory: UInt8, Codable {
     /// Simple Alert: General text alert or non-text alert
     case simpleAlert        = 0
     /// Email: Alert when Email messages arrives
@@ -72,5 +73,13 @@ public enum AlertCategory: UInt8 {
         case .instantMessage:
             return "Instant Message"
         }
+    }
+}
+
+extension AlertCategory {
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
     }
 }

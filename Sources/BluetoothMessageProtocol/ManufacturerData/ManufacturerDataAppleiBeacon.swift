@@ -28,7 +28,7 @@ import FitnessUnits
 
 /// Apple iBeacon Manufacturer Specific Data
 ///
-@available(swift 3.1)
+@available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
@@ -85,10 +85,10 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
         if let data = man.specificData {
             //Apple iBeacon  Advert: Btye0 - 76 (apples id) byte2: Type (2 is proximity) Byte2: 15 remaining length
-            //Byte 4 - 16 Proximity UUID
-            //Byte 20 - 21 Major ID
-            //Byte 22 - 23 Minor ID
-            //Byte 24 - TX Power (Measured Power)
+            //16 bytes - Proximity UUID
+            //2 bytes - Major ID
+            //2 bytes - Minor ID
+            //1 byte - TX Power (Measured Power)
 
             var decoder = DataDecoder(data)
 
@@ -98,12 +98,24 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
                 throw BluetoothMessageProtocolError(.decodeError(msg: "Type wrong for iBeacon"))
             }
 
-            let uuidData = decoder.decodeData(length: 12)
+            let subType = decoder.decodeUInt8()
 
-            var uuid: UUID!
-            if let uustring = uuidData.safeStringValue {
-                uuid = UUID(uuidString: uustring)
-            } else {
+            // subtype must be 0x15 - 21
+            guard subType == 21 else {
+                throw BluetoothMessageProtocolError.init(.decodeError(msg: "Type wrong for iBeacon"))
+            }
+
+            /// Build the UUID String
+            var uuidString: String = ""
+            uuidString += decoder.decodeData(length: 4).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(length: 2).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(length: 2).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(length: 2).hexadecimalString(packed: true) + "-"
+            uuidString += decoder.decodeData(length: 6).hexadecimalString(packed: true)
+
+            var uuid = UUID(uuidString: uuidString)
+
+            if uuid == nil  {
                 uuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
             }
 
@@ -112,7 +124,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
             let measuredPower = decoder.decodeInt8()
 
-            return ManufacturerDataAppleiBeacon(proximityUUID: uuid,
+            return ManufacturerDataAppleiBeacon(proximityUUID: uuid!,
                                                 majorID: majorID,
                                                 minorID: minorID,
                                                 measuredPower: measuredPower,
@@ -133,11 +145,33 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(AppleDeviceType.iBeaccon.rawValue) //Type Proximity
+        msgData.append(21) //Sub Type
         msgData.append(Data(from: proximityUUID.uuidString))
         msgData.append(Data(from: majorID.bigEndian))
         msgData.append(Data(from: minorID.bigEndian))
         msgData.append(UInt8(measuredPower))
 
         return msgData
+    }
+
+    enum CodeKeys: CodingKey {
+        case proximityUUID
+        case majorID
+        case minorID
+        case measuredPower
+    }
+
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+
+    open override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+        try super.encode(to: encoder)
+
+        try container.encode(proximityUUID, forKey: .proximityUUID)
+        try container.encode(majorID, forKey: .majorID)
+        try container.encode(minorID, forKey: .minorID)
+        try container.encode(measuredPower, forKey: .measuredPower)
     }
 }

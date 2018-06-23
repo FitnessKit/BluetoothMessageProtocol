@@ -10,7 +10,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "2.0.2"),
-        .package(url: "https://github.com/FitnessKit/DataDecoder", from: "4.0.3"),
+        .package(url: "https://github.com/FitnessKit/DataDecoder", from: "4.1.0"),
     ],
     targets: [
         .target(

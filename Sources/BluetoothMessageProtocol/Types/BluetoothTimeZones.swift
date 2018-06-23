@@ -25,7 +25,8 @@
 import Foundation
 
 /// Bluetooth Timezones
-public enum BluetoothTimeZone: Int8 {
+@available(swift 4.0)
+public enum BluetoothTimeZone: Int8, Codable {
     /// Unknown
     case unknown            = -128
     /// UTC-12:00
@@ -114,4 +115,12 @@ public enum BluetoothTimeZone: Int8 {
     case utcPlus1345        = 55
     /// UTC+14:00
     case utcPlus14          = 56
+}
+
+extension BluetoothTimeZone {
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
+    }
 }

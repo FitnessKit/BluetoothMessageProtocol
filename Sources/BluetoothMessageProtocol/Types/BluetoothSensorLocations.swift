@@ -24,7 +24,8 @@
 import Foundation
 
 /// Location of Sensor on Body
-public enum BodyLocation: UInt8 {
+@available(swift 4.0)
+public enum BodyLocation: UInt8, Codable {
     /// Other
     case other      = 0
     /// Chest
@@ -59,6 +60,11 @@ public enum BodyLocation: UInt8 {
         case .foot:
             return "Foot"
         }
+    }
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
     }
 }
 
@@ -138,5 +144,10 @@ public enum SensorLocation: UInt8 {
         case .chainRing:
             return "Chain Ring"
         }
+    }
+
+    /// String Value for the Enum
+    public var description: String {
+        return String(describing: self)
     }
 }
