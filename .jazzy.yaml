@@ -21,6 +21,13 @@ custom_categories:
     - Service
     - ServiceData
 
+  - name: GAP
+    children:
+    - GapAdvertisingType
+    - GapDataType
+    - GapEventType
+    - PeerAddress
+
   - name: Services - Bluetooth SIG
     children:
     - ServiceGenericAccess
