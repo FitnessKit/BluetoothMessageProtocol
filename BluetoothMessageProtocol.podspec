@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BluetoothMessageProtocol'
-  s.version          = '0.13.0'
+  s.version          = '0.13.1'
   s.summary          = 'Encoding and Decoding of the Bluetooth Message Protocol.'
 
 
@@ -35,7 +35,7 @@ Encoding and Decoding of the Bluetooth Message Protocol.  Makes creating apps us
 #  s.ios.framework       = [ 'Dispatch' ]
 
 #Dependancy
-  s.dependency 'DataDecoder', '~> 4.1.0'
+  s.dependency 'DataDecoder', '~> 4.1.1'
   s.dependency 'FitnessUnits', '~> 2.0.2'
 
 end
