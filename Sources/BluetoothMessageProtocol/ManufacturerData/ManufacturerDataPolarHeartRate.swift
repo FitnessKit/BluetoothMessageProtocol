@@ -82,15 +82,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             let hrOne = decoder.decodeUInt8(data)
             let hrTwo = decoder.decodeUInt8(data)
 
-            var heartRate = safeAverage(valueOne: hrOne, valueTwo: hrTwo)
-
-            if hrTwo > 0 && hrOne > 0 {
-                heartRate = (Double(hrOne) + Double(hrTwo)) / 2
-            } else if hrOne <= 0 {
-                heartRate = Double(hrTwo)
-            } else {
-                heartRate = Double(hrOne)
-            }
+            let heartRate = safeAverage(valueOne: hrOne, valueTwo: hrTwo)
 
             let hr: Measurement = Measurement(value: heartRate, unit: UnitCadence.beatsPerMinute)
             
