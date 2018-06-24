@@ -30,7 +30,7 @@ internal var allCompanyIdentifiers: [CompanyIdentifier] = [CompanyIdentifier]()
 ///
 /// Provides the Company Assigned ID and Name
 @available(swift 4.0)
-open class CompanyIdentifier: Encodable {
+open class CompanyIdentifier: Codable {
 
     /// Company ID
     open internal(set) var companyID: UInt16
@@ -121,4 +121,3 @@ public extension CompanyIdentifier {
         return id
     }
 }
-

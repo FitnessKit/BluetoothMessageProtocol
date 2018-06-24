@@ -36,7 +36,7 @@ import FitnessUnits
 open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
     /// Heartrate
-    private(set) public var heartRate: Measurement<UnitCadence> = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
+    private(set) public var heartRate: Measurement<UnitCadence>
 
     /// Creates Polar Heart Rate Manufacturer Specific Data class
     ///
@@ -45,6 +45,15 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
         self.heartRate = heartRate
         super.init(manufacturer: .polar, specificData: nil)
+    }
+
+    /// Creates Polar Heart Rate Manufacturer Specific Data class
+    ///
+    /// - Parameter heartRate: Heartrate
+    public convenience init(heartRate: UInt8) {
+        let hr = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
+
+        self.init(heartRate: hr)
     }
 
     internal init(heartRate: Measurement<UnitCadence>, rawData: Data) {
@@ -100,6 +109,21 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError(.unsupported)
+    }
+
+    enum CodeKeys: CodingKey {
+        case heartRate
+    }
+
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+
+    open override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+        try super.encode(to: encoder)
+
+        try container.encode(heartRate, forKey: .heartRate)
     }
 }
 

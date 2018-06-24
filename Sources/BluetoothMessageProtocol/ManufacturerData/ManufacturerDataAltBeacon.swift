@@ -132,4 +132,24 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
 
         return msgData
     }
+
+    enum CodeKeys: CodingKey {
+        case beaconID
+        case referencePower
+        case manufacturerReserved
+    }
+
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+
+    open override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+        try super.encode(to: encoder)
+
+        try container.encode(beaconID, forKey: .beaconID)
+        try container.encode(referencePower, forKey: .referencePower)
+        try container.encode(manufacturerReserved, forKey: .manufacturerReserved)
+    }
+
 }
