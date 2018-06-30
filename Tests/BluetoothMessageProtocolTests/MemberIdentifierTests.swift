@@ -44,7 +44,6 @@ class MemberIdentifierTests: XCTestCase {
 
     }
 
-
     static var allTests = [
         ("testMemberDups", testMemberDups),
         ("testFindMember", testFindMember),

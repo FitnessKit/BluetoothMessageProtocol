@@ -27,7 +27,9 @@ import Foundation
 // MARK: - Non Assigned Companies
 public extension CompanyIdentifier {
     //Non offical IDs
-    //
+
+    //3521 DCI
+
     /// Four Eyes Viiiiva
     ///
     /// - note: Non assigned Number

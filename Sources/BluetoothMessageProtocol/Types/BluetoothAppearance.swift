@@ -88,8 +88,7 @@ extension AppearanceCategory {
 
 /// Appearance
 ///
-@available(swift 4.0)
-public enum Appearance: UInt16, Codable {
+public enum Appearance: UInt16 {
     /// Unknown
     case unknown                                    = 0
     /// Generic Phone
@@ -394,9 +393,24 @@ public enum Appearance: UInt16, Codable {
 
 extension Appearance {
 
-    /// String Value for the Enum
     public var description: String {
         return String(describing: self)
     }
-
 }
+
+@available(swift 4.0)
+extension Appearance: Codable {
+
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        /// KAH - Prefer the name of the type over a raw value
+        try container.encode(self.rawValue, forKey: .value)
+        try container.encode(self.description, forKey: .type)
+    }
+}
+

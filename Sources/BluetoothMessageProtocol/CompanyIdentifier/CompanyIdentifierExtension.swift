@@ -3246,4 +3246,44 @@ public extension CompanyIdentifier {
     public class var ultuneTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1608, name: "Ultune Technologies") }
     /// Ryeex Technology Co.,Ltd.
     public class var ryeexTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1609, name: "Ryeex Technology Co.,Ltd.") }
+    /// Open Research Institute, Inc.
+    public class var openResearchInstitute: CompanyIdentifier { return CompanyIdentifier(id: 1610, name: "Open Research Institute, Inc.") }
+    /// Scale-Tec, Ltd
+    public class var scaleTec: CompanyIdentifier { return CompanyIdentifier(id: 1611, name: "Scale-Tec, Ltd") }
+    /// Zumtobel Group AG
+    public class var zumtobelGroup: CompanyIdentifier { return CompanyIdentifier(id: 1612, name: "Zumtobel Group AG") }
+    /// iLOQ Oy
+    public class var iLoq: CompanyIdentifier { return CompanyIdentifier(id: 1613, name: "iLOQ Oy") }
+    /// KRUXWorks Technologies Private Limited
+    public class var kruxWorksTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1614, name: "KRUXWorks Technologies Private Limited") }
+    /// Digital Matter Pty Ltd
+    public class var digitalMatter: CompanyIdentifier { return CompanyIdentifier(id: 1615, name: "Digital Matter Pty Ltd") }
+    /// Coravin, Inc.
+    public class var coravin: CompanyIdentifier { return CompanyIdentifier(id: 1616, name: "Coravin, Inc.") }
+    /// Stasis Labs, Inc.
+    public class var stasisLabs: CompanyIdentifier { return CompanyIdentifier(id: 1617, name: "Stasis Labs, Inc.") }
+    /// ITZ Innovations- und Technologiezentrum GmbH
+    public class var itzInnovations: CompanyIdentifier { return CompanyIdentifier(id: 1618, name: "ITZ Innovations- und Technologiezentrum GmbH") }
+    /// Meggitt SA
+    public class var meggitt: CompanyIdentifier { return CompanyIdentifier(id: 1619, name: "Meggitt SA") }
+    /// Ledlenser GmbH & Co. KG
+    public class var ledlenser: CompanyIdentifier { return CompanyIdentifier(id: 1620, name: "Ledlenser GmbH & Co. KG") }
+    /// Renishaw PLC
+    public class var renishaw: CompanyIdentifier { return CompanyIdentifier(id: 1621, name: "Renishaw PLC") }
+    /// ZhuHai AdvanPro Technology Company Limited
+    public class var zhuHaiAdvanPro: CompanyIdentifier { return CompanyIdentifier(id: 1622, name: "ZhuHai AdvanPro Technology Company Limited") }
+    /// Meshtronix Limited
+    public class var meshtronix: CompanyIdentifier { return CompanyIdentifier(id: 1623, name: "Meshtronix Limited") }
+    /// Payex Norge AS
+    public class var payexNorge: CompanyIdentifier { return CompanyIdentifier(id: 1624, name: "Payex Norge AS") }
+    /// UnSeen Technologies Oy
+    public class var unSeenTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1625, name: "UnSeen Technologies Oy") }
+    /// Zound Industries International AB
+    public class var zoundIndustries: CompanyIdentifier { return CompanyIdentifier(id: 1626, name: "Zound Industries International AB") }
+    /// Sesam Solutions BV
+    public class var sesamSolutions: CompanyIdentifier { return CompanyIdentifier(id: 1627, name: "Sesam Solutions BV") }
+    /// PixArt Imaging Inc.
+    public class var pixArtImaging: CompanyIdentifier { return CompanyIdentifier(id: 1628, name: "PixArt Imaging Inc.") }
+    /// Panduit Corp.
+    public class var panduit: CompanyIdentifier { return CompanyIdentifier(id: 1629, name: "Panduit Corp.") }
 }

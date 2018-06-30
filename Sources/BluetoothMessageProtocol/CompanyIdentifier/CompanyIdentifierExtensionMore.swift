@@ -26,6 +26,4 @@ import Foundation
 
 // Only used to help with xcode slowness
 internal extension CompanyIdentifier {
-
-
 }
