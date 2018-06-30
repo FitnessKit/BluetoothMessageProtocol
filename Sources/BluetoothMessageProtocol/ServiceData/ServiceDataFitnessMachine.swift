@@ -60,9 +60,31 @@ open class ServiceDataFitnessMachine: ServiceData {
         /// Indoor Bike Supported
         public static let indoorBikeSupported    = EquipmentType(rawValue: 1 << 5)
 
+        enum CodeKeys: CodingKey {
+            case value
+            case treadmillSupported
+            case crossTrainerSupported
+            case stepClimberSupported
+            case stairClimberSupported
+            case rowerSupported
+            case indoorBikeSupported
+        }
+
+        public init(from decoder: Decoder) throws {
+            fatalError("init(from:) has not been implemented")
+        }
+
         public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            try container.encode(rawValue)
+            var container = encoder.container(keyedBy: CodeKeys.self)
+
+            try container.encode(rawValue, forKey: .value)
+
+            try container.encode(self.contains(.treadmillSupported), forKey: .treadmillSupported)
+            try container.encode(self.contains(.crossTrainerSupported), forKey: .crossTrainerSupported)
+            try container.encode(self.contains(.stepClimberSupported), forKey: .stepClimberSupported)
+            try container.encode(self.contains(.stairClimberSupported), forKey: .stairClimberSupported)
+            try container.encode(self.contains(.rowerSupported), forKey: .rowerSupported)
+            try container.encode(self.contains(.indoorBikeSupported), forKey: .indoorBikeSupported)
         }
     }
 
