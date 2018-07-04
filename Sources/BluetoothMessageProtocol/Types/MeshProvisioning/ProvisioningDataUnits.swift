@@ -37,6 +37,137 @@ public protocol ProvisioningDataUnit {
     func encode() throws -> Data
 }
 
+/// Provisioning Attention Timer
+///
+/// The Attention Timer state determines if the Attention Timer state is on or off. This is generally intended to allow an element to attract human attention and, among others, is used during provisioning.
+///
+/// When the Attention Timer state is on, the value determines how long the element shall remain attracting human’s attention. The element does that by behaving in a human-recognizable way (e.g., a lamp flashes, a motor makes noise, an LED blinks). The exact behavior is implementation specific and depends on the type of device. Normal behavior of the element is still active, although the method of identification may override the physical state of the device
+public enum ProvisioningAttentionTimer {
+    /// Off
+    case off
+    /// Remaining time in seconds
+    case time(_: UInt8)
+
+    /// Raw Value
+    public var rawValue: UInt8 {
+        switch self {
+        case .off:
+            return UInt8.min
+        case .time(let num):
+            return num
+        }
+    }
+
+    /// Creates a ProvisioningAuthenticationSize
+    ///
+    /// - Parameter value: raw value
+    /// - Returns: ProvisioningAttentionTimer
+    public static func create(_ value: UInt8) -> ProvisioningAttentionTimer {
+        if value == UInt8.min {
+            return ProvisioningAttentionTimer.off
+        } else {
+            return ProvisioningAttentionTimer.time(value)
+        }
+    }
+}
+
+/// Provisioning Data Unit Invite
+///
+/// A Provisioner sends this PDU to indicate to the device that the provisioning process is starting
+public struct ProvisioningDataUnitInvite: ProvisioningDataUnit {
+
+    /// Provisioning Protocol Data Unit Type
+    private(set) public var unitType: ProvisioningDataUnitType
+
+    /// Attention Duration
+    private(set) public var timerState: ProvisioningAttentionTimer
+
+    /// Create Provisioning Data Unit
+    ///
+    /// - Parameter timerState: Attention Duration
+    public init(timerState: ProvisioningAttentionTimer) {
+        self.unitType = .invite
+        self.timerState = timerState
+    }
+
+    /// Encodes Provisioning Protocol Data Unit into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        var msgData = Data()
+
+        msgData.append(unitType.rawValue)
+        msgData.append(timerState.rawValue)
+
+        return msgData
+    }
+}
+
+
+/// Provisioning Data Unit Start
+///
+/// This Provisioner sends this PDU to deliver the public key to be used in the ECDH calculations
+public struct ProvisioningDataUnitStart: ProvisioningDataUnit {
+
+    /// Provisioning Protocol Data Unit Type
+    private(set) public var unitType: ProvisioningDataUnitType
+
+    /// Provisioning Algorithm
+    public enum Algorithm: UInt8 {
+        /// FIPS P-256 Elliptic Curve
+        case fipsP256   = 0x00
+    }
+
+    /// Public Key Type
+    public enum PublicKeyType: UInt8 {
+        /// No OOB Public Key is used
+        case none       = 0
+        /// OOB Public Key is used
+        case oobPublic  = 1
+    }
+
+    /// Algorithm
+    ///
+    /// The algorithm used for provisioning
+    private(set) public var algorithm: Algorithm
+
+    /// Public Key
+    ///
+    /// Public Key used
+    private(set) public var publicKey: PublicKeyType
+
+    /// Authentication
+    private(set) public var authentiction: ProvisioningAuthentication
+
+    /// Create Provisioning Data Unit
+    ///
+    /// - Parameter algorithm: Algorithm
+    /// - Parameter publicKey: Public Key
+    /// - Parameter authentiction: ProvisioningAuthentication
+    public init(algorithm: Algorithm, publicKey: PublicKeyType, authentiction: ProvisioningAuthentication) {
+        self.unitType = .start
+        self.algorithm = algorithm
+        self.publicKey = publicKey
+        self.authentiction = authentiction
+    }
+
+    /// Encodes Provisioning Protocol Data Unit into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        var msgData = Data()
+
+        msgData.append(unitType.rawValue)
+        msgData.append(algorithm.rawValue)
+        msgData.append(publicKey.rawValue)
+        msgData.append(try authentiction.encode())
+
+        return msgData
+    }
+}
+
 /// Provisioning Data Unit Public Key
 ///
 /// This Provisioner sends this PDU to deliver the public key to be used in the ECDH calculations

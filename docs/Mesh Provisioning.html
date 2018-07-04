@@ -54,6 +54,40 @@
                   <li class="item">
                     <div>
                       <code>
+                      <a name="/s:24BluetoothMessageProtocol16ProvisioningDataV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningData" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol16ProvisioningDataV">ProvisioningData</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data</p>
+
+<p>Once the device has been authenticated, the Provisioner and device shall use the calculated Diffie- Hellman shared secret ECDHSecret and generate a session key from that shared secret. That session key shall then be used to encrypt and authenticate the provisioning data. The Provisioner then shall send the Provisioning Data PDU containing the encrypted and authenticated provisioning data to the device</p>
+
+                          <a href="Structs/ProvisioningData.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningData</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
                       <a name="/s:24BluetoothMessageProtocol24ProvisioningDataUnitTypeO"></a>
                       <a name="//apple_ref/swift/Enum/ProvisioningDataUnitType" class="dashAnchor"></a>
                       <a class="token" href="#/s:24BluetoothMessageProtocol24ProvisioningDataUnitTypeO">ProvisioningDataUnitType</a>
@@ -73,6 +107,220 @@
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ProvisioningDataUnitType</span> <span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol29ProvisioningDataUnitPublicKeyV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitPublicKey" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol29ProvisioningDataUnitPublicKeyV">ProvisioningDataUnitPublicKey</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Public Key</p>
+
+<p>This Provisioner sends this PDU to deliver the public key to be used in the ECDH calculations</p>
+
+                          <a href="Structs/ProvisioningDataUnitPublicKey.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitPublicKey</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol33ProvisioningDataUnitInputCompleteV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitInputComplete" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol33ProvisioningDataUnitInputCompleteV">ProvisioningDataUnitInputComplete</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Input Complete</p>
+
+<p>The device sends this PDU when the user completes the input operation</p>
+
+                          <a href="Structs/ProvisioningDataUnitInputComplete.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitInputComplete</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitConfirmationV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitConfirmation" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitConfirmationV">ProvisioningDataUnitConfirmation</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Confirmation</p>
+
+<p>The Provisioner or the device sends this PDU to the peer to confirm the values exchanged so far including the OOB Authentication value and the random number that has yet to be exchanged</p>
+
+                          <a href="Structs/ProvisioningDataUnitConfirmation.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitConfirmation</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol26ProvisioningDataUnitRandomV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitRandom" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol26ProvisioningDataUnitRandomV">ProvisioningDataUnitRandom</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Random</p>
+
+<p>A Provisioner or device sends this PDU to enable the peer device to validate the confirmation</p>
+
+                          <a href="Structs/ProvisioningDataUnitRandom.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitRandom</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol020ProvisioningDataUnitE0V"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitData" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol020ProvisioningDataUnitE0V">ProvisioningDataUnitData</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Data</p>
+
+<p>A Provisioner sends this PDU to deliver provisioning data to the device</p>
+
+                          <a href="Structs/ProvisioningDataUnitData.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitData</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol28ProvisioningDataUnitCompleteV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitComplete" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol28ProvisioningDataUnitCompleteV">ProvisioningDataUnitComplete</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Complete</p>
+
+<p>The device sends this PDU to indicate that it has successfully received and processed the provisioning data</p>
+
+                          <a href="Structs/ProvisioningDataUnitComplete.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitComplete</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol26ProvisioningDataUnitFailedV"></a>
+                      <a name="//apple_ref/swift/Struct/ProvisioningDataUnitFailed" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol26ProvisioningDataUnitFailedV">ProvisioningDataUnitFailed</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Provisioning Data Unit Failed</p>
+
+<p>The device sends this PDU if it fails to process a received provisioning protocol PDU</p>
+
+                          <a href="Structs/ProvisioningDataUnitFailed.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitFailed</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
 
                           </div>
                         </div>
@@ -1057,7 +1305,37 @@
               <a href="Mesh Provisioning.html">Mesh Provisioning</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
+                  <a href="Structs/ProvisioningData.html">ProvisioningData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningData/Flags.html">– Flags</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="Enums/ProvisioningDataUnitType.html">ProvisioningDataUnitType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitPublicKey.html">ProvisioningDataUnitPublicKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitInputComplete.html">ProvisioningDataUnitInputComplete</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitConfirmation.html">ProvisioningDataUnitConfirmation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitRandom.html">ProvisioningDataUnitRandom</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitData.html">ProvisioningDataUnitData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitComplete.html">ProvisioningDataUnitComplete</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitFailed.html">ProvisioningDataUnitFailed</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Structs/ProvisioningDataUnitFailed/ErrorType.html">– ErrorType</a>
                 </li>
               </ul>
             </li>
@@ -1111,6 +1389,14 @@
                 </li>
                 <li class="nav-group-task">
                   <a href="Enums/User.html">User</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="Other Protocols.html">Other Protocols</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a>
                 </li>
               </ul>
             </li>
