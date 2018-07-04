@@ -27,27 +27,27 @@ import DataDecoder
 
 /// BLE Mesh Provisioning Data In Characteristic
 ///
-/// The Mesh Provisioning Data In characteristic can be written to send a Proxy PDU message containing Provisioning PDU to the Provisioning Server
+/// The Mesh Provisioning Data Out characteristic can be notified to send a Proxy PDU message containing Provisioning PDU from a Provisioning Server to a Provisioning Client
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicMeshProvisioningDataOut: Characteristic {
 
     /// Characteristic Name
     public static var name: String {
-        return "Mesh Provisioning Data In"
+        return "Mesh Provisioning Data Out"
     }
 
     /// Characteristic UUID
     public static var uuidString: String {
-        return "2ADB"
+        return "2ADC"
     }
 
-    /// PDU Message
+    /// Provisioning Protocol Data Unit (PDU) Message
     private(set) public var pduMessage: Data
 
     /// Creates Characteristic
     ///
-    /// - Parameter pduMessage: PDU Message
+    /// - Parameter pduMessage: Protocol Data Unit Message
     public init(pduMessage: Data) {
         self.pduMessage = pduMessage
 

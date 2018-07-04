@@ -227,10 +227,12 @@ custom_categories:
     - CharacteristicWeightScaleFeature
     - CharacteristicWindChill
 
-  - name; Characteristic - Mesh
+  - name: Characteristic - Mesh
     children:
     - CharacteristicMeshProvisioningDataIn
     - CharacteristicMeshProvisioningDataOut 
+    - CharacteristicMeshProxyDataIn
+    - CharacteristicMeshProxyDataOut
 
   - name: Characteristic - Custom
     children:

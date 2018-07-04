@@ -413,4 +413,3 @@ extension Appearance: Codable {
         try container.encode(self.description, forKey: .type)
     }
 }
-

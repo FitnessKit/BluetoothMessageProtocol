@@ -42,7 +42,7 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
         return "2ADB"
     }
 
-    /// PDU Message
+    /// Protocol Data Unit (PDU) Message
     private(set) public var pduMessage: Data
 
     /// Creates Characteristic
