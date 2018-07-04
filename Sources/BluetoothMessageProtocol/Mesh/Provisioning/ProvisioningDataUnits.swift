@@ -80,8 +80,8 @@ public struct ProvisioningDataUnitPublicKey: ProvisioningDataUnit {
         }
 
         msgData.append(unitType.rawValue)
-        msgData.append(publicKeyX)
-        msgData.append(publicKeyY)
+        msgData.append(Data(publicKeyX.reversed()))
+        msgData.append(Data(publicKeyY.reversed()))
 
         return msgData
     }
@@ -146,7 +146,7 @@ public struct ProvisioningDataUnitConfirmation: ProvisioningDataUnit {
         }
 
         msgData.append(unitType.rawValue)
-        msgData.append(confirmation)
+        msgData.append(Data(confirmation.reversed()))
 
         return msgData
     }
@@ -185,7 +185,7 @@ public struct ProvisioningDataUnitRandom: ProvisioningDataUnit {
         }
 
         msgData.append(unitType.rawValue)
-        msgData.append(confirmation)
+        msgData.append(Data(confirmation.reversed()))
 
         return msgData
     }
@@ -233,7 +233,7 @@ public struct ProvisioningDataUnitData: ProvisioningDataUnit {
         msgData.append(unitType.rawValue)
         /// Get the Provisioning Data and try to encode it
         msgData.append(try provisioningData.encode())
-        msgData.append(messageIntegrity)
+        msgData.append(Data(messageIntegrity.reversed()))
 
         return msgData
     }
@@ -314,7 +314,7 @@ public struct ProvisioningDataUnitFailed: ProvisioningDataUnit {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
-        msgData.append(unitType.rawValue)
+        msgData.append(errorReason.rawValue)
 
         return msgData
     }

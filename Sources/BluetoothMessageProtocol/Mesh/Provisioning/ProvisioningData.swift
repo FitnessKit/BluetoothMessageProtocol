@@ -83,10 +83,10 @@ public struct ProvisioningData {
         var msgData = Data()
 
         msgData.append(networkKey)
-        msgData.append(Data(from: keyIndex.littleEndian))
+        msgData.append(Data(from: keyIndex.bigEndian))
         msgData.append(flag.rawValue)
-        msgData.append(Data(from: ivIndex.littleEndian))
-        msgData.append(Data(from: unicastAddress.littleEndian))
+        msgData.append(Data(from: ivIndex.bigEndian))
+        msgData.append(Data(from: unicastAddress.bigEndian))
 
         return msgData
     }

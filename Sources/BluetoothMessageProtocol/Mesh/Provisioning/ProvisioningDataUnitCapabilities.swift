@@ -171,13 +171,13 @@ public struct ProvisioningDataUnitCapabilities: ProvisioningDataUnit {
 
         msgData.append(unitType.rawValue)
         msgData.append(elements.rawValue)
-        msgData.append(Data(from: algorithm.rawValue.littleEndian))
+        msgData.append(Data(from: algorithm.rawValue.bigEndian))
         msgData.append(publicKey.rawValue)
         msgData.append(staticOobTypes.rawValue)
         msgData.append(outputObbSize.rawValue)
-        msgData.append(Data(from: supportedOutputActions.rawValue.littleEndian))
+        msgData.append(Data(from: supportedOutputActions.rawValue.bigEndian))
         msgData.append(inputOobSize.rawValue)
-        msgData.append(Data(from: supportedInputActions.rawValue.littleEndian))
+        msgData.append(Data(from: supportedInputActions.rawValue.bigEndian))
 
         return msgData
     }
