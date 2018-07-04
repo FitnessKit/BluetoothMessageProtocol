@@ -61,10 +61,6 @@ extension PeerAddress.PeerType {
         return String(describing: self)
     }
 
-    //    public init(from decoder: Decoder) throws {
-    //        fatalError("init(from:) has not been implemented")
-    //    }
-
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
 

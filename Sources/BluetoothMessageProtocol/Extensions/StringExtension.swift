@@ -1,8 +1,8 @@
 //
-//  GapEventType.swift
+//  StringExtension.swift
 //  BluetoothMessageProtocol
 //
-//  Created by Kevin Hoogheem on 6/16/18.
+//  Created by Kevin Hoogheem on 6/30/18.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,34 +24,20 @@
 
 import Foundation
 
-/// Generic Access Profile Event Type
-public enum GapEventType: UInt16 {
-    /// RSSI Changed
-    case rssiChanged            = 0x001A
-    /// Advertisment Report
-    case advertismentReport     = 0x001B
-    /// Scan Request Report
-    case scanRequestReport      = 0x001E
-    /// Security Request
-    case securityRequest        = 0x001C
-    /// Connection Param Update Request
-    case connectionParamUpdate  = 0x001D
+extension String {
 
-    /// Unknown
-    case unknown                = 0xFFFF
-}
+    /// Takes a String and splits it up into groups of strings
+    ///
+    /// - Parameter size: Size of the new strings
+    /// - Returns: Grouping of Strings
+    internal func group(by size: Int) -> [String] {
+        var result = [String]()
 
-@available(swift 4.0)
-extension GapEventType: Encodable {
+        let characters = Array(self)
 
-    public var description: String {
-        return String(describing: self)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
-
-        try container.encode(self.description, forKey: .type)
-        try container.encode(self.rawValue, forKey: .value)
+        stride(from: 0, to: count, by: size).forEach {
+            result.append(String(characters[$0..<min($0 + size, count)]))
+        }
+        return result
     }
 }

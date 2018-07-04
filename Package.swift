@@ -9,8 +9,8 @@ let package = Package(
         .library(name: "BluetoothMessageProtocol", targets: ["BluetoothMessageProtocol"])
     ],
     dependencies: [
-        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "2.0.2"),
-        .package(url: "https://github.com/FitnessKit/DataDecoder", from: "4.1.0"),
+        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "2.0.3"),
+        .package(url: "https://github.com/FitnessKit/DataDecoder", from: "4.2.0"),
     ],
     targets: [
         .target(

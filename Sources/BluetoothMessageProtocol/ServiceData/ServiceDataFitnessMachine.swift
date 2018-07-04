@@ -94,7 +94,7 @@ open class ServiceDataFitnessMachine: ServiceData {
             public init(rawValue: UInt8) { self.rawValue = rawValue }
 
             /// Fitness Machine Available
-            public static let available        = Flags(rawValue: 1 << 0)
+            public static let available     = Flags(rawValue: 1 << 0)
         }
 
         var decoder = DecodeData()
@@ -157,8 +157,6 @@ extension ServiceDataFitnessMachine.EquipmentType: Encodable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-
-        try container.encode(rawValue, forKey: .value)
 
         try container.encode(self.contains(.treadmillSupported), forKey: .treadmillSupported)
         try container.encode(self.contains(.crossTrainerSupported), forKey: .crossTrainerSupported)

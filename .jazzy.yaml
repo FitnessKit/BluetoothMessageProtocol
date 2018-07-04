@@ -227,6 +227,11 @@ custom_categories:
     - CharacteristicWeightScaleFeature
     - CharacteristicWindChill
 
+  - name; Characteristic - Mesh
+    children:
+    - CharacteristicMeshProvisioningDataIn
+    - CharacteristicMeshProvisioningDataOut 
+
   - name: Characteristic - Custom
     children:
     - CharacteristicNorthPoleAweDiagnostics
