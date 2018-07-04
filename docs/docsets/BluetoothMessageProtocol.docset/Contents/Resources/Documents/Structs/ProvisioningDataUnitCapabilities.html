@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ProvisioningAuthenticationSize Enumeration Reference</title>
+    <title>ProvisioningDataUnitCapabilities Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -11,8 +11,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/ProvisioningAuthenticationSize" class="dashAnchor"></a>
-    <a title="ProvisioningAuthenticationSize Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Struct/ProvisioningDataUnitCapabilities" class="dashAnchor"></a>
+    <a title="ProvisioningDataUnitCapabilities Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p>
@@ -36,7 +36,7 @@
             <a href="../index.html">BluetoothMessageProtocol Reference</a>
             <img id="carat" src="../img/carat.png" />
           </span>
-          ProvisioningAuthenticationSize Enumeration Reference
+          ProvisioningDataUnitCapabilities Structure Reference
         </p>
       </div>
     </div>
@@ -45,14 +45,16 @@
         <article class="main-content">
           <section>
             <section class="section">
-              <h1>ProvisioningAuthenticationSize</h1>
+              <h1>ProvisioningDataUnitCapabilities</h1>
                 <div class="declaration">
                   <div class="language">
-                    <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ProvisioningAuthenticationSize</span></code></pre>
+                    <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProvisioningDataUnitCapabilities</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span></code></pre>
 
                   </div>
                 </div>
-              <p>Provisioning Authentication Size</p>
+              <p>Provisioning Data Unit Capabilities</p>
+
+<p>The device sends this PDU to indicate its supported provisioning capabilities to a Provisioner</p>
 
             </section>
             <section class="section task-group-section">
@@ -61,9 +63,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO10prohibitedA2CmF"></a>
-                      <a name="//apple_ref/swift/Element/prohibited" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO10prohibitedA2CmF">prohibited</a>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV8unitTypeAA0defI0Ovp"></a>
+                      <a name="//apple_ref/swift/Property/unitType" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV8unitTypeAA0defI0Ovp">unitType</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -71,14 +73,14 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Prohibited</p>
+                          <p>Provisioning Protocol Data Unit Type</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="n">prohibited</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">unitType</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningDataUnitType.html">ProvisioningDataUnitType</a></span></code></pre>
 
                           </div>
                         </div>
@@ -88,9 +90,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO5valueACs5UInt8VcACmF"></a>
-                      <a name="//apple_ref/swift/Element/value" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO5valueACs5UInt8VcACmF">value</a>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13AlgorithmTypeV"></a>
+                      <a name="//apple_ref/swift/Struct/AlgorithmType" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13AlgorithmTypeV">AlgorithmType</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -98,14 +100,15 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>The Size in characters to be used</p>
+                          <p>Algorithms</p>
 
+                          <a href="../Structs/ProvisioningDataUnitCapabilities/AlgorithmType.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="k">case</span> <span class="nf">value</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">)</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AlgorithmType</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
 
                           </div>
                         </div>
@@ -115,9 +118,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO8rawValues5UInt8Vvp"></a>
-                      <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO8rawValues5UInt8Vvp">rawValue</a>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13PublicKeyTypeV"></a>
+                      <a name="//apple_ref/swift/Struct/PublicKeyType" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13PublicKeyTypeV">PublicKeyType</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -125,14 +128,15 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Raw Value</p>
+                          <p>Public Key Type</p>
 
+                          <a href="../Structs/ProvisioningDataUnitCapabilities/PublicKeyType.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PublicKeyType</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
 
                           </div>
                         </div>
@@ -142,9 +146,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO6createACs5UInt8VFZ"></a>
-                      <a name="//apple_ref/swift/Method/create(_:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol30ProvisioningAuthenticationSizeO6createACs5UInt8VFZ">create(_:)</a>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13StaticOobTypeV"></a>
+                      <a name="//apple_ref/swift/Struct/StaticOobType" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13StaticOobTypeV">StaticOobType</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -152,14 +156,337 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Creates a ProvisioningAuthenticationSize</p>
+                          <p>Public Key Type</p>
+
+                          <a href="../Structs/ProvisioningDataUnitCapabilities/StaticOobType.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">StaticOobType</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13OutputActionsV"></a>
+                      <a name="//apple_ref/swift/Struct/OutputActions" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13OutputActionsV">OutputActions</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Supported Output OOB Actions</p>
+
+                          <a href="../Structs/ProvisioningDataUnitCapabilities/OutputActions.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OutputActions</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV12InputActionsV"></a>
+                      <a name="//apple_ref/swift/Struct/InputActions" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV12InputActionsV">InputActions</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Supported Input OOB Actions</p>
+
+                          <a href="../Structs/ProvisioningDataUnitCapabilities/InputActions.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">InputActions</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV8elementsAA0D4SizeOvp"></a>
+                      <a name="//apple_ref/swift/Property/elements" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV8elementsAA0D4SizeOvp">elements</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Number of Elements</p>
+
+<p>Number of elements supported by the device</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ProvisioningAuthenticationSize</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningSize.html">ProvisioningSize</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV9algorithmAC13AlgorithmTypeVvp"></a>
+                      <a name="//apple_ref/swift/Property/algorithm" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV9algorithmAC13AlgorithmTypeVvp">algorithm</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Algorithms</p>
+
+<p>Supported algorithms and other capabilities</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">algorithm</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/AlgorithmType.html">AlgorithmType</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV9publicKeyAC06PublicI4TypeVvp"></a>
+                      <a name="//apple_ref/swift/Property/publicKey" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV9publicKeyAC06PublicI4TypeVvp">publicKey</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Public Key</p>
+
+<p>Supported public key types</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">publicKey</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/PublicKeyType.html">PublicKeyType</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV14staticOobTypesAC06StaticI4TypeVvp"></a>
+                      <a name="//apple_ref/swift/Property/staticOobTypes" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV14staticOobTypesAC06StaticI4TypeVvp">staticOobTypes</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Static OOB Type</p>
+
+<p>Supported static OOB Types</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">staticOobTypes</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/StaticOobType.html">StaticOobType</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13outputObbSizeAA0dJ0Ovp"></a>
+                      <a name="//apple_ref/swift/Property/outputObbSize" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV13outputObbSizeAA0dJ0Ovp">outputObbSize</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Output OOB Size</p>
+
+<p>Maximum size of Output OOB supported</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">outputObbSize</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningSize.html">ProvisioningSize</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV22supportedOutputActionsAC0iJ0Vvp"></a>
+                      <a name="//apple_ref/swift/Property/supportedOutputActions" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV22supportedOutputActionsAC0iJ0Vvp">supportedOutputActions</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Output OOB Action</p>
+
+<p>Supported Output OOB Actions</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">supportedOutputActions</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/OutputActions.html">OutputActions</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV12inputOobSizeAA0dJ0Ovp"></a>
+                      <a name="//apple_ref/swift/Property/inputOobSize" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV12inputOobSizeAA0dJ0Ovp">inputOobSize</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Input OOB Size</p>
+
+<p>Maximum size in octets of Input OOB supported</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">inputOobSize</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningSize.html">ProvisioningSize</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV21supportedInputActionsAC0iJ0Vvp"></a>
+                      <a name="//apple_ref/swift/Property/supportedInputActions" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV21supportedInputActionsAC0iJ0Vvp">supportedInputActions</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Input OOB Action</p>
+
+<p>Supported Input OOB Actions</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">supportedInputActions</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/InputActions.html">InputActions</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesVAcA0D4SizeO8elements_AC13AlgorithmTypeV9algorithmAC09PublicKeyK0V06publicN0AC09StaticOobK0V06staticQ5TypesAE09outputObbH0AC13OutputActionsV09supportedvW0AE05inputqH0AC05InputW0V0xzW0tcfc"></a>
+                      <a name="//apple_ref/swift/Method/init(elements:algorithm:publicKey:staticOobTypes:outputObbSize:supportedOutputActions:inputOobSize:supportedInputActions:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesVAcA0D4SizeO8elements_AC13AlgorithmTypeV9algorithmAC09PublicKeyK0V06publicN0AC09StaticOobK0V06staticQ5TypesAE09outputObbH0AC13OutputActionsV09supportedvW0AE05inputqH0AC05InputW0V0xzW0tcfc">init(elements:algorithm:publicKey:staticOobTypes:outputObbSize:supportedOutputActions:inputOobSize:supportedInputActions:)</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Create Provisioning Data Unit</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">elements</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningSize.html">ProvisioningSize</a></span><span class="p">,</span>
+            <span class="nv">algorithm</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/AlgorithmType.html">AlgorithmType</a></span><span class="p">,</span>
+            <span class="nv">publicKey</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/PublicKeyType.html">PublicKeyType</a></span><span class="p">,</span>
+            <span class="nv">staticOobTypes</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/StaticOobType.html">StaticOobType</a></span><span class="p">,</span>
+            <span class="nv">outputObbSize</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningSize.html">ProvisioningSize</a></span><span class="p">,</span>
+            <span class="nv">supportedOutputActions</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/OutputActions.html">OutputActions</a></span><span class="p">,</span>
+            <span class="nv">inputOobSize</span><span class="p">:</span> <span class="kt"><a href="../Enums/ProvisioningSize.html">ProvisioningSize</a></span><span class="p">,</span>
+            <span class="nv">supportedInputActions</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProvisioningDataUnitCapabilities/InputActions.html">InputActions</a></span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -170,21 +497,137 @@
                               <tr>
                                 <td>
                                   <code>
-                                  <em>value</em>
+                                  <em>elements</em>
                                   </code>
                                 </td>
                                 <td>
                                   <div>
-                                    <p>raw value</p>
+                                    <p>Number of elements supported by the device</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>algorithm</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Supported algorithms and other capabilities</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>publicKey</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Supported public key types</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>staticOobTypes</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Supported static OOB Types</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>outputObbSize</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Maximum size of Output OOB supported</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>supportedOutputActions</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Supported Output OOB Actions</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>inputOobSize</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Maximum size in octets of Input OOB supported</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>supportedInputActions</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Supported Input OOB Actions</p>
                                   </div>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                         </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV6encode10Foundation0E0VyKF"></a>
+                      <a name="//apple_ref/swift/Method/encode()" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol32ProvisioningDataUnitCapabilitiesV6encode10Foundation0E0VyKF">encode()</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Encodes Provisioning Protocol Data Unit into Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                          </div>
+                        </div>
                         <div>
                           <h4>Return Value</h4>
-                          <p>ProvisioningAuthenticationSize</p>
+                          <p>Encoded Data</p>
                         </div>
                       </section>
                     </div>
@@ -1164,6 +1607,17 @@
               </ul>
             </li>
             <li class="nav-group-name">
+              <a href="../Mesh.html">Mesh</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/ProvisioningSize.html">ProvisioningSize</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/ProvisioningAttentionTimer.html">ProvisioningAttentionTimer</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
               <a href="../Mesh Provisioning.html">Mesh Provisioning</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
@@ -1176,7 +1630,22 @@
                   <a href="../Enums/ProvisioningDataUnitType.html">ProvisioningDataUnitType</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Enums/ProvisioningAttentionTimer.html">ProvisioningAttentionTimer</a>
+                  <a href="../Structs/ProvisioningDataUnitCapabilities.html">ProvisioningDataUnitCapabilities</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/AlgorithmType.html">– AlgorithmType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/PublicKeyType.html">– PublicKeyType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/StaticOobType.html">– StaticOobType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/OutputActions.html">– OutputActions</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/InputActions.html">– InputActions</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/ProvisioningDataUnitInvite.html">ProvisioningDataUnitInvite</a>
@@ -1219,9 +1688,6 @@
             <li class="nav-group-name">
               <a href="../Provisioning Authentication.html">Provisioning Authentication</a>
               <ul class="nav-group-tasks">
-                <li class="nav-group-task">
-                  <a href="../Enums/ProvisioningAuthenticationSize.html">ProvisioningAuthenticationSize</a>
-                </li>
                 <li class="nav-group-task">
                   <a href="../Enums/ProvisioningAuthenticationMethod.html">ProvisioningAuthenticationMethod</a>
                 </li>

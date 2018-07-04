@@ -62,6 +62,15 @@ public struct BluetoothMessageProtocolError: Error {
 @available(swift 4.0)
 extension BluetoothMessageProtocolError: Encodable {
 
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: StringKey.self)
 

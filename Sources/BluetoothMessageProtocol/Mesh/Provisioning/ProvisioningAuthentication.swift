@@ -66,6 +66,34 @@ public enum ProvisioningAuthenticationMethod: UInt8 {
     case input      = 3
 }
 
+extension ProvisioningAuthenticationMethod {
+
+    public var description: String {
+        return String(describing: self)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningAuthenticationMethod: Encodable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        /// Prefer the name of the type over a raw value
+        try container.encode(self.rawValue, forKey: .value)
+        try container.encode(self.description, forKey: .type)
+    }
+}
+
 /// Protocol for Provisioning Authentication Types
 public protocol ProvisioningAuthentication {
 
@@ -196,6 +224,34 @@ public struct ProvisioningAuthenticationMethodOutput: ProvisioningAuthentication
     }
 }
 
+extension ProvisioningAuthenticationMethodOutput.Action {
+
+    public var description: String {
+        return String(describing: self)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningAuthenticationMethodOutput.Action: Encodable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        /// Prefer the name of the type over a raw value
+        try container.encode(self.rawValue, forKey: .value)
+        try container.encode(self.description, forKey: .type)
+    }
+}
+
 /// Provisioning Authentication Method Input
 ///
 /// Input OOB authentication is used
@@ -252,5 +308,33 @@ public struct ProvisioningAuthenticationMethodInput: ProvisioningAuthentication 
         msgData.append(size.rawValue) /// Size..
 
         return msgData
+    }
+}
+
+extension ProvisioningAuthenticationMethodInput.Action {
+
+    public var description: String {
+        return String(describing: self)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningAuthenticationMethodInput.Action: Encodable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        /// Prefer the name of the type over a raw value
+        try container.encode(self.rawValue, forKey: .value)
+        try container.encode(self.description, forKey: .type)
     }
 }

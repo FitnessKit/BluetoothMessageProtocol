@@ -37,69 +37,6 @@ public protocol ProvisioningDataUnit {
     func encode() throws -> Data
 }
 
-/// Provisioning Data Unit Start
-///
-/// This Provisioner sends this PDU to deliver the public key to be used in the ECDH calculations
-public struct ProvisioningDataUnitStart: ProvisioningDataUnit {
-
-    /// Provisioning Protocol Data Unit Type
-    private(set) public var unitType: ProvisioningDataUnitType
-
-    /// Provisioning Algorithm
-    public enum Algorithm: UInt8 {
-        /// FIPS P-256 Elliptic Curve
-        case fipsP256   = 0x00
-    }
-
-    /// Public Key Type
-    public enum PublicKeyType: UInt8 {
-        /// No OOB Public Key is used
-        case none       = 0
-        /// OOB Public Key is used
-        case oobPublic  = 1
-    }
-
-    /// Algorithm
-    ///
-    /// The algorithm used for provisioning
-    private(set) public var algorithm: Algorithm
-
-    /// Public Key
-    ///
-    /// Public Key used
-    private(set) public var publicKey: PublicKeyType
-
-    /// Authentication
-    private(set) public var authentiction: ProvisioningAuthentication
-
-    /// Create Provisioning Data Unit
-    ///
-    /// - Parameter algorithm: Algorithm
-    /// - Parameter publicKey: Public Key
-    /// - Parameter authentiction: ProvisioningAuthentication
-    public init(algorithm: Algorithm, publicKey: PublicKeyType, authentiction: ProvisioningAuthentication) {
-        self.unitType = .start
-        self.algorithm = algorithm
-        self.publicKey = publicKey
-        self.authentiction = authentiction
-    }
-
-    /// Encodes Provisioning Protocol Data Unit into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
-    public func encode() throws -> Data {
-        var msgData = Data()
-
-        msgData.append(unitType.rawValue)
-        msgData.append(algorithm.rawValue)
-        msgData.append(publicKey.rawValue)
-        msgData.append(try authentiction.encode())
-
-        return msgData
-    }
-}
-
 /// Provisioning Data Unit Public Key
 ///
 /// This Provisioner sends this PDU to deliver the public key to be used in the ECDH calculations
@@ -393,10 +330,19 @@ extension ProvisioningDataUnitFailed.ErrorType {
 @available(swift 4.0)
 extension ProvisioningDataUnitFailed.ErrorType: Encodable {
 
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
 
-        /// KAH - Prefer the name of the type over a raw value
+        /// Prefer the name of the type over a raw value
         try container.encode(self.rawValue, forKey: .value)
         try container.encode(self.description, forKey: .type)
     }
