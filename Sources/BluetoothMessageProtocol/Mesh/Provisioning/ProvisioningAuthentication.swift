@@ -4,12 +4,29 @@
 //
 //  Created by Kevin Hoogheem on 7/4/18.
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import Foundation
 
-/// Provisioning Authentication Size
-public enum ProvisioningAuthenticationSize {
-    /// Prohibited
+/// Provisioning  Size
+public enum ProvisioningSize {
+    /// Prohibited / None
     case prohibited
     /// The Size in characters to be used
     case value(_: UInt8)
@@ -24,15 +41,15 @@ public enum ProvisioningAuthenticationSize {
         }
     }
 
-    /// Creates a ProvisioningAuthenticationSize
+    /// Creates a ProvisioningSize
     ///
     /// - Parameter value: raw value
     /// - Returns: ProvisioningAuthenticationSize
-    public static func create(_ value: UInt8) -> ProvisioningAuthenticationSize {
+    public static func create(_ value: UInt8) -> ProvisioningSize {
         if value == UInt8.min {
-            return ProvisioningAuthenticationSize.prohibited
+            return ProvisioningSize.prohibited
         } else {
-            return ProvisioningAuthenticationSize.value(value)
+            return ProvisioningSize.value(value)
         }
     }
 }
@@ -146,14 +163,14 @@ public struct ProvisioningAuthenticationMethodOutput: ProvisioningAuthentication
     /// Output Action Size
     ///
     /// The Output OOB Size in characters to be used
-    private(set) public var size: ProvisioningAuthenticationSize
+    private(set) public var size: ProvisioningSize
 
     /// Create ProvisioningAuthentication
     ///
     /// - Parameters:
     ///   - action: Output Action
     ///   - size: Output Size
-    public init(action: Action, size: ProvisioningAuthenticationSize) {
+    public init(action: Action, size: ProvisioningSize) {
         self.method = .output
         self.action = action
         self.size = size
@@ -205,14 +222,14 @@ public struct ProvisioningAuthenticationMethodInput: ProvisioningAuthentication 
     /// Input Action Size
     ///
     /// The Input OOB Size in characters to be used
-    private(set) public var size: ProvisioningAuthenticationSize
+    private(set) public var size: ProvisioningSize
 
     /// Create ProvisioningAuthentication
     ///
     /// - Parameters:
     ///   - action: Input Action
     ///   - size: Input Size
-    public init(action: Action, size: ProvisioningAuthenticationSize) {
+    public init(action: Action, size: ProvisioningSize) {
         self.method = .input
         self.action = action
         self.size = size

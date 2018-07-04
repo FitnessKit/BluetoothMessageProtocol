@@ -322,11 +322,16 @@ custom_categories:
     - FitnessMachineSpeedType
     - FitnessMachineWheelCircumferenceType
 
+  - name: Mesh
+    children:
+    - ProvisioningSize
+    - ProvisioningAttentionTimer
+
   - name: Mesh Provisioning
     children:
     - ProvisioningData
     - ProvisioningDataUnitType
-    - ProvisioningAttentionTimer
+    - ProvisioningDataUnitCapabilities
     - ProvisioningDataUnitInvite
     - ProvisioningDataUnitStart
     - ProvisioningDataUnitPublicKey
@@ -339,7 +344,6 @@ custom_categories:
 
   - name: Provisioning Authentication
     children:
-    - ProvisioningAuthenticationSize
     - ProvisioningAuthenticationMethod
     - ProvisioningAuthentication
     - ProvisioningAuthenticationMethodNone
