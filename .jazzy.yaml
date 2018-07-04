@@ -321,3 +321,16 @@ custom_categories:
     - FitnessMachineStopPauseType
     - FitnessMachineSpeedType
     - FitnessMachineWheelCircumferenceType
+
+  - name: Mesh Provisioning
+    children:
+    - ProvisioningData
+    - ProvisioningDataUnitType
+    - ProvisioningDataUnitPublicKey
+    - ProvisioningDataUnitInputComplete
+    - ProvisioningDataUnitConfirmation
+    - ProvisioningDataUnitRandom
+    - ProvisioningDataUnitData
+    - ProvisioningDataUnitComplete
+    - ProvisioningDataUnitFailed
+

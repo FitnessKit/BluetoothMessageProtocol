@@ -399,11 +399,7 @@ extension Appearance {
 }
 
 @available(swift 4.0)
-extension Appearance: Codable {
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
+extension Appearance: Encodable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: TypeValueCodingKeys.self)

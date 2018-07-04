@@ -56,11 +56,7 @@ extension ProvisioningDataUnitType {
 }
 
 @available(swift 4.0)
-extension ProvisioningDataUnitType: Codable {
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
+extension ProvisioningDataUnitType: Encodable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
