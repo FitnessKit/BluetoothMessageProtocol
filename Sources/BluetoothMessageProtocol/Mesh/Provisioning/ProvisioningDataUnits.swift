@@ -104,7 +104,6 @@ public struct ProvisioningDataUnitInvite: ProvisioningDataUnit {
     }
 }
 
-
 /// Provisioning Data Unit Start
 ///
 /// This Provisioner sends this PDU to deliver the public key to be used in the ECDH calculations
