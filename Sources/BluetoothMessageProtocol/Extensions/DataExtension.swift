@@ -64,16 +64,12 @@ internal extension Data {
     ///   - packed: Packs the data together (no spaces)
     /// - Returns: HEX Formatted String
     func hexadecimalString(formatted: Bool = false, uselower: Bool = false, packed: Bool = false) -> String {
-        var bytes = [UInt8](repeating: 0, count: count)
-        copyBytes(to: &bytes, count: count)
-
         var hexString = String()
-        for byte in bytes {
-            if formatted {
-                hexString += String(format: "[%02x] ", byte)
-            }else {
-                hexString += String(format: "%02x ", byte)
-            }
+
+        if formatted {
+            hexString = self.reduce("", { String(format: "\($0)[%02hhx] ", $1) })
+        }else {
+            hexString = self.reduce("", { String(format: "\($0)%02hhx ", $1) })
         }
 
         if packed {

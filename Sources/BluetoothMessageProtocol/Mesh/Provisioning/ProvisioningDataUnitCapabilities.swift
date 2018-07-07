@@ -182,3 +182,132 @@ public struct ProvisioningDataUnitCapabilities: ProvisioningDataUnit {
         return msgData
     }
 }
+
+@available(swift 4.0)
+extension ProvisioningDataUnitCapabilities.AlgorithmType: Encodable {
+
+    enum CodeKeys: CodingKey {
+        case fipsP256
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+
+        try container.encode(self.contains(.fipsP256), forKey: .fipsP256)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningDataUnitCapabilities.PublicKeyType: Encodable {
+
+    enum CodeKeys: CodingKey {
+        case publicKeyOobAvailable
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+
+        try container.encode(self.contains(.publicKeyOobAvailable), forKey: .publicKeyOobAvailable)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningDataUnitCapabilities.StaticOobType: Encodable {
+
+    enum CodeKeys: CodingKey {
+        case staticOobAvailable
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+
+        try container.encode(self.contains(.staticOobAvailable), forKey: .staticOobAvailable)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningDataUnitCapabilities.OutputActions: Encodable {
+
+    enum CodeKeys: CodingKey {
+        case blink
+        case beep
+        case vibrate
+        case numeric
+        case alphanumeric
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+
+        try container.encode(self.contains(.blink), forKey: .blink)
+        try container.encode(self.contains(.beep), forKey: .beep)
+        try container.encode(self.contains(.vibrate), forKey: .vibrate)
+        try container.encode(self.contains(.numeric), forKey: .numeric)
+        try container.encode(self.contains(.alphanumeric), forKey: .alphanumeric)
+    }
+}
+
+@available(swift 4.0)
+extension ProvisioningDataUnitCapabilities.InputActions: Encodable {
+
+    enum CodeKeys: CodingKey {
+        case push
+        case twist
+        case numeric
+        case alphanumeric
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+
+        try container.encode(self.contains(.push), forKey: .push)
+        try container.encode(self.contains(.twist), forKey: .twist)
+        try container.encode(self.contains(.numeric), forKey: .numeric)
+        try container.encode(self.contains(.alphanumeric), forKey: .alphanumeric)
+    }
+}

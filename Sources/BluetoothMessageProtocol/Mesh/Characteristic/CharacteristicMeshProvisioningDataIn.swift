@@ -43,12 +43,12 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
     }
 
     /// Protocol Data Unit (PDU) Message
-    private(set) public var pduMessage: ProvisioningDataUnit
+    private(set) public var pduMessage: ProxyDataUnitProvisioning
 
     /// Creates Characteristic
     ///
     /// - Parameter pduMessage: PDU Message
-    public init(pduMessage: ProvisioningDataUnit) {
+    public init(pduMessage: ProxyDataUnitProvisioning) {
         self.pduMessage = pduMessage
 
         super.init(name: CharacteristicMeshProvisioningDataIn.name,
@@ -70,7 +70,9 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
         //The characteristic value is 66 octets long to accommodate the longest known Proxy PDU containing Provisioning PDU.
-        let msgData = try pduMessage.encode()
+        var msgData = Data()
+
+        msgData.append(try pduMessage.encode())
 
         return msgData
     }
