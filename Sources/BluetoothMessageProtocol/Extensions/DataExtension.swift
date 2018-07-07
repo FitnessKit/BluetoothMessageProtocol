@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 
 import Foundation
+import DataDecoder
 
 internal extension Data {
 
@@ -84,5 +85,31 @@ internal extension Data {
         }else {
             return hexString.uppercased() as String
         }
+    }
+}
+
+extension Data {
+
+    /// Creates a 128Bit UUID From Data
+    ///
+    /// - Parameter reverseData: If the data should be Reversed
+    /// - Returns: UUID String Value
+    func create128BitUuid(reverseData: Bool = true) -> String {
+        var decoder = DecodeData()
+
+        var uuidData = self
+
+        if reverseData == true {
+            uuidData = Data(self.reversed())
+        }
+
+        var uuidString: String = ""
+        uuidString += decoder.decodeData(uuidData, length: 4).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(uuidData, length: 2).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(uuidData, length: 2).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(uuidData, length: 2).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(uuidData, length: 6).hexadecimalString(packed: true)
+
+        return uuidString
     }
 }

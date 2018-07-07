@@ -99,6 +99,7 @@ custom_categories:
   - name: ServiceData - Bluetooth SIG
     children:
     - ServiceDataFitnessMachine
+    - ServiceDataMeshProvisioning
 
   - name: Characteristics - Bluetooth SIG
     children:
@@ -326,6 +327,7 @@ custom_categories:
     children:
     - ProvisioningSize
     - ProvisioningAttentionTimer
+    - MeshOutOfBandInformation
 
   - name: Mesh Provisioning
     children:

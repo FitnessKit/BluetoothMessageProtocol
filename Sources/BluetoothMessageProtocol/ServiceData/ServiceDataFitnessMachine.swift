@@ -151,17 +151,12 @@ open class ServiceDataFitnessMachine: ServiceData {
 extension ServiceDataFitnessMachine.EquipmentType: Encodable {
 
     enum CodeKeys: CodingKey {
-        case value
         case treadmillSupported
         case crossTrainerSupported
         case stepClimberSupported
         case stairClimberSupported
         case rowerSupported
         case indoorBikeSupported
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
     }
 
     /// Encodes this value into the given encoder.
