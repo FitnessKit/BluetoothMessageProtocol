@@ -73,7 +73,7 @@ Manufacturer Specific data contains a Company Assigned Number and specific data 
 
 Example using Apple iBeacon:
 
-```
+```swift
 func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
 
     if let advertData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
