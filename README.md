@@ -21,7 +21,7 @@ pod 'BluetoothMessageProtocol'
 Swift Package Manager:
 ```swift
     dependencies: [
-        .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "0.13.2")
+        .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "0.14.0")
     ]
 ```
 ## How to Use
@@ -64,6 +64,25 @@ func doDecodeBody(sensorData: Data) {
     } catch  {
         print(error)
     }
+}
+```
+
+### Manufacturer Specific Data
+
+Manufacturer Specific data contains a Company Assigned Number and specific data defined by the Manufacturer.  
+
+Example using Apple iBeacon:
+
+```
+func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+
+    if let advertData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
+
+        if let beacon = try? ManufacturerDataAppleiBeacon.decode(data: advertData) {
+            print(beacon.proximityUUID.uuidString)
+        }
+    }
+
 }
 ```
 
