@@ -115,9 +115,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol25ProxyDataUnitProvisioningVAcA0dB4TypeV0B12SegmentationO7segment_AA0geF0_p012provisioningB0tcfc"></a>
+                      <a name="/s:24BluetoothMessageProtocol25ProxyDataUnitProvisioningVAcA0dB4TypeV0B7SegmentO7segment_AA0geF0_p012provisioningB0tcfc"></a>
                       <a name="//apple_ref/swift/Method/init(segment:provisioningMessage:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol25ProxyDataUnitProvisioningVAcA0dB4TypeV0B12SegmentationO7segment_AA0geF0_p012provisioningB0tcfc">init(segment:provisioningMessage:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol25ProxyDataUnitProvisioningVAcA0dB4TypeV0B7SegmentO7segment_AA0geF0_p012provisioningB0tcfc">init(segment:provisioningMessage:)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -125,14 +125,14 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Create Provisioning Data Unit</p>
+                          <p>Create Proxy Data Unit</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">segment</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProxyMessageType.html">ProxyMessageType</a></span><span class="o">.</span><span class="kt">MessageSegmentation</span><span class="p">,</span> <span class="nv">provisioningMessage</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span><span class="p">)</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">segment</span><span class="p">:</span> <span class="kt"><a href="../Structs/ProxyMessageType.html">ProxyMessageType</a></span><span class="o">.</span><span class="kt">MessageSegment</span><span class="p">,</span> <span class="nv">provisioningMessage</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a></span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -183,7 +183,7 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Encodes Provisioning Protocol Data Unit into Data</p>
+                          <p>Encodes Proxy Protocol Data Unit into Data</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     BluetoothMessageProtocolError
@@ -1227,6 +1227,9 @@
                   <a href="../Structs/ProvisioningData/Flags.html">– Flags</a>
                 </li>
                 <li class="nav-group-task">
+                  <a href="../Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Enums/ProvisioningDataUnitType.html">ProvisioningDataUnitType</a>
                 </li>
                 <li class="nav-group-task">
@@ -1324,10 +1327,13 @@
                   <a href="../Structs/ProxyMessageType.html">ProxyMessageType</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Structs/ProxyMessageType/MessageSegmentation.html">– MessageSegmentation</a>
+                  <a href="../Structs/ProxyMessageType/MessageSegment.html">– MessageSegment</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/ProxyMessageType/ProxyDataUnitType.html">– ProxyDataUnitType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProxyDataUnitBeacon.html">ProxyDataUnitBeacon</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/ProxyDataUnitProvisioning.html">ProxyDataUnitProvisioning</a>
@@ -1384,14 +1390,6 @@
                 </li>
                 <li class="nav-group-task">
                   <a href="../Enums/User.html">User</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-group-name">
-              <a href="../Other Protocols.html">Other Protocols</a>
-              <ul class="nav-group-tasks">
-                <li class="nav-group-task">
-                  <a href="../Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a>
                 </li>
               </ul>
             </li>

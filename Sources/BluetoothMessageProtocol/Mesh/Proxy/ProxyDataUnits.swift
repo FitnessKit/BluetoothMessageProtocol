@@ -28,7 +28,7 @@ import Foundation
 public struct ProxyMessageType {
 
     /// Message Segmentation Type
-    public enum MessageSegmentation: UInt8 {
+    public enum MessageSegment: UInt8 {
         /// Data field contains a complete message
         case completeMessage        = 0
         /// Data field contains the first segment of a message
@@ -52,7 +52,7 @@ public struct ProxyMessageType {
     }
 
     /// Message Segmentation
-    private(set) public var segment: MessageSegmentation
+    private(set) public var segment: MessageSegment
 
     /// Proxy Protocol Data Unit Type
     private(set) public var message: ProxyDataUnitType
@@ -69,7 +69,7 @@ public struct ProxyMessageType {
     ///
     /// - Parameter segment: Message Segment
     /// - Parameter message: Message Type
-    public init(segment: MessageSegmentation, message: ProxyDataUnitType) {
+    public init(segment: MessageSegment, message: ProxyDataUnitType) {
         self.segment = segment
         self.message = message
     }
@@ -78,11 +78,11 @@ public struct ProxyMessageType {
     ///
     /// - Parameter value: Raw Value
     /// - Throws: BluetoothMessageProtocolError
-    public init(_ value: UInt8) throws {
+    internal init(_ value: UInt8) throws {
         guard let message = ProxyDataUnitType(rawValue: (value & 0x3F)) else {
             throw BluetoothMessageProtocolError(message: "Message Type not supported")
         }
-        guard let segment = MessageSegmentation(rawValue: (value & 0xC0) >> 6) else {
+        guard let segment = MessageSegment(rawValue: (value & 0xC0) >> 6) else {
             throw BluetoothMessageProtocolError(message: "Segment Type not supported")
         }
 
@@ -104,6 +104,38 @@ public protocol ProxyDataUnit {
     func encode() throws -> Data
 }
 
+/// Proxy Protocol Data Unit for Mesh Beacon
+public struct ProxyDataUnitBeacon: ProxyDataUnit {
+
+    /// Proxy Protocol Message Type
+    private(set) public var messageType: ProxyMessageType
+
+    /// Mesh Beacon
+    private(set) public var beacon: MeshBeacon
+
+    /// Create Proxy Data Unit
+    ///
+    /// - Parameter segment: Message segment
+    /// - Parameter beacon: Mesh Beacon
+    public init(segment: ProxyMessageType.MessageSegment, beacon: MeshBeacon) {
+        self.messageType = ProxyMessageType(segment: segment, message: .meshBeacon)
+        self.beacon = beacon
+    }
+
+    /// Encodes Proxy Protocol Data Unit into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        var msgData = Data()
+
+        msgData.append(messageType.rawValue)
+        msgData.append(try beacon.encode())
+
+        return msgData
+    }
+}
+
 /// Proxy Protocol Data Unit for Provisioning PDU
 public struct ProxyDataUnitProvisioning: ProxyDataUnit {
 
@@ -113,16 +145,16 @@ public struct ProxyDataUnitProvisioning: ProxyDataUnit {
     /// Provisioning PDU Message
     private(set) public var provisioningMessage: ProvisioningDataUnit
 
-    /// Create Provisioning Data Unit
+    /// Create Proxy Data Unit
     ///
     /// - Parameter segment: Message segment
     /// - Parameter provisioningMessage: Provisioning PDU
-    public init(segment: ProxyMessageType.MessageSegmentation, provisioningMessage: ProvisioningDataUnit) {
+    public init(segment: ProxyMessageType.MessageSegment, provisioningMessage: ProvisioningDataUnit) {
         self.messageType = ProxyMessageType(segment: segment, message: .provisioning)
         self.provisioningMessage = provisioningMessage
     }
 
-    /// Encodes Provisioning Protocol Data Unit into Data
+    /// Encodes Proxy Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
     /// - Throws: BluetoothMessageProtocolError
@@ -134,5 +166,4 @@ public struct ProxyDataUnitProvisioning: ProxyDataUnit {
 
         return msgData
     }
-
 }

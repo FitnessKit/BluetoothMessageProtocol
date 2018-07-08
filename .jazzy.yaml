@@ -339,6 +339,7 @@ custom_categories:
   - name: Mesh Provisioning
     children:
     - ProvisioningData
+    - ProvisioningDataUnit
     - ProvisioningDataUnitType
     - ProvisioningDataUnitCapabilities
     - ProvisioningDataUnitInvite
@@ -364,5 +365,6 @@ custom_categories:
     children:
     - ProxyDataUnit
     - ProxyMessageType
+    - ProxyDataUnitBeacon
     - ProxyDataUnitProvisioning
 
