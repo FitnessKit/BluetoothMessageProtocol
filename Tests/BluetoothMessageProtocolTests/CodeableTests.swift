@@ -8,7 +8,6 @@
 import XCTest
 @testable import BluetoothMessageProtocol
 @testable import FitnessUnits
-import DataDecoder
 
 class CodeableTests: XCTestCase {
     
@@ -21,7 +20,27 @@ class CodeableTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
+    func testServiceEncode() {
+
+        let service = ServiceHapFan()
+
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = [.prettyPrinted]
+        do {
+            let jsonData = try jsonEncoder.encode(service)
+
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            print("JSON String : " + jsonString!)
+
+        }
+        catch {
+            print(error)
+            XCTFail()
+        }
+
+    }
+
     func testPolarEncodeable() {
 
 //        let polar = ManufacturerDataPolarHeartRate(heartRate: 89)

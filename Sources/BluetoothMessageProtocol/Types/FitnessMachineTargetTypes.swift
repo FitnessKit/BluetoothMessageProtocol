@@ -44,7 +44,7 @@ public struct FitnessMachineTargetResistanceLevelType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let resitance = self.level * 1 / 0.1
+        let resitance = self.level.resolution(1 / 0.1)
         let value = Int16(resitance)
 
         msgData.append(Data(from: value.littleEndian))
@@ -287,14 +287,14 @@ public struct FitnessMachineTargetCadence {
     private(set) public var cadence: Double
 
     internal static func create(_ value: UInt16) -> FitnessMachineTargetCadence {
-        let value = Double(value) * 0.5
+        let value = value.resolution(0.5)
         return FitnessMachineTargetCadence(cadence: value)
     }
 
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let cadence = self.cadence * (1 / 0.5)
+        let cadence = self.cadence.resolution(1 / 0.5)
         let value = UInt16(cadence)
 
         msgData.append(Data(from: value.littleEndian))

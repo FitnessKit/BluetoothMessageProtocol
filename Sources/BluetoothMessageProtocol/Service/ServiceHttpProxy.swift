@@ -26,7 +26,10 @@ import Foundation
 
 /// BLE HTTP Proxy Service
 ///
-/// This service allows a Client device, typically a sensor, to communicate with a Web Server through a gateway device. The gateway device implements the HTTP Proxy Service and therefore provides the services available through the Internet to the Client sensor device.
+/// This service allows a Client device, typically a sensor, to communicate with
+/// a Web Server through a gateway device. The gateway device implements the HTTP
+/// Proxy Service and therefore provides the services available through the Internet
+/// to the Client sensor device.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceHttpProxy: Service {

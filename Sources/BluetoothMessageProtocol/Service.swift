@@ -27,7 +27,7 @@ import Foundation
 /// Bluetooth Service base Class
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class Service: Encodable {
+open class Service {
 
     /// Name of the Service
     open internal(set) var name: String
@@ -48,6 +48,32 @@ open class Service: Encodable {
         self.name = name
         self.uuidString = uuidString
         self.uniformIdentifier = uniformIdentifier
+    }
+}
+
+extension Service: Encodable {
+
+    enum CodeKeys: CodingKey {
+        case name
+        case uuidString
+        case uniformIdentifier
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.uuidString, forKey: .uuidString)
+        try container.encode(self.uniformIdentifier, forKey: .uniformIdentifier)
     }
 }
 

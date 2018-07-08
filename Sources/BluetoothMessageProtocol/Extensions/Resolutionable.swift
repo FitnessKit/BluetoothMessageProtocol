@@ -32,6 +32,17 @@ protocol Resolutionable {
     func resolution(_ res: Double) -> Double
 }
 
+extension Double: Resolutionable {
+
+    /// Apply a Resolution to a number
+    ///
+    /// - Parameter res: Resolution
+    /// - Returns: Number with Resolution applied
+    func resolution(_ res: Double) -> Double {
+        return self * res
+    }
+}
+
 extension UInt8: Resolutionable {
 
     /// Apply a Resolution to a number

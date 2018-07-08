@@ -96,6 +96,45 @@ custom_categories:
     - ServiceWahooFitnessEquipment
     - ServiceWahooFitnessGEMModuleFirmwareUpdate
 
+  - name: Services - HomeKit Accessory Protocol
+    children:
+    - ServiceHapProtocolInformationService
+    - ServiceHapAccessoryInformation
+    - ServiceHapFan 
+    - ServiceHapAdvancedFan
+    - ServiceHapGarageDoorOpener
+    - ServiceHapLightbulb
+    - ServiceHapLockManagement
+    - ServiceHapLockMechanism
+    - ServiceHapOutlet 
+    - ServiceHapSwitch
+    - ServiceHapThermostat
+    - ServiceHapAirQualitySensor
+    - ServiceHapSecuritySystem
+    - ServiceHapCarbonMonoxideSensor
+    - ServiceHapContactSensor
+    - ServiceHapDoor
+    - ServiceHapHumiditySensor
+    - ServiceHapLeakSensor
+    - ServiceHapLightSensor
+    - ServiceHapMotionSensor
+    - ServiceHapOccupancySensor
+    - ServiceHapSmokeSensor
+    - ServiceHapStatelessProgrammableSwitch
+    - ServiceHapTemperatureSensor
+    - ServiceHapWindow
+    - ServiceHapWindowCovering
+    - ServiceHapBatteryService
+    - ServiceHapCarbonDioxideSensor
+    - ServiceHapCameraRtpStreamManagement
+    - ServiceHapMicrophone
+    - ServiceHapSpeaker
+    - ServiceHapDoorbell
+    - ServiceHapSlat
+    - ServiceHapFilterMaintenance
+    - ServiceHapAirPurifier
+    - ServiceHapServiceLabel 
+
   - name: ServiceData - Bluetooth SIG
     children:
     - ServiceDataFitnessMachine

@@ -63,7 +63,7 @@
 
 <p>Swift Package Manager:</p>
 <pre class="highlight swift"><code>    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/FitnessKit/BluetoothMessageProtocol"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.13.2"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/FitnessKit/BluetoothMessageProtocol"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.14.0"</span><span class="p">)</span>
     <span class="p">]</span>
 </code></pre>
 <h2 id='how-to-use' class='heading'>How to Use</h2>
@@ -104,6 +104,22 @@
     <span class="p">}</span> <span class="k">catch</span>  <span class="p">{</span>
         <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
     <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='manufacturer-specific-data' class='heading'>Manufacturer Specific Data</h3>
+
+<p>Manufacturer Specific data contains a Company Assigned Number and specific data defined by the Manufacturer.  </p>
+
+<p>Example using Apple iBeacon:</p>
+<pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">centralManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">central</span><span class="p">:</span> <span class="kt">CBCentralManager</span><span class="p">,</span> <span class="n">didDiscover</span> <span class="nv">peripheral</span><span class="p">:</span> <span class="kt">CBPeripheral</span><span class="p">,</span> <span class="nv">advertisementData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">Any</span><span class="p">],</span> <span class="n">rssi</span> <span class="kt">RSSI</span><span class="p">:</span> <span class="kt">NSNumber</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">advertData</span> <span class="o">=</span> <span class="n">advertisementData</span><span class="p">[</span><span class="kt">CBAdvertisementDataManufacturerDataKey</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">Data</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">beacon</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">ManufacturerDataAppleiBeacon</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="n">advertData</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">beacon</span><span class="o">.</span><span class="n">proximityUUID</span><span class="o">.</span><span class="n">uuidString</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
 <span class="p">}</span>
 </code></pre>
 <h2 id='author' class='heading'>Author</h2>
@@ -353,6 +369,119 @@
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/ServiceWahooFitnessGEMModuleFirmwareUpdate.html">ServiceWahooFitnessGEMModuleFirmwareUpdate</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="Services - HomeKit Accessory Protocol.html">Services - HomeKit Accessory Protocol</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapProtocolInformationService.html">ServiceHapProtocolInformationService</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapAccessoryInformation.html">ServiceHapAccessoryInformation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapFan.html">ServiceHapFan</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapAdvancedFan.html">ServiceHapAdvancedFan</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapGarageDoorOpener.html">ServiceHapGarageDoorOpener</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapLightbulb.html">ServiceHapLightbulb</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapLockManagement.html">ServiceHapLockManagement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapLockMechanism.html">ServiceHapLockMechanism</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapOutlet.html">ServiceHapOutlet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapSwitch.html">ServiceHapSwitch</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapThermostat.html">ServiceHapThermostat</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapAirQualitySensor.html">ServiceHapAirQualitySensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapSecuritySystem.html">ServiceHapSecuritySystem</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapCarbonMonoxideSensor.html">ServiceHapCarbonMonoxideSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapContactSensor.html">ServiceHapContactSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapDoor.html">ServiceHapDoor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapHumiditySensor.html">ServiceHapHumiditySensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapLeakSensor.html">ServiceHapLeakSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapLightSensor.html">ServiceHapLightSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapMotionSensor.html">ServiceHapMotionSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapOccupancySensor.html">ServiceHapOccupancySensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapSmokeSensor.html">ServiceHapSmokeSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapStatelessProgrammableSwitch.html">ServiceHapStatelessProgrammableSwitch</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapTemperatureSensor.html">ServiceHapTemperatureSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapWindow.html">ServiceHapWindow</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapWindowCovering.html">ServiceHapWindowCovering</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapBatteryService.html">ServiceHapBatteryService</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapCarbonDioxideSensor.html">ServiceHapCarbonDioxideSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapCameraRtpStreamManagement.html">ServiceHapCameraRtpStreamManagement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapMicrophone.html">ServiceHapMicrophone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapSpeaker.html">ServiceHapSpeaker</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapDoorbell.html">ServiceHapDoorbell</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapSlat.html">ServiceHapSlat</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapFilterMaintenance.html">ServiceHapFilterMaintenance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapAirPurifier.html">ServiceHapAirPurifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/ServiceHapServiceLabel.html">ServiceHapServiceLabel</a>
                 </li>
               </ul>
             </li>

@@ -128,7 +128,7 @@ public struct FitnessMachineInclinationType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let incline = self.incline.value * (1 / 0.1)
+        let incline = self.incline.value.resolution(1 / 0.1)
         let value = Int16(incline)
 
         msgData.append(Data(from: value.littleEndian))
@@ -180,7 +180,7 @@ public struct FitnessMachineSpeedType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let newSpeed = speed.converted(to: UnitSpeed.kilometersPerHour).value * 1 / 0.01
+        let newSpeed = speed.converted(to: UnitSpeed.kilometersPerHour).value.resolution(1 / 0.01)
         let value = UInt16(newSpeed)
 
         msgData.append(Data(from: value.littleEndian))
@@ -206,7 +206,7 @@ public struct FitnessMachineWheelCircumferenceType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let circumference = self.circumference.converted(to: UnitLength.millimeters).value * 1 / 0.1
+        let circumference = self.circumference.converted(to: UnitLength.millimeters).value.resolution(1 / 0.1)
         let value = UInt16(circumference)
 
         msgData.append(Data(from: value.littleEndian))

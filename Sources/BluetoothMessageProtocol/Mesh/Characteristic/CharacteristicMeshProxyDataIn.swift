@@ -44,7 +44,9 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
 
     /// Proxy Protocol Data Unit (PDU) Message
     ///
-    /// The Mesh Proxy Data In characteristic shall support Proxy PDU messages containing Network PDUs, mesh beacons, and proxy configuration messages and shall not support other Proxy PDU type messages
+    /// The Mesh Proxy Data In characteristic shall support Proxy PDU messages
+    /// containing Network PDUs, mesh beacons, and proxy configuration messages
+    /// and shall not support other Proxy PDU type messages
     private(set) public var pduMessage: ProxyDataUnit
 
     /// Creates Characteristic
