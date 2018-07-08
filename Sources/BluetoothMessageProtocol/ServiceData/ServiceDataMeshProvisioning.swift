@@ -48,8 +48,7 @@ open class ServiceDataMeshProvisioning: ServiceData {
     /// OOB Information
     private(set) public var oobInformation: MeshOutOfBandInformation
 
-
-    /// Service Data for Fitness Machine
+    /// Service Data for Mesh Provisioning
     ///
     /// - Parameters:
     ///   - deviceUUID: UUID For Device
@@ -60,7 +59,6 @@ open class ServiceDataMeshProvisioning: ServiceData {
 
         super.init(name: ServiceDataMeshProvisioning.name,
                    uuidString: ServiceDataMeshProvisioning.uuidString)
-
     }
 
     /// Deocdes the Service Data AD Type Data
@@ -79,7 +77,7 @@ open class ServiceDataMeshProvisioning: ServiceData {
         let uuidData = decoder.decodeData(data, length: 16)
         let deviceUUID = uuidData.create128BitUuid(reverseData: false)
 
-        let oobInformation = MeshOutOfBandInformation(rawValue: decoder.decodeUInt16(data))
+        let oobInformation = MeshOutOfBandInformation(rawValue: decoder.decodeUInt16(data).bigEndian)
 
         return ServiceDataMeshProvisioning(deviceUUID: deviceUUID,
                                            oobInformation: oobInformation)

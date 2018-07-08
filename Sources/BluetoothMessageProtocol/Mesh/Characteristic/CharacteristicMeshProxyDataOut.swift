@@ -63,6 +63,19 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicMeshProxyDataOut {
+        var decoder = DecodeData()
+
+        if let pduType = decoder.decodeUInt8IfPresent(data) {
+            let type = try ProxyMessageType(pduType)
+
+            guard type.message != .provisioning else {
+                throw BluetoothMessageProtocolError(message: "Proxy Data Unit of type Provisioning is not supported.")
+            }
+
+        } else {
+            throw BluetoothMessageProtocolError(.decodeError(msg: "Proxy Data size too small."))
+        }
+
         return CharacteristicMeshProxyDataOut(pduMessage: data)
     }
 

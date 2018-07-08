@@ -329,6 +329,13 @@ custom_categories:
     - ProvisioningAttentionTimer
     - MeshOutOfBandInformation
 
+  - name: Mesh Beacon
+    children:
+    - MeshBeacon
+    - MeshBeaconType
+    - MeshBeaconSecureNetwork
+    - MeshBeaconUnprovisioned
+
   - name: Mesh Provisioning
     children:
     - ProvisioningData

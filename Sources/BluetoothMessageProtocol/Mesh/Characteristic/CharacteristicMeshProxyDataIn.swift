@@ -45,12 +45,12 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
     /// Proxy Protocol Data Unit (PDU) Message
     ///
     /// The Mesh Proxy Data In characteristic shall support Proxy PDU messages containing Network PDUs, mesh beacons, and proxy configuration messages and shall not support other Proxy PDU type messages
-    private(set) public var pduMessage: Data
+    private(set) public var pduMessage: ProxyDataUnit
 
     /// Creates Characteristic
     ///
     /// - Parameter pduMessage: Proxy PDU Message
-    public init(pduMessage: Data) {
+    public init(pduMessage: ProxyDataUnit) {
         self.pduMessage = pduMessage
 
         super.init(name: CharacteristicMeshProxyDataIn.name,
@@ -71,9 +71,14 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
     /// - Returns: Data representation of the Characteristic
     /// - Throws: BluetoothMessageProtocolError
     open override func encode() throws -> Data {
+
+        guard pduMessage is ProxyDataUnitProvisioning == false else {
+            throw BluetoothMessageProtocolError(message: "Proxy Data Unit of type Provisioning is not supported.")
+        }
+
         var msgData = Data()
 
-        msgData.append(pduMessage)
+        msgData.append(try pduMessage.encode())
 
         return msgData
     }
