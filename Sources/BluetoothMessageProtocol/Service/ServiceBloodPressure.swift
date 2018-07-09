@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Blood Pressure Service
 ///
-/// This service exposes blood pressure and other data from a blood pressure monitor intended for healthcare applications.
+/// This service exposes blood pressure and other data from a blood pressure
+/// monitor intended for healthcare applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceBloodPressure: Service {

@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Continuous Glucose Monitoring Service
 ///
-/// This service exposes glucose and other data from a personal Continuous Glucose Monitoring (CGM) sensor for use in consumer healthcare applications.
+/// This service exposes glucose and other data from a personal Continuous
+/// Glucose Monitoring (CGM) sensor for use in consumer healthcare applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceContinuousGlucoseMonitoring: Service {

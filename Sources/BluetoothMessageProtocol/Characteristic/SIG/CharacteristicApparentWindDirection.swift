@@ -44,9 +44,13 @@ open class CharacteristicApparentWindDirection: Characteristic {
 
     /// Wind Direction
     ///
-    /// The apparent wind is the wind experienced by an observer in motion and is the relative velocity of the wind in relation to the observer.
+    /// The apparent wind is the wind experienced by an observer in motion and is
+    /// the relative velocity of the wind in relation to the observer.
     ///
-    /// For example, an apparent wind coming from a direction that is 45 degrees clockwise relative to the heading of the observer is given as 45 degrees; one that is from a direction 45 degrees anti-clockwise relative to the heading of the observer is given as 315 degrees.
+    /// For example, an apparent wind coming from a direction that is 45 degrees
+    /// clockwise relative to the heading of the observer is given as 45 degrees;
+    /// one that is from a direction 45 degrees anti-clockwise relative to the
+    /// heading of the observer is given as 315 degrees.
     ///
     private(set) public var windDirection: Measurement<UnitAngle>
 

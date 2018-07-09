@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Manufacturer Name String Characteristic
 ///
-/// The value of this characteristic is a UTF-8 string representing the name of the manufacturer of the device
+/// The value of this characteristic is a UTF-8 string representing the name of
+/// the manufacturer of the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicManufacturerNameString: Characteristic {

@@ -28,7 +28,10 @@ import FitnessUnits
 
 /// BLE Three Zone Heart Rate Limits Characteristic
 ///
-/// The limits between the heart rate zones for the 3-zone heart rate definition (Hard, Moderate and Light)
+/// The limits between the heart rate zones for the 3-zone heart rate definition
+/// - Hard
+/// - Moderate
+/// - Light
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicThreeZoneHeartRateLimits: Characteristic {

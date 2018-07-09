@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Reconnection Configuration Service
 ///
-/// This service enables the control of certain communication parameters of a Bluetooth Low Energy peripheral device.
+/// This service enables the control of certain communication parameters of
+/// a Bluetooth Low Energy peripheral device.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceReconnectionConfiguration: Service {

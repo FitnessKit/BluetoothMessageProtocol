@@ -28,7 +28,9 @@ import FitnessUnits
 
 /// BLE Two Zone Heart Rate Limit Characteristic
 ///
-/// The limits between the heart rate zones for the 2-zone heart rate definition (Fitness and Fat Burn).
+/// The limits between the heart rate zones for the 2-zone heart rate definition
+/// - Fitness
+/// - Fat Burn
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicTwoZoneHeartRateLimit: Characteristic {

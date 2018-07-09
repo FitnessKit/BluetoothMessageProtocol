@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Alert Level Characteristic
 ///
-/// The level of an alert a device is to sound. If this level is changed while the alert is being sounded, the new level should take effect.
+/// The level of an alert a device is to sound. If this level is changed while the
+/// alert is being sounded, the new level should take effect.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicAlertLevel: Characteristic {

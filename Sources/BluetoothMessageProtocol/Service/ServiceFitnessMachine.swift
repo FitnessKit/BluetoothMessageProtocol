@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Fitness Machine Service
 ///
-/// This service exposes training-related data in the sports and fitness environment, which allows a Server (e.g., a fitness machine) to send training-related data to a Client.
+/// This service exposes training-related data in the sports and fitness environment,
+/// which allows a Server (e.g., a fitness machine) to send training-related data to a Client.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceFitnessMachine: Service {

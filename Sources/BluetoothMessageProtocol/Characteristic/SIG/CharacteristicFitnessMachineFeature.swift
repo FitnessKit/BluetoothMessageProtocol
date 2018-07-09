@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Fitness Machine Features Characteristic
 ///
-/// The Fitness Machine Feature characteristic exposes which optional features are supported by the Server implementation
+/// The Fitness Machine Feature characteristic exposes which optional features are
+/// supported by the Server implementation
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicFitnessMachineFeature: Characteristic {

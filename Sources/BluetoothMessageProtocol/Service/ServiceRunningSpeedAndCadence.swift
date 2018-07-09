@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Running Speed and Cadence Service
 ///
-/// This service exposes speed, cadence and other data from a Running Speed and Cadence Sensor intended for fitness applications.
+/// This service exposes speed, cadence and other data from a Running Speed
+/// and Cadence Sensor intended for fitness applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceRunningSpeedAndCadence: Service {

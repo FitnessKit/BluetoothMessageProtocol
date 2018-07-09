@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Model Number String Characteristic
 ///
-/// The value of this characteristic is a UTF-8 string representing the model number assigned by the device vendor
+/// The value of this characteristic is a UTF-8 string representing the model number
+/// assigned by the device vendor
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicModelNumberString: Characteristic {

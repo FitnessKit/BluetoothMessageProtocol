@@ -25,7 +25,8 @@ import DataDecoder
 
 /// BLE HTTP Headers Characteristic
 ///
-/// The HTTP Headers Characteristic is used to hold the headers that would be sent to the HTTP Request or the headers contained within an HTTP response message from the HTTP Server
+/// The HTTP Headers Characteristic is used to hold the headers that would be sent to
+/// the HTTP Request or the headers contained within an HTTP response message from the HTTP Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicHTTPHeaders: Characteristic {

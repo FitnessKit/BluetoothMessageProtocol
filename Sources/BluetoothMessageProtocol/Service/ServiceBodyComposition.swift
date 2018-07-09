@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Body Composition Service
 ///
-/// This service exposes data related to body composition from a body composition analyzer intended for consumer healthcare and sports/fitness applications.
+/// This service exposes data related to body composition from a body composition
+/// analyzer intended for consumer healthcare and sports/fitness applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceBodyComposition: Service {

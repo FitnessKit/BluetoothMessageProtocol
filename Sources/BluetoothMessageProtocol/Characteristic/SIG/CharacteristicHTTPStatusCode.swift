@@ -25,7 +25,9 @@ import DataDecoder
 
 /// BLE HTTP Status Code Characteristic
 ///
-/// The HTTP Status Code characteristic contains the Status-Code from the Status-Line of the first line of the HTTP Response Message, followed by one octet indicating the Data Status Bit Field indicating the status of the data received
+/// The HTTP Status Code characteristic contains the Status-Code from the Status-Line
+/// of the first line of the HTTP Response Message, followed by one octet indicating
+/// the Data Status Bit Field indicating the status of the data received
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicHTTPStatusCode: Characteristic {
@@ -45,13 +47,17 @@ open class CharacteristicHTTPStatusCode: Characteristic {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
-        /// The response-header and entity-header fields were received in the HTTP response and stored in the HTTP Headers characteristic for the Client to read
+        /// The response-header and entity-header fields were received in the HTTP
+        /// response and stored in the HTTP Headers characteristic for the Client to read
         public static let headersReceived   = DataStatus(rawValue: 1 << 0)
-        /// The response-header and entity-header fields exceeded 512 octets in length and the first 512 octets were saved in the HTTP Headers characteristic
+        /// The response-header and entity-header fields exceeded 512 octets in length
+        /// and the first 512 octets were saved in the HTTP Headers characteristic
         public static let headersTruncated  = DataStatus(rawValue: 1 << 1)
-        /// The entity-body field was received in the HTTP response and stored in the HTTP Entity Body characteristic for the Client to read
+        /// The entity-body field was received in the HTTP response and stored in the
+        /// HTTP Entity Body characteristic for the Client to read
         public static let bodyReceived      = DataStatus(rawValue: 1 << 2)
-        /// The entity-body field exceeded 512 octets in length and the first 512 octets were saved in the HTTP Headers characteristic
+        /// The entity-body field exceeded 512 octets in length and the first 512 octets
+        /// were saved in the HTTP Headers characteristic
         public static let bodyTruncated     = DataStatus(rawValue: 1 << 3)
 
     }

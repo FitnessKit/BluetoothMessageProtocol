@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Weight Scale Service
 ///
-/// This service exposes weight and related data from a weight scale intended for consumer healthcare and sports/fitness applications.
+/// This service exposes weight and related data from a weight scale intended
+/// for consumer healthcare and sports/fitness applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceWeightScale: Service {

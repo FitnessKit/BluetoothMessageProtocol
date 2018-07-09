@@ -26,7 +26,10 @@ import Foundation
 
 /// BLE Scan Parameters Service
 ///
-/// This service enables a GATT Client to store the LE scan parameters it is using on a GATT Server device so that the GATT Server can utilize the information to adjust behavior to optimize power consumption and/or reconnection latency.
+/// This service enables a GATT Client to store the LE scan parameters it
+/// is using on a GATT Server device so that the GATT Server can utilize
+/// the information to adjust behavior to optimize power consumption and/or
+/// reconnection latency.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceScanParameters: Service {

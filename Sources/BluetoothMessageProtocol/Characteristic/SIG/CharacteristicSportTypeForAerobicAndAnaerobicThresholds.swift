@@ -28,7 +28,9 @@ import FitnessUnits
 
 /// BLE Sport Type for Aerobic and Anaerobic Thresholds Characteristic
 ///
-/// Aerobic Threshold and Anaerobic Threshold together with the Sport Type for Aerobic and Anaerobic Thresholds describe the metabolic thresholds of the user. The Sport Type for Aerobic and Anaerobic Thresholds identifies how the measurement was performed
+/// Aerobic Threshold and Anaerobic Threshold together with the Sport Type for
+/// Aerobic and Anaerobic Thresholds describe the metabolic thresholds of the user.
+/// The Sport Type for Aerobic and Anaerobic Thresholds identifies how the measurement was performed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characteristic {

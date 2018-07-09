@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Indoor Bike Data Characteristic
 ///
-/// The Indoor Bike Data characteristic is used to send training-related data to the Client from an indoor bike (Server).
+/// The Indoor Bike Data characteristic is used to send training-related data to
+/// the Client from an indoor bike (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicIndoorBikeData: Characteristic {

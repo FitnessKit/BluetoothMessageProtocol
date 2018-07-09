@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Health Thermometer Service
 ///
-/// The Health Thermometer service exposes temperature and other data from a thermometer intended for healthcare and fitness applications.
+/// The Health Thermometer service exposes temperature and other data from a
+/// thermometer intended for healthcare and fitness applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceHealthThermometer: Service {

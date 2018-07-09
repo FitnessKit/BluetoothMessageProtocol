@@ -28,7 +28,10 @@ import FitnessUnits
 
 /// BLE PnP ID Characteristic
 ///
-/// The PnP_ID characteristic is a set of values that used to create a device ID value that is unique for this device. Included in the characteristic is a Vendor ID Source field, a Vendor ID field, a Product ID field and a Product Version field. These values are used to identify all devices of a given type/model/version using numbers
+/// The PnP_ID characteristic is a set of values that used to create a device ID
+/// value that is unique for this device. Included in the characteristic is a Vendor
+/// ID Source field, a Vendor ID field, a Product ID field and a Product Version field.
+/// These values are used to identify all devices of a given type/model/version using numbers
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicPnPID: Characteristic {

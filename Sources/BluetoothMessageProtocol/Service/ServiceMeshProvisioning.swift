@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Mesh Provisioning Service
 ///
-/// The Mesh Provisioning Service allows a Provisioning Client to provision a Provisioning Server to allow it to participate in the mesh network.
+/// The Mesh Provisioning Service allows a Provisioning Client to provision
+/// a Provisioning Server to allow it to participate in the mesh network.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceMeshProvisioning: Service {

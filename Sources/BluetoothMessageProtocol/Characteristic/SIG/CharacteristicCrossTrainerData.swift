@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Cross Trainer Data Characteristic
 ///
-/// The Cross Trainer Data characteristic is used to send training-related data to the Client from a cross trainer (Server).
+/// The Cross Trainer Data characteristic is used to send training-related data to
+/// the Client from a cross trainer (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicCrossTrainerData: Characteristic {

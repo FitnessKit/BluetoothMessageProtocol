@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Supported Heart Rate Range Characteristic
 ///
-/// The Supported Heart Rate Range characteristic is used to send the supported Heart Rate range as well as the minimum Heart Rate increment supported by the Server
+/// The Supported Heart Rate Range characteristic is used to send the supported
+/// Heart Rate range as well as the minimum Heart Rate increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicSupportedHeartRateRange: Characteristic {

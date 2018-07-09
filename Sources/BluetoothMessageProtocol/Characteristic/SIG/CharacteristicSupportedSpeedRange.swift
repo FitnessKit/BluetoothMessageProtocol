@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Supported Speed Range Characteristic
 ///
-/// The Supported Speed Range characteristic is used to send the supported speed range as well as the minimum speed increment supported by the Server
+/// The Supported Speed Range characteristic is used to send the supported speed
+/// range as well as the minimum speed increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicSupportedSpeedRange: Characteristic {

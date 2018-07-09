@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Temperature Type Characteristic
 ///
-/// The Temperature Type characteristic is an enumeration that indicates where the temperature was measured
+/// The Temperature Type characteristic is an enumeration that indicates where
+/// the temperature was measured
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicTemperatureType: Characteristic {

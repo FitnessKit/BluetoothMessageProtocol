@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Automation IO Service
 ///
-/// The Automation IO service is used to expose the analog inputs/outputs and digital input/outputs of a generic IO module (IOM).
+/// The Automation IO service is used to expose the analog inputs/outputs and
+/// digital input/outputs of a generic IO module (IOM).
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceAutomationInputOutput: Service {

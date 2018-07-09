@@ -28,7 +28,12 @@ import FitnessUnits
 
 /// BLE Five Zone Heart Rate Limits Characteristic
 ///
-/// The limits between the heart rate zones for the 5-zone heart rate definition (Maximum, Hard, Moderate, Light and Very Light)
+/// The limits between the heart rate zones for the 5-zone heart rate definition
+/// - Maximum
+/// - Hard
+/// - Moderate
+/// - Light
+/// - Very Light
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicFiveZoneHeartRateLimits: Characteristic {

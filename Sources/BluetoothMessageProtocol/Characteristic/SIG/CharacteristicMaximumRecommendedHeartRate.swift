@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Maximum Recommended Heart Rate Characteristic
 ///
-/// Maximum recommended heart rate is a threshold that may be set to limit exertion. The maximum recommended heart rate is smaller or equal to the maximal heart rate a user can reach
+/// Maximum recommended heart rate is a threshold that may be set to limit exertion.
+/// The maximum recommended heart rate is smaller or equal to the maximal heart rate a user can reach
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicMaximumRecommendedHeartRate: Characteristic {

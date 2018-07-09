@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Heart Rate Service
 ///
-/// This service exposes heart rate and other data from a Heart Rate Sensor intended for fitness applications.
+/// This service exposes heart rate and other data from a Heart Rate Sensor
+/// intended for fitness applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceHeartRate: Service {

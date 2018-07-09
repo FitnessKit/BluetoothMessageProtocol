@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Tx Power Level Characteristic
 ///
-/// The Transmit Power Level characteristic represents the current transmit power level in dBm, and the level ranges from -100 dBm to +20 dBm to a resolution of 1 dBm.
+/// The Transmit Power Level characteristic represents the current transmit power
+/// level in dBm, and the level ranges from -100 dBm to +20 dBm to a resolution of 1 dBm.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicTxPowerLevel: Characteristic {

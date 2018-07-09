@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Supported Resistance Level Characteristic
 ///
-/// The Supported Resistance Level Range characteristic is used to send the supported resistance level range as well as the minimum resistance increment supported by the Server
+/// The Supported Resistance Level Range characteristic is used to send the supported
+/// resistance level range as well as the minimum resistance increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicSupportedResistanceLevel: Characteristic {

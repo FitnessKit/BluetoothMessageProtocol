@@ -27,7 +27,6 @@ import DataDecoder
 import FitnessUnits
 
 /// BLE Tacx ANT-FEC Send Characteristic
-///
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicTacxAntFecSend: Characteristic {

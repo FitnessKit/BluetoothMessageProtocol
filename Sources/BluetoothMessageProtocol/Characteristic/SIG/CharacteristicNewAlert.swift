@@ -28,7 +28,9 @@ import FitnessUnits
 
 /// BLE New Alert Characteristic
 ///
-/// This characteristic defines the category of the alert and how many new alerts of that category have occurred in the server device. Brief text information may also be included for the last alert in the category
+/// This characteristic defines the category of the alert and how many new alerts
+/// of that category have occurred in the server device. Brief text information may
+/// also be included for the last alert in the category
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicNewAlert: Characteristic {

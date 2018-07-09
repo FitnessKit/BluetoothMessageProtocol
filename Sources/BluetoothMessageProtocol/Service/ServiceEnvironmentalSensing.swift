@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Environmental Sensing Service
 ///
-/// This service exposes measurement data from an environmental sensor intended for sports and fitness applications. A wide range of environmental parameters is supported.
+/// This service exposes measurement data from an environmental sensor intended
+/// for sports and fitness applications. A wide range of environmental parameters is supported.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceEnvironmentalSensing: Service {

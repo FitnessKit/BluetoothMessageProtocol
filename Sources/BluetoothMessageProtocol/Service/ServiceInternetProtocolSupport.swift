@@ -26,7 +26,12 @@ import Foundation
 
 /// BLE Internet Protocol Support Service
 ///
-/// When in a GAP Discoverable Mode for an initial connection to a Router, the Node will include the IP Support Service UUID 0x1820 in the Service UUIDs AD type field of the advertising data. This enhances the user experience as a Node may be identified by the Router before initiating a connection and other data from a personal Continuous Glucose Monitoring (CGM) sensor for use in consumer healthcare applications.
+/// When in a GAP Discoverable Mode for an initial connection to a Router,
+/// the Node will include the IP Support Service UUID 0x1820 in the Service
+/// UUIDs AD type field of the advertising data. This enhances the user
+/// experience as a Node may be identified by the Router before initiating
+/// a connection and other data from a personal Continuous Glucose Monitoring
+/// (CGM) sensor for use in consumer healthcare applications.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceInternetProtocolSupport: Service {

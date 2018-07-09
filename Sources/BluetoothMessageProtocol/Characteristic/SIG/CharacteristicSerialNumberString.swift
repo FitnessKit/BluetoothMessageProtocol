@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Serial Number String Characteristic
 ///
-/// The value of this characteristic is a variable-length UTF-8 string representing the serial number for a particular instance of the device
+/// The value of this characteristic is a variable-length UTF-8 string representing
+/// the serial number for a particular instance of the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicSerialNumberString: Characteristic {

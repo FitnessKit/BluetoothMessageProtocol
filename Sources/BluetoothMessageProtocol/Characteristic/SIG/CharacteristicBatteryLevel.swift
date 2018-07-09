@@ -27,7 +27,6 @@ import DataDecoder
 import FitnessUnits
 
 /// BLE Battery Level Characteristic
-///
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicBatteryLevel: Characteristic {
@@ -44,7 +43,8 @@ open class CharacteristicBatteryLevel: Characteristic {
 
     /// Battery Level
     ///
-    /// The current charge level of a battery. 100% represents fully charged while 0% represents fully discharged.
+    /// The current charge level of a battery. 100% represents fully charged
+    /// while 0% represents fully discharged.
     ///
     private(set) public var level: Measurement<UnitPercent>
 

@@ -43,7 +43,9 @@ open class CharacteristicLocalTimeInformation: Characteristic {
 
     /// Timezone
     ///
-    /// Offset from UTC in number of 15 minutes increments. A value of -128 means that the time zone offset is not known. The offset defined in this characteristic is constant, regardless whether daylight savings is in effect
+    /// Offset from UTC in number of 15 minutes increments. A value of -128 means
+    /// that the time zone offset is not known. The offset defined in this characteristic
+    /// is constant, regardless whether daylight savings is in effect
     private(set) public var timeZone: Int8
 
     /// DST Offset

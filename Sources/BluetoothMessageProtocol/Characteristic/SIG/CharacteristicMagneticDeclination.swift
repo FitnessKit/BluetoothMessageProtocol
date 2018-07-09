@@ -43,7 +43,9 @@ open class CharacteristicMagneticDeclination: Characteristic {
 
     /// Magnetic Declination
     ///
-    /// The magnetic declination is the angle on the horizontal plane between the direction of True North (geographic) and the direction of Magnetic North, measured clockwise from True North to Magnetic North
+    /// The magnetic declination is the angle on the horizontal plane between the
+    /// direction of True North (geographic) and the direction of Magnetic North,
+    /// measured clockwise from True North to Magnetic North
     private(set) public var declination: Measurement<UnitAngle>
 
     /// Creates Magnetic Declination

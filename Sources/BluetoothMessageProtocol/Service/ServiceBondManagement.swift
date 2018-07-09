@@ -26,7 +26,8 @@ import Foundation
 
 /// BLE Bond Management Service
 ///
-/// This Specification proposes that this service will enable users to manage their bonds on devices with a limited user interface.
+/// This Specification proposes that this service will enable users to manage
+/// their bonds on devices with a limited user interface.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceBondManagement: Service {

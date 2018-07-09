@@ -25,7 +25,8 @@ import DataDecoder
 
 /// BLE HTTPS Security Characteristic
 ///
-/// The HTTPS Security characteristic contains the known authenticity of the HTTPS Server certificate for the URI
+/// The HTTPS Security characteristic contains the known authenticity of the
+/// HTTPS Server certificate for the URI
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicHTTPSSecurity: Characteristic {

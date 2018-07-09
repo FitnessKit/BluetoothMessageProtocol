@@ -26,7 +26,9 @@ import Foundation
 
 /// BLE Indoor Positioning Service
 ///
-/// The Indoor Positioning Service exposes location information to support e.g. mobile handsets to position themselves in an environment where GPS signal is not available, like indoor premises.
+/// The Indoor Positioning Service exposes location information to support
+/// e.g. mobile handsets to position themselves in an environment where
+/// GPS signal is not available, like indoor premises.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ServiceIndoorPositioning: Service {

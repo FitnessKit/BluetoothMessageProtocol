@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE URI Characteristic
 ///
-/// The Uniform Resource Identifier (URI) Characteristic is used to configure the URI for a subsequent request
+/// The Uniform Resource Identifier (URI) Characteristic is used to configure
+/// the URI for a subsequent request
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicUniformResourceIdentifier: Characteristic {

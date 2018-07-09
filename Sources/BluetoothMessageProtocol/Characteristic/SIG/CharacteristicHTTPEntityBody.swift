@@ -25,7 +25,8 @@ import DataDecoder
 
 /// BLE HTTP Entity Body Characteristic
 ///
-/// The HTTP Entity Body Characteristic contains the contents of the message body after any Transfer Encoding has been applied
+/// The HTTP Entity Body Characteristic contains the contents of the message body
+/// after any Transfer Encoding has been applied
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicHTTPEntityBody: Characteristic {

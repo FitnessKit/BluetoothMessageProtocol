@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Software Revision String Characteristic
 ///
-/// The value of this characteristic is a UTF-8 string representing the software revision for the software within the device
+/// The value of this characteristic is a UTF-8 string representing the software
+/// revision for the software within the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicSoftwareRevisionString: Characteristic {

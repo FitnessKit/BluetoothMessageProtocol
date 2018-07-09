@@ -43,7 +43,9 @@ open class CharacteristicTimeZone: Characteristic {
 
     /// Time Zone
     ///
-    /// Offset from UTC in number of 15 minutes increments.  The offset defined in this characteristic is constant, regardless whether daylight savings is in effect
+    /// Offset from UTC in number of 15 minutes increments.  The offset defined
+    /// in this characteristic is constant, regardless whether daylight savings
+    /// is in effect
     private(set) public var timeZone: BluetoothTimeZone
 
     /// Creates Time Zone Characteristic

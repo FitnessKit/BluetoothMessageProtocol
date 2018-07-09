@@ -28,8 +28,8 @@ import FitnessUnits
 
 /// BLE Analog Output Characteristic
 ///
-/// Value of an analog output as a 16-bit integer (uint16). The format of the analog value depends on the implementation.
-///
+/// Value of an analog output as a 16-bit integer (uint16). The format of the
+/// analog value depends on the implementation.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicAnalogOutput: Characteristic {

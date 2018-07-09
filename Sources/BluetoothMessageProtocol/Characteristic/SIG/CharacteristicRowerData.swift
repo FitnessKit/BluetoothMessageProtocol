@@ -28,7 +28,8 @@ import FitnessUnits
 
 /// BLE Rower Data Characteristic
 ///
-/// The Rower Data characteristic is used to send training-related data to the Client from a rower (Server).
+/// The Rower Data characteristic is used to send training-related data to the
+/// Client from a rower (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicRowerData: Characteristic {
