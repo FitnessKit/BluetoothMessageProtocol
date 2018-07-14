@@ -39,12 +39,12 @@ public enum HomeKitAccessoryCategory: UInt16 {
     case bridge             = 2
     /// Fan
     case fan                = 3
-    /// Garage
-    case garage             = 4
-    /// Lightbulb
-    case lightbulb          = 5
-    /// Door Lock
-    case doorLock           = 6
+    /// Garage Door Openers
+    case garageDoorOpener   = 4
+    /// Lighting
+    case lighting           = 5
+    /// Locks
+    case lock               = 6
     /// Outlet
     case outlet             = 7
     /// Switch
@@ -71,6 +71,20 @@ public enum HomeKitAccessoryCategory: UInt16 {
     case videoDoorBell      = 18
     /// Air Purifier
     case airPurifier        = 19
+    /// Header
+    case heater             = 20
+    /// Air Conditioner
+    case airConditioner     = 21
+    /// Humidifier
+    case humidifier         = 22
+    /// Dehumidifier
+    case dehumidifier       = 23
+    /// Sprinkler
+    case sprinkler          = 28
+    /// Faucet
+    case faucet             = 29
+    /// Shower System
+    case showSystem         = 30
 }
 
 extension HomeKitAccessoryCategory {

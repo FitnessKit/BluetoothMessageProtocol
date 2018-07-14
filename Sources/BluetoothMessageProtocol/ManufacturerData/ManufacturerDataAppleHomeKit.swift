@@ -25,6 +25,7 @@
 import Foundation
 import DataDecoder
 import FitnessUnits
+import CryptoSwift
 
 /// Apple HomeKit Manufacturer Specific Data
 ///
@@ -74,6 +75,14 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     /// The version of the HomeKit Accessory Protocol Used
     private(set) public var compatibleVersion: UInt8
 
+    /// Setup ID
+    ///
+    /// String of 4 Characters in Length
+    private(set) public var setupID: String?
+
+    /// Setup Hash
+    private(set) public var setupHash: UInt32
+
 
     /// Creates an Apple HomeKit Manufacturer Specific Data Class
     ///
@@ -85,13 +94,16 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///   - globalState: Global State Number
     ///   = configuration: Configuration Number
     ///   - compatibleVersion: Compatible Version
+    ///   - setupID: Setup ID String
     public init(advertisingInterval: UInt8,
                 statusFlag: StatusFlag,
                 deviceId: MACAddress,
                 accessoryCategory: HomeKitAccessoryCategory,
                 globalState: UInt16,
                 configuration: UInt8,
-                compatibleVersion: UInt8 = 2) {
+                compatibleVersion: UInt8 = 2,
+                setupID: String) {
+
         self.advertisingInterval = advertisingInterval
         self.statusFlag = statusFlag
         self.deviceId = deviceId
@@ -99,6 +111,17 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         self.globalState = globalState
         self.configuration = configuration
         self.compatibleVersion = compatibleVersion
+        self.setupID = String(setupID.prefix(4))
+
+        if let setupdata = setupID.data(using: .utf8),
+            let deviceData = deviceId.stringValue.data(using: .utf8) {
+
+            let shaTest = (setupdata + deviceData).sha512()
+            self.setupHash = shaTest.prefix(4).to(type: UInt32.self)
+
+        } else {
+            self.setupHash = 0
+        }
 
         super.init(manufacturer: .apple, specificData: nil)
     }
@@ -110,6 +133,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                   globalState: UInt16,
                   configuration: UInt8,
                   compatibleVersion: UInt8,
+                  setupHash: UInt32,
                   rawData: Data) {
         self.advertisingInterval = advertisingInterval
         self.statusFlag = statusFlag
@@ -118,6 +142,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         self.globalState = globalState
         self.configuration = configuration
         self.compatibleVersion = compatibleVersion
+
+        self.setupHash = setupHash
 
         super.init(manufacturer: .apple, specificData: rawData)
     }
@@ -164,6 +190,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
             let compatibleVersion = decoder.decodeUInt8(data)
 
+            let setupHash = decoder.decodeUInt32(data)
+
             return ManufacturerDataAppleHomeKit(advertisingInterval: interval,
                                                 statusFlag: statusFlag,
                                                 deviceId: deviceId,
@@ -171,6 +199,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                                                 globalState: globalState,
                                                 configuration: configuration,
                                                 compatibleVersion: compatibleVersion,
+                                                setupHash: setupHash,
                                                 rawData: data)
 
         } else {
@@ -209,6 +238,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         case globalState
         case configuration
         case compatibleVersion
+        case setupID
+        case setupHash
     }
 
     public init(from decoder: Decoder) throws {
@@ -235,6 +266,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         try container.encode(globalState, forKey: .globalState)
         try container.encode(configuration, forKey: .configuration)
         try container.encode(compatibleVersion, forKey: .compatibleVersion)
+        try container.encodeIfPresent(setupID, forKey: .setupID)
+        try container.encode(setupHash, forKey: .setupHash)
     }
 }
 

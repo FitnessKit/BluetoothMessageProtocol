@@ -11,6 +11,8 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "2.0.3"),
         .package(url: "https://github.com/FitnessKit/DataDecoder", from: "4.3.0"),
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "0.9.0")
+
     ],
     targets: [
         .target(
@@ -18,6 +20,7 @@ let package = Package(
             dependencies: [
                 "FitnessUnits",
                 "DataDecoder",
+                "CryptoSwift",
             ]
         ),
         .testTarget(
