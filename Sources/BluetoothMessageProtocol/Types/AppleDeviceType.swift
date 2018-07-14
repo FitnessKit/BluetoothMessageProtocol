@@ -31,6 +31,8 @@ public enum AppleDeviceType: UInt8, Codable {
     case iBeaccon               = 2
     /// AirDrop
     case airDrop                = 5
+    /// HAP
+    case hap                    = 6
     /// AirPods
     case airPod                 = 7
     /// AirPlay Destination
