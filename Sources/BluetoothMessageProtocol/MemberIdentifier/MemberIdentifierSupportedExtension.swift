@@ -29,6 +29,17 @@ public extension MemberIdentifier {
     /// Array of all Supported MemberIdentifier values
     public static var supportedMemberIdentifers: [MemberIdentifier] = {
 
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDE, name: "Noodle Technology Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDF, name: "Harman International"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE0, name: "John Deere"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE1, name: "Fortin Electronic Systems"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE2, name: "Google Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE3, name: "Abbott Diabetes Care"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE4, name: "JUUL Labs, Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE5, name: "SMK Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE6, name: "Intelletto Technologies Inc"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE7, name: "SECOM Co., LTD"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE8, name: "Robert Bosch GmbH"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE9, name: "Spacesaver Corporation"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDEA, name: "SeeScan, Inc"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDEB, name: "Syntronix Corporation"))

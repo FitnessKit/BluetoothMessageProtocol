@@ -14,7 +14,8 @@ class MemberIdentifierTests: XCTestCase {
     func testMemberDups() {
 
         let x = MemberIdentifier.supportedMemberIdentifers
-        let duplicates = Array(Set(x.filter({ (i: MemberIdentifier) in x.filter({ $0.assignedNumber == i.assignedNumber }).count > 1})))
+        let duplicates = Array(Set(x.filter({ (i: MemberIdentifier) in
+            x.filter({ $0.assignedNumber == i.assignedNumber }).count > 1})))
 
         if duplicates.count > 0 {
             for dup in duplicates {

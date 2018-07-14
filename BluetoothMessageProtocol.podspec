@@ -35,7 +35,7 @@ Encoding and Decoding of the Bluetooth Message Protocol.  Makes creating apps us
 #  s.ios.framework       = [ 'Dispatch' ]
 
 #Dependancy
-  s.dependency 'DataDecoder', '~> 4.2.0'
+  s.dependency 'DataDecoder', '~> 4.3.0'
   s.dependency 'FitnessUnits', '~> 2.0.3'
 
 end

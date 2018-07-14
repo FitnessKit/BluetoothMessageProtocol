@@ -38,6 +38,11 @@ public extension Service {
         return ServiceCycleOps()
     }
 
+    /// Dropcam
+    public class var dropcam: ServiceDropcam {
+        return ServiceDropcam()
+    }
+
     /// Elite Trainer
     public class var eliteTrainer: ServiceEliteTrainer {
         return ServiceEliteTrainer()
