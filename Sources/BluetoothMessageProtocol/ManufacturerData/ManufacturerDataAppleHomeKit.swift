@@ -54,7 +54,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///
     /// Identifier, which indicates the category that best describes
     /// the primary function of the accessory
-    private(set) public var accessoryCategory: UInt16
+    private(set) public var accessoryCategory: HomeKitAccessoryCategory
 
     /// Global State Number
     ///
@@ -85,7 +85,13 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///   - globalState: Global State Number
     ///   = configuration: Configuration Number
     ///   - compatibleVersion: Compatible Version
-    public init(advertisingInterval: UInt8, statusFlag: StatusFlag, deviceId: MACAddress, accessoryCategory: UInt16, globalState: UInt16, configuration: UInt8, compatibleVersion: UInt8 = 2) {
+    public init(advertisingInterval: UInt8,
+                statusFlag: StatusFlag,
+                deviceId: MACAddress,
+                accessoryCategory: HomeKitAccessoryCategory,
+                globalState: UInt16,
+                configuration: UInt8,
+                compatibleVersion: UInt8 = 2) {
         self.advertisingInterval = advertisingInterval
         self.statusFlag = statusFlag
         self.deviceId = deviceId
@@ -97,7 +103,14 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         super.init(manufacturer: .apple, specificData: nil)
     }
 
-    internal init(advertisingInterval: UInt8, statusFlag: StatusFlag, deviceId: MACAddress, accessoryCategory: UInt16, globalState: UInt16, configuration: UInt8, compatibleVersion: UInt8, rawData: Data) {
+    internal init(advertisingInterval: UInt8,
+                  statusFlag: StatusFlag,
+                  deviceId: MACAddress,
+                  accessoryCategory: HomeKitAccessoryCategory,
+                  globalState: UInt16,
+                  configuration: UInt8,
+                  compatibleVersion: UInt8,
+                  rawData: Data) {
         self.advertisingInterval = advertisingInterval
         self.statusFlag = statusFlag
         self.deviceId = deviceId
@@ -133,9 +146,9 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
             let ail = decoder.decodeUInt8(data)
 
-            guard ail & 0x1F == 13 else {
-                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Lenght issue"))
-            }
+//            guard ail & 0x1F == 13 else {
+//                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Lenght issue"))
+//            }
 
             let interval = ail & 0xE0 >> 5
 
@@ -143,7 +156,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
             let deviceId = decoder.decodeMACAddress(data)
 
-            let accessoryCategory = decoder.decodeUInt16(data)
+            let accessoryCategory = HomeKitAccessoryCategory(rawValue: decoder.decodeUInt16(data)) ?? .other
 
             let globalState = decoder.decodeUInt16(data)
 
@@ -180,7 +193,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         msgData.append(ail.uint8Value)
         msgData.append(statusFlag.rawValue)
         msgData.append(deviceId.dataValue)
-        msgData.append(Data(from: accessoryCategory.littleEndian))
+        msgData.append(Data(from: accessoryCategory.rawValue.littleEndian))
         msgData.append(Data(from: globalState.littleEndian))
         msgData.append(configuration)
         msgData.append(compatibleVersion)

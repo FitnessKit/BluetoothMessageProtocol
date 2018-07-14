@@ -287,6 +287,7 @@ custom_categories:
     children:
     - ManufacturerData
     - ManufacturerDataAltBeacon
+    - ManufacturerDataAppleHomeKit
     - ManufacturerDataAppleiBeacon
     - ManufacturerDataPolarHeartRate
 
@@ -362,6 +363,10 @@ custom_categories:
     - FitnessMachineStopPauseType
     - FitnessMachineSpeedType
     - FitnessMachineWheelCircumferenceType
+
+  - name: HomeKit
+    children:
+    - HomeKitAccessoryCategory
 
   - name: Mesh
     children:
