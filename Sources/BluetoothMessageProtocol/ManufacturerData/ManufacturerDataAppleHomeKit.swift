@@ -215,7 +215,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         var msgData = Data()
 
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
-        msgData.append(AppleDeviceType.hap.rawValue) //Type Proximity
+        msgData.append(AppleDeviceType.hap.rawValue)
 
         let ail = Nibble(lower: 13, upper: self.advertisingInterval)
         msgData.append(ail.uint8Value)

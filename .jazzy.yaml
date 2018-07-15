@@ -99,6 +99,7 @@ custom_categories:
 
   - name: Services - HomeKit Accessory Protocol
     children:
+    - ServiceHapPairing
     - ServiceHapProtocolInformationService
     - ServiceHapAccessoryInformation
     - ServiceHapFan 
@@ -373,6 +374,7 @@ custom_categories:
   - name: HomeKit
     children:
     - HomeKitAccessoryCategory
+    - HomeKitPairingTlvType
 
   - name: Mesh
     children:

@@ -137,11 +137,11 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
             let authTag = decoder.decodeUInt32(data)
 
             return ManufacturerDataAppleHomeKitEncryptedNotification(subType: subType,
-                                                accessoryIdentifier: accessoryIdentifier,
-                                                globalState: globalState,
-                                                characteristicInstance: characteristicInstance,
-                                                authTag: authTag,
-                                                rawData: data)
+                                                                     accessoryIdentifier: accessoryIdentifier,
+                                                                     globalState: globalState,
+                                                                     characteristicInstance: characteristicInstance,
+                                                                     authTag: authTag,
+                                                                     rawData: data)
 
         } else {
             throw BluetoothMessageProtocolError(.decodeError(msg: "No Manufacturer Specific Data"))

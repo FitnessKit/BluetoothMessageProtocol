@@ -8,6 +8,7 @@
 import XCTest
 @testable import BluetoothMessageProtocol
 import CryptoSwift
+import DataDecoder
 
 class HomeKitTests: XCTestCase {
 
@@ -36,6 +37,54 @@ class HomeKitTests: XCTestCase {
             /// CE1210F7
             XCTFail()
         }
+    }
+
+    func testTlvDecode() {
+        let tlvData = Data([0x06, 0x01, 0x03, 0x06, 0x02, 0x03, 0x00])
+
+        var decoder = DecodeData()
+
+        while decoder.index != tlvData.count {
+            if let tlvType = HomeKitTlvType(rawValue: decoder.decodeUInt8(tlvData)) {
+
+                guard tlvType == .state else {
+                    XCTFail()
+                    return
+                }
+
+                let size = decoder.decodeUInt8(tlvData)
+
+                switch tlvType.format {
+                case .integer:
+                    switch size {
+                    case UInt8(MemoryLayout<UInt8>.size):
+                        let value = decoder.decodeUInt8(tlvData)
+
+                        guard value == 3 else { XCTFail(); return }
+
+                    case UInt8(MemoryLayout<UInt16>.size):
+                        let value = decoder.decodeUInt16(tlvData)
+
+                        guard value == 3 else { XCTFail(); return }
+
+                    default:
+                        XCTFail()
+                    }
+                case .string:
+                    XCTFail()
+
+                case .data:
+                    XCTFail()
+
+                case .null:
+                    XCTFail()
+
+                }
+
+            } else {
+                XCTFail()
+            }
+        }
 
     }
 
@@ -48,5 +97,6 @@ class HomeKitTests: XCTestCase {
 
     static var allTests = [
         ("testSetupHash", testSetupHash),
+        ("testTlvDecode", testTlvDecode),
         ]
 }
