@@ -134,7 +134,12 @@ custom_categories:
     - ServiceHapSlat
     - ServiceHapFilterMaintenance
     - ServiceHapAirPurifier
+    - ServiceHapHeaterCooler
+    - ServiceHapHumidifierDehumidifier
     - ServiceHapServiceLabel 
+    - ServiceHapIrrigationSystem
+    - ServiceHapValve
+    - ServiceHapFaucet
 
   - name: ServiceData - Bluetooth SIG
     children:

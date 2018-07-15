@@ -131,7 +131,8 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
 
             let characteristicInstance = decoder.decodeUInt16(data)
 
-            let characteristicValue = decoder.decodeUInt64(data)
+            /// characteristicValue
+            let _ = decoder.decodeUInt64(data)
 
             let authTag = decoder.decodeUInt32(data)
 

@@ -203,8 +203,33 @@ public extension Service {
         return ServiceHapAirPurifier()
     }
 
+    /// Humidifier Dehumidifier
+    public class var hapHeaterCooler: ServiceHapHeaterCooler {
+        return ServiceHapHeaterCooler()
+    }
+
+    /// Heater Cooler
+    public class var hapHumidifierDehumidifier: ServiceHapHumidifierDehumidifier {
+        return ServiceHapHumidifierDehumidifier()
+    }
+
     /// Service Label
     public class var hapServiceLabel: ServiceHapServiceLabel {
         return ServiceHapServiceLabel()
+    }
+
+    /// Irrigation System
+    public class var hapIrrigationSystem: ServiceHapIrrigationSystem {
+        return ServiceHapIrrigationSystem()
+    }
+
+    /// Valve
+    public class var hapValve: ServiceHapValve {
+        return ServiceHapValve()
+    }
+
+    /// Faucet
+    public class var hapFaucet: ServiceHapFaucet {
+        return ServiceHapFaucet()
     }
 }
