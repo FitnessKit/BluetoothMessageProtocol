@@ -5,4 +5,6 @@ XCTMain([
     testCase(CompanyIdentifierTests.allTests),
     testCase(MemberIdentifierTests.allTests),
     testCase(CharacteristicCurrentTimeTests.allTests),
+    testCase(CodeableTests.allTests),
+    testCase(HomeKitTests.allTests),
 ])

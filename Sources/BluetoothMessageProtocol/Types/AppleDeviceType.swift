@@ -31,7 +31,7 @@ public enum AppleDeviceType: UInt8, Codable {
     case iBeaccon               = 2
     /// AirDrop
     case airDrop                = 5
-    /// HAP
+    /// HAP BLE Regular Advertisement Format
     case hap                    = 6
     /// AirPods
     case airPod                 = 7
@@ -39,6 +39,8 @@ public enum AppleDeviceType: UInt8, Codable {
     case airPlayDestination     = 9
     /// AirPlay Source
     case airPlaySource          = 10
+    /// HAP BLE Encrypted Notification Advertisement
+    case hapEncrypted           = 11
     /// Handoff
     case handoff                = 12
     /// Nearby

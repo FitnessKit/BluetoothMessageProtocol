@@ -288,6 +288,7 @@ custom_categories:
     - ManufacturerData
     - ManufacturerDataAltBeacon
     - ManufacturerDataAppleHomeKit
+    - ManufacturerDataAppleHomeKitEncryptedNotification
     - ManufacturerDataAppleiBeacon
     - ManufacturerDataPolarHeartRate
 

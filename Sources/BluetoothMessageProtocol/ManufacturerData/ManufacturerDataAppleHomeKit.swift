@@ -28,7 +28,6 @@ import FitnessUnits
 import CryptoSwift
 
 /// Apple HomeKit Manufacturer Specific Data
-///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class ManufacturerDataAppleHomeKit: ManufacturerData {
@@ -173,10 +172,10 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
             let ail = decoder.decodeUInt8(data)
 
 //            guard ail & 0x1F == 13 else {
-//                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Lenght issue"))
+//                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Length issue"))
 //            }
 
-            let interval = ail & 0xE0 >> 5
+            let interval = (ail & 0xE0) >> 5
 
             let statusFlag = StatusFlag(rawValue: decoder.decodeUInt8(data))
 

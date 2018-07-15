@@ -291,9 +291,65 @@ This value must persist across reboots, power cycles and firmware updates</p>
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitCACs5UInt8V19advertisingInterval_AC10StatusFlagV06statusM00E7Decoder10MACAddressV8deviceIdAA0gH17AccessoryCategoryO09accessoryT0s6UInt16V11globalStateAE13configurationAE17compatibleVersiontcfc"></a>
-                      <a name="//apple_ref/swift/Method/init(advertisingInterval:statusFlag:deviceId:accessoryCategory:globalState:configuration:compatibleVersion:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitCACs5UInt8V19advertisingInterval_AC10StatusFlagV06statusM00E7Decoder10MACAddressV8deviceIdAA0gH17AccessoryCategoryO09accessoryT0s6UInt16V11globalStateAE13configurationAE17compatibleVersiontcfc">init(advertisingInterval:statusFlag:deviceId:accessoryCategory:globalState:configuration:compatibleVersion:)</a>
+                      <a name="/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitC7setupIDSSSgvp"></a>
+                      <a name="//apple_ref/swift/Property/setupID" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitC7setupIDSSSgvp">setupID</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Setup ID</p>
+
+<p>String of 4 Characters in Length</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">setupID</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitC9setupHashs6UInt32Vvp"></a>
+                      <a name="//apple_ref/swift/Property/setupHash" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitC9setupHashs6UInt32Vvp">setupHash</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Setup Hash</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">setupHash</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitCACs5UInt8V19advertisingInterval_AC10StatusFlagV06statusM00E7Decoder10MACAddressV8deviceIdAA0gH17AccessoryCategoryO09accessoryT0s6UInt16V11globalStateAE13configurationAE17compatibleVersionSS7setupIDtcfc"></a>
+                      <a name="//apple_ref/swift/Method/init(advertisingInterval:statusFlag:deviceId:accessoryCategory:globalState:configuration:compatibleVersion:setupID:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol28ManufacturerDataAppleHomeKitCACs5UInt8V19advertisingInterval_AC10StatusFlagV06statusM00E7Decoder10MACAddressV8deviceIdAA0gH17AccessoryCategoryO09accessoryT0s6UInt16V11globalStateAE13configurationAE17compatibleVersionSS7setupIDtcfc">init(advertisingInterval:statusFlag:deviceId:accessoryCategory:globalState:configuration:compatibleVersion:setupID:)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -314,7 +370,8 @@ This value must persist across reboots, power cycles and firmware updates</p>
             <span class="nv">accessoryCategory</span><span class="p">:</span> <span class="kt"><a href="../Enums/HomeKitAccessoryCategory.html">HomeKitAccessoryCategory</a></span><span class="p">,</span>
             <span class="nv">globalState</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span>
             <span class="nv">configuration</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">,</span>
-            <span class="nv">compatibleVersion</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+            <span class="nv">compatibleVersion</span><span class="p">:</span> <span class="kt">UInt8</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="nv">setupID</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -392,6 +449,18 @@ This value must persist across reboots, power cycles and firmware updates</p>
                                 <td>
                                   <div>
                                     <p>Compatible Version</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>setupID</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Setup ID String</p>
                                   </div>
                                 </td>
                               </tr>
@@ -1449,6 +1518,9 @@ encoder&rsquo;s format.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ManufacturerDataAppleHomeKit/StatusFlag.html">– StatusFlag</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataAppleHomeKitEncryptedNotification.html">ManufacturerDataAppleHomeKitEncryptedNotification</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ManufacturerDataAppleiBeacon.html">ManufacturerDataAppleiBeacon</a>

@@ -7,29 +7,10 @@
 
 import XCTest
 @testable import BluetoothMessageProtocol
-import CryptoSwift
 
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 class CharacteristicCurrentTimeTests: XCTestCase {
-
-
-    func testSha() {
-        let setupId = "FYMN"
-        let deviceID = "E0:5F:0A:B8:12:20"
-
-        let test = setupId.data(using: .utf8)! + deviceID.data(using: .utf8)!
-        let shaTest = test.sha512()
-
-//        let hash = shaTest.prefix(4)
-        let setupHash = shaTest.prefix(4).to(type: UInt32.self)
-
-        if setupHash != 3457290487 {
-            /// CE1210F7
-            XCTFail()
-        }
-
-    }
     
     func testEncode() {
 

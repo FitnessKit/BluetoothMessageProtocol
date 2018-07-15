@@ -199,10 +199,10 @@ open class CharacteristicWeightScaleFeature: Characteristic {
         let multiUsers = (value & 0x02 == 0x02)
         let bmi = (value & 0x04 == 0x04)
 
-        let weightValue: UInt8 = UInt8(value & 0x78 >> 3)
+        let weightValue: UInt8 = UInt8((value & 0x78) >> 3)
         let weightRes = WeightResolution(rawValue: weightValue) ?? .notSpecified
 
-        let heightValue: UInt8 = UInt8(value & 0x380 >> 7)
+        let heightValue: UInt8 = UInt8((value & 0x380) >> 7)
         let heightRes = HeightResolution(rawValue: heightValue) ?? .notSpecified
 
         return CharacteristicWeightScaleFeature(timestampSupported: timestamp,
