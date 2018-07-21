@@ -107,6 +107,15 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
 }
 ```
 
+#### Manufacturer Specific Data
+
+* Apple iBeacon
+* AltBeacon
+* HomeKit
+* HomeKit Encrypted Notification Advertisement
+* Polar Heart Rate
+
+
 ## Author
 
 This package is developed and maintained by Kevin A. Hoogheem
