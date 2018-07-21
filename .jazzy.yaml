@@ -375,6 +375,7 @@ custom_categories:
     children:
     - HomeKitAccessoryCategory
     - HomeKitPairingErrorType
+    - HomeKitPairingMethodType
     - HomeKitPairingTlvType
 
   - name: Mesh
