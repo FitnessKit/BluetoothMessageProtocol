@@ -41,9 +41,6 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         public static let pairingEnabled    = StatusFlag(rawValue: 1 << 0)
     }
 
-    /// Advertising Interval
-    private(set) public var advertisingInterval: UInt8
-
     /// Status Flags
     private(set) public var statusFlag: StatusFlag
 
@@ -86,7 +83,6 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     /// Creates an Apple HomeKit Manufacturer Specific Data Class
     ///
     /// - Parameters:
-    ///   - advertisingInterval: Advertising Interval
     ///   - statusFlag: Status Flags
     ///   - deviceId: Device ID
     ///   - accessoryCategory: Accessory Category Identifier
@@ -94,8 +90,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///   = configuration: Configuration Number
     ///   - compatibleVersion: Compatible Version
     ///   - setupID: Setup ID String
-    public init(advertisingInterval: UInt8,
-                statusFlag: StatusFlag,
+    public init(statusFlag: StatusFlag,
                 deviceId: MACAddress,
                 accessoryCategory: HomeKitAccessoryCategory,
                 globalState: UInt16,
@@ -103,7 +98,6 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                 compatibleVersion: UInt8 = 2,
                 setupID: String) {
 
-        self.advertisingInterval = advertisingInterval
         self.statusFlag = statusFlag
         self.deviceId = deviceId
         self.accessoryCategory = accessoryCategory
@@ -125,8 +119,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         super.init(manufacturer: .apple, specificData: nil)
     }
 
-    internal init(advertisingInterval: UInt8,
-                  statusFlag: StatusFlag,
+    internal init(statusFlag: StatusFlag,
                   deviceId: MACAddress,
                   accessoryCategory: HomeKitAccessoryCategory,
                   globalState: UInt16,
@@ -134,7 +127,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                   compatibleVersion: UInt8,
                   setupHash: UInt32,
                   rawData: Data) {
-        self.advertisingInterval = advertisingInterval
+
         self.statusFlag = statusFlag
         self.deviceId = deviceId
         self.accessoryCategory = accessoryCategory
@@ -169,13 +162,15 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                 throw BluetoothMessageProtocolError(.decodeError(msg: "Type wrong for HomeKit"))
             }
 
-            let ail = decoder.decodeUInt8(data)
+            /// 8bits for SubType and Length, the 3 significant bits specify the HomeKit
+            /// advertising format SubType and shall be set to 1, and the remaining 5 bits
+            /// is the length of the remaining bytes in the manufacturer specific data which
+            /// shall be set to the value 17.
+            let stl = decoder.decodeUInt8(data)
 
 //            guard ail & 0x1F == 13 else {
 //                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Length issue"))
 //            }
-
-            let interval = (ail & 0xE0) >> 5
 
             let statusFlag = StatusFlag(rawValue: decoder.decodeUInt8(data))
 
@@ -191,8 +186,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
             let setupHash = decoder.decodeUInt32(data)
 
-            return ManufacturerDataAppleHomeKit(advertisingInterval: interval,
-                                                statusFlag: statusFlag,
+            return ManufacturerDataAppleHomeKit(statusFlag: statusFlag,
                                                 deviceId: deviceId,
                                                 accessoryCategory: accessoryCategory,
                                                 globalState: globalState,
@@ -217,8 +211,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(AppleDeviceType.hap.rawValue)
 
-        let ail = Nibble(lower: 13, upper: self.advertisingInterval)
-        msgData.append(ail.uint8Value)
+        /// HomeKit regular advertisement == 0x31
+        msgData.append(0x31)
         msgData.append(statusFlag.rawValue)
         msgData.append(deviceId.dataValue)
         msgData.append(Data(from: accessoryCategory.rawValue.littleEndian))
@@ -230,7 +224,6 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     }
 
     enum CodeKeys: CodingKey {
-        case advertisingInterval
         case statusFlag
         case deviceId
         case accessoryCategory
@@ -258,7 +251,6 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         var container = encoder.container(keyedBy: CodeKeys.self)
         try super.encode(to: encoder)
 
-        try container.encode(advertisingInterval, forKey: .advertisingInterval)
         try container.encode(statusFlag, forKey: .statusFlag)
         try container.encode(deviceId.stringValue, forKey: .deviceId)
         try container.encode(accessoryCategory, forKey: .accessoryCategory)

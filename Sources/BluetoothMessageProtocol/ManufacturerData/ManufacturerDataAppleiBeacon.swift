@@ -115,7 +115,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
             var uuid = UUID(uuidString: uuidString)
 
-            if uuid == nil  {
+            if uuid == nil {
                 uuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
             }
 

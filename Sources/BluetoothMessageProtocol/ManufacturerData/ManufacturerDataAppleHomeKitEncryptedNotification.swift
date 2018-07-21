@@ -115,6 +115,11 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
                 throw BluetoothMessageProtocolError(.decodeError(msg: "Type wrong for HomeKit Encrypted Notification"))
             }
 
+            /// 8 bits for HomeKit SubType and Length, the 3 significant bits specify the
+            /// HomeKit SubType, and the remaining 5 bits is the length of the remaining bytes
+            /// in the manufacturer specific data which shall be set to the value 22 (i.e the
+            /// lower nibble must be set to 0x16).
+
             let ail = decoder.decodeUInt8(data)
 
             let ailNib = Nibble(ail)
@@ -159,7 +164,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(AppleDeviceType.hapEncrypted.rawValue) //Type Proximity
 
-        let ail = Nibble(lower: 16, upper: self.subType)
+        let ail = Nibble(lower: 22, upper: self.subType)
         msgData.append(ail.uint8Value)
         msgData.append(accessoryIdentifier.dataValue)
         msgData.append(Data(from: globalState.littleEndian))
