@@ -26,6 +26,27 @@ dependencies: [
 ```
 ## How to Use
 
+### Services
+
+The Service class helps to describe a BLE Service.   There is no assumption to which Characteristics the service contains.
+
+Example Using CoreBluetooth:
+
+```swift
+
+centralManager.scanForPeripherals(withServices: [CBUUID(string: ServiceHeartRate.uuidString),],
+                                       options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
+
+```
+
+#### Supported Services
+
+* BLE SIG Services
+* Home Kit Accessory Protocol (HAP)
+
+
+### Characteristic
+
 Each Bluetooth Characteristic has an encode and decode method.  When you receive the data from a sensor you call the static decode method to turn the data into a Characteristic Object as seen below in the example:
 
 ```swift
