@@ -39,13 +39,13 @@ class HomeKitTests: XCTestCase {
         }
     }
 
-    func testTlvDecode() {
+    func testTlvPairingDecode() {
         let tlvData = Data([0x06, 0x01, 0x03, 0x06, 0x02, 0x03, 0x00])
 
         var decoder = DecodeData()
 
         while decoder.index != tlvData.count {
-            if let tlvType = HomeKitTlvType(rawValue: decoder.decodeUInt8(tlvData)) {
+            if let tlvType = HomeKitPairingTlvType(rawValue: decoder.decodeUInt8(tlvData)) {
 
                 guard tlvType == .state else {
                     XCTFail()
@@ -85,8 +85,50 @@ class HomeKitTests: XCTestCase {
                 XCTFail()
             }
         }
+    }
+
+    func testTlvPairingStringDecode() {
+        let tlvData = Data([0x01, 0x05, 0x68, 0x65, 0x6C, 0x6C, 0x6F])
+
+        var decoder = DecodeData()
+
+        while decoder.index != tlvData.count {
+            if let tlvType = HomeKitPairingTlvType(rawValue: decoder.decodeUInt8(tlvData)) {
+
+                guard tlvType == .identifier else {
+                    XCTFail()
+                    return
+                }
+
+                let size = decoder.decodeUInt8(tlvData)
+
+                switch tlvType.format {
+                case .integer:
+                    XCTFail()
+
+                case .string:
+                    let va = decoder.decodeData(tlvData, length: Int(size))
+
+                    guard va.safeStringValue == "hello" else {
+                        XCTFail()
+                        return
+                    }
+
+                case .data:
+                    XCTFail()
+
+                case .null:
+                    XCTFail()
+
+                }
+
+            } else {
+                XCTFail()
+            }
+        }
 
     }
+
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
@@ -97,6 +139,7 @@ class HomeKitTests: XCTestCase {
 
     static var allTests = [
         ("testSetupHash", testSetupHash),
-        ("testTlvDecode", testTlvDecode),
+        ("testTlvPairingDecode", testTlvPairingDecode),
+        ("testTlvPairingStringDecode", testTlvPairingStringDecode),
         ]
 }
