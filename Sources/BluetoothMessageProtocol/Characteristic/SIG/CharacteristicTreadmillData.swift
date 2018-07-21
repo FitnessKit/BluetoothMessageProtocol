@@ -203,10 +203,6 @@ open class CharacteristicTreadmillData: Characteristic {
         var averagePace: Measurement<UnitSpeed>?
         var heartRate: UInt8?
         var mets: Double?
-        var elapsedTime: Measurement<UnitDuration>?
-        var remainingTime: Measurement<UnitDuration>?
-        var forceOnBelt: Measurement<UnitForce>?
-        var powerOutput: FitnessMachinePowerType?
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
@@ -270,24 +266,24 @@ open class CharacteristicTreadmillData: Characteristic {
             mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
-        if flags.contains(.elapsedTimePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let elapsedTime = try decodeDuration(flag: .elapsedTimePresent,
+                                             unit: UnitDuration.seconds,
+                                             data: data, decoder: &decoder)
 
-        if flags.contains(.remainingTimePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let remainingTime = try decodeDuration(flag: .remainingTimePresent,
+                                               unit: UnitDuration.seconds,
+                                               data: data, decoder: &decoder)
 
+        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+
+        var forceOnBelt: Measurement<UnitForce>?
+        var powerOutput: FitnessMachinePowerType?
         if flags.contains(.beltForcePowerOutputPresent) {
             let bValue = Double(decoder.decodeInt16(data))
             forceOnBelt = Measurement(value: bValue, unit: UnitForce.newton)
 
             powerOutput = FitnessMachinePowerType.create(decoder.decodeInt16(data))
         }
-
-        let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
         return CharacteristicTreadmillData(instantaneousSpeed: iSpeed,
                                            averageSpeed: avgSpeed,
@@ -313,5 +309,27 @@ open class CharacteristicTreadmillData: Characteristic {
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError(.unsupported)
+    }
+}
+
+private extension CharacteristicTreadmillData {
+
+    /// Decode Duration Data
+    ///
+    /// - Parameters:
+    ///   - flag: Flags
+    ///   - unit: Cadence Unit
+    ///   - data: Sensor Data
+    ///   - decoder: Decoder
+    /// - Returns: Measurement<UnitDuration>?
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeDuration(flag: Flags, unit: UnitDuration, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+
+        var durationDat: Measurement<UnitDuration>?
+        if flag.contains(flag) {
+            let value = Double(decoder.decodeUInt16(data))
+            durationDat = Measurement(value: value, unit: unit)
+        }
+        return durationDat
     }
 }

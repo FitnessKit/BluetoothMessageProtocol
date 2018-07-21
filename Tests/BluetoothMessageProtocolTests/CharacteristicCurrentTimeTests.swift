@@ -20,7 +20,7 @@ class CharacteristicCurrentTimeTests: XCTestCase {
         let char = CharacteristicCurrentTime(adjustmentReason: .manualTimeUpdate, currentTime: dt, dayOfWeek: dw, fractionalSeconds: 0)
 
         do {
-            let _ = try char.encode()
+            _ = try char.encode()
         } catch {
             XCTFail()
         }

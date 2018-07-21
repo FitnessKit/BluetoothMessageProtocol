@@ -26,9 +26,16 @@ import Foundation
 
 /// Provisioning Attention Timer
 ///
-/// The Attention Timer state determines if the Attention Timer state is on or off. This is generally intended to allow an element to attract human attention and, among others, is used during provisioning.
+/// The Attention Timer state determines if the Attention Timer state is on or off.
+/// This is generally intended to allow an element to attract human attention and,
+/// among others, is used during provisioning.
 ///
-/// When the Attention Timer state is on, the value determines how long the element shall remain attracting human’s attention. The element does that by behaving in a human-recognizable way (e.g., a lamp flashes, a motor makes noise, an LED blinks). The exact behavior is implementation specific and depends on the type of device. Normal behavior of the element is still active, although the method of identification may override the physical state of the device
+/// When the Attention Timer state is on, the value determines how long the element
+/// shall remain attracting human’s attention. The element does that by behaving in a
+/// human-recognizable way (e.g., a lamp flashes, a motor makes noise, an LED blinks).
+/// The exact behavior is implementation specific and depends on the type of device.
+/// Normal behavior of the element is still active, although the method of identification
+/// may override the physical state of the device
 public enum ProvisioningAttentionTimer {
     /// Off
     case off

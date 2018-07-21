@@ -115,7 +115,9 @@ public struct ProvisioningDataUnitInputComplete: ProvisioningDataUnit {
 
 /// Provisioning Data Unit Confirmation
 ///
-/// The Provisioner or the device sends this PDU to the peer to confirm the values exchanged so far including the OOB Authentication value and the random number that has yet to be exchanged
+/// The Provisioner or the device sends this PDU to the peer to confirm the
+/// values exchanged so far including the OOB Authentication value and the
+/// random number that has yet to be exchanged
 public struct ProvisioningDataUnitConfirmation: ProvisioningDataUnit {
 
     /// Provisioning Protocol Data Unit Type
@@ -201,7 +203,8 @@ public struct ProvisioningDataUnitData: ProvisioningDataUnit {
 
     /// Encrypted Provisioning Data
     ///
-    /// An encrypted and authenticated network key, NetKey Index, Key Refresh Flag, IV Update Flag, current value of the IV Index, and unicast address of the primary element
+    /// An encrypted and authenticated network key, NetKey Index, Key Refresh Flag,
+    /// IV Update Flag, current value of the IV Index, and unicast address of the primary element
     private(set) public var provisioningData: ProvisioningData
 
     /// Provisioning Data Message Integrity Check (MIC)
@@ -241,7 +244,8 @@ public struct ProvisioningDataUnitData: ProvisioningDataUnit {
 
 /// Provisioning Data Unit Complete
 ///
-/// The device sends this PDU to indicate that it has successfully received and processed the provisioning data
+/// The device sends this PDU to indicate that it has successfully received
+/// and processed the provisioning data
 public struct ProvisioningDataUnitComplete: ProvisioningDataUnit {
 
     /// Provisioning Protocol Data Unit Type
@@ -279,13 +283,15 @@ public struct ProvisioningDataUnitFailed: ProvisioningDataUnit {
         case prohibited             = 0x00
         /// The provisioning protocol PDU is not recognized by the device
         case invalidDataUnit        = 0x01
-        /// The arguments of the protocol PDUs are outside expected values or the length of the PDU is different than expected
+        /// The arguments of the protocol PDUs are outside expected values or
+        /// the length of the PDU is different than expected
         case invalidFormat          = 0x02
         /// The PDU received was not expected at this moment of the procedure
         case unexpectedUnit         = 0x03
         /// The PDU received was not expected at this moment of the procedure
         case confirmationFailed     = 0x04
-        /// The provisioning protocol cannot be continued due to insufficient resources in the device
+        /// The provisioning protocol cannot be continued due to insufficient
+        /// resources in the device
         case outOfResources         = 0x05
         /// The Data block was not successfully decrypted
         case decryptionFailed       = 0x06

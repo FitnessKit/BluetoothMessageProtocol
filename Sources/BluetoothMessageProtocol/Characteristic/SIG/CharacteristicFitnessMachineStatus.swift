@@ -118,33 +118,13 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
                 statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
 
             case .targetedTimeInTwoHrZoneChanged:
-                let burn = decoder.decodeUInt16(data)
-                let fitness = decoder.decodeUInt16(data)
-                let time = FitnessMachineTargetTimeInTwoHrZone.create(fatBurnZone: burn, fitnessZone: fitness)
-                statusValue = FitnessMachineStatusTargetedTimeInTwoHrZoneChanged(time: time)
+                return try decodeTargetedTimeInTwoHrZoneChanged(data: data, decoder: &decoder)
 
             case .targetedTimeInThreeHrZoneChanged:
-                let light = decoder.decodeUInt16(data)
-                let moderate = decoder.decodeUInt16(data)
-                let hard = decoder.decodeUInt16(data)
-                let time = FitnessMachineTargetTimeInThreeHrZone.create(lightZone: light,
-                                                                        moderateZone: moderate,
-                                                                        hardZone: hard)
-                statusValue = FitnessMachineStatusTargetedTimeInThreeHrZoneChanged(time: time)
+                return try decodeTargetedTimeInThreeHrZoneChanged(data: data, decoder: &decoder)
 
             case .targetedTimeInFiveHrZoneChanged:
-                let veryLight = decoder.decodeUInt16(data)
-                let light = decoder.decodeUInt16(data)
-                let moderate = decoder.decodeUInt16(data)
-                let hard = decoder.decodeUInt16(data)
-                let max = decoder.decodeUInt16(data)
-                let time = FitnessMachineTargetTimeInFiveHrZone.create(veryLightZone: veryLight,
-                                                                       lightZone: light,
-                                                                       moderateZone: moderate,
-                                                                       hardZone: hard,
-                                                                       maximumZone: max)
-                statusValue = FitnessMachineStatusTargetedTimeInFiveHrZoneChanged(time: time)
-
+                return try decodeTargetedTimeInFiveHrZoneChanged(data: data, decoder: &decoder)
 
             case .wheelCircumferenceChanged:
                 let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16(data))
@@ -174,4 +154,75 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
         //Not Yet Supported
         throw BluetoothMessageProtocolError(.unsupported)
     }
+}
+
+private extension CharacteristicFitnessMachineStatus {
+
+    /// Decodes the Targeted Time in Two HR Zone Change OpCode
+    ///
+    /// - Parameters:
+    ///   - data: Sensor data
+    ///   - decoder: Decoder
+    /// - Returns: CharacteristicFitnessMachineStatus
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeTargetedTimeInTwoHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
+
+        var statusValue: FitnessMachineStatus?
+
+        let burn = decoder.decodeUInt16(data)
+        let fitness = decoder.decodeUInt16(data)
+        let time = FitnessMachineTargetTimeInTwoHrZone.create(fatBurnZone: burn, fitnessZone: fitness)
+        statusValue = FitnessMachineStatusTargetedTimeInTwoHrZoneChanged(time: time)
+
+        return CharacteristicFitnessMachineStatus(status: statusValue)
+    }
+
+    /// Decodes the Targeted Time in Three HR Zone Change OpCode
+    ///
+    /// - Parameters:
+    ///   - data: Sensor data
+    ///   - decoder: Decoder
+    /// - Returns: CharacteristicFitnessMachineStatus
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeTargetedTimeInThreeHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
+
+        var statusValue: FitnessMachineStatus?
+
+        let light = decoder.decodeUInt16(data)
+        let moderate = decoder.decodeUInt16(data)
+        let hard = decoder.decodeUInt16(data)
+        let time = FitnessMachineTargetTimeInThreeHrZone.create(lightZone: light,
+                                                                moderateZone: moderate,
+                                                                hardZone: hard)
+        statusValue = FitnessMachineStatusTargetedTimeInThreeHrZoneChanged(time: time)
+
+        return CharacteristicFitnessMachineStatus(status: statusValue)
+    }
+
+    /// Decodes the Targeted Time in Five HR Zone Change OpCode
+    ///
+    /// - Parameters:
+    ///   - data: Sensor data
+    ///   - decoder: Decoder
+    /// - Returns: CharacteristicFitnessMachineStatus
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeTargetedTimeInFiveHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
+
+        var statusValue: FitnessMachineStatus?
+
+        let veryLight = decoder.decodeUInt16(data)
+        let light = decoder.decodeUInt16(data)
+        let moderate = decoder.decodeUInt16(data)
+        let hard = decoder.decodeUInt16(data)
+        let max = decoder.decodeUInt16(data)
+        let time = FitnessMachineTargetTimeInFiveHrZone.create(veryLightZone: veryLight,
+                                                               lightZone: light,
+                                                               moderateZone: moderate,
+                                                               hardZone: hard,
+                                                               maximumZone: max)
+        statusValue = FitnessMachineStatusTargetedTimeInFiveHrZoneChanged(time: time)
+
+        return CharacteristicFitnessMachineStatus(status: statusValue)
+    }
+
 }

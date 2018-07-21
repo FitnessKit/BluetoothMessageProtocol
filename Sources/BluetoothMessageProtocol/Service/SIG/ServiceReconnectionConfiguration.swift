@@ -55,4 +55,3 @@ open class ServiceReconnectionConfiguration: Service {
         )
     }
 }
-

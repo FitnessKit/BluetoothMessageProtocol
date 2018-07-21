@@ -26,7 +26,11 @@ import Foundation
 
 /// Provisioning Data
 ///
-/// Once the device has been authenticated, the Provisioner and device shall use the calculated Diffie- Hellman shared secret ECDHSecret and generate a session key from that shared secret. That session key shall then be used to encrypt and authenticate the provisioning data. The Provisioner then shall send the Provisioning Data PDU containing the encrypted and authenticated provisioning data to the device
+/// Once the device has been authenticated, the Provisioner and device shall use the
+/// calculated Diffie-Hellman shared secret ECDHSecret and generate a session key
+/// from that shared secret. That session key shall then be used to encrypt and
+/// authenticate the provisioning data. The Provisioner then shall send the Provisioning
+/// Data PDU containing the encrypted and authenticated provisioning data to the device
 public struct ProvisioningData {
 
     /// Flags

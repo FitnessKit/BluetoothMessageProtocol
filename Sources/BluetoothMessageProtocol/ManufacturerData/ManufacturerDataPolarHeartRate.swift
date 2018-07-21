@@ -86,7 +86,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
             var decoder = DecodeData()
 
-            let _ = decoder.decodeUInt16(data)
+            _ = decoder.decodeUInt16(data)
 
             let hrOne = decoder.decodeUInt8(data)
             let hrTwo = decoder.decodeUInt8(data)
@@ -144,7 +144,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 ///   - valueOne: Value One for Average
 ///   - valueTwo: Value Two for Average
 /// - Returns: Average of the Two numbers.
-fileprivate func safeAverage(valueOne: UInt8, valueTwo: UInt8) -> Double {
+private func safeAverage(valueOne: UInt8, valueTwo: UInt8) -> Double {
     var avg: Double = 0
 
     if valueTwo > 0 && valueOne > 0 {

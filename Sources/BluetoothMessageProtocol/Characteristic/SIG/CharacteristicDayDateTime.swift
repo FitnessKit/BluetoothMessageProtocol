@@ -87,4 +87,3 @@ open class CharacteristicDayDateTime: Characteristic {
     }
 
 }
-

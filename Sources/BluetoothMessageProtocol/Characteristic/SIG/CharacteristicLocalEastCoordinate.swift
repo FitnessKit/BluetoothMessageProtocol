@@ -81,4 +81,3 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
         return msgData
     }
 }
-

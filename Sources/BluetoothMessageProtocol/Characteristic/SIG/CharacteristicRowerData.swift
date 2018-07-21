@@ -185,15 +185,11 @@ open class CharacteristicRowerData: Characteristic {
         var strokeCount: UInt16?
         var averageStrokeRate: Measurement<UnitCadence>?
         var totalDistance: Measurement<UnitLength>?
-        var instantaneousPace: Measurement<UnitDuration>?
-        var averagePace: Measurement<UnitDuration>?
         var iPower: FitnessMachinePowerType?
         var aPower: FitnessMachinePowerType?
         var resistanceLevel: Double?
         var heartRate: UInt8?
         var mets: Double?
-        var elapsedTime: Measurement<UnitDuration>?
-        var remainingTime: Measurement<UnitDuration>?
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
@@ -213,15 +209,13 @@ open class CharacteristicRowerData: Characteristic {
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
-        if flags.contains(.instantaneousPacePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            instantaneousPace = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let instantaneousPace = try decodeDuration(flag: .instantaneousPacePresent,
+                                                   unit: UnitDuration.seconds,
+                                                   data: data, decoder: &decoder)
 
-        if flags.contains(.averagePacePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            averagePace = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let averagePace = try decodeDuration(flag: .averagePacePresent,
+                                             unit: UnitDuration.seconds,
+                                             data: data, decoder: &decoder)
 
         if flags.contains(.instantaneousPowerPresent) {
             iPower = FitnessMachinePowerType.create(decoder.decodeInt16(data))
@@ -250,15 +244,13 @@ open class CharacteristicRowerData: Characteristic {
             mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
-        if flags.contains(.elapsedTimePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let elapsedTime = try decodeDuration(flag: .elapsedTimePresent,
+                                             unit: UnitDuration.seconds,
+                                             data: data, decoder: &decoder)
 
-        if flags.contains(.remainingTimePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let remainingTime = try decodeDuration(flag: .remainingTimePresent,
+                                               unit: UnitDuration.seconds,
+                                               data: data, decoder: &decoder)
 
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
@@ -284,5 +276,28 @@ open class CharacteristicRowerData: Characteristic {
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError(.unsupported)
+    }
+}
+
+
+private extension CharacteristicRowerData {
+
+    /// Decode Duration Data
+    ///
+    /// - Parameters:
+    ///   - flag: Flags
+    ///   - unit: Cadence Unit
+    ///   - data: Sensor Data
+    ///   - decoder: Decoder
+    /// - Returns: Measurement<UnitDuration>?
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeDuration(flag: Flags, unit: UnitDuration, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+
+        var durationDat: Measurement<UnitDuration>?
+        if flag.contains(flag) {
+            let value = Double(decoder.decodeUInt16(data))
+            durationDat = Measurement(value: value, unit: unit)
+        }
+        return durationDat
     }
 }

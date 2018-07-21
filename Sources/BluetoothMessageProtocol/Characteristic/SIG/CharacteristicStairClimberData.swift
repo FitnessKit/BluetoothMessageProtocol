@@ -118,8 +118,8 @@ open class CharacteristicStairClimberData: Characteristic {
                 energy: FitnessMachineEnergy,
                 heartRate: UInt8?,
                 metabolicEquivalent: Double?,
-                time: FitnessMachineTime)
-    {
+                time: FitnessMachineTime) {
+
         self.floors = floors
         self.stepsPerMinute = stepsPerMinute
         self.averageStepRate = averageStepRate
@@ -151,35 +151,26 @@ open class CharacteristicStairClimberData: Characteristic {
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
 
         var floors: UInt16?
-        var stepsPerMinute: Measurement<UnitCadence>?
-        var averageStepRate: Measurement<UnitCadence>?
-        var positiveElevationGain: Measurement<UnitLength>?
-        var strideCount: UInt16?
-        var heartRate: UInt8?
-        var mets: Double?
-        var elapsedTime: Measurement<UnitDuration>?
-        var remainingTime: Measurement<UnitDuration>?
-
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
             floors = decoder.decodeUInt16(data)
         }
 
-        if flags.contains(.stepPerMinutePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            stepsPerMinute = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
-        }
+        let stepsPerMinute = try decodeCadence(flag: .stepPerMinutePresent,
+                                               unit: UnitCadence.stepsPerMinute,
+                                               data: data, decoder: &decoder)
 
-        if flags.contains(.averageStepRatePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            averageStepRate = Measurement(value: value, unit: UnitCadence.stepsPerMinute)
-        }
+        let averageStepRate = try decodeCadence(flag: .averageStepRatePresent,
+                                                unit: UnitCadence.stepsPerMinute,
+                                                data: data, decoder: &decoder)
 
+        var positiveElevationGain: Measurement<UnitLength>?
         if flags.contains(.positiveElevationGainPresent) {
             let value = Double(decoder.decodeUInt16(data))
             positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
         }
 
+        var strideCount: UInt16?
         if flags.contains(.strideCountPresent) {
             strideCount = decoder.decodeUInt16(data)
         }
@@ -191,23 +182,35 @@ open class CharacteristicStairClimberData: Characteristic {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
 
+        var heartRate: UInt8?
         if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8(data)
         }
 
+        var mets: Double?
         if flags.contains(.metabolicEquivalentPresent) {
             mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
-        if flags.contains(.elapsedTimePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let elapsedTime = try decodeDuration(flag: .elapsedTimePresent,
+                                             unit: UnitDuration.seconds,
+                                             data: data, decoder: &decoder)
 
-        if flags.contains(.remainingTimePresent) {
-            let value = Double(decoder.decodeUInt16(data))
-            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-        }
+        let remainingTime = try decodeDuration(flag: .remainingTimePresent,
+                                               unit: UnitDuration.seconds,
+                                               data: data, decoder: &decoder)
+
+//        var elapsedTime: Measurement<UnitDuration>?
+//        if flags.contains(.elapsedTimePresent) {
+//            let value = Double(decoder.decodeUInt16(data))
+//            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
+//        }
+//
+//        var remainingTime: Measurement<UnitDuration>?
+//        if flags.contains(.remainingTimePresent) {
+//            let value = Double(decoder.decodeUInt16(data))
+//            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
+//        }
 
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 
@@ -229,5 +232,46 @@ open class CharacteristicStairClimberData: Characteristic {
     open override func encode() throws -> Data {
         //Not Yet Supported
         throw BluetoothMessageProtocolError(.unsupported)
+    }
+}
+
+private extension CharacteristicStairClimberData {
+
+    /// Decode Cadence Data
+    ///
+    /// - Parameters:
+    ///   - flag: Flags
+    ///   - unit: Cadence Unit
+    ///   - data: Sensor Data
+    ///   - decoder: Decoder
+    /// - Returns: Measurement<UnitCadence>?
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeCadence(flag: Flags, unit: UnitCadence, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitCadence>? {
+
+        var cadenceValue: Measurement<UnitCadence>?
+        if flag.contains(flag) {
+            let value = Double(decoder.decodeUInt16(data))
+            cadenceValue = Measurement(value: value, unit: unit)
+        }
+        return cadenceValue
+    }
+
+    /// Decode Duration Data
+    ///
+    /// - Parameters:
+    ///   - flag: Flags
+    ///   - unit: Cadence Unit
+    ///   - data: Sensor Data
+    ///   - decoder: Decoder
+    /// - Returns: Measurement<UnitDuration>?
+    /// - Throws: BluetoothMessageProtocolError
+    private class func decodeDuration(flag: Flags, unit: UnitDuration, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+
+        var durationDat: Measurement<UnitDuration>?
+        if flag.contains(flag) {
+            let value = Double(decoder.decodeUInt16(data))
+            durationDat = Measurement(value: value, unit: unit)
+        }
+        return durationDat
     }
 }

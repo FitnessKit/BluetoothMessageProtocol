@@ -82,7 +82,14 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
     ///   - totalOperatingtime: Total Operating Time
     ///   - advertisingTime: Time spent in a BLE Advertising
     ///   - connectedTime: Time spent in a BLE Connection
-    public init(batterySwaps: UInt16, dateProgrammed: Date, totalOperatingtime: UInt32, advertisingTime: Measurement<UnitDuration>, connectedTime: Measurement<UnitDuration>, succesfulFirmwareUpdateEvents: UInt8, failedFirmwareUpdateEvents: UInt8, lastBatteryLevel: Measurement<UnitPercent>) {
+    public init(batterySwaps: UInt16,
+                dateProgrammed: Date,
+                totalOperatingtime: UInt32,
+                advertisingTime: Measurement<UnitDuration>,
+                connectedTime: Measurement<UnitDuration>,
+                succesfulFirmwareUpdateEvents: UInt8,
+                failedFirmwareUpdateEvents: UInt8,
+                lastBatteryLevel: Measurement<UnitPercent>) {
 
         self.batterySwaps = batterySwaps
         self.dateProgrammed = dateProgrammed

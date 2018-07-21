@@ -72,7 +72,7 @@ internal extension Data {
 
         if formatted {
             hexString = self.reduce("", { String(format: "\($0)[%02hhx] ", $1) })
-        }else {
+        } else {
             hexString = self.reduce("", { String(format: "\($0)%02hhx ", $1) })
         }
 
@@ -82,7 +82,7 @@ internal extension Data {
 
         if uselower {
             return hexString.lowercased() as String
-        }else {
+        } else {
             return hexString.uppercased() as String
         }
     }

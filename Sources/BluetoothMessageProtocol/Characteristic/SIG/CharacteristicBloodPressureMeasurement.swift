@@ -92,8 +92,8 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
                 meanArterial: Measurement<UnitPressure>,
                 timestamp: DateTime?,
                 pulseRate: Measurement<UnitCadence>?,
-                userID: User?)
-    {
+                userID: User?) {
+        
         self.systolic = systolic
         self.diastolic = diastolic
         self.meanArterial = meanArterial

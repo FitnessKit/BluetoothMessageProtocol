@@ -24,10 +24,10 @@
 
 import Foundation
 
-
 /// Mesh OOB Information
 ///
-/// The OOB Information field is used to help drive the provisioning process by indicating the availability of OOB data, such as a public key of the device.
+/// The OOB Information field is used to help drive the provisioning process by
+/// indicating the availability of OOB data, such as a public key of the device.
 public struct MeshOutOfBandInformation: OptionSet {
     public let rawValue: UInt16
     public init(rawValue: UInt16) { self.rawValue = rawValue }
