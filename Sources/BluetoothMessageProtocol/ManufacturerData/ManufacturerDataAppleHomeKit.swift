@@ -168,9 +168,9 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
             /// shall be set to the value 17.
             let stl = decoder.decodeUInt8(data)
 
-//            guard ail & 0x1F == 13 else {
-//                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Length issue"))
-//            }
+            guard stl == 0x31 else {
+                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Length issue"))
+            }
 
             let statusFlag = StatusFlag(rawValue: decoder.decodeUInt8(data))
 

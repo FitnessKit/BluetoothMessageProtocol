@@ -86,4 +86,3 @@ internal extension FitnessMachineControlCode {
         }
     }
 }
-

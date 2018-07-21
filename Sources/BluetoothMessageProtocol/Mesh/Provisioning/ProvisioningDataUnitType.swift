@@ -30,7 +30,8 @@ public enum ProvisioningDataUnitType: UInt8 {
     case invite                 = 0x00
     /// Indicates the capabilities of the device
     case capabilities           = 0x01
-    /// Indicates the provisioning method selected by the Provisioner based on the capabilities of the device
+    /// Indicates the provisioning method selected by the Provisioner based on the
+    /// capabilities of the device
     case start                  = 0x02
     /// Contains the Public Key of the device or the Provisioner
     case publicKey              = 0x03
@@ -40,7 +41,8 @@ public enum ProvisioningDataUnitType: UInt8 {
     case confirmation           = 0x05
     /// Contains the provisioning random value of the device or the Provisioner
     case random                 = 0x06
-    /// Includes the assigned unicast address of the primary element, a network key, NetKey Index, Flags and the IV Index
+    /// Includes the assigned unicast address of the primary element, a network key,
+    /// NetKey Index, Flags and the IV Index
     case data                   = 0x07
     /// Indicates that provisioning is complete
     case complete               = 0x08

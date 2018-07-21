@@ -118,13 +118,13 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
                 statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
 
             case .targetedTimeInTwoHrZoneChanged:
-                return try decodeTargetedTimeInTwoHrZoneChanged(data: data, decoder: &decoder)
+                return try decodeTwoHrZoneChanged(data: data, decoder: &decoder)
 
             case .targetedTimeInThreeHrZoneChanged:
-                return try decodeTargetedTimeInThreeHrZoneChanged(data: data, decoder: &decoder)
+                return try decodeThreeHrZoneChanged(data: data, decoder: &decoder)
 
             case .targetedTimeInFiveHrZoneChanged:
-                return try decodeTargetedTimeInFiveHrZoneChanged(data: data, decoder: &decoder)
+                return try decodeFiveHrZoneChanged(data: data, decoder: &decoder)
 
             case .wheelCircumferenceChanged:
                 let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16(data))
@@ -165,7 +165,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeTargetedTimeInTwoHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
+    private class func decodeTwoHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
 
         var statusValue: FitnessMachineStatus?
 
@@ -184,7 +184,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeTargetedTimeInThreeHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
+    private class func decodeThreeHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
 
         var statusValue: FitnessMachineStatus?
 
@@ -206,7 +206,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeTargetedTimeInFiveHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
+    private class func decodeFiveHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
 
         var statusValue: FitnessMachineStatus?
 

@@ -81,4 +81,3 @@ open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
         return msgData
     }
 }
-

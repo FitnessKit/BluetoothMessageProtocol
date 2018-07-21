@@ -49,7 +49,6 @@ public enum HeartRateContactStatus: UInt8 {
     }
 }
 
-
 internal struct HeartRateMeasurementFlags {
     /// Heart Rate Value Format is set to UINT16. Units: beats per minute (bpm)
     private(set) public var isFormatUInt16: Bool

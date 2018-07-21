@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// HomeKit Pairing Errors
 public enum HomeKitPairingErrorType: UInt8 {
     /// Reserved

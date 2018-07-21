@@ -111,7 +111,8 @@ public struct MeshBeaconSecureNetwork: MeshBeacon {
 
 /// Unprovisioned Mesh Beacon
 ///
-/// The Unprovisioned Device beacon is used by devices that are unprovisioned to allow them to be discovered by a Provisioner
+/// The Unprovisioned Device beacon is used by devices that are unprovisioned to
+/// allow them to be discovered by a Provisioner
 public struct MeshBeaconUnprovisioned: MeshBeacon {
 
     /// Mesh Beacon Type

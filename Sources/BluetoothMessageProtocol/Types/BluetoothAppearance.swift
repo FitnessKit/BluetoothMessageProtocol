@@ -24,70 +24,7 @@
 
 import Foundation
 
-/// Appearance Category
-///
-public enum AppearanceCategory: String {
-    /// None
-    case none                   = "None"
-    /// Generic category
-    case generic                = "Generic"
-    /// Watch
-    case watch                  = "Watch"
-    /// Thermometer
-    case thermometer            = "Thermometer"
-    /// Heart Rate Sensor
-    case heartRate              = "Heart Rate"
-    /// Blood Pressure
-    case bloodPressure          = "Blood Pressure"
-    /// HID
-    case hid                    = "HID"
-    /// Running Walking Sensor
-    case runningWalking         = "Running Walking Sensor"
-    /// Cycling
-    case cycling                = "Cycling"
-    /// Control Device
-    case control                = "Control"
-    /// Sensor
-    case sensor                 = "Sensor"
-    /// Light Fixture
-    case lightFixture           = "Light Fixture"
-    /// Fan
-    case fan                    = "Fan"
-    /// HVAC
-    case hvac                   = "HVAC"
-    /// Heater
-    case heater                 = "Heater"
-    /// Access
-    case access                 = "Access"
-    /// Motorized
-    case motorized              = "Motorized"
-    /// Power
-    case power                  = "Power"
-    /// Light
-    case light                  = "Light"
-    /// Pulse Oximeter
-    case pulseOximeter          = "Pulse Oximeter"
-    /// Weight Scale
-    case weightScale            = "Weight Scale"
-    /// Personal Mobility
-    case personalMobility       = "Personal Mobility"
-    /// Continuous Glucose Monitor
-    case continuousGlucose      = "Continuous Glucose"
-    /// Outdoor Sports Activity
-    case outdoorSportsActivity  = "Outdoor Sports Activity"
-}
-
-extension AppearanceCategory {
-
-    /// String Value for the Enum
-    public var description: String {
-        return String(describing: self)
-    }
-
-}
-
 /// Appearance
-///
 public enum Appearance: UInt16 {
     /// Unknown
     case unknown                                    = 0

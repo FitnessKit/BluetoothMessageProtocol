@@ -83,4 +83,3 @@ open class CharacteristicHumidity: Characteristic {
         return msgData
     }
 }
-

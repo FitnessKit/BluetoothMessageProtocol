@@ -55,4 +55,3 @@ open class ServiceImmediateAlert: Service {
         )
     }
 }
-

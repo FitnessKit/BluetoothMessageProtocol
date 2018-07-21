@@ -146,7 +146,9 @@ public struct FitnessMachineTargetTimeInTwoHrZone {
     /// Targeted Time in Fitness Zone
     private(set) public var fitnessZone: Measurement<UnitDuration>
 
-    internal static func create(fatBurnZone: UInt16, fitnessZone: UInt16) -> FitnessMachineTargetTimeInTwoHrZone {
+    internal static func create(fatBurnZone: UInt16,
+                                fitnessZone: UInt16) -> FitnessMachineTargetTimeInTwoHrZone {
+
         let time = Measurement(value: Double(fatBurnZone), unit: UnitDuration.seconds)
         let fTime = Measurement(value: Double(fitnessZone), unit: UnitDuration.seconds)
         return FitnessMachineTargetTimeInTwoHrZone(fatBurnZone: time, fitnessZone: fTime)
@@ -182,7 +184,9 @@ public struct FitnessMachineTargetTimeInThreeHrZone {
     /// Targeted Time in Hard Zone
     private(set) public var hardZone: Measurement<UnitDuration>
 
-    internal static func create(lightZone: UInt16, moderateZone: UInt16, hardZone: UInt16) -> FitnessMachineTargetTimeInThreeHrZone {
+    internal static func create(lightZone: UInt16,
+                                moderateZone: UInt16,
+                                hardZone: UInt16) -> FitnessMachineTargetTimeInThreeHrZone {
 
         let light = Measurement(value: Double(lightZone), unit: UnitDuration.seconds)
         let moderate = Measurement(value: Double(moderateZone), unit: UnitDuration.seconds)
@@ -233,7 +237,11 @@ public struct FitnessMachineTargetTimeInFiveHrZone {
     /// Targeted Time in Maximum Zone
     private(set) public var maximumZone: Measurement<UnitDuration>
 
-    internal static func create(veryLightZone: UInt16, lightZone: UInt16, moderateZone: UInt16, hardZone: UInt16, maximumZone: UInt16) -> FitnessMachineTargetTimeInFiveHrZone {
+    internal static func create(veryLightZone: UInt16,
+                                lightZone: UInt16,
+                                moderateZone: UInt16,
+                                hardZone: UInt16,
+                                maximumZone: UInt16) -> FitnessMachineTargetTimeInFiveHrZone {
 
         let verylight = Measurement(value: Double(veryLightZone), unit: UnitDuration.seconds)
         let light = Measurement(value: Double(lightZone), unit: UnitDuration.seconds)

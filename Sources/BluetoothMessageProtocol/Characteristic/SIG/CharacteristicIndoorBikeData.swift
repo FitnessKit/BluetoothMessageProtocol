@@ -139,8 +139,8 @@ open class CharacteristicIndoorBikeData: Characteristic {
                 energy: FitnessMachineEnergy,
                 heartRate: UInt8?,
                 metabolicEquivalent: Double?,
-                time: FitnessMachineTime)
-    {
+                time: FitnessMachineTime) {
+        
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
         self.instantaneousCadence = instantaneousCadence
@@ -277,7 +277,10 @@ private extension CharacteristicIndoorBikeData {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitCadence>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeCadence(flag: Flags, unit: UnitCadence, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitCadence>? {
+    private class func decodeCadence(flag: Flags,
+                                     unit: UnitCadence,
+                                     data: Data,
+                                     decoder: inout DecodeData) throws -> Measurement<UnitCadence>? {
 
         var cadenceValue: Measurement<UnitCadence>?
         if flag.contains(flag) {
@@ -296,7 +299,10 @@ private extension CharacteristicIndoorBikeData {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeDuration(flag: Flags, unit: UnitDuration, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+    private class func decodeDuration(flag: Flags,
+                                      unit: UnitDuration,
+                                      data: Data,
+                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
 
         var durationDat: Measurement<UnitDuration>?
         if flag.contains(flag) {

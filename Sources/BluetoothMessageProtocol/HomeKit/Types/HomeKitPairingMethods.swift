@@ -24,7 +24,6 @@
 
 import Foundation
 
-
 /// HomeKit Pairing Method Types
 public enum HomeKitPairingMethodType: UInt8 {
     /// Pair Setup

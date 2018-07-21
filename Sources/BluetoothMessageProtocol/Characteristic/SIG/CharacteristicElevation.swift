@@ -79,4 +79,3 @@ open class CharacteristicElevation: Characteristic {
     }
 
 }
-

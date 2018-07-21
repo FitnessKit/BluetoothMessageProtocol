@@ -27,7 +27,9 @@ import DataDecoder
 
 /// BLE Mesh Provisioning Data In Characteristic
 ///
-/// The Mesh Provisioning Data Out characteristic can be notified to send a Proxy PDU message containing Provisioning PDU from a Provisioning Server to a Provisioning Client
+/// The Mesh Provisioning Data Out characteristic can be notified to send a
+/// Proxy PDU message containing Provisioning PDU from a Provisioning Server
+/// to a Provisioning Client
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicMeshProvisioningDataOut: Characteristic {
@@ -61,7 +63,8 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicMeshProvisioningDataOut {
-        //The characteristic value is 66 octets long to accommodate the longest known Proxy PDU containing Provisioning PDU.
+        //The characteristic value is 66 octets long to accommodate the longest
+        //known Proxy PDU containing Provisioning PDU.
 
         guard data.count <= 66 else {
             throw BluetoothMessageProtocolError(.decodeError(msg: "PDU must be 66 bytes or less"))

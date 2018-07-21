@@ -63,8 +63,8 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
     public init(contactStatus: HeartRateContactStatus,
                 heartRate: Measurement<UnitCadence>,
                 energyExpended: Measurement<UnitEnergy>? = nil,
-                rrIntervals: [Measurement<UnitDuration>]? = nil)
-    {
+                rrIntervals: [Measurement<UnitDuration>]? = nil) {
+        
         self.contactStatus = contactStatus
         self.heartRate = heartRate
         self.energyExpended = energyExpended

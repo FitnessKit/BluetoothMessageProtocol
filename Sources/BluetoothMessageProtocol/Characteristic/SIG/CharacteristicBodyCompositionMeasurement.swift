@@ -141,8 +141,8 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 impedance: Measurement<UnitElectricResistance>?,
                 weight: Measurement<UnitMass>?,
                 height: Measurement<UnitLength>?,
-                multiplePacketMeasurement: Bool)
-    {
+                multiplePacketMeasurement: Bool) {
+
         self.bodyFat = bodyFat
         self.currentTime = currentTime
         self.userID = userID

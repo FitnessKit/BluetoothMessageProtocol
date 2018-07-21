@@ -371,7 +371,10 @@ private extension CharacteristicCrossTrainerData {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeDuration(flag: Flags, unit: UnitDuration, data: Data, decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+    private class func decodeDuration(flag: Flags,
+                                      unit: UnitDuration,
+                                      data: Data,
+                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
 
         var durationDat: Measurement<UnitDuration>?
         if flag.contains(flag) {
