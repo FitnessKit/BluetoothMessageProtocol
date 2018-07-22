@@ -1,1 +1,3 @@
 docs/**
+Sources/BluetoothMessageProtocol/CompanyIdentifier/*
+Sources/BluetoothMessageProtocol/MemberIdentifier/*
