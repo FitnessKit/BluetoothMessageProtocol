@@ -310,4 +310,3 @@ public struct FitnessMachineTargetCadence {
         return msgData
     }
 }
-

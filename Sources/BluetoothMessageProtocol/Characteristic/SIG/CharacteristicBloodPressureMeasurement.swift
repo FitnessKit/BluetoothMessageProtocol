@@ -126,13 +126,13 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
 
 
         if flags.contains(.unitsIsKilopascals) {
-            systolic = Measurement(value: systolicV, unit: UnitPressure.millimetersOfMercury)
-            diastolic = Measurement(value: diastolicV, unit: UnitPressure.millimetersOfMercury)
-            meanArterial = Measurement(value: meanArterialV, unit: UnitPressure.millimetersOfMercury)
-        } else {
             systolic = Measurement(value: systolicV, unit: UnitPressure.kilopascals)
             diastolic = Measurement(value: diastolicV, unit: UnitPressure.kilopascals)
             meanArterial = Measurement(value: meanArterialV, unit: UnitPressure.kilopascals)
+        } else {
+            systolic = Measurement(value: systolicV, unit: UnitPressure.millimetersOfMercury)
+            diastolic = Measurement(value: diastolicV, unit: UnitPressure.millimetersOfMercury)
+            meanArterial = Measurement(value: meanArterialV, unit: UnitPressure.millimetersOfMercury)
         }
 
         var timestamp: DateTime?

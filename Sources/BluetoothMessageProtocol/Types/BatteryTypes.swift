@@ -96,7 +96,6 @@ public struct BatteryPowerState: Codable {
         }
     }
 
-
     /// State Information
     ///
     /// If State Information is present or not
@@ -122,7 +121,6 @@ public struct BatteryPowerState: Codable {
 
         return UInt8(value)
     }
-
 
     /// Creates a BatteryPowerState Object
     ///

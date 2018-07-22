@@ -144,8 +144,8 @@ open class CharacteristicRowerData: Characteristic {
                 energy: FitnessMachineEnergy,
                 heartRate: UInt8?,
                 metabolicEquivalent: Double?,
-                time: FitnessMachineTime)
-    {
+                time: FitnessMachineTime) {
+
         self.strokeRate = strokeRate
         self.strokeCount = strokeCount
         self.averageStrokeRate = averageStrokeRate
@@ -278,7 +278,6 @@ open class CharacteristicRowerData: Characteristic {
         throw BluetoothMessageProtocolError(.unsupported)
     }
 }
-
 
 private extension CharacteristicRowerData {
 

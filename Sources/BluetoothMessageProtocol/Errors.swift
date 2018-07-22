@@ -99,7 +99,6 @@ extension BluetoothMessageProtocolError: Encodable {
     }
 }
 
-
 internal extension BluetoothMessageProtocolError {
     
     /// Creates BluetoothMessageProtocol Decode Error

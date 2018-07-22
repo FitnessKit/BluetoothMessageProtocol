@@ -75,7 +75,11 @@ open class CharacteristicCurrentTime: Characteristic {
     ///   - currentTime: Time
     ///   - dayOfWeek: Day of the Week
     ///   - fractionalSeconds: Fractional Seconds
-    public init(adjustmentReason: AdjustReasons, currentTime: DateTime, dayOfWeek: DayOfWeek, fractionalSeconds: Float) {
+    public init(adjustmentReason: AdjustReasons,
+                currentTime: DateTime,
+                dayOfWeek: DayOfWeek,
+                fractionalSeconds: Float) {
+
         self.adjustmentReason = adjustmentReason
         self.currentTime = currentTime
         self.dayOfWeek = dayOfWeek

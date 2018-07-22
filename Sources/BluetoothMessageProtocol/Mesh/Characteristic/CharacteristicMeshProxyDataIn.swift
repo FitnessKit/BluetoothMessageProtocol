@@ -87,4 +87,3 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
         return msgData
     }
 }
-

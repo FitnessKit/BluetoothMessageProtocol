@@ -61,8 +61,8 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     ///   - minimumIncrement: Minimum Increment
     public init(minimum: FitnessMachineInclinationType,
                 maximum: FitnessMachineInclinationType,
-                minimumIncrement: Measurement<UnitPercent>)
-    {
+                minimumIncrement: Measurement<UnitPercent>) {
+
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement

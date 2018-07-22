@@ -66,7 +66,6 @@ open class ServiceDataFitnessMachine: ServiceData {
     /// Fitness Machine Eqiupment Supported
     private(set) public var equipmentSupported: EquipmentType
 
-
     /// Service Data for Fitness Machine
     ///
     /// - Parameters:
@@ -111,7 +110,6 @@ open class ServiceDataFitnessMachine: ServiceData {
         return ServiceDataFitnessMachine(fitnessMachineAvailable: ftmsAvailable,
                                          equipmentSupported: supported)
     }
-
 
     /// Encodes the Service Data AD Type into Data
     ///

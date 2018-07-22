@@ -61,8 +61,8 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     ///   - minimumIncrement: Minimum Increment
     public init(minimum: FitnessMachinePowerType,
                 maximum: FitnessMachinePowerType,
-                minimumIncrement: Measurement<UnitPower>)
-    {
+                minimumIncrement: Measurement<UnitPower>) {
+
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement

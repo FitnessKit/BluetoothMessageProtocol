@@ -129,4 +129,3 @@ open class CharacteristicDateOfBirth: Characteristic {
         return msgData
     }
 }
-

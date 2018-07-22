@@ -81,4 +81,3 @@ open class CharacteristicHeartRateMax: Characteristic {
         return msgData
     }
 }
-

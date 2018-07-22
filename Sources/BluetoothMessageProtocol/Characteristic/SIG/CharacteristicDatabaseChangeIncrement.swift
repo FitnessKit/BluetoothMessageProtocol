@@ -79,4 +79,3 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
         return msgData
     }
 }
-

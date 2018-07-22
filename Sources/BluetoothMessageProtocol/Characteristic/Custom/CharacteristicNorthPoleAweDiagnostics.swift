@@ -151,6 +151,4 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
         /// Writes not supported, so we don't have to provide Encode
         throw BluetoothMessageProtocolError(.unsupported)
     }
-
 }
-

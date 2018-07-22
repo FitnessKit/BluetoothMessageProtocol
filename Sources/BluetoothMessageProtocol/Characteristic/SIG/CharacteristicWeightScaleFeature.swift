@@ -173,8 +173,8 @@ open class CharacteristicWeightScaleFeature: Characteristic {
                 multipleUsersSupported: Bool,
                 bmiSupported: Bool,
                 weightResolution: WeightResolution,
-                heightResolution: HeightResolution)
-    {
+                heightResolution: HeightResolution) {
+
         self.isTimestampSupported = timestampSupported
         self.isMultipleUsersSupported = multipleUsersSupported
         self.isBMISupported = bmiSupported

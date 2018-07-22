@@ -176,8 +176,8 @@ open class CharacteristicCrossTrainerData: Characteristic {
                 heartRate: UInt8?,
                 metabolicEquivalent: Double?,
                 time: FitnessMachineTime,
-                movementDirection: FitnessMachineMovementDirection)
-    {
+                movementDirection: FitnessMachineMovementDirection) {
+
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
         self.totalDistance = totalDistance

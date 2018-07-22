@@ -46,7 +46,6 @@ open class Characteristic {
         self.uuidString = uuidString
     }
 
-
 //    /// Validates the BLE Data
 //    ///
 //    /// - Parameter data: Data from sensor
@@ -72,7 +71,6 @@ open class Characteristic {
     open func encode() throws -> Data {
         fatalError("*** You must override in your class.")
     }
-
 }
 
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)

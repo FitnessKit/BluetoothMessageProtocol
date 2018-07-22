@@ -98,4 +98,3 @@ open class CharacteristicPosition3D: Characteristic {
         throw BluetoothMessageProtocolError(.unsupported)
     }
 }
-

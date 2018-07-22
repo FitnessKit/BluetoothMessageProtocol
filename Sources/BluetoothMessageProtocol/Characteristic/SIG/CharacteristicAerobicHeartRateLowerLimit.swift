@@ -44,7 +44,6 @@ open class CharacteristicAerobicHeartRateLowerLimit: Characteristic {
     /// Aerobic Heart Rate Lower Limit
     private(set) public var heartRate: Measurement<UnitCadence>
 
-
     /// Creates Aerobic Heart Rate Lower Limit Characteristic
     ///
     /// - Parameter heartRate: Heart Rate
