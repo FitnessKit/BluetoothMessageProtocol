@@ -68,7 +68,7 @@ open class ServiceDataMeshProvisioning: ServiceData {
     open override class func decode(data: Data) throws -> ServiceDataMeshProvisioning {
 
         guard data.count == 18 else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "Mesh Provisioning must be 18 Bytes Long"))
+            throw BluetoothMessageProtocolError.decode("Mesh Provisioning must be 18 Bytes Long.")
         }
 
         var decoder = DecodeData()

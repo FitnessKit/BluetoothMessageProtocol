@@ -67,7 +67,7 @@ open class CharacteristicTacxAntFecReceive: Characteristic {
 
         /// Check to make sure the Sync byte is correct
         guard sync == 0xA4 else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "ANT Sync mismatch."))
+            throw BluetoothMessageProtocolError.decode("ANT Sync mismatch")
         }
 
         /// Just return the data

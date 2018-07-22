@@ -154,8 +154,8 @@ open class CharacteristicTreadmillData: Characteristic {
                 metabolicEquivalent: Double?,
                 time: FitnessMachineTime,
                 forceOnBelt: Measurement<UnitForce>?,
-                powerOutput: FitnessMachinePowerType?)
-    {
+                powerOutput: FitnessMachinePowerType?) {
+
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
         self.totalDistance = totalDistance
@@ -164,7 +164,7 @@ open class CharacteristicTreadmillData: Characteristic {
         self.positiveElevationGain = positiveElevationGain
         self.negativeElevationGain = negativeElevationGain
         self.instantaneousPace = instantaneousPace
-        self.averagePace = averagePace;
+        self.averagePace = averagePace
         self.energy = energy
 
         if let hRate = heartRate {

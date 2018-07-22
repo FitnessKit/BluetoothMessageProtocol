@@ -103,7 +103,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .apple else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "Manufacturer is not Apple"))
+            throw BluetoothMessageProtocolError.wrongIdentifier(.apple)
         }
 
         if let data = man.specificData {
@@ -112,7 +112,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
             let type = decoder.decodeUInt8(data)
 
             guard type == AppleDeviceType.hapEncrypted.rawValue else {
-                throw BluetoothMessageProtocolError(.decodeError(msg: "Type wrong for HomeKit Encrypted Notification"))
+                throw BluetoothMessageProtocolError.decode("Type wrong for HomeKit Encrypted Notification.")
             }
 
             /// 8 bits for HomeKit SubType and Length, the 3 significant bits specify the
@@ -125,7 +125,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
             let ailNib = Nibble(ail)
 
             guard ailNib.lower == 22 else {
-                throw BluetoothMessageProtocolError(.decodeError(msg: "HomeKit Message Length issue"))
+                throw BluetoothMessageProtocolError.decode("HomeKit Message Length issue.")
             }
 
             let subType = (ail & 0xE0) >> 5
@@ -149,7 +149,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
                                                                      rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "No Manufacturer Specific Data"))
+            throw BluetoothMessageProtocolError.noManufacturerSpecificData
         }
     }
 

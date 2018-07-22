@@ -73,10 +73,10 @@ public struct ProvisioningDataUnitPublicKey: ProvisioningDataUnit {
         var msgData = Data()
 
         guard publicKeyX.count == 32 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "The publicKeyX must be 32 bytes"))
+            throw BluetoothMessageProtocolError.encode("The publicKeyX must be 32 bytes.")
         }
         guard publicKeyY.count == 32 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "The publicKeyY must be 32 bytes"))
+            throw BluetoothMessageProtocolError.encode("The publicKeyY must be 32 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -144,7 +144,7 @@ public struct ProvisioningDataUnitConfirmation: ProvisioningDataUnit {
         var msgData = Data()
 
         guard confirmation.count == 16 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "The confirmation must be 16 bytes"))
+            throw BluetoothMessageProtocolError.encode("The confirmation must be 16 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -183,7 +183,7 @@ public struct ProvisioningDataUnitRandom: ProvisioningDataUnit {
         var msgData = Data()
 
         guard confirmation.count == 16 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "The final input to the confirmation must be 16 bytes"))
+            throw BluetoothMessageProtocolError.encode("The final input to the confirmation must be 16 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -230,7 +230,7 @@ public struct ProvisioningDataUnitData: ProvisioningDataUnit {
         var msgData = Data()
 
         guard messageIntegrity.count == 8 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "The messageIntegrity must be 8 bytes"))
+            throw BluetoothMessageProtocolError.encode("The messageIntegrity must be 8 bytes.")
         }
 
         msgData.append(unitType.rawValue)

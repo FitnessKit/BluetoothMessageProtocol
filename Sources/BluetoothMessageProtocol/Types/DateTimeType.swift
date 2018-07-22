@@ -205,7 +205,12 @@ public extension DateTime {
 
         let seconds = decoder.decodeUInt8(data)
 
-        return DateTime(year: year, month: month, day: dayOfMonth, hours: hours, minutes: minutes, seconds: seconds)
+        return DateTime(year: year,
+                        month: month,
+                        day: dayOfMonth,
+                        hours: hours,
+                        minutes: minutes,
+                        seconds: seconds)
     }
 
     /// Decode DateTime
@@ -257,7 +262,8 @@ public extension DateTime {
         }
 
         guard kBluetoothYearBounds.contains(Int(year)) else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "Year must be between 1582 and 9999"))
+            throw BluetoothMessageProtocolError.boundsError(title: "Year must be between",
+                                                            range: kBluetoothYearBounds)
         }
 
         guard let day = day else {
@@ -265,7 +271,8 @@ public extension DateTime {
         }
 
         guard kBluetoothDayOfMonthBounds.contains(Int(day)) else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "Day must be between \(kBluetoothDayOfMonthBounds.lowerBound) and \(kBluetoothDayOfMonthBounds.upperBound)"))
+            throw BluetoothMessageProtocolError.boundsError(title: "Day must be between",
+                                                            range: kBluetoothDayOfMonthBounds)
         }
 
         msgData.append(Data(from: UInt16(year)))

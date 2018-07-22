@@ -82,7 +82,10 @@ open class CharacteristicMeasurementInterval: Characteristic {
         let value = UInt16(interval.converted(to: UnitDuration.seconds).value)
 
         guard kBluetoothMeasurementIntervalBounds.contains(Int(value)) else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "Measurement Interval must be between \(kBluetoothMeasurementIntervalBounds.lowerBound) and \(kBluetoothMeasurementIntervalBounds.upperBound) seconds"))
+
+            throw BluetoothMessageProtocolError.boundsError(title: "Measurement Interval must be between",
+                                                            msg: "seconds",
+                                                            range: kBluetoothMeasurementIntervalBounds)
         }
 
         var msgData = Data()

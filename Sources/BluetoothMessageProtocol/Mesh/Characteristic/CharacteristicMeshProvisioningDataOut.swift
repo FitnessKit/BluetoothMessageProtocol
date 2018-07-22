@@ -67,7 +67,7 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
         //known Proxy PDU containing Provisioning PDU.
 
         guard data.count <= 66 else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "PDU must be 66 bytes or less"))
+            throw BluetoothMessageProtocolError.decode("PDU must be 66 bytes or less.")
         }
 
         return CharacteristicMeshProvisioningDataOut(pduMessage: data)

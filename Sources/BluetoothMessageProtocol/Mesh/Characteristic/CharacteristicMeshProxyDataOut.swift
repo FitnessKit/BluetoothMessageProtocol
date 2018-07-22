@@ -71,11 +71,13 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
             let type = try ProxyMessageType(pduType)
 
             guard type.message != .provisioning else {
-                throw BluetoothMessageProtocolError(message: "Proxy Data Unit of type Provisioning is not supported.")
+                throw BluetoothMessageProtocolError(
+                    message: "Proxy Data Unit of type Provisioning is not supported."
+                )
             }
 
         } else {
-            throw BluetoothMessageProtocolError(.decodeError(msg: "Proxy Data size too small."))
+            throw BluetoothMessageProtocolError.decode("Proxy Data size too small.")
         }
 
         return CharacteristicMeshProxyDataOut(pduMessage: data)

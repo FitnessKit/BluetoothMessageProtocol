@@ -107,7 +107,8 @@ open class CharacteristicDateOfBirth: Characteristic {
         if let yr = year {
 
             guard kBluetoothYearBounds.contains(Int(yr)) else {
-                throw BluetoothMessageProtocolError(.decodeError(msg: "Year must be between 1582 and 9999"))
+                throw BluetoothMessageProtocolError.boundsError(title: "Year must be between",
+                                                                range: kBluetoothYearBounds)
             }
             
             msgData.append(Data(from: yr.littleEndian))

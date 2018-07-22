@@ -215,7 +215,7 @@ public struct ProvisioningAuthenticationMethodOutput: ProvisioningAuthentication
         msgData.append(action.rawValue) /// Action
 
         guard size.rawValue <= 8 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "Size must be 8 or less"))
+            throw BluetoothMessageProtocolError.encode("Size must be 8 or less.")
         }
 
         msgData.append(size.rawValue) /// Size..
@@ -302,7 +302,7 @@ public struct ProvisioningAuthenticationMethodInput: ProvisioningAuthentication 
         msgData.append(action.rawValue) /// Action
 
         guard size.rawValue <= 8 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "Size must be 8 or less"))
+            throw BluetoothMessageProtocolError.encode("Size must be 8 or less.")
         }
 
         msgData.append(size.rawValue) /// Size..

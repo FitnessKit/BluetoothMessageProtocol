@@ -148,7 +148,7 @@ public struct MeshBeaconUnprovisioned: MeshBeacon {
         var msgData = Data()
 
         guard deviceUUID.count == 16 else {
-            throw BluetoothMessageProtocolError(.encodeError(msg: "Device UUID must be a 128Bit UUID"))
+            throw BluetoothMessageProtocolError.encode("Device UUID must be a 128Bit UUID.")
         }
 
         let uuidString = deviceUUID.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")

@@ -28,12 +28,12 @@ import Foundation
 public enum ErrorReasons {
     /// Unsupported
     case unsupported
-    /// Encoding error
-    case encodeError(msg: String)
-    /// Decoding error
-    case decodeError(msg: String)
     /// Company ID Already registered
     case companyRegistration(msg: String)
+    /// Decoding error
+    case decodeError(msg: String)
+    /// Encoding error
+    case encodeError(msg: String)
 
     /// Generic Error
     case generic(String)
@@ -96,5 +96,63 @@ extension BluetoothMessageProtocolError: Encodable {
             try container.encode("Generic", forKey: typeKey)
             try container.encode(msg, forKey: errkey)
         }
+    }
+}
+
+
+internal extension BluetoothMessageProtocolError {
+    
+    /// Creates BluetoothMessageProtocol Decode Error
+    /// For Manufacturer Data where there is no Manufacturer Specific Data
+    internal static var noManufacturerSpecificData: BluetoothMessageProtocolError {
+        return BluetoothMessageProtocolError(.decodeError(msg: "No Manufacturer Specific Data."))
+    }
+}
+
+internal extension BluetoothMessageProtocolError {
+
+    /// Creates BluetoothMessageProtocol Decode Error
+    ///
+    /// - Parameter msg: Decode Error Message
+    /// - Returns: BluetoothMessageProtocolError
+    internal static func decode(_ msg: String) -> BluetoothMessageProtocolError {
+        return BluetoothMessageProtocolError(.decodeError(msg: msg))
+    }
+
+    /// Creates BluetoothMessageProtocol Encode Error
+    ///
+    /// - Parameter msg: Encode Error Message
+    /// - Returns: BluetoothMessageProtocolError
+    internal static func encode(_ msg: String) -> BluetoothMessageProtocolError {
+        return BluetoothMessageProtocolError(.encodeError(msg: msg))
+    }
+
+    /// Create Error for Wrong Company Identifier
+    ///
+    /// - Parameter company: Company Identifier
+    /// - Returns: BluetoothMessageProtocolError
+    internal static func wrongIdentifier(_ company: CompanyIdentifier) -> BluetoothMessageProtocolError {
+        return BluetoothMessageProtocolError.decode("Manufacturer is not \(company.name).")
+    }
+
+    /// Createa BluetoothMessageProtocolError Message for Bounded Types
+    ///
+    /// - Parameters:
+    ///   - title: Title of Error
+    ///   - msg: Optional Message at the end of error
+    ///   - range: Bunded Range
+    /// - Returns: BluetoothMessageProtocolError
+    internal static func boundsError<T>(title: String,
+                                        msg: String? = nil,
+                                        range: ClosedRange<T>) -> BluetoothMessageProtocolError {
+        if let msg = msg {
+            return BluetoothMessageProtocolError(
+                .decodeError(msg: "\(title) \(range.lowerBound) and \(range.upperBound) \(msg).")
+            )
+        }
+
+        return BluetoothMessageProtocolError(
+            .decodeError(msg: "\(title) \(range.lowerBound) and \(range.upperBound).")
+        )
     }
 }
