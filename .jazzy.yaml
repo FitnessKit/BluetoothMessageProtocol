@@ -393,6 +393,23 @@ custom_categories:
     - MeshBeaconSecureNetwork
     - MeshBeaconUnprovisioned
 
+  - name: Mesh Message
+    children:
+     - MeshMessage
+     - GenericOnOffState
+     - MeshMessageGenericOnOffGet
+     - MeshMessageGenericOnOffSet
+     - MeshMessageGenericOnOffSetUnacknowledged
+     - MeshMessageGenericOnOffStatus
+     - MeshMessageGenericLevelGet
+     - MeshMessageGenericLevelSet
+     - MeshMessageGenericLevelSetUnacknowledged
+     - MeshMessageGenericLevelSatus
+     - MeshMessageGenericDeltaSet
+     - MeshMessageGenericDeltaSetUnacknowledged
+     - MeshMessageGenericMoveSet
+     - MeshMessageGenericMoveSetUnacknowledged
+
   - name: Mesh Provisioning
     children:
     - ProvisioningData
