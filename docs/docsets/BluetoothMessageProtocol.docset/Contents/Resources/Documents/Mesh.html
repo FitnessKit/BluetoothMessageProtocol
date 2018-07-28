@@ -98,9 +98,16 @@
                         <div class="abstract">
                           <p>Provisioning Attention Timer</p>
 
-<p>The Attention Timer state determines if the Attention Timer state is on or off. This is generally intended to allow an element to attract human attention and, among others, is used during provisioning.</p>
+<p>The Attention Timer state determines if the Attention Timer state is on or off.
+This is generally intended to allow an element to attract human attention and,
+among others, is used during provisioning.</p>
 
-<p>When the Attention Timer state is on, the value determines how long the element shall remain attracting human’s attention. The element does that by behaving in a human-recognizable way (e.g., a lamp flashes, a motor makes noise, an LED blinks). The exact behavior is implementation specific and depends on the type of device. Normal behavior of the element is still active, although the method of identification may override the physical state of the device</p>
+<p>When the Attention Timer state is on, the value determines how long the element
+shall remain attracting human’s attention. The element does that by behaving in a
+human-recognizable way (e.g., a lamp flashes, a motor makes noise, an LED blinks).
+The exact behavior is implementation specific and depends on the type of device.
+Normal behavior of the element is still active, although the method of identification
+may override the physical state of the device</p>
 
                           <a href="Enums/ProvisioningAttentionTimer.html" class="slightly-smaller">See more</a>
                         </div>
@@ -109,6 +116,42 @@
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ProvisioningAttentionTimer</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol19MeshModelIdentifierC"></a>
+                      <a name="//apple_ref/swift/Class/MeshModelIdentifier" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol19MeshModelIdentifierC">MeshModelIdentifier</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>BLE Mesh Model Identifier</p>
+
+<p>All SIG Model IDs that are not defined by this specification
+or other Bluetooth specifications are Reserved for Future Use (RFU)</p>
+
+                          <a href="Classes/MeshModelIdentifier.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">MeshModelIdentifier</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
 
                           </div>
                         </div>
@@ -134,7 +177,8 @@
                         <div class="abstract">
                           <p>Mesh OOB Information</p>
 
-<p>The OOB Information field is used to help drive the provisioning process by indicating the availability of OOB data, such as a public key of the device.</p>
+<p>The OOB Information field is used to help drive the provisioning process by
+indicating the availability of OOB data, such as a public key of the device.</p>
 
                           <a href="Structs/MeshOutOfBandInformation.html" class="slightly-smaller">See more</a>
                         </div>
@@ -1303,6 +1347,9 @@
                 </li>
                 <li class="nav-group-task">
                   <a href="Enums/ProvisioningAttentionTimer.html">ProvisioningAttentionTimer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="Classes/MeshModelIdentifier.html">MeshModelIdentifier</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Structs/MeshOutOfBandInformation.html">MeshOutOfBandInformation</a>

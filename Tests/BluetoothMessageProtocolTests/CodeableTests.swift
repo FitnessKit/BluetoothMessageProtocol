@@ -61,6 +61,27 @@ class CodeableTests: XCTestCase {
         }
 
     }
+
+    func testMeshModelEncode() {
+
+        let service = MeshModelIdentifier.reserved
+        
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = [.prettyPrinted]
+        do {
+            let jsonData = try jsonEncoder.encode(service)
+
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            print("JSON String : " + jsonString!)
+
+        }
+        catch {
+            print(error)
+            XCTFail()
+        }
+
+    }
+
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

@@ -383,6 +383,7 @@ custom_categories:
     children:
     - ProvisioningSize
     - ProvisioningAttentionTimer
+    - MeshModelIdentifier
     - MeshOutOfBandInformation
 
   - name: Mesh Beacon
