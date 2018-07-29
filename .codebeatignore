@@ -1,3 +1,4 @@
 docs/**
 Sources/BluetoothMessageProtocol/CompanyIdentifier/*
 Sources/BluetoothMessageProtocol/MemberIdentifier/*
+Sources/BluetoothMessageProtocol/Mesh/Types/MeshModelIdentifierExtension.swift

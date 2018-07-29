@@ -64,8 +64,30 @@ class CodeableTests: XCTestCase {
 
     func testMeshModelEncode() {
 
-        let service = MeshModelIdentifier.reserved
-        
+//        let sigType = ModelIdentifierType.create(sig: 55)
+        let sigType = ModelIdentifierType.vendor(.nordicSemiconductor, id: 5343)
+
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = [.prettyPrinted]
+        do {
+            let jsonData = try jsonEncoder.encode(sigType)
+
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            print("JSON String : " + jsonString!)
+
+        }
+        catch {
+            print(error)
+            XCTFail()
+        }
+
+    }
+
+    func testMeshModelIdentifierTypeEncode() {
+
+//        let service = MeshModelIdentifier.genericOnOffServer
+        let service = MeshModelIdentifier.nordicSimpleOnOffClient
+
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = [.prettyPrinted]
         do {
@@ -82,7 +104,6 @@ class CodeableTests: XCTestCase {
 
     }
 
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
@@ -93,6 +114,7 @@ class CodeableTests: XCTestCase {
     static var allTests = [
         ("testServiceEncode", testServiceEncode),
         ("testPolarEncodeable", testPolarEncodeable),
+        ("testMeshModelEncode", testMeshModelEncode),
         ]
 
 }

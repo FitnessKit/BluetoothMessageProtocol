@@ -384,6 +384,7 @@ custom_categories:
     - ProvisioningSize
     - ProvisioningAttentionTimer
     - MeshModelIdentifier
+    - ModelIdentifierType
     - MeshOutOfBandInformation
 
   - name: Mesh Beacon

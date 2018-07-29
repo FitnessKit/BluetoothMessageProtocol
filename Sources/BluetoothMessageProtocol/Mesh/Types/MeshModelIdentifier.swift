@@ -24,6 +24,84 @@
 
 import Foundation
 
+/// BLE Mesh Model Identifier Type
+///
+/// Models may container either a SIG Model ID or a Vendor Model ID
+public enum ModelIdentifierType {
+    /// SIG Model Identifier
+    case sig(UInt16)
+    /// Vendor Model ID
+    ///
+    /// The Vendor Model ID is composed of two values: a 16-bit Bluetooth-assigned
+    /// Company Identifier and a 16-bit vendor-assigned model identifier.
+    case vendor(CompanyIdentifier, id: UInt16)
+
+    /// Encodes into Data
+    ///
+    /// - Returns: Encoded Data
+    /// - Throws: BluetoothMessageProtocolError
+    public func encode() throws -> Data {
+        var msgData = Data()
+
+        // Access Layer Endianness
+        // All multiple-octet numeric values in this layer shall
+        // be “little endian” as described in Section 3.1.1.2
+        switch self {
+        case .sig(let id):
+            msgData.append(Data(from: id))
+
+        case .vendor(let vendor, let id):
+            msgData.append(Data(from: vendor.companyID))
+            msgData.append(Data(from: id))
+        }
+
+        return msgData
+    }
+}
+
+extension ModelIdentifierType {
+
+    public var description: String {
+        return String(describing: self)
+    }
+}
+
+@available(swift 4.0)
+extension ModelIdentifierType: Encodable {
+
+    /// CodingKeys
+    public enum CodingKeys: CodingKey {
+        case type
+        case value
+        case vendor
+    }
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        switch self {
+        case .sig(let id):
+            try container.encode(id, forKey: .value)
+            // should we do the BLE SIG Vendor or some other value
+            // here to show it is a SIG type??
+
+        case .vendor(let vendor, let id):
+            try container.encode(id, forKey: .value)
+            try container.encode(vendor, forKey: .vendor)
+        }
+
+        //try container.encode(self.description, forKey: .type)
+    }
+}
 
 /// BLE Mesh Model Identifier
 ///
@@ -33,7 +111,7 @@ import Foundation
 open class MeshModelIdentifier: Encodable {
 
     /// Model Id
-    open internal(set) var modelId: UInt16
+    open internal(set) var modelId: ModelIdentifierType
 
     /// Model Name
     open internal(set) var name: String
@@ -43,7 +121,7 @@ open class MeshModelIdentifier: Encodable {
     /// - Parameters:
     ///   - modelId: Model Identifier
     ///   - name: Model Name
-    public init(model modelId: UInt16, name: String) {
+    public init(model modelId: ModelIdentifierType, name: String) {
 
         self.modelId = modelId
         self.name = name
@@ -72,6 +150,6 @@ extension MeshModelIdentifier: Equatable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     static public func == (lhs: MeshModelIdentifier, rhs: MeshModelIdentifier) -> Bool {
-        return (lhs.name == rhs.name) && (lhs.modelId == rhs.modelId)
+        return (lhs.name == rhs.name) && (lhs.modelId.description == rhs.modelId.description)
     }
 }

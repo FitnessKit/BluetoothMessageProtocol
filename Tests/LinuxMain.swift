@@ -7,4 +7,5 @@ XCTMain([
     testCase(CharacteristicCurrentTimeTests.allTests),
     testCase(CodeableTests.allTests),
     testCase(HomeKitTests.allTests),
+    testCase(ModelIdentifierTests.allTests),
 ])
