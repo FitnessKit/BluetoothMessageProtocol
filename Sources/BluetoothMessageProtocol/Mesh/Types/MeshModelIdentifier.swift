@@ -26,7 +26,7 @@ import Foundation
 
 /// BLE Mesh Model Identifier Type
 ///
-/// Models may container either a SIG Model ID or a Vendor Model ID
+/// Models may contain either a SIG Model ID or a Vendor Model ID
 public enum ModelIdentifierType {
     /// SIG Model Identifier
     case sig(UInt16)

@@ -54,9 +54,14 @@ public struct MeshMessageGenericLevelSet: MeshMessage {
     /// Op Code
     private(set) public var opCode: Data
 
+    /// Level State
+    private(set) public var state: Int16
+
     /// Create Message
-    public init() {
+    public init(state: Int16) {
         self.opCode = Data([0x82, 0x06])
+
+        self.state = state
     }
 
     /// Encodes into Data
@@ -67,6 +72,7 @@ public struct MeshMessageGenericLevelSet: MeshMessage {
         var msgData = Data()
 
         msgData.append(opCode)
+        msgData.append(Data(from: state.littleEndian))
 
         return msgData
     }

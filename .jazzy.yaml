@@ -386,6 +386,7 @@ custom_categories:
     - MeshModelIdentifier
     - ModelIdentifierType
     - MeshOutOfBandInformation
+    - MeshTransitionTime
 
   - name: Mesh Beacon
     children:

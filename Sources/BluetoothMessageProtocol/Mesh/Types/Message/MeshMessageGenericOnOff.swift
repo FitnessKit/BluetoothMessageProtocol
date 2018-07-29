@@ -110,6 +110,8 @@ public struct MeshMessageGenericOnOffSet: MeshMessage {
     private(set) public var transition: UInt8?
 
     /// Message execution delay
+    ///
+    /// Message execution delay in 5 millisecond steps
     private(set) public var delay: UInt8?
 
     /// Create Message
@@ -175,6 +177,8 @@ public struct MeshMessageGenericOnOffSetUnacknowledged: MeshMessage {
     private(set) public var transition: UInt8?
 
     /// Message execution delay
+    ///
+    /// Message execution delay in 5 millisecond steps
     private(set) public var delay: UInt8?
 
     /// Create Message
