@@ -43,6 +43,7 @@ centralManager.scanForPeripherals(withServices: [CBUUID(string: ServiceHeartRate
 
 * BLE SIG Services
 * Home Kit Accessory Protocol (HAP)
+* BLE Mesh
 
 
 ### Characteristic

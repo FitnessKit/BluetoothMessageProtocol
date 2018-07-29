@@ -25,6 +25,11 @@
 import Foundation
 
 /// Mesh Message Generic Level Get
+///
+/// Generic Level Get is an acknowledged message used to get the Generic
+/// Level state of an element
+///
+/// The response to the Generic Level Get message is a Generic Level Status message.
 public struct MeshMessageGenericLevelGet: MeshMessage {
 
     /// Op Code
@@ -49,6 +54,11 @@ public struct MeshMessageGenericLevelGet: MeshMessage {
 }
 
 /// Mesh Message Generic Level Set
+///
+/// Generic Level Set is an acknowledged message used to set the Generic
+/// Level state of an element
+///
+/// The response to the Generic Level Set message is a Generic Level Status message.
 public struct MeshMessageGenericLevelSet: MeshMessage {
 
     /// Op Code
@@ -57,11 +67,31 @@ public struct MeshMessageGenericLevelSet: MeshMessage {
     /// Level State
     private(set) public var state: Int16
 
+    /// Transaction Identifier
+    private(set) public var transaction: UInt8
+
+    /// Transition Time
+    private(set) public var transition: MeshTransitionTime?
+
+    /// Message execution delay
+    ///
+    /// Message execution delay in 5 millisecond steps
+    private(set) public var delay: UInt8?
+
     /// Create Message
-    public init(state: Int16) {
+    ///
+    /// - Parameters:
+    ///   - state: Level State
+    ///   - transaction: Transaction Identifier
+    ///   - transition: Transition Time
+    ///   - delay: Message execution delay
+    public init(state: Int16, transaction: UInt8, transition: MeshTransitionTime?, delay: UInt8?) {
         self.opCode = Data([0x82, 0x06])
 
         self.state = state
+        self.transaction = transaction
+        self.transition = transition
+        self.delay = delay
     }
 
     /// Encodes into Data
@@ -74,19 +104,60 @@ public struct MeshMessageGenericLevelSet: MeshMessage {
         msgData.append(opCode)
         msgData.append(Data(from: state.littleEndian))
 
+        // C.1: If the Transition Time field is present, the Delay field shall
+        // also be present; otherwise these fields shall not be present.
+        if let transition = transition {
+
+            msgData.append(transition.rawValue)
+
+            if let delay = delay {
+                msgData.append(delay)
+            } else {
+                throw BluetoothMessageProtocolError.encode("Delay must be present.")
+            }
+        }
+
         return msgData
     }
 }
 
 /// Mesh Message Generic Level Set Unacknowledged
+///
+/// Generic Level Set Unacknowledged is an unacknowledged message used to
+/// set the Generic Level state of an element
 public struct MeshMessageGenericLevelSetUnacknowledged: MeshMessage {
 
     /// Op Code
     private(set) public var opCode: Data
 
+    /// Level State
+    private(set) public var state: Int16
+
+    /// Transaction Identifier
+    private(set) public var transaction: UInt8
+
+    /// Transition Time
+    private(set) public var transition: MeshTransitionTime?
+
+    /// Message execution delay
+    ///
+    /// Message execution delay in 5 millisecond steps
+    private(set) public var delay: UInt8?
+
     /// Create Message
-    public init() {
+    ///
+    /// - Parameters:
+    ///   - state: Level State
+    ///   - transaction: Transaction Identifier
+    ///   - transition: Transition Time
+    ///   - delay: Message execution delay
+    public init(state: Int16, transaction: UInt8, transition: MeshTransitionTime?, delay: UInt8?) {
         self.opCode = Data([0x82, 0x07])
+
+        self.state = state
+        self.transaction = transaction
+        self.transition = transition
+        self.delay = delay
     }
 
     /// Encodes into Data
@@ -97,20 +168,50 @@ public struct MeshMessageGenericLevelSetUnacknowledged: MeshMessage {
         var msgData = Data()
 
         msgData.append(opCode)
+        msgData.append(Data(from: state.littleEndian))
+
+        // C.1: If the Transition Time field is present, the Delay field shall
+        // also be present; otherwise these fields shall not be present.
+        if let transition = transition {
+
+            msgData.append(transition.rawValue)
+
+            if let delay = delay {
+                msgData.append(delay)
+            } else {
+                throw BluetoothMessageProtocolError.encode("Delay must be present.")
+            }
+        }
 
         return msgData
     }
 }
 
 /// Mesh Message Generic Level Status
+///
+/// Generic Level Status is an unacknowledged message used to report the Generic
+/// Level state of an element
 public struct MeshMessageGenericLevelSatus: MeshMessage {
 
     /// Op Code
     private(set) public var opCode: Data
 
+    /// Present Level
+    private(set) public var present: Int16
+
+    /// Target Level
+    private(set) public var target: Int16?
+
+    /// Remaining Time
+    private(set) public var remainingTime: MeshTransitionTime?
+
     /// Create Message
-    public init() {
+    public init(present: Int16, target: Int16?, remainingTime: MeshTransitionTime?) {
         self.opCode = Data([0x82, 0x08])
+
+        self.present = present
+        self.target = target
+        self.remainingTime = remainingTime
     }
 
     /// Encodes into Data
@@ -122,57 +223,25 @@ public struct MeshMessageGenericLevelSatus: MeshMessage {
 
         msgData.append(opCode)
 
-        return msgData
-    }
-}
+        msgData.append(Data(from: present.littleEndian))
 
-/// Mesh Message Generic Delta Set
-public struct MeshMessageGenericDeltaSet: MeshMessage {
+        // C.1: If the Target Level field is present, the Remaining Time field
+        /// shall also be present; otherwise these fields shall not be present.
+        if let target = target {
 
-    /// Op Code
-    private(set) public var opCode: Data
+            msgData.append(Data(from: target.littleEndian))
 
-    /// Create Message
-    public init() {
-        self.opCode = Data([0x82, 0x09])
-    }
-
-    /// Encodes into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
-    public func encode() throws -> Data {
-        var msgData = Data()
-
-        msgData.append(opCode)
+            if let remainingTime = remainingTime {
+                msgData.append(remainingTime.rawValue)
+            } else {
+                throw BluetoothMessageProtocolError.encode("Remaining Time must be present.")
+            }
+        }
 
         return msgData
     }
 }
 
-/// Mesh Message Generic Delta Set Unacknowledged
-public struct MeshMessageGenericDeltaSetUnacknowledged: MeshMessage {
-
-    /// Op Code
-    private(set) public var opCode: Data
-
-    /// Create Message
-    public init() {
-        self.opCode = Data([0x82, 0x0A])
-    }
-
-    /// Encodes into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
-    public func encode() throws -> Data {
-        var msgData = Data()
-
-        msgData.append(opCode)
-
-        return msgData
-    }
-}
 
 /// Mesh Message Generic Move Set
 public struct MeshMessageGenericMoveSet: MeshMessage {

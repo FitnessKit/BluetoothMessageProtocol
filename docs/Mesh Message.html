@@ -258,6 +258,11 @@ OnOff state of an element.</p>
                         <div class="abstract">
                           <p>Mesh Message Generic Level Get</p>
 
+<p>Generic Level Get is an acknowledged message used to get the Generic
+Level state of an element</p>
+
+<p>The response to the Generic Level Get message is a Generic Level Status message.</p>
+
                           <a href="Structs/MeshMessageGenericLevelGet.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
@@ -285,6 +290,11 @@ OnOff state of an element.</p>
                         <div class="pointer"></div>
                         <div class="abstract">
                           <p>Mesh Message Generic Level Set</p>
+
+<p>Generic Level Set is an acknowledged message used to set the Generic
+Level state of an element</p>
+
+<p>The response to the Generic Level Set message is a Generic Level Status message.</p>
 
                           <a href="Structs/MeshMessageGenericLevelSet.html" class="slightly-smaller">See more</a>
                         </div>
@@ -314,6 +324,9 @@ OnOff state of an element.</p>
                         <div class="abstract">
                           <p>Mesh Message Generic Level Set Unacknowledged</p>
 
+<p>Generic Level Set Unacknowledged is an unacknowledged message used to
+set the Generic Level state of an element</p>
+
                           <a href="Structs/MeshMessageGenericLevelSetUnacknowledged.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
@@ -342,6 +355,9 @@ OnOff state of an element.</p>
                         <div class="abstract">
                           <p>Mesh Message Generic Level Status</p>
 
+<p>Generic Level Status is an unacknowledged message used to report the Generic
+Level state of an element</p>
+
                           <a href="Structs/MeshMessageGenericLevelSatus.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
@@ -349,62 +365,6 @@ OnOff state of an element.</p>
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MeshMessageGenericLevelSatus</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MeshMessage.html">MeshMessage</a></span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol04MeshB15GenericDeltaSetV"></a>
-                      <a name="//apple_ref/swift/Struct/MeshMessageGenericDeltaSet" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol04MeshB15GenericDeltaSetV">MeshMessageGenericDeltaSet</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Mesh Message Generic Delta Set</p>
-
-                          <a href="Structs/MeshMessageGenericDeltaSet.html" class="slightly-smaller">See more</a>
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MeshMessageGenericDeltaSet</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MeshMessage.html">MeshMessage</a></span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol04MeshB29GenericDeltaSetUnacknowledgedV"></a>
-                      <a name="//apple_ref/swift/Struct/MeshMessageGenericDeltaSetUnacknowledged" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol04MeshB29GenericDeltaSetUnacknowledgedV">MeshMessageGenericDeltaSetUnacknowledged</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Mesh Message Generic Delta Set Unacknowledged</p>
-
-                          <a href="Structs/MeshMessageGenericDeltaSetUnacknowledged.html" class="slightly-smaller">See more</a>
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MeshMessageGenericDeltaSetUnacknowledged</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MeshMessage.html">MeshMessage</a></span></code></pre>
 
                           </div>
                         </div>
@@ -461,6 +421,66 @@ OnOff state of an element.</p>
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MeshMessageGenericMoveSetUnacknowledged</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MeshMessage.html">MeshMessage</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol04MeshB15GenericDeltaSetV"></a>
+                      <a name="//apple_ref/swift/Struct/MeshMessageGenericDeltaSet" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol04MeshB15GenericDeltaSetV">MeshMessageGenericDeltaSet</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Mesh Message Generic Delta Set</p>
+
+                          <a href="Structs/MeshMessageGenericDeltaSet.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MeshMessageGenericDeltaSet</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MeshMessage.html">MeshMessage</a></span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol04MeshB29GenericDeltaSetUnacknowledgedV"></a>
+                      <a name="//apple_ref/swift/Struct/MeshMessageGenericDeltaSetUnacknowledged" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol04MeshB29GenericDeltaSetUnacknowledgedV">MeshMessageGenericDeltaSetUnacknowledged</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Mesh Message Generic Delta Set Unacknowledged</p>
+
+                          <a href="Structs/MeshMessageGenericDeltaSetUnacknowledged.html" class="slightly-smaller">See more</a>
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MeshMessageGenericDeltaSetUnacknowledged</span> <span class="p">:</span> <span class="kt"><a href="Protocols/MeshMessage.html">MeshMessage</a></span></code></pre>
 
                           </div>
                         </div>

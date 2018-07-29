@@ -14,6 +14,8 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
 Encoding and Decoding of the Bluetooth Message Protocol.  Makes creating apps using BLE easy.
+
+Support for HomeKit, BLE Mesh and Custom Services/Characteristics.
                        DESC
 
   s.homepage            = 'https://github.com/FitnessKit/BluetoothMessageProtocol'

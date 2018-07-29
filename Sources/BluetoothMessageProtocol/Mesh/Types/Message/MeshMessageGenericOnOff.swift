@@ -107,7 +107,7 @@ public struct MeshMessageGenericOnOffSet: MeshMessage {
     private(set) public var transaction: UInt8
 
     /// Transition Time
-    private(set) public var transition: UInt8?
+    private(set) public var transition: MeshTransitionTime?
 
     /// Message execution delay
     ///
@@ -121,7 +121,7 @@ public struct MeshMessageGenericOnOffSet: MeshMessage {
     ///   - transaction: Transaction Identifier
     ///   - transition: Transition Time
     ///   - delay: Message execution delay
-    public init(state: GenericOnOffState, transaction: UInt8, transition: UInt8?, delay: UInt8?) {
+    public init(state: GenericOnOffState, transaction: UInt8, transition: MeshTransitionTime?, delay: UInt8?) {
         self.opCode = Data([0x82, 0x02])
 
         self.state = state
@@ -145,7 +145,7 @@ public struct MeshMessageGenericOnOffSet: MeshMessage {
         // also be present; otherwise these fields shall not be present.
         if let transition = transition {
 
-            msgData.append(transition)
+            msgData.append(transition.rawValue)
 
             if let delay = delay {
                 msgData.append(delay)
@@ -174,7 +174,7 @@ public struct MeshMessageGenericOnOffSetUnacknowledged: MeshMessage {
     private(set) public var transaction: UInt8
 
     /// Transition Time
-    private(set) public var transition: UInt8?
+    private(set) public var transition: MeshTransitionTime?
 
     /// Message execution delay
     ///
@@ -188,7 +188,7 @@ public struct MeshMessageGenericOnOffSetUnacknowledged: MeshMessage {
     ///   - transaction: Transaction Identifier
     ///   - transition: Transition Time
     ///   - delay: Message execution delay
-    public init(state: GenericOnOffState, transaction: UInt8, transition: UInt8?, delay: UInt8?) {
+    public init(state: GenericOnOffState, transaction: UInt8, transition: MeshTransitionTime?, delay: UInt8?) {
         self.opCode = Data([0x82, 0x03])
 
         self.state = state
@@ -212,7 +212,7 @@ public struct MeshMessageGenericOnOffSetUnacknowledged: MeshMessage {
         // also be present; otherwise these fields shall not be present.
         if let transition = transition {
 
-            msgData.append(transition)
+            msgData.append(transition.rawValue)
 
             if let delay = delay {
                 msgData.append(delay)
@@ -241,7 +241,7 @@ public struct MeshMessageGenericOnOffStatus: MeshMessage {
     private(set) public var target: GenericOnOffState?
 
     /// Remaining Time
-    private(set) public var remainingTime: UInt8?
+    private(set) public var remainingTime: MeshTransitionTime?
 
     /// Create Message
     ///
@@ -249,7 +249,7 @@ public struct MeshMessageGenericOnOffStatus: MeshMessage {
     ///   - present: Present OnOff
     ///   - target: Target OnOff
     ///   - remainingTime: Remaining Time
-    public init(present: GenericOnOffState, target: GenericOnOffState?, remainingTime: UInt8?) {
+    public init(present: GenericOnOffState, target: GenericOnOffState?, remainingTime: MeshTransitionTime?) {
         self.opCode = Data([0x82, 0x04])
 
         self.present = present
@@ -274,7 +274,7 @@ public struct MeshMessageGenericOnOffStatus: MeshMessage {
             msgData.append(target.rawValue)
 
             if let remainingTime = remainingTime {
-                msgData.append(remainingTime)
+                msgData.append(remainingTime.rawValue)
             } else {
                 throw BluetoothMessageProtocolError.encode("Remaining Time must be present.")
             }
