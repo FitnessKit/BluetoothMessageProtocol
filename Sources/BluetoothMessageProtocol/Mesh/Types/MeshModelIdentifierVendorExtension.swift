@@ -30,9 +30,6 @@ public extension MeshModelIdentifier {
     private class func nordic(_ id: UInt16) -> ModelIdentifierType {
         return ModelIdentifierType.vendor(.nordicSemiconductor, id: id)
     }
-//
-//    case nordicSimpleOnOffServer = 0x00590000
-//    case nordicSimpleOnOffClient = 0x00590001
 
     /// Nordic Simple OnOff Server
     public class var nordicSimpleOnOffServer: MeshModelIdentifier {
