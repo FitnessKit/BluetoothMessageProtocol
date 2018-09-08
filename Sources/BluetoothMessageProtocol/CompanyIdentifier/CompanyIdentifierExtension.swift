@@ -3286,4 +3286,76 @@ public extension CompanyIdentifier {
     public class var pixArtImaging: CompanyIdentifier { return CompanyIdentifier(id: 1628, name: "PixArt Imaging Inc.") }
     /// Panduit Corp.
     public class var panduit: CompanyIdentifier { return CompanyIdentifier(id: 1629, name: "Panduit Corp.") }
+
+    /// Alo AB
+    public class var aloAb: CompanyIdentifier { return CompanyIdentifier(id: 1630, name: "Alo AB") }
+    /// Ricoh Company Ltd
+    public class var ricoh: CompanyIdentifier { return CompanyIdentifier(id: 1631, name: "Ricoh Company Ltd") }
+    /// RTC Industries, Inc
+    public class var rtcIndustries: CompanyIdentifier { return CompanyIdentifier(id: 1632, name: "RTC Industries, Inc") }
+    /// Mode Lighting Limited
+    public class var modeLighting: CompanyIdentifier { return CompanyIdentifier(id: 1633, name: "Mode Lighting Limited") }
+    /// Particle Industries, Inc.
+    public class var particleIndustries: CompanyIdentifier { return CompanyIdentifier(id: 1634, name: "Particle Industries, Inc.") }
+    /// Advanced Telemetry Systems, Inc.
+    public class var advancedTelemetrySystems: CompanyIdentifier { return CompanyIdentifier(id: 1635, name: "Advanced Telemetry Systems, Inc.") }
+    /// RHA TECHNOLOGIES LTD
+    public class var rhaTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1636, name: "RHA TECHNOLOGIES LTD") }
+    /// Pure International Limited
+    public class var pureInternational: CompanyIdentifier { return CompanyIdentifier(id: 1637, name: "Pure International Limited") }
+    /// WTO Werkzeug-Einrichtungen GmbH
+    public class var wto: CompanyIdentifier { return CompanyIdentifier(id: 1638, name: "WTO Werkzeug-Einrichtungen GmbH") }
+    /// Spark Technology Labs Inc.
+    public class var sparkTechnologyLabs: CompanyIdentifier { return CompanyIdentifier(id: 1639, name: "Spark Technology Labs Inc.") }
+    /// Bleb Technology srl
+    public class var blebTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1640, name: "Bleb Technology srl") }
+    /// Livanova USA, Inc.
+    public class var livanova: CompanyIdentifier { return CompanyIdentifier(id: 1641, name: "Livanova USA, Inc.") }
+    /// Brady Worldwide Inc.
+    public class var bradyWorldwide: CompanyIdentifier { return CompanyIdentifier(id: 1642, name: "Brady Worldwide Inc.") }
+    /// DewertOkin GmbH
+    public class var dewertOkin: CompanyIdentifier { return CompanyIdentifier(id: 1643, name: "DewertOkin GmbH") }
+    /// Ztove ApS
+    public class var ztove: CompanyIdentifier { return CompanyIdentifier(id: 1644, name: "Ztove ApS") }
+    /// Venso EcoSolutions AB
+    public class var vensoEcoSolutions: CompanyIdentifier { return CompanyIdentifier(id: 1645, name: "Venso EcoSolutions AB") }
+    /// Eurotronik Kranj d.o.o.
+    public class var eurotronikKranj: CompanyIdentifier { return CompanyIdentifier(id: 1646, name: "Eurotronik Kranj d.o.o.") }
+    /// Hug Technology Ltd
+    public class var hugTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1647, name: "Hug Technology Ltd") }
+    /// Gema Switzerland GmbH
+    public class var gemaSwitzerland: CompanyIdentifier { return CompanyIdentifier(id: 1648, name: "Gema Switzerland GmbH") }
+    /// Buzz Products Ltd.
+    public class var buzzProducts: CompanyIdentifier { return CompanyIdentifier(id: 1649, name: "Buzz Products Ltd.") }
+    /// Kopi
+    public class var kopi: CompanyIdentifier { return CompanyIdentifier(id: 1650, name: "Kopi") }
+    /// Innova Ideas Limited
+    public class var innovaIdeas: CompanyIdentifier { return CompanyIdentifier(id: 1651, name: "Innova Ideas Limited") }
+    /// BeSpoon
+    public class var beSpoon: CompanyIdentifier { return CompanyIdentifier(id: 1652, name: "BeSpoon") }
+    /// Deco Enterprises, Inc.
+    public class var decoEnterprises: CompanyIdentifier { return CompanyIdentifier(id: 1653, name: "Deco Enterprises, Inc.") }
+    /// Expai Solutions Private Limited
+    public class var expaiSolutions: CompanyIdentifier { return CompanyIdentifier(id: 1654, name: "Expai Solutions Private Limited") }
+    /// Innovation First, Inc.
+    public class var innovationFirst: CompanyIdentifier { return CompanyIdentifier(id: 1655, name: "Innovation First, Inc.") }
+    /// SABIK Offshore GmbH
+    public class var sabikOffshore: CompanyIdentifier { return CompanyIdentifier(id: 1656, name: "SABIK Offshore GmbH") }
+    /// 4iiii Innovations Inc.
+    public class var fouriiii: CompanyIdentifier { return CompanyIdentifier(id: 1657, name: "4iiii Innovations Inc.") }
+    /// The Energy Conservatory, Inc.
+    public class var theEnergyConservatory: CompanyIdentifier { return CompanyIdentifier(id: 1658, name: "The Energy Conservatory, Inc.") }
+    /// I.FARM, INC.
+    public class var iFarm: CompanyIdentifier { return CompanyIdentifier(id: 1659, name: "I.FARM, INC.") }
+    /// Tile, Inc.
+    public class var tile: CompanyIdentifier { return CompanyIdentifier(id: 1660, name: "Tile, Inc.") }
+    /// Form Athletica Inc.
+    public class var formAthletica: CompanyIdentifier { return CompanyIdentifier(id: 1661, name: "Form Athletica Inc.") }
+    /// MbientLab Inc
+    public class var mbientLab: CompanyIdentifier { return CompanyIdentifier(id: 1662, name: "MbientLab Inc") }
+    /// NETGRID S.N.C. DI BISSOLI MATTEO, CAMPOREALE SIMONE, TOGNETTI FEDERICO
+    public class var netgrid: CompanyIdentifier { return CompanyIdentifier(id: 1663, name: "NETGRID S.N.C. DI BISSOLI MATTEO, CAMPOREALE SIMONE, TOGNETTI FEDERICO") }
+    /// Mannkind Corporation
+    public class var mannkind: CompanyIdentifier { return CompanyIdentifier(id: 1664, name: "Mannkind Corporation") }
+
 }

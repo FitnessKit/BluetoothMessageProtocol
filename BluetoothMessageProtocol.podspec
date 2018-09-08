@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BluetoothMessageProtocol'
-  s.version          = '0.15.0'
+  s.version          = '0.15.1'
   s.summary          = 'Encoding and Decoding of the Bluetooth Message Protocol.'
 
 
@@ -37,8 +37,8 @@ Support for HomeKit, BLE Mesh and Custom Services/Characteristics.
 #  s.ios.framework       = [ 'Dispatch' ]
 
 #Dependancy
-  s.dependency 'DataDecoder', '~> 4.3.0'
-  s.dependency 'FitnessUnits', '~> 2.0.3'
+  s.dependency 'DataDecoder', '>= 4.3.0'
+  s.dependency 'FitnessUnits', '>= 2.0.3'
   s.dependency 'CryptoSwift'
 
 end

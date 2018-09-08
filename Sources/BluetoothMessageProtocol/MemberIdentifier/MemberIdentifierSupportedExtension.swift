@@ -29,6 +29,16 @@ public extension MemberIdentifier {
     /// Array of all Supported MemberIdentifier values
     public static var supportedMemberIdentifers: [MemberIdentifier] = {
 
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD4, name: "LX Solutions Pty Limited"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD5, name: "Brompton Bicycle Ltd"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD6, name: "Ministry of Supply"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD7, name: "Emerson"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD8, name: "Jiangsu Teranovo Tech Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD9, name: "Jiangsu Teranovo Tech Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDA, name: "MHCS"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDB, name: "Samsung Electronics Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDC, name: "4iiii Innovations Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDD, name: "Arch Systems Inc"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDE, name: "Noodle Technology Inc."))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDDF, name: "Harman International"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDE0, name: "John Deere"))
