@@ -188,17 +188,19 @@ open class CharacteristicIndoorBikeData: Characteristic {
             avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
 
-        let instantaneousCadence = try decodeCadence(flag: .instantaneousCadencePresent,
+        let instantaneousCadence = try decodeCadence(supported: flags,
+                                                     flag: .instantaneousCadencePresent,
                                                      unit: UnitCadence.revolutionsPerMinute,
                                                      data: data, decoder: &decoder)
 
-        let averageCadence = try decodeCadence(flag: .averageCadencePresent,
+        let averageCadence = try decodeCadence(supported: flags,
+                                               flag: .averageCadencePresent,
                                                unit: UnitCadence.revolutionsPerMinute,
                                                data: data, decoder: &decoder)
 
         var totalDistance: Measurement<UnitLength>?
         if flags.contains(.totalDistancePresent) {
-            let value = Double(decoder.decodeUInt16(data))
+            let value = Double(decoder.decodeUInt24(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
@@ -232,11 +234,13 @@ open class CharacteristicIndoorBikeData: Characteristic {
             mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
-        let elapsedTime = try decodeDuration(flag: .elapsedTimePresent,
+        let elapsedTime = try decodeDuration(supported: flags,
+                                             flag: .elapsedTimePresent,
                                              unit: UnitDuration.seconds,
                                              data: data, decoder: &decoder)
 
-        let remainingTime = try decodeDuration(flag: .remainingTimePresent,
+        let remainingTime = try decodeDuration(supported: flags,
+                                               flag: .remainingTimePresent,
                                                unit: UnitDuration.seconds,
                                                data: data, decoder: &decoder)
 
@@ -277,13 +281,14 @@ private extension CharacteristicIndoorBikeData {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitCadence>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeCadence(flag: Flags,
+    private class func decodeCadence(supported: Flags,
+                                     flag: Flags,
                                      unit: UnitCadence,
                                      data: Data,
                                      decoder: inout DecodeData) throws -> Measurement<UnitCadence>? {
 
         var cadenceValue: Measurement<UnitCadence>?
-        if flag.contains(flag) {
+        if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data)).resolution(0.5)
             cadenceValue = Measurement(value: value, unit: unit)
         }
@@ -299,13 +304,14 @@ private extension CharacteristicIndoorBikeData {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeDuration(flag: Flags,
+    private class func decodeDuration(supported: Flags,
+                                      flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
 
         var durationDat: Measurement<UnitDuration>?
-        if flag.contains(flag) {
+        if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))
             durationDat = Measurement(value: value, unit: unit)
         }

@@ -54,7 +54,7 @@ open class CharacteristicRowerData: Characteristic {
         /// Average Stroke present
         public static let averageStrokePresent           = Flags(rawValue: 1 << 1)
         /// Total Distance Present
-        public static let totalDistancePresent           = Flags(rawValue: 1 << 1)
+        public static let totalDistancePresent           = Flags(rawValue: 1 << 2)
         /// Instantaneous Pace present
         public static let instantaneousPacePresent       = Flags(rawValue: 1 << 3)
         /// Average Pace Present
@@ -205,15 +205,17 @@ open class CharacteristicRowerData: Characteristic {
         }
 
         if flags.contains(.totalDistancePresent) {
-            let value = Double(decoder.decodeUInt16(data))
+            let value = Double(decoder.decodeUInt24(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
-        let instantaneousPace = try decodeDuration(flag: .instantaneousPacePresent,
+        let instantaneousPace = try decodeDuration(supported: flags,
+                                                   flag: .instantaneousPacePresent,
                                                    unit: UnitDuration.seconds,
                                                    data: data, decoder: &decoder)
 
-        let averagePace = try decodeDuration(flag: .averagePacePresent,
+        let averagePace = try decodeDuration(supported: flags,
+                                             flag: .averagePacePresent,
                                              unit: UnitDuration.seconds,
                                              data: data, decoder: &decoder)
 
@@ -244,11 +246,13 @@ open class CharacteristicRowerData: Characteristic {
             mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
-        let elapsedTime = try decodeDuration(flag: .elapsedTimePresent,
+        let elapsedTime = try decodeDuration(supported: flags,
+                                             flag: .elapsedTimePresent,
                                              unit: UnitDuration.seconds,
                                              data: data, decoder: &decoder)
 
-        let remainingTime = try decodeDuration(flag: .remainingTimePresent,
+        let remainingTime = try decodeDuration(supported: flags,
+                                               flag: .remainingTimePresent,
                                                unit: UnitDuration.seconds,
                                                data: data, decoder: &decoder)
 
@@ -290,13 +294,14 @@ private extension CharacteristicRowerData {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeDuration(flag: Flags,
+    private class func decodeDuration(supported: Flags,
+                                      flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
 
         var durationDat: Measurement<UnitDuration>?
-        if flag.contains(flag) {
+        if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))
             durationDat = Measurement(value: value, unit: unit)
         }

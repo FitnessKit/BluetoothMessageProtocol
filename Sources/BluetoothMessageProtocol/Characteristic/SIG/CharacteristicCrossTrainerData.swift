@@ -242,7 +242,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
         }
 
         if flags.contains(.totalDistancePresent) {
-            let value = Double(decoder.decodeUInt16(data))
+            let value = Double(decoder.decodeUInt24(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
 
