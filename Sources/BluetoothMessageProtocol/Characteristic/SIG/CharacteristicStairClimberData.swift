@@ -204,17 +204,6 @@ open class CharacteristicStairClimberData: Characteristic {
                                                unit: UnitDuration.seconds,
                                                data: data, decoder: &decoder)
 
-//        var elapsedTime: Measurement<UnitDuration>?
-//        if flags.contains(.elapsedTimePresent) {
-//            let value = Double(decoder.decodeUInt16(data))
-//            elapsedTime = Measurement(value: value, unit: UnitDuration.seconds)
-//        }
-//
-//        var remainingTime: Measurement<UnitDuration>?
-//        if flags.contains(.remainingTimePresent) {
-//            let value = Double(decoder.decodeUInt16(data))
-//            remainingTime = Measurement(value: value, unit: UnitDuration.seconds)
-//        }
 
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
 

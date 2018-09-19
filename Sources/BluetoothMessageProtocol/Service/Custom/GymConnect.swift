@@ -1,5 +1,5 @@
 //
-//  ServiceWahooFitnessEquipment.swift
+//  GymConnect.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 9/16/17.
@@ -24,14 +24,14 @@
 
 import Foundation
 
-/// BLE Wahoo Fitness Equipment Service
+/// BLE GymConnect Service
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceWahooFitnessEquipment: Service {
+open class ServiceGymConnect: Service {
 
     /// Service Name
     public static var name: String {
-        return "Wahoo Fitness Equipment"
+        return "GymConnect"
     }
 
     /// Service UUID
@@ -41,14 +41,14 @@ open class ServiceWahooFitnessEquipment: Service {
 
     /// Service Uniform Identifier
     public static var uniformIdentifier: String {
-        return "com.wahoo_fitness.service.fitness_equipment"
+        return "com.wahoo_fitness.service.gym_connect"
     }
 
-    /// Creates Wahoo Fitness Equipment Service
+    /// Creates GymConnect Service
     public init() {
-        super.init(name: ServiceWahooFitnessEquipment.name,
-                   uuidString: ServiceWahooFitnessEquipment.uuidString,
-                   uniformIdentifier: ServiceWahooFitnessEquipment.uniformIdentifier
+        super.init(name: ServiceGymConnect.name,
+                   uuidString: ServiceGymConnect.uuidString,
+                   uniformIdentifier: ServiceGymConnect.uniformIdentifier
         )
     }
 }

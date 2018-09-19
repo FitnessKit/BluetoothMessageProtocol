@@ -145,6 +145,7 @@ public struct FitnessMachinePowerType {
     private(set) public var power: Measurement<UnitPower>
 
     internal static func create(_ value: Int16) -> FitnessMachinePowerType {
+
         let pvalue = Double(value)
         let power = Measurement(value: pvalue, unit: UnitPower.watts)
         return FitnessMachinePowerType(power: power)
