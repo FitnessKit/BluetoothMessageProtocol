@@ -76,6 +76,7 @@ custom_categories:
     - ServiceCycleOps
     - ServiceDropcam
     - ServiceEliteTrainer
+    - ServiceGymConnect
     - ServiceGoogleGlass
     - ServiceMyoClassifierEvent
     - ServiceMyoControl
@@ -94,7 +95,6 @@ custom_categories:
     - ServiceTexasInstrumentsSensorTagHumidity
     - ServiceTexasInstrumentsSensorTagMagnetometer
     - ServiceTexasInstrumentsSensorTagTemperature
-    - ServiceWahooFitnessEquipment
     - ServiceWahooFitnessGEMModuleFirmwareUpdate
 
   - name: Services - HomeKit Accessory Protocol

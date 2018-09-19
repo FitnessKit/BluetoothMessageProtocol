@@ -48,6 +48,11 @@ public extension Service {
         return ServiceEliteTrainer()
     }
 
+    /// GymConnect Service
+    public class var gymConnect: ServiceGymConnect {
+        return ServiceGymConnect()
+    }
+
     /// Google Glass
     public class var googleGlass: ServiceGoogleGlass {
         return ServiceGoogleGlass()
@@ -136,11 +141,6 @@ public extension Service {
     /// Texas Instruments Sensor Tag Temperature
     public class var texasInstrumentsSensorTagTemperature: ServiceTexasInstrumentsSensorTagTemperature {
         return ServiceTexasInstrumentsSensorTagTemperature()
-    }
-
-    /// Wahoo Fitness Equipment Service
-    public class var wahooFitnessEquipment: ServiceWahooFitnessEquipment {
-        return ServiceWahooFitnessEquipment()
     }
 
     /// Wahoo Fitness GEM Module Firmware Update
