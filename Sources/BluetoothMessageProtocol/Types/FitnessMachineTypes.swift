@@ -67,7 +67,7 @@ public struct FitnessMachineEnergy {
     internal static let energyNotAvailable: UInt16 = UInt16.max
     
     /// Energy Per Minute Data Not available
-    internal static let energyPerMinuteNotAvailable: UInt16 = UInt16(UInt8.max)
+    internal static let energyPerMinuteNotAvailable: UInt8 = UInt8.max
 
     /// Total Energy
     private(set) public var total: Measurement<UnitEnergy>?
@@ -88,7 +88,7 @@ internal extension FitnessMachineEnergy {
 
         let total = decoder.decodeUInt16(data)
         let perHour = decoder.decodeUInt16(data)
-        let perMin = decoder.decodeUInt16(data)
+        let perMin = decoder.decodeUInt8(data)
 
         if total != FitnessMachineEnergy.energyNotAvailable {
             let tValue = Double(total)
