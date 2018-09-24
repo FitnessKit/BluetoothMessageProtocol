@@ -118,11 +118,16 @@ open class CharacteristicTrainingStatus: Characteristic {
         var decoder = DecodeData()
 
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
+        
+        if flags.rawValue > 3 {
+            throw BluetoothMessageProtocolError.decode("Training Status Flags don't match spec.")
+        }
+
         let status = TrainingStatus(rawValue: decoder.decodeUInt8(data)) ?? .other
 
         var statusString: String?
         if flags.contains([.trainingStatusStringPresent]) {
-            let stringData = Data(data[2...data.count])
+            let stringData = Data(data[2..<data.count])
             statusString = stringData.safeStringValue
         }
 
