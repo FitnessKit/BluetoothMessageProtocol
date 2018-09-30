@@ -283,12 +283,12 @@ open class CharacteristicTreadmillData: Characteristic {
         if flags.contains(.beltForcePowerOutputPresent) {
 
             let beltValue = decoder.decodeInt16(data)
-            if beltValue != UInt16.max {
+            if beltValue != Int16.max {
                 forceOnBelt = Measurement(value: Double(beltValue), unit: UnitForce.newton)
             }
 
             let power = decoder.decodeInt16(data)
-            if power != UInt16.max {
+            if power != Int16.max {
                 powerOutput = FitnessMachinePowerType.create(power)
             }
         }
