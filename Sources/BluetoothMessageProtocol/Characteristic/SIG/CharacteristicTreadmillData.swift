@@ -266,11 +266,13 @@ open class CharacteristicTreadmillData: Characteristic {
             mets = decoder.decodeUInt8(data).resolution(0.1)
         }
 
-        let elapsedTime = try decodeDuration(flag: .elapsedTimePresent,
+        let elapsedTime = try decodeDuration(supported: flags,
+                                             flag: .elapsedTimePresent,
                                              unit: UnitDuration.seconds,
                                              data: data, decoder: &decoder)
 
-        let remainingTime = try decodeDuration(flag: .remainingTimePresent,
+        let remainingTime = try decodeDuration(supported: flags,
+                                               flag: .remainingTimePresent,
                                                unit: UnitDuration.seconds,
                                                data: data, decoder: &decoder)
 
@@ -324,18 +326,19 @@ private extension CharacteristicTreadmillData {
     ///
     /// - Parameters:
     ///   - flag: Flags
-    ///   - unit: Cadence Unit
+    ///   - unit: Duration Unit
     ///   - data: Sensor Data
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
     /// - Throws: BluetoothMessageProtocolError
-    private class func decodeDuration(flag: Flags,
+    private class func decodeDuration(supported: Flags,
+                                      flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
 
         var durationDat: Measurement<UnitDuration>?
-        if flag.contains(flag) {
+        if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))
             durationDat = Measurement(value: value, unit: unit)
         }

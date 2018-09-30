@@ -252,7 +252,7 @@ private extension CharacteristicStepClimberData {
     ///
     /// - Parameters:
     ///   - flag: Flags
-    ///   - unit: Cadence Unit
+    ///   - unit: Duration Unit
     ///   - data: Sensor Data
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
