@@ -138,6 +138,11 @@ public extension Service {
         return ServiceIndoorPositioning()
     }
 
+    /// Insulin Delivery
+    public class var insulinDelivery: ServiceInsulinDelivery {
+        return ServiceInsulinDelivery()
+    }
+
     /// Internet Protocol Support
     public class var internetProtocolSupport: ServiceInternetProtocolSupport {
         return ServiceInternetProtocolSupport()

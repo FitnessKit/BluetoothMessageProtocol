@@ -52,6 +52,7 @@ custom_categories:
     - ServiceHumanInterfaceDevice
     - ServiceImmediateAlert
     - ServiceIndoorPositioning
+    - ServiceInsulinDelivery
     - ServiceInternetProtocolSupport
     - ServiceLinkLoss
     - ServiceLocationAndNavigation
