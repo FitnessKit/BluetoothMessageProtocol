@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>GymConnectEquipmentType Structure Reference</title>
+    <title>CharacteristicGymConnectWorkoutProgramName Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -11,8 +11,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/GymConnectEquipmentType" class="dashAnchor"></a>
-    <a title="GymConnectEquipmentType Structure Reference"></a>
+    <a name="//apple_ref/swift/Class/CharacteristicGymConnectWorkoutProgramName" class="dashAnchor"></a>
+    <a title="CharacteristicGymConnectWorkoutProgramName Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p>
@@ -36,7 +36,7 @@
             <a href="../index.html">BluetoothMessageProtocol Reference</a>
             <img id="carat" src="../img/carat.png" />
           </span>
-          GymConnectEquipmentType Structure Reference
+          CharacteristicGymConnectWorkoutProgramName Class Reference
         </p>
       </div>
     </div>
@@ -45,17 +45,15 @@
         <article class="main-content">
           <section>
             <section class="section">
-              <h1>GymConnectEquipmentType</h1>
+              <h1>CharacteristicGymConnectWorkoutProgramName</h1>
                 <div class="declaration">
                   <div class="language">
-                    <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">:</span> <span class="kt">Codable</span></code></pre>
+                    <pre class="highlight swift"><code><span class="kd">@available(* 3.1, iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">CharacteristicGymConnectWorkoutProgramName</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Characteristic.html">Characteristic</a></span></code></pre>
 
                   </div>
                 </div>
-              <p>GymConnect Equipment Type</p>
-
-<p>Provides the Equipment Types for GymConnect</p>
+              <p>GymConnect Workout Program Name Characteristic</p>
 
             </section>
             <section class="section task-group-section">
@@ -64,9 +62,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV5values5UInt8Vvp"></a>
-                      <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV5values5UInt8Vvp">value</a>
+                      <a name="/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC4nameSSvpZ"></a>
+                      <a name="//apple_ref/swift/Variable/name" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC4nameSSvpZ">name</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -74,14 +72,14 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Equipment Type Value</p>
+                          <p>Characteristic Name</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt8</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -91,9 +89,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV4nameSSvp"></a>
-                      <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV4nameSSvp">name</a>
+                      <a name="/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC10uuidStringSSvpZ"></a>
+                      <a name="//apple_ref/swift/Variable/uuidString" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC10uuidStringSSvpZ">uuidString</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -101,14 +99,14 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Equipment Type Name</p>
+                          <p>Characteristic UUID</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">internal(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">uuidString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -118,9 +116,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeVyACs5UInt8Vcfc"></a>
-                      <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeVyACs5UInt8Vcfc">init(_:)</a>
+                      <a name="/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC07programI0SSvp"></a>
+                      <a name="//apple_ref/swift/Property/programName" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC07programI0SSvp">programName</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -128,14 +126,41 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Creates GymConnect Equipment Type</p>
+                          <p>Workout Program Name</p>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">programName</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC07programI0ACSS_tcfc"></a>
+                      <a name="//apple_ref/swift/Method/init(programName:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC07programI0ACSS_tcfc">init(programName:)</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Creates Characteristic</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">programName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                           </div>
                         </div>
@@ -146,12 +171,12 @@
                               <tr>
                                 <td>
                                   <code>
-                                  <em>value</em>
+                                  <em>programName</em>
                                   </code>
                                 </td>
                                 <td>
                                   <div>
-                                    <p>Raw Value for Type</p>
+                                    <p>Workout Program Name</p>
                                   </div>
                                 </td>
                               </tr>
@@ -161,16 +186,12 @@
                       </section>
                     </div>
                   </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV7unknownACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/unknown" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV7unknownACvpZ">unknown</a>
+                      <a name="/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC6decode4dataAC10Foundation4DataV_tKFZ"></a>
+                      <a name="//apple_ref/swift/Method/decode(data:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC6decode4dataAC10Foundation4DataV_tKFZ">decode(data:)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -178,325 +199,19 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Unknown Equipment Type</p>
+                          <p>Deocdes the BLE Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">unknown</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV9treadmillACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/treadmill" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV9treadmillACvpZ">treadmill</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Treadmill</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">treadmill</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV4bikeACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/bike" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV4bikeACvpZ">bike</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Bike</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">bike</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV7stepperACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/stepper" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV7stepperACvpZ">stepper</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Stepper</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">stepper</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV8stepMillACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/stepMill" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV8stepMillACvpZ">stepMill</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Step Mill</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">stepMill</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV10ellipticalACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/elliptical" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV10ellipticalACvpZ">elliptical</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Elliptical / Cross Trainer</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">elliptical</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV16totalBodyTrainerACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/totalBodyTrainer" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV16totalBodyTrainerACvpZ">totalBodyTrainer</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Total Body Trainer</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">totalBodyTrainer</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV12treadClimberACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/treadClimber" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV12treadClimberACvpZ">treadClimber</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Tread Climber</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">treadClimber</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV5rowerACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/rower" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV5rowerACvpZ">rower</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Rower</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">rower</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV13recumbentBikeACvpZ"></a>
-                      <a name="//apple_ref/swift/Variable/recumbentBike" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV13recumbentBikeACvpZ">recumbentBike</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Recumbent Bike</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">recumbentBike</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV9hashValueSivp"></a>
-                      <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV9hashValueSivp">hashValue</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>The hash value.</p>
-
-<p>Hash values are not guaranteed to be equal across different executions of
-your program. Do not save hash values to use during a future execution.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV2eeoiySbAC_ACtFZ"></a>
-                      <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol23GymConnectEquipmentTypeV2eeoiySbAC_ACtFZ">==(_:_:)</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Returns a Boolean value indicating whether two values are equal.</p>
-
-<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
-<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
-
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">GymConnectEquipmentType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">CharacteristicGymConnectWorkoutProgramName</span></code></pre>
 
                           </div>
                         </div>
@@ -507,29 +222,57 @@ your program. Do not save hash values to use during a future execution.</p>
                               <tr>
                                 <td>
                                   <code>
-                                  <em>lhs</em>
+                                  <em>data</em>
                                   </code>
                                 </td>
                                 <td>
                                   <div>
-                                    <p>A value to compare.</p>
-                                  </div>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <code>
-                                  <em>rhs</em>
-                                  </code>
-                                </td>
-                                <td>
-                                  <div>
-                                    <p>Another value to compare.</p>
+                                    <p>Data from sensor</p>
                                   </div>
                                 </td>
                               </tr>
                             </tbody>
                           </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>Characteristic Instance</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC6encode10Foundation4DataVyKF"></a>
+                      <a name="//apple_ref/swift/Method/encode()" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol42CharacteristicGymConnectWorkoutProgramNameC6encode10Foundation4DataVyKF">encode()</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Encodes the Characteristic into Data</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    BluetoothMessageProtocolError
+
+</div>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>Data representation of the Characteristic</p>
                         </div>
                       </section>
                     </div>
@@ -1105,9 +848,6 @@ your program. Do not save hash values to use during a future execution.</p>
                   <a href="../Classes/CharacteristicGender.html">CharacteristicGender</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Classes/CharacteristicGymConnectEquipmentType.html">CharacteristicGymConnectEquipmentType</a>
-                </li>
-                <li class="nav-group-task">
                   <a href="../Classes/CharacteristicHardwareRevisionString.html">CharacteristicHardwareRevisionString</a>
                 </li>
                 <li class="nav-group-task">
@@ -1405,6 +1145,15 @@ your program. Do not save hash values to use during a future execution.</p>
             <li class="nav-group-name">
               <a href="../Characteristic - Custom.html">Characteristic - Custom</a>
               <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectEquipmentType.html">CharacteristicGymConnectEquipmentType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectEquipmentStateName.html">CharacteristicGymConnectEquipmentStateName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectWorkoutProgramName.html">CharacteristicGymConnectWorkoutProgramName</a>
+                </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CharacteristicNorthPoleAweDiagnostics.html">CharacteristicNorthPoleAweDiagnostics</a>
                 </li>
@@ -1948,6 +1697,9 @@ your program. Do not save hash values to use during a future execution.</p>
                   <a href="../Enums/Gender.html">Gender</a>
                 </li>
                 <li class="nav-group-task">
+                  <a href="../Enums/GymConnectEquipmentType.html">GymConnectEquipmentType</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Enums/HeartRateContactStatus.html">HeartRateContactStatus</a>
                 </li>
                 <li class="nav-group-task">
@@ -1990,9 +1742,6 @@ your program. Do not save hash values to use during a future execution.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/DateTime.html">DateTime</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Structs/GymConnectEquipmentType.html">GymConnectEquipmentType</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/StringKey.html">StringKey</a>

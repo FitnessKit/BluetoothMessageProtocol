@@ -28,165 +28,61 @@ import Foundation
 ///
 /// Provides the Equipment Types for GymConnect
 @available(swift 4.0)
-public struct GymConnectEquipmentType: Codable {
-
-    /// Equipment Type Value
-    internal(set) public var value: UInt8
-
-    /// Equipment Type Name
-    internal(set) public var name: String
-
-    /// Creates GymConnect Equipment Type
-    ///
-    /// - Parameters:
-    ///   - value: Equipment Type Value
-    ///   - name: Equipment Type Name
-    internal init(value: UInt8, name: String) {
-
-        self.value = value
-        self.name = name
-    }
-
-    /// Creates GymConnect Equipment Type
-    ///
-    /// - Parameter value: Raw Value for Type
-    public init(_ value: UInt8) {
-
-        switch value {
-        case 0:
-            self.init(value: GymConnectEquipmentType.unknown.value,
-                      name: GymConnectEquipmentType.unknown.name)
-        case 1:
-            self.init(value: GymConnectEquipmentType.treadmill.value,
-                      name: GymConnectEquipmentType.treadmill.name)
-        case 2:
-            self.init(value: GymConnectEquipmentType.bike.value,
-                      name: GymConnectEquipmentType.bike.name)
-        case 3:
-            self.init(value: GymConnectEquipmentType.stepper.value,
-                      name: GymConnectEquipmentType.stepper.name)
-        case 4:
-            self.init(value: GymConnectEquipmentType.stepMill.value,
-                      name: GymConnectEquipmentType.stepMill.name)
-        case 5:
-            self.init(value: GymConnectEquipmentType.elliptical.value,
-                      name: GymConnectEquipmentType.elliptical.name)
-        case 6:
-            self.init(value: GymConnectEquipmentType.totalBodyTrainer.value,
-                      name: GymConnectEquipmentType.totalBodyTrainer.name)
-        case 7:
-            self.init(value: GymConnectEquipmentType.treadClimber.value,
-                      name: GymConnectEquipmentType.treadClimber.name)
-        case 8:
-            self.init(value: GymConnectEquipmentType.rower.value,
-                      name: GymConnectEquipmentType.rower.name)
-        case 128...143:
-            self.init(value: value,
-                      name: "Tradmill Variant")
-        case 144:
-            self.init(value: GymConnectEquipmentType.recumbentBike.value,
-                      name: GymConnectEquipmentType.recumbentBike.name)
-        case 145...159:
-            self.init(value: value,
-                      name: "Bike Variant")
-        case 160...169:
-            self.init(value: value,
-                      name: "Stepper Variant")
-        case 170...179:
-            self.init(value: value,
-                      name: "Elliptical/Cross Trainer Variant")
-        case 180...189:
-            self.init(value: value,
-                      name: "Total Body Trainer Variant")
-        case 190...199:
-            self.init(value: value,
-                      name: "Rower Variant")
-
-        default:
-            self.init(value: GymConnectEquipmentType.unknown.value,
-                      name: GymConnectEquipmentType.unknown.name)
-        }
-
-    }
-
+public enum GymConnectEquipmentType: UInt8 {
+    /// Unknown
+    case unknown            = 0
+    /// Treadmill
+    case treadmill          = 1
+    /// Bike
+    case bike               = 2
+    /// Stepper
+    case stepper            = 3
+    /// Step Mill
+    case stepMill           = 4
+    /// Cross Trainer / Elliptical
+    case elliptical         = 5
+    /// Total Body Trainer
+    case totalBodyTrainer   = 6
+    /// Tread Climber
+    case treadClimber       = 7
+    /// Rower
+    case rower              = 8
+    // 9 - 127 Reserved
+    // 128 - 143 Treadmill Variant Reserved
+    /// Bike - Recumbent
+    case recumbentBike      = 144
+    // 145 - 159 Bike Variant Reserved
+    // 160 - 169 Stepper Variant Reserved
+    // 170 - 179 Cross Trainer / Elliptical Variant Reserved
+    // 180 - 189 Total Body Trainer Variant Reserved
+    // 190 - 199 Rower Variant Reserved
+    // 200 - 255 Reserved
 }
 
 extension GymConnectEquipmentType {
 
-    /// Unknown Equipment Type
-    public static var unknown: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 0, name: "Unknown")
-    }
-
-    /// Treadmill
-    public static var treadmill: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 1, name: "Treadmill")
-    }
-
-    /// Bike
-    public static var bike: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 2, name: "Bike")
-    }
-
-    /// Stepper
-    public static var stepper: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 3, name: "Stepper")
-    }
-
-    /// Step Mill
-    public static var stepMill: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 4, name: "Step Mill")
-    }
-
-    /// Elliptical / Cross Trainer
-    public static var elliptical: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 5, name: "Elliptical")
-    }
-
-    /// Total Body Trainer
-    public static var totalBodyTrainer: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 6, name: "Total Body Trainer")
-    }
-
-    /// Tread Climber
-    public static var treadClimber: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 7, name: "Tread Climber")
-    }
-
-    /// Rower
-    public static var rower: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 8, name: "Rower")
-    }
-
-    /// Recumbent Bike
-    public static var recumbentBike: GymConnectEquipmentType {
-        return GymConnectEquipmentType(value: 144, name: "Recumbent Bike")
-    }
-
-}
-
-extension GymConnectEquipmentType: Hashable {
-
-    /// The hash value.
-    ///
-    /// Hash values are not guaranteed to be equal across different executions of
-    /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
-        return "\(name)\(value)".hashValue
+    public var description: String {
+        return String(describing: self)
     }
 }
 
-extension GymConnectEquipmentType: Equatable {
+@available(swift 4.0)
+extension GymConnectEquipmentType: Encodable {
 
-    /// Returns a Boolean value indicating whether two values are equal.
+    /// Encodes this value into the given encoder.
     ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
     ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    static public func == (lhs: GymConnectEquipmentType, rhs: GymConnectEquipmentType) -> Bool {
-        return (lhs.name == rhs.name) && (lhs.value == rhs.value)
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: TypeValueCodingKeys.self)
+
+        /// Prefer the name of the type over a raw value
+        try container.encode(self.rawValue, forKey: .value)
+        try container.encode(self.description, forKey: .type)
     }
 }
