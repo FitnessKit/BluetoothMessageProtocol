@@ -33,16 +33,16 @@ import CryptoSwift
 open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
     /// Types of Status Flags
-    public struct StatusFlag: OptionSet {
+    public struct StatusFlags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
 
         /// Pairing Enabled
-        public static let pairingEnabled    = StatusFlag(rawValue: 1 << 0)
+        public static let pairingEnabled    = StatusFlags(rawValue: 1 << 0)
     }
 
     /// Status Flags
-    private(set) public var statusFlag: StatusFlag
+    private(set) public var statusFlag: StatusFlags
 
     /// Device ID
     private(set) public var deviceId: MACAddress
@@ -90,7 +90,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///   = configuration: Configuration Number
     ///   - compatibleVersion: Compatible Version
     ///   - setupID: Setup ID String
-    public init(statusFlag: StatusFlag,
+    public init(statusFlag: StatusFlags,
                 deviceId: MACAddress,
                 accessoryCategory: HomeKitAccessoryCategory,
                 globalState: UInt16,
@@ -119,7 +119,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         super.init(manufacturer: .apple, specificData: nil)
     }
 
-    internal init(statusFlag: StatusFlag,
+    internal init(statusFlag: StatusFlags,
                   deviceId: MACAddress,
                   accessoryCategory: HomeKitAccessoryCategory,
                   globalState: UInt16,
@@ -172,7 +172,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                 throw BluetoothMessageProtocolError.decode("HomeKit Message Length issue.")
             }
 
-            let statusFlag = StatusFlag(rawValue: decoder.decodeUInt8(data))
+            let statusFlag = StatusFlags(rawValue: decoder.decodeUInt8(data))
 
             let deviceId = decoder.decodeMACAddress(data)
 
@@ -224,7 +224,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     }
 
     enum CodeKeys: CodingKey {
-        case statusFlag
+        case statusFlags
         case deviceId
         case accessoryCategory
         case globalState
@@ -251,7 +251,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         var container = encoder.container(keyedBy: CodeKeys.self)
         try super.encode(to: encoder)
 
-        try container.encode(statusFlag, forKey: .statusFlag)
+        try container.encode(statusFlag, forKey: .statusFlags)
         try container.encode(deviceId.stringValue, forKey: .deviceId)
         try container.encode(accessoryCategory, forKey: .accessoryCategory)
         try container.encode(globalState, forKey: .globalState)
@@ -263,7 +263,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 }
 
 @available(swift 4.0)
-extension ManufacturerDataAppleHomeKit.StatusFlag: Encodable {
+extension ManufacturerDataAppleHomeKit.StatusFlags: Encodable {
 
     enum CodeKeys: CodingKey {
         case pairingEnabled

@@ -298,6 +298,7 @@ custom_categories:
     - ManufacturerDataAppleHomeKit
     - ManufacturerDataAppleHomeKitEncryptedNotification
     - ManufacturerDataAppleiBeacon
+    - ManufacturerDataGymConnect
     - ManufacturerDataPolarHeartRate
 
   - name: Fitness Machine Control

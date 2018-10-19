@@ -1,5 +1,5 @@
 //
-//  GymConnect.swift
+//  ServiceGymConnect.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 9/16/17.
