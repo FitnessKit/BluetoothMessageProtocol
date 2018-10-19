@@ -59,6 +59,55 @@ public enum GymConnectEquipmentType: UInt8 {
     // 200 - 255 Reserved
 }
 
+internal extension GymConnectEquipmentType {
+
+    /// Create a GymConnectEquipmentType
+    ///
+    /// - Parameter rawValue: Raw Equpment Type value
+    /// - Returns: GymConnectEquipmentType
+    internal static func create(_ rawValue: UInt8) -> GymConnectEquipmentType {
+
+        switch rawValue {
+        case 0:
+            return .unknown
+        case 1:
+            return .treadmill
+        case 2:
+            return .bike
+        case 3:
+            return .stepper
+        case 4:
+            return .stepMill
+        case 5:
+            return .elliptical
+        case 6:
+            return .totalBodyTrainer
+        case 7:
+            return .treadClimber
+        case 8:
+            return .rower
+        case 128...143:
+            return .treadmill
+        case 144:
+            return .recumbentBike
+        case 145...159:
+            return .bike
+        case 160...169:
+            return .stepper
+        case 170...179:
+            return .elliptical
+        case 180...189:
+            return .totalBodyTrainer
+        case 190...199:
+            return .rower
+
+        default:
+            return .unknown
+        }
+    }
+
+}
+
 extension GymConnectEquipmentType {
 
     public var description: String {

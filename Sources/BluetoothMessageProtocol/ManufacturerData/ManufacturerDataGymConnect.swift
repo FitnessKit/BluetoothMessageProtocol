@@ -102,7 +102,7 @@ open class ManufacturerDataGymConnect: ManufacturerData {
 
             let type = decoder.decodeUInt8(data)
 
-            let equip = GymConnectEquipmentType(rawValue: type) ?? .unknown
+            let equip = GymConnectEquipmentType.create(type)
 
             let flags = StatusFlags(rawValue: decoder.decodeUInt8(data))
 

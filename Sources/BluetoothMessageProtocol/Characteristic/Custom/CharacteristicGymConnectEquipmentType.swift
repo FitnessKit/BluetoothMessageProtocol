@@ -64,7 +64,7 @@ open class CharacteristicGymConnectEquipmentType: Characteristic {
 
         let type = decoder.decodeUInt8(data)
 
-        let equip = GymConnectEquipmentType(rawValue: type) ?? .unknown
+        let equip = GymConnectEquipmentType.create(type)
 
         return CharacteristicGymConnectEquipmentType(equipment: equip)
     }
