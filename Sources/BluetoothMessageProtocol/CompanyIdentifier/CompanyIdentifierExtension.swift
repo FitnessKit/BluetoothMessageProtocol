@@ -3286,7 +3286,6 @@ public extension CompanyIdentifier {
     public class var pixArtImaging: CompanyIdentifier { return CompanyIdentifier(id: 1628, name: "PixArt Imaging Inc.") }
     /// Panduit Corp.
     public class var panduit: CompanyIdentifier { return CompanyIdentifier(id: 1629, name: "Panduit Corp.") }
-
     /// Alo AB
     public class var aloAb: CompanyIdentifier { return CompanyIdentifier(id: 1630, name: "Alo AB") }
     /// Ricoh Company Ltd
@@ -3357,5 +3356,4 @@ public extension CompanyIdentifier {
     public class var netgrid: CompanyIdentifier { return CompanyIdentifier(id: 1663, name: "NETGRID S.N.C. DI BISSOLI MATTEO, CAMPOREALE SIMONE, TOGNETTI FEDERICO") }
     /// Mannkind Corporation
     public class var mannkind: CompanyIdentifier { return CompanyIdentifier(id: 1664, name: "Mannkind Corporation") }
-
 }

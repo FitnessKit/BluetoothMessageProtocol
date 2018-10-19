@@ -196,6 +196,7 @@ custom_categories:
     - CharacteristicFiveZoneHeartRateLimits
     - CharacteristicFloorNumber
     - CharacteristicGender
+    - CharacteristicGymConnectEquipmentType
     - CharacteristicHardwareRevisionString
     - CharacteristicHeartRateControlPoint
     - CharacteristicHeartRateMax
