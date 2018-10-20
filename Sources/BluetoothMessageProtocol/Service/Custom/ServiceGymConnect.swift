@@ -36,7 +36,7 @@ open class ServiceGymConnect: Service {
 
     /// Service UUID
     public static var uuidString: String {
-        return "A026EE07-0A7D-4AB3-97FAF1500F9FEB8B"
+        return "A026EE07-0A7D-4AB3-97FA-F1500F9FEB8B"
     }
 
     /// Service Uniform Identifier

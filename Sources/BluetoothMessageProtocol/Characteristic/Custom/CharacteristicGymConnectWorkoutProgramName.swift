@@ -37,7 +37,7 @@ open class CharacteristicGymConnectWorkoutProgramName: Characteristic {
 
     /// Characteristic UUID
     public static var uuidString: String {
-        return "A026E01B-0A7D-4AB3-97FAF1500F9FEB8B"
+        return "A026E01B-0A7D-4AB3-97FA-F1500F9FEB8B"
     }
 
     /// Workout Program Name
