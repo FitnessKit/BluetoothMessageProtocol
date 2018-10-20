@@ -141,7 +141,7 @@ public struct FitnessMachineInclinationType {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachinePowerType {
 
-    /// Target Power
+    /// Power
     private(set) public var power: Measurement<UnitPower>
 
     internal static func create(_ value: Int16) -> FitnessMachinePowerType {
@@ -168,7 +168,7 @@ public struct FitnessMachinePowerType {
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public struct FitnessMachineSpeedType {
 
-    /// Target Speed
+    /// Speed
     private(set) public var speed: Measurement<UnitSpeed>
 
     internal static func create(_ value: UInt16) -> FitnessMachineSpeedType {
