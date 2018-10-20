@@ -62,9 +62,7 @@ open class CharacteristicGymConnectEquipmentType: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicGymConnectEquipmentType {
         var decoder = DecodeData()
 
-        let type = decoder.decodeUInt8(data)
-
-        let equip = GymConnectEquipmentType.create(type)
+        let equip = GymConnectEquipmentType.create(decoder.decodeUInt8(data))
 
         return CharacteristicGymConnectEquipmentType(equipment: equip)
     }
