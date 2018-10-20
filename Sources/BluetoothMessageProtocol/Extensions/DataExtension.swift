@@ -51,10 +51,12 @@ internal extension Data {
 
         var maybeString: String?
 
-        if self[self.count - 1] == 0x00 {
-            maybeString = String(data: self, encoding: .utf8)
-        } else {
-            maybeString = String(data: self, encoding: .ascii)
+        if self.count > 0 {
+            if self[self.count - 1] == 0x00 {
+                maybeString = String(data: self, encoding: .utf8)
+            } else {
+                maybeString = String(data: self, encoding: .ascii)
+            }
         }
 
         return maybeString

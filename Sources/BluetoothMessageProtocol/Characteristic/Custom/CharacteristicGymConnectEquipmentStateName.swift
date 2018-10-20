@@ -60,7 +60,12 @@ open class CharacteristicGymConnectEquipmentStateName: Characteristic {
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
     open override class func decode(data: Data) throws -> CharacteristicGymConnectEquipmentStateName {
-        let name = data.safeStringValue ?? ""
+
+        var name = ""
+
+        if data.count > 0 {
+            name = data.safeStringValue ?? ""
+        }
 
         return CharacteristicGymConnectEquipmentStateName(stateName: name)
     }
