@@ -126,8 +126,7 @@ public struct FitnessMachineTargetTime {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let time = self.time.converted(to: UnitDuration.seconds).value
-        let value = UInt16(time)
+        let value = convertDurationToSeconds(self.time)
 
         msgData.append(Data(from: value.littleEndian))
 
@@ -157,11 +156,8 @@ public struct FitnessMachineTargetTimeInTwoHrZone {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let fatBurnZone = self.fatBurnZone.converted(to: UnitDuration.seconds).value
-        let fatBurnZoneValue = UInt16(fatBurnZone)
-
-        let fitnessZone = self.fitnessZone.converted(to: UnitDuration.seconds).value
-        let fitnessZoneValue = UInt16(fitnessZone)
+        let fatBurnZoneValue = convertDurationToSeconds(self.fatBurnZone)
+        let fitnessZoneValue = convertDurationToSeconds(self.fitnessZone)
 
         msgData.append(Data(from: fatBurnZoneValue.littleEndian))
         msgData.append(Data(from: fitnessZoneValue.littleEndian))
@@ -200,14 +196,9 @@ public struct FitnessMachineTargetTimeInThreeHrZone {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let lightZone = self.lightZone.converted(to: UnitDuration.seconds).value
-        let lightZoneValue = UInt16(lightZone)
-
-        let moderateZone = self.moderateZone.converted(to: UnitDuration.seconds).value
-        let moderateZoneValue = UInt16(moderateZone)
-
-        let hardZone = self.hardZone.converted(to: UnitDuration.seconds).value
-        let hardZoneValue = UInt16(hardZone)
+        let lightZoneValue = convertDurationToSeconds(self.lightZone)
+        let moderateZoneValue = convertDurationToSeconds(self.moderateZone)
+        let hardZoneValue = convertDurationToSeconds(self.hardZone)
 
         msgData.append(Data(from: lightZoneValue.littleEndian))
         msgData.append(Data(from: moderateZoneValue.littleEndian))
@@ -259,20 +250,11 @@ public struct FitnessMachineTargetTimeInFiveHrZone {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let veryLightZone = self.veryLightZone.converted(to: UnitDuration.seconds).value
-        let veryLightZoneValue = UInt16(veryLightZone)
-
-        let lightZone = self.lightZone.converted(to: UnitDuration.seconds).value
-        let lightZoneValue = UInt16(lightZone)
-
-        let moderateZone = self.moderateZone.converted(to: UnitDuration.seconds).value
-        let moderateZoneValue = UInt16(moderateZone)
-
-        let hardZone = self.hardZone.converted(to: UnitDuration.seconds).value
-        let hardZoneValue = UInt16(hardZone)
-
-        let maximumZone = self.maximumZone.converted(to: UnitDuration.seconds).value
-        let maximumZoneValue = UInt16(maximumZone)
+        let veryLightZoneValue = convertDurationToSeconds(self.veryLightZone)
+        let lightZoneValue = convertDurationToSeconds(self.lightZone)
+        let moderateZoneValue = convertDurationToSeconds(self.moderateZone)
+        let hardZoneValue = convertDurationToSeconds(self.hardZone)
+        let maximumZoneValue = convertDurationToSeconds(self.maximumZone)
 
         msgData.append(Data(from: veryLightZoneValue.littleEndian))
         msgData.append(Data(from: lightZoneValue.littleEndian))
@@ -309,4 +291,9 @@ public struct FitnessMachineTargetCadence {
 
         return msgData
     }
+}
+
+//MARK: - Helpers
+private func convertDurationToSeconds(_ measurement: Measurement<UnitDuration>) -> UInt16 {
+    return UInt16(measurement.converted(to: UnitDuration.seconds).value)
 }

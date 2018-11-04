@@ -29,6 +29,17 @@ public extension MemberIdentifier {
     /// Array of all Supported MemberIdentifier values
     public static var supportedMemberIdentifers: [MemberIdentifier] = {
 
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDC9, name: "Busch-Jaeger Elektro GmbH"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDCA, name: "Fortin Electronic Systems"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDCB, name: "Meggitt SA"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDCC, name: "Shoof Technologies"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDCD, name: "Qingping Technology (Beijing) Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDCE, name: "SENNHEISER electronic GmbH & Co. KG"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDCF, name: "Nalu Medical, Inc"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD0, name: "Huawei Technologies Co., Ltd"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD1, name: "Huawei Technologies Co., Ltd"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD2, name: "Bose Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD3, name: "FUBA Automotive Electronics GmbH"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD4, name: "LX Solutions Pty Limited"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD5, name: "Brompton Bicycle Ltd"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDD6, name: "Ministry of Supply"))

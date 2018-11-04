@@ -80,7 +80,7 @@ class GymConnectTests: XCTestCase {
             }
         }
 
-        for idx: UInt8 in 51...126 {
+        for idx: UInt8 in 56...126 {
             if GymConnectEquipmentState.create(idx) != .inUse {
                 print("Failed on \(idx)")
                 XCTFail()

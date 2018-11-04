@@ -1,5 +1,5 @@
 //
-//  ServiceWahooFitnessGEMModuleFirmwareUpdate.swift
+//  ServiceWahooFitnessFirmwareUpdate.swift
 //  BluetoothMessageProtocol
 //
 //  Created by Kevin Hoogheem on 9/16/17.
@@ -24,31 +24,31 @@
 
 import Foundation
 
-/// BLE Wahoo Fitness GEM Module Firmware Update
+/// BLE Wahoo Fitness Firmware Update
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceWahooFitnessGEMModuleFirmwareUpdate: Service {
+open class ServiceWahooFitnessFirmwareUpdate: Service {
 
     /// Service Name
     public static var name: String {
-        return "Wahoo Fitness GEM Module Firmware Update"
+        return "Wahoo Fitness Firmware Update"
     }
 
     /// Service UUID
     public static var uuidString: String {
-        return "A026EE01-0A7D-4AB3-97FAF1500F9FEB8B"
+        return "A026EE01-0A7D-4AB3-97FA-F1500F9FEB8B"
     }
 
     /// Service Uniform Identifier
     public static var uniformIdentifier: String {
-        return "com.wahoo_fitness.service.gem_module_firmware_update"
+        return "com.wahoo_fitness.service.firmware_update"
     }
 
-    /// Creates Wahoo Fitness GEM Module Firmware Update
+    /// Creates Wahoo Fitness Firmware Update
     public init() {
-        super.init(name: ServiceWahooFitnessGEMModuleFirmwareUpdate.name,
-                   uuidString: ServiceWahooFitnessGEMModuleFirmwareUpdate.uuidString,
-                   uniformIdentifier: ServiceWahooFitnessGEMModuleFirmwareUpdate.uniformIdentifier
+        super.init(name: ServiceWahooFitnessFirmwareUpdate.name,
+                   uuidString: ServiceWahooFitnessFirmwareUpdate.uuidString,
+                   uniformIdentifier: ServiceWahooFitnessFirmwareUpdate.uniformIdentifier
         )
     }
 }

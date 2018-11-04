@@ -62,8 +62,18 @@ public enum GymConnectEquipmentState: UInt8 {
     /// Workout Program Uploaded from external source
     /// - SeeAlso: CharacteristicGymConnectWorkoutProgramName
     case inUseWorkoutProgramUpload  = 33
-    // 34...50 In Use Workoug Program Reserved
-    // 51...126 In Use Reserved
+    // 34...50 In Use Workout Program Reserved
+    /// In Use - Isometric
+    case inUseIsometric             = 51
+    /// In Use - Heart Rate Control
+    case inUseHeartrateControl      = 52
+    /// In Use - Fitness Test
+    case inUseFitnessTest           = 53
+    /// In Use - Cool Down
+    case inUseCoolDown              = 54
+    /// In Use - Watt Control
+    case inUseWattControl           = 55
+    // 56...126 In Use Reserved
     /// In Use - Custom State Name
     /// - SeeAlso: CharacteristicGymConnectEquipmentStateName
     case inUseCustomStateName       = 127
@@ -108,7 +118,17 @@ internal extension GymConnectEquipmentState {
             return .inUseWorkoutProgramUpload
         case 34...50:
             return .inUseWorkoutProgram
-        case 51...126:
+        case 51:
+            return .inUseIsometric
+        case 52:
+            return .inUseHeartrateControl
+        case 53:
+            return .inUseFitnessTest
+        case 54:
+            return .inUseCoolDown
+        case 55:
+            return .inUseWattControl
+        case 56...126:
             return .inUse
         case 127:
             return .inUseCustomStateName

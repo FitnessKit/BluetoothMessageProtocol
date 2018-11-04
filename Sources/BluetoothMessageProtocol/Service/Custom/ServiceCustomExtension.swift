@@ -143,8 +143,8 @@ public extension Service {
         return ServiceTexasInstrumentsSensorTagTemperature()
     }
 
-    /// Wahoo Fitness GEM Module Firmware Update
-    public class var wahooFitnessGEMModuleFirmwareUpdate: ServiceWahooFitnessGEMModuleFirmwareUpdate {
-        return ServiceWahooFitnessGEMModuleFirmwareUpdate()
+    /// Wahoo Fitness Firmware Update
+    public class var wahooFitnessFirmwareUpdate: ServiceWahooFitnessFirmwareUpdate {
+        return ServiceWahooFitnessFirmwareUpdate()
     }
 }
