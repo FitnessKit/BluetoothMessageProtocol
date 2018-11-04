@@ -152,29 +152,29 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
     ///
     /// - Parameter equipment: Equipment Type
     internal init(firstUpdatePacket: Bool,
-                finalUpdatePacket: Bool,
-                time: FitnessMachineTime,
-                heartRate: UInt8?,
-                intensity: UInt8?,
-                resistnace: Double?,
-                speed: FitnessMachineSpeedType?,
-                cadence: Double?,
-                totalMovements: Double?,
-                totalHorizontalDistance: Measurement<UnitLength>?,
-                totalVerticalDistance: Measurement<UnitLength>?,
-                totalNegitiveVerticalDistance: Measurement<UnitLength>?,
-                totalEnergy: Measurement<UnitEnergy>?,
-                energyPerHour: Measurement<UnitEnergy>?,
-                metabolicEquivalent: Double?,
-                power: FitnessMachinePowerType?,
-                torque: Measurement<UnitTorque>?,
-                currentGear: UInt8?,
-                grade: Measurement<UnitPercent>?,
-                rampAngle: Measurement<UnitAngle>?,
-                floorRate: Measurement<UnitCadence>?,
-                totalFloors: Double?,
-                totalLaps: Double?,
-                movementLength: Measurement<UnitLength>?) {
+                  finalUpdatePacket: Bool,
+                  time: FitnessMachineTime,
+                  heartRate: UInt8?,
+                  intensity: UInt8?,
+                  resistnace: Double?,
+                  speed: FitnessMachineSpeedType?,
+                  cadence: Double?,
+                  totalMovements: Double?,
+                  totalHorizontalDistance: Measurement<UnitLength>?,
+                  totalVerticalDistance: Measurement<UnitLength>?,
+                  totalNegitiveVerticalDistance: Measurement<UnitLength>?,
+                  totalEnergy: Measurement<UnitEnergy>?,
+                  energyPerHour: Measurement<UnitEnergy>?,
+                  metabolicEquivalent: Double?,
+                  power: FitnessMachinePowerType?,
+                  torque: Measurement<UnitTorque>?,
+                  currentGear: UInt8?,
+                  grade: Measurement<UnitPercent>?,
+                  rampAngle: Measurement<UnitAngle>?,
+                  floorRate: Measurement<UnitCadence>?,
+                  totalFloors: Double?,
+                  totalLaps: Double?,
+                  movementLength: Measurement<UnitLength>?) {
 
         self.firstUpdatePacket = firstUpdatePacket
         self.finalUpdatePacket = finalUpdatePacket
@@ -567,7 +567,8 @@ private extension CharacteristicGymConnectMeasurement {
     /// Decode Duration Data
     ///
     /// - Parameters:
-    ///   - flag: Flags
+    ///   - supported: Supported Flags
+    ///   - flag: Flags contained
     ///   - unit: Duration Unit
     ///   - data: Sensor Data
     ///   - decoder: Decoder
@@ -579,11 +580,11 @@ private extension CharacteristicGymConnectMeasurement {
                                       data: Data,
                                       decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
 
-        var durationDat: Measurement<UnitDuration>?
+        var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))
-            durationDat = Measurement(value: value, unit: unit)
+            durationData = Measurement(value: value, unit: unit)
         }
-        return durationDat
+        return durationData
     }
 }
