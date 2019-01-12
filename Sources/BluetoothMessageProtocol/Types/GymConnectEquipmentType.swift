@@ -51,11 +51,15 @@ public enum GymConnectEquipmentType: UInt8 {
     // 128 - 143 Treadmill Variant Reserved
     /// Bike - Recumbent
     case recumbentBike      = 144
-    // 145 - 159 Bike Variant Reserved
+    /// Bike - Upper Body Ergo
+    case upperBodyErgo      = 145
+    // 146 - 159 Bike Variant Reserved
     // 160 - 169 Stepper Variant Reserved
     // 170 - 179 Cross Trainer / Elliptical Variant Reserved
     // 180 - 189 Total Body Trainer Variant Reserved
-    // 190 - 199 Rower Variant Reserved
+    /// Kayak Ergo
+    case kayakErgo          = 190
+    // 191 - 199 Rower Variant Reserved
     // 200 - 255 Reserved
 }
 
@@ -90,6 +94,8 @@ internal extension GymConnectEquipmentType {
             return .treadmill
         case 144:
             return .recumbentBike
+        case 145:
+            return .upperBodyErgo
         case 145...159:
             return .bike
         case 160...169:
@@ -98,7 +104,9 @@ internal extension GymConnectEquipmentType {
             return .elliptical
         case 180...189:
             return .totalBodyTrainer
-        case 190...199:
+        case 190:
+            return .kayakErgo
+        case 191...199:
             return .rower
 
         default:

@@ -35,7 +35,9 @@ public enum GymConnectEquipmentState: UInt8 {
     case idle                       = 1
     /// Paused
     case paused                     = 2
-    // 3...9 Reserved
+    /// Stopped by Safety Key
+    case stopSafetyKey              = 3
+    // 4...9 Reserved
     /// In Use
     case inUse                      = 10
     /// In Use - Warming Up
@@ -98,6 +100,8 @@ internal extension GymConnectEquipmentState {
             return .idle
         case 2:
             return .paused
+        case 3:
+            return .stopSafetyKey
         case 10:
             return .inUse
         case 11:
