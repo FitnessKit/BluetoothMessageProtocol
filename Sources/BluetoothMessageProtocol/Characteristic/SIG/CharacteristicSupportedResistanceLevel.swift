@@ -76,11 +76,11 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicSupportedResistanceLevel {
         var decoder = DecodeData()
 
-        let minValue = decoder.decodeInt16(data).resolution(0.1)
+        let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
 
-        let maxValue = decoder.decodeInt16(data).resolution(0.1)
+        let maxValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
 
-        let incrValue = decoder.decodeUInt16(data).resolution(0.1)
+        let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
 
         return CharacteristicSupportedResistanceLevel(minimum: minValue,
                                                       maximum: maxValue,
@@ -94,9 +94,9 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = Int16(minimum.resolution(1 / 0.1))
-        let maxValue = Int16(maximum.resolution(1 / 0.1))
-        let incrValue = UInt16(maximum.resolution(1 / 0.1))
+        let minValue = Int16(minimum.resolution(.adding, resolution: Resolution.oneTenth))
+        let maxValue = Int16(maximum.resolution(.adding, resolution: Resolution.oneTenth))
+        let incrValue = UInt16(maximum.resolution(.adding, resolution: Resolution.oneTenth))
 
         msgData.append(Data(from: minValue.littleEndian))
         msgData.append(Data(from: maxValue.littleEndian))

@@ -24,65 +24,142 @@
 
 import Foundation
 
+/// Struct to Hold Resolution Scale and Offset
+internal struct Resolution {
+
+    /// Resolution of 1
+    static var one = Resolution(scale: 1, offset: 0)
+
+    /// Resoluton of 2 (0.5)
+    static var two = Resolution(scale: 2, offset: 0)
+
+    /// 1 / 10 Resolution (0.1)
+    static var oneTenth = Resolution(scale: 10, offset: 0)
+
+    /// 1 / 100 Resolution (0.01)
+    static var oneHundredth = Resolution(scale: 100, offset: 0)
+
+    /// 1 / 1000 Resolution (0.001)
+    static var oneThousandth = Resolution(scale: 1000, offset: 0)
+
+    /// 1 / 5000 Resolution (0.005)
+    static var oneFiveThousandth = Resolution(scale: 5000, offset: 0)
+
+    /// 1 / 10000 Resolution (0.0001)
+    static var oneTenThousandth = Resolution(scale: 10000, offset: 0)
+
+    /// Scale
+    var scale: Double
+
+    // Offset
+    var offset: Double
+}
+
+internal enum ResolutionDirection {
+    /// Adds Resolution
+    case adding
+    /// Removes Resolution
+    case removing
+}
+
 protocol Resolutionable {
-    /// Apply a Resolution to a number
+    
+    /// Apply Resolution with Direction
     ///
-    /// - Parameter res: Resolution
+    /// - Parameters:
+    ///   - direction: Type of Resolution Direction
+    ///   - resolution: Resolution
     /// - Returns: Number with Resolution applied
-    func resolution(_ res: Double) -> Double
+    func resolution(_ direction: ResolutionDirection, resolution: Resolution) -> Double
+
 }
 
 extension Double: Resolutionable {
 
-    /// Apply a Resolution to a number
+    /// Apply Resolution with Direction
     ///
-    /// - Parameter res: Resolution
+    /// - Parameters:
+    ///   - direction: Type of Resolution Direction
+    ///   - resolution: Resolution
     /// - Returns: Number with Resolution applied
-    func resolution(_ res: Double) -> Double {
-        return self * res
+    func resolution(_ direction: ResolutionDirection, resolution: Resolution) -> Double {
+        switch direction {
+        case .adding:
+            return (Double(self) * resolution.scale) + resolution.offset
+        case .removing:
+            return (Double(self) * (1 / resolution.scale)) - resolution.offset
+        }
     }
 }
 
 extension UInt8: Resolutionable {
 
-    /// Apply a Resolution to a number
+    /// Apply Resolution with Direction
     ///
-    /// - Parameter res: Resolution
+    /// - Parameters:
+    ///   - direction: Type of Resolution Direction
+    ///   - resolution: Resolution
     /// - Returns: Number with Resolution applied
-    func resolution(_ res: Double) -> Double {
-        return Double(self) * res
+    func resolution(_ direction: ResolutionDirection, resolution: Resolution) -> Double {
+        switch direction {
+        case .adding:
+            return (Double(self) * resolution.scale) + resolution.offset
+        case .removing:
+            return (Double(self) * (1 / resolution.scale)) - resolution.offset
+        }
     }
 }
 
 extension UInt16: Resolutionable {
 
-    /// Apply a Resolution to a number
+    /// Apply Resolution with Direction
     ///
-    /// - Parameter res: Resolution
+    /// - Parameters:
+    ///   - direction: Type of Resolution Direction
+    ///   - resolution: Resolution
     /// - Returns: Number with Resolution applied
-    func resolution(_ res: Double) -> Double {
-        return Double(self) * res
+    func resolution(_ direction: ResolutionDirection, resolution: Resolution) -> Double {
+        switch direction {
+        case .adding:
+            return (Double(self) * resolution.scale) + resolution.offset
+        case .removing:
+            return (Double(self) * (1 / resolution.scale)) - resolution.offset
+        }
     }
 }
 
 extension Int16: Resolutionable {
 
-    /// Apply a Resolution to a number
+    /// Apply Resolution with Direction
     ///
-    /// - Parameter res: Resolution
+    /// - Parameters:
+    ///   - direction: Type of Resolution Direction
+    ///   - resolution: Resolution
     /// - Returns: Number with Resolution applied
-    func resolution(_ res: Double) -> Double {
-        return Double(self) * res
+    func resolution(_ direction: ResolutionDirection, resolution: Resolution) -> Double {
+        switch direction {
+        case .adding:
+            return (Double(self) * resolution.scale) + resolution.offset
+        case .removing:
+            return (Double(self) * (1 / resolution.scale)) - resolution.offset
+        }
     }
 }
 
 extension UInt32: Resolutionable {
 
-    /// Apply a Resolution to a number
+    /// Apply Resolution with Direction
     ///
-    /// - Parameter res: Resolution
+    /// - Parameters:
+    ///   - direction: Type of Resolution Direction
+    ///   - resolution: Resolution
     /// - Returns: Number with Resolution applied
-    func resolution(_ res: Double) -> Double {
-        return Double(self) * res
+    func resolution(_ direction: ResolutionDirection, resolution: Resolution) -> Double {
+        switch direction {
+        case .adding:
+            return (Double(self) * resolution.scale) + resolution.offset
+        case .removing:
+            return (Double(self) * (1 / resolution.scale)) - resolution.offset
+        }
     }
 }

@@ -103,9 +103,11 @@ open class CharacteristicWeightMeasurement: Characteristic {
         var weight: Measurement<UnitMass>
         let value = Double(decoder.decodeUInt16(data))
         if flags.contains(.unitsImperial) {
-            weight = Measurement(value: value.resolution(0.01), unit: UnitMass.pounds)
+            weight = Measurement(value: value.resolution(.removing, resolution: Resolution.oneHundredth),
+                                 unit: UnitMass.pounds)
         } else {
-            weight = Measurement(value: value.resolution(0.005), unit: UnitMass.kilograms)
+            weight = Measurement(value: value.resolution(.removing, resolution: Resolution.oneFiveThousandth),
+                                 unit: UnitMass.kilograms)
         }
 
         var timestamp: DateTime?
@@ -124,13 +126,15 @@ open class CharacteristicWeightMeasurement: Characteristic {
         var bmi: Double?
         var height: Measurement<UnitLength>?
         if flags.contains(.bmiHeightPresent) {
-            bmi = decoder.decodeUInt16(data).resolution(0.1)
+            bmi = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
 
             let value = Double(decoder.decodeUInt16(data))
             if flags.contains(.unitsImperial) {
-                height = Measurement(value: value.resolution(0.1), unit: UnitLength.inches)
+                height = Measurement(value: value.resolution(.removing, resolution: Resolution.oneTenth),
+                                     unit: UnitLength.inches)
             } else {
-                height = Measurement(value: value.resolution(0.001), unit: UnitLength.meters)
+                height = Measurement(value: value.resolution(.removing, resolution: Resolution.oneThousandth),
+                                     unit: UnitLength.meters)
             }
         }
 

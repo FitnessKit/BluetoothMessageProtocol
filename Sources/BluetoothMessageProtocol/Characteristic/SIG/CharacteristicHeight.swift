@@ -64,7 +64,7 @@ open class CharacteristicHeight: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicHeight {
         var decoder = DecodeData()
 
-        let meters = decoder.decodeUInt16(data).resolution(0.01)
+        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
 
         let height = Measurement(value: meters, unit: UnitLength.meters)
 
@@ -79,9 +79,9 @@ open class CharacteristicHeight: Characteristic {
         var msgData = Data()
 
         //Make sure we put this back to Meters before we create Data
-        let heightVal = UInt16(height.converted(to: UnitLength.meters).value.resolution(1 / 0.01))
+        let heightVal = height.converted(to: UnitLength.meters).value.resolution(.adding, resolution: Resolution.oneHundredth)
 
-        msgData.append(Data(from: heightVal))
+        msgData.append(Data(from: UInt16(heightVal)))
 
         return msgData
     }

@@ -193,14 +193,14 @@ open class CharacteristicRowerData: Characteristic {
 
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-            let value = decoder.decodeUInt8(data).resolution(0.5)
+            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.two)
             strokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
 
             strokeCount = decoder.decodeUInt16(data)
         }
 
         if flags.contains(.averageStrokePresent) {
-            let value = decoder.decodeUInt8(data).resolution(0.5)
+            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.two)
             averageStrokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
         }
 
@@ -228,7 +228,7 @@ open class CharacteristicRowerData: Characteristic {
         }
 
         if flags.contains(.resistanceLevelPresent) {
-            resistanceLevel = decoder.decodeInt16(data).resolution(0.1)
+            resistanceLevel = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
 
         var fitEnergy: FitnessMachineEnergy
@@ -243,7 +243,7 @@ open class CharacteristicRowerData: Characteristic {
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8(data).resolution(0.1)
+            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
 
         let elapsedTime = try decodeDuration(supported: flags,

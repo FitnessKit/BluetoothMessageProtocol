@@ -82,7 +82,7 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
         let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
         let maximum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
         
-        let incrValue = decoder.decodeUInt16(data).resolution(0.1)
+        let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPercent.percent)
 
         return CharacteristicSupportedInclinationRange(minimum: minimum,
@@ -99,7 +99,7 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
 
         let minValue = try minimum.encode()
         let maxValue = try maximum.encode()
-        let incrValue = UInt16(minimumIncrement.value.resolution(1 / 0.1))
+        let incrValue = UInt16(minimumIncrement.value.resolution(.adding, resolution: Resolution.oneTenth))
 
         msgData.append(minValue)
         msgData.append(maxValue)

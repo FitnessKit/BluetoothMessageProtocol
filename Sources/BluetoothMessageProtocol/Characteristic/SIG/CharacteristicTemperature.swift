@@ -62,7 +62,7 @@ open class CharacteristicTemperature: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicTemperature {
         var decoder = DecodeData()
 
-        let tmpValue = decoder.decodeInt16(data).resolution(0.01)
+        let tmpValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let temp = Measurement(value: tmpValue, unit: UnitTemperature.celsius)
 
         return CharacteristicTemperature(temperature: temp)
@@ -75,7 +75,7 @@ open class CharacteristicTemperature: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let value = temperature.converted(to: UnitTemperature.celsius).value.resolution(1 / 0.01)
+        let value = temperature.converted(to: UnitTemperature.celsius).value.resolution(.adding, resolution: Resolution.oneTenth)
 
         msgData.append(Data(from: Int16(value).littleEndian))
 

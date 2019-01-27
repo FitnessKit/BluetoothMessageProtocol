@@ -37,14 +37,14 @@ public struct FitnessMachineTargetResistanceLevelType {
     internal static func create(_ value: Int16) -> FitnessMachineTargetResistanceLevelType {
         /// Per ESR11
         /// E9135 – Resistance level format is SINT16
-        let level = value.resolution(0.1)
+        let level = value.resolution(.removing, resolution: Resolution.oneTenth)
         return FitnessMachineTargetResistanceLevelType(level: level)
     }
 
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let resitance = self.level.resolution(1 / 0.1)
+        let resitance = self.level.resolution(.adding, resolution: Resolution.oneTenth)
         let value = Int16(resitance)
 
         msgData.append(Data(from: value.littleEndian))
@@ -277,14 +277,14 @@ public struct FitnessMachineTargetCadence {
     private(set) public var cadence: Double
 
     internal static func create(_ value: UInt16) -> FitnessMachineTargetCadence {
-        let value = value.resolution(0.5)
+        let value = value.resolution(.removing, resolution: Resolution.two)
         return FitnessMachineTargetCadence(cadence: value)
     }
 
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let cadence = self.cadence.resolution(1 / 0.5)
+        let cadence = self.cadence.resolution(.adding, resolution: Resolution.two)
         let value = UInt16(cadence)
 
         msgData.append(Data(from: value.littleEndian))

@@ -119,7 +119,7 @@ public struct FitnessMachineInclinationType {
     private(set) public var incline: Measurement<UnitPercent>
 
     internal static func create(_ value: Int16) -> FitnessMachineInclinationType {
-        let value = value.resolution(0.1)
+        let value = value.resolution(.removing, resolution: Resolution.oneTenth)
         let incline: Measurement = Measurement(value: value, unit: UnitPercent.percent)
         return FitnessMachineInclinationType(incline: incline)
     }
@@ -127,7 +127,7 @@ public struct FitnessMachineInclinationType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let incline = self.incline.value.resolution(1 / 0.1)
+        let incline = self.incline.value.resolution(.adding, resolution: Resolution.oneTenth)
         let value = Int16(incline)
 
         msgData.append(Data(from: value.littleEndian))
@@ -172,7 +172,7 @@ public struct FitnessMachineSpeedType {
     private(set) public var speed: Measurement<UnitSpeed>
 
     internal static func create(_ value: UInt16) -> FitnessMachineSpeedType {
-        let value = value.resolution(0.01)
+        let value = value.resolution(.removing, resolution: Resolution.oneHundredth)
         let speed: Measurement = Measurement(value: value, unit: UnitSpeed.kilometersPerHour)
         return FitnessMachineSpeedType(speed: speed)
     }
@@ -180,7 +180,7 @@ public struct FitnessMachineSpeedType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let newSpeed = speed.converted(to: UnitSpeed.kilometersPerHour).value.resolution(1 / 0.01)
+        let newSpeed = speed.converted(to: UnitSpeed.kilometersPerHour).value.resolution(.adding, resolution: Resolution.oneHundredth)
         let value = UInt16(newSpeed)
 
         msgData.append(Data(from: value.littleEndian))
@@ -198,7 +198,7 @@ public struct FitnessMachineWheelCircumferenceType {
     private(set) public var circumference: Measurement<UnitLength>
 
     internal static func create(_ value: UInt16) -> FitnessMachineWheelCircumferenceType {
-        let value = value.resolution(0.1)
+        let value = value.resolution(.removing, resolution: Resolution.oneTenth)
         let circumference: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
         return FitnessMachineWheelCircumferenceType(circumference: circumference)
     }
@@ -206,7 +206,7 @@ public struct FitnessMachineWheelCircumferenceType {
     internal func encode() throws -> Data {
         var msgData = Data()
 
-        let circumference = self.circumference.converted(to: UnitLength.millimeters).value.resolution(1 / 0.1)
+        let circumference = self.circumference.converted(to: UnitLength.millimeters).value.resolution(.adding, resolution: Resolution.oneTenth)
         let value = UInt16(circumference)
 
         msgData.append(Data(from: value.littleEndian))

@@ -62,7 +62,7 @@ open class CharacteristicElevation: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicElevation {
         var decoder = DecodeData()
 
-        let meters = Double(decoder.decodeInt24(data)).resolution(0.01)
+        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
 
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 

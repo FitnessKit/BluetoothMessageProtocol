@@ -66,7 +66,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicMagneticDeclination {
         var decoder = DecodeData()
 
-        let value = decoder.decodeUInt16(data).resolution(0.01)
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
 
         let dec = Measurement(value: value, unit: UnitAngle.degrees)
 
@@ -90,7 +90,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
         }
 
         //put it back to uint16
-        let dec = UInt16(value.resolution(1 / 0.01))
+        let dec = UInt16(value.resolution(.adding, resolution: Resolution.oneTenth))
 
         msgData.append(Data(from: dec.littleEndian))
 

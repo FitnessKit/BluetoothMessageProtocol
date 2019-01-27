@@ -64,7 +64,7 @@ open class CharacteristicWaistCircumference: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicWaistCircumference {
         var decoder = DecodeData()
 
-        let meters = decoder.decodeUInt16(data).resolution(0.01)
+        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
 
         let waistCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
 
@@ -79,7 +79,7 @@ open class CharacteristicWaistCircumference: Characteristic {
         var msgData = Data()
 
         //Make sure we put this back to Meters before we create Data
-        let value = UInt16(waistCircumference.converted(to: UnitLength.meters).value.resolution(100.0))
+        let value = UInt16(waistCircumference.converted(to: UnitLength.meters).value.resolution(.adding, resolution: Resolution.oneHundredth))
 
         msgData.append(Data(from: value))
 

@@ -206,7 +206,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
 
         var resistanceLevel: Double?
         if flags.contains(.resistanceLevelPresent) {
-            resistanceLevel = decoder.decodeInt16(data).resolution(0.1)
+            resistanceLevel = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
 
         var iPower: FitnessMachinePowerType?
@@ -231,7 +231,7 @@ open class CharacteristicIndoorBikeData: Characteristic {
         }
 
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8(data).resolution(0.1)
+            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
 
         let elapsedTime = try decodeDuration(supported: flags,
@@ -289,7 +289,7 @@ private extension CharacteristicIndoorBikeData {
 
         var cadenceValue: Measurement<UnitCadence>?
         if supported.contains(flag) {
-            let value = Double(decoder.decodeUInt16(data)).resolution(0.5)
+            let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: Resolution.two)
             cadenceValue = Measurement(value: value, unit: unit)
         }
         return cadenceValue

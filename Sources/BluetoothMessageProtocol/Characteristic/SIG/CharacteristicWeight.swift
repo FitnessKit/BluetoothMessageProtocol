@@ -64,7 +64,7 @@ open class CharacteristicWeight: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicWeight {
         var decoder = DecodeData()
 
-        let value = decoder.decodeUInt16(data).resolution(0.005)
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneFiveThousandth)
 
         let weight = Measurement(value: value, unit: UnitMass.kilograms)
 
@@ -79,7 +79,7 @@ open class CharacteristicWeight: Characteristic {
         var msgData = Data()
 
         //Make sure we put this back to KG before we create Data
-        let value = UInt16(weight.converted(to: UnitMass.kilograms).value.resolution((1 / 0.005)))
+        let value = UInt16(weight.converted(to: UnitMass.kilograms).value.resolution(.adding, resolution: Resolution.oneFiveThousandth))
 
         msgData.append(Data(from: value))
 

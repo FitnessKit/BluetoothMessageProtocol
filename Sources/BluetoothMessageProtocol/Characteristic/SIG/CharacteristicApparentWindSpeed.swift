@@ -62,7 +62,7 @@ open class CharacteristicApparentWindSpeed: Characteristic {
     open override class func decode(data: Data) throws -> CharacteristicApparentWindSpeed {
         var decoder = DecodeData()
 
-        let speed = decoder.decodeUInt16(data).resolution(0.01)
+        let speed = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
 
         let wind = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
 
@@ -77,7 +77,7 @@ open class CharacteristicApparentWindSpeed: Characteristic {
         var msgData = Data()
 
         //Make sure we put this back to m/s before we create Data
-        let speed = windSpeed.converted(to: UnitSpeed.metersPerSecond).value.resolution(1 / 0.01)
+        let speed = windSpeed.converted(to: UnitSpeed.metersPerSecond).value.resolution(.adding, resolution: Resolution.oneHundredth)
 
         msgData.append(Data(from: UInt16(speed).littleEndian))
         
