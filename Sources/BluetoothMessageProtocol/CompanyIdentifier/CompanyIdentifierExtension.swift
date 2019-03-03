@@ -3668,5 +3668,122 @@ public extension CompanyIdentifier {
     public class var precor: CompanyIdentifier { return CompanyIdentifier(id: 1819, name: "Precor") }
     /// F5 Sports, Inc
     public class var f5Sports: CompanyIdentifier { return CompanyIdentifier(id: 1820, name: "F5 Sports, Inc") }
-
+    /// exoTIC Systems
+    public class var exoTicSystems: CompanyIdentifier { return CompanyIdentifier(id: 1821, name: "exoTIC Systems") }
+    /// DONGGUAN HELE ELECTRONICS CO., LTD
+    public class var dongguanHele: CompanyIdentifier { return CompanyIdentifier(id: 1822, name: "DONGGUAN HELE ELECTRONICS CO., LTD") }
+    /// Dongguan Liesheng Electronic Co.Ltd
+    public class var dongguanLiesheng: CompanyIdentifier { return CompanyIdentifier(id: 1823, name: "Dongguan Liesheng Electronic Co.Ltd") }
+    /// Oculeve, Inc.
+    public class var oculeve: CompanyIdentifier { return CompanyIdentifier(id: 1824, name: "Oculeve, Inc.") }
+    /// Clover Network, Inc.
+    public class var cloverNetwork: CompanyIdentifier { return CompanyIdentifier(id: 1825, name: "Clover Network, Inc.") }
+    /// Xiamen Eholder Electronics Co.Ltd
+    public class var xiamenEholderElectronics: CompanyIdentifier { return CompanyIdentifier(id: 1826, name: "Xiamen Eholder Electronics Co.Ltd") }
+    /// Ford Motor Company
+    public class var fordMotorCompany: CompanyIdentifier { return CompanyIdentifier(id: 1827, name: "Ford Motor Company") }
+    /// Guangzhou SuperSound Information Technology Co.,Ltd
+    public class var guangzhouSuperSound: CompanyIdentifier { return CompanyIdentifier(id: 1828, name: "Guangzhou SuperSound Information Technology Co.,Ltd") }
+    /// Tedee Sp. z o.o.
+    public class var tedee: CompanyIdentifier { return CompanyIdentifier(id: 1829, name: "Tedee Sp. z o.o.") }
+    /// PHC Corporation
+    public class var phcCorporation: CompanyIdentifier { return CompanyIdentifier(id: 1830, name: "PHC Corporation") }
+    /// STALKIT AS
+    public class var stalkit: CompanyIdentifier { return CompanyIdentifier(id: 1831, name: "STALKIT AS") }
+    /// Eli Lilly and Company
+    public class var eliLilly: CompanyIdentifier { return CompanyIdentifier(id: 1832, name: "Eli Lilly and Company") }
+    /// SwaraLink Technologies
+    public class var swaraLinkTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1833, name: "SwaraLink Technologies") }
+    /// JMR embedded systems GmbH
+    public class var jmrEmbeddedSystems: CompanyIdentifier { return CompanyIdentifier(id: 1834, name: "JMR embedded systems GmbH") }
+    /// Bitkey Inc.
+    public class var bitkey: CompanyIdentifier { return CompanyIdentifier(id: 1835, name: "Bitkey Inc.") }
+    /// GWA Hygiene GmbH
+    public class var gwaHygiene: CompanyIdentifier { return CompanyIdentifier(id: 1836, name: "GWA Hygiene GmbH") }
+    /// Safera Oy
+    public class var safera: CompanyIdentifier { return CompanyIdentifier(id: 1837, name: "Safera Oy") }
+    /// Open Platform Systems LLC
+    public class var openPlatformSystems: CompanyIdentifier { return CompanyIdentifier(id: 1838, name: "Open Platform Systems LLC") }
+    /// OnePlus Electronics (Shenzhen) Co., Ltd.
+    public class var onePlusElectronics: CompanyIdentifier { return CompanyIdentifier(id: 1839, name: "OnePlus Electronics (Shenzhen) Co., Ltd.") }
+    /// Wildlife Acoustics, Inc.
+    public class var wildlifeAcoustics: CompanyIdentifier { return CompanyIdentifier(id: 1840, name: "Wildlife Acoustics, Inc.") }
+    /// ABLIC Inc.
+    public class var ablic: CompanyIdentifier { return CompanyIdentifier(id: 1841, name: "ABLIC Inc.") }
+    /// Dairy Tech, Inc.
+    public class var dairyTech: CompanyIdentifier { return CompanyIdentifier(id: 1842, name: "Dairy Tech, Inc.") }
+    /// Iguanavation, Inc.
+    public class var iguanavation: CompanyIdentifier { return CompanyIdentifier(id: 1843, name: "Iguanavation, Inc.") }
+    /// DiUS Computing Pty Ltd
+    public class var diusComputing: CompanyIdentifier { return CompanyIdentifier(id: 1844, name: "DiUS Computing Pty Ltd") }
+    /// UpRight Technologies LTD
+    public class var upRightTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1845, name: "UpRight Technologies LTD") }
+    /// FrancisFund, LLC
+    public class var francisFund: CompanyIdentifier { return CompanyIdentifier(id: 1846, name: "FrancisFund, LLC") }
+    /// LLC Navitek
+    public class var navitek: CompanyIdentifier { return CompanyIdentifier(id: 1847, name: "LLC Navitek") }
+    /// Glass Security Pte Ltd
+    public class var glassSecurity: CompanyIdentifier { return CompanyIdentifier(id: 1848, name: "Glass Security Pte Ltd") }
+    /// Jiangsu Qinheng Co., Ltd.
+    public class var jiangsuQinheng: CompanyIdentifier { return CompanyIdentifier(id: 1849, name: "Jiangsu Qinheng Co., Ltd.") }
+    /// Chandler Systems Inc.
+    public class var chandlerSystems: CompanyIdentifier { return CompanyIdentifier(id: 1850, name: "Chandler Systems Inc.") }
+    /// Fantini Cosmi s.p.a.
+    public class var fantiniCosmi: CompanyIdentifier { return CompanyIdentifier(id: 1851, name: "Fantini Cosmi s.p.a.") }
+    /// Acubit ApS
+    public class var acubit: CompanyIdentifier { return CompanyIdentifier(id: 1852, name: "Acubit ApS") }
+    /// Beijing Hao Heng Tian Tech Co., Ltd.
+    public class var beijingHaoHengTianTech: CompanyIdentifier { return CompanyIdentifier(id: 1853, name: "Beijing Hao Heng Tian Tech Co., Ltd.") }
+    /// Bluepack S.R.L.
+    public class var bluepack: CompanyIdentifier { return CompanyIdentifier(id: 1854, name: "Bluepack S.R.L.") }
+    /// Beijing Unisoc Technologies Co., Ltd.
+    public class var beijingUnisocTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1855, name: "Beijing Unisoc Technologies Co., Ltd.") }
+    /// HITIQ LIMITED
+    public class var hitiqLimited: CompanyIdentifier { return CompanyIdentifier(id: 1856, name: "HITIQ LIMITED") }
+    /// MAC SRL
+    public class var macSrl: CompanyIdentifier { return CompanyIdentifier(id: 1857, name: "MAC SRL") }
+    /// DML LLC
+    public class var dmlLlc: CompanyIdentifier { return CompanyIdentifier(id: 1858, name: "DML LLC") }
+    /// Sanofi
+    public class var sanofi: CompanyIdentifier { return CompanyIdentifier(id: 1859, name: "Sanofi") }
+    /// SOCOMEC
+    public class var socomec: CompanyIdentifier { return CompanyIdentifier(id: 1860, name: "SOCOMEC") }
+    /// WIZNOVA, Inc.
+    public class var wiznova: CompanyIdentifier { return CompanyIdentifier(id: 1861, name: "WIZNOVA, Inc.") }
+    /// Seitec Elektronik GmbH
+    public class var seitecElektronik: CompanyIdentifier { return CompanyIdentifier(id: 1862, name: "Seitec Elektronik GmbH") }
+    /// OR Technologies Pty Ltd
+    public class var orTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1863, name: "OR Technologies Pty Ltd") }
+    /// GuangZhou KuGou Computer Technology Co.Ltd
+    public class var guangZhouKuGouComputerTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1864, name: "GuangZhou KuGou Computer Technology Co.Ltd") }
+    /// DIAODIAO (Beijing) Technology Co., Ltd.
+    public class var diaodiaoTechnology: CompanyIdentifier { return CompanyIdentifier(id: 1865, name: "DIAODIAO (Beijing) Technology Co., Ltd.") }
+    /// Illusory Studios LLC
+    public class var illusoryStudios: CompanyIdentifier { return CompanyIdentifier(id: 1866, name: "Illusory Studios LLC") }
+    /// Sarvavid Software Solutions LLP
+    public class var sarvavidSoftwareSolutions: CompanyIdentifier { return CompanyIdentifier(id: 1867, name: "Sarvavid Software Solutions LLP") }
+    /// iopool s.a.
+    public class var iopool: CompanyIdentifier { return CompanyIdentifier(id: 1868, name: "iopool s.a.") }
+    /// Amtech Systems, LLC
+    public class var amtechSystems: CompanyIdentifier { return CompanyIdentifier(id: 1869, name: "Amtech Systems, LLC") }
+    /// EAGLE DETECTION SA
+    public class var eagleDetection: CompanyIdentifier { return CompanyIdentifier(id: 1870, name: "EAGLE DETECTION SA") }
+    /// MEDIATECH S.R.L.
+    public class var mediatechSrl: CompanyIdentifier { return CompanyIdentifier(id: 1871, name: "MEDIATECH S.R.L.") }
+    /// Hamilton Professional Services of Canada Incorporated
+    public class var hamiltonProfessionalServicesCanada: CompanyIdentifier { return CompanyIdentifier(id: 1872, name: "Hamilton Professional Services of Canada Incorporated") }
+    /// Changsha JEMO IC Design Co.,Ltd
+    public class var changshaJemoIcDesign: CompanyIdentifier { return CompanyIdentifier(id: 1873, name: "Changsha JEMO IC Design Co.,Ltd") }
+    /// Elatec GmbH
+    public class var elatec: CompanyIdentifier { return CompanyIdentifier(id: 1874, name: "Elatec GmbH") }
+    /// JLG Industries, Inc.
+    public class var jlgIndustries: CompanyIdentifier { return CompanyIdentifier(id: 1875, name: "JLG Industries, Inc.") }
+    /// Michael Parkin
+    public class var michaelParkin: CompanyIdentifier { return CompanyIdentifier(id: 1876, name: "Michael Parkin") }
+    /// Brother Industries, Ltd
+    public class var brotherIndustries: CompanyIdentifier { return CompanyIdentifier(id: 1877, name: "Brother Industries, Ltd") }
+    /// Lumens For Less, Inc
+    public class var lumensForLess: CompanyIdentifier { return CompanyIdentifier(id: 1878, name: "Lumens For Less, Inc") }
+    /// ELA Innovation
+    public class var elaInnovation: CompanyIdentifier { return CompanyIdentifier(id: 1879, name: "ELA Innovation") }
 }
