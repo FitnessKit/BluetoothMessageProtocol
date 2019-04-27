@@ -1,6 +1,6 @@
 # BluetoothMessageProtocol
 
-[![Swift4](https://img.shields.io/badge/swift4-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift5](https://img.shields.io/badge/swift5-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
 [![Version](https://img.shields.io/cocoapods/v/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![License](https://img.shields.io/cocoapods/l/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
@@ -24,6 +24,14 @@ dependencies: [
     .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "0.20.0")
 ]
 ```
+
+Swift4
+```swift
+dependencies: [
+    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", .branch("swift42")),
+]
+```
+
 ## How to Use
 
 ### Services
