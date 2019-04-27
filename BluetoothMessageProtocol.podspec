@@ -23,6 +23,7 @@ Support for HomeKit, BLE Mesh and Custom Services/Characteristics.
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
   s.author              = { 'Kevin A. Hoogheem' => 'kevin@hoogheem.net' }
   s.source              = { :git => 'https://github.com/FitnessKit/BluetoothMessageProtocol.git', :tag => s.version.to_s }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 
 #Targets
   s.ios.deployment_target = '10.0'
