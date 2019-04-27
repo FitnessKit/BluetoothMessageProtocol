@@ -93,7 +93,7 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
         let energyPresent = self.energyExpended == nil ? false : true
 
         // For now just not send RR Values.. Since they are not used
-        let flags = HeartRateMeasurementFlags.init(isFormatUInt16: false,
+        let flags = HeartRateMeasurementFlags.init(valueFormat: .uint8,
                                                    contactStatus: self.contactStatus,
                                                    isEnergyExpendedPresent: energyPresent,
                                                    isRRIntervalPresent: false)

@@ -6,7 +6,8 @@ XCTMain([
     testCase(MemberIdentifierTests.allTests),
     testCase(CharacteristicCurrentTimeTests.allTests),
     testCase(CodeableTests.allTests),
-    testCase(ModelIdentifierTests.allTests),
     testCase(GymConnectTests.allTests),
+    testCase(HeartRateTests.allTests),
     testCase(HomeKitTests.allTests),
+    testCase(ModelIdentifierTests.allTests),
 ])

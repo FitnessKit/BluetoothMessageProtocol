@@ -50,8 +50,20 @@ public enum HeartRateContactStatus: UInt8 {
 }
 
 internal struct HeartRateMeasurementFlags {
-    /// Heart Rate Value Format is set to UINT16. Units: beats per minute (bpm)
-    private(set) public var isFormatUInt16: Bool
+    
+    public enum MeasurementFormat {
+        /// Value is UInt16
+        ///
+        /// Units: beats per minute (bpm)
+        case uint16
+        /// Value is UInt8
+        ///
+        /// Units: beats per minute (bpm)
+        case uint8
+    }
+    
+    /// Heart Rate Value Format
+    private(set) public var valueFormat: MeasurementFormat
     /// Sensor Contact Status
     private(set) public var contact: HeartRateContactStatus
     /// Energy Expended field is present
@@ -61,7 +73,7 @@ internal struct HeartRateMeasurementFlags {
 
     /// Rawvalue
     public var rawValue: UInt8 {
-        var value: UInt8 = UInt8(isFormatUInt16 == true ? 1 : 0)
+        var value: UInt8 = UInt8(valueFormat == .uint16 ? 1 : 0)
         value |= contact.rawValue << 1
         value |=  UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 3
         value |=  UInt8(isRRIntervalPresent == true ? 1 : 0) << 4
@@ -73,9 +85,15 @@ internal struct HeartRateMeasurementFlags {
     ///
     /// - Parameter value: UInt8 Flag Data
     public init(_ value: UInt8) {
-        self.isFormatUInt16 = (value & 0x01).boolValue
 
-        let contactStatusBits = (value | 0x06) >> 1
+        /// Check the Format of the Data
+        if (value & 0x01).boolValue {
+            valueFormat = .uint16
+        } else {
+            valueFormat = .uint8
+        }
+
+        let contactStatusBits = (value & 0x06) >> 1
 
         contact = HeartRateContactStatus(rawValue: contactStatusBits) ?? .notSupported
 
@@ -88,12 +106,12 @@ internal struct HeartRateMeasurementFlags {
     /// Creates Flags Structs
     ///
     /// - Parameters:
-    ///   - isFormatUInt16: HR Format is UInt16
+    ///   - valueFormat: HR Format
     ///   - contactStatus: Contact Status
     ///   - isEnergyExpendedPresent: Energy Expended Present
     ///   - isRRIntervalPresent: One or more RR Values Present
-    public init(isFormatUInt16: Bool, contactStatus: HeartRateContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
-        self.isFormatUInt16 = isFormatUInt16
+    public init(valueFormat: MeasurementFormat, contactStatus: HeartRateContactStatus, isEnergyExpendedPresent: Bool, isRRIntervalPresent: Bool) {
+        self.valueFormat = valueFormat
         self.contact = contactStatus
         self.isEnergyExpendedPresent = isEnergyExpendedPresent
         self.isRRIntervalPresent = isRRIntervalPresent

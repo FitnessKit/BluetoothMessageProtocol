@@ -88,7 +88,7 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
 
         var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
 
-        if flags.isFormatUInt16 {
+        if flags.valueFormat == .uint16 {
             heartRate.value = Double(decoder.decodeUInt16(data))
         } else {
             heartRate.value = Double(decoder.decodeUInt8(data))
