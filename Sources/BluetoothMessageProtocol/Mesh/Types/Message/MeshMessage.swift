@@ -25,14 +25,8 @@
 import Foundation
 
 /// Protocol for Mesh Message
-public protocol MeshMessage {
+public protocol MeshMessage: BluetoothEncodable {
 
     /// Op Code
     var opCode: Data { get }
-
-    /// Encodes into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
 }

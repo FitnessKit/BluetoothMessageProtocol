@@ -41,7 +41,7 @@ public struct FitnessMachineTargetResistanceLevelType {
         return FitnessMachineTargetResistanceLevelType(level: level)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let resitance = self.level.resolution(.adding, resolution: Resolution.oneTenth)
@@ -67,7 +67,7 @@ public struct FitnessMachineTargetExpendedEnergy {
         return FitnessMachineTargetExpendedEnergy(energy: energy)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let energy = self.energy.converted(to: UnitEnergy.calories).value
@@ -93,7 +93,7 @@ public struct FitnessMachineTargetDistance {
         return FitnessMachineTargetDistance(energy: energy)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let energy = self.energy.converted(to: UnitLength.meters).value
@@ -123,7 +123,7 @@ public struct FitnessMachineTargetTime {
         return FitnessMachineTargetTime(time: time)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let value = convertDurationToSeconds(self.time)
@@ -153,7 +153,7 @@ public struct FitnessMachineTargetTimeInTwoHrZone {
         return FitnessMachineTargetTimeInTwoHrZone(fatBurnZone: time, fitnessZone: fTime)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let fatBurnZoneValue = convertDurationToSeconds(self.fatBurnZone)
@@ -193,7 +193,7 @@ public struct FitnessMachineTargetTimeInThreeHrZone {
                                                      hardZone: hard)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let lightZoneValue = convertDurationToSeconds(self.lightZone)
@@ -247,7 +247,7 @@ public struct FitnessMachineTargetTimeInFiveHrZone {
                                                     maximumZone: max)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let veryLightZoneValue = convertDurationToSeconds(self.veryLightZone)
@@ -281,7 +281,7 @@ public struct FitnessMachineTargetCadence {
         return FitnessMachineTargetCadence(cadence: value)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let cadence = self.cadence.resolution(.adding, resolution: Resolution.two)

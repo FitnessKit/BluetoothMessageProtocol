@@ -92,16 +92,10 @@ public struct ProxyMessageType {
 }
 
 /// Protocol for Proxy Protocol Data Unit
-public protocol ProxyDataUnit {
+public protocol ProxyDataUnit: BluetoothEncodable {
     
     /// Proxy Protocol Message Type
     var messageType: ProxyMessageType { get }
-
-    /// Encodes Proxy Protocol Data Unit into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
 }
 
 /// Proxy Protocol Data Unit for Mesh Beacon
@@ -124,15 +118,19 @@ public struct ProxyDataUnitBeacon: ProxyDataUnit {
 
     /// Encodes Proxy Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(messageType.rawValue)
-        msgData.append(try beacon.encode())
+        switch beacon.encode() {
+        case .success(let beacon):
+            msgData.append(beacon)
+        case .failure(let error):
+            return.failure(error)
+        }
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -156,14 +154,19 @@ public struct ProxyDataUnitProvisioning: ProxyDataUnit {
 
     /// Encodes Proxy Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(messageType.rawValue)
-        msgData.append(try provisioningMessage.encode())
 
-        return msgData
+        switch provisioningMessage.encode() {
+        case .success(let provisioningMessage):
+            msgData.append(provisioningMessage)
+        case .failure(let error):
+            return.failure(error)
+        }
+
+        return.success(msgData)
     }
 }

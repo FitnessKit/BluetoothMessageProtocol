@@ -124,7 +124,7 @@ public struct FitnessMachineInclinationType {
         return FitnessMachineInclinationType(incline: incline)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let incline = self.incline.value.resolution(.adding, resolution: Resolution.oneTenth)
@@ -151,7 +151,7 @@ public struct FitnessMachinePowerType {
         return FitnessMachinePowerType(power: power)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let power = self.power.converted(to: UnitPower.watts).value
@@ -177,7 +177,7 @@ public struct FitnessMachineSpeedType {
         return FitnessMachineSpeedType(speed: speed)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let newSpeed = speed.converted(to: UnitSpeed.kilometersPerHour).value.resolution(.adding, resolution: Resolution.oneHundredth)
@@ -203,7 +203,7 @@ public struct FitnessMachineWheelCircumferenceType {
         return FitnessMachineWheelCircumferenceType(circumference: circumference)
     }
 
-    internal func encode() throws -> Data {
+    internal func encode() -> Data {
         var msgData = Data()
 
         let circumference = self.circumference.converted(to: UnitLength.millimeters).value.resolution(.adding, resolution: Resolution.oneTenth)

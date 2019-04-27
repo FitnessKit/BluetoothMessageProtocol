@@ -73,17 +73,22 @@ public struct ProvisioningDataUnitStart: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
         msgData.append(algorithm.rawValue)
         msgData.append(publicKey.rawValue)
-        msgData.append(try authentiction.encode())
+        
+        switch authentiction.encode() {
+        case .success(let authentiction):
+            msgData.append(authentiction)
+        case .failure(let error):
+            return.failure(error)
+        }
 
-        return msgData
+        return.success(msgData)
     }
 }
 

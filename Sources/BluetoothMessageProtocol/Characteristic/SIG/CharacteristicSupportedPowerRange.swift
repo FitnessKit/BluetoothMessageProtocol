@@ -97,8 +97,8 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = try minimum.encode()
-        let maxValue = try maximum.encode()
+        let minValue = minimum.encode()
+        let maxValue = maximum.encode()
         let incrValue = UInt16(minimumIncrement.converted(to: UnitPower.watts).value)
 
         msgData.append(minValue)

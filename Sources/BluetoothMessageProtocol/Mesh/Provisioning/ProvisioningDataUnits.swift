@@ -25,16 +25,10 @@
 import Foundation
 
 /// Protocol for Provisioning Protocol Data Unit
-public protocol ProvisioningDataUnit {
+public protocol ProvisioningDataUnit: BluetoothEncodable {
 
     /// Provisioning Protocol Data Unit Type
     var unitType: ProvisioningDataUnitType { get }
-
-    /// Encodes Provisioning Protocol Data Unit into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
 }
 
 /// Provisioning Data Unit Public Key
@@ -67,23 +61,22 @@ public struct ProvisioningDataUnitPublicKey: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard publicKeyX.count == 32 else {
-            throw BluetoothEncodeError.properySize("The publicKeyX must be 32 bytes.")
+            return.failure(BluetoothEncodeError.properySize("The publicKeyX must be 32 bytes."))
         }
         guard publicKeyY.count == 32 else {
-            throw BluetoothEncodeError.properySize("The publicKeyY must be 32 bytes.")
+            return.failure(BluetoothEncodeError.properySize("The publicKeyY must be 32 bytes."))
         }
 
         msgData.append(unitType.rawValue)
         msgData.append(Data(publicKeyX.reversed()))
         msgData.append(Data(publicKeyY.reversed()))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -102,14 +95,13 @@ public struct ProvisioningDataUnitInputComplete: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -138,19 +130,18 @@ public struct ProvisioningDataUnitConfirmation: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard confirmation.count == 16 else {
-            throw BluetoothEncodeError.properySize("The confirmation must be 16 bytes.")
+            return.failure(BluetoothEncodeError.properySize("The confirmation must be 16 bytes."))
         }
 
         msgData.append(unitType.rawValue)
         msgData.append(Data(confirmation.reversed()))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -177,19 +168,18 @@ public struct ProvisioningDataUnitRandom: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard confirmation.count == 16 else {
-            throw BluetoothEncodeError.properySize("The final input to the confirmation must be 16 bytes.")
+            return.failure(BluetoothEncodeError.properySize("The final input to the confirmation must be 16 bytes."))
         }
 
         msgData.append(unitType.rawValue)
         msgData.append(Data(confirmation.reversed()))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -224,21 +214,25 @@ public struct ProvisioningDataUnitData: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard messageIntegrity.count == 8 else {
-            throw BluetoothEncodeError.properySize("The messageIntegrity must be 8 bytes.")
+            return.failure(BluetoothEncodeError.properySize("The messageIntegrity must be 8 bytes."))
         }
 
         msgData.append(unitType.rawValue)
         /// Get the Provisioning Data and try to encode it
-        msgData.append(try provisioningData.encode())
+        switch provisioningData.encode() {
+        case .success(let provisioningData):
+            msgData.append(provisioningData)
+        case .failure(let error):
+            return.failure(error)
+        }
         msgData.append(Data(messageIntegrity.reversed()))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -258,14 +252,13 @@ public struct ProvisioningDataUnitComplete: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -314,15 +307,14 @@ public struct ProvisioningDataUnitFailed: ProvisioningDataUnit {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
         msgData.append(errorReason.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 

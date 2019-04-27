@@ -80,7 +80,7 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
 
         var msgData = Data()
 
-        msgData.append(try pduMessage.encode())
+        msgData.append(try pduMessage.encode().get())
 
         return msgData
     }

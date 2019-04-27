@@ -25,14 +25,7 @@
 import Foundation
 
 /// Protocol for Fitness Machine Response Parameter Values
-public protocol FitnessMachineControlResponseType {
-
-    /// Encodes Status into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
-}
+public protocol FitnessMachineControlResponseType: BluetoothEncodable {}
 
 /// Fitness Machine Response Params for Spin Down
 @available(swift 3.1)
@@ -55,18 +48,17 @@ public struct FitnessMachineControlResponseTypeSpinDown: FitnessMachineControlRe
         self.highSpeed = highSpeed
     }
 
-    /// Encodes Status into Data
+    /// Encodes Response into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let lowSpeed = try self.lowSpeed.encode()
-        let highSpeed = try self.highSpeed.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let lowSpeed = self.lowSpeed.encode()
+        let highSpeed = self.highSpeed.encode()
         var msgData = Data()
 
         msgData.append(lowSpeed)
         msgData.append(highSpeed)
 
-        return msgData
+        return.success(msgData)
     }
 }

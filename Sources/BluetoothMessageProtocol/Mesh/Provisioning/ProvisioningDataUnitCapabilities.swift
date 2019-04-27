@@ -165,8 +165,7 @@ public struct ProvisioningDataUnitCapabilities: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
@@ -179,7 +178,7 @@ public struct ProvisioningDataUnitCapabilities: ProvisioningDataUnit {
         msgData.append(inputOobSize.rawValue)
         msgData.append(Data(from: supportedInputActions.rawValue.bigEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 

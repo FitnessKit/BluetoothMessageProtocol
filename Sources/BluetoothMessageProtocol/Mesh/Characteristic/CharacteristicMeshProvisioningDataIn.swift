@@ -74,7 +74,7 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
         //known Proxy PDU containing Provisioning PDU.
         var msgData = Data()
 
-        msgData.append(try pduMessage.encode())
+        msgData.append(try pduMessage.encode().get())
 
         return msgData
     }

@@ -97,8 +97,8 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = try minimum.encode()
-        let maxValue = try maximum.encode()
+        let minValue = minimum.encode()
+        let maxValue = maximum.encode()
         let incrValue = UInt16(minimumIncrement.value.resolution(.adding, resolution: Resolution.oneTenth))
 
         msgData.append(minValue)

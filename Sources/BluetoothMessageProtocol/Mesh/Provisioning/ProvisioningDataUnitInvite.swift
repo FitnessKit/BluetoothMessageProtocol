@@ -87,13 +87,12 @@ public struct ProvisioningDataUnitInvite: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
         msgData.append(timerState.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }

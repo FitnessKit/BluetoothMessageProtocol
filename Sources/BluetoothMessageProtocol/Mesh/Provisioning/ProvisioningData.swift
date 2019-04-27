@@ -31,7 +31,7 @@ import Foundation
 /// from that shared secret. That session key shall then be used to encrypt and
 /// authenticate the provisioning data. The Provisioner then shall send the Provisioning
 /// Data PDU containing the encrypted and authenticated provisioning data to the device
-public struct ProvisioningData {
+public struct ProvisioningData: BluetoothEncodable {
 
     /// Flags
     public struct Flags: OptionSet {
@@ -81,9 +81,8 @@ public struct ProvisioningData {
 
     /// Encodes ProvisioningData Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(networkKey)
@@ -92,7 +91,7 @@ public struct ProvisioningData {
         msgData.append(Data(from: ivIndex.bigEndian))
         msgData.append(Data(from: unicastAddress.bigEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 

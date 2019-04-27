@@ -26,16 +26,10 @@ import Foundation
 import FitnessUnits
 
 /// Protocol for Fitness Machine Status Values
-public protocol FitnessMachineStatus {
+public protocol FitnessMachineStatus: BluetoothEncodable {
 
     /// Status Code
     var statusCode: FitnessMachineStatusCode { get }
-
-    /// Encodes Status into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
 }
 
 /// Generic Fitness Machine Status Code
@@ -55,14 +49,13 @@ public struct FitnessMachineStatusGeneric: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -85,15 +78,14 @@ public struct FitnessMachineStatusStopPause: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(controlInformation.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -118,17 +110,16 @@ public struct FitnessMachineStatusTargetSpeed: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let speed = try self.speed.encode()
-
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
+        let speed = self.speed.encode()
         var msgData = Data()
-
+        
         msgData.append(statusCode.rawValue)
         msgData.append(speed)
-
-        return msgData
+        
+        return.success(msgData)
     }
 }
 
@@ -153,17 +144,17 @@ public struct FitnessMachineStatusTargetIncline: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let incline = try self.incline.encode()
-
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
+        let incline = self.incline.encode()
+        
         var msgData = Data()
-
+        
         msgData.append(statusCode.rawValue)
         msgData.append(incline)
-
-        return msgData
+        
+        return.success(msgData)
     }
 }
 
@@ -188,17 +179,16 @@ public struct FitnessMachineStatusTargetResistanceLevel: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let resistanceLevel = try self.resistanceLevel.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let resistanceLevel = self.resistanceLevel.encode()
 
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(resistanceLevel)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -223,16 +213,15 @@ public struct FitnessMachineStatusTargetPower: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let power = try self.power.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let power = self.power.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(power)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -257,15 +246,14 @@ public struct FitnessMachineStatusTargetHeartRate: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(Data(from: UInt8(heartRate.value)))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -290,11 +278,10 @@ public struct FitnessMachineStatusTargetedExpendedEnergyChanged: FitnessMachineS
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
@@ -319,15 +306,14 @@ public struct FitnessMachineStatusTargetedSteps: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(Data(from: steps.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -352,15 +338,14 @@ public struct FitnessMachineStatusTargetedStrides: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(Data(from: strides.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -385,16 +370,15 @@ public struct FitnessMachineStatusTargetedDistance: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let distance = try self.distance.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let distance = self.distance.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(distance)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -419,16 +403,15 @@ public struct FitnessMachineStatusTargetedTrainingTime: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let time = try self.time.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let time = self.time.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(time)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -453,16 +436,15 @@ public struct FitnessMachineStatusTargetedTimeInTwoHrZoneChanged: FitnessMachine
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let time = try self.time.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let time = self.time.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(time)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -487,16 +469,15 @@ public struct FitnessMachineStatusTargetedTimeInThreeHrZoneChanged: FitnessMachi
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let time = try self.time.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let time = self.time.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(time)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -521,16 +502,15 @@ public struct FitnessMachineStatusTargetedTimeInFiveHrZoneChanged: FitnessMachin
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let time = try self.time.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let time = self.time.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(time)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -555,16 +535,15 @@ public struct FitnessMachineStatusWheelCircumference: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let circumference = try self.circumference.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let circumference = self.circumference.encode()
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(circumference)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -601,15 +580,14 @@ public struct FitnessMachineStatusSpinDown: FitnessMachineStatus {
 
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(statusCode.rawValue)
         msgData.append(status.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -636,10 +614,9 @@ public struct FitnessMachineStatusTargetedCadence: FitnessMachineStatus {
     
     /// Encodes Status into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

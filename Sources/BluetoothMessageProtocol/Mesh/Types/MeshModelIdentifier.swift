@@ -27,7 +27,7 @@ import Foundation
 /// BLE Mesh Model Identifier Type
 ///
 /// Models may contain either a SIG Model ID or a Vendor Model ID
-public enum ModelIdentifierType {
+public enum ModelIdentifierType: BluetoothEncodable {
     /// SIG Model Identifier
     case sig(UInt16)
     /// Vendor Model ID
@@ -38,9 +38,8 @@ public enum ModelIdentifierType {
 
     /// Encodes into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         // Access Layer Endianness
@@ -55,7 +54,7 @@ public enum ModelIdentifierType {
             msgData.append(Data(from: id))
         }
 
-        return msgData
+        return.success(msgData)
     }
 }
 

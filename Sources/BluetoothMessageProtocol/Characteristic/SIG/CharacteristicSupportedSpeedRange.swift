@@ -92,9 +92,9 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     open override func encode() throws -> Data {
         var msgData = Data()
 
-        let minValue = try minimum.encode()
-        let maxValue = try maximum.encode()
-        let incrValue = try minimumIncrement.encode()
+        let minValue = minimum.encode()
+        let maxValue = maximum.encode()
+        let incrValue = minimumIncrement.encode()
 
         msgData.append(minValue)
         msgData.append(maxValue)

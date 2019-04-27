@@ -37,14 +37,13 @@ public struct MeshMessageGenericDeltaSet: MeshMessage {
 
     /// Encodes into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(opCode)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -61,13 +60,12 @@ public struct MeshMessageGenericDeltaSetUnacknowledged: MeshMessage {
 
     /// Encodes into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(opCode)
 
-        return msgData
+        return.success(msgData)
     }
 }

@@ -25,16 +25,11 @@
 import Foundation
 
 /// Protocol for Fitness Machine Control Point Procedure
-public protocol FitnessMachineControlProcedure {
+public protocol FitnessMachineControlProcedure: BluetoothEncodable {
 
     /// Control Code
     var controlCode: FitnessMachineControlCode { get }
-
-    /// Encodes Control Procedure into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
+    
 }
 
 /// Fitness Machine Procecure for Requesting Control
@@ -50,14 +45,13 @@ public struct FitnessMachineProcedureRequestControl: FitnessMachineControlProced
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -74,14 +68,13 @@ public struct FitnessMachineProcedureReset: FitnessMachineControlProcedure {
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -106,16 +99,15 @@ public struct FitnessMachineProcedureSetTargetSpeed: FitnessMachineControlProced
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
         
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -140,16 +132,15 @@ public struct FitnessMachineProcedureSetTargetInclination: FitnessMachineControl
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -174,16 +165,15 @@ public struct FitnessMachineProcedureSetTargetResistanceLevel: FitnessMachineCon
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -208,16 +198,15 @@ public struct FitnessMachineProcedureSetTargetPower: FitnessMachineControlProced
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -242,15 +231,14 @@ public struct FitnessMachineProcedureSetTargetHeartRate: FitnessMachineControlPr
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -269,14 +257,13 @@ public struct FitnessMachineProcedureStartResume: FitnessMachineControlProcedure
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -301,15 +288,14 @@ public struct FitnessMachineProcedureStopPause: FitnessMachineControlProcedure {
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -334,16 +320,15 @@ public struct FitnessMachineProcedureSetTargetedExpendedEnergy: FitnessMachineCo
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -368,15 +353,14 @@ public struct FitnessMachineProcedureSetTargetedNumberOfSteps: FitnessMachineCon
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(Data(from: target.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -401,15 +385,14 @@ public struct FitnessMachineProcedureSetTargetedNumberOfStrides: FitnessMachineC
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(Data(from: target.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -434,16 +417,15 @@ public struct FitnessMachineProcedureSetTargetedDistance: FitnessMachineControlP
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -468,16 +450,15 @@ public struct FitnessMachineProcedureSetTargetedTrainingTime: FitnessMachineCont
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -502,16 +483,15 @@ public struct FitnessMachineProcedureSetTargetedTimeInTwoHrZone: FitnessMachineC
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -536,16 +516,15 @@ public struct FitnessMachineProcedureSetTargetedTimeInThreeHrZone: FitnessMachin
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -570,16 +549,15 @@ public struct FitnessMachineProcedureSetTargetedTimeInFiveHrZone: FitnessMachine
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -604,16 +582,15 @@ public struct FitnessMachineProcedureSeWheelCircumference: FitnessMachineControl
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -645,15 +622,14 @@ public struct FitnessMachineProcedureSetSpinDownControl: FitnessMachineControlPr
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -678,16 +654,15 @@ public struct FitnessMachineProcedureSetTargetedCadence: FitnessMachineControlPr
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
-        let target = try self.target.encode()
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        let target = self.target.encode()
         var msgData = Data()
 
         msgData.append(controlCode.rawValue)
         msgData.append(target)
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -753,10 +728,9 @@ public struct FitnessMachineProcedureResponse: FitnessMachineControlProcedure {
 
     /// Encodes Control Procedure into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

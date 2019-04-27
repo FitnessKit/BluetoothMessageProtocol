@@ -33,16 +33,10 @@ public enum MeshBeaconType: UInt8 {
 }
 
 /// Protocol for Mesh Beacon
-public protocol MeshBeacon {
+public protocol MeshBeacon: BluetoothEncodable {
 
     /// Mesh Beacon Type
     var unitType: MeshBeaconType { get }
-
-    /// Encodes Provisioning Protocol Data Unit into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
 }
 
 /// Secure Network Mesh Beacon
@@ -94,9 +88,8 @@ public struct MeshBeaconSecureNetwork: MeshBeacon {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(unitType.rawValue)
@@ -105,7 +98,7 @@ public struct MeshBeaconSecureNetwork: MeshBeacon {
         msgData.append(Data(from: ivIndex.bigEndian))
         msgData.append(Data(from: authenticationValue.bigEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -142,13 +135,12 @@ public struct MeshBeaconUnprovisioned: MeshBeacon {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard deviceUUID.count == 16 else {
-            throw BluetoothEncodeError.properySize("Device UUID must be a 128Bit UUID.")
+            return.failure(BluetoothEncodeError.properySize("Device UUID must be a 128Bit UUID."))
         }
 
         let uuidString = deviceUUID.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
@@ -163,6 +155,6 @@ public struct MeshBeaconUnprovisioned: MeshBeacon {
             msgData.append(Data(from: uriHash.bigEndian))
         }
 
-        return msgData
+        return.success(msgData)
     }
 }

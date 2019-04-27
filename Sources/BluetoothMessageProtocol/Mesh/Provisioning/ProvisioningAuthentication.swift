@@ -95,16 +95,10 @@ extension ProvisioningAuthenticationMethod: Encodable {
 }
 
 /// Protocol for Provisioning Authentication Types
-public protocol ProvisioningAuthentication {
+public protocol ProvisioningAuthentication: BluetoothEncodable {
 
     /// Provisioning Authentication Method
     var method: ProvisioningAuthenticationMethod { get }
-
-    /// Encodes Provisioning Protocol Data Unit into Data
-    ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    func encode() throws -> Data
 }
 
 /// Provisioning Authentication Method None
@@ -122,16 +116,15 @@ public struct ProvisioningAuthenticationMethodNone: ProvisioningAuthentication {
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(method.rawValue)
         msgData.append(0x00) /// Action
         msgData.append(0x00) /// Size
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -150,16 +143,15 @@ public struct ProvisioningAuthenticationMethodStatic: ProvisioningAuthentication
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(method.rawValue)
         msgData.append(0x00) /// Action
         msgData.append(0x00) /// Size
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -206,21 +198,20 @@ public struct ProvisioningAuthenticationMethodOutput: ProvisioningAuthentication
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(method.rawValue)
         msgData.append(action.rawValue) /// Action
 
         guard size.rawValue <= 8 else {
-            throw BluetoothEncodeError.properySize("Size must be 8 or less.")
+            return.failure(BluetoothEncodeError.properySize("Size must be 8 or less."))
         }
 
         msgData.append(size.rawValue) /// Size..
 
-        return msgData
+        return.success(msgData)
     }
 }
 
@@ -293,21 +284,20 @@ public struct ProvisioningAuthenticationMethodInput: ProvisioningAuthentication 
 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
-    /// - Returns: Encoded Data
-    /// - Throws: BluetoothEncodeError
-    public func encode() throws -> Data {
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(method.rawValue)
         msgData.append(action.rawValue) /// Action
 
         guard size.rawValue <= 8 else {
-            throw BluetoothEncodeError.properySize("Size must be 8 or less.")
+            return.failure(BluetoothEncodeError.properySize("Size must be 8 or less."))
         }
 
         msgData.append(size.rawValue) /// Size..
 
-        return msgData
+        return.success(msgData)
     }
 }
 
