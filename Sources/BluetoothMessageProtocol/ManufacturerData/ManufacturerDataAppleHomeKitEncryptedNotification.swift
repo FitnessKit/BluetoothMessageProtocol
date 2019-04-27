@@ -155,9 +155,8 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
 
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
-    /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: ManufacturerData Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
 
         var msgData = Data()
 
@@ -170,7 +169,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
         msgData.append(Data(from: globalState.littleEndian))
         msgData.append(Data(from: characteristicInstance.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 
     enum CodeKeys: CodingKey {

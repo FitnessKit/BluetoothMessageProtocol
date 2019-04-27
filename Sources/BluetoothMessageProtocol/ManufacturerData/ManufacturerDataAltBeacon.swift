@@ -117,12 +117,11 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
 
     /// Encodes AltBeacon Manufacturer Specific Data
     ///
-    /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: ManufacturerData Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
 
         guard beaconID.count == 20 else {
-            throw BluetoothEncodeError.properySize("Beacon ID must be 20 bytes.")
+            return.failure(BluetoothEncodeError.properySize("Beacon ID must be 20 bytes.")) 
         }
 
         var msgData = Data()
@@ -137,7 +136,7 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
         msgData.append(UInt8(referencePower))
         msgData.append(manufacturerReserved)
 
-        return msgData
+        return.success(msgData)
     }
 
     enum CodeKeys: CodingKey {

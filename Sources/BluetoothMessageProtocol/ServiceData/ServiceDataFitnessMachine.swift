@@ -113,11 +113,10 @@ open class ServiceDataFitnessMachine: ServiceData {
 
     /// Encodes the Service Data AD Type into Data
     ///
-    /// - Returns: Data representation of the Service Data AD Type
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Service Data AD Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 
     /// Encodes this value into the given encoder.

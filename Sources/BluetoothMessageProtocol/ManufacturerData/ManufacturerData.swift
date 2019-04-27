@@ -29,7 +29,7 @@ import DataDecoder
 ///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerData: Encodable {
+open class ManufacturerData: Encodable, BluetoothEncodable {
 
     /// Manufacturer
     open internal(set) var manufacturer: CompanyIdentifier
@@ -79,9 +79,8 @@ open class ManufacturerData: Encodable {
 
     /// Encodes the ManufacturerData into Data
     ///
-    /// - Returns: Data representation of the ManufacturerData
-    /// - Throws: BluetoothEncodeError
-    open func encode() throws -> Data {
+    /// - Returns: ManufacturerData Result
+    open func encode() -> Result<Data, BluetoothEncodeError> {
         fatalError("*** You must override in your class.")
     }
 

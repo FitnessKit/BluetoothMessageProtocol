@@ -202,9 +202,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
-    /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: ManufacturerData Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
 
         var msgData = Data()
 
@@ -220,7 +219,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         msgData.append(configuration)
         msgData.append(compatibleVersion)
 
-        return msgData
+        return.success(msgData)
     }
 
     enum CodeKeys: CodingKey {

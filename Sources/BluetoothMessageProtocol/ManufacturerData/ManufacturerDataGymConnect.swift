@@ -117,11 +117,10 @@ open class ManufacturerDataGymConnect: ManufacturerData {
 
     /// Encodes Manufacturer Specific Data
     ///
-    /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: ManufacturerData Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 
     enum CodeKeys: CodingKey {

@@ -137,9 +137,8 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
     /// Encodes Apple iBeacon Manufacturer Specific Data
     ///
-    /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: ManufacturerData Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
 
         var msgData = Data()
 
@@ -151,7 +150,7 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
         msgData.append(Data(from: minorID.bigEndian))
         msgData.append(UInt8(measuredPower))
 
-        return msgData
+        return.success(msgData)
     }
 
     enum CodeKeys: CodingKey {

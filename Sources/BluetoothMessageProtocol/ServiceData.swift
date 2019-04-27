@@ -27,7 +27,7 @@ import Foundation
 /// Bluetooth Service Data AD Type base Class
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceData: Encodable {
+open class ServiceData: Encodable, BluetoothEncodable {
 
     /// Name of the Service Data AD Type
     open internal(set) var name: String
@@ -57,9 +57,8 @@ open class ServiceData: Encodable {
 
     /// Encodes the Service Data AD Type into Data
     ///
-    /// - Returns: Data representation of the Service Data AD Type
-    /// - Throws: BluetoothEncodeError
-    open func encode() throws -> Data {
+    /// - Returns: Service Data AD Result
+    open func encode() -> Result<Data, BluetoothEncodeError> {
         fatalError("*** You must override in your class.")
     }
 
