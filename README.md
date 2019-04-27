@@ -112,7 +112,6 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
             print(beacon.proximityUUID.uuidString)
         }
     }
-
 }
 ```
 
