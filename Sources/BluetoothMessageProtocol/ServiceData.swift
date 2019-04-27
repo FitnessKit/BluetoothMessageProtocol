@@ -50,7 +50,7 @@ open class ServiceData: Encodable {
     ///
     /// - Parameter data: Data from Service Data AD Type
     /// - Returns: ServiceData Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open class func decode(data: Data) throws -> ServiceData {
         fatalError("*** You must override in your class.")
     }
@@ -58,7 +58,7 @@ open class ServiceData: Encodable {
     /// Encodes the Service Data AD Type into Data
     ///
     /// - Returns: Data representation of the Service Data AD Type
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open func encode() throws -> Data {
         fatalError("*** You must override in your class.")
     }

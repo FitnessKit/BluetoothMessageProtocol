@@ -217,7 +217,7 @@ public extension DateTime {
     ///
     /// - Parameter data: DateTime Data
     /// - Returns: DateTime Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     static func decode(data: Data) throws -> DateTime {
 
         var decoder = DecodeData()
@@ -258,21 +258,21 @@ public extension DateTime {
         var msgData = Data()
 
         guard let year = year else {
-            throw BluetoothMessageProtocolError(message: "Year can not be nil for encoding")
+            throw BluetoothEncodeError.missingProperties("Year can not be nil for encoding")
         }
 
         guard kBluetoothYearBounds.contains(Int(year)) else {
-            throw BluetoothMessageProtocolError.boundsError(title: "Year must be between",
-                                                            range: kBluetoothYearBounds)
+            throw BluetoothEncodeError.boundsError(title: "Year must be between",
+                                                   range: kBluetoothYearBounds)
         }
 
         guard let day = day else {
-            throw BluetoothMessageProtocolError(message: "Day can not be nil for encoding")
+            throw BluetoothEncodeError.missingProperties("Day can not be nil for encoding")
         }
 
         guard kBluetoothDayOfMonthBounds.contains(Int(day)) else {
-            throw BluetoothMessageProtocolError.boundsError(title: "Day must be between",
-                                                            range: kBluetoothDayOfMonthBounds)
+            throw BluetoothEncodeError.boundsError(title: "Day must be between",
+                                                   range: kBluetoothDayOfMonthBounds)
         }
 
         msgData.append(Data(from: UInt16(year)))

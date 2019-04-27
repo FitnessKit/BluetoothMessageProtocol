@@ -39,7 +39,7 @@ public enum ModelIdentifierType {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 

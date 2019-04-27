@@ -60,7 +60,7 @@ open class CharacteristicV02Max: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicV02Max {
         var decoder = DecodeData()
 
@@ -74,12 +74,12 @@ open class CharacteristicV02Max: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
 
         guard kMaxVO2Bounds.contains(Int(maxVO2.value)) else {
-            throw BluetoothMessageProtocolError.boundsError(title: "Max VO2 must be between",
-                                                            range: kMaxVO2Bounds)
+            throw BluetoothEncodeError.boundsError(title: "Max VO2 must be between",
+                                                   range: kMaxVO2Bounds)
         }
 
         var msgData = Data()

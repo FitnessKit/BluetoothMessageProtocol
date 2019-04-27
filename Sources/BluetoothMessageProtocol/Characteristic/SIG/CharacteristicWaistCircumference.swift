@@ -60,7 +60,7 @@ open class CharacteristicWaistCircumference: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicWaistCircumference {
         var decoder = DecodeData()
 
@@ -74,7 +74,7 @@ open class CharacteristicWaistCircumference: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 

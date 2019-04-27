@@ -62,7 +62,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicMagneticDeclination {
         var decoder = DecodeData()
 
@@ -76,7 +76,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 
@@ -84,9 +84,9 @@ open class CharacteristicMagneticDeclination: Characteristic {
         let value = declination.converted(to: UnitAngle.degrees).value
 
         guard kBluetoothMagneticDeclinationBounds.contains(value) else {
-            throw BluetoothMessageProtocolError.boundsError(title: "Magnetic Declination must be between",
-                                                            msg: "degress",
-                                                            range: kBluetoothMagneticDeclinationBounds)
+            throw BluetoothEncodeError.boundsError(title: "Magnetic Declination must be between",
+                                                   msg: "degress",
+                                                   range: kBluetoothMagneticDeclinationBounds)
         }
 
         //put it back to uint16

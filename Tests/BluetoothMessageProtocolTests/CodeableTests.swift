@@ -22,7 +22,7 @@ class CodeableTests: XCTestCase {
     }
 
     func testServiceEncode() {
-
+        
         let service = ServiceHapFan()
 
         let jsonEncoder = JSONEncoder()

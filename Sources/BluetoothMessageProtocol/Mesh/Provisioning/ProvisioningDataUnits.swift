@@ -33,7 +33,7 @@ public protocol ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     func encode() throws -> Data
 }
 
@@ -68,15 +68,15 @@ public struct ProvisioningDataUnitPublicKey: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
         guard publicKeyX.count == 32 else {
-            throw BluetoothMessageProtocolError.encode("The publicKeyX must be 32 bytes.")
+            throw BluetoothEncodeError.properySize("The publicKeyX must be 32 bytes.")
         }
         guard publicKeyY.count == 32 else {
-            throw BluetoothMessageProtocolError.encode("The publicKeyY must be 32 bytes.")
+            throw BluetoothEncodeError.properySize("The publicKeyY must be 32 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -103,7 +103,7 @@ public struct ProvisioningDataUnitInputComplete: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -139,12 +139,12 @@ public struct ProvisioningDataUnitConfirmation: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
         guard confirmation.count == 16 else {
-            throw BluetoothMessageProtocolError.encode("The confirmation must be 16 bytes.")
+            throw BluetoothEncodeError.properySize("The confirmation must be 16 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -178,12 +178,12 @@ public struct ProvisioningDataUnitRandom: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
         guard confirmation.count == 16 else {
-            throw BluetoothMessageProtocolError.encode("The final input to the confirmation must be 16 bytes.")
+            throw BluetoothEncodeError.properySize("The final input to the confirmation must be 16 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -225,12 +225,12 @@ public struct ProvisioningDataUnitData: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
         guard messageIntegrity.count == 8 else {
-            throw BluetoothMessageProtocolError.encode("The messageIntegrity must be 8 bytes.")
+            throw BluetoothEncodeError.properySize("The messageIntegrity must be 8 bytes.")
         }
 
         msgData.append(unitType.rawValue)
@@ -259,7 +259,7 @@ public struct ProvisioningDataUnitComplete: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -315,7 +315,7 @@ public struct ProvisioningDataUnitFailed: ProvisioningDataUnit {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 

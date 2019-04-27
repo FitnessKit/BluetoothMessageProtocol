@@ -58,7 +58,7 @@ open class CharacteristicGymConnectEquipmentState: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicGymConnectEquipmentState {
         var decoder = DecodeData()
 
@@ -70,9 +70,9 @@ open class CharacteristicGymConnectEquipmentState: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         /// not writeable
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }

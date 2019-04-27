@@ -43,7 +43,7 @@ public struct MeshMessageGenericLevelGet: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -97,7 +97,7 @@ public struct MeshMessageGenericLevelSet: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -113,7 +113,7 @@ public struct MeshMessageGenericLevelSet: MeshMessage {
             if let delay = delay {
                 msgData.append(delay)
             } else {
-                throw BluetoothMessageProtocolError.encode("Delay must be present.")
+                throw BluetoothEncodeError.missingProperties("Delay must be present.")
             }
         }
 
@@ -163,7 +163,7 @@ public struct MeshMessageGenericLevelSetUnacknowledged: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -179,7 +179,7 @@ public struct MeshMessageGenericLevelSetUnacknowledged: MeshMessage {
             if let delay = delay {
                 msgData.append(delay)
             } else {
-                throw BluetoothMessageProtocolError.encode("Delay must be present.")
+                throw BluetoothEncodeError.missingProperties("Delay must be present.")
             }
         }
 
@@ -217,7 +217,7 @@ public struct MeshMessageGenericLevelSatus: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -234,7 +234,7 @@ public struct MeshMessageGenericLevelSatus: MeshMessage {
             if let remainingTime = remainingTime {
                 msgData.append(remainingTime.rawValue)
             } else {
-                throw BluetoothMessageProtocolError.encode("Remaining Time must be present.")
+                throw BluetoothEncodeError.missingProperties("Remaining Time must be present.")
             }
         }
 
@@ -257,7 +257,7 @@ public struct MeshMessageGenericMoveSet: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -281,7 +281,7 @@ public struct MeshMessageGenericMoveSetUnacknowledged: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 

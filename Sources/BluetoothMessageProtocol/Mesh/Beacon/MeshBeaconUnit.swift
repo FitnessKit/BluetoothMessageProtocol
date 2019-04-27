@@ -41,7 +41,7 @@ public protocol MeshBeacon {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     func encode() throws -> Data
 }
 
@@ -95,7 +95,7 @@ public struct MeshBeaconSecureNetwork: MeshBeacon {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -143,12 +143,12 @@ public struct MeshBeaconUnprovisioned: MeshBeacon {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
         guard deviceUUID.count == 16 else {
-            throw BluetoothMessageProtocolError.encode("Device UUID must be a 128Bit UUID.")
+            throw BluetoothEncodeError.properySize("Device UUID must be a 128Bit UUID.")
         }
 
         let uuidString = deviceUUID.replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")

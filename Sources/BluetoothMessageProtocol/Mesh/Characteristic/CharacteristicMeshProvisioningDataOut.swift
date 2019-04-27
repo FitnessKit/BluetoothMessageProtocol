@@ -61,13 +61,13 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicMeshProvisioningDataOut {
         //The characteristic value is 66 octets long to accommodate the longest
         //known Proxy PDU containing Provisioning PDU.
 
         guard data.count <= 66 else {
-            throw BluetoothMessageProtocolError.decode("PDU must be 66 bytes or less.")
+            throw BluetoothDecodeError.properySize("PDU must be 66 bytes or less.")
         }
 
         return CharacteristicMeshProvisioningDataOut(pduMessage: data)
@@ -76,8 +76,8 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }

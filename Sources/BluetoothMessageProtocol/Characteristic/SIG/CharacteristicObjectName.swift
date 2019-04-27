@@ -58,7 +58,7 @@ open class CharacteristicObjectName: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicObjectName {
         let objectName = data.safeStringValue ?? ""
 
@@ -68,14 +68,14 @@ open class CharacteristicObjectName: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 
         guard kObjectNameStringBounds.contains(objectName.count) else {
-            throw BluetoothMessageProtocolError.boundsError(title: "Object Name must be between",
-                                                            msg: "characters in size",
-                                                            range: kObjectNameStringBounds)
+            throw BluetoothEncodeError.boundsError(title: "Object Name must be between",
+                                                   msg: "characters in size",
+                                                   range: kObjectNameStringBounds)
         }
 
         if let stringData = objectName.data(using: .utf8) {

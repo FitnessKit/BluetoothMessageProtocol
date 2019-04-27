@@ -96,7 +96,7 @@ internal extension GymConnectEquipmentType {
             return .recumbentBike
         case 145:
             return .upperBodyErgo
-        case 145...159:
+        case 146...159:
             return .bike
         case 160...169:
             return .stepper

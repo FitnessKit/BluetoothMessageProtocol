@@ -149,7 +149,7 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicFitnessMachineFeature {
         var decoder = DecodeData()
 
@@ -163,9 +163,9 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }

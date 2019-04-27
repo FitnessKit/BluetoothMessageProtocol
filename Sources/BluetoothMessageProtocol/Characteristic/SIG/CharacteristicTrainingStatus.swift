@@ -113,14 +113,14 @@ open class CharacteristicTrainingStatus: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicTrainingStatus {
         var decoder = DecodeData()
 
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
         
         if flags.rawValue > 3 {
-            throw BluetoothMessageProtocolError.decode("Training Status Flags don't match spec.")
+            throw BluetoothDecodeError.general("Training Status Flags don't match spec.")
         }
 
         let status = TrainingStatus(rawValue: decoder.decodeUInt8(data)) ?? .other
@@ -138,7 +138,7 @@ open class CharacteristicTrainingStatus: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 

@@ -79,7 +79,7 @@ public struct MeshMessageGenericOnOffGet: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -133,7 +133,7 @@ public struct MeshMessageGenericOnOffSet: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -150,7 +150,7 @@ public struct MeshMessageGenericOnOffSet: MeshMessage {
             if let delay = delay {
                 msgData.append(delay)
             } else {
-                throw BluetoothMessageProtocolError.encode("Delay must be present.")
+                throw BluetoothEncodeError.missingProperties("Delay must be present.")
             }
         }
 
@@ -200,7 +200,7 @@ public struct MeshMessageGenericOnOffSetUnacknowledged: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -217,7 +217,7 @@ public struct MeshMessageGenericOnOffSetUnacknowledged: MeshMessage {
             if let delay = delay {
                 msgData.append(delay)
             } else {
-                throw BluetoothMessageProtocolError.encode("Delay must be present.")
+                throw BluetoothEncodeError.missingProperties("Delay must be present.")
             }
         }
 
@@ -260,7 +260,7 @@ public struct MeshMessageGenericOnOffStatus: MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -276,7 +276,7 @@ public struct MeshMessageGenericOnOffStatus: MeshMessage {
             if let remainingTime = remainingTime {
                 msgData.append(remainingTime.rawValue)
             } else {
-                throw BluetoothMessageProtocolError.encode("Remaining Time must be present.")
+                throw BluetoothEncodeError.missingProperties("Remaining Time must be present.")
             }
         }
 

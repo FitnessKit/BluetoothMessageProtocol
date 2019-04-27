@@ -77,13 +77,13 @@ public struct ProxyMessageType {
     /// Creates a ProxyMessageType Object
     ///
     /// - Parameter value: Raw Value
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     internal init(_ value: UInt8) throws {
         guard let message = ProxyDataUnitType(rawValue: (value & 0x3F)) else {
-            throw BluetoothMessageProtocolError(message: "Message Type not supported")
+            throw BluetoothDecodeError.general("Message Type not supported")
         }
         guard let segment = MessageSegment(rawValue: (value & 0xC0) >> 6) else {
-            throw BluetoothMessageProtocolError(message: "Segment Type not supported")
+            throw BluetoothDecodeError.general("Segment Type not supported")
         }
 
         self.segment = segment
@@ -100,7 +100,7 @@ public protocol ProxyDataUnit {
     /// Encodes Proxy Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     func encode() throws -> Data
 }
 
@@ -125,7 +125,7 @@ public struct ProxyDataUnitBeacon: ProxyDataUnit {
     /// Encodes Proxy Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -157,7 +157,7 @@ public struct ProxyDataUnitProvisioning: ProxyDataUnit {
     /// Encodes Proxy Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 

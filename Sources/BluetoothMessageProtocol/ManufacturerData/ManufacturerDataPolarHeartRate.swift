@@ -66,13 +66,13 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataPolarHeartRate
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ManufacturerDataPolarHeartRate {
 
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .polar else {
-            throw BluetoothMessageProtocolError.wrongIdentifier(.polar)
+            throw BluetoothDecodeError.wrongIdentifier(.polar)
         }
 
         if let data = man.specificData {
@@ -81,7 +81,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             //OH1 sends 5 Bytes.
             //H7/H10 sends 6 Bytes.
             guard data.count <= 6 else {
-                throw BluetoothMessageProtocolError.decode("Manufacturer Data is not compatable for HR Decode.")
+                throw BluetoothDecodeError.general("Manufacturer Data is not compatable for HR Decode.")
             }
 
             var decoder = DecodeData()
@@ -98,17 +98,17 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
             return ManufacturerDataPolarHeartRate(heartRate: hr, rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.noManufacturerSpecificData
+            throw BluetoothDecodeError.noManufacturerSpecificData
         }
     }
 
     /// Encodes Polar Heart Rate Manufacturer Specific Data
     ///
     /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 
     enum CodeKeys: CodingKey {

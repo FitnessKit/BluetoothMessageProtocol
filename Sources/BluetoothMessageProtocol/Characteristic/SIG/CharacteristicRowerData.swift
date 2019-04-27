@@ -175,7 +175,7 @@ open class CharacteristicRowerData: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicRowerData {
         var decoder = DecodeData()
 
@@ -276,10 +276,10 @@ open class CharacteristicRowerData: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }
 
@@ -294,7 +294,7 @@ private extension CharacteristicRowerData {
     ///   - data: Sensor Data
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeDuration(supported: Flags,
                                       flag: Flags,
                                       unit: UnitDuration,

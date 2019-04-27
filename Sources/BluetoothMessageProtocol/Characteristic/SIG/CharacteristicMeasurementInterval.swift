@@ -62,7 +62,7 @@ open class CharacteristicMeasurementInterval: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicMeasurementInterval {
         var decoder = DecodeData()
 
@@ -76,16 +76,16 @@ open class CharacteristicMeasurementInterval: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Make sure we put this back to Seconds before we create Data
         let value = UInt16(interval.converted(to: UnitDuration.seconds).value)
 
         guard kBluetoothMeasurementIntervalBounds.contains(Int(value)) else {
 
-            throw BluetoothMessageProtocolError.boundsError(title: "Measurement Interval must be between",
-                                                            msg: "seconds",
-                                                            range: kBluetoothMeasurementIntervalBounds)
+            throw BluetoothEncodeError.boundsError(title: "Measurement Interval must be between",
+                                                   msg: "seconds",
+                                                   range: kBluetoothMeasurementIntervalBounds)
         }
 
         var msgData = Data()

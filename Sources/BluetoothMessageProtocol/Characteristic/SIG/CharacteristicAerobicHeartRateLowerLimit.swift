@@ -58,7 +58,7 @@ open class CharacteristicAerobicHeartRateLowerLimit: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicAerobicHeartRateLowerLimit {
         var decoder = DecodeData()
 
@@ -70,7 +70,7 @@ open class CharacteristicAerobicHeartRateLowerLimit: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 

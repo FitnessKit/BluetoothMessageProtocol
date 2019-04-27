@@ -82,7 +82,7 @@ public struct ProvisioningData {
     /// Encodes ProvisioningData Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 

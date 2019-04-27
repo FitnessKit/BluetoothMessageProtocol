@@ -64,11 +64,11 @@ open class ServiceDataMeshProvisioning: ServiceData {
     ///
     /// - Parameter data: Data from Service Data AD Type
     /// - Returns: ServiceData Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ServiceDataMeshProvisioning {
 
         guard data.count == 18 else {
-            throw BluetoothMessageProtocolError.decode("Mesh Provisioning must be 18 Bytes Long.")
+            throw BluetoothDecodeError.properySize("Mesh Provisioning must be 18 Bytes Long.")
         }
 
         var decoder = DecodeData()
@@ -85,10 +85,10 @@ open class ServiceDataMeshProvisioning: ServiceData {
     /// Encodes the Service Data AD Type into Data
     ///
     /// - Returns: Data representation of the Service Data AD Type
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 
     /// Encodes this value into the given encoder.

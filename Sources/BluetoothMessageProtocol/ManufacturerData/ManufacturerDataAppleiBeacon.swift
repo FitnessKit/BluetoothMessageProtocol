@@ -74,13 +74,13 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAppleiBeacon
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ManufacturerDataAppleiBeacon {
 
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .apple else {
-            throw BluetoothMessageProtocolError.wrongIdentifier(.apple)
+            throw BluetoothDecodeError.wrongIdentifier(.apple)
         }
 
         if let data = man.specificData {
@@ -95,14 +95,14 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
             let type = decoder.decodeUInt8(data)
 
             guard type == AppleDeviceType.iBeaccon.rawValue else {
-                throw BluetoothMessageProtocolError.decode("Type wrong for iBeacon.")
+                throw BluetoothDecodeError.specIssue("Type wrong for iBeacon.")
             }
 
             let subType = decoder.decodeUInt8(data)
 
             // subtype must be 0x15 - 21
             guard subType == 21 else {
-                throw BluetoothMessageProtocolError.decode("Type wrong for iBeacon.")
+                throw BluetoothDecodeError.specIssue("Type wrong for iBeacon.")
             }
 
             /// Build the UUID String
@@ -131,14 +131,14 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
                                                 rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.noManufacturerSpecificData
+            throw BluetoothDecodeError.noManufacturerSpecificData
         }
     }
 
     /// Encodes Apple iBeacon Manufacturer Specific Data
     ///
     /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
 
         var msgData = Data()

@@ -79,7 +79,7 @@ open class CharacteristicNewAlert: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicNewAlert {
         var decoder = DecodeData()
 
@@ -101,7 +101,7 @@ open class CharacteristicNewAlert: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 
@@ -110,9 +110,9 @@ open class CharacteristicNewAlert: Characteristic {
 
         if let info = alertInformation {
             guard kNewAlertTextStringBounds.contains(info.count) else {
-                throw BluetoothMessageProtocolError.boundsError(title: "Alert Information must be between",
-                                                                msg: "characters in size",
-                                                                range: kNewAlertTextStringBounds)
+                throw BluetoothEncodeError.boundsError(title: "Alert Information must be between",
+                                                       msg: "characters in size",
+                                                       range: kNewAlertTextStringBounds)
             }
 
             if let stringData = info.data(using: .utf8) {

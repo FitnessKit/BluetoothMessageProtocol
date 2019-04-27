@@ -120,7 +120,7 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweWorkoutInformation {
         var decoder = DecodeData()
 
@@ -155,9 +155,9 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         /// This is not a write Characteristic so we don't need to support
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }

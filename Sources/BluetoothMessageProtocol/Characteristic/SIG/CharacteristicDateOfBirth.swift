@@ -75,7 +75,7 @@ open class CharacteristicDateOfBirth: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicDateOfBirth {
         var decoder = DecodeData()
 
@@ -100,15 +100,15 @@ open class CharacteristicDateOfBirth: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         var msgData = Data()
 
         if let yr = year {
 
             guard kBluetoothYearBounds.contains(Int(yr)) else {
-                throw BluetoothMessageProtocolError.boundsError(title: "Year must be between",
-                                                                range: kBluetoothYearBounds)
+                throw BluetoothEncodeError.boundsError(title: "Year must be between",
+                                                       range: kBluetoothYearBounds)
             }
             
             msgData.append(Data(from: yr.littleEndian))

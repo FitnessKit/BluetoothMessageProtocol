@@ -103,7 +103,7 @@ public protocol ProvisioningAuthentication {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     func encode() throws -> Data
 }
 
@@ -123,7 +123,7 @@ public struct ProvisioningAuthenticationMethodNone: ProvisioningAuthentication {
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -151,7 +151,7 @@ public struct ProvisioningAuthenticationMethodStatic: ProvisioningAuthentication
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -207,7 +207,7 @@ public struct ProvisioningAuthenticationMethodOutput: ProvisioningAuthentication
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -215,7 +215,7 @@ public struct ProvisioningAuthenticationMethodOutput: ProvisioningAuthentication
         msgData.append(action.rawValue) /// Action
 
         guard size.rawValue <= 8 else {
-            throw BluetoothMessageProtocolError.encode("Size must be 8 or less.")
+            throw BluetoothEncodeError.properySize("Size must be 8 or less.")
         }
 
         msgData.append(size.rawValue) /// Size..
@@ -294,7 +294,7 @@ public struct ProvisioningAuthenticationMethodInput: ProvisioningAuthentication 
     /// Encodes Provisioning Protocol Data Unit into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         var msgData = Data()
 
@@ -302,7 +302,7 @@ public struct ProvisioningAuthenticationMethodInput: ProvisioningAuthentication 
         msgData.append(action.rawValue) /// Action
 
         guard size.rawValue <= 8 else {
-            throw BluetoothMessageProtocolError.encode("Size must be 8 or less.")
+            throw BluetoothEncodeError.properySize("Size must be 8 or less.")
         }
 
         msgData.append(size.rawValue) /// Size..

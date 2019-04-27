@@ -144,13 +144,13 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAppleHomeKit
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ManufacturerDataAppleHomeKit {
 
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .apple else {
-            throw BluetoothMessageProtocolError.wrongIdentifier(.apple)
+            throw BluetoothDecodeError.wrongIdentifier(.apple)
         }
 
         if let data = man.specificData {
@@ -159,7 +159,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
             let type = decoder.decodeUInt8(data)
 
             guard type == AppleDeviceType.hap.rawValue else {
-                throw BluetoothMessageProtocolError.decode("Type wrong for HomeKit.")
+                throw BluetoothDecodeError.specIssue("Type wrong for HomeKit.")
             }
 
             /// 8bits for SubType and Length, the 3 significant bits specify the HomeKit
@@ -169,7 +169,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
             let stl = decoder.decodeUInt8(data)
 
             guard stl == 0x31 else {
-                throw BluetoothMessageProtocolError.decode("HomeKit Message Length issue.")
+                throw BluetoothDecodeError.specIssue("HomeKit Message Length issue.")
             }
 
             let statusFlag = StatusFlags(rawValue: decoder.decodeUInt8(data))
@@ -196,14 +196,14 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                                                 rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.noManufacturerSpecificData
+            throw BluetoothDecodeError.noManufacturerSpecificData
         }
     }
 
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
 
         var msgData = Data()

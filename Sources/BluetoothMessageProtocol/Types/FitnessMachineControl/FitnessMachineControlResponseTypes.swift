@@ -30,7 +30,7 @@ public protocol FitnessMachineControlResponseType {
     /// Encodes Status into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     func encode() throws -> Data
 }
 
@@ -58,7 +58,7 @@ public struct FitnessMachineControlResponseTypeSpinDown: FitnessMachineControlRe
     /// Encodes Status into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     public func encode() throws -> Data {
         let lowSpeed = try self.lowSpeed.encode()
         let highSpeed = try self.highSpeed.encode()

@@ -33,6 +33,6 @@ public protocol MeshMessage {
     /// Encodes into Data
     ///
     /// - Returns: Encoded Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     func encode() throws -> Data
 }

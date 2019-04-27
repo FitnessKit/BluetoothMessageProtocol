@@ -144,7 +144,7 @@ open class CharacteristicStairClimberData: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicStairClimberData {
         var decoder = DecodeData()
 
@@ -221,10 +221,10 @@ open class CharacteristicStairClimberData: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }
 
@@ -238,7 +238,7 @@ private extension CharacteristicStairClimberData {
     ///   - data: Sensor Data
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitCadence>?
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeCadence(supported: Flags,
                                      flag: Flags,
                                      unit: UnitCadence,
@@ -262,7 +262,7 @@ private extension CharacteristicStairClimberData {
     ///   - data: Sensor Data
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeDuration(supported: Flags,
                                       flag: Flags,
                                       unit: UnitDuration,

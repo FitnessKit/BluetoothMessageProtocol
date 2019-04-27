@@ -87,13 +87,13 @@ open class ManufacturerDataGymConnect: ManufacturerData {
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerData Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ManufacturerDataGymConnect {
 
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .wahooFitness else {
-            throw BluetoothMessageProtocolError.wrongIdentifier(.wahooFitness)
+            throw BluetoothDecodeError.wrongIdentifier(.wahooFitness)
         }
 
         if let data = man.specificData {
@@ -111,17 +111,17 @@ open class ManufacturerDataGymConnect: ManufacturerData {
                                               rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.noManufacturerSpecificData
+            throw BluetoothDecodeError.noManufacturerSpecificData
         }
     }
 
     /// Encodes Manufacturer Specific Data
     ///
     /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 
     enum CodeKeys: CodingKey {

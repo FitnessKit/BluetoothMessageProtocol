@@ -32,12 +32,12 @@ internal extension Data {
         self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
     }
 
-    func to<T>(type: T.Type) -> T? where T: ExpressibleByIntegerLiteral {
-        var value: T = 0
-        guard count >= MemoryLayout.size(ofValue: value) else { return nil }
-        _ = Swift.withUnsafeMutableBytes(of: &value, { copyBytes(to: $0)} )
-        return value
-    }
+//    func to<T>(type: T.Type) -> T? where T: ExpressibleByIntegerLiteral {
+//        var value: T = 0
+//        guard count >= MemoryLayout.size(ofValue: value) else { return nil }
+//        _ = Swift.withUnsafeMutableBytes(of: &value, { copyBytes(to: $0)} )
+//        return value
+//    }
     
     func to<T>(type: T.Type) -> T where T: ExpressibleByIntegerLiteral {
         var value: T = 0

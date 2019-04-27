@@ -97,13 +97,13 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAppleHomeKitEncryptedNotification
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ManufacturerDataAppleHomeKitEncryptedNotification {
 
         let man = ManufacturerData(rawData: data)
 
         guard man.manufacturer == .apple else {
-            throw BluetoothMessageProtocolError.wrongIdentifier(.apple)
+            throw BluetoothDecodeError.wrongIdentifier(.apple)
         }
 
         if let data = man.specificData {
@@ -112,7 +112,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
             let type = decoder.decodeUInt8(data)
 
             guard type == AppleDeviceType.hapEncrypted.rawValue else {
-                throw BluetoothMessageProtocolError.decode("Type wrong for HomeKit Encrypted Notification.")
+                throw BluetoothDecodeError.specIssue("Type wrong for HomeKit Encrypted Notification.")
             }
 
             /// 8 bits for HomeKit SubType and Length, the 3 significant bits specify the
@@ -125,7 +125,7 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
             let ailNib = Nibble(ail)
 
             guard ailNib.lower == 22 else {
-                throw BluetoothMessageProtocolError.decode("HomeKit Message Length issue.")
+                throw BluetoothDecodeError.specIssue("HomeKit Message Length issue.")
             }
 
             let subType = (ail & 0xE0) >> 5
@@ -149,14 +149,14 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
                                                                      rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.noManufacturerSpecificData
+            throw BluetoothDecodeError.noManufacturerSpecificData
         }
     }
 
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
 
         var msgData = Data()

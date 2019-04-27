@@ -72,7 +72,7 @@ open class ManufacturerData: Encodable {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: ManufacturerData Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open class func decode(data: Data) throws -> ManufacturerData {
         fatalError("*** You must override in your class.")
     }
@@ -80,7 +80,7 @@ open class ManufacturerData: Encodable {
     /// Encodes the ManufacturerData into Data
     ///
     /// - Returns: Data representation of the ManufacturerData
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open func encode() throws -> Data {
         fatalError("*** You must override in your class.")
     }

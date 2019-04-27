@@ -215,7 +215,7 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicGymConnectMeasurement {
         var decoder = DecodeData()
 
@@ -450,10 +450,10 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         /// not writeable
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }
 
@@ -573,7 +573,7 @@ private extension CharacteristicGymConnectMeasurement {
     ///   - data: Sensor Data
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeDuration(supported: Flags,
                                       flag: Flags,
                                       unit: UnitDuration,

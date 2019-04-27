@@ -83,7 +83,7 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAltBeacon
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> ManufacturerDataAltBeacon {
 
         let man = ManufacturerData(rawData: data)
@@ -95,7 +95,7 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
             let beaconCode = decoder.decodeUInt16(data).bigEndian
 
             if beaconCode != 0xBEAC {
-                throw BluetoothMessageProtocolError.decode("Not an AltBeacon Message.")
+                throw BluetoothDecodeError.general("Not an AltBeacon Message.")
             }
 
             let beacData = decoder.decodeData(data, length: 20)
@@ -111,18 +111,18 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
                                              rawData: data)
 
         } else {
-            throw BluetoothMessageProtocolError.noManufacturerSpecificData
+            throw BluetoothDecodeError.noManufacturerSpecificData
         }
     }
 
     /// Encodes AltBeacon Manufacturer Specific Data
     ///
     /// - Returns: Manufacturer Specific Data
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
 
         guard beaconID.count == 20 else {
-            throw BluetoothMessageProtocolError.encode("Beacon ID must be 20 bytes.")
+            throw BluetoothEncodeError.properySize("Beacon ID must be 20 bytes.")
         }
 
         var msgData = Data()

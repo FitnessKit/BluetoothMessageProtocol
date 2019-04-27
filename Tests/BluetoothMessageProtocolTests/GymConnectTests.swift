@@ -27,7 +27,7 @@ class GymConnectTests: XCTestCase {
             }
         }
 
-        for idx: UInt8 in 145...159 {
+        for idx: UInt8 in 146...159 {
             if GymConnectEquipmentType.create(idx) != .bike {
                 print("Failed on \(idx)")
                 XCTFail()
@@ -55,7 +55,7 @@ class GymConnectTests: XCTestCase {
             }
         }
 
-        for idx: UInt8 in 190...199 {
+        for idx: UInt8 in 191...199 {
             if GymConnectEquipmentType.create(idx) != .rower {
                 print("Failed on \(idx)")
                 XCTFail()

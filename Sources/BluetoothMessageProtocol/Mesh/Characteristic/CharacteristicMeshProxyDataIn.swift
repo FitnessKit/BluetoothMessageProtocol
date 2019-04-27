@@ -63,21 +63,19 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicMeshProxyDataIn {
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothDecodeError.notSupported
     }
 
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeErrorb
     open override func encode() throws -> Data {
 
         guard pduMessage is ProxyDataUnitProvisioning == false else {
-            throw BluetoothMessageProtocolError(
-                message: "Proxy Data Unit of type Provisioning is not supported."
-            )
+            throw BluetoothEncodeError.general("P roxy Data Unit of type Provisioning is not supported.")
         }
 
         var msgData = Data()

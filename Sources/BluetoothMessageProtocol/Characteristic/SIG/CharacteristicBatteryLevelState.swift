@@ -68,7 +68,7 @@ open class CharacteristicBatteryLevelState: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevelState {
         var decoder = DecodeData()
 
@@ -93,11 +93,11 @@ open class CharacteristicBatteryLevelState: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
 
         guard level.value <= 100.0 else {
-            throw BluetoothMessageProtocolError.encode("Battery level greater then max allowed 100%.")
+            throw BluetoothEncodeError.properyBounds("Battery level greater then max allowed 100%.")
         }
 
         var msgData = Data()

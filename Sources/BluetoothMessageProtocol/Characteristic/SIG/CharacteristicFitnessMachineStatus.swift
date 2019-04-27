@@ -63,7 +63,7 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     open override class func decode(data: Data) throws -> CharacteristicFitnessMachineStatus {
         var decoder = DecodeData()
 
@@ -149,10 +149,10 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothEncodeError
     open override func encode() throws -> Data {
         //Not Yet Supported
-        throw BluetoothMessageProtocolError(.unsupported)
+        throw BluetoothEncodeError.notSupported
     }
 }
 
@@ -164,7 +164,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - data: Sensor data
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeTwoHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
 
         var statusValue: FitnessMachineStatus?
@@ -183,7 +183,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - data: Sensor data
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeThreeHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
 
         var statusValue: FitnessMachineStatus?
@@ -205,7 +205,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - data: Sensor data
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: BluetoothDecodeError
     private class func decodeFiveHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
 
         var statusValue: FitnessMachineStatus?

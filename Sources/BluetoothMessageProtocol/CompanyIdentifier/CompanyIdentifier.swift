@@ -26,6 +26,23 @@ import Foundation
 
 internal var allCompanyIdentifiers: [CompanyIdentifier] = [CompanyIdentifier]()
 
+/// Errors for Company Identifier
+public enum CompanyIdentifierError {
+    /// Already Registered
+    case alreadyRegistered
+}
+
+extension CompanyIdentifierError: LocalizedError {
+    
+    /// A localized message describing what error occurred.
+    public var errorDescription: String? {
+        switch self {
+        case .alreadyRegistered:
+            return "Company already registered"
+        }
+    }
+}
+
 /// BLE Company Identifier
 ///
 /// Provides the Company Assigned ID and Name
@@ -95,7 +112,7 @@ public extension CompanyIdentifier {
     ///  Allows adding a CompanyIdentifer to the system
     ///
     /// - Parameter company: CompanyIdentifer Object
-    /// - Throws: BluetoothMessageProtocolError
+    /// - Throws: CompanyIdentifierError
     class func registerCompany(_ company: CompanyIdentifier) throws {
 
         let id = CompanyIdentifier.supportedCompanyIdentifers.first { (compObj) -> Bool in
@@ -107,7 +124,7 @@ public extension CompanyIdentifier {
         }
 
         if let _ = id {
-            throw BluetoothMessageProtocolError(.companyRegistration(msg: "Company already registered"))
+            throw CompanyIdentifierError.alreadyRegistered
         }
 
         if CompanyIdentifier.supportedCompanyIdentifers.contains(company) == false {
