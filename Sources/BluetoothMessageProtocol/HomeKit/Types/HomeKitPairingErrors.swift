@@ -48,7 +48,7 @@ public enum HomeKitPairingErrorType: UInt8 {
 public extension HomeKitPairingErrorType {
 
     /// Name of the Type
-    public var name: String {
+    var name: String {
         switch self {
         case .none:
             return "kTLVError_None"

@@ -29,202 +29,202 @@ import Foundation
 public extension Service {
 
     /// Generic Access
-    public class var genericAccess: ServiceGenericAccess {
+    class var genericAccess: ServiceGenericAccess {
         return ServiceGenericAccess()
     }
 
     /// Alert Notification
-    public class var alertNotification: ServiceAlertNotification {
+    class var alertNotification: ServiceAlertNotification {
         return ServiceAlertNotification()
     }
 
     /// Automation IO
-    public class var automationInputOutput: ServiceAutomationInputOutput {
+    class var automationInputOutput: ServiceAutomationInputOutput {
         return ServiceAutomationInputOutput()
     }
 
     /// Battery
-    public class var battery: ServiceBattery {
+    class var battery: ServiceBattery {
         return ServiceBattery()
     }
 
     /// Blood Pressure
-    public class var bloodPressure: ServiceBloodPressure {
+    class var bloodPressure: ServiceBloodPressure {
         return ServiceBloodPressure()
     }
 
     /// Body Composition
-    public class var bodyComposition: ServiceBodyComposition {
+    class var bodyComposition: ServiceBodyComposition {
         return ServiceBodyComposition()
     }
 
     /// Bond Management
-    public class var bondManagement: ServiceBondManagement {
+    class var bondManagement: ServiceBondManagement {
         return ServiceBondManagement()
     }
 
     /// Continuous Glucose Monitoring
-    public class var continuousGlucoseMonitoring: ServiceContinuousGlucoseMonitoring {
+    class var continuousGlucoseMonitoring: ServiceContinuousGlucoseMonitoring {
         return ServiceContinuousGlucoseMonitoring()
     }
 
     /// Current Time
-    public class var currentTime: ServiceCurrentTime {
+    class var currentTime: ServiceCurrentTime {
         return ServiceCurrentTime()
     }
 
     /// Cycling Power
-    public class var cyclingPower: ServiceCyclingPower {
+    class var cyclingPower: ServiceCyclingPower {
         return ServiceCyclingPower()
     }
 
     /// Cycling Speed and Cadence
-    public class var cyclingSpeedAndCadence: ServiceCyclingSpeedAndCadence {
+    class var cyclingSpeedAndCadence: ServiceCyclingSpeedAndCadence {
         return ServiceCyclingSpeedAndCadence()
     }
 
     /// Device Information
-    public class var deviceInformation: ServiceDeviceInformation {
+    class var deviceInformation: ServiceDeviceInformation {
         return ServiceDeviceInformation()
     }
 
     /// Environmental Sensing
-    public class var environmentalSensing: ServiceEnvironmentalSensing {
+    class var environmentalSensing: ServiceEnvironmentalSensing {
         return ServiceEnvironmentalSensing()
     }
 
     /// Fitness Machine
-    public class var fitnessMachine: ServiceFitnessMachine {
+    class var fitnessMachine: ServiceFitnessMachine {
         return ServiceFitnessMachine()
     }
 
     /// Generic Attribute
-    public class var genericAttribute: ServiceGenericAttribute {
+    class var genericAttribute: ServiceGenericAttribute {
         return ServiceGenericAttribute()
     }
 
     /// Glucose
-    public class var glucose: ServiceGlucose {
+    class var glucose: ServiceGlucose {
         return ServiceGlucose()
     }
 
     /// Health Thermometer
-    public class var healthThermometer: ServiceHealthThermometer {
+    class var healthThermometer: ServiceHealthThermometer {
         return ServiceHealthThermometer()
     }
 
     /// Heart Rate
-    public class var heartRate: ServiceHeartRate {
+    class var heartRate: ServiceHeartRate {
         return ServiceHeartRate()
     }
 
     /// HTTP Proxy
-    public class var httpProxy: ServiceHttpProxy {
+    class var httpProxy: ServiceHttpProxy {
         return ServiceHttpProxy()
     }
 
     /// Human Interface Device
-    public class var humanInterfaceDevice: ServiceHumanInterfaceDevice {
+    class var humanInterfaceDevice: ServiceHumanInterfaceDevice {
         return ServiceHumanInterfaceDevice()
     }
 
     /// Immediate Alert
-    public class var immediateAlert: ServiceImmediateAlert {
+    class var immediateAlert: ServiceImmediateAlert {
         return ServiceImmediateAlert()
     }
 
     /// Indoor Positioning
-    public class var indoorPositioning: ServiceIndoorPositioning {
+    class var indoorPositioning: ServiceIndoorPositioning {
         return ServiceIndoorPositioning()
     }
 
     /// Insulin Delivery
-    public class var insulinDelivery: ServiceInsulinDelivery {
+    class var insulinDelivery: ServiceInsulinDelivery {
         return ServiceInsulinDelivery()
     }
 
     /// Internet Protocol Support
-    public class var internetProtocolSupport: ServiceInternetProtocolSupport {
+    class var internetProtocolSupport: ServiceInternetProtocolSupport {
         return ServiceInternetProtocolSupport()
     }
 
     /// Link Loss
-    public class var linkLoss: ServiceLinkLoss {
+    class var linkLoss: ServiceLinkLoss {
         return ServiceLinkLoss()
     }
 
     /// Location and Navigation
-    public class var locationAndNavigation: ServiceLocationAndNavigation {
+    class var locationAndNavigation: ServiceLocationAndNavigation {
         return ServiceLocationAndNavigation()
     }
 
     /// Mesh Provisioning
-    public class var meshProvisioning: ServiceMeshProvisioning {
+    class var meshProvisioning: ServiceMeshProvisioning {
         return ServiceMeshProvisioning()
     }
 
     /// Mesh Proxy
-    public class var meshProxy: ServiceMeshProxy {
+    class var meshProxy: ServiceMeshProxy {
         return ServiceMeshProxy()
     }
 
     /// Next Daylight Savings Time (DST) Change
-    public class var nextDSTChange: ServiceNextDSTChange {
+    class var nextDSTChange: ServiceNextDSTChange {
         return ServiceNextDSTChange()
     }
 
     /// Object Transfer
-    public class var objectTransfer: ServiceObjectTransfer {
+    class var objectTransfer: ServiceObjectTransfer {
         return ServiceObjectTransfer()
     }
 
     /// Phone Alert Status
-    public class var phoneAlertStatus: ServicePhoneAlertStatus {
+    class var phoneAlertStatus: ServicePhoneAlertStatus {
         return ServicePhoneAlertStatus()
     }
 
     /// Pulse Oximeter
-    public class var pulseOximeter: ServicePulseOximeter {
+    class var pulseOximeter: ServicePulseOximeter {
         return ServicePulseOximeter()
     }
 
     /// ReconnectionConfiguration
-    public class var reconnectionConfiguration: ServiceReconnectionConfiguration {
+    class var reconnectionConfiguration: ServiceReconnectionConfiguration {
         return ServiceReconnectionConfiguration()
     }
 
     /// Reference Time Update
-    public class var referenceTimeUpdate: ServiceReferenceTimeUpdate {
+    class var referenceTimeUpdate: ServiceReferenceTimeUpdate {
         return ServiceReferenceTimeUpdate()
     }
 
     /// Running Speed and Cadence
-    public class var runningSpeedAndCadence: ServiceRunningSpeedAndCadence {
+    class var runningSpeedAndCadence: ServiceRunningSpeedAndCadence {
         return ServiceRunningSpeedAndCadence()
     }
 
     /// Scan Parameters
-    public class var scanParameters: ServiceScanParameters {
+    class var scanParameters: ServiceScanParameters {
         return ServiceScanParameters()
     }
 
     /// Transport Discovery
-    public class var transportDiscovery: ServiceTransportDiscovery {
+    class var transportDiscovery: ServiceTransportDiscovery {
         return ServiceTransportDiscovery()
     }
 
     /// Tx Power
-    public class var txPower: ServiceTxPower {
+    class var txPower: ServiceTxPower {
         return ServiceTxPower()
     }
 
     /// User Data
-    public class var userData: ServiceUserData {
+    class var userData: ServiceUserData {
         return ServiceUserData()
     }
 
     /// Weight Scale
-    public class var weightScale: ServiceWeightScale {
+    class var weightScale: ServiceWeightScale {
         return ServiceWeightScale()
     }
 }

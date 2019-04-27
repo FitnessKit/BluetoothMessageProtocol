@@ -218,7 +218,7 @@ public extension DateTime {
     /// - Parameter data: DateTime Data
     /// - Returns: DateTime Instance
     /// - Throws: BluetoothMessageProtocolError
-    public static func decode(data: Data) throws -> DateTime {
+    static func decode(data: Data) throws -> DateTime {
 
         var decoder = DecodeData()
 
@@ -254,7 +254,7 @@ extension DateTime: Equatable {
 public extension DateTime {
 
     /// Encode DateTime Struct
-    public func encode() throws -> Data {
+    func encode() throws -> Data {
         var msgData = Data()
 
         guard let year = year else {

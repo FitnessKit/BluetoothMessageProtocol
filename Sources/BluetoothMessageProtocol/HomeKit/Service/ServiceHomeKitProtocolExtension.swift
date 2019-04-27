@@ -29,212 +29,212 @@ import Foundation
 public extension Service {
 
     /// Pairing Service
-    public class var hapPairing: ServiceHapPairing {
+    class var hapPairing: ServiceHapPairing {
         return ServiceHapPairing()
     }
 
     /// Protocol Information Service
-    public class var hapProtocolInformationService: ServiceHapProtocolInformationService {
+    class var hapProtocolInformationService: ServiceHapProtocolInformationService {
         return ServiceHapProtocolInformationService()
     }
 
     /// Accessory Information
-    public class var hapAccessoryInformation: ServiceHapAccessoryInformation {
+    class var hapAccessoryInformation: ServiceHapAccessoryInformation {
         return ServiceHapAccessoryInformation()
     }
 
     /// Fan
-    public class var hapFan: ServiceHapFan {
+    class var hapFan: ServiceHapFan {
         return ServiceHapFan()
     }
 
     /// Fan Version 2
-    public class var hapAdvancedFan: ServiceHapAdvancedFan {
+    class var hapAdvancedFan: ServiceHapAdvancedFan {
         return ServiceHapAdvancedFan()
     }
     
     /// Garage Door Opener
-    public class var hapGarageDoorOpener: ServiceHapGarageDoorOpener {
+    class var hapGarageDoorOpener: ServiceHapGarageDoorOpener {
         return ServiceHapGarageDoorOpener()
     }
 
     /// Lightbulb
-    public class var hapLightbulb: ServiceHapLightbulb {
+    class var hapLightbulb: ServiceHapLightbulb {
         return ServiceHapLightbulb()
     }
 
     /// Lock Management
-    public class var hapLockManagement: ServiceHapLockManagement {
+    class var hapLockManagement: ServiceHapLockManagement {
         return ServiceHapLockManagement()
     }
 
     /// Lock Mechanism
-    public class var hapLockMechanism: ServiceHapLockMechanism {
+    class var hapLockMechanism: ServiceHapLockMechanism {
         return ServiceHapLockMechanism()
     }
 
     /// Outlet
-    public class var hapOutlet: ServiceHapOutlet {
+    class var hapOutlet: ServiceHapOutlet {
         return ServiceHapOutlet()
     }
 
     /// Switch
-    public class var hapSwitch: ServiceHapSwitch {
+    class var hapSwitch: ServiceHapSwitch {
         return ServiceHapSwitch()
     }
 
     /// Thermostat
-    public class var hapThermostat: ServiceHapThermostat {
+    class var hapThermostat: ServiceHapThermostat {
         return ServiceHapThermostat()
     }
 
     /// Air Quality Sensor
-    public class var hapAirQualitySensor: ServiceHapAirQualitySensor {
+    class var hapAirQualitySensor: ServiceHapAirQualitySensor {
         return ServiceHapAirQualitySensor()
     }
 
     /// Security System
-    public class var hapSecuritySystem: ServiceHapSecuritySystem {
+    class var hapSecuritySystem: ServiceHapSecuritySystem {
         return ServiceHapSecuritySystem()
     }
 
     /// Carbon Monoxide Sensor
-    public class var hapCarbonMonoxideSensor: ServiceHapCarbonMonoxideSensor {
+    class var hapCarbonMonoxideSensor: ServiceHapCarbonMonoxideSensor {
         return ServiceHapCarbonMonoxideSensor()
     }
 
     /// Contact Sensor
-    public class var hapContactSensor: ServiceHapContactSensor {
+    class var hapContactSensor: ServiceHapContactSensor {
         return ServiceHapContactSensor()
     }
 
     /// Door
-    public class var hapDoor: ServiceHapDoor {
+    class var hapDoor: ServiceHapDoor {
         return ServiceHapDoor()
     }
 
     /// Humidity Sensor
-    public class var hapHumiditySensor: ServiceHapHumiditySensor {
+    class var hapHumiditySensor: ServiceHapHumiditySensor {
         return ServiceHapHumiditySensor()
     }
 
     /// Leak Sensor
-    public class var hapLeakSensor: ServiceHapLeakSensor {
+    class var hapLeakSensor: ServiceHapLeakSensor {
         return ServiceHapLeakSensor()
     }
 
     /// Light Sensor
-    public class var hapLightSensor: ServiceHapLightSensor {
+    class var hapLightSensor: ServiceHapLightSensor {
         return ServiceHapLightSensor()
     }
 
     /// Motion Sensor
-    public class var hapMotionSensor: ServiceHapMotionSensor {
+    class var hapMotionSensor: ServiceHapMotionSensor {
         return ServiceHapMotionSensor()
     }
 
     /// Occupancy Sensor
-    public class var hapOccupancySensor: ServiceHapOccupancySensor {
+    class var hapOccupancySensor: ServiceHapOccupancySensor {
         return ServiceHapOccupancySensor()
     }
 
     /// Smoke Sensor
-    public class var hapSmokeSensor: ServiceHapSmokeSensor {
+    class var hapSmokeSensor: ServiceHapSmokeSensor {
         return ServiceHapSmokeSensor()
     }
 
     /// Stateless Programmable Switch
-    public class var hapStatelessProgrammableSwitch: ServiceHapStatelessProgrammableSwitch {
+    class var hapStatelessProgrammableSwitch: ServiceHapStatelessProgrammableSwitch {
         return ServiceHapStatelessProgrammableSwitch()
     }
 
     /// Temperature Sensor
-    public class var hapTemperatureSensor: ServiceHapTemperatureSensor {
+    class var hapTemperatureSensor: ServiceHapTemperatureSensor {
         return ServiceHapTemperatureSensor()
     }
 
     /// Window
-    public class var hapWindow: ServiceHapWindow {
+    class var hapWindow: ServiceHapWindow {
         return ServiceHapWindow()
     }
 
     /// Window Covering
-    public class var hapWindowCovering: ServiceHapWindowCovering {
+    class var hapWindowCovering: ServiceHapWindowCovering {
         return ServiceHapWindowCovering()
     }
 
     /// Battery Service
-    public class var hapBatteryService: ServiceHapBatteryService {
+    class var hapBatteryService: ServiceHapBatteryService {
         return ServiceHapBatteryService()
     }
 
     /// Carbon Dioxide Sensor
-    public class var hapCarbonDioxideSensor: ServiceHapCarbonDioxideSensor {
+    class var hapCarbonDioxideSensor: ServiceHapCarbonDioxideSensor {
         return ServiceHapCarbonDioxideSensor()
     }
 
     /// Camera RTP Stream Management
-    public class var hapCameraRtpStreamManagement: ServiceHapCameraRtpStreamManagement {
+    class var hapCameraRtpStreamManagement: ServiceHapCameraRtpStreamManagement {
         return ServiceHapCameraRtpStreamManagement()
     }
 
     /// Microphone
-    public class var hapMicrophone: ServiceHapMicrophone {
+    class var hapMicrophone: ServiceHapMicrophone {
         return ServiceHapMicrophone()
     }
 
     /// Speaker
-    public class var hapSpeaker: ServiceHapSpeaker {
+    class var hapSpeaker: ServiceHapSpeaker {
         return ServiceHapSpeaker()
     }
 
     /// Doorbell
-    public class var hapDoorbell: ServiceHapDoorbell {
+    class var hapDoorbell: ServiceHapDoorbell {
         return ServiceHapDoorbell()
     }
 
     /// Slat
-    public class var hapSlat: ServiceHapSlat {
+    class var hapSlat: ServiceHapSlat {
         return ServiceHapSlat()
     }
 
     /// Filter Maintenance
-    public class var hapFilterMaintenance: ServiceHapFilterMaintenance {
+    class var hapFilterMaintenance: ServiceHapFilterMaintenance {
         return ServiceHapFilterMaintenance()
     }
 
     /// Air Purifier
-    public class var hapAirPurifier: ServiceHapAirPurifier {
+    class var hapAirPurifier: ServiceHapAirPurifier {
         return ServiceHapAirPurifier()
     }
 
     /// Humidifier Dehumidifier
-    public class var hapHeaterCooler: ServiceHapHeaterCooler {
+    class var hapHeaterCooler: ServiceHapHeaterCooler {
         return ServiceHapHeaterCooler()
     }
 
     /// Heater Cooler
-    public class var hapHumidifierDehumidifier: ServiceHapHumidifierDehumidifier {
+    class var hapHumidifierDehumidifier: ServiceHapHumidifierDehumidifier {
         return ServiceHapHumidifierDehumidifier()
     }
 
     /// Service Label
-    public class var hapServiceLabel: ServiceHapServiceLabel {
+    class var hapServiceLabel: ServiceHapServiceLabel {
         return ServiceHapServiceLabel()
     }
 
     /// Irrigation System
-    public class var hapIrrigationSystem: ServiceHapIrrigationSystem {
+    class var hapIrrigationSystem: ServiceHapIrrigationSystem {
         return ServiceHapIrrigationSystem()
     }
 
     /// Valve
-    public class var hapValve: ServiceHapValve {
+    class var hapValve: ServiceHapValve {
         return ServiceHapValve()
     }
 
     /// Faucet
-    public class var hapFaucet: ServiceHapFaucet {
+    class var hapFaucet: ServiceHapFaucet {
         return ServiceHapFaucet()
     }
 }

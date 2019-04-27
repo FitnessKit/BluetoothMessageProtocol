@@ -33,21 +33,21 @@ public extension CompanyIdentifier {
     /// Four Eyes Viiiiva
     ///
     /// - note: Non assigned Number
-    public class var viiiiva: CompanyIdentifier { return CompanyIdentifier(id: 16657, name: "Four Eyes Viiiiva") }
+    class var viiiiva: CompanyIdentifier { return CompanyIdentifier(id: 16657, name: "Four Eyes Viiiiva") }
     /// Exogal
     ///
     /// - note: Non assigned Number
-    public class var exogal: CompanyIdentifier { return CompanyIdentifier(id: 17752, name: "Exogal") }
+    class var exogal: CompanyIdentifier { return CompanyIdentifier(id: 17752, name: "Exogal") }
     /// Unikey Technologies, Inc.
     ///
     /// Some of the devices have the Manufacturer in Big Endian
     ///
     /// - note: Non assigned Number
     /// - SeeAlso: unikeyTechnologies
-    public class var uniKey: CompanyIdentifier { return CompanyIdentifier(id: 24065, name: "Unikey Technologies, Inc.") }
+    class var uniKey: CompanyIdentifier { return CompanyIdentifier(id: 24065, name: "Unikey Technologies, Inc.") }
     /// Dropcam
     ///
     /// - note: Non assigned Number
-    public class var dropcam: CompanyIdentifier { return CompanyIdentifier(id: 35888, name: "Dropcam") }
+    class var dropcam: CompanyIdentifier { return CompanyIdentifier(id: 35888, name: "Dropcam") }
 
 }

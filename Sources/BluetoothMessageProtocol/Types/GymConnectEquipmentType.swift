@@ -69,7 +69,7 @@ internal extension GymConnectEquipmentType {
     ///
     /// - Parameter rawValue: Raw Equpment Type value
     /// - Returns: GymConnectEquipmentType
-    internal static func create(_ rawValue: UInt8) -> GymConnectEquipmentType {
+    static func create(_ rawValue: UInt8) -> GymConnectEquipmentType {
 
         switch rawValue {
         case 0:

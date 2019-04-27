@@ -84,7 +84,7 @@ public extension Service {
     ///
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
+    var hashValue: Int {
         return "\(name)\(uuidString)\(uniformIdentifier)".hashValue
     }
 }
@@ -100,7 +100,7 @@ public extension Service {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    static public func == (lhs: Service, rhs: Service) -> Bool {
+    static func == (lhs: Service, rhs: Service) -> Bool {
         return (lhs.name == rhs.name) &&
             (lhs.uuidString == rhs.uuidString) &&
             (lhs.uniformIdentifier == rhs.uniformIdentifier)

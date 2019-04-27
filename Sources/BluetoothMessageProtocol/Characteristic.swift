@@ -60,7 +60,7 @@ open class Characteristic {
     /// - Parameter data: Data from sensor characteristic
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothMessageProtocolError
-    open class func decode(data: Data) throws -> Self {
+    open class func decode(data: Data) throws -> Characteristic {
         fatalError("*** You must override in your class.")
     }
 
@@ -80,7 +80,7 @@ public extension Characteristic {
     ///
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
+    var hashValue: Int {
         return "\(name)\(uuidString)".hashValue
     }
 }
@@ -96,7 +96,7 @@ public extension Characteristic {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    static public func == (lhs: Characteristic, rhs: Characteristic) -> Bool {
+    static func == (lhs: Characteristic, rhs: Characteristic) -> Bool {
         return (lhs.name == rhs.name) && (lhs.uuidString == rhs.uuidString)
     }
     

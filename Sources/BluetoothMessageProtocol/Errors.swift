@@ -103,7 +103,7 @@ internal extension BluetoothMessageProtocolError {
     
     /// Creates BluetoothMessageProtocol Decode Error
     /// For Manufacturer Data where there is no Manufacturer Specific Data
-    internal static var noManufacturerSpecificData: BluetoothMessageProtocolError {
+    static var noManufacturerSpecificData: BluetoothMessageProtocolError {
         return BluetoothMessageProtocolError(.decodeError(msg: "No Manufacturer Specific Data."))
     }
 }
@@ -114,7 +114,7 @@ internal extension BluetoothMessageProtocolError {
     ///
     /// - Parameter msg: Decode Error Message
     /// - Returns: BluetoothMessageProtocolError
-    internal static func decode(_ msg: String) -> BluetoothMessageProtocolError {
+    static func decode(_ msg: String) -> BluetoothMessageProtocolError {
         return BluetoothMessageProtocolError(.decodeError(msg: msg))
     }
 
@@ -122,7 +122,7 @@ internal extension BluetoothMessageProtocolError {
     ///
     /// - Parameter msg: Encode Error Message
     /// - Returns: BluetoothMessageProtocolError
-    internal static func encode(_ msg: String) -> BluetoothMessageProtocolError {
+    static func encode(_ msg: String) -> BluetoothMessageProtocolError {
         return BluetoothMessageProtocolError(.encodeError(msg: msg))
     }
 
@@ -130,7 +130,7 @@ internal extension BluetoothMessageProtocolError {
     ///
     /// - Parameter company: Company Identifier
     /// - Returns: BluetoothMessageProtocolError
-    internal static func wrongIdentifier(_ company: CompanyIdentifier) -> BluetoothMessageProtocolError {
+    static func wrongIdentifier(_ company: CompanyIdentifier) -> BluetoothMessageProtocolError {
         return BluetoothMessageProtocolError.decode("Manufacturer is not \(company.name).")
     }
 
@@ -141,7 +141,7 @@ internal extension BluetoothMessageProtocolError {
     ///   - msg: Optional Message at the end of error
     ///   - range: Bunded Range
     /// - Returns: BluetoothMessageProtocolError
-    internal static func boundsError<T>(title: String,
+    static func boundsError<T>(title: String,
                                         msg: String? = nil,
                                         range: ClosedRange<T>) -> BluetoothMessageProtocolError {
         if let msg = msg {

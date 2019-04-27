@@ -53,13 +53,24 @@ open class CompanyIdentifier: Codable {
 
 extension CompanyIdentifier: Hashable {
 
-    /// The hash value.
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
     ///
-    /// Hash values are not guaranteed to be equal across different executions of
-    /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
-        return "\(name)\(companyID)".hashValue
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(companyID)
     }
+
 }
 
 extension CompanyIdentifier: Equatable {
@@ -85,7 +96,7 @@ public extension CompanyIdentifier {
     ///
     /// - Parameter company: CompanyIdentifer Object
     /// - Throws: BluetoothMessageProtocolError
-    public class func registerCompany(_ company: CompanyIdentifier) throws {
+    class func registerCompany(_ company: CompanyIdentifier) throws {
 
         let id = CompanyIdentifier.supportedCompanyIdentifers.first { (compObj) -> Bool in
             if compObj.companyID == company.companyID {
@@ -108,7 +119,7 @@ public extension CompanyIdentifier {
     ///
     /// - Parameter id: Company Identifier per Bluetooth SIG
     /// - Returns: CompanyIdentifier Instance
-    public class func company(id: UInt16) -> CompanyIdentifier? {
+    class func company(id: UInt16) -> CompanyIdentifier? {
 
         let id = CompanyIdentifier.supportedCompanyIdentifers.first { (compObj) -> Bool in
             if compObj.companyID == id {

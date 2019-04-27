@@ -29,122 +29,122 @@ import Foundation
 public extension Service {
 
     /// Apple MIDI
-    public class var appleMidi: ServiceAppleMidi {
+    class var appleMidi: ServiceAppleMidi {
         return ServiceAppleMidi()
     }
 
     /// CycleOps Bike Trainer
-    public class var cycleOps: ServiceCycleOps {
+    class var cycleOps: ServiceCycleOps {
         return ServiceCycleOps()
     }
 
     /// Dropcam
-    public class var dropcam: ServiceDropcam {
+    class var dropcam: ServiceDropcam {
         return ServiceDropcam()
     }
 
     /// Elite Trainer
-    public class var eliteTrainer: ServiceEliteTrainer {
+    class var eliteTrainer: ServiceEliteTrainer {
         return ServiceEliteTrainer()
     }
 
     /// GymConnect Service
-    public class var gymConnect: ServiceGymConnect {
+    class var gymConnect: ServiceGymConnect {
         return ServiceGymConnect()
     }
 
     /// Google Glass
-    public class var googleGlass: ServiceGoogleGlass {
+    class var googleGlass: ServiceGoogleGlass {
         return ServiceGoogleGlass()
     }
 
     /// Myo Armband Classifier Event
-    public class var myArmbandClassifierEvent: ServiceMyoClassifierEvent {
+    class var myArmbandClassifierEvent: ServiceMyoClassifierEvent {
         return ServiceMyoClassifierEvent()
     }
 
     /// Myo Armband Control
-    public class var myoArmbandControl: ServiceMyoControl {
+    class var myoArmbandControl: ServiceMyoControl {
         return ServiceMyoControl()
     }
 
     /// Myo Armband IMU
-    public class var myoArmbandImu: ServiceMyoImu {
+    class var myoArmbandImu: ServiceMyoImu {
         return ServiceMyoImu()
     }
 
     /// Myo Armband Raw EMG Data
-    public class var myoArmbandRawEMGData: ServiceMyoRawEMGData {
+    class var myoArmbandRawEMGData: ServiceMyoRawEMGData {
         return ServiceMyoRawEMGData()
     }
 
     /// Nordic Legacy Device Firmware Update
-    public class var nordicLegacyDeviceFirmwareUpdate: ServiceNordicLegacyDeviceFirmwareUpdate {
+    class var nordicLegacyDeviceFirmwareUpdate: ServiceNordicLegacyDeviceFirmwareUpdate {
         return ServiceNordicLegacyDeviceFirmwareUpdate()
     }
 
     /// Nordic Secure Device Firmware Update
-    public class var nordicSecureDeviceFirmwareUpdate: ServiceNordicSecureDeviceFirmwareUpdate {
+    class var nordicSecureDeviceFirmwareUpdate: ServiceNordicSecureDeviceFirmwareUpdate {
         return ServiceNordicSecureDeviceFirmwareUpdate()
     }
 
     /// North Pole Engineering AWE Diagnostics
-    public class var northPoleAweDiagnostics: ServiceNorthPoleAweDiagnostics {
+    class var northPoleAweDiagnostics: ServiceNorthPoleAweDiagnostics {
         return ServiceNorthPoleAweDiagnostics()
     }
 
     /// North Pole Engineering AWE Heart Rate
-    public class var northPoleAweHeartRate: ServiceNorthPoleAweHeartRate {
+    class var northPoleAweHeartRate: ServiceNorthPoleAweHeartRate {
         return ServiceNorthPoleAweHeartRate()
     }
 
     /// Tacx ANT-FEC
-    public class var tacxAntFec: ServiceTacxAntFec {
+    class var tacxAntFec: ServiceTacxAntFec {
         return ServiceTacxAntFec()
     }
 
     /// Texas Instruments Firmware Update
-    public class var texasInstrumentsFirmwareUpdate: ServiceTexasInstrumentsFirmwareUpdate {
+    class var texasInstrumentsFirmwareUpdate: ServiceTexasInstrumentsFirmwareUpdate {
         return ServiceTexasInstrumentsFirmwareUpdate()
     }
 
     /// Texas Instruments Sensor Tag Accelerometer
-    public class var texasInstrumentsSensorTagAccelerometer: ServiceTexasInstrumentsSensorTagAccelerometer {
+    class var texasInstrumentsSensorTagAccelerometer: ServiceTexasInstrumentsSensorTagAccelerometer {
         return ServiceTexasInstrumentsSensorTagAccelerometer()
     }
 
     /// Texas Instruments Sensor Tag Barometer
-    public class var texasInstrumentsSensorTagBarometer: ServiceTexasInstrumentsSensorTagBarometer {
+    class var texasInstrumentsSensorTagBarometer: ServiceTexasInstrumentsSensorTagBarometer {
         return ServiceTexasInstrumentsSensorTagBarometer()
     }
 
     /// Texas Instruments Sensor Tag Connection Control
-    public class var texasInstrumentsSensorTagControl: ServiceTexasInstrumentsSensorTagControl {
+    class var texasInstrumentsSensorTagControl: ServiceTexasInstrumentsSensorTagControl {
         return ServiceTexasInstrumentsSensorTagControl()
     }
 
     /// Texas Instruments Sensor Tag Gyroscope
-    public class var texasInstrumentsSensorTagGyroscope: ServiceTexasInstrumentsSensorTagGyroscope {
+    class var texasInstrumentsSensorTagGyroscope: ServiceTexasInstrumentsSensorTagGyroscope {
         return ServiceTexasInstrumentsSensorTagGyroscope()
     }
 
     /// Texas Instruments Sensor Tag Humidity
-    public class var texasInstrumentsSensorTagHumidity: ServiceTexasInstrumentsSensorTagHumidity {
+    class var texasInstrumentsSensorTagHumidity: ServiceTexasInstrumentsSensorTagHumidity {
         return ServiceTexasInstrumentsSensorTagHumidity()
     }
 
     /// Texas Instruments Sensor Tag Magnetometer
-    public class var texasInstrumentsSensorTagMagnetometer: ServiceTexasInstrumentsSensorTagMagnetometer {
+    class var texasInstrumentsSensorTagMagnetometer: ServiceTexasInstrumentsSensorTagMagnetometer {
         return ServiceTexasInstrumentsSensorTagMagnetometer()
     }
 
     /// Texas Instruments Sensor Tag Temperature
-    public class var texasInstrumentsSensorTagTemperature: ServiceTexasInstrumentsSensorTagTemperature {
+    class var texasInstrumentsSensorTagTemperature: ServiceTexasInstrumentsSensorTagTemperature {
         return ServiceTexasInstrumentsSensorTagTemperature()
     }
 
     /// Wahoo Fitness Firmware Update
-    public class var wahooFitnessFirmwareUpdate: ServiceWahooFitnessFirmwareUpdate {
+    class var wahooFitnessFirmwareUpdate: ServiceWahooFitnessFirmwareUpdate {
         return ServiceWahooFitnessFirmwareUpdate()
     }
 }

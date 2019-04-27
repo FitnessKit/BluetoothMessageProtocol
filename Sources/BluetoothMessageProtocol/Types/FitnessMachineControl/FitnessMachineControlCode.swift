@@ -77,7 +77,7 @@ public enum FitnessMachineControlCode: UInt8 {
 internal extension FitnessMachineControlCode {
 
     /// Param Response Type for Optional Param value in ResponseCode
-    internal var responeCodeParamType: FitnessMachineControlResponseType.Type? {
+    var responeCodeParamType: FitnessMachineControlResponseType.Type? {
         switch self {
         case .setSpinDownControl:
             return FitnessMachineControlResponseTypeSpinDown.self

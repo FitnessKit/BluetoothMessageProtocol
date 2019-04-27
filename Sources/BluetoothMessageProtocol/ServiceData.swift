@@ -51,7 +51,7 @@ open class ServiceData: Encodable {
     /// - Parameter data: Data from Service Data AD Type
     /// - Returns: ServiceData Instance
     /// - Throws: BluetoothMessageProtocolError
-    open class func decode(data: Data) throws -> Self {
+    open class func decode(data: Data) throws -> ServiceData {
         fatalError("*** You must override in your class.")
     }
 
@@ -72,7 +72,7 @@ public extension ServiceData {
     ///
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
+    var hashValue: Int {
         return "\(name)\(uuidString)".hashValue
     }
 }
@@ -88,7 +88,7 @@ public extension ServiceData {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    static public func == (lhs: ServiceData, rhs: ServiceData) -> Bool {
+    static func == (lhs: ServiceData, rhs: ServiceData) -> Bool {
         return (lhs.name == rhs.name) &&
             (lhs.uuidString == rhs.uuidString)
     }

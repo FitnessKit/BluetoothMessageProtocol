@@ -73,7 +73,7 @@ open class ManufacturerData: Encodable {
     /// - Parameter data: Data from sensor
     /// - Returns: ManufacturerData Instance
     /// - Throws: BluetoothMessageProtocolError
-    open class func decode(data: Data) throws -> Self {
+    open class func decode(data: Data) throws -> ManufacturerData {
         fatalError("*** You must override in your class.")
     }
 
@@ -94,7 +94,7 @@ public extension ManufacturerData {
     ///
     /// Hash values are not guaranteed to be equal across different executions of
     /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
+    var hashValue: Int {
         return manufacturer.hashValue
     }
 }
@@ -110,7 +110,7 @@ public extension ManufacturerData {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    static public func == (lhs: ManufacturerData, rhs: ManufacturerData) -> Bool {
+    static func == (lhs: ManufacturerData, rhs: ManufacturerData) -> Bool {
         return (lhs.manufacturer == rhs.manufacturer)
     }
     

@@ -32,11 +32,11 @@ public extension MeshModelIdentifier {
     }
 
     /// Nordic Simple OnOff Server
-    public class var nordicSimpleOnOffServer: MeshModelIdentifier {
+    class var nordicSimpleOnOffServer: MeshModelIdentifier {
         return MeshModelIdentifier(model: nordic(0), name: "Nordic Simple OnOff Server") }
 
     /// Nordic Simple OnOff Client
-    public class var nordicSimpleOnOffClient: MeshModelIdentifier {
+    class var nordicSimpleOnOffClient: MeshModelIdentifier {
         return MeshModelIdentifier(model: nordic(1), name: "Nordic Simple OnOff Client") }
 
 }

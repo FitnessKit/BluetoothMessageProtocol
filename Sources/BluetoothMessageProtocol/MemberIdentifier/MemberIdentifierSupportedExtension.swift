@@ -27,7 +27,7 @@ import Foundation
 public extension MemberIdentifier {
 
     /// Array of all Supported MemberIdentifier values
-    public static var supportedMemberIdentifers: [MemberIdentifier] = {
+    static var supportedMemberIdentifers: [MemberIdentifier] = {
 
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDB7, name: "LivaNova USA Inc."))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDB8, name: "LivaNova USA Inc."))

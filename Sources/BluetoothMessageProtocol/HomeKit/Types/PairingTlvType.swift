@@ -70,7 +70,7 @@ public enum HomeKitPairingTlvType: UInt8 {
 public extension HomeKitPairingTlvType {
 
     /// Name of the Type
-    public var name: String {
+    var name: String {
         switch self {
         case .method:
             return "kTLVType_Method"
@@ -147,7 +147,7 @@ extension HomeKitPairingTlvType: Encodable {
 internal extension HomeKitPairingTlvType {
 
     /// Provides the Format for the Type
-    internal var format: HomeKitTlvFormat {
+    var format: HomeKitTlvFormat {
         switch self {
         case .method:
             return .integer

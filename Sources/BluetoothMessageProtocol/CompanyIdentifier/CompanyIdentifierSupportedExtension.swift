@@ -28,7 +28,7 @@ import Foundation
 public extension CompanyIdentifier {
 
     /// Array of all Supported CompanyIdentifier values
-    public static var supportedCompanyIdentifers: [CompanyIdentifier] = {
+    static var supportedCompanyIdentifers: [CompanyIdentifier] = {
 
         allCompanyIdentifiers.append(.reserved)
         allCompanyIdentifiers.append(.ericssonTechnology)
