@@ -161,10 +161,9 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
+        /// not writeable
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

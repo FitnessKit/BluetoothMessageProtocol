@@ -67,15 +67,21 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         //The characteristic value is 66 octets long to accommodate the longest
         //known Proxy PDU containing Provisioning PDU.
-        var msgData = Data()
+        
+        switch pduMessage.encode() {
+        case .success(let pduMessage):
+            var msgData = Data()
+            
+            msgData.append(pduMessage)
+            
+            return.success(msgData)
 
-        msgData.append(try pduMessage.encode().get())
-
-        return msgData
+        case .failure(let error):
+            return.failure(error)
+        }
     }
 }

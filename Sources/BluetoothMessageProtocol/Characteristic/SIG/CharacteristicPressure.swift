@@ -72,9 +72,8 @@ open class CharacteristicPressure: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         //Make sure we put this back to back before we create Data
@@ -84,7 +83,7 @@ open class CharacteristicPressure: Characteristic {
 
         msgData.append(Data(from: pressV.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }
 

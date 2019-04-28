@@ -100,9 +100,8 @@ open class CharacteristicNewAlert: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(alertType.rawValue)
@@ -110,9 +109,9 @@ open class CharacteristicNewAlert: Characteristic {
 
         if let info = alertInformation {
             guard kNewAlertTextStringBounds.contains(info.count) else {
-                throw BluetoothEncodeError.boundsError(title: "Alert Information must be between",
-                                                       msg: "characters in size",
-                                                       range: kNewAlertTextStringBounds)
+                return.failure(BluetoothEncodeError.boundsError(title: "Alert Information must be between",
+                                                                msg: "characters in size",
+                                                                range: kNewAlertTextStringBounds))
             }
 
             if let stringData = info.data(using: .utf8) {
@@ -120,6 +119,6 @@ open class CharacteristicNewAlert: Characteristic {
             }
         }
 
-        return msgData
+        return.success(msgData)
     }
 }

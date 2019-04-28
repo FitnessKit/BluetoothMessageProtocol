@@ -92,9 +92,8 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         let minValue = minimum.encode()
@@ -105,6 +104,6 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
         msgData.append(maxValue)
         msgData.append(Data(from: incrValue.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }

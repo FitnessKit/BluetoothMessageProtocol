@@ -115,9 +115,8 @@ open class CharacteristicPnPID: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(vendorIdSource.rawValue)
@@ -125,6 +124,6 @@ open class CharacteristicPnPID: Characteristic {
         msgData.append(Data(from: productId.littleEndian))
         msgData.append(Data(from: productVersion.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }

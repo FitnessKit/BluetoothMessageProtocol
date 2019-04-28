@@ -76,10 +76,9 @@ open class CharacteristicTacxAntFecReceive: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
-        /// We don't need to ever encode it
-        throw BluetoothEncodeError.notSupported
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
+        /// not writeable
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

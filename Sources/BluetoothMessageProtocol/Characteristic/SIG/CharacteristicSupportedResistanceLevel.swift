@@ -89,9 +89,8 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         let minValue = Int16(minimum.resolution(.adding, resolution: Resolution.oneTenth))
@@ -102,6 +101,6 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
         msgData.append(Data(from: maxValue.littleEndian))
         msgData.append(Data(from: incrValue.littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }

@@ -67,14 +67,13 @@ open class CharacteristicTacxAntFecSend: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         /// Check to make sure the Sync byte is correct
         guard antData[0] == 0xA4 else {
-            throw BluetoothEncodeError.general("ANT Sync mismatch.")
+            return.failure(BluetoothEncodeError.general("ANT Sync mismatch."))
         }
 
-        return antData
+        return.success(antData)
     }
 }

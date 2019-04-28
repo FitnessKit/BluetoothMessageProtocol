@@ -70,9 +70,8 @@ open class CharacteristicWindChill: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         //Make sure we put this back to Celsius before we create Data
@@ -80,6 +79,6 @@ open class CharacteristicWindChill: Characteristic {
 
         msgData.append(Data(from: Int8(chill)))
         
-        return msgData
+        return.success(msgData)
     }
 }

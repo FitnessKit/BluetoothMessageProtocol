@@ -137,9 +137,8 @@ open class CharacteristicTrainingStatus: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         var flags = Flags()
@@ -157,6 +156,6 @@ open class CharacteristicTrainingStatus: Characteristic {
             }
         }
 
-        return msgData
+        return.success(msgData)
     }
 }

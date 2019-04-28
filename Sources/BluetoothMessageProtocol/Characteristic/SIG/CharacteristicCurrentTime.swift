@@ -113,13 +113,17 @@ open class CharacteristicCurrentTime: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
-        let dateTimeData = try currentTime.encode()
-        msgData.append(dateTimeData)
+        switch currentTime.encode() {
+        case .success(let dateTimeData):
+            msgData.append(dateTimeData)
+
+        case .failure(let error):
+            return.failure(error)
+        }
 
         msgData.append(dayOfWeek.rawValue)
 
@@ -128,6 +132,6 @@ open class CharacteristicCurrentTime: Characteristic {
 
         msgData.append(adjustmentReason.rawValue)
 
-        return msgData
+        return.success(msgData)
     }
 }

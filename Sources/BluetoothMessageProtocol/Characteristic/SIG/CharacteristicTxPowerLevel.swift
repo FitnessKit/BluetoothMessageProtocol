@@ -72,19 +72,18 @@ open class CharacteristicTxPowerLevel: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
 
         guard kTxPowerLevelBounds.contains(Int(txPower)) else {
-            throw BluetoothEncodeError.boundsError(title: "Tx Power Level must be between",
-                                                   range: kTxPowerLevelBounds)
+            return.failure(BluetoothEncodeError.boundsError(title: "Tx Power Level must be between",
+                                                            range: kTxPowerLevelBounds))
         }
 
         var msgData = Data()
 
         msgData.append(Data(from: Int8(txPower)))
 
-        return msgData
+        return.success(msgData)
     }
 }

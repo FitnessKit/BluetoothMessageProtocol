@@ -293,10 +293,9 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
-        //Not Yet Supported
-        throw BluetoothEncodeError.notSupported
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
+        /// not yet supportable
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

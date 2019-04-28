@@ -69,13 +69,12 @@ open class CharacteristicAppearance: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         msgData.append(Data(from: appearance.rawValue.littleEndian))
         
-        return msgData
+        return.success(msgData)
     }
 }

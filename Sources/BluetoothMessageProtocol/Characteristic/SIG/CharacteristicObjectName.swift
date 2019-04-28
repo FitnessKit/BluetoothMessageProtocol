@@ -67,21 +67,20 @@ open class CharacteristicObjectName: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard kObjectNameStringBounds.contains(objectName.count) else {
-            throw BluetoothEncodeError.boundsError(title: "Object Name must be between",
-                                                   msg: "characters in size",
-                                                   range: kObjectNameStringBounds)
+            return.failure(BluetoothEncodeError.boundsError(title: "Object Name must be between",
+                                                            msg: "characters in size",
+                                                            range: kObjectNameStringBounds))
         }
 
         if let stringData = objectName.data(using: .utf8) {
             msgData.append(stringData)
         }
 
-        return msgData
+        return.success(msgData)
     }
 }

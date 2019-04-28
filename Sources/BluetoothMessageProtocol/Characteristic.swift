@@ -27,7 +27,7 @@ import Foundation
 /// Bluetooth Characteristic base Class
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class Characteristic {
+open class Characteristic: BluetoothEncodable {
 
     /// Name of the Characteristic
     open internal(set) var name: String
@@ -66,9 +66,8 @@ open class Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open func encode() -> Result<Data, BluetoothEncodeError> {
         fatalError("*** You must override in your class.")
     }
 }

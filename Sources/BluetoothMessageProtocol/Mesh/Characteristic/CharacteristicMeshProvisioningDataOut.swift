@@ -75,9 +75,9 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
-        throw BluetoothEncodeError.notSupported
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
+        /// Not Yet Supported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

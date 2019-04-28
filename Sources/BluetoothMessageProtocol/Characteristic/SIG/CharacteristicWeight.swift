@@ -73,9 +73,8 @@ open class CharacteristicWeight: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         //Make sure we put this back to KG before we create Data
@@ -83,6 +82,6 @@ open class CharacteristicWeight: Characteristic {
 
         msgData.append(Data(from: value))
 
-        return msgData
+        return.success(msgData)
     }
 }

@@ -71,15 +71,14 @@ open class CharacteristicTrueWindSpeed: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         let value = windSpeed.converted(to: UnitSpeed.metersPerSecond).value.resolution(.adding, resolution: Resolution.oneHundredth)
 
         msgData.append(Data(from: UInt16(value).littleEndian))
 
-        return msgData
+        return.success(msgData)
     }
 }

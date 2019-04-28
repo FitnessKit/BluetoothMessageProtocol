@@ -251,28 +251,30 @@ extension DateTime: Equatable {
     }
 }
 
-public extension DateTime {
+extension DateTime: BluetoothEncodable {
 
-    /// Encode DateTime Struct
-    func encode() throws -> Data {
+    /// Encodes Object into Data
+    ///
+    /// - Returns: Encoded Data Result
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         guard let year = year else {
-            throw BluetoothEncodeError.missingProperties("Year can not be nil for encoding")
+            return.failure(BluetoothEncodeError.missingProperties("Year can not be nil for encoding"))
         }
 
         guard kBluetoothYearBounds.contains(Int(year)) else {
-            throw BluetoothEncodeError.boundsError(title: "Year must be between",
-                                                   range: kBluetoothYearBounds)
+            return.failure(BluetoothEncodeError.boundsError(title: "Year must be between",
+                                                            range: kBluetoothYearBounds))
         }
 
         guard let day = day else {
-            throw BluetoothEncodeError.missingProperties("Day can not be nil for encoding")
+            return.failure(BluetoothEncodeError.missingProperties("Day can not be nil for encoding"))
         }
 
         guard kBluetoothDayOfMonthBounds.contains(Int(day)) else {
-            throw BluetoothEncodeError.boundsError(title: "Day must be between",
-                                                   range: kBluetoothDayOfMonthBounds)
+            return.failure(BluetoothEncodeError.boundsError(title: "Day must be between",
+                                                            range: kBluetoothDayOfMonthBounds))
         }
 
         msgData.append(Data(from: UInt16(year)))
@@ -282,6 +284,6 @@ public extension DateTime {
         msgData.append(minutes)
         msgData.append(seconds)
 
-        return msgData
+        return.success(msgData)
     }
 }

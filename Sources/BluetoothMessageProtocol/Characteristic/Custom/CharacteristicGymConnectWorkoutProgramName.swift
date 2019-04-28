@@ -67,10 +67,9 @@ open class CharacteristicGymConnectWorkoutProgramName: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
-        throw BluetoothEncodeError.notSupported
+        return.failure(BluetoothEncodeError.notSupported)
     }
 }

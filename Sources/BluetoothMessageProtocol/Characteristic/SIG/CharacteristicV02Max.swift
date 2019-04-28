@@ -73,13 +73,12 @@ open class CharacteristicV02Max: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
 
         guard kMaxVO2Bounds.contains(Int(maxVO2.value)) else {
-            throw BluetoothEncodeError.boundsError(title: "Max VO2 must be between",
-                                                   range: kMaxVO2Bounds)
+            return.failure(BluetoothEncodeError.boundsError(title: "Max VO2 must be between",
+                                                            range: kMaxVO2Bounds))
         }
 
         var msgData = Data()
@@ -88,6 +87,6 @@ open class CharacteristicV02Max: Characteristic {
 
         msgData.append(value)
 
-        return msgData
+        return.success(msgData)
     }
 }

@@ -81,9 +81,8 @@ open class CharacteristicApparentWindDirection: Characteristic {
 
     /// Encodes the Characteristic into Data
     ///
-    /// - Returns: Data representation of the Characteristic
-    /// - Throws: BluetoothEncodeError
-    open override func encode() throws -> Data {
+    /// - Returns: Characteristic Data Result
+    open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
 
         //Make sure we put this back to deg before we create Data
@@ -91,6 +90,6 @@ open class CharacteristicApparentWindDirection: Characteristic {
 
         msgData.append(Data(from: UInt16(direction).littleEndian))
         
-        return msgData
+        return.success(msgData)
     }
 }
