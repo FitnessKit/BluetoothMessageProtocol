@@ -113,7 +113,7 @@ public extension CompanyIdentifier {
     ///
     /// - Parameter company: CompanyIdentifer Object
     /// - Throws: CompanyIdentifierError
-    class func registerCompany(_ company: CompanyIdentifier) throws {
+    class func registerCompany(_ company: CompanyIdentifier) -> Result<Bool, CompanyIdentifierError>  {
 
         let id = CompanyIdentifier.supportedCompanyIdentifers.first { (compObj) -> Bool in
             if compObj.companyID == company.companyID {
@@ -124,12 +124,15 @@ public extension CompanyIdentifier {
         }
 
         if let _ = id {
-            throw CompanyIdentifierError.alreadyRegistered
+            return.failure(CompanyIdentifierError.alreadyRegistered)
         }
 
         if CompanyIdentifier.supportedCompanyIdentifers.contains(company) == false {
             allCompanyIdentifiers.append(company)
+            return.success(true)
         }
+        
+        return.failure(CompanyIdentifierError.alreadyRegistered)
     }
 
     /// Finds a CompanyIdentifier by the ID

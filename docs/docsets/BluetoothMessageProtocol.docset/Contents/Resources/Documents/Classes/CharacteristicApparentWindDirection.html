@@ -253,9 +253,9 @@ heading of the observer is given as 315 degrees.</p>
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol35CharacteristicApparentWindDirectionC6encode10Foundation4DataVyKF"></a>
+                      <a name="/s:24BluetoothMessageProtocol35CharacteristicApparentWindDirectionC6encodes6ResultOy10Foundation4DataVAA0A11EncodeErrorOGyF"></a>
                       <a name="//apple_ref/swift/Method/encode()" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol35CharacteristicApparentWindDirectionC6encode10Foundation4DataVyKF">encode()</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol35CharacteristicApparentWindDirectionC6encodes6ResultOy10Foundation4DataVAA0A11EncodeErrorOGyF">encode()</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -264,24 +264,19 @@ heading of the observer is given as 315 degrees.</p>
                         <div class="pointer"></div>
                         <div class="abstract">
                           <p>Encodes the Characteristic into Data</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    BluetoothEncodeError
-
-</div>
 
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothEncodeError.html">BluetoothEncodeError</a></span><span class="o">&gt;</span></code></pre>
 
                           </div>
                         </div>
                         <div>
                           <h4>Return Value</h4>
-                          <p>Data representation of the Characteristic</p>
+                          <p>Characteristic Data Result</p>
                         </div>
                       </section>
                     </div>
@@ -1740,6 +1735,14 @@ heading of the observer is given as 315 degrees.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Enums/User.html">User</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Protocols.html">Other Protocols</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/BluetoothEncodable.html">BluetoothEncodable</a>
                 </li>
               </ul>
             </li>

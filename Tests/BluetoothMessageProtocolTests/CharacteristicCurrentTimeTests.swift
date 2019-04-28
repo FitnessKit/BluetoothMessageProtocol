@@ -20,7 +20,7 @@ class CharacteristicCurrentTimeTests: XCTestCase {
         let char = CharacteristicCurrentTime(adjustmentReason: .manualTimeUpdate, currentTime: dt, dayOfWeek: dw, fractionalSeconds: 0)
 
         do {
-            _ = try char.encode()
+            _ = try char.encode().get()
         } catch {
             XCTFail()
         }
@@ -35,7 +35,7 @@ class CharacteristicCurrentTimeTests: XCTestCase {
         let char = CharacteristicCurrentTime(adjustmentReason: [.manualTimeUpdate], currentTime: dt, dayOfWeek: dw, fractionalSeconds: 0)
 
         do {
-            let data = try char.encode()
+            let data = try char.encode().get()
 
             do {
                 let newChar = try CharacteristicCurrentTime.decode(data: data)

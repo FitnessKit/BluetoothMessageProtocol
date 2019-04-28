@@ -8,19 +8,20 @@ class CompanyIdentifierTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         //XCTAssertEqual(BluetoothMessageProtocol().text, "Hello, World!")
 
-        do {
-            try CompanyIdentifier.registerCompany(CompanyIdentifier(id: 65534, name: "Not"))
-        } catch  {
-            XCTFail()
-
+        switch CompanyIdentifier.registerCompany(CompanyIdentifier(id: 65534, name: "Not")) {
+        case .success(_):
+            break
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
         }
 
-        do {
-            try CompanyIdentifier.registerCompany(.apple)
-            XCTFail()
-
-        } catch  {
+        switch CompanyIdentifier.registerCompany(.apple) {
+        case .success(_):
+            XCTFail("This should have failed as apple is already registered")
+        case .failure(_):
+            break
         }
+
     }
 
     func testCompanyDups() {
