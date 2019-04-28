@@ -78,8 +78,10 @@ open class CharacteristicBatteryLevel: Characteristic {
     /// - Returns: Characteristic Data Result
     open override func encode() -> Result<Data, BluetoothEncodeError> {
 
-        guard level.value <= 100.0 else {
-            return.failure(BluetoothEncodeError.properyBounds("Battery level greater then max allowed 100%."))
+        guard kBatteryBounds.contains(level.value) else {
+            return.failure(BluetoothEncodeError.boundsError(title: "Battery level must be between",
+                                                            msg: "Percent",
+                                                            range: kBatteryBounds))
         }
 
         var msgData = Data()

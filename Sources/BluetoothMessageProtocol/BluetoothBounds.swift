@@ -47,3 +47,6 @@ internal let kTxPowerLevelBounds = ClosedRange(uncheckedBounds: (lower: -100, up
 
 /// Bounds for Max VO2
 internal let kMaxVO2Bounds = ClosedRange(uncheckedBounds: (lower: 0, upper: 255))
+
+/// Bounds for Battery Percentage
+internal let kBatteryBounds = ClosedRange(uncheckedBounds: (lower: 0.0, upper: 100.0))
