@@ -113,7 +113,6 @@ internal extension GymConnectEquipmentType {
             return .unknown
         }
     }
-
 }
 
 extension GymConnectEquipmentType {

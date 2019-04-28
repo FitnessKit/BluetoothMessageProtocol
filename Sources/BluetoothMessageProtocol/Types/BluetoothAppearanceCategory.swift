@@ -25,7 +25,6 @@
 import Foundation
 
 /// Appearance Category
-///
 public enum AppearanceCategory: String {
     /// None
     case none                   = "None"

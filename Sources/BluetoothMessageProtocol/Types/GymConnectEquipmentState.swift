@@ -82,7 +82,6 @@ public enum GymConnectEquipmentState: UInt8 {
     /// Finished
     case finished                   = 128
     /// 129...192 Finished Reserved
-
 }
 
 internal extension GymConnectEquipmentState {
