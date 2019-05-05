@@ -101,7 +101,7 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use decoder instead")
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFiveZoneHeartRateLimits {
         return try decoder(data: data).get()
     }

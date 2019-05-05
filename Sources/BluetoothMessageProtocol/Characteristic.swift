@@ -59,7 +59,7 @@ open class Characteristic: CharacteristicCodable {
     /// - Parameter data: Data from sensor characteristic
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use decoder instead")
+    @available(*, deprecated, message: "use results based decoder instead")
     open class func decode(data: Data) throws -> Characteristic {
         fatalError("*** You must override in your class.")
     }

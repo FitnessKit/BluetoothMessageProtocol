@@ -47,6 +47,7 @@ public protocol BluetoothEncodable {
     func encode() -> Result<Data, BluetoothEncodeError>
 }
 
+/// Allows for Decoding Characteristics
 public protocol CharacteristicDecodable: AnyObject {
     
     /// Decodes Characteristic Data into Characteristic
@@ -56,6 +57,7 @@ public protocol CharacteristicDecodable: AnyObject {
     static func decoder<C: Characteristic>(data: Data) -> Result<C, BluetoothDecodeError>
 }
 
+/// Allows for Decoding ServiceData
 public protocol ServiceDataDecodable: AnyObject {
     
     /// Decodes Service Data AD Data into ServiceData
