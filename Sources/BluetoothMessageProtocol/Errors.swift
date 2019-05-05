@@ -145,6 +145,8 @@ public enum BluetoothDecodeError {
     case noManufacturerSpecificData
     /// Specification Mismatch
     case specIssue(String)
+    /// String Value Could not be Decoded
+    case invalidStringValue
 
     /// General Error
     case general(String)
@@ -172,6 +174,8 @@ extension BluetoothDecodeError: LocalizedError {
             return "No Manufacturer Specific Data"
         case .specIssue(let msg):
             return msg
+        case .invalidStringValue:
+            return "String Value Could not be Decoded"
         case .general(let msg):
             return msg
         }
@@ -217,6 +221,10 @@ extension BluetoothDecodeError: Encodable {
 
         case .specIssue(_):
             try container.encode("specIssue", forKey: typeKey)
+            try container.encode(self.localizedDescription, forKey: errkey)
+
+        case .invalidStringValue:
+            try container.encode(self.description, forKey: typeKey)
             try container.encode(self.localizedDescription, forKey: errkey)
 
         case .general(_):

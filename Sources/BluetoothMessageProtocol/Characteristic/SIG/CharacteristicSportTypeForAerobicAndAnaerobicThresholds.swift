@@ -86,17 +86,27 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
                    uuidString: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicSportTypeForAerobicAndAnaerobicThresholds>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let exercise = SportType(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
+
+        let char = CharacteristicSportTypeForAerobicAndAnaerobicThresholds(exercise: exercise)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSportTypeForAerobicAndAnaerobicThresholds {
-        var decoder = DecodeData()
-
-        let exercise = SportType(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
-
-        return CharacteristicSportTypeForAerobicAndAnaerobicThresholds(exercise: exercise)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

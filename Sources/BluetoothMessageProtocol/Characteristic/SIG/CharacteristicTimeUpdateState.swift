@@ -84,19 +84,29 @@ open class CharacteristicTimeUpdateState: Characteristic {
                    uuidString: CharacteristicTimeUpdateState.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTimeUpdateState>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let state = CurrentStateType(rawValue: decoder.decodeUInt8(data)) ?? .idle
+        let result = UpdateResultType(rawValue: decoder.decodeUInt8(data)) ?? .successful
+
+        let char = CharacteristicTimeUpdateState(currentState: state,
+                                                 result: result)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTimeUpdateState {
-        var decoder = DecodeData()
-
-        let state = CurrentStateType(rawValue: decoder.decodeUInt8(data)) ?? .idle
-        let result = UpdateResultType(rawValue: decoder.decodeUInt8(data)) ?? .successful
-
-        return CharacteristicTimeUpdateState(currentState: state,
-                                             result: result)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -54,20 +54,30 @@ open class CharacteristicRainfall: Characteristic {
                    uuidString: CharacteristicRainfall.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicRainfall>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        // put into 0.1 PA then into KiloPascals
+        let value = Double(decoder.decodeUInt16(data))
+        
+        let rainfall: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
+
+        let char = CharacteristicRainfall(rainfall: rainfall)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicRainfall {
-        var decoder = DecodeData()
-
-        // put into 0.1 PA then into KiloPascals
-        let value = Double(decoder.decodeUInt16(data))
-
-        let rainfall: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
-
-        return CharacteristicRainfall(rainfall: rainfall)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

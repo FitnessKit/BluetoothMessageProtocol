@@ -62,14 +62,23 @@ open class CharacteristicTimeUpdateControlPoint: Characteristic {
                    uuidString: CharacteristicTimeUpdateControlPoint.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTimeUpdateControlPoint>(data: Data) -> Result<C, BluetoothDecodeError> {
+        //Not Yet Supported
+        return.failure(BluetoothDecodeError.notSupported)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTimeUpdateControlPoint {
-        //Not Yet Supported
-        throw BluetoothDecodeError.notSupported
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

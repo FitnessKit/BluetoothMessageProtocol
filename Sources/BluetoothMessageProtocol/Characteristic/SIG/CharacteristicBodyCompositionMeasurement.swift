@@ -161,44 +161,43 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                    uuidString: CharacteristicBodyCompositionMeasurement.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicBodyCompositionMeasurement {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBodyCompositionMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
-
+        
         let bfatValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let bFat = Measurement(value: bfatValue, unit: UnitPercent.percent)
-
+        
         var currentTime: DateTime?
         if flags.contains(.timeStampPresent) {
-            currentTime = try DateTime.decode(data, decoder: &decoder)
+            currentTime = DateTime.decode(data, decoder: &decoder)
         }
-
+        
         var userID: User?
         if flags.contains(.userIDPresent) {
             userID = User.create(decoder.decodeUInt8(data))
         }
-
+        
         var basalMetabolism: Measurement<UnitEnergy>?
         if flags.contains(.basalMetabolismPresent) {
             let value = Double(decoder.decodeUInt16(data))
             basalMetabolism = Measurement(value: value, unit: UnitEnergy.kilojoules)
         }
-
+        
         var musclePercentage: Measurement<UnitPercent>?
         if flags.contains(.musclePercentagePresent) {
             let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
             musclePercentage = Measurement(value: value, unit: UnitPercent.percent)
         }
-
+        
         var muscleMass: Measurement<UnitMass>?
         if flags.contains(.muscleMassPresent) {
-
+            
             if flags.contains(.imperialUnits) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
                 muscleMass = Measurement(value: value, unit: UnitMass.pounds)
@@ -207,10 +206,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 muscleMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
-
+        
         var fatFreeMass: Measurement<UnitMass>?
         if flags.contains(.fatFreeMassPresent) {
-
+            
             if flags.contains(.imperialUnits) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 fatFreeMass = Measurement(value: value, unit: UnitMass.pounds)
@@ -219,10 +218,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 fatFreeMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
-
+        
         var softLeanMass: Measurement<UnitMass>?
         if flags.contains(.softLeanMassPresent) {
-
+            
             if flags.contains(.imperialUnits) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 softLeanMass = Measurement(value: value, unit: UnitMass.pounds)
@@ -231,10 +230,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 softLeanMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
-
+        
         var bodyWaterMass: Measurement<UnitMass>?
         if flags.contains(.bodyWaterMassPresent) {
-
+            
             if flags.contains(.imperialUnits) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 bodyWaterMass = Measurement(value: value, unit: UnitMass.pounds)
@@ -243,16 +242,16 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 bodyWaterMass = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
-
+        
         var impedance: Measurement<UnitElectricResistance>?
         if flags.contains(.impedancePresent) {
             let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
             impedance = Measurement(value: value, unit: UnitElectricResistance.ohms)
         }
-
+        
         var weight: Measurement<UnitMass>?
         if flags.contains(.weightPresent) {
-
+            
             if flags.contains(.imperialUnits) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 weight = Measurement(value: value, unit: UnitMass.pounds)
@@ -261,10 +260,10 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 weight = Measurement(value: value, unit: UnitMass.kilograms)
             }
         }
-
+        
         var height: Measurement<UnitLength>?
         if flags.contains(.heightPresent) {
-
+            
             if flags.contains(.imperialUnits) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 height = Measurement(value: value, unit: UnitLength.inches)
@@ -273,22 +272,33 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 height = Measurement(value: value, unit: UnitLength.meters)
             }
         }
-
+        
         let multiPacket = flags.contains(.multiplePacketMeasrement)
+        
+        let char = CharacteristicBodyCompositionMeasurement(bodyFat: bFat,
+                                                            currentTime: currentTime,
+                                                            userID: userID,
+                                                            basalMetabolism: basalMetabolism,
+                                                            musclePercentage: musclePercentage,
+                                                            muscleMass: muscleMass,
+                                                            fatFreeMass: fatFreeMass,
+                                                            softLeanMass: softLeanMass,
+                                                            bodyWaterMass: bodyWaterMass,
+                                                            impedance: impedance,
+                                                            weight: weight,
+                                                            height: height,
+                                                            multiplePacketMeasurement: multiPacket)
+        return.success(char as! C)
+    }
 
-        return CharacteristicBodyCompositionMeasurement(bodyFat: bFat,
-                                                        currentTime: currentTime,
-                                                        userID: userID,
-                                                        basalMetabolism: basalMetabolism,
-                                                        musclePercentage: musclePercentage,
-                                                        muscleMass: muscleMass,
-                                                        fatFreeMass: fatFreeMass,
-                                                        softLeanMass: softLeanMass,
-                                                        bodyWaterMass: bodyWaterMass,
-                                                        impedance: impedance,
-                                                        weight: weight,
-                                                        height: height,
-                                                        multiplePacketMeasurement: multiPacket)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicBodyCompositionMeasurement {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -56,19 +56,28 @@ open class CharacteristicWaistCircumference: Characteristic {
                    uuidString: CharacteristicWaistCircumference.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicWaistCircumference>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let waistCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
+
+        let char = CharacteristicWaistCircumference(waistCircumference: waistCircumference)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicWaistCircumference {
-        var decoder = DecodeData()
-
-        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let waistCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
-
-        return CharacteristicWaistCircumference(waistCircumference: waistCircumference)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

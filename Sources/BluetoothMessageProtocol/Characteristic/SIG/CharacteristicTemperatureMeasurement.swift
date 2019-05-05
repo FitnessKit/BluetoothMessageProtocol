@@ -78,38 +78,48 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
                    uuidString: CharacteristicTemperatureMeasurement.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicTemperatureMeasurement {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTemperatureMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
-
+        
         let tmpValue = Double(decoder.decodeFloatValue(data))
         var temperature: Measurement<UnitTemperature>
-
+        
         if flags.contains(.unitsFahrenheit) {
             temperature = Measurement(value: tmpValue, unit: UnitTemperature.fahrenheit)
         } else {
             temperature = Measurement(value: tmpValue, unit: UnitTemperature.celsius)
         }
-
+        
         var timestamp: DateTime?
         if flags.contains(.timestampPresent) {
-            timestamp = try DateTime.decode(data, decoder: &decoder)
+            timestamp = DateTime.decode(data, decoder: &decoder)
         }
-
+        
         var type: TemperatureType?
         if flags.contains(.temperatureTypePresent) {
             type = TemperatureType(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         }
 
-        return CharacteristicTemperatureMeasurement(temperature: temperature,
-                                                    timestamp: timestamp,
-                                                    type: type)
+        let char = CharacteristicTemperatureMeasurement(temperature: temperature,
+                                                        timestamp: timestamp,
+                                                        type: type)
+        return.success(char as! C)
+    }
+
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicTemperatureMeasurement {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

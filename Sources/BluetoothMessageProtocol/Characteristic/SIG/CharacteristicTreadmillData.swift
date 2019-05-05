@@ -181,17 +181,16 @@ open class CharacteristicTreadmillData: Characteristic {
         super.init(name: CharacteristicTreadmillData.name,
                    uuidString: CharacteristicTreadmillData.uuidString)
     }
-
-    /// Deocdes the BLE Data
+    
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicTreadmillData {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTreadmillData>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
-
+        
         var iSpeed: FitnessMachineSpeedType?
         var avgSpeed: FitnessMachineSpeedType?
         var totalDistance: Measurement<UnitLength>?
@@ -203,111 +202,122 @@ open class CharacteristicTreadmillData: Characteristic {
         var averagePace: Measurement<UnitSpeed>?
         var heartRate: UInt8?
         var mets: Double?
-
+        
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
             iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
-
+        
         if flags.contains(.averageSpeedPresent) {
             avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
-
+        
         if flags.contains(.totalDistancePresent) {
             let value = Double(decoder.decodeUInt24(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
-
+        
         if flags.contains(.angleSettingpresent) {
             let incline = decoder.decodeInt16(data)
             let ramp = decoder.decodeInt16(data)
-
+            
             if incline != Int16.max {
                 let iValue = FitnessMachineInclinationType.create(incline)
                 inclination = iValue
             }
-
+            
             if ramp != Int16.max {
                 let rValue = ramp.resolution(.removing, resolution: Resolution.oneTenth)
                 rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
             }
         }
-
+        
         if flags.contains(.elevationGainPresent) {
             let pValue = Double(decoder.decodeUInt16(data))
             pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
-
+            
             let nValue = Double(decoder.decodeUInt16(data))
             nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
         }
-
+        
         if flags.contains(.instantaneousPacePresent) {
             let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
             instantaneousPace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
         }
-
+        
         if flags.contains(.averagePacePresent) {
             let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
             averagePace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
         }
-
+        
         var fitEnergy: FitnessMachineEnergy
         if flags.contains(.expendedEnergyPresent) {
-            fitEnergy = try FitnessMachineEnergy.decode(data, decoder: &decoder)
+            fitEnergy = FitnessMachineEnergy.decode(data, decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
-
+        
         if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8(data)
         }
-
+        
         if flags.contains(.metabolicEquivalentPresent) {
             mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
-
-        let elapsedTime = try decodeDuration(supported: flags,
-                                             flag: .elapsedTimePresent,
-                                             unit: UnitDuration.seconds,
-                                             data: data, decoder: &decoder)
-
-        let remainingTime = try decodeDuration(supported: flags,
-                                               flag: .remainingTimePresent,
-                                               unit: UnitDuration.seconds,
-                                               data: data, decoder: &decoder)
-
+        
+        let elapsedTime = decodeDuration(supported: flags,
+                                         flag: .elapsedTimePresent,
+                                         unit: UnitDuration.seconds,
+                                         data: data, decoder: &decoder)
+        
+        let remainingTime = decodeDuration(supported: flags,
+                                           flag: .remainingTimePresent,
+                                           unit: UnitDuration.seconds,
+                                           data: data, decoder: &decoder)
+        
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
-
+        
         var forceOnBelt: Measurement<UnitForce>?
         var powerOutput: FitnessMachinePowerType?
         if flags.contains(.beltForcePowerOutputPresent) {
-
+            
             let beltValue = decoder.decodeInt16(data)
             if beltValue != Int16.max {
                 forceOnBelt = Measurement(value: Double(beltValue), unit: UnitForce.newton)
             }
-
+            
             let power = decoder.decodeInt16(data)
             if power != Int16.max {
                 powerOutput = FitnessMachinePowerType.create(power)
             }
         }
+        
+        let char = CharacteristicTreadmillData(instantaneousSpeed: iSpeed,
+                                               averageSpeed: avgSpeed,
+                                               totalDistance: totalDistance,
+                                               inclination: inclination,
+                                               rampAngle: rampAngle,
+                                               positiveElevationGain: pElevaionGain,
+                                               negativeElevationGain: nElevaionGain,
+                                               instantaneousPace: instantaneousPace,
+                                               averagePace: averagePace,
+                                               energy: fitEnergy,
+                                               heartRate: heartRate,
+                                               metabolicEquivalent: mets,
+                                               time: time,
+                                               forceOnBelt: forceOnBelt,
+                                               powerOutput: powerOutput)
+        return.success(char as! C)
+    }
 
-        return CharacteristicTreadmillData(instantaneousSpeed: iSpeed,
-                                           averageSpeed: avgSpeed,
-                                           totalDistance: totalDistance,
-                                           inclination: inclination,
-                                           rampAngle: rampAngle,
-                                           positiveElevationGain: pElevaionGain,
-                                           negativeElevationGain: nElevaionGain,
-                                           instantaneousPace: instantaneousPace,
-                                           averagePace: averagePace,
-                                           energy: fitEnergy,
-                                           heartRate: heartRate,
-                                           metabolicEquivalent: mets,
-                                           time: time,
-                                           forceOnBelt: forceOnBelt,
-                                           powerOutput: powerOutput)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicTreadmillData {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
@@ -335,7 +345,7 @@ private extension CharacteristicTreadmillData {
                                       flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
-                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+                                      decoder: inout DecodeData) -> Measurement<UnitDuration>? {
 
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {

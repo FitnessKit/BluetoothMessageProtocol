@@ -60,19 +60,28 @@ open class CharacteristicTrueWindDirection: Characteristic {
                    uuidString: CharacteristicTrueWindDirection.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTrueWindDirection>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let direction = Measurement(value: value, unit: UnitAngle.degrees)
+
+        let char = CharacteristicTrueWindDirection(windDirection: direction)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTrueWindDirection {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let direction = Measurement(value: value, unit: UnitAngle.degrees)
-
-        return CharacteristicTrueWindDirection(windDirection: direction)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

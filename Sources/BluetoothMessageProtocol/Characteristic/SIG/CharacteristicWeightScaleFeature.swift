@@ -185,31 +185,41 @@ open class CharacteristicWeightScaleFeature: Characteristic {
                    uuidString: CharacteristicWeightScaleFeature.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicWeightScaleFeature>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeUInt32(data)
+        
+        let timestamp = (value & 0x01 == 0x01)
+        let multiUsers = (value & 0x02 == 0x02)
+        let bmi = (value & 0x04 == 0x04)
+        
+        let weightValue: UInt8 = UInt8((value & 0x78) >> 3)
+        let weightRes = WeightResolution(rawValue: weightValue) ?? .notSpecified
+        
+        let heightValue: UInt8 = UInt8((value & 0x380) >> 7)
+        let heightRes = HeightResolution(rawValue: heightValue) ?? .notSpecified
+        
+        let char = CharacteristicWeightScaleFeature(timestampSupported: timestamp,
+                                                    multipleUsersSupported: multiUsers,
+                                                    bmiSupported: bmi,
+                                                    weightResolution: weightRes,
+                                                    heightResolution: heightRes)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicWeightScaleFeature {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeUInt32(data)
-
-        let timestamp = (value & 0x01 == 0x01)
-        let multiUsers = (value & 0x02 == 0x02)
-        let bmi = (value & 0x04 == 0x04)
-
-        let weightValue: UInt8 = UInt8((value & 0x78) >> 3)
-        let weightRes = WeightResolution(rawValue: weightValue) ?? .notSpecified
-
-        let heightValue: UInt8 = UInt8((value & 0x380) >> 7)
-        let heightRes = HeightResolution(rawValue: heightValue) ?? .notSpecified
-
-        return CharacteristicWeightScaleFeature(timestampSupported: timestamp,
-                                                multipleUsersSupported: multiUsers,
-                                                bmiSupported: bmi,
-                                                weightResolution: weightRes,
-                                                heightResolution: heightRes)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -54,17 +54,26 @@ open class CharacteristicDatabaseChangeIncrement: Characteristic {
                    uuidString: CharacteristicDatabaseChangeIncrement.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicDatabaseChangeIncrement>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let increment = decoder.decodeUInt32(data)
+
+        return.success(CharacteristicDatabaseChangeIncrement(increment: increment) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicDatabaseChangeIncrement {
-        var decoder = DecodeData()
-
-        let increment = decoder.decodeUInt32(data)
-
-        return CharacteristicDatabaseChangeIncrement(increment: increment)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

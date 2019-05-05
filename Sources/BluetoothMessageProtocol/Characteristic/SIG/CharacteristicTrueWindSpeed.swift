@@ -54,19 +54,28 @@ open class CharacteristicTrueWindSpeed: Characteristic {
                    uuidString: CharacteristicTrueWindSpeed.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTrueWindSpeed>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let speed = Measurement(value: value, unit: UnitSpeed.metersPerSecond)
+
+        let char = CharacteristicTrueWindSpeed(windSpeed: speed)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTrueWindSpeed {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let speed = Measurement(value: value, unit: UnitSpeed.metersPerSecond)
-
-        return CharacteristicTrueWindSpeed(windSpeed: speed)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

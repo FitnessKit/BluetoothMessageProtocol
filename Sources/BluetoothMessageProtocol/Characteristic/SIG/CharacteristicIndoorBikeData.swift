@@ -164,100 +164,110 @@ open class CharacteristicIndoorBikeData: Characteristic {
                    uuidString: CharacteristicIndoorBikeData.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicIndoorBikeData {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicIndoorBikeData>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
-
+        
         var heartRate: UInt8?
         var mets: Double?
-
+        
         var iSpeed: FitnessMachineSpeedType?
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
             iSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
-
+        
         var avgSpeed: FitnessMachineSpeedType?
         if flags.contains(.averageSpeedPresent) {
             avgSpeed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         }
-
-        let instantaneousCadence = try decodeCadence(supported: flags,
-                                                     flag: .instantaneousCadencePresent,
-                                                     unit: UnitCadence.revolutionsPerMinute,
-                                                     data: data, decoder: &decoder)
-
-        let averageCadence = try decodeCadence(supported: flags,
-                                               flag: .averageCadencePresent,
-                                               unit: UnitCadence.revolutionsPerMinute,
-                                               data: data, decoder: &decoder)
-
+        
+        let instantaneousCadence = decodeCadence(supported: flags,
+                                                 flag: .instantaneousCadencePresent,
+                                                 unit: UnitCadence.revolutionsPerMinute,
+                                                 data: data, decoder: &decoder)
+        
+        let averageCadence = decodeCadence(supported: flags,
+                                           flag: .averageCadencePresent,
+                                           unit: UnitCadence.revolutionsPerMinute,
+                                           data: data, decoder: &decoder)
+        
         var totalDistance: Measurement<UnitLength>?
         if flags.contains(.totalDistancePresent) {
             let value = Double(decoder.decodeUInt24(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
-
+        
         var resistanceLevel: Double?
         if flags.contains(.resistanceLevelPresent) {
             resistanceLevel = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
-
+        
         var iPower: FitnessMachinePowerType?
         if flags.contains(.instantaneousPowerPresent) {
             iPower = FitnessMachinePowerType.create(decoder.decodeInt16(data))
         }
-
+        
         var aPower: FitnessMachinePowerType?
         if flags.contains(.averagePowerPresent) {
             aPower = FitnessMachinePowerType.create(decoder.decodeInt16(data))
         }
-
+        
         var fitEnergy: FitnessMachineEnergy
         if flags.contains(.expendedEnergyPresent) {
-            fitEnergy = try FitnessMachineEnergy.decode(data, decoder: &decoder)
+            fitEnergy = FitnessMachineEnergy.decode(data, decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
-
+        
         if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8(data)
         }
-
+        
         if flags.contains(.metabolicEquivalentPresent) {
             mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
-
-        let elapsedTime = try decodeDuration(supported: flags,
-                                             flag: .elapsedTimePresent,
-                                             unit: UnitDuration.seconds,
-                                             data: data, decoder: &decoder)
-
-        let remainingTime = try decodeDuration(supported: flags,
-                                               flag: .remainingTimePresent,
-                                               unit: UnitDuration.seconds,
-                                               data: data, decoder: &decoder)
-
+        
+        let elapsedTime = decodeDuration(supported: flags,
+                                         flag: .elapsedTimePresent,
+                                         unit: UnitDuration.seconds,
+                                         data: data, decoder: &decoder)
+        
+        let remainingTime = decodeDuration(supported: flags,
+                                           flag: .remainingTimePresent,
+                                           unit: UnitDuration.seconds,
+                                           data: data, decoder: &decoder)
+        
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+        
+        let char = CharacteristicIndoorBikeData(instantaneousSpeed: iSpeed,
+                                                averageSpeed: avgSpeed,
+                                                instantaneousCadence: instantaneousCadence,
+                                                averageCadence: averageCadence,
+                                                totalDistance: totalDistance,
+                                                resistanceLevel: resistanceLevel,
+                                                instantaneousPower: iPower,
+                                                averagePower: aPower,
+                                                energy: fitEnergy,
+                                                heartRate: heartRate,
+                                                metabolicEquivalent: mets,
+                                                time: time)
+        return.success(char as! C)
+    }
 
-        return CharacteristicIndoorBikeData(instantaneousSpeed: iSpeed,
-                                            averageSpeed: avgSpeed,
-                                            instantaneousCadence: instantaneousCadence,
-                                            averageCadence: averageCadence,
-                                            totalDistance: totalDistance,
-                                            resistanceLevel: resistanceLevel,
-                                            instantaneousPower: iPower,
-                                            averagePower: aPower,
-                                            energy: fitEnergy,
-                                            heartRate: heartRate,
-                                            metabolicEquivalent: mets,
-                                            time: time)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicIndoorBikeData {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
@@ -284,7 +294,7 @@ private extension CharacteristicIndoorBikeData {
                                      flag: Flags,
                                      unit: UnitCadence,
                                      data: Data,
-                                     decoder: inout DecodeData) throws -> Measurement<UnitCadence>? {
+                                     decoder: inout DecodeData) -> Measurement<UnitCadence>? {
 
         var cadenceValue: Measurement<UnitCadence>?
         if supported.contains(flag) {
@@ -307,7 +317,7 @@ private extension CharacteristicIndoorBikeData {
                                       flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
-                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+                                      decoder: inout DecodeData) -> Measurement<UnitDuration>? {
 
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {

@@ -77,23 +77,33 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
                    uuidString: CharacteristicFiveZoneHeartRateLimits.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicFiveZoneHeartRateLimits>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let lightHeartRate: UInt8 = decoder.decodeUInt8(data)
+        let moderateHeartRate: UInt8 = decoder.decodeUInt8(data)
+        let hardHeartRate: UInt8 = decoder.decodeUInt8(data)
+        let maximumHeartRate: UInt8 = decoder.decodeUInt8(data)
+        
+        let char = CharacteristicFiveZoneHeartRateLimits(lightHeartRate: lightHeartRate,
+                                                         moderateHeartRate: moderateHeartRate,
+                                                         hardHeartRate: hardHeartRate,
+                                                         maximumHeartRate: maximumHeartRate)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFiveZoneHeartRateLimits {
-        var decoder = DecodeData()
-
-        let lightHeartRate: UInt8 = decoder.decodeUInt8(data)
-        let moderateHeartRate: UInt8 = decoder.decodeUInt8(data)
-        let hardHeartRate: UInt8 = decoder.decodeUInt8(data)
-        let maximumHeartRate: UInt8 = decoder.decodeUInt8(data)
-
-        return CharacteristicFiveZoneHeartRateLimits(lightHeartRate: lightHeartRate,
-                                                     moderateHeartRate: moderateHeartRate,
-                                                     hardHeartRate: hardHeartRate,
-                                                     maximumHeartRate: maximumHeartRate)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

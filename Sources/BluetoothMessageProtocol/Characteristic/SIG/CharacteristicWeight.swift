@@ -56,19 +56,28 @@ open class CharacteristicWeight: Characteristic {
                    uuidString: CharacteristicWeight.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicWeight>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneFiveThousandth)
+        let weight = Measurement(value: value, unit: UnitMass.kilograms)
+
+        let char = CharacteristicWeight(weight: weight)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicWeight {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneFiveThousandth)
-
-        let weight = Measurement(value: value, unit: UnitMass.kilograms)
-
-        return CharacteristicWeight(weight: weight)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

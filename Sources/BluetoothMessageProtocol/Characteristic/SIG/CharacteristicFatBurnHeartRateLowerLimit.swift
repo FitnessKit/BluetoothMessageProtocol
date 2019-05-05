@@ -56,17 +56,26 @@ open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
                    uuidString: CharacteristicFatBurnHeartRateLowerLimit.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicFatBurnHeartRateLowerLimit>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let heartRate: UInt8 = decoder.decodeUInt8(data)
+
+        return.success(CharacteristicFatBurnHeartRateLowerLimit(heartRate: heartRate) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFatBurnHeartRateLowerLimit {
-        var decoder = DecodeData()
-
-        let heartRate: UInt8 = decoder.decodeUInt8(data)
-
-        return CharacteristicFatBurnHeartRateLowerLimit(heartRate: heartRate)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

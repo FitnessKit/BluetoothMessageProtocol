@@ -61,20 +61,28 @@ open class CharacteristicDayDateTime: Characteristic {
                    uuidString: CharacteristicDayDateTime.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicDayDateTime>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let time = DateTime.decode(data, decoder: &decoder)
+        
+        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
+
+        return.success(CharacteristicDayDateTime(time: time, dayOfWeek: weekday) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicDayDateTime {
-        var decoder = DecodeData()
-
-        let time = try DateTime.decode(data, decoder: &decoder)
-
-        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return CharacteristicDayDateTime(time: time,
-                                         dayOfWeek: weekday)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

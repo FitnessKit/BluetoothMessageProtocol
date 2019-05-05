@@ -73,17 +73,26 @@ open class CharacteristicBloodPressureFeature: Characteristic {
                    uuidString: CharacteristicBloodPressureFeature.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBloodPressureFeature>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let status = Feature(rawValue: decoder.decodeUInt8(data))
+
+        return.success(CharacteristicBloodPressureFeature(status: status) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBloodPressureFeature {
-        var decoder = DecodeData()
-
-        let status = Feature(rawValue: decoder.decodeUInt8(data))
-
-        return CharacteristicBloodPressureFeature(status: status)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

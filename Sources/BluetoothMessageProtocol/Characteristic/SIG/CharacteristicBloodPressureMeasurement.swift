@@ -105,26 +105,25 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
                    uuidString: CharacteristicBloodPressureMeasurement.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicBloodPressureMeasurement {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBloodPressureMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
-
+        
         var systolic: Measurement<UnitPressure>
         let systolicV = Double(decoder.decodeSFloatValue(data))
-
+        
         var diastolic: Measurement<UnitPressure>
         let diastolicV = Double(decoder.decodeSFloatValue(data))
-
+        
         var meanArterial: Measurement<UnitPressure>
         let meanArterialV = Double(decoder.decodeSFloatValue(data))
-
-
+        
+        
         if flags.contains(.unitsIsKilopascals) {
             systolic = Measurement(value: systolicV, unit: UnitPressure.kilopascals)
             diastolic = Measurement(value: diastolicV, unit: UnitPressure.kilopascals)
@@ -134,29 +133,40 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
             diastolic = Measurement(value: diastolicV, unit: UnitPressure.millimetersOfMercury)
             meanArterial = Measurement(value: meanArterialV, unit: UnitPressure.millimetersOfMercury)
         }
-
+        
         var timestamp: DateTime?
         if flags.contains(.timestampPresent) {
-            timestamp = try DateTime.decode(data, decoder: &decoder)
+            timestamp = DateTime.decode(data, decoder: &decoder)
         }
-
+        
         var pulseRate: Measurement<UnitCadence>?
         if flags.contains(.pulseRatePresent) {
             let pulse = Double(decoder.decodeSFloatValue(data))
             pulseRate = Measurement(value: pulse, unit: UnitCadence.beatsPerMinute)
         }
-
+        
         var userID: User?
         if flags.contains(.userIDPresent) {
             userID = User.create(decoder.decodeUInt8(data))
         }
 
-        return CharacteristicBloodPressureMeasurement(systolic: systolic,
-                                                      diastolic: diastolic,
-                                                      meanArterial: meanArterial,
-                                                      timestamp: timestamp,
-                                                      pulseRate: pulseRate,
-                                                      userID: userID)
+        let char = CharacteristicBloodPressureMeasurement(systolic: systolic,
+                                                          diastolic: diastolic,
+                                                          meanArterial: meanArterial,
+                                                          timestamp: timestamp,
+                                                          pulseRate: pulseRate,
+                                                          userID: userID)
+        return.success(char as! C)
+    }
+
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicBloodPressureMeasurement {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

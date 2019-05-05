@@ -56,17 +56,26 @@ open class CharacteristicAnalog: Characteristic {
                    uuidString: CharacteristicAnalog.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicAnalog>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let analogValue = decoder.decodeUInt16(data)
+
+        return.success(CharacteristicAnalog(analogValue: analogValue) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicAnalog {
-        var decoder = DecodeData()
-
-        let analogValue = decoder.decodeUInt16(data)
-
-        return CharacteristicAnalog(analogValue: analogValue)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

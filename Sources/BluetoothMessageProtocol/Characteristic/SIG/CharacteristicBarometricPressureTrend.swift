@@ -78,17 +78,26 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
                    uuidString: CharacteristicBarometricPressureTrend.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBarometricPressureTrend>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8(data)) ?? .unknown
+
+        return.success(CharacteristicBarometricPressureTrend(trend: trend) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBarometricPressureTrend {
-        var decoder = DecodeData()
-
-        let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return CharacteristicBarometricPressureTrend(trend: trend)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

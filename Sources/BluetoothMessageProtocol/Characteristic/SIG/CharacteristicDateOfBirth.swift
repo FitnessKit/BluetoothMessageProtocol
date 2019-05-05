@@ -71,30 +71,39 @@ open class CharacteristicDateOfBirth: Characteristic {
                    uuidString: CharacteristicDateOfBirth.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicDateOfBirth {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicDateOfBirth>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         var year: UInt16?
-
+        
         let yr = decoder.decodeUInt16(data)
         if kBluetoothYearBounds.contains(Int(yr)) {
             year = yr
         }
-
+        
         let month = Month(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
+        
         var dayOfMonth: UInt8?
         let day = decoder.decodeUInt8(data)
         if kBluetoothDayOfMonthBounds.contains(Int(day)) {
             dayOfMonth = day
         }
 
-        return CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth)
+        return.success(CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth) as! C)
+    }
+
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicDateOfBirth {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

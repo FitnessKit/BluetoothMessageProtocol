@@ -56,17 +56,26 @@ open class CharacteristicFloorNumber: Characteristic {
                    uuidString: CharacteristicFloorNumber.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicFloorNumber>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let floor = decoder.decodeUInt8(data)
+        
+        return.success(CharacteristicFloorNumber(floorNumber: floor) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFloorNumber {
-        var decoder = DecodeData()
-
-        let floor = decoder.decodeUInt8(data)
-
-        return CharacteristicFloorNumber(floorNumber: floor)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

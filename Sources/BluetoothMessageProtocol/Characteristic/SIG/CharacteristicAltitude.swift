@@ -56,17 +56,26 @@ open class CharacteristicAltitude: Characteristic {
                    uuidString: CharacteristicAltitude.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicAltitude>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let altitude: UInt16 = decoder.decodeUInt16(data)
+
+        return.success(CharacteristicAltitude(altitude: altitude) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicAltitude {
-        var decoder = DecodeData()
-
-        let altitude: UInt16 = decoder.decodeUInt16(data)
-
-        return CharacteristicAltitude(altitude: altitude)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

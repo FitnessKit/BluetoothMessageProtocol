@@ -145,19 +145,29 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
                    uuidString: CharacteristicFitnessMachineFeature.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicFitnessMachineFeature>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let features = MachineFeatures(rawValue: decoder.decodeUInt32(data))
+        let targets = TargetFeatures(rawValue: decoder.decodeUInt32(data))
+
+        let char = CharacteristicFitnessMachineFeature(supportedMachineFeatures: features,
+                                                       supportedTargetSettings: targets)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFitnessMachineFeature {
-        var decoder = DecodeData()
-
-        let features = MachineFeatures(rawValue: decoder.decodeUInt32(data))
-        let targets = TargetFeatures(rawValue: decoder.decodeUInt32(data))
-
-        return CharacteristicFitnessMachineFeature(supportedMachineFeatures: features,
-                                                   supportedTargetSettings: targets)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

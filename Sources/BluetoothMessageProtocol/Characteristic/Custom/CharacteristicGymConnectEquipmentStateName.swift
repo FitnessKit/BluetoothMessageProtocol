@@ -59,13 +59,12 @@ open class CharacteristicGymConnectEquipmentStateName: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decoder<C: CharacteristicGymConnectEquipmentStateName>(data: Data) -> Result<C, BluetoothDecodeError> {
-        var name = ""
         
-        if data.count > 0 {
-            name = data.safeStringValue ?? ""
+        if let name = data.safeStringValue {
+            return.success(CharacteristicGymConnectEquipmentStateName(stateName: name) as! C)
         }
         
-        return.success(CharacteristicGymConnectEquipmentStateName(stateName: name) as! C)
+        return.failure(.invalidStringValue)
     }
 
     /// Deocdes the BLE Data

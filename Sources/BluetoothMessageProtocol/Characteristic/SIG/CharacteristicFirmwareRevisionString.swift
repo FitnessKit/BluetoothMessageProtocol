@@ -57,15 +57,27 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
                    uuidString: CharacteristicFirmwareRevisionString.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicFirmwareRevisionString>(data: Data) -> Result<C, BluetoothDecodeError> {
+        
+        if let firmwareRevision = data.safeStringValue {
+            return.success(CharacteristicFirmwareRevisionString(firmwareRevision: firmwareRevision) as! C)
+        }
+        
+        return.failure(.invalidStringValue)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFirmwareRevisionString {
-        let firmwareRevision = data.safeStringValue ?? ""
-
-        return CharacteristicFirmwareRevisionString(firmwareRevision: firmwareRevision)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

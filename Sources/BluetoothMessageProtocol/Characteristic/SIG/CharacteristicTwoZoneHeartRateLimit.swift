@@ -59,17 +59,27 @@ open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
                    uuidString: CharacteristicTwoZoneHeartRateLimit.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTwoZoneHeartRateLimit>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let zoneLimit: UInt8 = decoder.decodeUInt8(data)
+
+        let char = CharacteristicTwoZoneHeartRateLimit(zoneLimit: zoneLimit)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTwoZoneHeartRateLimit {
-        var decoder = DecodeData()
-
-        let zoneLimit: UInt8 = decoder.decodeUInt8(data)
-
-        return CharacteristicTwoZoneHeartRateLimit(zoneLimit: zoneLimit)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

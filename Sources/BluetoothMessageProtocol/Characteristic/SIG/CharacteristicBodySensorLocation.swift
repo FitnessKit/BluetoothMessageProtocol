@@ -54,17 +54,26 @@ open class CharacteristicBodySensorLocation: Characteristic {
                    uuidString: CharacteristicBodySensorLocation.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBodySensorLocation>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let location = BodyLocation(rawValue: decoder.decodeUInt8(data)) ?? .other
+
+        return.success(CharacteristicBodySensorLocation(sensorLocation: location) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBodySensorLocation {
-        var decoder = DecodeData()
-
-        let location = BodyLocation(rawValue: decoder.decodeUInt8(data)) ?? .other
-
-        return CharacteristicBodySensorLocation(sensorLocation: location)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

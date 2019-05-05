@@ -68,21 +68,31 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
                    uuidString: CharacteristicSupportedSpeedRange.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicSupportedSpeedRange>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let minimum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
+        let maximum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
+        let minimumIncrement = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
+
+        let char = CharacteristicSupportedSpeedRange(minimum: minimum,
+                                                     maximum: maximum,
+                                                     minimumIncrement: minimumIncrement)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSupportedSpeedRange {
-        var decoder = DecodeData()
-
-        let minimum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
-        let maximum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
-        let minimumIncrement = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
-
-        return CharacteristicSupportedSpeedRange(minimum: minimum,
-                                                 maximum: maximum,
-                                                 minimumIncrement: minimumIncrement)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

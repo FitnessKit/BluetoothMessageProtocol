@@ -81,18 +81,27 @@ open class CharacteristicHTTPStatusCode: Characteristic {
                    uuidString: CharacteristicHTTPStatusCode.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicHTTPStatusCode>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let statusCode = decoder.decodeUInt16(data)
+        let dataStatus = DataStatus(rawValue: decoder.decodeUInt8(data))
+
+        return.success(CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicHTTPStatusCode {
-        var decoder = DecodeData()
-
-        let statusCode = decoder.decodeUInt16(data)
-        let dataStatus = DataStatus(rawValue: decoder.decodeUInt8(data))
-
-        return CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

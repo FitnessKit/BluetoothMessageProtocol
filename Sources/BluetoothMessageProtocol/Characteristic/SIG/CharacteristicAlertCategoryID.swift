@@ -30,49 +30,58 @@ import FitnessUnits
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicAlertCategoryID: Characteristic {
-
+    
     /// Characteristic Name
     public static var name: String {
         return "Alert Category ID"
     }
-
+    
     /// Characteristic UUID
     public static var uuidString: String {
         return "2A43"
     }
-
+    
     /// Alert Type
     private(set) public var alertType: AlertCategory
-
+    
     /// Creates Alert Category ID Characteristic
     ///
     /// - Parameter alertType: AlertCategory
     public init(alertType: AlertCategory) {
         self.alertType = alertType
-
+        
         super.init(name: CharacteristicAlertCategoryID.name,
                    uuidString: CharacteristicAlertCategoryID.uuidString)
     }
-
+    
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicAlertCategoryID>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
+        
+        return.success(CharacteristicAlertCategoryID(alertType: alertType) as! C)
+    }
+    
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicAlertCategoryID {
-        var decoder = DecodeData()
-
-        let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
-
-        return CharacteristicAlertCategoryID(alertType: alertType)
+        return try decoder(data: data).get()
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
     open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(alertType.rawValue)
         
         return.success(msgData)

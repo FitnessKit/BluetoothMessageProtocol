@@ -56,17 +56,26 @@ open class CharacteristicLocalEastCoordinate: Characteristic {
                    uuidString: CharacteristicLocalEastCoordinate.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicLocalEastCoordinate>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let local = decoder.decodeInt32(data)
+
+        return.success(CharacteristicLocalEastCoordinate(localEastCoordinate: local) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicLocalEastCoordinate {
-        var decoder = DecodeData()
-
-        let local = decoder.decodeInt32(data)
-
-        return CharacteristicLocalEastCoordinate(localEastCoordinate: local)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

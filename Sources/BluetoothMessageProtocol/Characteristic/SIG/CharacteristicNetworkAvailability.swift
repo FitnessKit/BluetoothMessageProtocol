@@ -64,17 +64,26 @@ open class CharacteristicNetworkAvailability: Characteristic {
                    uuidString: CharacteristicNetworkAvailability.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicNetworkAvailability>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let avilability = Availability(rawValue: decoder.decodeUInt8(data)) ?? .notAvailable
+
+        return.success(CharacteristicNetworkAvailability(networkAvailable: avilability) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicNetworkAvailability {
-        var decoder = DecodeData()
-
-        let avilability = Availability(rawValue: decoder.decodeUInt8(data)) ?? .notAvailable
-
-        return CharacteristicNetworkAvailability(networkAvailable: avilability)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

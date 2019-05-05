@@ -89,26 +89,36 @@ open class CharacteristicCurrentTime: Characteristic {
                    uuidString: CharacteristicCurrentTime.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicCurrentTime>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let currenTime = DateTime.decode(data, decoder: &decoder)
+        
+        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
+        
+        let fractions = Float(decoder.decodeUInt8(data)) * ( 1 / 256)
+        
+        let reasons = AdjustReasons(rawValue: decoder.decodeUInt8(data))
+        
+        let char = CharacteristicCurrentTime(adjustmentReason: reasons,
+                                             currentTime: currenTime,
+                                             dayOfWeek: weekday,
+                                             fractionalSeconds: fractions)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicCurrentTime {
-        var decoder = DecodeData()
-
-        let currenTime = try DateTime.decode(data, decoder: &decoder)
-
-        let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        let fractions = Float(decoder.decodeUInt8(data)) * ( 1 / 256)
-
-        let reasons = AdjustReasons(rawValue: decoder.decodeUInt8(data))
-
-        return CharacteristicCurrentTime(adjustmentReason: reasons,
-                                         currentTime: currenTime,
-                                         dayOfWeek: weekday,
-                                         fractionalSeconds: fractions)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

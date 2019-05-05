@@ -182,8 +182,7 @@ public struct DateTime {
 
 public extension DateTime {
 
-    internal static func decode(_ data: Data, decoder: inout DecodeData) throws -> DateTime {
-        
+    internal static func decode(_ data: Data, decoder: inout DecodeData) -> DateTime {
         var year: UInt16?
 
         let yr = decoder.decodeUInt16(data)
@@ -218,11 +217,11 @@ public extension DateTime {
     /// - Parameter data: DateTime Data
     /// - Returns: DateTime Instance
     /// - Throws: BluetoothDecodeError
-    static func decode(data: Data) throws -> DateTime {
+    static func decode(data: Data) -> DateTime {
 
         var decoder = DecodeData()
 
-        return try decode(data, decoder: &decoder)
+        return decode(data, decoder: &decoder)
     }
 
 }

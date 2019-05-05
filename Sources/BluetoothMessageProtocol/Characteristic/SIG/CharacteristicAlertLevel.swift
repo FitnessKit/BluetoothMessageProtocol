@@ -55,7 +55,6 @@ open class CharacteristicAlertLevel: Characteristic {
 
         /// String Value for AlertLevel
         public var stringValue: String {
-
             switch self {
             case .noAlert:
                 return "No Alert"
@@ -80,17 +79,26 @@ open class CharacteristicAlertLevel: Characteristic {
                    uuidString: CharacteristicAlertLevel.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicAlertLevel>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8(data)) ?? .noAlert
+
+        return.success(CharacteristicAlertLevel(alertLevel: alertLevel) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicAlertLevel {
-        var decoder = DecodeData()
-
-        let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8(data)) ?? .noAlert
-
-        return CharacteristicAlertLevel(alertLevel: alertLevel)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

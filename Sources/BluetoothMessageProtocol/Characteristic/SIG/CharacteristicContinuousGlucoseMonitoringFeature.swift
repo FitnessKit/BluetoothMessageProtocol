@@ -155,32 +155,42 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
                    uuidString: CharacteristicContinuousGlucoseMonitoringFeature.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicContinuousGlucoseMonitoringFeature>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let featureVal = decoder.decodeUInt24(data)
+        let features: Features = Features(rawValue: UInt32(featureVal))
+        
+        let nibble = decoder.decodeNibble(data)
+        let testType = TestType(rawValue: nibble.lower) ?? .reserved
+        let sampleLocation = Location(rawValue: nibble.upper) ?? .notAvailable
+        
+        var crc: UInt16?
+        
+        let crcValue = decoder.decodeUInt16(data)
+        if crcValue != UInt16.max {
+            crc = crcValue
+        }
+        
+        let char = CharacteristicContinuousGlucoseMonitoringFeature(features: features,
+                                                                    testType: testType,
+                                                                    sampleLocation: sampleLocation,
+                                                                    crcValue: crc)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicContinuousGlucoseMonitoringFeature {
-        var decoder = DecodeData()
-
-        let featureVal = decoder.decodeUInt24(data)
-        let features: Features = Features(rawValue: UInt32(featureVal))
-
-        let nibble = decoder.decodeNibble(data)
-        let testType = TestType(rawValue: nibble.lower) ?? .reserved
-        let sampleLocation = Location(rawValue: nibble.upper) ?? .notAvailable
-
-        var crc: UInt16?
-
-        let crcValue = decoder.decodeUInt16(data)
-        if crcValue != UInt16.max {
-            crc = crcValue
-        }
-
-        return CharacteristicContinuousGlucoseMonitoringFeature(features: features,
-                                                                testType: testType,
-                                                                sampleLocation: sampleLocation,
-                                                                crcValue: crc)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -90,16 +90,15 @@ open class CharacteristicWeightMeasurement: Characteristic {
                    uuidString: CharacteristicWeightMeasurement.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicWeightMeasurement {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicWeightMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
-
+        
         var weight: Measurement<UnitMass>
         let value = Double(decoder.decodeUInt16(data))
         if flags.contains(.unitsImperial) {
@@ -109,12 +108,12 @@ open class CharacteristicWeightMeasurement: Characteristic {
             weight = Measurement(value: value.resolution(.removing, resolution: Resolution.oneFiveThousandth),
                                  unit: UnitMass.kilograms)
         }
-
+        
         var timestamp: DateTime?
         if flags.contains(.timestampPresent) {
-            timestamp = try DateTime.decode(data, decoder: &decoder)
+            timestamp = DateTime.decode(data, decoder: &decoder)
         }
-
+        
         var userID: User
         if flags.contains(.userIdPresent) {
             let value = decoder.decodeUInt8(data)
@@ -122,12 +121,12 @@ open class CharacteristicWeightMeasurement: Characteristic {
         } else {
             userID = User.unknown
         }
-
+        
         var bmi: Double?
         var height: Measurement<UnitLength>?
         if flags.contains(.bmiHeightPresent) {
             bmi = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-
+            
             let value = Double(decoder.decodeUInt16(data))
             if flags.contains(.unitsImperial) {
                 height = Measurement(value: value.resolution(.removing, resolution: Resolution.oneTenth),
@@ -137,12 +136,23 @@ open class CharacteristicWeightMeasurement: Characteristic {
                                      unit: UnitLength.meters)
             }
         }
+        
+        let char = CharacteristicWeightMeasurement(weight: weight,
+                                                   timestamp: timestamp,
+                                                   userId: userID,
+                                                   bmi: bmi,
+                                                   height: height)
+        return.success(char as! C)
+    }
 
-        return CharacteristicWeightMeasurement(weight: weight,
-                                               timestamp: timestamp,
-                                               userId: userID,
-                                               bmi: bmi,
-                                               height: height)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicWeightMeasurement {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

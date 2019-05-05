@@ -56,17 +56,26 @@ open class CharacteristicGender: Characteristic {
                    uuidString: CharacteristicGender.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicGender>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let gender = Gender(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
+
+        return.success(CharacteristicGender(gender: gender) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicGender {
-        var decoder = DecodeData()
-
-        let gender = Gender(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
-
-        return CharacteristicGender(gender: gender)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

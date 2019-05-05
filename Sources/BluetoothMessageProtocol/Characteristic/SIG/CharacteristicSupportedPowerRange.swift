@@ -71,23 +71,33 @@ open class CharacteristicSupportedPowerRange: Characteristic {
                    uuidString: CharacteristicSupportedPowerRange.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicSupportedPowerRange>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let minimum = FitnessMachinePowerType.create(decoder.decodeInt16(data))
+        let maximum = FitnessMachinePowerType.create(decoder.decodeInt16(data))
+        
+        let incrValue = Double(decoder.decodeUInt16(data))
+        let minimumIncrement = Measurement(value: incrValue, unit: UnitPower.watts)
+
+        let char = CharacteristicSupportedPowerRange(minimum: minimum,
+                                                     maximum: maximum,
+                                                     minimumIncrement: minimumIncrement)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSupportedPowerRange {
-        var decoder = DecodeData()
-
-        let minimum = FitnessMachinePowerType.create(decoder.decodeInt16(data))
-        let maximum = FitnessMachinePowerType.create(decoder.decodeInt16(data))
-
-        let incrValue = Double(decoder.decodeUInt16(data))
-        let minimumIncrement = Measurement(value: incrValue, unit: UnitPower.watts)
-
-        return CharacteristicSupportedPowerRange(minimum: minimum,
-                                                 maximum: maximum,
-                                                 minimumIncrement: minimumIncrement)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

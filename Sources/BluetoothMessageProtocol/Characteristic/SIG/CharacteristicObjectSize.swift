@@ -60,19 +60,27 @@ open class CharacteristicObjectSize: Characteristic {
                    uuidString: CharacteristicObjectSize.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicObjectSize>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let currentSize = decoder.decodeUInt32(data)
+        let allocatedSize = decoder.decodeUInt32(data)
+
+        return.success(CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicObjectSize {
-        var decoder = DecodeData()
-
-        let currentSize = decoder.decodeUInt32(data)
-        let allocatedSize = decoder.decodeUInt32(data)
-
-        return CharacteristicObjectSize(currentSize: currentSize,
-                                        allocatedSize: allocatedSize)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

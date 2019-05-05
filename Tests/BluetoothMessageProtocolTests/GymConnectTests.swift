@@ -23,9 +23,9 @@ class GymConnectTests: XCTestCase {
     
         let data = Data([10])
         
-        let blah = CharacteristicGymConnectEquipmentState.decoder(data: data)
+        let state = CharacteristicGymConnectEquipmentState.decoder(data: data)
 
-        switch blah {
+        switch state {
         case .success(let char):
             
             if char.state != .inUse {
@@ -35,16 +35,6 @@ class GymConnectTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
         
-        /// try old
-        do {
-            let char = try CharacteristicGymConnectEquipmentState.decode(data: data)
-            if char.state != .inUse {
-                XCTFail()
-            }
-
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
     }
     
     func testEquipmentType() {

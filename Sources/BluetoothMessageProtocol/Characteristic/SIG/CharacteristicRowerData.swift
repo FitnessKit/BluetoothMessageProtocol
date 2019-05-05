@@ -171,16 +171,15 @@ open class CharacteristicRowerData: Characteristic {
                    uuidString: CharacteristicRowerData.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicRowerData {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicRowerData>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
-
+        
         var strokeRate: Measurement<UnitCadence>?
         var strokeCount: UInt16?
         var averageStrokeRate: Measurement<UnitCadence>?
@@ -190,87 +189,98 @@ open class CharacteristicRowerData: Characteristic {
         var resistanceLevel: Double?
         var heartRate: UInt8?
         var mets: Double?
-
+        
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
             let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.two)
             strokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
-
+            
             strokeCount = decoder.decodeUInt16(data)
         }
-
+        
         if flags.contains(.averageStrokePresent) {
             let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.two)
             averageStrokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
         }
-
+        
         if flags.contains(.totalDistancePresent) {
             let value = Double(decoder.decodeUInt24(data))
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
-
-        let instantaneousPace = try decodeDuration(supported: flags,
-                                                   flag: .instantaneousPacePresent,
-                                                   unit: UnitDuration.seconds,
-                                                   data: data, decoder: &decoder)
-
-        let averagePace = try decodeDuration(supported: flags,
-                                             flag: .averagePacePresent,
-                                             unit: UnitDuration.seconds,
-                                             data: data, decoder: &decoder)
-
+        
+        let instantaneousPace = decodeDuration(supported: flags,
+                                               flag: .instantaneousPacePresent,
+                                               unit: UnitDuration.seconds,
+                                               data: data, decoder: &decoder)
+        
+        let averagePace = decodeDuration(supported: flags,
+                                         flag: .averagePacePresent,
+                                         unit: UnitDuration.seconds,
+                                         data: data, decoder: &decoder)
+        
         if flags.contains(.instantaneousPowerPresent) {
             iPower = FitnessMachinePowerType.create(decoder.decodeInt16(data))
         }
-
+        
         if flags.contains(.averagePowerPresent) {
             aPower = FitnessMachinePowerType.create(decoder.decodeInt16(data))
         }
-
+        
         if flags.contains(.resistanceLevelPresent) {
             resistanceLevel = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
-
+        
         var fitEnergy: FitnessMachineEnergy
         if flags.contains(.expendedEnergyPresent) {
-            fitEnergy = try FitnessMachineEnergy.decode(data, decoder: &decoder)
+            fitEnergy = FitnessMachineEnergy.decode(data, decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
-
+        
         if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8(data)
         }
-
+        
         if flags.contains(.metabolicEquivalentPresent) {
             mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
-
-        let elapsedTime = try decodeDuration(supported: flags,
-                                             flag: .elapsedTimePresent,
-                                             unit: UnitDuration.seconds,
-                                             data: data, decoder: &decoder)
-
-        let remainingTime = try decodeDuration(supported: flags,
-                                               flag: .remainingTimePresent,
-                                               unit: UnitDuration.seconds,
-                                               data: data, decoder: &decoder)
-
+        
+        let elapsedTime = decodeDuration(supported: flags,
+                                         flag: .elapsedTimePresent,
+                                         unit: UnitDuration.seconds,
+                                         data: data, decoder: &decoder)
+        
+        let remainingTime = decodeDuration(supported: flags,
+                                           flag: .remainingTimePresent,
+                                           unit: UnitDuration.seconds,
+                                           data: data, decoder: &decoder)
+        
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+        
+        let char =  CharacteristicRowerData(strokeRate: strokeRate,
+                                            strokeCount: strokeCount,
+                                            averageStrokeRate: averageStrokeRate,
+                                            totalDistance: totalDistance,
+                                            instantaneousPace: instantaneousPace,
+                                            averagePace: averagePace,
+                                            instantaneousPower: iPower,
+                                            averagePower: aPower,
+                                            resistanceLevel: resistanceLevel,
+                                            energy: fitEnergy,
+                                            heartRate: heartRate,
+                                            metabolicEquivalent: mets,
+                                            time: time)
+        return.success(char as! C)
+    }
 
-        return CharacteristicRowerData(strokeRate: strokeRate,
-                                       strokeCount: strokeCount,
-                                       averageStrokeRate: averageStrokeRate,
-                                       totalDistance: totalDistance,
-                                       instantaneousPace: instantaneousPace,
-                                       averagePace: averagePace,
-                                       instantaneousPower: iPower,
-                                       averagePower: aPower,
-                                       resistanceLevel: resistanceLevel,
-                                       energy: fitEnergy,
-                                       heartRate: heartRate,
-                                       metabolicEquivalent: mets,
-                                       time: time)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicRowerData {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
@@ -298,7 +308,7 @@ private extension CharacteristicRowerData {
                                       flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
-                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+                                      decoder: inout DecodeData) -> Measurement<UnitDuration>? {
 
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {

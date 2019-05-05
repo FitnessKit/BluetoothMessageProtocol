@@ -66,20 +66,29 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
                    uuidString: CharacteristicUnreadAlertStatus.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicUnreadAlertStatus>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let alertType = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
+        let numberOfAlerts = decoder.decodeUInt8(data)
+
+        let char = CharacteristicUnreadAlertStatus(alertType: alertType,
+                                                   numberOfAlerts: numberOfAlerts)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicUnreadAlertStatus {
-        var decoder = DecodeData()
-
-        let alertType = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
-
-        let numberOfAlerts = decoder.decodeUInt8(data)
-
-        return CharacteristicUnreadAlertStatus(alertType: alertType,
-                                               numberOfAlerts: numberOfAlerts)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

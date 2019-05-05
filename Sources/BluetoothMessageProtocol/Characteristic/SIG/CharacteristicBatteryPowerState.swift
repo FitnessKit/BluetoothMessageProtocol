@@ -54,17 +54,26 @@ open class CharacteristicBatteryPowerState: Characteristic {
                    uuidString: CharacteristicBatteryPowerState.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBatteryPowerState>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let state = BatteryPowerState(decoder.decodeUInt8(data))
+
+        return.success(CharacteristicBatteryPowerState(state: state) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBatteryPowerState {
-        var decoder = DecodeData()
-
-        let state = BatteryPowerState(decoder.decodeUInt8(data))
-
-        return CharacteristicBatteryPowerState(state: state)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

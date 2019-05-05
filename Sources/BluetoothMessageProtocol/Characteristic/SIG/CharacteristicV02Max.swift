@@ -56,19 +56,28 @@ open class CharacteristicV02Max: Characteristic {
                    uuidString: CharacteristicV02Max.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicV02Max>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = Double(decoder.decodeUInt8(data))
+        let consumption = Measurement(value: value, unit: UnitOxygenConsumption.consumption)
+
+        let char = CharacteristicV02Max(maxVO2: consumption)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicV02Max {
-        var decoder = DecodeData()
-
-        let value = Double(decoder.decodeUInt8(data))
-
-        let consumption = Measurement(value: value, unit: UnitOxygenConsumption.consumption)
-
-        return CharacteristicV02Max(maxVO2: consumption)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

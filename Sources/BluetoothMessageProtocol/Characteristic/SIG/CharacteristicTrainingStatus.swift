@@ -109,30 +109,40 @@ open class CharacteristicTrainingStatus: Characteristic {
                    uuidString: CharacteristicTrainingStatus.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicTrainingStatus {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTrainingStatus>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
         
         if flags.rawValue > 3 {
-            throw BluetoothDecodeError.general("Training Status Flags don't match spec.")
+            return.failure(BluetoothDecodeError.general("Training Status Flags don't match spec.")) 
         }
-
+        
         let status = TrainingStatus(rawValue: decoder.decodeUInt8(data)) ?? .other
-
+        
         var statusString: String?
         if flags.contains([.trainingStatusStringPresent]) {
             let stringData = Data(data[2..<data.count])
             statusString = stringData.safeStringValue
         }
 
-        return CharacteristicTrainingStatus(status: status,
-                                            statusString: statusString)
+        let char = CharacteristicTrainingStatus(status: status,
+                                                statusString: statusString)
+        return.success(char as! C)
+    }
+
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicTrainingStatus {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

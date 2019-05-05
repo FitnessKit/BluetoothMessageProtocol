@@ -54,18 +54,27 @@ open class CharacteristicDewPoint: Characteristic {
                    uuidString: CharacteristicDewPoint.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicDewPoint>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let dewpoint: Measurement = Measurement(value: Double(decoder.decodeInt8(data)),
+                                                unit: UnitTemperature.celsius)
+
+        return.success(CharacteristicDewPoint(dewPoint: dewpoint) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicDewPoint {
-        var decoder = DecodeData()
-
-        let dewpoint: Measurement = Measurement(value: Double(decoder.decodeInt8(data)),
-                                                unit: UnitTemperature.celsius)
-
-        return CharacteristicDewPoint(dewPoint: dewpoint)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

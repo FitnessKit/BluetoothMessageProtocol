@@ -69,24 +69,34 @@ open class CharacteristicPosition3D: Characteristic {
                    uuidString: CharacteristicPosition3D.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicPosition3D>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let lat = decoder.decodeInt32(data)
+        let lon = decoder.decodeInt32(data)
+        
+        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
+        
+        let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
+
+        let char = CharacteristicPosition3D(latitude: lat,
+                                            longitude: lon,
+                                            elevation: elevation)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicPosition3D {
-        var decoder = DecodeData()
-
-        let lat = decoder.decodeInt32(data)
-        let lon = decoder.decodeInt32(data)
-
-        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
-
-        return CharacteristicPosition3D(latitude: lat,
-                                        longitude: lon,
-                                        elevation: elevation)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -140,82 +140,92 @@ open class CharacteristicStairClimberData: Characteristic {
                    uuidString: CharacteristicStairClimberData.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicStairClimberData {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicStairClimberData>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
-
+        
         var floors: UInt16?
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
             floors = decoder.decodeUInt16(data)
         }
-
-        let stepsPerMinute = try decodeCadence(supported: flags,
-                                               flag: .stepPerMinutePresent,
-                                               unit: UnitCadence.stepsPerMinute,
-                                               data: data, decoder: &decoder)
-
-        let averageStepRate = try decodeCadence(supported: flags,
-                                                flag: .averageStepRatePresent,
-                                                unit: UnitCadence.stepsPerMinute,
-                                                data: data, decoder: &decoder)
-
+        
+        let stepsPerMinute = decodeCadence(supported: flags,
+                                           flag: .stepPerMinutePresent,
+                                           unit: UnitCadence.stepsPerMinute,
+                                           data: data, decoder: &decoder)
+        
+        let averageStepRate = decodeCadence(supported: flags,
+                                            flag: .averageStepRatePresent,
+                                            unit: UnitCadence.stepsPerMinute,
+                                            data: data, decoder: &decoder)
+        
         var positiveElevationGain: Measurement<UnitLength>?
         if flags.contains(.positiveElevationGainPresent) {
             let value = Double(decoder.decodeUInt16(data))
             positiveElevationGain = Measurement(value: value, unit: UnitLength.meters)
         }
-
+        
         var strideCount: UInt16?
         if flags.contains(.strideCountPresent) {
             strideCount = decoder.decodeUInt16(data)
         }
-
+        
         var fitEnergy: FitnessMachineEnergy
         if flags.contains(.expendedEnergyPresent) {
-            fitEnergy = try FitnessMachineEnergy.decode(data, decoder: &decoder)
+            fitEnergy = FitnessMachineEnergy.decode(data, decoder: &decoder)
         } else {
             fitEnergy = FitnessMachineEnergy(total: nil, perHour: nil, perMinute: nil)
         }
-
+        
         var heartRate: UInt8?
         if flags.contains(.heartRatePresent) {
             heartRate = decoder.decodeUInt8(data)
         }
-
+        
         var mets: Double?
         if flags.contains(.metabolicEquivalentPresent) {
             mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
         }
-
-        let elapsedTime = try decodeDuration(supported: flags,
-                                             flag: .elapsedTimePresent,
-                                             unit: UnitDuration.seconds,
-                                             data: data, decoder: &decoder)
-
-        let remainingTime = try decodeDuration(supported: flags,
-                                               flag: .remainingTimePresent,
-                                               unit: UnitDuration.seconds,
-                                               data: data, decoder: &decoder)
-
-
+        
+        let elapsedTime = decodeDuration(supported: flags,
+                                         flag: .elapsedTimePresent,
+                                         unit: UnitDuration.seconds,
+                                         data: data, decoder: &decoder)
+        
+        let remainingTime = decodeDuration(supported: flags,
+                                           flag: .remainingTimePresent,
+                                           unit: UnitDuration.seconds,
+                                           data: data, decoder: &decoder)
+        
+        
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+        
+        let char = CharacteristicStairClimberData(floors: floors,
+                                                  stepsPerMinute: stepsPerMinute,
+                                                  averageStepRate: averageStepRate,
+                                                  positiveElevationGain: positiveElevationGain,
+                                                  strideCount: strideCount,
+                                                  energy: fitEnergy,
+                                                  heartRate: heartRate,
+                                                  metabolicEquivalent: mets,
+                                                  time: time)
+        return.success(char as! C)
+    }
 
-        return CharacteristicStairClimberData(floors: floors,
-                                              stepsPerMinute: stepsPerMinute,
-                                              averageStepRate: averageStepRate,
-                                              positiveElevationGain: positiveElevationGain,
-                                              strideCount: strideCount,
-                                              energy: fitEnergy,
-                                              heartRate: heartRate,
-                                              metabolicEquivalent: mets,
-                                              time: time)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicStairClimberData {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
@@ -242,7 +252,7 @@ private extension CharacteristicStairClimberData {
                                      flag: Flags,
                                      unit: UnitCadence,
                                      data: Data,
-                                     decoder: inout DecodeData) throws -> Measurement<UnitCadence>? {
+                                     decoder: inout DecodeData) -> Measurement<UnitCadence>? {
 
         var cadenceValue: Measurement<UnitCadence>?
         if supported.contains(flag) {
@@ -266,7 +276,7 @@ private extension CharacteristicStairClimberData {
                                       flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
-                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+                                      decoder: inout DecodeData) -> Measurement<UnitDuration>? {
 
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {

@@ -93,24 +93,34 @@ open class CharacteristicPnPID: Characteristic {
                    uuidString: CharacteristicPnPID.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicPnPID>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let vendorIdSource = VendorSource(rawValue: decoder.decodeUInt8(data)) ?? .unknown
+        
+        let vendorId = decoder.decodeUInt16(data)
+        let productId = decoder.decodeUInt16(data)
+        let productVersion = decoder.decodeUInt16(data)
+        
+        let char = CharacteristicPnPID(vendorIdSource: vendorIdSource,
+                                       vendorId: vendorId,
+                                       productId: productId,
+                                       productVersion: productVersion)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicPnPID {
-        var decoder = DecodeData()
-
-        let vendorIdSource = VendorSource(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        let vendorId = decoder.decodeUInt16(data)
-        let productId = decoder.decodeUInt16(data)
-        let productVersion = decoder.decodeUInt16(data)
-
-        return CharacteristicPnPID(vendorIdSource: vendorIdSource,
-                                   vendorId: vendorId,
-                                   productId: productId,
-                                   productVersion: productVersion)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

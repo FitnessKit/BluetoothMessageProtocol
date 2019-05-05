@@ -74,56 +74,66 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
                    uuidString: CharacteristicHeartRateMeasurement.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicHeartRateMeasurement {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicHeartRateMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = HeartRateMeasurementFlags(decoder.decodeUInt8(data))
-
+        
         let contactStatus = flags.contact
-
+        
         var heartRate: Measurement = Measurement(value: 0, unit: UnitCadence.beatsPerMinute)
-
+        
         if flags.valueFormat == .uint16 {
             heartRate.value = Double(decoder.decodeUInt16(data))
         } else {
             heartRate.value = Double(decoder.decodeUInt8(data))
         }
-
+        
         var energy: Measurement<UnitEnergy>? = nil
-
+        
         if flags.isEnergyExpendedPresent {
             let expended = decoder.decodeUInt16(data)
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
-
+        
         var rrIntervals: [Measurement<UnitDuration>]?
-
+        
         //RR Intervals
         if flags.isRRIntervalPresent {
-
+            
             var seconds = decoder.decodeUInt16(data)
-
+            
             while seconds != 0 {
                 let interval = Measurement(value: (Double(seconds) / 1024), unit: UnitDuration.seconds)
-
+                
                 if rrIntervals == nil {
                     rrIntervals = [Measurement<UnitDuration>]()
                 }
                 rrIntervals?.append(interval)
-
+                
                 seconds = decoder.decodeUInt16(data)
             }
         }
+        
+        let char = CharacteristicHeartRateMeasurement(contactStatus: contactStatus,
+                                                      heartRate: heartRate,
+                                                      energyExpended: energy,
+                                                      rrIntervals: rrIntervals)
+        return.success(char as! C)
+    }
 
-        return CharacteristicHeartRateMeasurement(contactStatus: contactStatus,
-                                                  heartRate: heartRate,
-                                                  energyExpended: energy,
-                                                  rrIntervals: rrIntervals)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicHeartRateMeasurement {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

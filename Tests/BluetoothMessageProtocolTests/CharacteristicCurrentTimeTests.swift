@@ -37,24 +37,24 @@ class CharacteristicCurrentTimeTests: XCTestCase {
         do {
             let data = try char.encode().get()
 
-            do {
-                let newChar = try CharacteristicCurrentTime.decode(data: data)
-
+            switch CharacteristicCurrentTime.decoder(data: data) {
+            case .success(let newChar):
                 if newChar.adjustmentReason.contains(.manualTimeUpdate) == false {
                     XCTFail()
                 }
-
+                
                 if newChar.dayOfWeek != dw {
                     XCTFail()
                 }
-
+                
                 if newChar.currentTime != dt {
                     XCTFail()
                 }
 
-            } catch {
-                XCTFail()
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
             }
+            
 
         } catch {
             XCTFail()

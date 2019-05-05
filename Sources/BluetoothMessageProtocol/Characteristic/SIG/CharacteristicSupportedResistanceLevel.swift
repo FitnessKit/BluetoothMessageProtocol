@@ -68,23 +68,31 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
                    uuidString: CharacteristicSupportedResistanceLevel.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicSupportedResistanceLevel>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+        let maxValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+        let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+
+        let char = CharacteristicSupportedResistanceLevel(minimum: minValue,
+                                                          maximum: maxValue,
+                                                          minimumIncrement: incrValue)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSupportedResistanceLevel {
-        var decoder = DecodeData()
-
-        let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-
-        let maxValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-
-        let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-
-        return CharacteristicSupportedResistanceLevel(minimum: minValue,
-                                                      maximum: maxValue,
-                                                      minimumIncrement: incrValue)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

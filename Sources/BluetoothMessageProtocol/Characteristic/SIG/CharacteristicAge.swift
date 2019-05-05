@@ -30,49 +30,58 @@ import FitnessUnits
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 open class CharacteristicAge: Characteristic {
-
+    
     /// Characteristic Name
     public static var name: String {
         return "Age"
     }
-
+    
     /// Characteristic UUID
     public static var uuidString: String {
         return "2A80"
     }
-
+    
     /// Age in Years
     private(set) public var age: UInt8
-
+    
     /// Creates Age Characteristic
     ///
     /// - Parameter age: Age in years
     public init(age: UInt8) {
         self.age = age
-
+        
         super.init(name: CharacteristicAge.name,
                    uuidString: CharacteristicAge.uuidString)
     }
-
+    
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicAge>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let age: UInt8 = decoder.decodeUInt8(data)
+        
+        return.success(CharacteristicAge(age: age) as! C)
+    }
+    
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicAge {
-        var decoder = DecodeData()
-
-        let age: UInt8 = decoder.decodeUInt8(data)
-
-        return CharacteristicAge(age: age)
+        return try decoder(data: data).get()
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
     open override func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(age)
         
         return.success(msgData)

@@ -54,19 +54,28 @@ open class CharacteristicHumidity: Characteristic {
                    uuidString: CharacteristicHumidity.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicHumidity>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        
+        let humidity = Measurement(value: value, unit: UnitPercent.percent)
+
+        return.success(CharacteristicHumidity(humidity: humidity) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicHumidity {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let humidity = Measurement(value: value, unit: UnitPercent.percent)
-
-        return CharacteristicHumidity(humidity: humidity)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

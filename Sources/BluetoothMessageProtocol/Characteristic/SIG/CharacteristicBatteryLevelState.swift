@@ -64,30 +64,40 @@ open class CharacteristicBatteryLevelState: Characteristic {
                    uuidString: CharacteristicBatteryLevelState.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBatteryLevelState>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let percent = Double(decoder.decodeUInt8(data))
+        
+        let level = Measurement(value: percent, unit: UnitPercent.percent)
+        
+        //Might be better to check the size of data..
+        //but if they are all unknown it is the same as not being there..
+        var state: BatteryPowerState?
+        
+        let stateValue = decoder.decodeUInt8(data)
+        
+        if stateValue > 0 {
+            state = BatteryPowerState(stateValue)
+        }
+
+        let char = CharacteristicBatteryLevelState(level: level,
+                                                   state: state)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevelState {
-        var decoder = DecodeData()
-
-        let percent = Double(decoder.decodeUInt8(data))
-
-        let level = Measurement(value: percent, unit: UnitPercent.percent)
-
-        //Might be better to check the size of data.. 
-        //but if they are all unknown it is the same as not being there..
-        var state: BatteryPowerState?
-
-        let stateValue = decoder.decodeUInt8(data)
-
-        if stateValue > 0 {
-            state = BatteryPowerState(stateValue)
-        }
-
-        return CharacteristicBatteryLevelState(level: level,
-                                               state: state)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

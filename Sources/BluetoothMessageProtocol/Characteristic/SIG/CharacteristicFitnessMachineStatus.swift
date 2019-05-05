@@ -59,91 +59,100 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
                    uuidString: CharacteristicFitnessMachineStatus.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicFitnessMachineStatus {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicFitnessMachineStatus>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         var statusValue: FitnessMachineStatus?
-
+        
         let opCode = FitnessMachineStatusCode(rawValue: decoder.decodeUInt8(data))
-
+        
         if let opCode = opCode {
             switch opCode {
             case .stopPauseByUser:
                 let control = FitnessMachineStopPauseType(rawValue: decoder.decodeUInt8(data)) ?? .reserved
                 statusValue = FitnessMachineStatusStopPause(controlInformation: control)
-
+                
             case .targetSpeedChanged:
                 let speed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetSpeed(speed: speed)
-
+                
             case .targetInclineChanaged:
                 let incline = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
                 statusValue = FitnessMachineStatusTargetIncline(incline: incline)
-
+                
             case .targetResistanceLevelChanged:
                 let rLevel = FitnessMachineTargetResistanceLevelType.create(decoder.decodeInt16(data))
                 statusValue = FitnessMachineStatusTargetResistanceLevel(resistanceLevel: rLevel)
-
+                
             case .targetPowerChanged:
                 let power = FitnessMachinePowerType.create(decoder.decodeInt16(data))
                 statusValue = FitnessMachineStatusTargetPower(power: power)
-
+                
             case .targetHeartRateChanged:
                 let hr = decoder.decodeUInt8(data)
                 statusValue = FitnessMachineStatusTargetHeartRate(heartrate: hr)
-
+                
             case .targetedExpendedEnergyChanged:
                 let energy = FitnessMachineTargetExpendedEnergy.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetedExpendedEnergyChanged(energy: energy)
-
+                
             case .targetedStepsChanged:
                 let value = decoder.decodeUInt16(data)
                 statusValue = FitnessMachineStatusTargetedSteps(steps: value)
-
+                
             case .targetedStridesChanged:
                 let value = decoder.decodeUInt16(data)
                 statusValue = FitnessMachineStatusTargetedStrides(strides: value)
-
+                
             case .targetedDistanceChanged:
                 let distance = FitnessMachineTargetDistance.create(UInt32(decoder.decodeUInt24(data)))
                 statusValue = FitnessMachineStatusTargetedDistance(distance: distance)
-
+                
             case .targetedTrainingTimeChanged:
                 let time = FitnessMachineTargetTime.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
-
+                
             case .targetedTimeInTwoHrZoneChanged:
-                return try decodeTwoHrZoneChanged(data: data, decoder: &decoder)
-
+                return.success(decodeTwoHrZoneChanged(data: data, decoder: &decoder) as! C)
+                
             case .targetedTimeInThreeHrZoneChanged:
-                return try decodeThreeHrZoneChanged(data: data, decoder: &decoder)
-
+                return.success(decodeThreeHrZoneChanged(data: data, decoder: &decoder) as! C)
+                
             case .targetedTimeInFiveHrZoneChanged:
-                return try decodeFiveHrZoneChanged(data: data, decoder: &decoder)
-
+                return.success(decodeFiveHrZoneChanged(data: data, decoder: &decoder) as! C)
+                
             case .wheelCircumferenceChanged:
                 let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusWheelCircumference(circumference: circumference)
-
+                
             case .spinDownStatus:
                 let status = FitnessMachineStatusSpinDown.SpinDownStatus(rawValue: decoder.decodeUInt8(data)) ?? .reserved
                 statusValue = FitnessMachineStatusSpinDown(status: status)
-
+                
             case .targetedCadenceChanged:
                 let cadence = FitnessMachineTargetCadence.create(decoder.decodeUInt16(data))
                 statusValue = FitnessMachineStatusTargetedCadence(cadence: cadence)
-
+                
             default:
                 statusValue = FitnessMachineStatusGeneric(code: opCode)
             }
         }
+        
+        return.success(CharacteristicFitnessMachineStatus(status: statusValue) as! C)
+    }
 
-        return CharacteristicFitnessMachineStatus(status: statusValue)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicFitnessMachineStatus {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
@@ -164,8 +173,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
     /// - Throws: BluetoothDecodeError
-    private class func decodeTwoHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
-
+    private class func decodeTwoHrZoneChanged(data: Data, decoder: inout DecodeData) -> CharacteristicFitnessMachineStatus {
         var statusValue: FitnessMachineStatus?
 
         let burn = decoder.decodeUInt16(data)
@@ -183,8 +191,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
     /// - Throws: BluetoothDecodeError
-    private class func decodeThreeHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
-
+    private class func decodeThreeHrZoneChanged(data: Data, decoder: inout DecodeData) -> CharacteristicFitnessMachineStatus {
         var statusValue: FitnessMachineStatus?
 
         let light = decoder.decodeUInt16(data)
@@ -205,8 +212,7 @@ private extension CharacteristicFitnessMachineStatus {
     ///   - decoder: Decoder
     /// - Returns: CharacteristicFitnessMachineStatus
     /// - Throws: BluetoothDecodeError
-    private class func decodeFiveHrZoneChanged(data: Data, decoder: inout DecodeData) throws -> CharacteristicFitnessMachineStatus {
-
+    private class func decodeFiveHrZoneChanged(data: Data, decoder: inout DecodeData) -> CharacteristicFitnessMachineStatus {
         var statusValue: FitnessMachineStatus?
 
         let veryLight = decoder.decodeUInt16(data)

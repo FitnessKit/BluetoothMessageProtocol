@@ -58,19 +58,28 @@ open class CharacteristicMeasurementInterval: Characteristic {
                    uuidString: CharacteristicMeasurementInterval.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicMeasurementInterval>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = Double(decoder.decodeUInt16(data))
+        
+        let interval = Measurement(value: value, unit: UnitDuration.seconds)
+
+        return.success(CharacteristicMeasurementInterval(interval: interval) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMeasurementInterval {
-        var decoder = DecodeData()
-
-        let value = Double(decoder.decodeUInt16(data))
-
-        let interval = Measurement(value: value, unit: UnitDuration.seconds)
-
-        return CharacteristicMeasurementInterval(interval: interval)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

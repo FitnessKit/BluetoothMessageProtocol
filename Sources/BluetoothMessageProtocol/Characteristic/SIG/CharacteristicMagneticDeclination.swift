@@ -58,19 +58,28 @@ open class CharacteristicMagneticDeclination: Characteristic {
                    uuidString: CharacteristicMagneticDeclination.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicMagneticDeclination>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        
+        let dec = Measurement(value: value, unit: UnitAngle.degrees)
+
+        return.success(CharacteristicMagneticDeclination(declination: dec) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMagneticDeclination {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let dec = Measurement(value: value, unit: UnitAngle.degrees)
-
-        return CharacteristicMagneticDeclination(declination: dec)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

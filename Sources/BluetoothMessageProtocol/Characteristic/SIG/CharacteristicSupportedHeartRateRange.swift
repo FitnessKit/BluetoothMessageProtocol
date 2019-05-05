@@ -72,21 +72,31 @@ open class CharacteristicSupportedHeartRateRange: Characteristic {
                    uuidString: CharacteristicSupportedHeartRateRange.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicSupportedHeartRateRange>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let minimum = decoder.decodeUInt8(data)
+        let maximum = decoder.decodeUInt8(data)
+        let minimumIncrement = decoder.decodeUInt8(data)
+
+        let char = CharacteristicSupportedHeartRateRange(minimum: minimum,
+                                                         maximum: maximum,
+                                                         minimumIncrement: minimumIncrement)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSupportedHeartRateRange {
-        var decoder = DecodeData()
-
-        let minimum = decoder.decodeUInt8(data)
-        let maximum = decoder.decodeUInt8(data)
-        let minimumIncrement = decoder.decodeUInt8(data)
-
-        return CharacteristicSupportedHeartRateRange(minimum: minimum,
-                                                     maximum: maximum,
-                                                     minimumIncrement: minimumIncrement)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

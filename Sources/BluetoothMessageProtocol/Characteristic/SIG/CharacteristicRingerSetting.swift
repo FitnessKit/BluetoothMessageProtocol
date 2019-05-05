@@ -64,17 +64,27 @@ open class CharacteristicRingerSetting: Characteristic {
                    uuidString: CharacteristicRingerSetting.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicRingerSetting>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let setting = RingerSetting(rawValue: decoder.decodeUInt8(data)) ?? .silent
+
+        let char = CharacteristicRingerSetting(setting: setting)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicRingerSetting {
-        var decoder = DecodeData()
-
-        let setting = RingerSetting(rawValue: decoder.decodeUInt8(data)) ?? .silent
-
-        return CharacteristicRingerSetting(setting: setting)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

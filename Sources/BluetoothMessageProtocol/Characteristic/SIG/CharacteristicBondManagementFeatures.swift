@@ -101,17 +101,26 @@ open class CharacteristicBondManagementFeatures: Characteristic {
                    uuidString: CharacteristicBondManagementFeatures.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicBondManagementFeatures>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let features = Flags(rawValue: decoder.decodeUInt32(data))
+
+        return.success(CharacteristicBondManagementFeatures(features: features) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBondManagementFeatures {
-        var decoder = DecodeData()
-
-        let features = Flags(rawValue: decoder.decodeUInt32(data))
-
-        return CharacteristicBondManagementFeatures(features: features)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

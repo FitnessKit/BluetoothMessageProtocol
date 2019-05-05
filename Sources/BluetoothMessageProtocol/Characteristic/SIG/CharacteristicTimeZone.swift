@@ -58,19 +58,28 @@ open class CharacteristicTimeZone: Characteristic {
                    uuidString: CharacteristicTimeZone.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTimeZone>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let value = decoder.decodeInt8(data)
+        let timezone = BluetoothTimeZone(rawValue: value) ?? .unknown
+
+        let char = CharacteristicTimeZone(timeZone: timezone)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTimeZone {
-        var decoder = DecodeData()
-
-        let value = decoder.decodeInt8(data)
-
-        let timezone = BluetoothTimeZone(rawValue: value) ?? .unknown
-
-        return CharacteristicTimeZone(timeZone: timezone)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

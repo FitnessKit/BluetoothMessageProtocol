@@ -71,23 +71,33 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
                    uuidString: CharacteristicSupportedInclinationRange.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicSupportedInclinationRange {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicSupportedInclinationRange>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
         let maximum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
         
         let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPercent.percent)
 
-        return CharacteristicSupportedInclinationRange(minimum: minimum,
-                                                       maximum: maximum,
-                                                       minimumIncrement: minimumIncrement)
+        let char = CharacteristicSupportedInclinationRange(minimum: minimum,
+                                                           maximum: maximum,
+                                                           minimumIncrement: minimumIncrement)
+        return.success(char as! C)
+    }
+
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicSupportedInclinationRange {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -54,15 +54,27 @@ open class CharacteristicObjectName: Characteristic {
                    uuidString: CharacteristicObjectName.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicObjectName>(data: Data) -> Result<C, BluetoothDecodeError> {
+
+        if let objectName = data.safeStringValue {
+            return.success(CharacteristicObjectName(objectName: objectName) as! C)
+        }
+        
+        return.failure(.invalidStringValue)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicObjectName {
-        let objectName = data.safeStringValue ?? ""
-
-        return CharacteristicObjectName(objectName: objectName)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

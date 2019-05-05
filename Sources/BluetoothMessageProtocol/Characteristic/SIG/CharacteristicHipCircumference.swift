@@ -56,19 +56,28 @@ open class CharacteristicHipCircumference: Characteristic {
                    uuidString: CharacteristicHipCircumference.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicHipCircumference>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        
+        let hipCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
+
+        return.success(CharacteristicHipCircumference(hipCircumference: hipCircumference) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicHipCircumference {
-        var decoder = DecodeData()
-
-        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
-
-        let hipCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
-
-        return CharacteristicHipCircumference(hipCircumference: hipCircumference)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
