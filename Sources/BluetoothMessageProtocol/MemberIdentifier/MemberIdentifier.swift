@@ -41,7 +41,7 @@ open class MemberIdentifier: Encodable {
     /// Creates Bluetooth 16 Bit UUIDs For Members
     ///
     /// - Parameters:
-    ///   - assignedNumber: Assigned UUUID
+    ///   - assignedNumber: Assigned UUID
     ///   - name: Assigned Company Name
     public init(assignedNumber: UInt16, name: String) {
 

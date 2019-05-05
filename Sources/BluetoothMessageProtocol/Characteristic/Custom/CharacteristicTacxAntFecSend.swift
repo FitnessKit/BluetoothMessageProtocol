@@ -55,14 +55,23 @@ open class CharacteristicTacxAntFecSend: Characteristic {
                    uuidString: CharacteristicTacxAntFecSend.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTacxAntFecSend>(data: Data) -> Result<C, BluetoothDecodeError> {
+        /// We don't need to ever decode it
+        return.failure(BluetoothDecodeError.notSupported) 
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTacxAntFecSend {
-        /// We don't need to ever decode it
-        throw BluetoothDecodeError.notSupported
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

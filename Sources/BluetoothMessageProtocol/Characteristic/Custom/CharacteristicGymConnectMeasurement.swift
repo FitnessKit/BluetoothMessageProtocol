@@ -211,22 +211,21 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
                    uuidString: CharacteristicGymConnectMeasurement.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicGymConnectMeasurement {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicGymConnectMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         var flagsOne: FlagsOne?
         var flagsTwo: FlagsTwo?
         var flagsThree: FlagsThree?
         //var flagsFour: FlagsFour?
-
+        
         var firstUpdatePacket: Bool = false
         var finalUpdatePacket: Bool = false
-
+        
         var heartRate: UInt8?
         var intensity: UInt8?
         var resistnace: Double?
@@ -248,203 +247,213 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
         var totalFloors: Double?
         var totalLaps: Double?
         var movementLength: Measurement<UnitLength>?
-
-
+        
         let flagsZero = Flags(rawValue: decoder.decodeUInt8(data))
-
+        
         if flagsZero.contains(.firstPacketOfUpdate) {
             firstUpdatePacket = true
         }
-
+        
         if flagsZero.contains(.finalPacketOfUpdate) {
             finalUpdatePacket = true
         }
-
+        
         /// C0
         if flagsZero.contains(.flagsOnePresent) {
             flagsOne = FlagsOne(rawValue: decoder.decodeUInt8(data))
         }
-
+        
         /// C1
         if flagsZero.contains(.flagsTwoPresent) {
             flagsTwo = FlagsTwo(rawValue: decoder.decodeUInt8(data))
         }
-
+        
         /// C2
         if flagsZero.contains(.flagsThreePresent) {
             flagsThree = FlagsThree(rawValue: decoder.decodeUInt8(data))
         }
-
+        
         /// C3
         if flagsZero.contains(.flagsFourPresent) {
             _ = FlagsFour(rawValue: decoder.decodeUInt8(data))
         }
-
+        
         /// C4
-        let elapsedTime = try decodeDuration(supported: flagsZero,
-                                             flag: .elapsedWorkoutTimePresent,
-                                             unit: UnitDuration.seconds,
-                                             data: data, decoder: &decoder)
-
+        let elapsedTime = decodeDuration(supported: flagsZero,
+                                         flag: .elapsedWorkoutTimePresent,
+                                         unit: UnitDuration.seconds,
+                                         data: data, decoder: &decoder)
+        
         /// C5
-        let remainingTime = try decodeDuration(supported: flagsZero,
-                                               flag: .remainingWorkoutTimePresent,
-                                               unit: UnitDuration.seconds,
-                                               data: data, decoder: &decoder)
-
+        let remainingTime = decodeDuration(supported: flagsZero,
+                                           flag: .remainingWorkoutTimePresent,
+                                           unit: UnitDuration.seconds,
+                                           data: data, decoder: &decoder)
+        
         /// Flags One
         if let flags = flagsOne {
             /// C6
             if flags.contains(.heartRate) {
                 heartRate = decoder.decodeUInt8(data)
             }
-
+            
             /// C7
             if flags.contains(.intensity) {
                 intensity = decoder.decodeUInt8(data)
             }
-
+            
             /// C8
             if flags.contains(.resistance) {
                 resistnace = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
             }
-
+            
             /// C9
             if flags.contains(.speed) {
                 speed = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
             }
-
+            
             /// C10
             if flags.contains(.cadence) {
                 cadence = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
             }
-
+            
             /// C11
             if flags.contains(.totalMovements) {
                 totalMovements = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.one)
             }
-
+            
             /// C12
             if flags.contains(.totalHorizontalDistance) {
                 let value = Double(decoder.decodeUInt24(data))
                 totalHorizontalDistance = Measurement(value: value, unit: UnitLength.meters)
             }
-
+            
             /// C13
             if flags.contains(.totalVerticalDistance) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
                 totalVerticalDistance = Measurement(value: value, unit: UnitLength.meters)
             }
         }
-
+        
         /// Flags Two
         if let flags = flagsTwo {
-
+            
             /// C14
             if flags.contains(.totalNegitiveVerticalDistance) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
                 totalNegitiveVerticalDistance = Measurement(value: value, unit: UnitLength.meters)
             }
-
+            
             /// C15
             if flags.contains(.totalEnergy) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.one)
                 totalEnergy = Measurement(value: value, unit: UnitEnergy.kilocalories)
             }
-
+            
             /// C16
             if flags.contains(.energyRate) {
                 let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: Resolution.one)
                 energyPerHour = Measurement(value: value, unit: UnitEnergy.kilocalories)
             }
-
+            
             /// C17
             if flags.contains(.mets) {
                 metabolicEquivalent = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
             }
-
+            
             /// C18
             if flags.contains(.power) {
                 power = FitnessMachinePowerType.create(decoder.decodeInt16(data))
             }
-
+            
             /// C19
             if flags.contains(.torque) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
                 torque = Measurement(value: value, unit: UnitTorque.newtonMeter)
             }
-
+            
             /// C20
             if flags.contains(.gear) {
                 currentGear = decoder.decodeUInt8(data)
             }
-
+            
             /// C21
             if flags.contains(.grade) {
                 let value = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
                 grade = Measurement(value: value, unit: UnitPercent.percent)
             }
         }
-
+        
         /// Flags Three
         if let flags = flagsThree {
-
+            
             /// C22
             if flags.contains(.angle) {
                 let value = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 rampAngle = Measurement(value: value, unit: UnitAngle.degrees)
             }
-
+            
             /// C23
             if flags.contains(.floorRate) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
                 floorRate = Measurement(value: value, unit: UnitCadence.floorsPerMinute)
             }
-
+            
             /// C24
             if flags.contains(.totalFloors) {
                 totalFloors = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
             }
-
+            
             /// C25
             if flags.contains(.totalLaps) {
                 totalLaps = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.one)
             }
-
+            
             /// C26
             if flags.contains(.movementLength) {
                 let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneThousandth)
                 movementLength = Measurement(value: value, unit: UnitLength.millimeters)
             }
         }
-
+        
         /// Workout Time
         let time = FitnessMachineTime(elapsed: elapsedTime, remaining: remainingTime)
+        
+        let char = CharacteristicGymConnectMeasurement(firstUpdatePacket: firstUpdatePacket,
+                                                       finalUpdatePacket: finalUpdatePacket,
+                                                       time: time,
+                                                       heartRate: heartRate,
+                                                       intensity: intensity,
+                                                       resistnace: resistnace,
+                                                       speed: speed,
+                                                       cadence: cadence,
+                                                       totalMovements: totalMovements,
+                                                       totalHorizontalDistance: totalHorizontalDistance,
+                                                       totalVerticalDistance: totalVerticalDistance,
+                                                       totalNegitiveVerticalDistance: totalNegitiveVerticalDistance,
+                                                       totalEnergy: totalEnergy,
+                                                       energyPerHour: energyPerHour,
+                                                       metabolicEquivalent: metabolicEquivalent,
+                                                       power: power,
+                                                       torque: torque,
+                                                       currentGear: currentGear,
+                                                       grade: grade,
+                                                       rampAngle: rampAngle,
+                                                       floorRate: floorRate,
+                                                       totalFloors: totalFloors,
+                                                       totalLaps: totalLaps,
+                                                       movementLength: movementLength)
+        return.success(char as! C)
+    }
 
-        return CharacteristicGymConnectMeasurement(firstUpdatePacket: firstUpdatePacket,
-                                                   finalUpdatePacket: finalUpdatePacket,
-                                                   time: time,
-                                                   heartRate: heartRate,
-                                                   intensity: intensity,
-                                                   resistnace: resistnace,
-                                                   speed: speed,
-                                                   cadence: cadence,
-                                                   totalMovements: totalMovements,
-                                                   totalHorizontalDistance: totalHorizontalDistance,
-                                                   totalVerticalDistance: totalVerticalDistance,
-                                                   totalNegitiveVerticalDistance: totalNegitiveVerticalDistance,
-                                                   totalEnergy: totalEnergy,
-                                                   energyPerHour: energyPerHour,
-                                                   metabolicEquivalent: metabolicEquivalent,
-                                                   power: power,
-                                                   torque: torque,
-                                                   currentGear: currentGear,
-                                                   grade: grade,
-                                                   rampAngle: rampAngle,
-                                                   floorRate: floorRate,
-                                                   totalFloors: totalFloors,
-                                                   totalLaps: totalLaps,
-                                                   movementLength: movementLength)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicGymConnectMeasurement {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
@@ -577,7 +586,7 @@ private extension CharacteristicGymConnectMeasurement {
                                       flag: Flags,
                                       unit: UnitDuration,
                                       data: Data,
-                                      decoder: inout DecodeData) throws -> Measurement<UnitDuration>? {
+                                      decoder: inout DecodeData) -> Measurement<UnitDuration>? {
 
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {

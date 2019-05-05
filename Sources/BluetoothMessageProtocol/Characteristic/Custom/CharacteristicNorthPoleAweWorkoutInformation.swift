@@ -116,29 +116,28 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
                    uuidString: CharacteristicNorthPoleAweWorkoutInformation.uuidString)
     }
 
-    /// Deocdes the BLE Data
+    /// Decodes Characteristic Data into Characteristic
     ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweWorkoutInformation {
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicNorthPoleAweWorkoutInformation>(data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
-
+        
         let flags = Flags(decoder.decodeUInt8(data))
-
+        
         var points: UInt16? = nil
-
+        
         if flags.isPointsPresent == true {
             points = decoder.decodeUInt16(data)
         }
-
+        
         var energy: Measurement<UnitEnergy>? = nil
-
+        
         if flags.isEnergyExpendedPresent == true {
             let expended = decoder.decodeUInt16(data)
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
-
+        
         var command: UInt8? = nil
         if flags.isCommandPresent == true {
             let value = decoder.decodeUInt8(data)
@@ -146,10 +145,21 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
                 command = value
             }
         }
+        
+        let char = CharacteristicNorthPoleAweWorkoutInformation(points: points,
+                                                                energyExpended: energy,
+                                                                command: command)
+        return.success(char as! C)
+    }
 
-        return CharacteristicNorthPoleAweWorkoutInformation(points: points,
-                                                            energyExpended: energy,
-                                                            command: command)
+    /// Deocdes the BLE Data
+    ///
+    /// - Parameter data: Data from sensor
+    /// - Returns: Characteristic Instance
+    /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
+    open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweWorkoutInformation {
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

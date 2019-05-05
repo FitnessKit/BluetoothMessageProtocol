@@ -27,8 +27,8 @@ import Foundation
 /// Bluetooth Characteristic base Class
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class Characteristic: BluetoothEncodable {
-
+open class Characteristic: CharacteristicCodable {
+    
     /// Name of the Characteristic
     open internal(set) var name: String
 
@@ -45,21 +45,21 @@ open class Characteristic: BluetoothEncodable {
         self.name = name
         self.uuidString = uuidString
     }
-
-//    /// Validates the BLE Data
-//    ///
-//    /// - Parameter data: Data from sensor
-//    /// - Returns: Bool value based on validation
-//    /// - Throws: Error
-//    open class func validate(data: Data) throws -> Bool {
-//        fatalError("*** You must override in your class.")
-//    }
+    
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open class func decoder<C: Characteristic>(data: Data) -> Result<C, BluetoothDecodeError> {
+        fatalError("*** You must override in your class.")
+    }
 
     /// Deocdes the Characteristic Data
     ///
     /// - Parameter data: Data from sensor characteristic
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open class func decode(data: Data) throws -> Characteristic {
         fatalError("*** You must override in your class.")
     }

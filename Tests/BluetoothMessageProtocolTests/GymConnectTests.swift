@@ -18,6 +18,35 @@ class GymConnectTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    
+    func testDecodeCharacteristicGymConnectEquipmentState() {
+    
+        let data = Data([10])
+        
+        let blah = CharacteristicGymConnectEquipmentState.decoder(data: data)
+
+        switch blah {
+        case .success(let char):
+            
+            if char.state != .inUse {
+                XCTFail()
+            }
+        case .failure(let error):
+            XCTFail(error.localizedDescription)
+        }
+        
+        /// try old
+        do {
+            let char = try CharacteristicGymConnectEquipmentState.decode(data: data)
+            if char.state != .inUse {
+                XCTFail()
+            }
+
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
     func testEquipmentType() {
 
         for idx: UInt8 in 128...143 {
@@ -99,6 +128,7 @@ class GymConnectTests: XCTestCase {
 
 
     static var allTests = [
+        ("testDecodeCharacteristicGymConnectEquipmentState", testDecodeCharacteristicGymConnectEquipmentState),
         ("testEquipmentType", testEquipmentType),
         ("testEquipmentState", testEquipmentState),
 

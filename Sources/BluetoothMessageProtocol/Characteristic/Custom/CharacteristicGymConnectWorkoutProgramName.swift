@@ -54,15 +54,24 @@ open class CharacteristicGymConnectWorkoutProgramName: Characteristic {
                    uuidString: CharacteristicGymConnectWorkoutProgramName.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicGymConnectWorkoutProgramName>(data: Data) -> Result<C, BluetoothDecodeError> {
+        let name = data.safeStringValue ?? ""
+        
+        return.success(CharacteristicGymConnectWorkoutProgramName(programName: name) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicGymConnectWorkoutProgramName {
-        let name = data.safeStringValue ?? ""
-
-        return CharacteristicGymConnectWorkoutProgramName(programName: name)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

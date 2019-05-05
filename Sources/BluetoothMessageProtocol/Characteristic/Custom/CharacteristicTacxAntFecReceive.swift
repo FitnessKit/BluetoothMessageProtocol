@@ -55,23 +55,32 @@ open class CharacteristicTacxAntFecReceive: Characteristic {
                    uuidString: CharacteristicTacxAntFecReceive.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicTacxAntFecReceive>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let sync = decoder.decodeUInt8(data)
+        
+        /// Check to make sure the Sync byte is correct
+        guard sync == 0xA4 else {
+            return.failure(BluetoothDecodeError.general("ANT Sync mismatch"))
+        }
+        
+        /// Just return the data
+        return.success(CharacteristicTacxAntFecReceive(antData: data) as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTacxAntFecReceive {
-        var decoder = DecodeData()
-
-        let sync = decoder.decodeUInt8(data)
-
-        /// Check to make sure the Sync byte is correct
-        guard sync == 0xA4 else {
-            throw BluetoothDecodeError.general("ANT Sync mismatch")
-        }
-
-        /// Just return the data
-        return CharacteristicTacxAntFecReceive(antData: data)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

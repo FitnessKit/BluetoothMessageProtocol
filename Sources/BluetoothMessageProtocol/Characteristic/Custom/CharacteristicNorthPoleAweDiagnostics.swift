@@ -104,43 +104,51 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
                    uuidString: CharacteristicNorthPoleAweDiagnostics.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicNorthPoleAweDiagnostics>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let swaps = decoder.decodeUInt16(data)
+        
+        let programDate = Date(timeIntervalSince1970: TimeInterval(decoder.decodeUInt32(data)))
+        let totalOpTime = decoder.decodeUInt32(data)
+        
+        var advertTime: Measurement<UnitDuration>
+        let advertValue = Double(decoder.decodeUInt32(data))
+        advertTime = Measurement(value: advertValue, unit: UnitDuration.seconds)
+        
+        var connectTime: Measurement<UnitDuration>
+        let connectValue = Double(decoder.decodeUInt32(data))
+        connectTime = Measurement(value: connectValue, unit: UnitDuration.seconds)
+        
+        let successFW = decoder.decodeUInt8(data)
+        let failedFW = decoder.decodeUInt8(data)
+        
+        let percent = Double(decoder.decodeUInt8(data))
+        let battLvl: Measurement = Measurement(value: percent, unit: UnitPercent.percent)
+        
+        let char = CharacteristicNorthPoleAweDiagnostics(batterySwaps: swaps,
+                                                         dateProgrammed: programDate,
+                                                         totalOperatingtime: totalOpTime,
+                                                         advertisingTime: advertTime,
+                                                         connectedTime: connectTime,
+                                                         succesfulFirmwareUpdateEvents: successFW,
+                                                         failedFirmwareUpdateEvents: failedFW,
+                                                         lastBatteryLevel: battLvl)
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweDiagnostics {
-
-        var decoder = DecodeData()
-
-        let swaps = decoder.decodeUInt16(data)
-
-        let programDate = Date(timeIntervalSince1970: TimeInterval(decoder.decodeUInt32(data)))
-        let totalOpTime = decoder.decodeUInt32(data)
-
-        var advertTime: Measurement<UnitDuration>
-        let advertValue = Double(decoder.decodeUInt32(data))
-        advertTime = Measurement(value: advertValue, unit: UnitDuration.seconds)
-
-        var connectTime: Measurement<UnitDuration>
-        let connectValue = Double(decoder.decodeUInt32(data))
-        connectTime = Measurement(value: connectValue, unit: UnitDuration.seconds)
-
-        let successFW = decoder.decodeUInt8(data)
-        let failedFW = decoder.decodeUInt8(data)
-
-        let percent = Double(decoder.decodeUInt8(data))
-        let battLvl: Measurement = Measurement(value: percent, unit: UnitPercent.percent)
-
-
-        return CharacteristicNorthPoleAweDiagnostics(batterySwaps: swaps,
-                                                     dateProgrammed: programDate,
-                                                     totalOperatingtime: totalOpTime,
-                                                     advertisingTime: advertTime,
-                                                     connectedTime: connectTime,
-                                                     succesfulFirmwareUpdateEvents: successFW,
-                                                     failedFirmwareUpdateEvents: failedFW,
-                                                     lastBatteryLevel: battLvl)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
