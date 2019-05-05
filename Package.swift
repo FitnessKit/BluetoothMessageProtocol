@@ -13,7 +13,6 @@ let package = Package(
         .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.0.0"),
         .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0"),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "1.0.0")
-
     ],
     targets: [
         .target(
