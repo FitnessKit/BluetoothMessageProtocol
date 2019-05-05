@@ -31,6 +31,13 @@ import Foundation
 /// any type that conforms to both protocols.
 public typealias CharacteristicCodable = CharacteristicDecodable & BluetoothEncodable
 
+/// A type that can convert itself into and out of an external representation.
+///
+/// `ServiceDataCodable` is a type alias for the `BluetoothEncodable` and `ServiceDataDecodable` protocols.
+/// When you use `ServiceDataCodable` as a type or a generic constraint, it matches
+/// any type that conforms to both protocols.
+public typealias ServiceDataCodable = ServiceDataDecodable & BluetoothEncodable
+
 /// Allows for Encoding of Objects into Data
 public protocol BluetoothEncodable {
     
@@ -47,4 +54,13 @@ public protocol CharacteristicDecodable: AnyObject {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     static func decoder<C: Characteristic>(data: Data) -> Result<C, BluetoothDecodeError>
+}
+
+public protocol ServiceDataDecodable: AnyObject {
+    
+    /// Decodes Service Data AD Data into ServiceData
+    ///
+    /// - Parameter data: ServiceData Data
+    /// - Returns: ServiceData Result
+    static func decoder<S: ServiceData>(data: Data) -> Result<S, BluetoothDecodeError>
 }

@@ -60,26 +60,35 @@ open class ServiceDataMeshProvisioning: ServiceData {
                    uuidString: ServiceDataMeshProvisioning.uuidString)
     }
 
+    /// Decodes Service Data AD Data into ServiceData
+    ///
+    /// - Parameter data: ServiceData Data
+    /// - Returns: ServiceData Result
+    open override class func decoder<S: ServiceDataMeshProvisioning>(data: Data) -> Result<S, BluetoothDecodeError> {
+        guard data.count == 18 else {
+            return.failure(BluetoothDecodeError.properySize("Mesh Provisioning must be 18 Bytes Long."))
+        }
+        
+        var decoder = DecodeData()
+        
+        let uuidData = decoder.decodeData(data, length: 16)
+        let deviceUUID = uuidData.create128BitUuid(reverseData: false)
+        
+        let oobInformation = MeshOutOfBandInformation(rawValue: decoder.decodeUInt16(data).bigEndian)
+        
+        let serviceData = ServiceDataMeshProvisioning(deviceUUID: deviceUUID,
+                                                      oobInformation: oobInformation)
+        return.success(serviceData as! S)
+    }
+
     /// Deocdes the Service Data AD Type Data
     ///
     /// - Parameter data: Data from Service Data AD Type
     /// - Returns: ServiceData Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> ServiceDataMeshProvisioning {
-
-        guard data.count == 18 else {
-            throw BluetoothDecodeError.properySize("Mesh Provisioning must be 18 Bytes Long.")
-        }
-
-        var decoder = DecodeData()
-
-        let uuidData = decoder.decodeData(data, length: 16)
-        let deviceUUID = uuidData.create128BitUuid(reverseData: false)
-
-        let oobInformation = MeshOutOfBandInformation(rawValue: decoder.decodeUInt16(data).bigEndian)
-
-        return ServiceDataMeshProvisioning(deviceUUID: deviceUUID,
-                                           oobInformation: oobInformation)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Service Data AD Type into Data

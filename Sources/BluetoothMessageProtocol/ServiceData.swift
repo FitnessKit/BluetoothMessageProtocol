@@ -27,7 +27,7 @@ import Foundation
 /// Bluetooth Service Data AD Type base Class
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceData: Encodable, BluetoothEncodable {
+open class ServiceData: Encodable, ServiceDataCodable {
 
     /// Name of the Service Data AD Type
     open internal(set) var name: String
@@ -46,11 +46,20 @@ open class ServiceData: Encodable, BluetoothEncodable {
         self.uuidString = uuidString
     }
 
+    /// Decodes Service Data AD Data into ServiceData
+    ///
+    /// - Parameter data: ServiceData Data
+    /// - Returns: ServiceData Result
+    open class func decoder<S: ServiceData>(data: Data) -> Result<S, BluetoothDecodeError> {
+        fatalError("*** You must override in your class.")
+    }
+
     /// Deocdes the Service Data AD Type Data
     ///
     /// - Parameter data: Data from Service Data AD Type
     /// - Returns: ServiceData Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open class func decode(data: Data) throws -> ServiceData {
         fatalError("*** You must override in your class.")
     }

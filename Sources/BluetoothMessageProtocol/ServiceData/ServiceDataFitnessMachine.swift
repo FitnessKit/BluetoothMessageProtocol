@@ -40,6 +40,14 @@ open class ServiceDataFitnessMachine: ServiceData {
     public static var uuidString: String {
         return "1826"
     }
+    
+    struct Flags: OptionSet {
+        let rawValue: UInt8
+        init(rawValue: UInt8) { self.rawValue = rawValue }
+        
+        /// Fitness Machine Available
+        static let available     = Flags(rawValue: 1 << 0)
+    }
 
     /// Options for Equipment Type Supported by Service
     public struct EquipmentType: OptionSet {
@@ -80,35 +88,36 @@ open class ServiceDataFitnessMachine: ServiceData {
 
     }
 
+    /// Decodes Service Data AD Data into ServiceData
+    ///
+    /// - Parameter data: ServiceData Data
+    /// - Returns: ServiceData Result
+    open override class func decoder<S: ServiceDataFitnessMachine>(data: Data) -> Result<S, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        let flags = Flags(rawValue: decoder.decodeUInt8(data))
+        
+        var ftmsAvailable = false
+        if flags.contains(.available) == true {
+            ftmsAvailable = true
+        }
+        
+        var supported: EquipmentType = EquipmentType()
+        supported = EquipmentType(rawValue: decoder.decodeUInt16(data))
+        
+        let serviceData = ServiceDataFitnessMachine(fitnessMachineAvailable: ftmsAvailable,
+                                                    equipmentSupported: supported)
+        return.success(serviceData as! S)
+    }
+
     /// Deocdes the Service Data AD Type Data
     ///
     /// - Parameter data: Data from Service Data AD Type
     /// - Returns: ServiceData Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> ServiceDataFitnessMachine {
-
-        struct Flags: OptionSet {
-            public let rawValue: UInt8
-            public init(rawValue: UInt8) { self.rawValue = rawValue }
-
-            /// Fitness Machine Available
-            public static let available     = Flags(rawValue: 1 << 0)
-        }
-
-        var decoder = DecodeData()
-
-        let flags = Flags(rawValue: decoder.decodeUInt8(data))
-
-        var ftmsAvailable = false
-        if flags.contains(.available) == true {
-            ftmsAvailable = true
-        }
-
-        var supported: EquipmentType = EquipmentType()
-        supported = EquipmentType(rawValue: decoder.decodeUInt16(data))
-
-        return ServiceDataFitnessMachine(fitnessMachineAvailable: ftmsAvailable,
-                                         equipmentSupported: supported)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Service Data AD Type into Data

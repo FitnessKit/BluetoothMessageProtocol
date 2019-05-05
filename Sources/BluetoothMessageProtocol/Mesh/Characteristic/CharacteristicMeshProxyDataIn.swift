@@ -59,13 +59,22 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
                    uuidString: CharacteristicMeshProxyDataIn.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicMeshProxyDataIn>(data: Data) -> Result<C, BluetoothDecodeError> {
+        return.failure(BluetoothDecodeError.notSupported)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMeshProxyDataIn {
-        throw BluetoothDecodeError.notSupported
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data

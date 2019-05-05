@@ -59,26 +59,44 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
                    uuidString: CharacteristicMeshProxyDataOut.uuidString)
     }
 
+    /// Decodes Characteristic Data into Characteristic
+    ///
+    /// - Parameter data: Characteristic Data
+    /// - Returns: Characteristic Result
+    open override class func decoder<C: CharacteristicMeshProxyDataOut>(data: Data) -> Result<C, BluetoothDecodeError> {
+        var decoder = DecodeData()
+        
+        if let pduType = decoder.decodeUInt8IfPresent(data) {
+            
+            do {
+                let type = try ProxyMessageType(pduType)
+                
+                guard type.message != .provisioning else {
+                    return.failure(BluetoothDecodeError.general("Proxy Data Unit of type Provisioning is not supported."))
+                }
+
+            } catch let error as BluetoothDecodeError {
+                return.failure(error)
+            } catch {
+                return.failure(BluetoothDecodeError.general(error.localizedDescription))
+            }
+
+        } else {
+            return.failure(BluetoothDecodeError.properySize("Proxy Data size too small."))
+        }
+
+        let char = CharacteristicMeshProxyDataOut(pduMessage: data[decoder.index...])
+        return.success(char as! C)
+    }
+
     /// Deocdes the BLE Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: Characteristic Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMeshProxyDataOut {
-        var decoder = DecodeData()
-
-        if let pduType = decoder.decodeUInt8IfPresent(data) {
-            let type = try ProxyMessageType(pduType)
-
-            guard type.message != .provisioning else {
-                throw BluetoothDecodeError.general("Proxy Data Unit of type Provisioning is not supported.")
-            }
-
-        } else {
-            throw BluetoothDecodeError.properySize("Proxy Data size too small.")
-        }
-
-        return CharacteristicMeshProxyDataOut(pduMessage: data)
+        return try decoder(data: data).get()
     }
 
     /// Encodes the Characteristic into Data
