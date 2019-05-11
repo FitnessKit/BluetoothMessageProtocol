@@ -71,7 +71,7 @@ public protocol ServiceDataDecodable: AnyObject {
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    static func decoder<S: ServiceData>(data: Data) -> Result<S, BluetoothDecodeError>
+    static func decode<S: ServiceData>(with: Data) -> Result<S, BluetoothDecodeError>
 }
 
 /// Allows for Decoding ManufacturerData

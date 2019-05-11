@@ -50,7 +50,7 @@ open class ServiceData: Encodable, ServiceDataCodable {
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    open class func decoder<S: ServiceData>(data: Data) -> Result<S, BluetoothDecodeError> {
+    open class func decode<S: ServiceData>(with data: Data) -> Result<S, BluetoothDecodeError> {
         fatalError("*** You must override in your class.")
     }
 

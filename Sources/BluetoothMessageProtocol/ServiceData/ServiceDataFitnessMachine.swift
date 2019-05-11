@@ -92,7 +92,7 @@ open class ServiceDataFitnessMachine: ServiceData {
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    open override class func decoder<S: ServiceDataFitnessMachine>(data: Data) -> Result<S, BluetoothDecodeError> {
+    open override class func decode<S: ServiceDataFitnessMachine>(with data: Data) -> Result<S, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -117,7 +117,7 @@ open class ServiceDataFitnessMachine: ServiceData {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ServiceDataFitnessMachine {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Service Data AD Type into Data

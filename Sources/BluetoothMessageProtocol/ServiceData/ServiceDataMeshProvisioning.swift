@@ -64,7 +64,7 @@ open class ServiceDataMeshProvisioning: ServiceData {
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    open override class func decoder<S: ServiceDataMeshProvisioning>(data: Data) -> Result<S, BluetoothDecodeError> {
+    open override class func decode<S: ServiceDataMeshProvisioning>(with data: Data) -> Result<S, BluetoothDecodeError> {
         guard data.count == 18 else {
             return.failure(BluetoothDecodeError.properySize("Mesh Provisioning must be 18 Bytes Long."))
         }
@@ -88,7 +88,7 @@ open class ServiceDataMeshProvisioning: ServiceData {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ServiceDataMeshProvisioning {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Service Data AD Type into Data
