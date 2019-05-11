@@ -78,41 +78,46 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
 
         super.init(manufacturer: manufacturer, specificData: rawData)
     }
+    
+    /// Decodes Manufacturer Specific Data into ManufacturerData
+    ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open override class func decoder<M: ManufacturerDataAltBeacon>(data: Data) -> Result<M, BluetoothDecodeError> {
+        let man = ManufacturerData(rawData: data)
+        
+        guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
+
+        var decoder = DecodeData()
+        
+        let beaconCode = decoder.decodeUInt16(data).bigEndian
+        
+        if beaconCode != 0xBEAC {
+            return.failure(BluetoothDecodeError.general("Not an AltBeacon Message."))
+        }
+        
+        let beacData = decoder.decodeData(data, length: 20)
+        let beacBytes = [UInt8](beacData)
+        
+        let referencePower = decoder.decodeInt8(data)
+        let manData = decoder.decodeUInt8(data)
+        
+        let beacon = ManufacturerDataAltBeacon(manufacturer: man.manufacturer,
+                                               beaconID: beacBytes,
+                                               referencePower: referencePower,
+                                               manufacturerReserved: manData,
+                                               rawData: data)
+        return.success(beacon as! M)
+    }
 
     /// Decodes AltBeacon Manufacturer Specific Data
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAltBeacon
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataAltBeacon {
-
-        let man = ManufacturerData(rawData: data)
-
-        if let data = man.specificData {
-
-            var decoder = DecodeData()
-
-            let beaconCode = decoder.decodeUInt16(data).bigEndian
-
-            if beaconCode != 0xBEAC {
-                throw BluetoothDecodeError.general("Not an AltBeacon Message.")
-            }
-
-            let beacData = decoder.decodeData(data, length: 20)
-            let beacBytes = [UInt8](beacData)
-
-            let referencePower = decoder.decodeInt8(data)
-            let manData = decoder.decodeUInt8(data)
-
-            return ManufacturerDataAltBeacon(manufacturer: man.manufacturer,
-                                             beaconID: beacBytes,
-                                             referencePower: referencePower,
-                                             manufacturerReserved: manData,
-                                             rawData: data)
-
-        } else {
-            throw BluetoothDecodeError.noManufacturerSpecificData
-        }
+        return try decoder(data: data).get()
     }
 
     /// Encodes AltBeacon Manufacturer Specific Data

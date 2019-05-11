@@ -95,62 +95,68 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
 
     /// Decodes Apple HomeKit Manufacturer Specific Data
     ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open override class func decoder<M: ManufacturerDataAppleHomeKitEncryptedNotification>(data: Data) -> Result<M, BluetoothDecodeError> {
+        let man = ManufacturerData(rawData: data)
+        
+        guard man.manufacturer == .apple else {
+            return.failure(BluetoothDecodeError.wrongIdentifier(.apple)) 
+        }
+        
+        guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
+
+        var decoder = DecodeData()
+        
+        let type = decoder.decodeUInt8(data)
+        
+        guard type == AppleDeviceType.hapEncrypted.rawValue else {
+            return.failure(BluetoothDecodeError.specIssue("Type wrong for HomeKit Encrypted Notification."))
+        }
+        
+        /// 8 bits for HomeKit SubType and Length, the 3 significant bits specify the
+        /// HomeKit SubType, and the remaining 5 bits is the length of the remaining bytes
+        /// in the manufacturer specific data which shall be set to the value 22 (i.e the
+        /// lower nibble must be set to 0x16).
+        
+        let ail = decoder.decodeUInt8(data)
+        
+        let ailNib = Nibble(ail)
+        
+        guard ailNib.lower == 22 else {
+            return.failure(BluetoothDecodeError.specIssue("HomeKit Message Length issue."))
+        }
+        
+        let subType = (ail & 0xE0) >> 5
+        
+        let accessoryIdentifier = decoder.decodeMACAddress(data)
+        
+        let globalState = decoder.decodeUInt16(data)
+        
+        let characteristicInstance = decoder.decodeUInt16(data)
+        
+        /// characteristicValue
+        _ = decoder.decodeUInt64(data)
+        
+        let authTag = decoder.decodeUInt32(data)
+        
+        let homekit = ManufacturerDataAppleHomeKitEncryptedNotification(subType: subType,
+                                                                        accessoryIdentifier: accessoryIdentifier,
+                                                                        globalState: globalState,
+                                                                        characteristicInstance: characteristicInstance,
+                                                                        authTag: authTag,
+                                                                        rawData: data)
+        return.success(homekit as! M)
+    }
+
+    /// Decodes Apple HomeKit Manufacturer Specific Data
+    ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAppleHomeKitEncryptedNotification
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataAppleHomeKitEncryptedNotification {
-
-        let man = ManufacturerData(rawData: data)
-
-        guard man.manufacturer == .apple else {
-            throw BluetoothDecodeError.wrongIdentifier(.apple)
-        }
-
-        if let data = man.specificData {
-            var decoder = DecodeData()
-
-            let type = decoder.decodeUInt8(data)
-
-            guard type == AppleDeviceType.hapEncrypted.rawValue else {
-                throw BluetoothDecodeError.specIssue("Type wrong for HomeKit Encrypted Notification.")
-            }
-
-            /// 8 bits for HomeKit SubType and Length, the 3 significant bits specify the
-            /// HomeKit SubType, and the remaining 5 bits is the length of the remaining bytes
-            /// in the manufacturer specific data which shall be set to the value 22 (i.e the
-            /// lower nibble must be set to 0x16).
-
-            let ail = decoder.decodeUInt8(data)
-
-            let ailNib = Nibble(ail)
-
-            guard ailNib.lower == 22 else {
-                throw BluetoothDecodeError.specIssue("HomeKit Message Length issue.")
-            }
-
-            let subType = (ail & 0xE0) >> 5
-
-            let accessoryIdentifier = decoder.decodeMACAddress(data)
-
-            let globalState = decoder.decodeUInt16(data)
-
-            let characteristicInstance = decoder.decodeUInt16(data)
-
-            /// characteristicValue
-            _ = decoder.decodeUInt64(data)
-
-            let authTag = decoder.decodeUInt32(data)
-
-            return ManufacturerDataAppleHomeKitEncryptedNotification(subType: subType,
-                                                                     accessoryIdentifier: accessoryIdentifier,
-                                                                     globalState: globalState,
-                                                                     characteristicInstance: characteristicInstance,
-                                                                     authTag: authTag,
-                                                                     rawData: data)
-
-        } else {
-            throw BluetoothDecodeError.noManufacturerSpecificData
-        }
+        return try decoder(data: data).get()
     }
 
     /// Encodes Apple HomeKit Manufacturer Specific Data

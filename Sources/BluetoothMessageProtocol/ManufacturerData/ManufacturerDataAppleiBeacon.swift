@@ -72,74 +72,79 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
 
     /// Decodes Apple iBeacon Manufacturer Specific Data
     ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open override class func decoder<M: ManufacturerDataAppleiBeacon>(data: Data) -> Result<M, BluetoothDecodeError> {
+        let man = ManufacturerData(rawData: data)
+        
+        guard man.manufacturer == .apple else {
+            return.failure(BluetoothDecodeError.wrongIdentifier(.apple)) 
+        }
+        
+        guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
+
+        //Apple iBeacon  Advert: Btye0 - 76 (apples id) byte2: Type (2 is proximity) Byte2: 15 remaining length
+        //16 bytes - Proximity UUID
+        //2 bytes - Major ID
+        //2 bytes - Minor ID
+        //1 byte - TX Power (Measured Power)
+        
+        var decoder = DecodeData()
+        
+        let type = decoder.decodeUInt8(data)
+        
+        guard type == AppleDeviceType.iBeaccon.rawValue else {
+            return.failure(BluetoothDecodeError.specIssue("Type wrong for iBeacon."))
+        }
+        
+        let subType = decoder.decodeUInt8(data)
+        
+        // subtype must be 0x15 - 21
+        guard subType == 21 else {
+            return.failure(BluetoothDecodeError.specIssue("SubType wrong for iBeacon. Must be 0x15"))
+        }
+        
+        /// Build the UUID String
+        var uuidString: String = ""
+        uuidString += decoder.decodeData(data, length: 4).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
+        uuidString += decoder.decodeData(data, length: 6).hexadecimalString(packed: true)
+        
+        var uuid = UUID(uuidString: uuidString)
+        
+        if uuid == nil {
+            uuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
+        }
+        
+        let majorID = decoder.decodeUInt16(data).bigEndian
+        let minorID = decoder.decodeUInt16(data).bigEndian
+        
+        let measuredPower = decoder.decodeInt8(data)
+        
+        let beacon = ManufacturerDataAppleiBeacon(proximityUUID: uuid!,
+                                                  majorID: majorID,
+                                                  minorID: minorID,
+                                                  measuredPower: measuredPower,
+                                                  rawData: data)
+        return.success(beacon as! M)
+    }
+
+    /// Decodes Apple iBeacon Manufacturer Specific Data
+    ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAppleiBeacon
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataAppleiBeacon {
-
-        let man = ManufacturerData(rawData: data)
-
-        guard man.manufacturer == .apple else {
-            throw BluetoothDecodeError.wrongIdentifier(.apple)
-        }
-
-        if let data = man.specificData {
-            //Apple iBeacon  Advert: Btye0 - 76 (apples id) byte2: Type (2 is proximity) Byte2: 15 remaining length
-            //16 bytes - Proximity UUID
-            //2 bytes - Major ID
-            //2 bytes - Minor ID
-            //1 byte - TX Power (Measured Power)
-
-            var decoder = DecodeData()
-
-            let type = decoder.decodeUInt8(data)
-
-            guard type == AppleDeviceType.iBeaccon.rawValue else {
-                throw BluetoothDecodeError.specIssue("Type wrong for iBeacon.")
-            }
-
-            let subType = decoder.decodeUInt8(data)
-
-            // subtype must be 0x15 - 21
-            guard subType == 21 else {
-                throw BluetoothDecodeError.specIssue("Type wrong for iBeacon.")
-            }
-
-            /// Build the UUID String
-            var uuidString: String = ""
-            uuidString += decoder.decodeData(data, length: 4).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(data, length: 2).hexadecimalString(packed: true) + "-"
-            uuidString += decoder.decodeData(data, length: 6).hexadecimalString(packed: true)
-
-            var uuid = UUID(uuidString: uuidString)
-
-            if uuid == nil {
-                uuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")
-            }
-
-            let majorID = decoder.decodeUInt16(data).bigEndian
-            let minorID = decoder.decodeUInt16(data).bigEndian
-
-            let measuredPower = decoder.decodeInt8(data)
-
-            return ManufacturerDataAppleiBeacon(proximityUUID: uuid!,
-                                                majorID: majorID,
-                                                minorID: minorID,
-                                                measuredPower: measuredPower,
-                                                rawData: data)
-
-        } else {
-            throw BluetoothDecodeError.noManufacturerSpecificData
-        }
+        return try decoder(data: data).get()
     }
 
     /// Encodes Apple iBeacon Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
     open override func encode() -> Result<Data, BluetoothEncodeError> {
-
         var msgData = Data()
 
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))

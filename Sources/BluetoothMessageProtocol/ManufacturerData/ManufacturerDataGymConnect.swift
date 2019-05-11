@@ -83,36 +83,41 @@ open class ManufacturerDataGymConnect: ManufacturerData {
         super.init(manufacturer: .wahooFitness, specificData: rawData)
     }
 
+    /// Decodes Manufacturer Specific Data into ManufacturerData
+    ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open override class func decoder<M: ManufacturerDataGymConnect>(data: Data) -> Result<M, BluetoothDecodeError> {
+        let man = ManufacturerData(rawData: data)
+        
+        guard man.manufacturer == .wahooFitness else {
+            return.failure(BluetoothDecodeError.wrongIdentifier(.wahooFitness)) 
+        }
+        
+        guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
+
+        var decoder = DecodeData()
+        
+        let type = decoder.decodeUInt8(data)
+        
+        let equip = GymConnectEquipmentType.create(type)
+        
+        let flags = StatusFlags(rawValue: decoder.decodeUInt8(data))
+        
+        let gymConn = ManufacturerDataGymConnect(equipment: equip,
+                                                 status: flags,
+                                                 rawData: data)
+        return.success(gymConn as! M)
+    }
+
     /// Decodes Manufacturer Specific Data
     ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerData Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataGymConnect {
-
-        let man = ManufacturerData(rawData: data)
-
-        guard man.manufacturer == .wahooFitness else {
-            throw BluetoothDecodeError.wrongIdentifier(.wahooFitness)
-        }
-
-        if let data = man.specificData {
-
-            var decoder = DecodeData()
-
-            let type = decoder.decodeUInt8(data)
-
-            let equip = GymConnectEquipmentType.create(type)
-
-            let flags = StatusFlags(rawValue: decoder.decodeUInt8(data))
-
-            return ManufacturerDataGymConnect(equipment: equip,
-                                              status: flags,
-                                              rawData: data)
-
-        } else {
-            throw BluetoothDecodeError.noManufacturerSpecificData
-        }
+        return try decoder(data: data).get()
     }
 
     /// Encodes Manufacturer Specific Data

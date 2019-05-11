@@ -38,6 +38,13 @@ public typealias CharacteristicCodable = CharacteristicDecodable & BluetoothEnco
 /// any type that conforms to both protocols.
 public typealias ServiceDataCodable = ServiceDataDecodable & BluetoothEncodable
 
+/// A type that can convert itself into and out of an external representation.
+///
+/// `ManufacturerDataCodable` is a type alias for the `BluetoothEncodable` and `ManufacturerDataDecodable` protocols.
+/// When you use `ManufacturerDataCodable` as a type or a generic constraint, it matches
+/// any type that conforms to both protocols.
+public typealias ManufacturerDataCodable = ManufacturerDataDecodable & BluetoothEncodable
+
 /// Allows for Encoding of Objects into Data
 public protocol BluetoothEncodable {
     
@@ -65,4 +72,14 @@ public protocol ServiceDataDecodable: AnyObject {
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
     static func decoder<S: ServiceData>(data: Data) -> Result<S, BluetoothDecodeError>
+}
+
+/// Allows for Decoding ManufacturerData
+public protocol ManufacturerDataDecodable: AnyObject {
+    
+    /// Decodes Manufacturer Specific Data into ManufacturerData
+    ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    static func decoder<M: ManufacturerData>(data: Data) -> Result<M, BluetoothDecodeError>
 }

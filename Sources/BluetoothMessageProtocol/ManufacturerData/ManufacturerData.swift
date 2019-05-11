@@ -29,7 +29,7 @@ import DataDecoder
 ///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerData: Encodable, BluetoothEncodable {
+open class ManufacturerData: Encodable, ManufacturerDataCodable {
 
     /// Manufacturer
     open internal(set) var manufacturer: CompanyIdentifier
@@ -39,7 +39,7 @@ open class ManufacturerData: Encodable, BluetoothEncodable {
 
     /// Creates Manufactur Data Object
     ///
-    /// - Parameter rawData: Manufacturer Raw Data (everything after 0xFF
+    /// - Parameter rawData: Manufacturer Raw Data (everything after 0xFF)
     public init(rawData: Data) {
 
         var decoder = DecodeData()
@@ -68,11 +68,20 @@ open class ManufacturerData: Encodable, BluetoothEncodable {
         self.specificData = specificData
     }
 
+    /// Decodes Manufacturer Specific Data into ManufacturerData
+    ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open class func decoder<M: ManufacturerData>(data: Data) -> Result<M, BluetoothDecodeError> {
+        fatalError("*** You must override in your class.")
+    }
+
     /// Deocdes the Manufacturer Specific Data
     ///
     /// - Parameter data: Data from sensor
     /// - Returns: ManufacturerData Instance
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open class func decode(data: Data) throws -> ManufacturerData {
         fatalError("*** You must override in your class.")
     }
@@ -83,7 +92,6 @@ open class ManufacturerData: Encodable, BluetoothEncodable {
     open func encode() -> Result<Data, BluetoothEncodeError> {
         fatalError("*** You must override in your class.")
     }
-
 }
 
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)

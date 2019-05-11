@@ -142,62 +142,68 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
     /// Decodes Apple HomeKit Manufacturer Specific Data
     ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open override class func decoder<M: ManufacturerDataAppleHomeKit>(data: Data) -> Result<M, BluetoothDecodeError> {
+        let man = ManufacturerData(rawData: data)
+        
+        guard man.manufacturer == .apple else {
+            return.failure(BluetoothDecodeError.wrongIdentifier(.apple))
+        }
+        
+        guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
+
+        var decoder = DecodeData()
+        
+        let type = decoder.decodeUInt8(data)
+        
+        guard type == AppleDeviceType.hap.rawValue else {
+            return.failure(BluetoothDecodeError.specIssue("Type wrong for HomeKit."))
+        }
+        
+        /// 8bits for SubType and Length, the 3 significant bits specify the HomeKit
+        /// advertising format SubType and shall be set to 1, and the remaining 5 bits
+        /// is the length of the remaining bytes in the manufacturer specific data which
+        /// shall be set to the value 17.
+        let stl = decoder.decodeUInt8(data)
+        
+        guard stl == 0x31 else {
+            return.failure(BluetoothDecodeError.specIssue("HomeKit Message Length issue."))
+        }
+        
+        let statusFlag = StatusFlags(rawValue: decoder.decodeUInt8(data))
+        
+        let deviceId = decoder.decodeMACAddress(data)
+        
+        let accessoryCategory = HomeKitAccessoryCategory(rawValue: decoder.decodeUInt16(data)) ?? .other
+        
+        let globalState = decoder.decodeUInt16(data)
+        
+        let configuration = decoder.decodeUInt8(data)
+        
+        let compatibleVersion = decoder.decodeUInt8(data)
+        
+        let setupHash = decoder.decodeUInt32(data)
+        
+        let homekit = ManufacturerDataAppleHomeKit(statusFlag: statusFlag,
+                                                   deviceId: deviceId,
+                                                   accessoryCategory: accessoryCategory,
+                                                   globalState: globalState,
+                                                   configuration: configuration,
+                                                   compatibleVersion: compatibleVersion,
+                                                   setupHash: setupHash,
+                                                   rawData: data)
+        return.success(homekit as! M)
+    }
+
+    /// Decodes Apple HomeKit Manufacturer Specific Data
+    ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataAppleHomeKit
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataAppleHomeKit {
-
-        let man = ManufacturerData(rawData: data)
-
-        guard man.manufacturer == .apple else {
-            throw BluetoothDecodeError.wrongIdentifier(.apple)
-        }
-
-        if let data = man.specificData {
-            var decoder = DecodeData()
-
-            let type = decoder.decodeUInt8(data)
-
-            guard type == AppleDeviceType.hap.rawValue else {
-                throw BluetoothDecodeError.specIssue("Type wrong for HomeKit.")
-            }
-
-            /// 8bits for SubType and Length, the 3 significant bits specify the HomeKit
-            /// advertising format SubType and shall be set to 1, and the remaining 5 bits
-            /// is the length of the remaining bytes in the manufacturer specific data which
-            /// shall be set to the value 17.
-            let stl = decoder.decodeUInt8(data)
-
-            guard stl == 0x31 else {
-                throw BluetoothDecodeError.specIssue("HomeKit Message Length issue.")
-            }
-
-            let statusFlag = StatusFlags(rawValue: decoder.decodeUInt8(data))
-
-            let deviceId = decoder.decodeMACAddress(data)
-
-            let accessoryCategory = HomeKitAccessoryCategory(rawValue: decoder.decodeUInt16(data)) ?? .other
-
-            let globalState = decoder.decodeUInt16(data)
-
-            let configuration = decoder.decodeUInt8(data)
-
-            let compatibleVersion = decoder.decodeUInt8(data)
-
-            let setupHash = decoder.decodeUInt32(data)
-
-            return ManufacturerDataAppleHomeKit(statusFlag: statusFlag,
-                                                deviceId: deviceId,
-                                                accessoryCategory: accessoryCategory,
-                                                globalState: globalState,
-                                                configuration: configuration,
-                                                compatibleVersion: compatibleVersion,
-                                                setupHash: setupHash,
-                                                rawData: data)
-
-        } else {
-            throw BluetoothDecodeError.noManufacturerSpecificData
-        }
+        return try decoder(data: data).get()
     }
 
     /// Encodes Apple HomeKit Manufacturer Specific Data

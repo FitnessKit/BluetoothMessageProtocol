@@ -64,42 +64,47 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 
     /// Decodes Polar Heart Rate Manufacturer Specific Data
     ///
+    /// - Parameter data: ManufacturerData Data
+    /// - Returns: ManufacturerData Result
+    open override class func decoder<M: ManufacturerDataPolarHeartRate>(data: Data) -> Result<M, BluetoothDecodeError> {
+        let man = ManufacturerData(rawData: data)
+        
+        guard man.manufacturer == .polar else {
+            return.failure(BluetoothDecodeError.wrongIdentifier(.polar)) 
+        }
+        
+        guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
+
+        //OH1 sends out different data on scan vs passive.  The smaller one has the HR data in it.
+        //OH1 sends 5 Bytes.
+        //H7/H10 sends 6 Bytes.
+        guard data.count <= 6 else {
+            return.failure(BluetoothDecodeError.general("Manufacturer Data is not compatable for HR Decode.")) 
+        }
+        
+        var decoder = DecodeData()
+        
+        _ = decoder.decodeUInt16(data)
+        
+        let hrOne = decoder.decodeUInt8(data)
+        let hrTwo = decoder.decodeUInt8(data)
+        
+        let heartRate = safeAverage(valueOne: hrOne, valueTwo: hrTwo)
+        
+        let hr: Measurement = Measurement(value: heartRate, unit: UnitCadence.beatsPerMinute)
+        
+        let polar = ManufacturerDataPolarHeartRate(heartRate: hr, rawData: data)
+        return.success(polar as! M)
+    }
+
+    /// Decodes Polar Heart Rate Manufacturer Specific Data
+    ///
     /// - Parameter data: Manufacturer Specific Data
     /// - Returns: ManufacturerDataPolarHeartRate
     /// - Throws: BluetoothDecodeError
+    @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataPolarHeartRate {
-
-        let man = ManufacturerData(rawData: data)
-
-        guard man.manufacturer == .polar else {
-            throw BluetoothDecodeError.wrongIdentifier(.polar)
-        }
-
-        if let data = man.specificData {
-
-            //OH1 sends out different data on scan vs passive.  The smaller one has the HR data in it.
-            //OH1 sends 5 Bytes.
-            //H7/H10 sends 6 Bytes.
-            guard data.count <= 6 else {
-                throw BluetoothDecodeError.general("Manufacturer Data is not compatable for HR Decode.")
-            }
-
-            var decoder = DecodeData()
-
-            _ = decoder.decodeUInt16(data)
-
-            let hrOne = decoder.decodeUInt8(data)
-            let hrTwo = decoder.decodeUInt8(data)
-
-            let heartRate = safeAverage(valueOne: hrOne, valueTwo: hrTwo)
-
-            let hr: Measurement = Measurement(value: heartRate, unit: UnitCadence.beatsPerMinute)
-            
-            return ManufacturerDataPolarHeartRate(heartRate: hr, rawData: data)
-
-        } else {
-            throw BluetoothDecodeError.noManufacturerSpecificData
-        }
+        return try decoder(data: data).get()
     }
 
     /// Encodes Polar Heart Rate Manufacturer Specific Data
