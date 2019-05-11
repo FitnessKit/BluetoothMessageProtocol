@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BluetoothMessageProtocol'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'Encoding and Decoding of the Bluetooth Message Protocol.'
 
 

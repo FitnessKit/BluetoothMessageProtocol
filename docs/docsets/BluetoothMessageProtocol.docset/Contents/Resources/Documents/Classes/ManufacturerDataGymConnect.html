@@ -203,6 +203,56 @@
                   <li class="item">
                     <div>
                       <code>
+                      <a name="/s:24BluetoothMessageProtocol26ManufacturerDataGymConnectC7decoder4datas6ResultOyxAA0A11DecodeErrorOG10Foundation0E0V_tACRbzlFZ"></a>
+                      <a name="//apple_ref/swift/Method/decoder(data:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol26ManufacturerDataGymConnectC7decoder4datas6ResultOyxAA0A11DecodeErrorOG10Foundation0E0V_tACRbzlFZ">decoder(data:)</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Decodes Manufacturer Specific Data into ManufacturerData</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="n">decoder</span><span class="o">&lt;</span><span class="kt">M</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">M</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothDecodeError.html">BluetoothDecodeError</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">M</span> <span class="p">:</span> <span class="kt">ManufacturerDataGymConnect</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>data</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>ManufacturerData Data</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>ManufacturerData Result</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
                       <a name="/s:24BluetoothMessageProtocol26ManufacturerDataGymConnectC6decode4dataAC10Foundation0E0V_tKFZ"></a>
                       <a name="//apple_ref/swift/Method/decode(data:)" class="dashAnchor"></a>
                       <a class="token" href="#/s:24BluetoothMessageProtocol26ManufacturerDataGymConnectC6decode4dataAC10Foundation0E0V_tKFZ">decode(data:)</a>
@@ -225,7 +275,8 @@
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ManufacturerDataGymConnect</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "use results based decoder instead")</span>
+<span class="kd">open</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ManufacturerDataGymConnect</span></code></pre>
 
                           </div>
                         </div>
@@ -1823,10 +1874,27 @@ encoder&rsquo;s format.</p>
               </ul>
             </li>
             <li class="nav-group-name">
+              <a href="../Other Extensions.html">Other Extensions</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Extensions/UUID.html">UUID</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
               <a href="../Other Protocols.html">Other Protocols</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
                   <a href="../Protocols/BluetoothEncodable.html">BluetoothEncodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/CharacteristicDecodable.html">CharacteristicDecodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/ManufacturerDataDecodable.html">ManufacturerDataDecodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/ServiceDataDecodable.html">ServiceDataDecodable</a>
                 </li>
               </ul>
             </li>
@@ -1853,6 +1921,20 @@ encoder&rsquo;s format.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/StringKey.html">StringKey</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Typealiases.html">Other Type Aliases</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Other Typealiases.html#/s:24BluetoothMessageProtocol21CharacteristicCodablea">CharacteristicCodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Other Typealiases.html#/s:24BluetoothMessageProtocol23ManufacturerDataCodablea">ManufacturerDataCodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Other Typealiases.html#/s:24BluetoothMessageProtocol18ServiceDataCodablea">ServiceDataCodable</a>
                 </li>
               </ul>
             </li>

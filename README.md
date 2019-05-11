@@ -21,7 +21,7 @@ pod 'BluetoothMessageProtocol'
 Swift Package Manager:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "1.0.0")
+    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "1.1.0")
 ]
 ```
 
@@ -74,7 +74,7 @@ func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CB
 
 func doDecodeHRMess(sensorData: Data) {
 
-    let hrData = CharacteristicHeartRateMeasurement.decode(data: sensorData)
+    let hrData = CharacteristicHeartRateMeasurement.decoder(data: sensorData)
 
     switch hrData {
     case .success(let char):
@@ -86,7 +86,7 @@ func doDecodeHRMess(sensorData: Data) {
 
     /// Or you can stil use the doCatch
     do {
-        let hrData = try CharacteristicHeartRateMeasurement.decode(data: sensorData).get()
+        let hrData = try CharacteristicHeartRateMeasurement.decoder(data: sensorData).get()
 
         print("HR: \(hrData.heartRate)")
 
@@ -97,7 +97,7 @@ func doDecodeHRMess(sensorData: Data) {
 
 func doDecodeBody(sensorData: Data) {
 
-    let sensor = CharacteristicBodySensorLocation.decode(data: sensorData)
+    let sensor = CharacteristicBodySensorLocation.decoder(data: sensorData)
 
     switch sensor {
     case .success(let char):
@@ -109,7 +109,7 @@ func doDecodeBody(sensorData: Data) {
 
     /// Or you can stil use the doCatch
     do {
-        let sensor = try CharacteristicBodySensorLocation.decode(data: sensorData).get()
+        let sensor = try CharacteristicBodySensorLocation.decoder(data: sensorData).get()
 
         print("Location: \(sensor.sensorLocation.stringValue)")
 
@@ -130,7 +130,7 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
 
     if let advertData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
 
-        switch ManufacturerDataAppleiBeacon.decode(data: advertData) {
+        switch ManufacturerDataAppleiBeacon.decoder(data: advertData) {
         case .success(let beacon):
             print(beacon.proximityUUID.uuidString)
 
@@ -140,7 +140,7 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
         }
 
         /// Or you can stil use the doCatch
-        if let beacon = try? ManufacturerDataAppleiBeacon.decode(data: advertData).get() {
+        if let beacon = try? ManufacturerDataAppleiBeacon.decoder(data: advertData).get() {
             print(beacon.proximityUUID.uuidString)
         }
     }

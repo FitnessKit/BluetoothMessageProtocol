@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CharacteristicDecodable Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0" />
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/CharacteristicDecodable" class="dashAnchor"></a>
+    <a title="CharacteristicDecodable Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p>
+          <a href="../index.html">BluetoothMessageProtocol Docs</a>
+          <span class="no-mobile"> (99% documented)</span>
+        </p>
+    
+        <p class="header-right">
+          <a href="https://github.com/FitnessKit/BluetoothMessageProtocol">
+            <img src="../img/gh.png"/>
+            <span class="no-mobile">View on GitHub</span>
+          </a>
+        </p>
+    
+      </div>
+    </header>
+    <div id="breadcrumbs-container">
+      <div class="content-wrapper">
+        <p id="breadcrumbs">
+          <span class="no-mobile">
+            <a href="../index.html">BluetoothMessageProtocol Reference</a>
+            <img id="carat" src="../img/carat.png" />
+          </span>
+          CharacteristicDecodable Protocol Reference
+        </p>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="article-wrapper">
+        <article class="main-content">
+          <section>
+            <section class="section">
+              <h1>CharacteristicDecodable</h1>
+                <div class="declaration">
+                  <div class="language">
+                    <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CharacteristicDecodable</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                  </div>
+                </div>
+              <p>Allows for Decoding Characteristics</p>
+
+            </section>
+            <section class="section task-group-section">
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol23CharacteristicDecodableP7decoder4datas6ResultOyqd__AA0A11DecodeErrorOG10Foundation4DataV_tAA0D0CRbd__lFZ"></a>
+                      <a name="//apple_ref/swift/Method/decoder(data:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol23CharacteristicDecodableP7decoder4datas6ResultOyqd__AA0A11DecodeErrorOG10Foundation4DataV_tAA0D0CRbd__lFZ">decoder(data:)</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Decodes Characteristic Data into Characteristic</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">static</span> <span class="kd">func</span> <span class="n">decoder</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">C</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothDecodeError.html">BluetoothDecodeError</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Characteristic.html">Characteristic</a></span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>data</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Characteristic Data</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div>
+                          <h4>Return Value</h4>
+                          <p>Characteristic Result</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </section>
+        </article>
+      </div>
+      <div class="nav-wrapper">
+        <nav class="nav-bottom">
+          <ul class="nav-groups">
+            <li class="nav-group-name">
+              <a href="../Base.html">Base</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/MemberIdentifier.html">MemberIdentifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/Characteristic.html">Characteristic</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CompanyIdentifier.html">CompanyIdentifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/Service.html">Service</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceData.html">ServiceData</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../GAP.html">GAP</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/GapAdvertisingType.html">GapAdvertisingType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/GapDataType.html">GapDataType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/GapEventType.html">GapEventType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/PeerAddress.html">PeerAddress</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/PeerAddress/PeerType.html">– PeerType</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Services - Bluetooth SIG.html">Services - Bluetooth SIG</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceGenericAccess.html">ServiceGenericAccess</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceAlertNotification.html">ServiceAlertNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceAutomationInputOutput.html">ServiceAutomationInputOutput</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceBattery.html">ServiceBattery</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceBloodPressure.html">ServiceBloodPressure</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceBodyComposition.html">ServiceBodyComposition</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceBondManagement.html">ServiceBondManagement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceContinuousGlucoseMonitoring.html">ServiceContinuousGlucoseMonitoring</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceCurrentTime.html">ServiceCurrentTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceCyclingPower.html">ServiceCyclingPower</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceCyclingSpeedAndCadence.html">ServiceCyclingSpeedAndCadence</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceDeviceInformation.html">ServiceDeviceInformation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceEnvironmentalSensing.html">ServiceEnvironmentalSensing</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceFitnessMachine.html">ServiceFitnessMachine</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceGenericAttribute.html">ServiceGenericAttribute</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceGlucose.html">ServiceGlucose</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHealthThermometer.html">ServiceHealthThermometer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHeartRate.html">ServiceHeartRate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHttpProxy.html">ServiceHttpProxy</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHumanInterfaceDevice.html">ServiceHumanInterfaceDevice</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceImmediateAlert.html">ServiceImmediateAlert</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceIndoorPositioning.html">ServiceIndoorPositioning</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceInsulinDelivery.html">ServiceInsulinDelivery</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceInternetProtocolSupport.html">ServiceInternetProtocolSupport</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceLinkLoss.html">ServiceLinkLoss</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceLocationAndNavigation.html">ServiceLocationAndNavigation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceMeshProvisioning.html">ServiceMeshProvisioning</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceMeshProxy.html">ServiceMeshProxy</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceNextDSTChange.html">ServiceNextDSTChange</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceObjectTransfer.html">ServiceObjectTransfer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServicePhoneAlertStatus.html">ServicePhoneAlertStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServicePulseOximeter.html">ServicePulseOximeter</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceReconnectionConfiguration.html">ServiceReconnectionConfiguration</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceReferenceTimeUpdate.html">ServiceReferenceTimeUpdate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceRunningSpeedAndCadence.html">ServiceRunningSpeedAndCadence</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceScanParameters.html">ServiceScanParameters</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTransportDiscovery.html">ServiceTransportDiscovery</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTxPower.html">ServiceTxPower</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceUserData.html">ServiceUserData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceWeightScale.html">ServiceWeightScale</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Services - Custom.html">Services - Custom</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceAppleMidi.html">ServiceAppleMidi</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceCycleOps.html">ServiceCycleOps</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceDropcam.html">ServiceDropcam</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceEliteTrainer.html">ServiceEliteTrainer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceGymConnect.html">ServiceGymConnect</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceGoogleGlass.html">ServiceGoogleGlass</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceMyoClassifierEvent.html">ServiceMyoClassifierEvent</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceMyoControl.html">ServiceMyoControl</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceMyoImu.html">ServiceMyoImu</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceMyoRawEMGData.html">ServiceMyoRawEMGData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceNordicLegacyDeviceFirmwareUpdate.html">ServiceNordicLegacyDeviceFirmwareUpdate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceNordicSecureDeviceFirmwareUpdate.html">ServiceNordicSecureDeviceFirmwareUpdate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceNorthPoleAweDiagnostics.html">ServiceNorthPoleAweDiagnostics</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceNorthPoleAweHeartRate.html">ServiceNorthPoleAweHeartRate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTacxAntFec.html">ServiceTacxAntFec</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsFirmwareUpdate.html">ServiceTexasInstrumentsFirmwareUpdate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagAccelerometer.html">ServiceTexasInstrumentsSensorTagAccelerometer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagBarometer.html">ServiceTexasInstrumentsSensorTagBarometer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagControl.html">ServiceTexasInstrumentsSensorTagControl</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagGyroscope.html">ServiceTexasInstrumentsSensorTagGyroscope</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagHumidity.html">ServiceTexasInstrumentsSensorTagHumidity</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagMagnetometer.html">ServiceTexasInstrumentsSensorTagMagnetometer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceTexasInstrumentsSensorTagTemperature.html">ServiceTexasInstrumentsSensorTagTemperature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceWahooFitnessFirmwareUpdate.html">ServiceWahooFitnessFirmwareUpdate</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Services - HomeKit Accessory Protocol.html">Services - HomeKit Accessory Protocol</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapPairing.html">ServiceHapPairing</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapProtocolInformationService.html">ServiceHapProtocolInformationService</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapAccessoryInformation.html">ServiceHapAccessoryInformation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapFan.html">ServiceHapFan</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapAdvancedFan.html">ServiceHapAdvancedFan</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapGarageDoorOpener.html">ServiceHapGarageDoorOpener</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapLightbulb.html">ServiceHapLightbulb</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapLockManagement.html">ServiceHapLockManagement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapLockMechanism.html">ServiceHapLockMechanism</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapOutlet.html">ServiceHapOutlet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapSwitch.html">ServiceHapSwitch</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapThermostat.html">ServiceHapThermostat</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapAirQualitySensor.html">ServiceHapAirQualitySensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapSecuritySystem.html">ServiceHapSecuritySystem</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapCarbonMonoxideSensor.html">ServiceHapCarbonMonoxideSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapContactSensor.html">ServiceHapContactSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapDoor.html">ServiceHapDoor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapHumiditySensor.html">ServiceHapHumiditySensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapLeakSensor.html">ServiceHapLeakSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapLightSensor.html">ServiceHapLightSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapMotionSensor.html">ServiceHapMotionSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapOccupancySensor.html">ServiceHapOccupancySensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapSmokeSensor.html">ServiceHapSmokeSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapStatelessProgrammableSwitch.html">ServiceHapStatelessProgrammableSwitch</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapTemperatureSensor.html">ServiceHapTemperatureSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapWindow.html">ServiceHapWindow</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapWindowCovering.html">ServiceHapWindowCovering</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapBatteryService.html">ServiceHapBatteryService</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapCarbonDioxideSensor.html">ServiceHapCarbonDioxideSensor</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapCameraRtpStreamManagement.html">ServiceHapCameraRtpStreamManagement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapMicrophone.html">ServiceHapMicrophone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapSpeaker.html">ServiceHapSpeaker</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapDoorbell.html">ServiceHapDoorbell</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapSlat.html">ServiceHapSlat</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapFilterMaintenance.html">ServiceHapFilterMaintenance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapAirPurifier.html">ServiceHapAirPurifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapHeaterCooler.html">ServiceHapHeaterCooler</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapHumidifierDehumidifier.html">ServiceHapHumidifierDehumidifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapServiceLabel.html">ServiceHapServiceLabel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapIrrigationSystem.html">ServiceHapIrrigationSystem</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapValve.html">ServiceHapValve</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceHapFaucet.html">ServiceHapFaucet</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../ServiceData - Bluetooth SIG.html">ServiceData - Bluetooth SIG</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceDataFitnessMachine.html">ServiceDataFitnessMachine</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceDataFitnessMachine/EquipmentType.html">– EquipmentType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceDataMeshProvisioning.html">ServiceDataMeshProvisioning</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Characteristics - Bluetooth SIG.html">Characteristics - Bluetooth SIG</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAerobicHeartRateLowerLimit.html">CharacteristicAerobicHeartRateLowerLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAerobicHeartRateUpperLimit.html">CharacteristicAerobicHeartRateUpperLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAerobicThreshold.html">CharacteristicAerobicThreshold</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAge.html">CharacteristicAge</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAlertCategoryID.html">CharacteristicAlertCategoryID</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAlertLevel.html">CharacteristicAlertLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAlertLevel/AlertLevel.html">– AlertLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAlertStatus.html">CharacteristicAlertStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAlertStatus/AlertStatus.html">– AlertStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAltitude.html">CharacteristicAltitude</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAnaerobicHeartRateLowerLimit.html">CharacteristicAnaerobicHeartRateLowerLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAnaerobicHeartRateUpperLimit.html">CharacteristicAnaerobicHeartRateUpperLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAnaerobicThreshold.html">CharacteristicAnaerobicThreshold</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAnalog.html">CharacteristicAnalog</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAnalogOutput.html">CharacteristicAnalogOutput</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicApparentWindDirection.html">CharacteristicApparentWindDirection</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicApparentWindSpeed.html">CharacteristicApparentWindSpeed</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicAppearance.html">CharacteristicAppearance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBarometricPressureTrend.html">CharacteristicBarometricPressureTrend</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBarometricPressureTrend/BarometricPressureTrend.html">– BarometricPressureTrend</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBatteryLevel.html">CharacteristicBatteryLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBatteryLevelState.html">CharacteristicBatteryLevelState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBatteryPowerState.html">CharacteristicBatteryPowerState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBloodPressureFeature.html">CharacteristicBloodPressureFeature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBloodPressureFeature/Feature.html">– Feature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBloodPressureMeasurement.html">CharacteristicBloodPressureMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBodyCompositionMeasurement.html">CharacteristicBodyCompositionMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBodySensorLocation.html">CharacteristicBodySensorLocation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBondManagementFeatures.html">CharacteristicBondManagementFeatures</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicBondManagementFeatures/Flags.html">– Flags</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicContinuousGlucoseMonitoringFeature.html">CharacteristicContinuousGlucoseMonitoringFeature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicContinuousGlucoseMonitoringFeature/Features.html">– Features</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicContinuousGlucoseMonitoringFeature/TestType.html">– TestType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicContinuousGlucoseMonitoringFeature/Location.html">– Location</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicCrossTrainerData.html">CharacteristicCrossTrainerData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicCurrentTime.html">CharacteristicCurrentTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicCurrentTime/AdjustReasons.html">– AdjustReasons</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDatabaseChangeIncrement.html">CharacteristicDatabaseChangeIncrement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDateOfBirth.html">CharacteristicDateOfBirth</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDayDateTime.html">CharacteristicDayDateTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDayOfWeek.html">CharacteristicDayOfWeek</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDeviceName.html">CharacteristicDeviceName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDewPoint.html">CharacteristicDewPoint</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicDSTOffset.html">CharacteristicDSTOffset</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicElevation.html">CharacteristicElevation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicEmailAddress.html">CharacteristicEmailAddress</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFatBurnHeartRateLowerLimit.html">CharacteristicFatBurnHeartRateLowerLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFatBurnHeartRateUpperLimit.html">CharacteristicFatBurnHeartRateUpperLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFirmwareRevisionString.html">CharacteristicFirmwareRevisionString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFirstName.html">CharacteristicFirstName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFitnessMachineFeature.html">CharacteristicFitnessMachineFeature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFitnessMachineFeature/MachineFeatures.html">– MachineFeatures</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFitnessMachineFeature/TargetFeatures.html">– TargetFeatures</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFitnessMachineStatus.html">CharacteristicFitnessMachineStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFiveZoneHeartRateLimits.html">CharacteristicFiveZoneHeartRateLimits</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicFloorNumber.html">CharacteristicFloorNumber</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGender.html">CharacteristicGender</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHardwareRevisionString.html">CharacteristicHardwareRevisionString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHeartRateControlPoint.html">CharacteristicHeartRateControlPoint</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHeartRateControlPoint/Command.html">– Command</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHeartRateMax.html">CharacteristicHeartRateMax</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHeatIndex.html">CharacteristicHeatIndex</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHeight.html">CharacteristicHeight</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHipCircumference.html">CharacteristicHipCircumference</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPControlPoint.html">CharacteristicHTTPControlPoint</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPControlPoint/Command.html">– Command</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPEntityBody.html">CharacteristicHTTPEntityBody</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPHeaders.html">CharacteristicHTTPHeaders</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPSSecurity.html">CharacteristicHTTPSSecurity</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPStatusCode.html">CharacteristicHTTPStatusCode</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHTTPStatusCode/DataStatus.html">– DataStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicHumidity.html">CharacteristicHumidity</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicIndoorBikeData.html">CharacteristicIndoorBikeData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLanguage.html">CharacteristicLanguage</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLastName.html">CharacteristicLastName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLatitude.html">CharacteristicLatitude</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLocalEastCoordinate.html">CharacteristicLocalEastCoordinate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLocalNorthCoordinate.html">CharacteristicLocalNorthCoordinate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLocalTimeInformation.html">CharacteristicLocalTimeInformation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLocationName.html">CharacteristicLocationName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLongitude.html">CharacteristicLongitude</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMagneticDeclination.html">CharacteristicMagneticDeclination</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicManufacturerNameString.html">CharacteristicManufacturerNameString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMaximumRecommendedHeartRate.html">CharacteristicMaximumRecommendedHeartRate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMeasurementInterval.html">CharacteristicMeasurementInterval</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicModelNumberString.html">CharacteristicModelNumberString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicNetworkAvailability.html">CharacteristicNetworkAvailability</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicNetworkAvailability/Availability.html">– Availability</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicNewAlert.html">CharacteristicNewAlert</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicObjectName.html">CharacteristicObjectName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicObjectSize.html">CharacteristicObjectSize</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicPnPID.html">CharacteristicPnPID</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicPnPID/VendorSource.html">– VendorSource</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicPollenConcentration.html">CharacteristicPollenConcentration</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicPosition2D.html">CharacteristicPosition2D</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicPosition3D.html">CharacteristicPosition3D</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicPressure.html">CharacteristicPressure</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicRainfall.html">CharacteristicRainfall</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicRestingHeartRate.html">CharacteristicRestingHeartRate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicRingerSetting.html">CharacteristicRingerSetting</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicRingerSetting/RingerSetting.html">– RingerSetting</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicRowerData.html">CharacteristicRowerData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSensorLocation.html">CharacteristicSensorLocation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSerialNumberString.html">CharacteristicSerialNumberString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSoftwareRevisionString.html">CharacteristicSoftwareRevisionString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSportTypeForAerobicAndAnaerobicThresholds.html">CharacteristicSportTypeForAerobicAndAnaerobicThresholds</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSportTypeForAerobicAndAnaerobicThresholds/SportType.html">– SportType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicStairClimberData.html">CharacteristicStairClimberData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicStepClimberData.html">CharacteristicStepClimberData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicString.html">CharacteristicString</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSupportedHeartRateRange.html">CharacteristicSupportedHeartRateRange</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSupportedInclinationRange.html">CharacteristicSupportedInclinationRange</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSupportedPowerRange.html">CharacteristicSupportedPowerRange</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSupportedResistanceLevel.html">CharacteristicSupportedResistanceLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicSupportedSpeedRange.html">CharacteristicSupportedSpeedRange</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTemperature.html">CharacteristicTemperature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTemperatureCelsius.html">CharacteristicTemperatureCelsius</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTemperatureFahrenheit.html">CharacteristicTemperatureFahrenheit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTemperatureMeasurement.html">CharacteristicTemperatureMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTemperatureType.html">CharacteristicTemperatureType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicThreeZoneHeartRateLimits.html">CharacteristicThreeZoneHeartRateLimits</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeSource.html">CharacteristicTimeSource</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeSource/TimeSource.html">– TimeSource</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeUpdateControlPoint.html">CharacteristicTimeUpdateControlPoint</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeUpdateControlPoint/Command.html">– Command</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeUpdateState.html">CharacteristicTimeUpdateState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeUpdateState/CurrentStateType.html">– CurrentStateType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeUpdateState/UpdateResultType.html">– UpdateResultType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTimeZone.html">CharacteristicTimeZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTrainingStatus.html">CharacteristicTrainingStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTrainingStatus/TrainingStatus.html">– TrainingStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTreadmillData.html">CharacteristicTreadmillData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTrueWindDirection.html">CharacteristicTrueWindDirection</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTrueWindSpeed.html">CharacteristicTrueWindSpeed</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTwoZoneHeartRateLimit.html">CharacteristicTwoZoneHeartRateLimit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTxPowerLevel.html">CharacteristicTxPowerLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicUniformResourceIdentifier.html">CharacteristicUniformResourceIdentifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicUnreadAlertStatus.html">CharacteristicUnreadAlertStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicUserIndex.html">CharacteristicUserIndex</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicUVIndex.html">CharacteristicUVIndex</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicV02Max.html">CharacteristicV02Max</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWaistCircumference.html">CharacteristicWaistCircumference</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWeight.html">CharacteristicWeight</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWeightMeasurement.html">CharacteristicWeightMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWeightScaleFeature.html">CharacteristicWeightScaleFeature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWeightScaleFeature/WeightResolution.html">– WeightResolution</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWeightScaleFeature/HeightResolution.html">– HeightResolution</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicWindChill.html">CharacteristicWindChill</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Characteristic - Mesh.html">Characteristic - Mesh</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMeshProvisioningDataIn.html">CharacteristicMeshProvisioningDataIn</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMeshProvisioningDataOut.html">CharacteristicMeshProvisioningDataOut</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMeshProxyDataIn.html">CharacteristicMeshProxyDataIn</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicMeshProxyDataOut.html">CharacteristicMeshProxyDataOut</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Characteristic - Custom.html">Characteristic - Custom</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectEquipmentType.html">CharacteristicGymConnectEquipmentType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectEquipmentState.html">CharacteristicGymConnectEquipmentState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectEquipmentStateName.html">CharacteristicGymConnectEquipmentStateName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectMeasurement.html">CharacteristicGymConnectMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicGymConnectWorkoutProgramName.html">CharacteristicGymConnectWorkoutProgramName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicNorthPoleAweDiagnostics.html">CharacteristicNorthPoleAweDiagnostics</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicNorthPoleAweHeartRateMeasurement.html">CharacteristicNorthPoleAweHeartRateMeasurement</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicNorthPoleAweWorkoutInformation.html">CharacteristicNorthPoleAweWorkoutInformation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTacxAntFecReceive.html">CharacteristicTacxAntFecReceive</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicTacxAntFecSend.html">CharacteristicTacxAntFecSend</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Manufacturer Data.html">Manufacturer Data</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerData.html">ManufacturerData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataAltBeacon.html">ManufacturerDataAltBeacon</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataAppleHomeKit.html">ManufacturerDataAppleHomeKit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataAppleHomeKit/StatusFlags.html">– StatusFlags</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataAppleHomeKitEncryptedNotification.html">ManufacturerDataAppleHomeKitEncryptedNotification</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataAppleiBeacon.html">ManufacturerDataAppleiBeacon</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataGymConnect.html">ManufacturerDataGymConnect</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataGymConnect/StatusFlags.html">– StatusFlags</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ManufacturerDataPolarHeartRate.html">ManufacturerDataPolarHeartRate</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Fitness Machine Control.html">Fitness Machine Control</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/FitnessMachineControlCode.html">FitnessMachineControlCode</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/FitnessMachineControlProcedure.html">FitnessMachineControlProcedure</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureRequestControl.html">FitnessMachineProcedureRequestControl</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureReset.html">FitnessMachineProcedureReset</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetSpeed.html">FitnessMachineProcedureSetTargetSpeed</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetInclination.html">FitnessMachineProcedureSetTargetInclination</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetResistanceLevel.html">FitnessMachineProcedureSetTargetResistanceLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetPower.html">FitnessMachineProcedureSetTargetPower</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetHeartRate.html">FitnessMachineProcedureSetTargetHeartRate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureStartResume.html">FitnessMachineProcedureStartResume</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureStopPause.html">FitnessMachineProcedureStopPause</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedExpendedEnergy.html">FitnessMachineProcedureSetTargetedExpendedEnergy</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedNumberOfSteps.html">FitnessMachineProcedureSetTargetedNumberOfSteps</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedNumberOfStrides.html">FitnessMachineProcedureSetTargetedNumberOfStrides</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedDistance.html">FitnessMachineProcedureSetTargetedDistance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedTrainingTime.html">FitnessMachineProcedureSetTargetedTrainingTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedTimeInTwoHrZone.html">FitnessMachineProcedureSetTargetedTimeInTwoHrZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedTimeInThreeHrZone.html">FitnessMachineProcedureSetTargetedTimeInThreeHrZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedTimeInFiveHrZone.html">FitnessMachineProcedureSetTargetedTimeInFiveHrZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSeWheelCircumference.html">FitnessMachineProcedureSeWheelCircumference</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetSpinDownControl.html">FitnessMachineProcedureSetSpinDownControl</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetSpinDownControl/Control.html">– Control</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureSetTargetedCadence.html">FitnessMachineProcedureSetTargetedCadence</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureResponse.html">FitnessMachineProcedureResponse</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineProcedureResponse/ResultCode.html">– ResultCode</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Fitness Machine Control Response Type.html">Fitness Machine Control Response Type</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Fitness Machine Control Response Type.html#/s:24BluetoothMessageProtocol33FitnessMachineControlResponseTypeP">FitnessMachineControlResponseType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineControlResponseTypeSpinDown.html">FitnessMachineControlResponseTypeSpinDown</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Fitness Machine Status.html">Fitness Machine Status</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/FitnessMachineStatusCode.html">FitnessMachineStatusCode</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/FitnessMachineStatus.html">FitnessMachineStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusGeneric.html">FitnessMachineStatusGeneric</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusStopPause.html">FitnessMachineStatusStopPause</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetSpeed.html">FitnessMachineStatusTargetSpeed</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetIncline.html">FitnessMachineStatusTargetIncline</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetResistanceLevel.html">FitnessMachineStatusTargetResistanceLevel</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetPower.html">FitnessMachineStatusTargetPower</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetHeartRate.html">FitnessMachineStatusTargetHeartRate</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedExpendedEnergyChanged.html">FitnessMachineStatusTargetedExpendedEnergyChanged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedSteps.html">FitnessMachineStatusTargetedSteps</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedStrides.html">FitnessMachineStatusTargetedStrides</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedDistance.html">FitnessMachineStatusTargetedDistance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedTrainingTime.html">FitnessMachineStatusTargetedTrainingTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedTimeInTwoHrZoneChanged.html">FitnessMachineStatusTargetedTimeInTwoHrZoneChanged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedTimeInThreeHrZoneChanged.html">FitnessMachineStatusTargetedTimeInThreeHrZoneChanged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedTimeInFiveHrZoneChanged.html">FitnessMachineStatusTargetedTimeInFiveHrZoneChanged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusWheelCircumference.html">FitnessMachineStatusWheelCircumference</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusSpinDown.html">FitnessMachineStatusSpinDown</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusSpinDown/SpinDownStatus.html">– SpinDownStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineStatusTargetedCadence.html">FitnessMachineStatusTargetedCadence</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Fitness Machine Types.html">Fitness Machine Types</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineEnergy.html">FitnessMachineEnergy</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineInclinationType.html">FitnessMachineInclinationType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/FitnessMachineMovementDirection.html">FitnessMachineMovementDirection</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachinePowerType.html">FitnessMachinePowerType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetCadence.html">FitnessMachineTargetCadence</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetDistance.html">FitnessMachineTargetDistance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetExpendedEnergy.html">FitnessMachineTargetExpendedEnergy</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetResistanceLevelType.html">FitnessMachineTargetResistanceLevelType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetTime.html">FitnessMachineTargetTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetTimeInTwoHrZone.html">FitnessMachineTargetTimeInTwoHrZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetTimeInThreeHrZone.html">FitnessMachineTargetTimeInThreeHrZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTargetTimeInFiveHrZone.html">FitnessMachineTargetTimeInFiveHrZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineTime.html">FitnessMachineTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/FitnessMachineStopPauseType.html">FitnessMachineStopPauseType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineSpeedType.html">FitnessMachineSpeedType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/FitnessMachineWheelCircumferenceType.html">FitnessMachineWheelCircumferenceType</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../HomeKit.html">HomeKit</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitAccessoryCategory.html">HomeKitAccessoryCategory</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitPairingErrorType.html">HomeKitPairingErrorType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitPairingErrorType/CodingKeys.html">– CodingKeys</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitPairingMethodType.html">HomeKitPairingMethodType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitSoftwareAuthenticationTlvType.html">HomeKitSoftwareAuthenticationTlvType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitPairingTlvType.html">HomeKitPairingTlvType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HomeKitPairingTlvType/CodingKeys.html">– CodingKeys</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Mesh.html">Mesh</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/ProvisioningSize.html">ProvisioningSize</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/ProvisioningAttentionTimer.html">ProvisioningAttentionTimer</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/MeshModelIdentifier.html">MeshModelIdentifier</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/ModelIdentifierType.html">ModelIdentifierType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/ModelIdentifierType/CodingKeys.html">– CodingKeys</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshOutOfBandInformation.html">MeshOutOfBandInformation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshTransitionTime.html">MeshTransitionTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshTransitionTime/Step.html">– Step</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshTransitionTime/Resolution.html">– Resolution</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Mesh Beacon.html">Mesh Beacon</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/MeshBeacon.html">MeshBeacon</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/MeshBeaconType.html">MeshBeaconType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshBeaconSecureNetwork.html">MeshBeaconSecureNetwork</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshBeaconSecureNetwork/Flag.html">– Flag</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshBeaconUnprovisioned.html">MeshBeaconUnprovisioned</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Mesh Message.html">Mesh Message</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/MeshMessage.html">MeshMessage</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/GenericOnOffState.html">GenericOnOffState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericOnOffGet.html">MeshMessageGenericOnOffGet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericOnOffSet.html">MeshMessageGenericOnOffSet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericOnOffSetUnacknowledged.html">MeshMessageGenericOnOffSetUnacknowledged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericOnOffStatus.html">MeshMessageGenericOnOffStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericLevelGet.html">MeshMessageGenericLevelGet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericLevelSet.html">MeshMessageGenericLevelSet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericLevelSetUnacknowledged.html">MeshMessageGenericLevelSetUnacknowledged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericLevelSatus.html">MeshMessageGenericLevelSatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericDeltaSet.html">MeshMessageGenericDeltaSet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericDeltaSetUnacknowledged.html">MeshMessageGenericDeltaSetUnacknowledged</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericMoveSet.html">MeshMessageGenericMoveSet</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/MeshMessageGenericMoveSetUnacknowledged.html">MeshMessageGenericMoveSetUnacknowledged</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Mesh Provisioning.html">Mesh Provisioning</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningData.html">ProvisioningData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningData/Flags.html">– Flags</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/ProvisioningDataUnit.html">ProvisioningDataUnit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/ProvisioningDataUnitType.html">ProvisioningDataUnitType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities.html">ProvisioningDataUnitCapabilities</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/AlgorithmType.html">– AlgorithmType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/PublicKeyType.html">– PublicKeyType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/StaticOobType.html">– StaticOobType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/OutputActions.html">– OutputActions</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitCapabilities/InputActions.html">– InputActions</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitInvite.html">ProvisioningDataUnitInvite</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitStart.html">ProvisioningDataUnitStart</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitStart/Algorithm.html">– Algorithm</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitStart/PublicKeyType.html">– PublicKeyType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitPublicKey.html">ProvisioningDataUnitPublicKey</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitInputComplete.html">ProvisioningDataUnitInputComplete</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitConfirmation.html">ProvisioningDataUnitConfirmation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitRandom.html">ProvisioningDataUnitRandom</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitData.html">ProvisioningDataUnitData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitComplete.html">ProvisioningDataUnitComplete</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitFailed.html">ProvisioningDataUnitFailed</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningDataUnitFailed/ErrorType.html">– ErrorType</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Provisioning Authentication.html">Provisioning Authentication</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/ProvisioningAuthenticationMethod.html">ProvisioningAuthenticationMethod</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/ProvisioningAuthentication.html">ProvisioningAuthentication</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningAuthenticationMethodNone.html">ProvisioningAuthenticationMethodNone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningAuthenticationMethodStatic.html">ProvisioningAuthenticationMethodStatic</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningAuthenticationMethodOutput.html">ProvisioningAuthenticationMethodOutput</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningAuthenticationMethodOutput/Action.html">– Action</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningAuthenticationMethodInput.html">ProvisioningAuthenticationMethodInput</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProvisioningAuthenticationMethodInput/Action.html">– Action</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Mesh Proxy.html">Mesh Proxy</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/ProxyDataUnit.html">ProxyDataUnit</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProxyMessageType.html">ProxyMessageType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProxyMessageType/MessageSegment.html">– MessageSegment</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProxyMessageType/ProxyDataUnitType.html">– ProxyDataUnitType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProxyDataUnitBeacon.html">ProxyDataUnitBeacon</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/ProxyDataUnitProvisioning.html">ProxyDataUnitProvisioning</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Enums.html">Other Enumerations</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Enums/AlertCategory.html">AlertCategory</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/Appearance.html">Appearance</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/AppearanceCategory.html">AppearanceCategory</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/AppleDeviceType.html">AppleDeviceType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/BluetoothDecodeError.html">BluetoothDecodeError</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/BluetoothEncodeError.html">BluetoothEncodeError</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/BluetoothTimeZone.html">BluetoothTimeZone</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/BodyLocation.html">BodyLocation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/CompanyIdentifierError.html">CompanyIdentifierError</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/DSTOffset.html">DSTOffset</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/DayOfWeek.html">DayOfWeek</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/Gender.html">Gender</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/GymConnectEquipmentState.html">GymConnectEquipmentState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/GymConnectEquipmentType.html">GymConnectEquipmentType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/HeartRateContactStatus.html">HeartRateContactStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/Month.html">Month</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/SensorLocation.html">SensorLocation</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/TemperatureType.html">TemperatureType</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/TypeValueCodingKeys.html">TypeValueCodingKeys</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Enums/User.html">User</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Extensions.html">Other Extensions</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Extensions/UUID.html">UUID</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Protocols.html">Other Protocols</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Protocols/BluetoothEncodable.html">BluetoothEncodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/CharacteristicDecodable.html">CharacteristicDecodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/ManufacturerDataDecodable.html">ManufacturerDataDecodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Protocols/ServiceDataDecodable.html">ServiceDataDecodable</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Structs.html">Other Structures</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Structs/BatteryPowerState.html">BatteryPowerState</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/BatteryPowerState/StateSupport.html">– StateSupport</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/BatteryPowerState/DischargeStatus.html">– DischargeStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/BatteryPowerState/ChargingStatus.html">– ChargingStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/BatteryPowerState/Level.html">– Level</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/DateTime.html">DateTime</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/StringKey.html">StringKey</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-group-name">
+              <a href="../Other Typealiases.html">Other Type Aliases</a>
+              <ul class="nav-group-tasks">
+                <li class="nav-group-task">
+                  <a href="../Other Typealiases.html#/s:24BluetoothMessageProtocol21CharacteristicCodablea">CharacteristicCodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Other Typealiases.html#/s:24BluetoothMessageProtocol23ManufacturerDataCodablea">ManufacturerDataCodable</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Other Typealiases.html#/s:24BluetoothMessageProtocol18ServiceDataCodablea">ServiceDataCodable</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-wrapper">
+        <section id="footer">
+          <p>© 2017 Kevin A. Hoogheem</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</div>
+</html>
