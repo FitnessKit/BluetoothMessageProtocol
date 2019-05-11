@@ -316,6 +316,16 @@ public enum Appearance: UInt16 {
     case mobilityScooter                            = 3266
     /// Generic Continuous Glucose Monitor
     case genericContinuousGlucoseMonitor            = 3328
+    /// Generic Insulin Pump
+    case genericInsulinPump                         = 3392
+    //// Insulin Pump, durable pump
+    case insulinPumpDurablePump                     = 3393
+    /// Insulin Pump, patch pump
+    case insulinPumpPatchPump                       = 3396
+    /// Insulin Pen
+    case insulinPen                                 = 3400
+    /// Generic Medication Delivery
+    case genericMedicationDelivery                  = 3456
     /// Generic: Outdoor Sports Activity
     case outdoorSportsActivity                      = 5184
     /// Location Display Device

@@ -72,6 +72,10 @@ public enum AppearanceCategory: String {
     case personalMobility       = "Personal Mobility"
     /// Continuous Glucose Monitor
     case continuousGlucose      = "Continuous Glucose"
+    /// Insulin Pump
+    case insulinPump            = "Insulin Pump"
+    /// Medication Delivery
+    case medicationDelivery     = "Medication Delivery"
     /// Outdoor Sports Activity
     case outdoorSportsActivity  = "Outdoor Sports Activity"
 }
