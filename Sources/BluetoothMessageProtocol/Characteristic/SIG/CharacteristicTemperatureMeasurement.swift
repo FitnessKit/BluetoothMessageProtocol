@@ -82,7 +82,7 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicTemperatureMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicTemperatureMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -119,7 +119,7 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTemperatureMeasurement {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

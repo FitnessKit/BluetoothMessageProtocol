@@ -59,7 +59,7 @@ open class CharacteristicTacxAntFecSend: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicTacxAntFecSend>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicTacxAntFecSend>(with data: Data) -> Result<C, BluetoothDecodeError> {
         /// We don't need to ever decode it
         return.failure(BluetoothDecodeError.notSupported) 
     }
@@ -71,7 +71,7 @@ open class CharacteristicTacxAntFecSend: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTacxAntFecSend {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

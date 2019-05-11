@@ -50,7 +50,7 @@ open class Characteristic: CharacteristicCodable {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open class func decoder<C: Characteristic>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         fatalError("*** You must override in your class.")
     }
 

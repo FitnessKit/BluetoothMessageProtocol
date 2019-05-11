@@ -17,13 +17,12 @@ class GymConnectTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
     
     func testDecodeCharacteristicGymConnectEquipmentState() {
     
         let data = Data([10])
         
-        let state = CharacteristicGymConnectEquipmentState.decoder(data: data)
+        let state = CharacteristicGymConnectEquipmentState.decode(with: data)
 
         switch state {
         case .success(let char):

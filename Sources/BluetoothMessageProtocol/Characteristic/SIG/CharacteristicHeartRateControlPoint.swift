@@ -64,7 +64,7 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicHeartRateControlPoint>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicHeartRateControlPoint>(with data: Data) -> Result<C, BluetoothDecodeError> {
         //Not Yet Supported
         return.failure(BluetoothDecodeError.notSupported)
     }
@@ -76,7 +76,7 @@ open class CharacteristicHeartRateControlPoint: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicHeartRateControlPoint {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

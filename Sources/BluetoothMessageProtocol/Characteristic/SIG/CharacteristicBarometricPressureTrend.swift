@@ -82,7 +82,7 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicBarometricPressureTrend>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicBarometricPressureTrend>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8(data)) ?? .unknown
@@ -97,7 +97,7 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBarometricPressureTrend {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

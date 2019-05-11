@@ -62,7 +62,7 @@ open class CharacteristicLatitude: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicLatitude>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicLatitude>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lat = decoder.decodeInt32(data)
@@ -77,7 +77,7 @@ open class CharacteristicLatitude: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicLatitude {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

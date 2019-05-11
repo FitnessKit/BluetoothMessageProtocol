@@ -75,7 +75,7 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicSupportedInclinationRange>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicSupportedInclinationRange>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
@@ -97,7 +97,7 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSupportedInclinationRange {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

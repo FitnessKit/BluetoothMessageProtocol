@@ -61,7 +61,7 @@ open class CharacteristicSerialNumberString: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicSerialNumberString>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicSerialNumberString>(with data: Data) -> Result<C, BluetoothDecodeError> {
 
         if let serialNumber = data.safeStringValue {
             return.success(CharacteristicSerialNumberString(serialNumber: serialNumber) as! C)
@@ -77,7 +77,7 @@ open class CharacteristicSerialNumberString: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSerialNumberString {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

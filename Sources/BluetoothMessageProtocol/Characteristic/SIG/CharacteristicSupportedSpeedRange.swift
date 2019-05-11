@@ -72,7 +72,7 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicSupportedSpeedRange>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicSupportedSpeedRange>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
@@ -92,7 +92,7 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSupportedSpeedRange {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

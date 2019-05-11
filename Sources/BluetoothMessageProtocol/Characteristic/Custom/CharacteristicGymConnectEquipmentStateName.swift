@@ -58,7 +58,7 @@ open class CharacteristicGymConnectEquipmentStateName: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicGymConnectEquipmentStateName>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicGymConnectEquipmentStateName>(with data: Data) -> Result<C, BluetoothDecodeError> {
         
         if let name = data.safeStringValue {
             return.success(CharacteristicGymConnectEquipmentStateName(stateName: name) as! C)
@@ -74,7 +74,7 @@ open class CharacteristicGymConnectEquipmentStateName: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicGymConnectEquipmentStateName {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

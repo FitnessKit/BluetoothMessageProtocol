@@ -62,7 +62,7 @@ open class CharacteristicMeasurementInterval: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicMeasurementInterval>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicMeasurementInterval>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Double(decoder.decodeUInt16(data))
@@ -79,7 +79,7 @@ open class CharacteristicMeasurementInterval: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMeasurementInterval {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

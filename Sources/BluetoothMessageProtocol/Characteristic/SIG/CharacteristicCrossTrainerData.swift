@@ -210,7 +210,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicCrossTrainerData>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicCrossTrainerData>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: UInt32(decoder.decodeUInt24(data)))
@@ -359,7 +359,7 @@ open class CharacteristicCrossTrainerData: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicCrossTrainerData {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
     
     /// Encodes the Characteristic into Data

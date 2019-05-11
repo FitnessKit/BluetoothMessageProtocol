@@ -60,7 +60,7 @@ open class CharacteristicWaistCircumference: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicWaistCircumference>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicWaistCircumference>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
@@ -77,7 +77,7 @@ open class CharacteristicWaistCircumference: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicWaistCircumference {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

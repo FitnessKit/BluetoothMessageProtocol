@@ -60,7 +60,7 @@ open class CharacteristicLocalNorthCoordinate: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicLocalNorthCoordinate>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicLocalNorthCoordinate>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let local = decoder.decodeInt32(data)
@@ -75,7 +75,7 @@ open class CharacteristicLocalNorthCoordinate: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicLocalNorthCoordinate {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

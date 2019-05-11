@@ -61,7 +61,7 @@ public protocol CharacteristicDecodable: AnyObject {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    static func decoder<C: Characteristic>(data: Data) -> Result<C, BluetoothDecodeError>
+    static func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError>
 }
 
 /// Allows for Decoding ServiceData
@@ -71,7 +71,7 @@ public protocol ServiceDataDecodable: AnyObject {
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    static func decode<S: ServiceData>(with: Data) -> Result<S, BluetoothDecodeError>
+    static func decode<S: ServiceData>(with data: Data) -> Result<S, BluetoothDecodeError>
 }
 
 /// Allows for Decoding ManufacturerData

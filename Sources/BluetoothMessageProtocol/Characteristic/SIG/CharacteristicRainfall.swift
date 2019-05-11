@@ -58,7 +58,7 @@ open class CharacteristicRainfall: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicRainfall>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicRainfall>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         // put into 0.1 PA then into KiloPascals
@@ -77,7 +77,7 @@ open class CharacteristicRainfall: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicRainfall {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

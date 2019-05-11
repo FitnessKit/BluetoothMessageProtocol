@@ -60,7 +60,7 @@ open class CharacteristicSensorLocation: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicSensorLocation>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicSensorLocation>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let location = SensorLocation(rawValue: decoder.decodeUInt8(data)) ?? .other
@@ -76,7 +76,7 @@ open class CharacteristicSensorLocation: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicSensorLocation {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

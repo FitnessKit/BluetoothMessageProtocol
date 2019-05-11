@@ -81,7 +81,7 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicFiveZoneHeartRateLimits>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicFiveZoneHeartRateLimits>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lightHeartRate: UInt8 = decoder.decodeUInt8(data)
@@ -103,7 +103,7 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFiveZoneHeartRateLimits {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

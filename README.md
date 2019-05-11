@@ -74,7 +74,7 @@ func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CB
 
 func doDecodeHRMess(sensorData: Data) {
 
-    let hrData = CharacteristicHeartRateMeasurement.decoder(data: sensorData)
+    let hrData = CharacteristicHeartRateMeasurement.decode(with: sensorData)
 
     switch hrData {
     case .success(let char):
@@ -86,7 +86,7 @@ func doDecodeHRMess(sensorData: Data) {
 
     /// Or you can stil use the doCatch
     do {
-        let hrData = try CharacteristicHeartRateMeasurement.decoder(data: sensorData).get()
+        let hrData = try CharacteristicHeartRateMeasurement.decode(with: sensorData).get()
 
         print("HR: \(hrData.heartRate)")
 
@@ -97,7 +97,7 @@ func doDecodeHRMess(sensorData: Data) {
 
 func doDecodeBody(sensorData: Data) {
 
-    let sensor = CharacteristicBodySensorLocation.decoder(data: sensorData)
+    let sensor = CharacteristicBodySensorLocation.decode(with: sensorData)
 
     switch sensor {
     case .success(let char):
@@ -109,7 +109,7 @@ func doDecodeBody(sensorData: Data) {
 
     /// Or you can stil use the doCatch
     do {
-        let sensor = try CharacteristicBodySensorLocation.decoder(data: sensorData).get()
+        let sensor = try CharacteristicBodySensorLocation.decode(with: sensorData).get()
 
         print("Location: \(sensor.sensorLocation.stringValue)")
 

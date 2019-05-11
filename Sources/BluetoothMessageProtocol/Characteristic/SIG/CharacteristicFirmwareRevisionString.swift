@@ -61,7 +61,7 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicFirmwareRevisionString>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicFirmwareRevisionString>(with data: Data) -> Result<C, BluetoothDecodeError> {
         
         if let firmwareRevision = data.safeStringValue {
             return.success(CharacteristicFirmwareRevisionString(firmwareRevision: firmwareRevision) as! C)
@@ -77,7 +77,7 @@ open class CharacteristicFirmwareRevisionString: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFirmwareRevisionString {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

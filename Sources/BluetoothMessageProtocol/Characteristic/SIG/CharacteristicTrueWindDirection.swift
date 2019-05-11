@@ -64,7 +64,7 @@ open class CharacteristicTrueWindDirection: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicTrueWindDirection>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicTrueWindDirection>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
@@ -81,7 +81,7 @@ open class CharacteristicTrueWindDirection: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicTrueWindDirection {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

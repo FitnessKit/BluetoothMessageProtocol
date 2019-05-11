@@ -89,7 +89,7 @@ open class CharacteristicHTTPControlPoint: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicHTTPControlPoint>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicHTTPControlPoint>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Command(rawValue: decoder.decodeUInt8(data)) ?? .unknown
@@ -104,7 +104,7 @@ open class CharacteristicHTTPControlPoint: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicHTTPControlPoint {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

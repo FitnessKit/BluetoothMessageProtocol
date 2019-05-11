@@ -63,7 +63,7 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicMeshProxyDataOut>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicMeshProxyDataOut>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         if let pduType = decoder.decodeUInt8IfPresent(data) {
@@ -96,7 +96,7 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMeshProxyDataOut {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

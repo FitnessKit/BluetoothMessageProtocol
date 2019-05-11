@@ -70,7 +70,7 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicUnreadAlertStatus>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicUnreadAlertStatus>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let alertType = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
@@ -88,7 +88,7 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicUnreadAlertStatus {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

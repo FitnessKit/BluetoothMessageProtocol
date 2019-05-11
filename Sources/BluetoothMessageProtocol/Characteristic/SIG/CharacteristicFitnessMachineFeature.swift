@@ -149,7 +149,7 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicFitnessMachineFeature>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicFitnessMachineFeature>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let features = MachineFeatures(rawValue: decoder.decodeUInt32(data))
@@ -167,7 +167,7 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicFitnessMachineFeature {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

@@ -68,7 +68,7 @@ open class CharacteristicRingerSetting: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicRingerSetting>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicRingerSetting>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let setting = RingerSetting(rawValue: decoder.decodeUInt8(data)) ?? .silent
@@ -84,7 +84,7 @@ open class CharacteristicRingerSetting: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicRingerSetting {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

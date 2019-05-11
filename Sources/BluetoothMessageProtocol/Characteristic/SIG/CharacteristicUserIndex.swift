@@ -58,7 +58,7 @@ open class CharacteristicUserIndex: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicUserIndex>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicUserIndex>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt8(data)
@@ -75,7 +75,7 @@ open class CharacteristicUserIndex: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicUserIndex {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

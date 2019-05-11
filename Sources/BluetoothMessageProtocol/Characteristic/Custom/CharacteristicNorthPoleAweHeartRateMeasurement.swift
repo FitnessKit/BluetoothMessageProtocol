@@ -76,7 +76,7 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicNorthPoleAweHeartRateMeasurement>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicNorthPoleAweHeartRateMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
         /// Data from the AWE Heart Rate Measurement is not Notified or read.
         /// We don't need to ever decode it
         return.failure(BluetoothDecodeError.notSupported)
@@ -89,7 +89,7 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicNorthPoleAweHeartRateMeasurement {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

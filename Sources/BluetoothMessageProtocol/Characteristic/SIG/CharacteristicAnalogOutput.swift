@@ -61,7 +61,7 @@ open class CharacteristicAnalogOutput: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicAnalogOutput>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicAnalogOutput>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let analogValue = decoder.decodeUInt16(data)
@@ -76,7 +76,7 @@ open class CharacteristicAnalogOutput: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicAnalogOutput {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

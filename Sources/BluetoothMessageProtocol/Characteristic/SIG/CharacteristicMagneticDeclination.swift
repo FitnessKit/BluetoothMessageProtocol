@@ -62,7 +62,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicMagneticDeclination>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicMagneticDeclination>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
@@ -79,7 +79,7 @@ open class CharacteristicMagneticDeclination: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicMagneticDeclination {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

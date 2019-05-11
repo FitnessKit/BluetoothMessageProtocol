@@ -58,7 +58,7 @@ open class CharacteristicElevation: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicElevation>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicElevation>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
@@ -75,7 +75,7 @@ open class CharacteristicElevation: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicElevation {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

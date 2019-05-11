@@ -68,7 +68,7 @@ open class CharacteristicBatteryLevelState: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicBatteryLevelState>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicBatteryLevelState>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let percent = Double(decoder.decodeUInt8(data))
@@ -97,7 +97,7 @@ open class CharacteristicBatteryLevelState: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicBatteryLevelState {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

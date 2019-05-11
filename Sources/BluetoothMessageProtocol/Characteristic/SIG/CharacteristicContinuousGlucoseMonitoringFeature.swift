@@ -159,7 +159,7 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicContinuousGlucoseMonitoringFeature>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicContinuousGlucoseMonitoringFeature>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let featureVal = decoder.decodeUInt24(data)
@@ -190,7 +190,7 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicContinuousGlucoseMonitoringFeature {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data

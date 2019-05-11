@@ -58,7 +58,7 @@ open class CharacteristicObjectName: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decoder<C: CharacteristicObjectName>(data: Data) -> Result<C, BluetoothDecodeError> {
+    open override class func decode<C: CharacteristicObjectName>(with data: Data) -> Result<C, BluetoothDecodeError> {
 
         if let objectName = data.safeStringValue {
             return.success(CharacteristicObjectName(objectName: objectName) as! C)
@@ -74,7 +74,7 @@ open class CharacteristicObjectName: Characteristic {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> CharacteristicObjectName {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes the Characteristic into Data
