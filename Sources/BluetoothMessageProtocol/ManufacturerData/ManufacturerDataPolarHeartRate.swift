@@ -66,7 +66,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decoder<M: ManufacturerDataPolarHeartRate>(data: Data) -> Result<M, BluetoothDecodeError> {
+    open override class func decode<M: ManufacturerDataPolarHeartRate>(with data: Data) -> Result<M, BluetoothDecodeError> {
         let man = ManufacturerData(rawData: data)
         
         guard man.manufacturer == .polar else {
@@ -104,7 +104,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataPolarHeartRate {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes Polar Heart Rate Manufacturer Specific Data

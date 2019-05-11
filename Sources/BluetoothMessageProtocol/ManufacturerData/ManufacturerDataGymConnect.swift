@@ -87,7 +87,7 @@ open class ManufacturerDataGymConnect: ManufacturerData {
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decoder<M: ManufacturerDataGymConnect>(data: Data) -> Result<M, BluetoothDecodeError> {
+    open override class func decode<M: ManufacturerDataGymConnect>(with data: Data) -> Result<M, BluetoothDecodeError> {
         let man = ManufacturerData(rawData: data)
         
         guard man.manufacturer == .wahooFitness else {
@@ -117,7 +117,7 @@ open class ManufacturerDataGymConnect: ManufacturerData {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataGymConnect {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes Manufacturer Specific Data

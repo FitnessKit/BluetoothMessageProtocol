@@ -130,7 +130,7 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
 
     if let advertData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
 
-        switch ManufacturerDataAppleiBeacon.decoder(data: advertData) {
+        switch ManufacturerDataAppleiBeacon.decode(with: advertData) {
         case .success(let beacon):
             print(beacon.proximityUUID.uuidString)
 
@@ -140,7 +140,7 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
         }
 
         /// Or you can stil use the doCatch
-        if let beacon = try? ManufacturerDataAppleiBeacon.decoder(data: advertData).get() {
+        if let beacon = try? ManufacturerDataAppleiBeacon.decode(with: advertData).get() {
             print(beacon.proximityUUID.uuidString)
         }
     }

@@ -81,5 +81,5 @@ public protocol ManufacturerDataDecodable: AnyObject {
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    static func decoder<M: ManufacturerData>(data: Data) -> Result<M, BluetoothDecodeError>
+    static func decode<M: ManufacturerData>(with data: Data) -> Result<M, BluetoothDecodeError>
 }

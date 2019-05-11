@@ -72,7 +72,7 @@ open class ManufacturerData: Encodable, ManufacturerDataCodable {
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open class func decoder<M: ManufacturerData>(data: Data) -> Result<M, BluetoothDecodeError> {
+    open class func decode<M: ManufacturerData>(with data: Data) -> Result<M, BluetoothDecodeError> {
         fatalError("*** You must override in your class.")
     }
 

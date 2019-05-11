@@ -83,7 +83,7 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decoder<M: ManufacturerDataAltBeacon>(data: Data) -> Result<M, BluetoothDecodeError> {
+    open override class func decode<M: ManufacturerDataAltBeacon>(with data: Data) -> Result<M, BluetoothDecodeError> {
         let man = ManufacturerData(rawData: data)
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
@@ -117,7 +117,7 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
     /// - Throws: BluetoothDecodeError
     @available(*, deprecated, message: "use results based decoder instead")
     open override class func decode(data: Data) throws -> ManufacturerDataAltBeacon {
-        return try decoder(data: data).get()
+        return try decode(with: data).get()
     }
 
     /// Encodes AltBeacon Manufacturer Specific Data
