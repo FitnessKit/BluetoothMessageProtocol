@@ -36,7 +36,7 @@ dependencies: [
 
 ### Services
 
-The Service class helps to describe a BLE Service.   There is no assumption to which Characteristics the service contains.
+The Service class helps to describe a BLE Service.   There is no assumption to which Characteristics the Service contains.
 
 Example Using CoreBluetooth:
 
@@ -74,8 +74,19 @@ func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CB
 
 func doDecodeHRMess(sensorData: Data) {
 
+    let hrData = CharacteristicHeartRateMeasurement.decode(data: sensorData)
+
+    switch hrData {
+    case .success(let char):
+        print("HR: \(char.heartRate)")
+
+    case .failure(let error):
+        print(error)
+    }
+
+    /// Or you can stil use the doCatch
     do {
-        let hrData = try CharacteristicHeartRateMeasurement.decode(data: sensorData)
+        let hrData = try CharacteristicHeartRateMeasurement.decode(data: sensorData).get()
 
         print("HR: \(hrData.heartRate)")
 
@@ -86,10 +97,21 @@ func doDecodeHRMess(sensorData: Data) {
 
 func doDecodeBody(sensorData: Data) {
 
-    do {
-        let hrData = try CharacteristicBodySensorLocation.decode(data: sensorData)
+    let sensor = CharacteristicBodySensorLocation.decode(data: sensorData)
 
-        print("Location: \(hrData.sensorLocation.stringValue)")
+    switch sensor {
+    case .success(let char):
+        print("Location: \(char.sensorLocation.stringValue)")
+
+    case .failure(let error):
+        print(error)
+    }
+
+    /// Or you can stil use the doCatch
+    do {
+        let sensor = try CharacteristicBodySensorLocation.decode(data: sensorData).get()
+
+        print("Location: \(sensor.sensorLocation.stringValue)")
 
     } catch  {
         print(error)
@@ -108,7 +130,17 @@ func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPerip
 
     if let advertData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
 
-        if let beacon = try? ManufacturerDataAppleiBeacon.decode(data: advertData) {
+        switch ManufacturerDataAppleiBeacon.decode(data: advertData) {
+        case .success(let beacon):
+            print(beacon.proximityUUID.uuidString)
+
+        case .failure(let error):
+            print(error)
+
+        }
+
+        /// Or you can stil use the doCatch
+        if let beacon = try? ManufacturerDataAppleiBeacon.decode(data: advertData).get() {
             print(beacon.proximityUUID.uuidString)
         }
     }
