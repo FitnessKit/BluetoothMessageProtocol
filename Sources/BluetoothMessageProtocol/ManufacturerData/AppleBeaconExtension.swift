@@ -29,137 +29,137 @@ public extension ManufacturerDataAppleiBeacon {
 
     //// Avvel International Proximity UUID
     class var avvelInternationalProximityUUID: UUID {
-        return UUID(uuidString: "EBEFD083-70A2-47C8-9837-E7B5634DF524")!
+        return UUID(staticString: "EBEFD083-70A2-47C8-9837-E7B5634DF524")
     }
 
     /// Beacon Bits Proximity UUID
     class var beaconBitsProximityUUID: UUID {
-        return UUID(uuidString: "B7D1027D-6788-416E-994F-EA11075F1765")!
+        return UUID(staticString: "B7D1027D-6788-416E-994F-EA11075F1765")
     }
 
     /// Beacon Go Portable Proximity UUID
     class var beaconGoPortableProximityUUID: UUID {
-        return UUID(uuidString: "E6BF275E-0BB3-43E5-BF88-517F13A5A162")!
+        return UUID(staticString: "E6BF275E-0BB3-43E5-BF88-517F13A5A162")
     }
 
     /// Beacon Go USB Proximity UUID
     class var beaconGoUsbProximityUUID: UUID {
-        return UUID(uuidString: "F6322B94-D58A-F34E-B1A5-17C69CFBE32E")!
+        return UUID(staticString: "F6322B94-D58A-F34E-B1A5-17C69CFBE32E")
     }
 
     /// Beaconstac Proximity UUID
     class var beaconstacProximityUUID: UUID {
-        return UUID(uuidString: "F94DBB23-2266-7822-3782-57BEAC0952AC")!
+        return UUID(staticString: "F94DBB23-2266-7822-3782-57BEAC0952AC")
     }
 
     /// Blue Sense Proximity UUID
     class var blueSenseProximityUUID: UUID {
-        return UUID(uuidString: "A0B13730-3A9A-11E3-AA6E-0800200C9A66")!
+        return UUID(staticString: "A0B13730-3A9A-11E3-AA6E-0800200C9A66")
     }
 
     /// BlueUp Proximity UUID
     class var blueUpProximityUUID: UUID {
-        return UUID(uuidString: "ACFD065E-C3C0-11E3-9BBE-1A514932AC01")!
+        return UUID(staticString: "ACFD065E-C3C0-11E3-9BBE-1A514932AC01")
     }
 
     /// Brickyard Wireless Proximity UUID
     class var brickyardWirelessProximityUUID: UUID {
-        return UUID(uuidString: "3DB26185-F716-4780-8E82-B7D31714246D")!
+        return UUID(staticString: "3DB26185-F716-4780-8E82-B7D31714246D")
     }
 
     /// Bright Beacon Proximity UUID
     class var brightBeaconProximityUUID: UUID {
-        return UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!
+        return UUID(staticString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
     }
 
     /// Cobi Beacon Proximity UUID
     class var cobiBeaconProximityUUID: UUID {
-        return UUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!
+        return UUID(staticString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")
     }
 
     /// Ekoor B Proximity UUID
     class var ekoorBProximityUUID: UUID {
-        return UUID(uuidString: "A7157DCB-093E-B822-7ACA-0F9156EDF378")!
+        return UUID(staticString: "A7157DCB-093E-B822-7ACA-0F9156EDF378")
     }
 
     /// Ekoor LR Proximity UUID
     class var ekoorLRProximityUUID: UUID {
-        return UUID(uuidString: "A7157DCB-093E-B822-7ACA-0F9156EDF377")!
+        return UUID(staticString: "A7157DCB-093E-B822-7ACA-0F9156EDF377")
     }
 
     /// Enote Proximity UUID
     class var enoteProximityUUID: UUID {
-        return UUID(uuidString: "DAB59C4F-A4D6-EE28-6BFE-8E0000BBC2BB")!
+        return UUID(staticString: "DAB59C4F-A4D6-EE28-6BFE-8E0000BBC2BB")
     }
 
     /// Essi Proximity UUID
     class var essiProximityUUID: UUID {
-        return UUID(uuidString: "A7AE2EB7-1F00-4168-B99B-A749BAC1CA64")!
+        return UUID(staticString: "A7AE2EB7-1F00-4168-B99B-A749BAC1CA64")
     }
 
     /// Estimote Proximity UUID
     class var estimoteProximityUUID: UUID {
-        return UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
+        return UUID(staticString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")
     }
 
     /// Estimote Virtual iOS Proximity UUID
     class var estimoteVirtualiOSProximityUUID: UUID {
-        return UUID(uuidString: "8492E75F-4FD6-469D-B132-043FE94921D8")!
+        return UUID(staticString: "8492E75F-4FD6-469D-B132-043FE94921D8")
     }
 
     /// Estimote Virtual macOS Proximity UUID
     class var estimoteVirtualMacOSProximityUUID: UUID {
-        return UUID(uuidString: "08D4A950-80F0-4D42-A14B-D53E063516E6")!
+        return UUID(staticString: "08D4A950-80F0-4D42-A14B-D53E063516E6")
     }
 
     /// GeLo Proximity UUID
     class var geLoProximityUUID: UUID {
-        return UUID(uuidString: "11E44F09-4EC4-407E-9203-CF57A50FBCE0")!
+        return UUID(staticString: "11E44F09-4EC4-407E-9203-CF57A50FBCE0")
     }
 
     /// Glimworm Proximity UUID
     class var glimwormProximityUUID: UUID {
-        return UUID(uuidString: "74278BDA-B644-4520-8f0C-720EAF059935")!
+        return UUID(staticString: "74278BDA-B644-4520-8f0C-720EAF059935")
     }
 
     /// Kontakt Proximity UUID
     class var kontaktProximityUUID: UUID {
-        return UUID(uuidString: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E")!
+        return UUID(staticString: "F7826DA6-4FA2-4E98-8024-BC5B71E0893E")
     }
 
     /// KST Particle Proximity UUID
     class var kstParticleProximityUUID: UUID {
-        return UUID(uuidString: "8AEFB031-6C32-486F-825B-E26FA193487D")!
+        return UUID(staticString: "8AEFB031-6C32-486F-825B-E26FA193487D")
     }
 
     /// Locos Lab Proximity UUID
     class var locosLabProximityUUID: UUID {
-        return UUID(uuidString: "F0018B9B-7509-4C31-A905-1A27D39C003C")!
+        return UUID(staticString: "F0018B9B-7509-4C31-A905-1A27D39C003C")
     }
 
     /// North Pole Engineering WASP Beacon Proximity UUID
     class var northPoleEngineeringProximityUUID: UUID {
-        return UUID(uuidString: "69626561-636F-6E6E-6F72-7468506F6C65")!
+        return UUID(staticString: "69626561-636F-6E6E-6F72-7468506F6C65")
     }
 
     /// Orange Sa Proximity UUID
     class var orangeSaProximityUUID: UUID {
-        return UUID(uuidString: "3D4F13B4-D1FD-4049-80E5-D3EDCC840b69")!
+        return UUID(staticString: "3D4F13B4-D1FD-4049-80E5-D3EDCC840b69")
     }
 
     /// Radius Proximity UUID
     class var radiusProximityUUID: UUID {
-        return UUID(uuidString: "2F234454-CF6D-4A0F-ADf2-F4911BA9FFA6")!
+        return UUID(staticString: "2F234454-CF6D-4A0F-ADf2-F4911BA9FFA6")
     }
 
     /// Reco Proximity UUID
     class var recoProximityUUID: UUID {
-        return UUID(uuidString: "24DDF411-8CF1-440C-87CD-E368DAF9C93E")!
+        return UUID(staticString: "24DDF411-8CF1-440C-87CD-E368DAF9C93E")
     }
 
     /// Roximity Proximity UUID
     class var roximityProximityUUID: UUID {
-        return UUID(uuidString: "8DEEFBB9-F738-4297-8040-96668BB44281")!
+        return UUID(staticString: "8DEEFBB9-F738-4297-8040-96668BB44281")
     }
 
     /// Sensorberg SB-0 Proximity UUID
