@@ -3915,4 +3915,116 @@ public extension CompanyIdentifier {
     class var starLeaf: CompanyIdentifier { return CompanyIdentifier(id: 1942, name: "StarLeaf Ltd") }
     /// Water-i.d. GmbH
     class var waterId: CompanyIdentifier { return CompanyIdentifier(id: 1943, name: "Water-i.d. GmbH") }
+    /// HoloKit, Inc.
+    class var holoKit: CompanyIdentifier { return CompanyIdentifier(id: 1944, name: "HoloKit, Inc.") }
+    /// PlantChoir Inc.
+    class var plantChoir: CompanyIdentifier { return CompanyIdentifier(id: 1945, name: "PlantChoir Inc.") }
+    /// GuangDong Oppo Mobile Telecommunications Corp., Ltd.
+    class var guangDongOppoMobile: CompanyIdentifier { return CompanyIdentifier(id: 1946, name: "GuangDong Oppo Mobile Telecommunications Corp., Ltd.") }
+    /// CST ELECTRONICS (PROPRIETARY) LIMITED
+    class var cstElectronics: CompanyIdentifier { return CompanyIdentifier(id: 1947, name: "CST ELECTRONICS (PROPRIETARY) LIMITED") }
+    /// Sky UK Limited
+    class var skyUk: CompanyIdentifier { return CompanyIdentifier(id: 1948, name: "Sky UK Limited") }
+    /// Digibale Pty Ltd
+    class var digibale: CompanyIdentifier { return CompanyIdentifier(id: 1949, name: "Digibale Pty Ltd") }
+    /// Smartloxx GmbH
+    class var smartloxx: CompanyIdentifier { return CompanyIdentifier(id: 1950, name: "Smartloxx GmbH") }
+    /// Pune Scientific LLP
+    class var puneScientific: CompanyIdentifier { return CompanyIdentifier(id: 1951, name: "Pune Scientific LLP") }
+    /// Regent Beleuchtungskorper AG
+    class var regentBeleuchtungskorper: CompanyIdentifier { return CompanyIdentifier(id: 1952, name: "Regent Beleuchtungskorper AG") }
+    /// Apollo Neuroscience, Inc.
+    class var apolloNeuroscience: CompanyIdentifier { return CompanyIdentifier(id: 1953, name: "Apollo Neuroscience, Inc.") }
+    /// Roku, Inc.
+    class var roku: CompanyIdentifier { return CompanyIdentifier(id: 1954, name: "Roku, Inc.") }
+    /// Comcast Cable
+    class var comcastCable: CompanyIdentifier { return CompanyIdentifier(id: 1955, name: "Comcast Cable") }
+    /// Xiamen Mage Information Technology Co., Ltd.
+    class var xiamenMage: CompanyIdentifier { return CompanyIdentifier(id: 1956, name: "Xiamen Mage Information Technology Co., Ltd.") }
+    /// RAB Lighting, Inc.
+    class var rabLighting: CompanyIdentifier { return CompanyIdentifier(id: 1957, name: "RAB Lighting, Inc.") }
+    /// Musen Connect, Inc.
+    class var musenConnect: CompanyIdentifier { return CompanyIdentifier(id: 1958, name: "Musen Connect, Inc.") }
+    /// Zume, Inc.
+    class var zume: CompanyIdentifier { return CompanyIdentifier(id: 1959, name: "Zume, Inc.") }
+    /// conbee GmbH
+    class var conbee: CompanyIdentifier { return CompanyIdentifier(id: 1960, name: "conbee GmbH") }
+    /// Bruel & Kjaer Sound & Vibration
+    class var bruelKjaer: CompanyIdentifier { return CompanyIdentifier(id: 1961, name: "Bruel & Kjaer Sound & Vibration") }
+    /// The Kroger Co.
+    class var kroger: CompanyIdentifier { return CompanyIdentifier(id: 1962, name: "The Kroger Co.") }
+    /// Granite River Solutions, Inc.
+    class var graniteRiverSolutions: CompanyIdentifier { return CompanyIdentifier(id: 1963, name: "Granite River Solutions, Inc.") }
+    /// LoupeDeck Oy
+    class var loupeDeck: CompanyIdentifier { return CompanyIdentifier(id: 1964, name: "LoupeDeck Oy") }
+    /// New H3C Technologies Co.,Ltd
+    class var newH3CTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1965, name: "New H3C Technologies Co.,Ltd") }
+    /// Aurea Solucoes Tecnologicas Ltda.
+    class var aureaSolucoes: CompanyIdentifier { return CompanyIdentifier(id: 1966, name: "Aurea Solucoes Tecnologicas Ltda.") }
+    /// Hong Kong Bouffalo Lab Limited
+    class var hongKongBouffalo: CompanyIdentifier { return CompanyIdentifier(id: 1967, name: "Hong Kong Bouffalo Lab Limited") }
+    /// GV Concepts Inc.
+    class var gvConcepts: CompanyIdentifier { return CompanyIdentifier(id: 1968, name: "GV Concepts Inc.") }
+    /// Thomas Dynamics, LLC
+    class var thomasDynamics: CompanyIdentifier { return CompanyIdentifier(id: 1969, name: "Thomas Dynamics, LLC") }
+    /// Moeco IOT Inc.
+    class var moecoIot: CompanyIdentifier { return CompanyIdentifier(id: 1970, name: "Moeco IOT Inc.") }
+    /// 2N TELEKOMUNIKACE a.s.
+    class var twoNTelekomunikace: CompanyIdentifier { return CompanyIdentifier(id: 1971, name: "2N TELEKOMUNIKACE a.s.") }
+    /// Hormann KG Antriebstechnik
+    class var hormann: CompanyIdentifier { return CompanyIdentifier(id: 1972, name: "Hormann KG Antriebstechnik") }
+    /// CRONO CHIP, S.L.
+    class var cronoChip: CompanyIdentifier { return CompanyIdentifier(id: 1973, name: "CRONO CHIP, S.L.") }
+    /// Soundbrenner Limited
+    class var soundbrenner: CompanyIdentifier { return CompanyIdentifier(id: 1974, name: "Soundbrenner Limited") }
+    /// ETABLISSEMENTS GEORGES RENAULT
+    class var etablissementGeorgesRenault: CompanyIdentifier { return CompanyIdentifier(id: 1975, name: "ETABLISSEMENTS GEORGES RENAULT") }
+    /// iSwip
+    class var iSwip: CompanyIdentifier { return CompanyIdentifier(id: 1976, name: "iSwip") }
+    /// Epona Biotec Limited
+    class var eponaBiotec: CompanyIdentifier { return CompanyIdentifier(id: 1977, name: "Epona Biotec Limited") }
+    /// Battery-Biz Inc.
+    class var batteryBiz: CompanyIdentifier { return CompanyIdentifier(id: 1978, name: "Battery-Biz Inc.") }
+    /// EPIC S.R.L.
+    class var epic: CompanyIdentifier { return CompanyIdentifier(id: 1979, name: "EPIC S.R.L.") }
+    /// KD CIRCUITS LLC
+    class var kdCircuits: CompanyIdentifier { return CompanyIdentifier(id: 1980, name: "KD CIRCUITS LLC") }
+    /// Genedrive Diagnostics Ltd
+    class var genedriveDiagnostics: CompanyIdentifier { return CompanyIdentifier(id: 1981, name: "Genedrive Diagnostics Ltd") }
+    /// Axentia Technologies AB
+    class var axentiaTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1982, name: "Axentia Technologies AB") }
+    /// REGULA Ltd.
+    class var regula: CompanyIdentifier { return CompanyIdentifier(id: 1983, name: "REGULA Ltd.") }
+    /// Biral AG
+    class var biral: CompanyIdentifier { return CompanyIdentifier(id: 1984, name: "Biral AG") }
+    /// A.W. Chesterton Company
+    class var awChestertonCompany: CompanyIdentifier { return CompanyIdentifier(id: 1985, name: "A.W. Chesterton Company") }
+    /// Radinn AB
+    class var radinn: CompanyIdentifier { return CompanyIdentifier(id: 1986, name: "Radinn AB") }
+    /// CIMTechniques, Inc.
+    class var cimTechniques: CompanyIdentifier { return CompanyIdentifier(id: 1987, name: "CIMTechniques, Inc.") }
+    /// Johnson Health Tech NA.
+    class var johnsonHealthTech: CompanyIdentifier { return CompanyIdentifier(id: 1988, name: "Johnson Health Tech NA") }
+    /// June Life, Inc.
+    class var juneLife: CompanyIdentifier { return CompanyIdentifier(id: 1989, name: "June Life, Inc.") }
+    /// Bluenetics GmbH
+    class var bluenetics: CompanyIdentifier { return CompanyIdentifier(id: 1990, name: "Bluenetics GmbH") }
+    /// iaconicDesign Inc
+    class var iaconicDesign: CompanyIdentifier { return CompanyIdentifier(id: 1991, name: "iaconicDesign Inc.") }
+    /// WRLDS Creations ABInc
+    class var wrldsCreations: CompanyIdentifier { return CompanyIdentifier(id: 1992, name: "WRLDS Creations AB") }
+    /// Skullcandy, Inc.
+    class var skullcandy: CompanyIdentifier { return CompanyIdentifier(id: 1993, name: "Skullcandy, Inc.") }
+    /// Modul-System HH AB
+    class var modulSystems: CompanyIdentifier { return CompanyIdentifier(id: 1994, name: "Modul-System HH AB") }
+    /// West Pharmaceutical Services, Inc.
+    class var westPharmaceuticalServices: CompanyIdentifier { return CompanyIdentifier(id: 1995, name: "West Pharmaceutical Services, Inc.") }
+    /// Barnacle Systems Inc.
+    class var barnacleSystems: CompanyIdentifier { return CompanyIdentifier(id: 1996, name: "Barnacle Systems Inc.") }
+    /// Smart Wave Technologies Canada Inc
+    class var smartWaveTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 1997, name: "Smart Wave Technologies Canada Inc") }
+    /// Shanghai Top-Chip Microelectronics Tech. Co., LTD
+    class var shanghaiTopChipMicroelectronics: CompanyIdentifier { return CompanyIdentifier(id: 1998, name: "Shanghai Top-Chip Microelectronics Tech. Co., LTD") }
+    /// NeoSensory, Inc.
+    class var neoSensory: CompanyIdentifier { return CompanyIdentifier(id: 1999, name: "NeoSensory, Inc.") }
 }

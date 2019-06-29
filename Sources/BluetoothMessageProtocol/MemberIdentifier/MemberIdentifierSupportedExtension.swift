@@ -29,6 +29,15 @@ public extension MemberIdentifier {
     /// Array of all Supported MemberIdentifier values
     static var supportedMemberIdentifers: [MemberIdentifier] = {
 
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD98, name: "Disney Worldwide Services, Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD99, name: "ABB Oy"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD9A, name: "Huawei Technologies Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD9B, name: "Huawei Technologies Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD9C, name: "Huawei Technologies Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD9D, name: "Gastec Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD9E, name: "The Coca-Cola Company"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD9F, name: "VitalTech Affiliates LLC"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDA0, name: "Secugen Corporation"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDA1, name: "Groove X, Inc."))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDA2, name: "Groove X, Inc."))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFDA3, name: "Inseego Corp."))
