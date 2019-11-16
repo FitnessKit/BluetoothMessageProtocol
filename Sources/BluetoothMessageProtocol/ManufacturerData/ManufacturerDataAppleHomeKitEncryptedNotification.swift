@@ -25,7 +25,6 @@
 import Foundation
 import DataDecoder
 import FitnessUnits
-import CryptoSwift
 
 /// HAP BLE Encrypted Notification Advertisement Format Manufacturer Specific Data
 ///

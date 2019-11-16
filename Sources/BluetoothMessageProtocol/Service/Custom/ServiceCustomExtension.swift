@@ -58,6 +58,11 @@ public extension Service {
         return ServiceGoogleGlass()
     }
 
+    /// Komoot
+    class var komoot: ServiceKomoot {
+        return ServiceKomoot()
+    }
+
     /// Myo Armband Classifier Event
     class var myArmbandClassifierEvent: ServiceMyoClassifierEvent {
         return ServiceMyoClassifierEvent()

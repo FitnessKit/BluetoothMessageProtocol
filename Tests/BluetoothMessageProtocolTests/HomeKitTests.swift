@@ -7,8 +7,12 @@
 
 import XCTest
 @testable import BluetoothMessageProtocol
-import CryptoSwift
 import DataDecoder
+#if canImport(CryptoKit)
+import CryptoKit
+#else
+import CryptoSwift
+#endif
 
 class HomeKitTests: XCTestCase {
 
@@ -28,15 +32,31 @@ class HomeKitTests: XCTestCase {
         let deviceID = "E0:5F:0A:B8:12:20"
 
         let test = setupId.data(using: .utf8)! + deviceID.data(using: .utf8)!
+        let hashString: String
+        
+        #if canImport(CryptoKit)
+        if #available(iOS 13.0, OSX 10.15, *) {
+            let shaTest = SHA512.hash(data: test)
+            hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
+            
+            if hashString.prefix(8) != "f71012ce" {
+                /// CE1210F7
+                XCTFail()
+            }
+
+        } else {
+            XCTFail()
+        }
+        #else
         let shaTest = test.sha512()
-
-        //        let hash = shaTest.prefix(4)
-        let setupHash = shaTest.prefix(4).to(type: UInt32.self)
-
-        if setupHash != 3457290487 {
+        hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
+        
+        if hashString.prefix(8) != "f71012ce" {
             /// CE1210F7
             XCTFail()
         }
+        #endif
+
     }
 
     func testTlvPairingDecode() {

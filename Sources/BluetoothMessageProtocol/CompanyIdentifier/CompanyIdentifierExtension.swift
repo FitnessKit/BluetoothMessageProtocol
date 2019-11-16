@@ -4027,4 +4027,224 @@ public extension CompanyIdentifier {
     class var shanghaiTopChipMicroelectronics: CompanyIdentifier { return CompanyIdentifier(id: 1998, name: "Shanghai Top-Chip Microelectronics Tech. Co., LTD") }
     /// NeoSensory, Inc.
     class var neoSensory: CompanyIdentifier { return CompanyIdentifier(id: 1999, name: "NeoSensory, Inc.") }
+    /// Hangzhou Tuya Information Technology Co., Ltd
+    class var hangzhouTuyaInformation: CompanyIdentifier { return CompanyIdentifier(id: 2000, name: "Hangzhou Tuya Information Technology Co., Ltd") }
+    /// Shanghai Panchip Microelectronics Co., Ltd
+    class var shanghaiPanchip: CompanyIdentifier { return CompanyIdentifier(id: 2001, name: "Shanghai Panchip Microelectronics Co., Ltd") }
+    /// React Accessibility Limited
+    class var reactAccessibility: CompanyIdentifier { return CompanyIdentifier(id: 2002, name: "React Accessibility Limited") }
+    /// LIVNEX Co.,Ltd.
+    class var livnex: CompanyIdentifier { return CompanyIdentifier(id: 2003, name: "LIVNEX Co.,Ltd.") }
+    /// Kano Computing Limited
+    class var kanoComputing: CompanyIdentifier { return CompanyIdentifier(id: 2004, name: "Kano Computing Limited") }
+    /// hoots classic GmbH
+    class var hootsClassic: CompanyIdentifier { return CompanyIdentifier(id: 2005, name: "hoots classic GmbH") }
+    /// ecobee Inc.
+    class var ecobee: CompanyIdentifier { return CompanyIdentifier(id: 2006, name: "ecobee Inc.") }
+    /// Nanjing Qinheng Microelectronics Co., Ltd
+    class var nanjingQinheng: CompanyIdentifier { return CompanyIdentifier(id: 2007, name: "Nanjing Qinheng Microelectronics Co., Ltd") }
+    /// SOLUTIONS AMBRA INC.
+    class var solutionsAmbra: CompanyIdentifier { return CompanyIdentifier(id: 2008, name: "SOLUTIONS AMBRA INC.") }
+    /// Micro-Design, Inc.
+    class var microDesign: CompanyIdentifier { return CompanyIdentifier(id: 2009, name: "Micro-Design, Inc.") }
+    /// STARLITE Co., Ltd.
+    class var starlite: CompanyIdentifier { return CompanyIdentifier(id: 2010, name: "STARLITE Co., Ltd.") }
+    /// Remedee Labs
+    class var remedeeLabs: CompanyIdentifier { return CompanyIdentifier(id: 2011, name: "Remedee Labs") }
+    /// ThingOS GmbH
+    class var thingOS: CompanyIdentifier { return CompanyIdentifier(id: 2012, name: "ThingOS GmbH") }
+    /// Linear Circuits
+    class var linearCircuits: CompanyIdentifier { return CompanyIdentifier(id: 2013, name: "Linear Circuits") }
+    /// Unlimited Engineering SL
+    class var unlimitedEngineering: CompanyIdentifier { return CompanyIdentifier(id: 2014, name: "Unlimited Engineering SL") }
+    /// Snap-on Incorporated
+    class var snapOn: CompanyIdentifier { return CompanyIdentifier(id: 2015, name: "Snap-on Incorporated") }
+    /// Edifier International Limited
+    class var edifierInternational: CompanyIdentifier { return CompanyIdentifier(id: 2016, name: "Edifier International Limited") }
+    /// Lucie Labs
+    class var lucieLabs: CompanyIdentifier { return CompanyIdentifier(id: 2017, name: "Lucie Labs") }
+    /// Alfred Kaercher SE & Co. KG
+    class var alfredKaercher: CompanyIdentifier { return CompanyIdentifier(id: 2018, name: "Alfred Kaercher SE & Co. KG") }
+    /// Audiowise Technology Inc.
+    class var audiowiseTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2019, name: "Audiowise Technology Inc.") }
+    /// Geeksme S.L.
+    class var geeksme: CompanyIdentifier { return CompanyIdentifier(id: 2020, name: "Geeksme S.L.") }
+    /// Minut, Inc.
+    class var minut: CompanyIdentifier { return CompanyIdentifier(id: 2021, name: "Minut, Inc.") }
+    /// Autogrow Systems Limited
+    class var autogrowSystems: CompanyIdentifier { return CompanyIdentifier(id: 2022, name: "Autogrow Systems Limited") }
+    /// Komfort IQ, Inc.
+    class var komfortIQ: CompanyIdentifier { return CompanyIdentifier(id: 2023, name: "Komfort IQ, Inc.") }
+    /// Packetcraft, Inc.
+    class var packetcraft: CompanyIdentifier { return CompanyIdentifier(id: 2024, name: "Packetcraft, Inc.") }
+    /// Häfele GmbH & Co KG
+    class var hafele: CompanyIdentifier { return CompanyIdentifier(id: 2025, name: "Häfele GmbH & Co KG") }
+    /// ShapeLog, Inc.
+    class var shapeLog: CompanyIdentifier { return CompanyIdentifier(id: 2026, name: "ShapeLog, Inc.") }
+    /// NOVABASE S.R.L.
+    class var novabase: CompanyIdentifier { return CompanyIdentifier(id: 2027, name: "NOVABASE S.R.L.") }
+    /// Frecce LLC
+    class var frecce: CompanyIdentifier { return CompanyIdentifier(id: 2028, name: "Frecce LLC") }
+    /// Joule IQ, INC.
+    class var jouleIQ: CompanyIdentifier { return CompanyIdentifier(id: 2029, name: "Joule IQ, INC.") }
+    /// KidzTek LLC
+    class var kidzTek: CompanyIdentifier { return CompanyIdentifier(id: 2030, name: "KidzTek LLC") }
+    /// Aktiebolaget Sandvik Coromant
+    class var aktiebolagetSandvik: CompanyIdentifier { return CompanyIdentifier(id: 2031, name: "Aktiebolaget Sandvik Coromant") }
+    /// e-moola.com Pty Ltd
+    class var eMoola: CompanyIdentifier { return CompanyIdentifier(id: 2032, name: "e-moola.com Pty Ltd") }
+    /// GSM Innovations Pty Ltd
+    class var gsmInnovations: CompanyIdentifier { return CompanyIdentifier(id: 2033, name: "GSM Innovations Pty Ltd") }
+    /// SERENE GROUP, INC
+    class var sereneGroup: CompanyIdentifier { return CompanyIdentifier(id: 2034, name: "SERENE GROUP, INC") }
+    /// DIGISINE ENERGYTECH CO. LTD.
+    class var digisineEnergytech: CompanyIdentifier { return CompanyIdentifier(id: 2035, name: "DIGISINE ENERGYTECH CO. LTD.") }
+    /// MEDIRLAB Orvosbiologiai Fejleszto Korlatolt Felelossegu Tarsasag
+    class var medirlab: CompanyIdentifier { return CompanyIdentifier(id: 2036, name: "MEDIRLAB Orvosbiologiai Fejleszto Korlatolt Felelossegu Tarsasag") }
+    /// Byton North America Corporation
+    class var byton: CompanyIdentifier { return CompanyIdentifier(id: 2037, name: "Byton North America Corporation") }
+    /// Shenzhen TonliScience and Technology Development Co.,Ltd
+    class var shenzhenTonliScience: CompanyIdentifier { return CompanyIdentifier(id: 2038, name: "Shenzhen TonliScience and Technology Development Co.,Ltd") }
+    /// Cesar Systems Ltd.
+    class var cesarSystems: CompanyIdentifier { return CompanyIdentifier(id: 2039, name: "Cesar Systems Ltd.") }
+    /// quip NYC Inc.
+    class var quipNyc: CompanyIdentifier { return CompanyIdentifier(id: 2040, name: "quip NYC Inc.") }
+    /// Direct Communication Solutions, Inc.
+    class var directCommunicationSolutions: CompanyIdentifier { return CompanyIdentifier(id: 2041, name: "Direct Communication Solutions, Inc.") }
+    /// Klipsch Group, Inc.
+    class var klipschGroup: CompanyIdentifier { return CompanyIdentifier(id: 2042, name: "Klipsch Group, Inc.") }
+    /// Access Co., Ltd
+    class var accessCo: CompanyIdentifier { return CompanyIdentifier(id: 2043, name: "Access Co., Ltd") }
+    /// Renault SA
+    class var renault: CompanyIdentifier { return CompanyIdentifier(id: 2044, name: "Renault SA") }
+    /// JSK CO., LTD.
+    class var jskCo: CompanyIdentifier { return CompanyIdentifier(id: 2045, name: "JSK CO., LTD.") }
+    /// BIROTA
+    class var birota: CompanyIdentifier { return CompanyIdentifier(id: 2046, name: "BIROTA") }
+    /// maxon motor ltd.
+    class var maxonMotor: CompanyIdentifier { return CompanyIdentifier(id: 2047, name: "maxon motor ltd.") }
+    /// Optek
+    class var optek: CompanyIdentifier { return CompanyIdentifier(id: 2048, name: "Optek") }
+    /// CRONUS ELECTRONICS LTD
+    class var cronusElectronics: CompanyIdentifier { return CompanyIdentifier(id: 2049, name: "CRONUS ELECTRONICS LTD") }
+    /// NantSound, Inc.
+    class var nantSound: CompanyIdentifier { return CompanyIdentifier(id: 2050, name: "NantSound, Inc.") }
+    /// Domintell s.a.
+    class var domintell: CompanyIdentifier { return CompanyIdentifier(id: 2051, name: "Domintell s.a.") }
+    /// Andon Health Co.,Ltd
+    class var andonHealth: CompanyIdentifier { return CompanyIdentifier(id: 2052, name: "Andon Health Co.,Ltd") }
+    /// Urbanminded Ltd
+    class var urbanminded: CompanyIdentifier { return CompanyIdentifier(id: 2053, name: "Urbanminded Ltd") }
+    /// TYRI Sweden AB
+    class var tyri: CompanyIdentifier { return CompanyIdentifier(id: 2054, name: "TYRI Sweden AB") }
+    /// ECD Electronic Components GmbH Dresden
+    class var ecdElectronicComponents: CompanyIdentifier { return CompanyIdentifier(id: 2055, name: "ECD Electronic Components GmbH Dresden") }
+    /// SISTEMAS KERN, SOCIEDAD ANÓMINA
+    class var sistemasKern: CompanyIdentifier { return CompanyIdentifier(id: 2056, name: "SISTEMAS KERN, SOCIEDAD ANÓMINA") }
+    /// Trulli Audio
+    class var trulliAudio: CompanyIdentifier { return CompanyIdentifier(id: 2057, name: "Trulli Audio") }
+    /// Altaneos
+    class var altaneos: CompanyIdentifier { return CompanyIdentifier(id: 2058, name: "Altaneos") }
+    /// Nanoleaf Canada Limited
+    class var nanoleafCanada: CompanyIdentifier { return CompanyIdentifier(id: 2059, name: "Nanoleaf Canada Limited") }
+    /// Ingy B.V.
+    class var ingy: CompanyIdentifier { return CompanyIdentifier(id: 2060, name: "Ingy B.V.") }
+    /// Azbil Co.
+    class var azbil: CompanyIdentifier { return CompanyIdentifier(id: 2061, name: "Azbil Co.") }
+    /// TATTCOM LLC
+    class var tattcom: CompanyIdentifier { return CompanyIdentifier(id: 2062, name: "TATTCOM LLC") }
+    /// Paradox Engineering SA
+    class var paradoxEngineering: CompanyIdentifier { return CompanyIdentifier(id: 2063, name: "Paradox Engineering SA") }
+    /// LECO Corporation
+    class var leco: CompanyIdentifier { return CompanyIdentifier(id: 2064, name: "LECO Corporation") }
+    /// Becker Antriebe GmbH
+    class var beckerAntriebe: CompanyIdentifier { return CompanyIdentifier(id: 2065, name: "Becker Antriebe GmbH") }
+    /// Mstream Technologies., Inc.
+    class var mstreamTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 2066, name: "Mstream Technologies., Inc.") }
+    /// Flextronics International USA Inc.
+    class var flextronicsInternational: CompanyIdentifier { return CompanyIdentifier(id: 2067, name: "Flextronics International USA Inc.") }
+    /// Ossur hf.
+    class var ossur: CompanyIdentifier { return CompanyIdentifier(id: 2068, name: "Ossur hf.") }
+    /// SKC Inc.
+    class var skcInc: CompanyIdentifier { return CompanyIdentifier(id: 2069, name: "SKC Inc.") }
+    /// SPICA SYSTEMS LLC
+    class var spicaSystems: CompanyIdentifier { return CompanyIdentifier(id: 2070, name: "SPICA SYSTEMS LLC") }
+    /// Wangs Alliance Corporation
+    class var wangsAlliance: CompanyIdentifier { return CompanyIdentifier(id: 2071, name: "Wangs Alliance Corporation") }
+    /// tatwah SA
+    class var tatwah: CompanyIdentifier { return CompanyIdentifier(id: 2072, name: "tatwah SA") }
+    /// Hunter Douglas Inc
+    class var hunterDouglas: CompanyIdentifier { return CompanyIdentifier(id: 2073, name: "Hunter Douglas Inc") }
+    /// Shenzhen Conex
+    class var shenzhenConex: CompanyIdentifier { return CompanyIdentifier(id: 2074, name: "Shenzhen Conex") }
+    /// DIM3
+    class var dimThree: CompanyIdentifier { return CompanyIdentifier(id: 2075, name: "DIM3") }
+    /// Bobrick Washroom Equipment, Inc.
+    class var bobrickWashroomEquipment: CompanyIdentifier { return CompanyIdentifier(id: 2076, name: "Bobrick Washroom Equipment, Inc.") }
+    /// Potrykus Holdings and Development LLC
+    class var potrykusHoldings: CompanyIdentifier { return CompanyIdentifier(id: 2077, name: "Potrykus Holdings and Development LLC") }
+    /// iNFORM Technology GmbH
+    class var informTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2078, name: "iNFORM Technology GmbH") }
+    /// eSenseLab LTD
+    class var eSenseLab: CompanyIdentifier { return CompanyIdentifier(id: 2079, name: "eSenseLab LTD") }
+    /// Brilliant Home Technology, Inc.
+    class var brilliantHomeTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2080, name: "Brilliant Home Technology, Inc.") }
+    /// INOVA Geophysical, Inc.
+    class var inovaGeophysical: CompanyIdentifier { return CompanyIdentifier(id: 2081, name: "INOVA Geophysical, Inc.") }
+    /// adafruit industries
+    class var adafruitIndustries: CompanyIdentifier { return CompanyIdentifier(id: 2082, name: "adafruit industries") }
+    /// Nexite Ltd
+    class var nexite: CompanyIdentifier { return CompanyIdentifier(id: 2083, name: "Nexite Ltd") }
+    /// 8Power Limited
+    class var eightPower: CompanyIdentifier { return CompanyIdentifier(id: 2084, name: "8Power Limited") }
+    /// CME PTE. LTD
+    class var cmePte: CompanyIdentifier { return CompanyIdentifier(id: 2085, name: "CME PTE. LTD") }
+    /// Hyundai Motor Company
+    class var hyundaiMotorCompany: CompanyIdentifier { return CompanyIdentifier(id: 2086, name: "Hyundai Motor Company") }
+    /// Kickmaker
+    class var kickmaker: CompanyIdentifier { return CompanyIdentifier(id: 2087, name: "Kickmaker") }
+    /// Shanghai Suisheng Information Technology Co., Ltd.
+    class var shanghaiSuishengInformation: CompanyIdentifier { return CompanyIdentifier(id: 2088, name: "Shanghai Suisheng Information Technology Co., Ltd.") }
+    /// HEXAGON
+    class var hexagon: CompanyIdentifier { return CompanyIdentifier(id: 2089, name: "HEXAGON") }
+    /// Mitutoyo Corporation
+    class var mitutoyo: CompanyIdentifier { return CompanyIdentifier(id: 2090, name: "Mitutoyo Corporation") }
+    /// shenzhen fitcare electronics Co.,Ltd
+    class var shenzhenFitcareElectronics: CompanyIdentifier { return CompanyIdentifier(id: 2091, name: "shenzhen fitcare electronics Co.,Ltd") }
+    /// INGICS TECHNOLOGY CO., LTD.
+    class var ingicsTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2092, name: "INGICS TECHNOLOGY CO., LTD.") }
+    /// INCUS PERFORMANCE LTD
+    class var incusPerformance: CompanyIdentifier { return CompanyIdentifier(id: 2093, name: "INCUS PERFORMANCE LTD.") }
+    /// ABB S.p.A
+    class var abbSpa: CompanyIdentifier { return CompanyIdentifier(id: 2094, name: "ABB S.p.A.") }
+    /// Blippit AB
+    class var blippit: CompanyIdentifier { return CompanyIdentifier(id: 2095, name: "Blippit AB") }
+    /// Core Health and Fitness LLC
+    class var coreHealthFitness: CompanyIdentifier { return CompanyIdentifier(id: 2096, name: "Core Health and Fitness LLC") }
+    /// Foxble, LLC
+    class var foxble: CompanyIdentifier { return CompanyIdentifier(id: 2097, name: "Foxble, LLC") }
+    /// Intermotive,Inc.
+    class var intermotive: CompanyIdentifier { return CompanyIdentifier(id: 2098, name: "Intermotive,Inc.") }
+    /// Conneqtech B.V.
+    class var conneqtech: CompanyIdentifier { return CompanyIdentifier(id: 2099, name: "Conneqtech B.V.") }
+    /// RIKEN KEIKI CO., LTD.
+    class var rikenKeiki: CompanyIdentifier { return CompanyIdentifier(id: 2100, name: "RIKEN KEIKI CO., LTD.") }
+    /// Canopy Growth Corporation
+    class var canopyGrowth: CompanyIdentifier { return CompanyIdentifier(id: 2101, name: "Canopy Growth Corporation") }
+    /// Bitwards Oy
+    class var bitwards: CompanyIdentifier { return CompanyIdentifier(id: 2102, name: "Bitwards Oy") }
+    /// vivo Mobile Communication Co., Ltd.
+    class var vivoMobileCommunication: CompanyIdentifier { return CompanyIdentifier(id: 2103, name: "vivo Mobile Communication Co., Ltd.") }
+    /// Etymotic Research, Inc.
+    class var etymoticResearch: CompanyIdentifier { return CompanyIdentifier(id: 2104, name: "Etymotic Research, Inc.") }
+    /// A puissance 3
+    class var aPuissanceThree: CompanyIdentifier { return CompanyIdentifier(id: 2105, name: "A puissance 3") }
+    /// BPW Bergische Achsen Kommanditgesellschaft
+    class var bpw: CompanyIdentifier { return CompanyIdentifier(id: 2106, name: "BPW Bergische Achsen Kommanditgesellschaft") }
+    /// Piaggio Fast Forward
+    class var piaggioFastForward: CompanyIdentifier { return CompanyIdentifier(id: 2107, name: "Piaggio Fast Forward") }
+    /// BeerTech LTD
+    class var beerTech: CompanyIdentifier { return CompanyIdentifier(id: 2108, name: "BeerTech LTD") }
+    /// Tokenize, Inc.
+    class var tokenize: CompanyIdentifier { return CompanyIdentifier(id: 2109, name: "Tokenize, Inc.") }
 }

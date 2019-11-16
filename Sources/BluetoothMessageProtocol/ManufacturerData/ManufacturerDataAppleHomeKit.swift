@@ -25,7 +25,11 @@
 import Foundation
 import DataDecoder
 import FitnessUnits
+#if canImport(CryptoKit)
+import CryptoKit
+#else
 import CryptoSwift
+#endif
 
 /// Apple HomeKit Manufacturer Specific Data
 @available(swift 4.0)
@@ -109,8 +113,24 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         if let setupdata = setupID.data(using: .utf8),
             let deviceData = deviceId.stringValue.data(using: .utf8) {
 
+            #if canImport(CryptoKit)
+            if #available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *) {
+                let shaTest = SHA512.hash(data: (setupdata + deviceData))
+                let hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
+
+                if let hash = UInt32(String(hashString.prefix(8)), radix: 16)?.byteSwapped {
+                    self.setupHash = hash
+                }
+                self.setupHash = 0
+                
+            } else {
+                self.setupHash = 0
+            }
+            #else
             let shaTest = (setupdata + deviceData).sha512()
             self.setupHash = shaTest.prefix(4).to(type: UInt32.self)
+            #endif
+
 
         } else {
             self.setupHash = 0
