@@ -61,12 +61,9 @@ open class CharacteristicHTTPEntityBody: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decode<C: CharacteristicHTTPEntityBody>(with data: Data) -> Result<C, BluetoothDecodeError> {
-        
-        if let body = data.safeStringValue {
-            return.success(CharacteristicHTTPEntityBody(body: body) as! C)
-        }
-        
-        return.failure(.invalidStringValue)
+        guard let body = data.safeStringValue else { return.failure(.invalidStringValue) }
+
+        return.success(CharacteristicHTTPEntityBody(body: body) as! C)
     }
 
     /// Encodes the Characteristic into Data

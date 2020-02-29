@@ -61,12 +61,9 @@ open class CharacteristicHTTPHeaders: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decode<C: CharacteristicHTTPHeaders>(with data: Data) -> Result<C, BluetoothDecodeError> {
+        guard let body = data.safeStringValue else { return.failure(.invalidStringValue) }
 
-        if let body = data.safeStringValue {
-            return.success(CharacteristicHTTPHeaders(headers: body) as! C)
-        }
-        
-        return.failure(.invalidStringValue)
+        return.success(CharacteristicHTTPHeaders(headers: body) as! C)
     }
 
     /// Encodes the Characteristic into Data

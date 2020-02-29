@@ -59,12 +59,9 @@ open class CharacteristicEmailAddress: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decode<C: CharacteristicEmailAddress>(with data: Data) -> Result<C, BluetoothDecodeError> {
-        
-        if let emailAddress = data.safeStringValue {
-            return.success(CharacteristicEmailAddress(emailAddress: emailAddress) as! C)
-        }
-        
-        return.failure(.invalidStringValue)
+        guard let email = data.safeStringValue else { return.failure(.invalidStringValue) }
+
+        return.success(CharacteristicEmailAddress(emailAddress: email) as! C)
     }
 
     /// Encodes the Characteristic into Data

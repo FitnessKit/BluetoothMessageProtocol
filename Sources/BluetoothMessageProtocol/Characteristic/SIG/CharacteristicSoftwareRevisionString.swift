@@ -62,12 +62,9 @@ open class CharacteristicSoftwareRevisionString: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decode<C: CharacteristicSoftwareRevisionString>(with data: Data) -> Result<C, BluetoothDecodeError> {
+        guard let softwareRevision = data.safeStringValue else { return.failure(.invalidStringValue) }
 
-        if let softwareRevision = data.safeStringValue {
-            return.success(CharacteristicSoftwareRevisionString(softwareRevision: softwareRevision) as! C)
-        }
-        
-        return.failure(.invalidStringValue)
+        return.success(CharacteristicSoftwareRevisionString(softwareRevision: softwareRevision) as! C)
     }
 
     /// Encodes the Characteristic into Data

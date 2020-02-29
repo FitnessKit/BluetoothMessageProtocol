@@ -62,12 +62,9 @@ open class CharacteristicModelNumberString: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decode<C: CharacteristicModelNumberString>(with data: Data) -> Result<C, BluetoothDecodeError> {
+        guard let modelNumber = data.safeStringValue else { return.failure(.invalidStringValue) }
 
-        if let modelNumber = data.safeStringValue {
-            return.success(CharacteristicModelNumberString(modelNumber: modelNumber) as! C)
-        }
-        
-        return.failure(.invalidStringValue)
+        return.success(CharacteristicModelNumberString(modelNumber: modelNumber) as! C)
     }
 
     /// Encodes the Characteristic into Data

@@ -64,12 +64,9 @@ open class CharacteristicUniformResourceIdentifier: Characteristic {
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
     open override class func decode<C: CharacteristicUniformResourceIdentifier>(with data: Data) -> Result<C, BluetoothDecodeError> {
+        guard let uri = data.safeStringValue else { return.failure(.invalidStringValue) }
 
-        if let uri = data.safeStringValue {
-            return.success(CharacteristicUniformResourceIdentifier(uri: uri) as! C)
-        }
-        
-        return.failure(.invalidStringValue)
+        return.success(CharacteristicUniformResourceIdentifier(uri: uri) as! C)
     }
 
     /// Encodes the Characteristic into Data
