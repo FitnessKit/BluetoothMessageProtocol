@@ -110,16 +110,6 @@ open class ServiceDataFitnessMachine: ServiceData {
         return.success(serviceData as! S)
     }
 
-    /// Deocdes the Service Data AD Type Data
-    ///
-    /// - Parameter data: Data from Service Data AD Type
-    /// - Returns: ServiceData Instance
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> ServiceDataFitnessMachine {
-        return try decode(with: data).get()
-    }
-
     /// Encodes the Service Data AD Type into Data
     ///
     /// - Returns: Service Data AD Result

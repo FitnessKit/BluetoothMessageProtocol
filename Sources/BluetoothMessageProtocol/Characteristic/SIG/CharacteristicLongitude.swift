@@ -70,16 +70,6 @@ open class CharacteristicLongitude: Characteristic {
         return.success(CharacteristicLongitude(longitude: lon) as! C)
     }
 
-    /// Deocdes the BLE Data
-    ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> CharacteristicLongitude {
-        return try decode(with: data).get()
-    }
-
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result

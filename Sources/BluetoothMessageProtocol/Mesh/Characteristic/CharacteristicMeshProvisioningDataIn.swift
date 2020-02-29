@@ -64,16 +64,6 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
         return.failure(BluetoothDecodeError.notSupported)
     }
 
-    /// Deocdes the BLE Data
-    ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: Characteristic Instance
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> CharacteristicMeshProvisioningDataIn {
-        return try decode(with: data).get()
-    }
-
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result

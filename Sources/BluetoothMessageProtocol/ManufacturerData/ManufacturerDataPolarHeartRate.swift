@@ -97,16 +97,6 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
         return.success(polar as! M)
     }
 
-    /// Decodes Polar Heart Rate Manufacturer Specific Data
-    ///
-    /// - Parameter data: Manufacturer Specific Data
-    /// - Returns: ManufacturerDataPolarHeartRate
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> ManufacturerDataPolarHeartRate {
-        return try decode(with: data).get()
-    }
-
     /// Encodes Polar Heart Rate Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result

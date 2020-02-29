@@ -54,16 +54,6 @@ open class ServiceData: Encodable, ServiceDataCodable {
         fatalError("*** You must override in your class.")
     }
 
-    /// Deocdes the Service Data AD Type Data
-    ///
-    /// - Parameter data: Data from Service Data AD Type
-    /// - Returns: ServiceData Instance
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open class func decode(data: Data) throws -> ServiceData {
-        fatalError("*** You must override in your class.")
-    }
-
     /// Encodes the Service Data AD Type into Data
     ///
     /// - Returns: Service Data AD Result

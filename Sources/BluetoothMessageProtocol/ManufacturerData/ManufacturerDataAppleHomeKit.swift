@@ -216,16 +216,6 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         return.success(homekit as! M)
     }
 
-    /// Decodes Apple HomeKit Manufacturer Specific Data
-    ///
-    /// - Parameter data: Manufacturer Specific Data
-    /// - Returns: ManufacturerDataAppleHomeKit
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> ManufacturerDataAppleHomeKit {
-        return try decode(with: data).get()
-    }
-
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result

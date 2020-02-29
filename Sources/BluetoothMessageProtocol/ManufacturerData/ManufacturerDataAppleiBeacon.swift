@@ -131,16 +131,6 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
         return.success(beacon as! M)
     }
 
-    /// Decodes Apple iBeacon Manufacturer Specific Data
-    ///
-    /// - Parameter data: Manufacturer Specific Data
-    /// - Returns: ManufacturerDataAppleiBeacon
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> ManufacturerDataAppleiBeacon {
-        return try decode(with: data).get()
-    }
-
     /// Encodes Apple iBeacon Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result

@@ -76,16 +76,6 @@ open class ManufacturerData: Encodable, ManufacturerDataCodable {
         fatalError("*** You must override in your class.")
     }
 
-    /// Deocdes the Manufacturer Specific Data
-    ///
-    /// - Parameter data: Data from sensor
-    /// - Returns: ManufacturerData Instance
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open class func decode(data: Data) throws -> ManufacturerData {
-        fatalError("*** You must override in your class.")
-    }
-
     /// Encodes the ManufacturerData into Data
     ///
     /// - Returns: ManufacturerData Result

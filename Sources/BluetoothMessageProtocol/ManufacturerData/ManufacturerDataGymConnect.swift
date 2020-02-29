@@ -110,16 +110,6 @@ open class ManufacturerDataGymConnect: ManufacturerData {
         return.success(gymConn as! M)
     }
 
-    /// Decodes Manufacturer Specific Data
-    ///
-    /// - Parameter data: Manufacturer Specific Data
-    /// - Returns: ManufacturerData Instance
-    /// - Throws: BluetoothDecodeError
-    @available(*, deprecated, message: "use results based decoder instead")
-    open override class func decode(data: Data) throws -> ManufacturerDataGymConnect {
-        return try decode(with: data).get()
-    }
-
     /// Encodes Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
