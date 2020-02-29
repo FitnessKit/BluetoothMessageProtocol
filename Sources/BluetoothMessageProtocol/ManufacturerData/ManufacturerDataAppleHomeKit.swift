@@ -91,7 +91,7 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     ///   - deviceId: Device ID
     ///   - accessoryCategory: Accessory Category Identifier
     ///   - globalState: Global State Number
-    ///   = configuration: Configuration Number
+    ///   - configuration: Configuration Number
     ///   - compatibleVersion: Compatible Version
     ///   - setupID: Setup ID String
     public init(statusFlag: StatusFlags,
