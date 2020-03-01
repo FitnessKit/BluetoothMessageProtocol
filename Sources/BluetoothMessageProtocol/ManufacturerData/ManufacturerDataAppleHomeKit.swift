@@ -49,7 +49,7 @@ final public class ManufacturerDataAppleHomeKit: ManufacturerData {
     }
     
     /// Types of Status Flags
-    public struct StatusFlags: OptionSet {
+    public struct StatusFlags: OptionSet, Hashable {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
         
@@ -292,5 +292,58 @@ extension ManufacturerDataAppleHomeKit.StatusFlags: Encodable {
         var container = encoder.container(keyedBy: CodeKeys.self)
         
         try container.encode(self.contains(.pairingEnabled), forKey: .pairingEnabled)
+    }
+}
+
+extension ManufacturerDataAppleHomeKit: Hashable {
+
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(manufacturer)
+        hasher.combine(specificData)
+        hasher.combine(statusFlag)
+        hasher.combine(deviceId)
+        hasher.combine(accessoryCategory)
+        hasher.combine(globalState)
+        hasher.combine(configuration)
+        hasher.combine(compatibleVersion)
+        hasher.combine(setupID)
+        hasher.combine(setupHash)
+    }
+}
+
+extension ManufacturerDataAppleHomeKit: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: ManufacturerDataAppleHomeKit, rhs: ManufacturerDataAppleHomeKit) -> Bool {
+        return (lhs.manufacturer == rhs.manufacturer) &&
+            (lhs.specificData == rhs.specificData) &&
+            (lhs.statusFlag == rhs.statusFlag) &&
+            (lhs.deviceId == rhs.deviceId) &&
+            (lhs.accessoryCategory == rhs.accessoryCategory) &&
+            (lhs.globalState == rhs.globalState) &&
+            (lhs.configuration == rhs.configuration) &&
+            (lhs.compatibleVersion == rhs.compatibleVersion) &&
+            (lhs.setupID == rhs.setupID) &&
+            (lhs.setupHash == rhs.setupHash)
     }
 }

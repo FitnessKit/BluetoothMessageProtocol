@@ -33,10 +33,11 @@ public final class ManufacturerDataGymConnect: ManufacturerData {
     enum CodeKeys: CodingKey {
         case manufacturer
         case equipment
+        case status
     }
     
     /// Status Flags
-    public struct StatusFlags: OptionSet {
+    public struct StatusFlags: OptionSet, Hashable {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
         
@@ -147,6 +148,7 @@ public final class ManufacturerDataGymConnect: ManufacturerData {
         
         try container.encode(manufacturer, forKey: .manufacturer)
         try container.encode(equipment, forKey: .equipment)
+        try container.encode(status, forKey: .status)
     }
 }
 
@@ -174,5 +176,46 @@ extension ManufacturerDataGymConnect.StatusFlags: Encodable {
         try container.encode(self.contains(.qrCodeAdvertising), forKey: .qrCodeAdvertising)
         try container.encode(self.contains(.solicitedAdvertising), forKey: .solicitedAdvertising)
         try container.encode(self.contains(.wasSolicited), forKey: .wasSolicited)
+    }
+}
+
+extension ManufacturerDataGymConnect: Hashable {
+
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(manufacturer)
+        hasher.combine(specificData)
+        hasher.combine(equipment)
+        hasher.combine(status)
+    }
+}
+
+extension ManufacturerDataGymConnect: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: ManufacturerDataGymConnect, rhs: ManufacturerDataGymConnect) -> Bool {
+        return (lhs.manufacturer == rhs.manufacturer) &&
+            (lhs.specificData == rhs.specificData) &&
+            (lhs.equipment == rhs.equipment) &&
+            (lhs.status == rhs.status)
     }
 }

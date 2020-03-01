@@ -205,3 +205,50 @@ final public class ManufacturerDataAppleHomeKitEncryptedNotification: Manufactur
         try container.encode(authTag, forKey: .authTag)
     }
 }
+
+extension ManufacturerDataAppleHomeKitEncryptedNotification: Hashable {
+
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(manufacturer)
+        hasher.combine(specificData)
+        hasher.combine(subType)
+        hasher.combine(accessoryIdentifier)
+        hasher.combine(globalState)
+        hasher.combine(characteristicInstance)
+        hasher.combine(authTag)
+    }
+}
+
+extension ManufacturerDataAppleHomeKitEncryptedNotification: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: ManufacturerDataAppleHomeKitEncryptedNotification, rhs: ManufacturerDataAppleHomeKitEncryptedNotification) -> Bool {
+        return (lhs.manufacturer == rhs.manufacturer) &&
+            (lhs.specificData == rhs.specificData) &&
+            (lhs.subType == rhs.subType) &&
+            (lhs.accessoryIdentifier == rhs.accessoryIdentifier) &&
+            (lhs.globalState == rhs.globalState) &&
+            (lhs.characteristicInstance == rhs.characteristicInstance) &&
+            (lhs.authTag == rhs.authTag)
+    }
+}
