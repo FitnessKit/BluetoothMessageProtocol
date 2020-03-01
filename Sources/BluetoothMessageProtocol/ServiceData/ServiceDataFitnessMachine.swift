@@ -96,7 +96,7 @@ final public class ServiceDataFitnessMachine: ServiceData {
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
         
         var ftmsAvailable = false
-        if flags.contains(.available) == true {
+        if flags.contains(.available) {
             ftmsAvailable = true
         }
         

@@ -104,7 +104,6 @@ final public class ServiceDataMeshProvisioning: ServiceData {
         let uuidKey = StringKey(stringValue: "deviceUUID")!
         let oobKey = StringKey(stringValue: "oobInformation")!
 
-
         var unitContainer = container.nestedContainer(keyedBy: StringKey.self, forKey: dataKey)
         try unitContainer.encode(deviceUUID, forKey: uuidKey)
         try unitContainer.encode(oobInformation, forKey: oobKey)

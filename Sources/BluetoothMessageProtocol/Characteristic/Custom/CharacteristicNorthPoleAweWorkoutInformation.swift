@@ -87,19 +87,19 @@ final public class CharacteristicNorthPoleAweWorkoutInformation: Characteristic 
         
         var points: UInt16? = nil
         
-        if flags.isPointsPresent == true {
+        if flags.isPointsPresent {
             points = decoder.decodeUInt16(data)
         }
         
         var energy: Measurement<UnitEnergy>? = nil
         
-        if flags.isEnergyExpendedPresent == true {
+        if flags.isEnergyExpendedPresent {
             let expended = decoder.decodeUInt16(data)
             energy = Measurement(value: Double(expended), unit: UnitEnergy.kilojoules)
         }
         
         var command: UInt8? = nil
-        if flags.isCommandPresent == true {
+        if flags.isCommandPresent {
             let value = decoder.decodeUInt8(data)
             if CharacteristicNorthPoleAweWorkoutInformation.commandRange.contains(Int(value)) {
                 command = value
@@ -133,10 +133,10 @@ private extension CharacteristicNorthPoleAweWorkoutInformation {
         
         /// Rawvalue
         public var rawValue: UInt8 {
-            var value: UInt8 = UInt8(isPointsPresent == true ? 1 : 0)
+            var value: UInt8 = UInt8(isPointsPresent ? 1 : 0)
             
-            value |= UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 1
-            value |= UInt8(isCommandPresent == true ? 1 : 0) << 2
+            value |= UInt8(isEnergyExpendedPresent ? 1 : 0) << 1
+            value |= UInt8(isCommandPresent ? 1 : 0) << 2
             
             return UInt8(value)
         }

@@ -75,8 +75,8 @@ internal struct HeartRateMeasurementFlags {
     public var rawValue: UInt8 {
         var value: UInt8 = UInt8(valueFormat == .uint16 ? 1 : 0)
         value |= contact.rawValue << 1
-        value |=  UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 3
-        value |=  UInt8(isRRIntervalPresent == true ? 1 : 0) << 4
+        value |=  UInt8(isEnergyExpendedPresent ? 1 : 0) << 3
+        value |=  UInt8(isRRIntervalPresent ? 1 : 0) << 4
 
         return UInt8(value)
     }

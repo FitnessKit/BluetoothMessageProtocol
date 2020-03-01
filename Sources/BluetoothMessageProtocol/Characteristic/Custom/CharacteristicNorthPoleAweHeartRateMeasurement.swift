@@ -98,7 +98,7 @@ final public class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristi
         msgData.append(flags.rawValue)
         msgData.append(UInt8(heartRate.value))
         
-        if energyPresent == true {
+        if energyPresent {
             if let energyValue = energyExpended {
                 let energy = energyValue.converted(to: UnitEnergy.joules).value
                 msgData.append(Data(from: UInt16(energy)))

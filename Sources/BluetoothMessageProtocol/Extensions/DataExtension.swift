@@ -103,7 +103,7 @@ extension Data {
 
         var uuidData = self
 
-        if reverseData == true {
+        if reverseData {
             uuidData = Data(self.reversed())
         }
 
