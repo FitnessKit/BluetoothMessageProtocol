@@ -31,7 +31,7 @@ class ModelIdentifierTests: XCTestCase {
                     XCTFail("ID Wrong")
                 }
 
-            case .vendor(_):
+            case .vendor(_, _):
                 XCTFail("Model Shouldn't be a Vendor Type")
             }
         }
