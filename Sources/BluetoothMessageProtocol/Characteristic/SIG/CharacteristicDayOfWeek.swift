@@ -29,52 +29,51 @@ import FitnessUnits
 /// BLE Day of Week Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDayOfWeek: Characteristic {
-
+final public class CharacteristicDayOfWeek: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Day of Week"
-    }
-
+    public static var name: String { "Day of Week" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A09"
-    }
-
+    public static var uuidString: String { "2A09" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Day of the Week
     private(set) public var dayOfWeek: DayOfWeek
-
+    
     /// Creates Day of Week Characteristic
     ///
     /// - Parameter dayOfWeek: Day of Week
     public init(dayOfWeek: DayOfWeek) {
         self.dayOfWeek = dayOfWeek
-
-        super.init(name: CharacteristicDayOfWeek.name,
-                   uuidString: CharacteristicDayOfWeek.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDayOfWeek>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDayOfWeek, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return.success(CharacteristicDayOfWeek(dayOfWeek: weekday) as! C)
+        
+        return.success(CharacteristicDayOfWeek(dayOfWeek: weekday))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(dayOfWeek.rawValue)
-
+        
         return.success(msgData)
     }
-
+    
 }

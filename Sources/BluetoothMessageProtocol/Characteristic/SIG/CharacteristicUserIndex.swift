@@ -29,53 +29,52 @@ import FitnessUnits
 /// BLE User Index Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicUserIndex: Characteristic {
-
+final public class CharacteristicUserIndex: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "User Index"
-    }
-
+    public static var name: String { "User Index" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A9A"
-    }
-
+    public static var uuidString: String { "2A9A" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// User Index
     private(set) public var userIndex: User
-
+    
     /// Creates User Index Characteristic
     ///
     /// - Parameter userIndex: User Index
     public init(userIndex: User) {
         self.userIndex = userIndex
-
-        super.init(name: CharacteristicUserIndex.name,
-                   uuidString: CharacteristicUserIndex.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicUserIndex>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicUserIndex, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt8(data)
         let userIndex = User.create(value)
-
+        
         let char = CharacteristicUserIndex(userIndex: userIndex)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(userIndex.rawValue)
-
+        
         return.success(msgData)
     }
 }

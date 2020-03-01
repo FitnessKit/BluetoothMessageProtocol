@@ -36,30 +36,32 @@ import FitnessUnits
 /// - Very Light
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
-
+final public class CharacteristicFiveZoneHeartRateLimits: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Five Zone Heart Rate Limits"
-    }
-
+    public static var name: String { "Five Zone Heart Rate Limits" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A8B"
-    }
-
+    public static var uuidString: String { "2A8B" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Very light / Light Limit
     private(set) public var lightHeartRate: Measurement<UnitCadence>
-
+    
     /// Light / Moderate Limit
     private(set) public var moderateHeartRate: Measurement<UnitCadence>
-
+    
     /// Moderate / Hard Limit
     private(set) public var hardHeartRate: Measurement<UnitCadence>
-
+    
     /// Hard / Maximum Limit
     private(set) public var maximumHeartRate: Measurement<UnitCadence>
-
+    
     /// Creates Five Zone Heart Rate Limits Characteristic
     ///
     /// - Parameters:
@@ -72,16 +74,13 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
         self.moderateHeartRate = Measurement(value: Double(moderateHeartRate), unit: UnitCadence.beatsPerMinute)
         self.hardHeartRate = Measurement(value: Double(hardHeartRate), unit: UnitCadence.beatsPerMinute)
         self.maximumHeartRate = Measurement(value: Double(maximumHeartRate), unit: UnitCadence.beatsPerMinute)
-
-        super.init(name: CharacteristicFiveZoneHeartRateLimits.name,
-                   uuidString: CharacteristicFiveZoneHeartRateLimits.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicFiveZoneHeartRateLimits>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicFiveZoneHeartRateLimits, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lightHeartRate: UInt8 = decoder.decodeUInt8(data)
@@ -93,20 +92,20 @@ open class CharacteristicFiveZoneHeartRateLimits: Characteristic {
                                                          moderateHeartRate: moderateHeartRate,
                                                          hardHeartRate: hardHeartRate,
                                                          maximumHeartRate: maximumHeartRate)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: UInt8(lightHeartRate.value)))
         msgData.append(Data(from: UInt8(moderateHeartRate.value)))
         msgData.append(Data(from: UInt8(hardHeartRate.value)))
         msgData.append(Data(from: UInt8(maximumHeartRate.value)))
-
+        
         return.success(msgData)
     }
 }

@@ -31,51 +31,50 @@ import FitnessUnits
 /// The Altitude characteristic describes the altitude of the device.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicAltitude: Characteristic {
-
+final public class CharacteristicAltitude: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Altitude"
-    }
-
+    public static var name: String { "Altitude" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB3"
-    }
-
+    public static var uuidString: String { "2AB3" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Altitude
     private(set) public var altitude: UInt16
-
+    
     /// Creates Altitude Characteristic
     ///
     /// - Parameter altitude: Altitude
     public init(altitude: UInt16) {
         self.altitude = altitude
-
-        super.init(name: CharacteristicAltitude.name,
-                   uuidString: CharacteristicAltitude.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicAltitude>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicAltitude, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let altitude: UInt16 = decoder.decodeUInt16(data)
-
-        return.success(CharacteristicAltitude(altitude: altitude) as! C)
+        
+        return.success(CharacteristicAltitude(altitude: altitude))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: altitude.littleEndian))
-
+        
         return.success(msgData)
     }
 }

@@ -34,18 +34,14 @@ import FitnessUnits
 /// These values are used to identify all devices of a given type/model/version using numbers
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicPnPID: Characteristic {
-
+final public class CharacteristicPnPID: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "PnP ID"
-    }
-
+    public static var name: String { "PnP ID" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A50"
-    }
-
+    public static var uuidString: String { "2A50" }
+    
     /// Vendor Source Types
     public enum VendorSource: UInt8 {
         /// Unknown
@@ -55,27 +51,33 @@ open class CharacteristicPnPID: Characteristic {
         /// USB Implementer’s Forum assigned Vendor ID value
         case usbAssignedVendorIdentifer = 2
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Vendor ID Source
     ///
     /// Identifies the source of the Vendor ID field
     private(set) public var vendorIdSource: VendorSource
-
+    
     /// Vendor ID
     ///
     /// Identifies the product vendor from the namespace in the Vendor ID Source
     private(set) public var vendorId: UInt16
-
+    
     /// Product ID
     ///
     /// Manufacturer managed identifier for this product
     private(set) public var productId: UInt16
-
+    
     /// Product Version
     ///
     /// Manufacturer managed version for this product
     private(set) public var productVersion: UInt16
-
+    
     /// Creates PnP ID Charateristic
     ///
     /// - Parameters:
@@ -88,16 +90,13 @@ open class CharacteristicPnPID: Characteristic {
         self.vendorId = vendorId
         self.productId = productId
         self.productVersion = productVersion
-
-        super.init(name: CharacteristicPnPID.name,
-                   uuidString: CharacteristicPnPID.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicPnPID>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicPnPID, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let vendorIdSource = VendorSource(rawValue: decoder.decodeUInt8(data)) ?? .unknown
@@ -110,20 +109,20 @@ open class CharacteristicPnPID: Characteristic {
                                        vendorId: vendorId,
                                        productId: productId,
                                        productVersion: productVersion)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(vendorIdSource.rawValue)
         msgData.append(Data(from: vendorId.littleEndian))
         msgData.append(Data(from: productId.littleEndian))
         msgData.append(Data(from: productVersion.littleEndian))
-
+        
         return.success(msgData)
     }
 }

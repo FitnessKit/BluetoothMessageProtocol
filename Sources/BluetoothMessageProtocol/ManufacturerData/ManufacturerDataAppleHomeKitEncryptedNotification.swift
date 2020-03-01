@@ -32,28 +32,43 @@ import FitnessUnits
 /// that are configured for Broadcasted Events.
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
-
+final public class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
+    
+    enum CodeKeys: CodingKey {
+        case manufacturer
+        case subType
+        case accessoryIdentifier
+        case globalState
+        case characteristicInstance
+        case authTag
+    }
+    
+    /// Manufacturer
+    public var manufacturer: CompanyIdentifier
+    
+    /// Data
+    public var specificData: Data?
+    
     /// Sub Type
     private(set) public var subType: UInt8
-
+    
     /// Accessory Advertising Identifier
     private(set) public var accessoryIdentifier: MACAddress
-
+    
     /// Global State Number
     ///
     /// Represents a change in the value of any of the characteristics
     /// that supports Disconnected Events.
     private(set) public var globalState: UInt16
-
+    
     /// Characteristic Instance id
     ///
     /// ID of the Characteristic value included in the notification
     private(set) public var characteristicInstance: UInt16
-
+    
     /// Auth Tag
     private(set) public var authTag: UInt32
-
+    
     /// Creates an Apple HomeKit Manufacturer Specific Data Class
     ///
     /// - Parameters:
@@ -67,44 +82,47 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
                 globalState: UInt16,
                 characteristicInstance: UInt16,
                 authTag: UInt32) {
-
+        self.manufacturer = .apple
+        self.specificData = nil
         self.subType = subType
         self.accessoryIdentifier = accessoryIdentifier
         self.globalState = globalState
         self.characteristicInstance = characteristicInstance
         self.authTag = authTag
-
-        super.init(manufacturer: .apple, specificData: nil)
     }
-
+    
     internal init(subType: UInt8,
                   accessoryIdentifier: MACAddress,
                   globalState: UInt16,
                   characteristicInstance: UInt16,
                   authTag: UInt32,
-                  rawData: Data) {
+                  specificData: Data) {
+        self.manufacturer = .apple
+        self.specificData = specificData
         self.subType = subType
         self.accessoryIdentifier = accessoryIdentifier
         self.globalState = globalState
         self.characteristicInstance = characteristicInstance
         self.authTag = authTag
-
-        super.init(manufacturer: .apple, specificData: rawData)
     }
-
+    
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
     /// Decodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decode<M: ManufacturerDataAppleHomeKitEncryptedNotification>(with data: Data) -> Result<M, BluetoothDecodeError> {
-        let man = ManufacturerData(rawData: data)
+    public class func decode(with data: Data) -> Result<ManufacturerDataAppleHomeKitEncryptedNotification, BluetoothDecodeError> {
+        let man = ManufacturerSpecificData(rawData: data)
         
         guard man.manufacturer == .apple else {
             return.failure(BluetoothDecodeError.wrongIdentifier(.apple)) 
         }
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
-
+        
         var decoder = DecodeData()
         
         let type = decoder.decodeUInt8(data)
@@ -144,41 +162,29 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
                                                                         globalState: globalState,
                                                                         characteristicInstance: characteristicInstance,
                                                                         authTag: authTag,
-                                                                        rawData: data)
-        return.success(homekit as! M)
+                                                                        specificData: data)
+        return.success(homekit)
     }
-
+    
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
-
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
         var msgData = Data()
-
+        
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(AppleDeviceType.hapEncrypted.rawValue) //Type Proximity
-
+        
         let ail = Nibble(lower: 22, upper: self.subType)
         msgData.append(ail.uint8Value)
         msgData.append(accessoryIdentifier.dataValue)
         msgData.append(Data(from: globalState.littleEndian))
         msgData.append(Data(from: characteristicInstance.littleEndian))
-
+        
         return.success(msgData)
     }
-
-    enum CodeKeys: CodingKey {
-        case subType
-        case accessoryIdentifier
-        case globalState
-        case characteristicInstance
-        case authTag
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -188,10 +194,10 @@ open class ManufacturerDataAppleHomeKitEncryptedNotification: ManufacturerData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-        try super.encode(to: encoder)
-
+        
+        try container.encode(manufacturer, forKey: .manufacturer)
         try container.encode(subType, forKey: .subType)
         try container.encode(accessoryIdentifier.stringValue, forKey: .accessoryIdentifier)
         try container.encode(globalState, forKey: .globalState)

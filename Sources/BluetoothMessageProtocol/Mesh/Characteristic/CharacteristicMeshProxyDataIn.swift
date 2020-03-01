@@ -30,17 +30,19 @@ import DataDecoder
 /// The Mesh Proxy Data In characteristic is used by the client to send Proxy PDUs to the server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMeshProxyDataIn: Characteristic {
+final public class CharacteristicMeshProxyDataIn: Characteristic {
 
     /// Characteristic Name
-    public static var name: String {
-        return "Mesh Proxy Data In"
-    }
+    public static var name: String { "Mesh Proxy Data In" }
 
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ADD"
-    }
+    public static var uuidString: String { "2ADD" }
+
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
 
     /// Proxy Protocol Data Unit (PDU) Message
     ///
@@ -54,23 +56,20 @@ open class CharacteristicMeshProxyDataIn: Characteristic {
     /// - Parameter pduMessage: Proxy PDU Message
     public init(pduMessage: ProxyDataUnit) {
         self.pduMessage = pduMessage
-
-        super.init(name: CharacteristicMeshProxyDataIn.name,
-                   uuidString: CharacteristicMeshProxyDataIn.uuidString)
     }
 
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMeshProxyDataIn>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMeshProxyDataIn, BluetoothDecodeError> {
         return.failure(BluetoothDecodeError.notSupported)
     }
 
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
 
         guard pduMessage is ProxyDataUnitProvisioning == false else {
             return.failure(BluetoothEncodeError.general("P roxy Data Unit of type Provisioning is not supported."))

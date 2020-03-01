@@ -30,17 +30,19 @@ import DataDecoder
 /// The Mesh Proxy Data Out characteristic is used by the server to send Proxy PDUs to the client
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMeshProxyDataOut: Characteristic {
+final public class CharacteristicMeshProxyDataOut: Characteristic {
 
     /// Characteristic Name
-    public static var name: String {
-        return "Mesh Proxy Data Out"
-    }
+    public static var name: String { "Mesh Proxy Data Out" }
 
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ADE"
-    }
+    public static var uuidString: String { "2ADE" }
+
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
 
     /// Proxy Protocol Data Unit (PDU) Message
     ///
@@ -54,16 +56,13 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
     /// - Parameter pduMessage: Proxy PDU Message
     public init(pduMessage: Data) {
         self.pduMessage = pduMessage
-
-        super.init(name: CharacteristicMeshProxyDataOut.name,
-                   uuidString: CharacteristicMeshProxyDataOut.uuidString)
     }
 
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMeshProxyDataOut>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMeshProxyDataOut, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         if let pduType = decoder.decodeUInt8IfPresent(data) {
@@ -86,13 +85,13 @@ open class CharacteristicMeshProxyDataOut: Characteristic {
         }
 
         let char = CharacteristicMeshProxyDataOut(pduMessage: data[decoder.index...])
-        return.success(char as! C)
+        return.success(char)
     }
 
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

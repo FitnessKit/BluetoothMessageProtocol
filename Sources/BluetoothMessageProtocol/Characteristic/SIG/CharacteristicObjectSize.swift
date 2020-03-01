@@ -29,24 +29,26 @@ import FitnessUnits
 /// BLE Object Name Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicObjectSize: Characteristic {
-
+final public class CharacteristicObjectSize: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Object Size"
-    }
-
+    public static var name: String { "Object Size" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AC0"
-    }
-
+    public static var uuidString: String { "2AC0" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Current Size
     private(set) public var currentSize: UInt32
-
+    
     /// Allocated Size
     private(set) public var allocatedSize: UInt32
-
+    
     /// Creates Object Size Characteristic
     ///
     /// - Parameters:
@@ -55,33 +57,30 @@ open class CharacteristicObjectSize: Characteristic {
     public init(currentSize: UInt32, allocatedSize: UInt32) {
         self.currentSize = currentSize
         self.allocatedSize = allocatedSize
-
-        super.init(name: CharacteristicObjectSize.name,
-                   uuidString: CharacteristicObjectSize.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicObjectSize>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicObjectSize, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let currentSize = decoder.decodeUInt32(data)
         let allocatedSize = decoder.decodeUInt32(data)
-
-        return.success(CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize) as! C)
+        
+        return.success(CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: currentSize.littleEndian))
         msgData.append(Data(from: allocatedSize.littleEndian))
-
+        
         return.success(msgData)
     }
 }

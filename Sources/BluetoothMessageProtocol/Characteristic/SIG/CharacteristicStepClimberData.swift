@@ -32,70 +32,47 @@ import FitnessUnits
 /// to the Client from a step climber (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicStepClimberData: Characteristic {
-
+final public class CharacteristicStepClimberData: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Step Climber Data"
-    }
-
+    public static var name: String { "Step Climber Data" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ACF"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt16
-        public init(rawValue: UInt16) { self.rawValue = rawValue }
-
-        /// More Data not present (is defined opposite of the norm)
-        public static let moreData                       = Flags(rawValue: 1 << 0)
-        /// Step per Minute present
-        public static let stepPerMinutePresent           = Flags(rawValue: 1 << 1)
-        /// Average Step Rate Present
-        public static let averageStepRatePresent         = Flags(rawValue: 1 << 2)
-        /// Positive Elevation Gain present
-        public static let positiveElevationGainPresent   = Flags(rawValue: 1 << 3)
-        /// Expended Energy present
-        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 4)
-        /// Heart Rate present
-        public static let heartRatePresent               = Flags(rawValue: 1 << 5)
-        /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 6)
-        /// Elapsed Time present
-        public static let elapsedTimePresent             = Flags(rawValue: 1 << 7)
-        /// Remaining Time present
-        public static let remainingTimePresent           = Flags(rawValue: 1 << 8)
-    }
-
+    public static var uuidString: String { "2ACF" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Floors
     private(set) public var floors: UInt16?
-
+    
     /// Step Count
     private(set) public var stepCount: UInt16?
-
+    
     /// Step Per Minute
     private(set) public var stepsPerMinute: Measurement<UnitCadence>?
-
+    
     /// Average Step Rate
     private(set) public var averageStepRate: Measurement<UnitCadence>?
-
+    
     /// Positive Elevation Gain
     private(set) public var positiveElevationGain: Measurement<UnitLength>?
-
+    
     /// Energy Information
     private(set) public var energy: FitnessMachineEnergy
-
+    
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
-
+    
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
-
+    
     /// Time Information
     private(set) public var time: FitnessMachineTime
-
+    
     /// Creates Step Climber Data Characteristic
     ///
     /// - Parameters:
@@ -124,25 +101,22 @@ open class CharacteristicStepClimberData: Characteristic {
         self.averageStepRate = averageStepRate
         self.positiveElevationGain = positiveElevationGain
         self.energy = energy
-
+        
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
         } else {
             self.heartRate = nil
         }
-
+        
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
-
-        super.init(name: CharacteristicStepClimberData.name,
-                   uuidString: CharacteristicStepClimberData.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicStepClimberData>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicStepClimberData, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -209,20 +183,45 @@ open class CharacteristicStepClimberData: Characteristic {
                                                  heartRate: heartRate,
                                                  metabolicEquivalent: mets,
                                                  time: time)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
 private extension CharacteristicStepClimberData {
-
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt16
+        public init(rawValue: UInt16) { self.rawValue = rawValue }
+        
+        /// More Data not present (is defined opposite of the norm)
+        public static let moreData                       = Flags(rawValue: 1 << 0)
+        /// Step per Minute present
+        public static let stepPerMinutePresent           = Flags(rawValue: 1 << 1)
+        /// Average Step Rate Present
+        public static let averageStepRatePresent         = Flags(rawValue: 1 << 2)
+        /// Positive Elevation Gain present
+        public static let positiveElevationGainPresent   = Flags(rawValue: 1 << 3)
+        /// Expended Energy present
+        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 4)
+        /// Heart Rate present
+        public static let heartRatePresent               = Flags(rawValue: 1 << 5)
+        /// Metabolic Equivalent present
+        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 6)
+        /// Elapsed Time present
+        public static let elapsedTimePresent             = Flags(rawValue: 1 << 7)
+        /// Remaining Time present
+        public static let remainingTimePresent           = Flags(rawValue: 1 << 8)
+    }
+    
     /// Decode Cadence Data
     ///
     /// - Parameters:
@@ -237,7 +236,7 @@ private extension CharacteristicStepClimberData {
                                      unit: UnitCadence,
                                      data: Data,
                                      decoder: inout DecodeData) -> Measurement<UnitCadence>? {
-
+        
         var cadenceValue: Measurement<UnitCadence>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))
@@ -245,7 +244,7 @@ private extension CharacteristicStepClimberData {
         }
         return cadenceValue
     }
-
+    
     /// Decode Duration Data
     ///
     /// - Parameters:
@@ -261,7 +260,7 @@ private extension CharacteristicStepClimberData {
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) -> Measurement<UnitDuration>? {
-
+        
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))

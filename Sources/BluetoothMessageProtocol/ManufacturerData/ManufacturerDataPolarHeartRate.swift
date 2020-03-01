@@ -33,48 +33,61 @@ import FitnessUnits
 ///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerDataPolarHeartRate: ManufacturerData {
-
+public final class ManufacturerDataPolarHeartRate: ManufacturerData {
+    enum CodeKeys: CodingKey {
+        case manufacturer
+        case heartRate
+    }
+    
+    /// Manufacturer
+    public var manufacturer: CompanyIdentifier
+    
+    /// Data
+    public var specificData: Data?
+    
     /// Heartrate
     private(set) public var heartRate: Measurement<UnitCadence>
-
+    
     /// Creates Polar Heart Rate Manufacturer Specific Data class
     ///
     /// - Parameter heartRate: Heartrate
     public init(heartRate: Measurement<UnitCadence>) {
-
+        self.manufacturer = .polar
+        self.specificData = nil
         self.heartRate = heartRate
-        super.init(manufacturer: .polar, specificData: nil)
     }
-
+    
     /// Creates Polar Heart Rate Manufacturer Specific Data class
     ///
     /// - Parameter heartRate: Heartrate
     public convenience init(heartRate: UInt8) {
         let hr = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
-
+        
         self.init(heartRate: hr)
     }
-
-    internal init(heartRate: Measurement<UnitCadence>, rawData: Data) {
-        self.heartRate = heartRate
-
-        super.init(manufacturer: .polar, specificData: rawData)
+    
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
     }
-
+    
+    internal convenience init(heartRate: Measurement<UnitCadence>, rawData: Data) {
+        self.init(heartRate: heartRate)
+        self.specificData = rawData
+    }
+    
     /// Decodes Polar Heart Rate Manufacturer Specific Data
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decode<M: ManufacturerDataPolarHeartRate>(with data: Data) -> Result<M, BluetoothDecodeError> {
-        let man = ManufacturerData(rawData: data)
+    public class func decode(with data: Data) -> Result<ManufacturerDataPolarHeartRate, BluetoothDecodeError> {
+        let man = ManufacturerSpecificData(rawData: data)
         
         guard man.manufacturer == .polar else {
             return.failure(BluetoothDecodeError.wrongIdentifier(.polar)) 
         }
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
-
+        
         //OH1 sends out different data on scan vs passive.  The smaller one has the HR data in it.
         //OH1 sends 5 Bytes.
         //H7/H10 sends 6 Bytes.
@@ -94,25 +107,17 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
         let hr: Measurement = Measurement(value: heartRate, unit: UnitCadence.beatsPerMinute)
         
         let polar = ManufacturerDataPolarHeartRate(heartRate: hr, rawData: data)
-        return.success(polar as! M)
+        return.success(polar)
     }
-
+    
     /// Encodes Polar Heart Rate Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
-
-    enum CodeKeys: CodingKey {
-        case heartRate
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -122,10 +127,10 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-        try super.encode(to: encoder)
-
+        
+        try container.encode(manufacturer, forKey: .manufacturer)
         try container.encode(heartRate, forKey: .heartRate)
     }
 }
@@ -140,7 +145,7 @@ open class ManufacturerDataPolarHeartRate: ManufacturerData {
 /// - Returns: Average of the Two numbers.
 private func safeAverage(valueOne: UInt8, valueTwo: UInt8) -> Double {
     var avg: Double = 0
-
+    
     if valueTwo > 0 && valueOne > 0 {
         avg = Double(valueOne + valueTwo) / 2
     } else if valueOne <= 0 {
@@ -148,6 +153,6 @@ private func safeAverage(valueOne: UInt8, valueTwo: UInt8) -> Double {
     } else {
         avg = Double(valueOne)
     }
-
+    
     return avg
 }

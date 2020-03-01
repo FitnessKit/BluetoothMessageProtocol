@@ -30,23 +30,19 @@ import DataDecoder
 /// the Data Status Bit Field indicating the status of the data received
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHTTPStatusCode: Characteristic {
-
+final public class CharacteristicHTTPStatusCode: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "HTTP Status Code"
-    }
-
+    public static var name: String { "HTTP Status Code" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB8"
-    }
-
+    public static var uuidString: String { "2AB8" }
+    
     /// Types of Data Status
     public struct DataStatus: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// The response-header and entity-header fields were received in the HTTP
         /// response and stored in the HTTP Headers characteristic for the Client to read
         public static let headersReceived   = DataStatus(rawValue: 1 << 0)
@@ -59,15 +55,21 @@ open class CharacteristicHTTPStatusCode: Characteristic {
         /// The entity-body field exceeded 512 octets in length and the first 512 octets
         /// were saved in the HTTP Headers characteristic
         public static let bodyTruncated     = DataStatus(rawValue: 1 << 3)
-
+        
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Status Code
     private(set) public var statusCode: UInt16
-
+    
     /// Data Status
     private(set) public var dataStatus: DataStatus
-
+    
     /// Creates HTTP Status Code Characteristic
     ///
     /// - Parameters:
@@ -76,33 +78,30 @@ open class CharacteristicHTTPStatusCode: Characteristic {
     public init(statusCode: UInt16, dataStatus: DataStatus) {
         self.statusCode = statusCode
         self.dataStatus = dataStatus
-
-        super.init(name: CharacteristicHTTPStatusCode.name,
-                   uuidString: CharacteristicHTTPStatusCode.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHTTPStatusCode>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHTTPStatusCode, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let statusCode = decoder.decodeUInt16(data)
         let dataStatus = DataStatus(rawValue: decoder.decodeUInt8(data))
-
-        return.success(CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus) as! C)
+        
+        return.success(CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: statusCode))
         msgData.append(dataStatus.rawValue)
-
+        
         return.success(msgData)
     }
 }

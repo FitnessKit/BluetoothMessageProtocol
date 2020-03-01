@@ -31,51 +31,50 @@ import FitnessUnits
 /// Lower limit of the heart rate where the user maximizes the fat burn while exersizing
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
-
+final public class CharacteristicFatBurnHeartRateLowerLimit: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Fat Burn Heart Rate Lower Limit"
-    }
-
+    public static var name: String { "Fat Burn Heart Rate Lower Limit" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A88"
-    }
-
+    public static var uuidString: String { "2A88" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Fat Burn Heart Rate Lower Limit
     private(set) public var heartRate: Measurement<UnitCadence>
-
+    
     /// Creates Fat Burn Heart Rate Lower Limit Characteristic
     ///
     /// - Parameter heartRate: Fat Burn Heart Rate Lower Limit
     public init(heartRate: UInt8) {
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
-
-        super.init(name: CharacteristicFatBurnHeartRateLowerLimit.name,
-                   uuidString: CharacteristicFatBurnHeartRateLowerLimit.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicFatBurnHeartRateLowerLimit>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicFatBurnHeartRateLowerLimit, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let heartRate: UInt8 = decoder.decodeUInt8(data)
-
-        return.success(CharacteristicFatBurnHeartRateLowerLimit(heartRate: heartRate) as! C)
+        
+        return.success(CharacteristicFatBurnHeartRateLowerLimit(heartRate: heartRate))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: UInt8(heartRate.value)))
-
+        
         return.success(msgData)
     }
 }

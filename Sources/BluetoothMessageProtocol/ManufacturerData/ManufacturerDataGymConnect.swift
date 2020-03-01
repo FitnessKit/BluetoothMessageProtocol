@@ -28,13 +28,18 @@ import DataDecoder
 /// GymConnect Manufacturer Specific Data
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerDataGymConnect: ManufacturerData {
-
+public final class ManufacturerDataGymConnect: ManufacturerData {
+    
+    enum CodeKeys: CodingKey {
+        case manufacturer
+        case equipment
+    }
+    
     /// Status Flags
     public struct StatusFlags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Has Static QR Code Advertising ID
         ///
         /// If this bit is set, then the GymConnect peripheral supports device
@@ -56,46 +61,56 @@ open class ManufacturerDataGymConnect: ManufacturerData {
         /// The advertising was started as a result of an action by the user, as
         //// opposed to automatic/"always on" advertising.
         public static let wasSolicited          = StatusFlags(rawValue: 1 << 1)
-
+        
     }
-
+    
+    /// Manufacturer
+    public var manufacturer: CompanyIdentifier
+    
+    /// Data
+    public var specificData: Data?
+    
     /// Equipment Type
     private(set) public var equipment: GymConnectEquipmentType
-
+    
     /// Status
     private(set) public var status: StatusFlags
-
+    
     /// Creates Manufacturer Specific Data class
     ///
     /// - Parameter equipment: Equipment Type
     /// - Parameter status: StatusFlags
     public init(equipment: GymConnectEquipmentType, status: StatusFlags) {
+        self.manufacturer = .wahooFitness
+        self.specificData = nil
         self.equipment = equipment
         self.status = status
-
-        super.init(manufacturer: .wahooFitness, specificData: nil)
     }
-
+    
     internal init(equipment: GymConnectEquipmentType, status: StatusFlags, rawData: Data) {
+        self.manufacturer = .wahooFitness
+        self.specificData = rawData
         self.equipment = equipment
         self.status = status
-
-        super.init(manufacturer: .wahooFitness, specificData: rawData)
     }
-
+    
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
     /// Decodes Manufacturer Specific Data into ManufacturerData
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decode<M: ManufacturerDataGymConnect>(with data: Data) -> Result<M, BluetoothDecodeError> {
-        let man = ManufacturerData(rawData: data)
+    public class func decode(with data: Data) -> Result<ManufacturerDataGymConnect, BluetoothDecodeError> {
+        let man = ManufacturerSpecificData(rawData: data)
         
         guard man.manufacturer == .wahooFitness else {
             return.failure(BluetoothDecodeError.wrongIdentifier(.wahooFitness)) 
         }
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
-
+        
         var decoder = DecodeData()
         
         let type = decoder.decodeUInt8(data)
@@ -107,51 +122,17 @@ open class ManufacturerDataGymConnect: ManufacturerData {
         let gymConn = ManufacturerDataGymConnect(equipment: equip,
                                                  status: flags,
                                                  rawData: data)
-        return.success(gymConn as! M)
+        return.success(gymConn)
     }
-
+    
     /// Encodes Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
-
-    enum CodeKeys: CodingKey {
-        case equipment
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-
-    /// Encodes this value into the given encoder.
-    ///
-    /// If the value fails to encode anything, `encoder` will encode an empty
-    /// keyed container in its place.
-    ///
-    /// This function throws an error if any values are invalid for the given
-    /// encoder's format.
-    ///
-    /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodeKeys.self)
-        try super.encode(to: encoder)
-
-        try container.encode(equipment, forKey: .equipment)
-    }
-}
-
-@available(swift 4.0)
-extension ManufacturerDataGymConnect.StatusFlags: Encodable {
-
-    enum CodeKeys: CodingKey {
-        case qrCodeAdvertising
-        case solicitedAdvertising
-        case wasSolicited
-    }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -163,7 +144,33 @@ extension ManufacturerDataGymConnect.StatusFlags: Encodable {
     /// - Parameter encoder: The encoder to write data to.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
+        
+        try container.encode(manufacturer, forKey: .manufacturer)
+        try container.encode(equipment, forKey: .equipment)
+    }
+}
 
+@available(swift 4.0)
+extension ManufacturerDataGymConnect.StatusFlags: Encodable {
+    
+    enum CodeKeys: CodingKey {
+        case qrCodeAdvertising
+        case solicitedAdvertising
+        case wasSolicited
+    }
+    
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodeKeys.self)
+        
         try container.encode(self.contains(.qrCodeAdvertising), forKey: .qrCodeAdvertising)
         try container.encode(self.contains(.solicitedAdvertising), forKey: .solicitedAdvertising)
         try container.encode(self.contains(.wasSolicited), forKey: .wasSolicited)

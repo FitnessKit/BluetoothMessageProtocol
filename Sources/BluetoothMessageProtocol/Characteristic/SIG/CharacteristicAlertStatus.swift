@@ -29,23 +29,19 @@ import FitnessUnits
 /// BLE Alert Status Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicAlertStatus: Characteristic {
-
+final public class CharacteristicAlertStatus: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Alert Status"
-    }
-
+    public static var name: String { "Alert Status" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A3F"
-    }
-
+    public static var uuidString: String { "2A3F" }
+    
     /// Types of Alert Status
     public struct AlertStatus: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Ringer State active
         public static let ringerStateActive     = AlertStatus(rawValue: 1 << 0)
         /// Vibrate State active
@@ -53,36 +49,39 @@ open class CharacteristicAlertStatus: Characteristic {
         /// Display Alert Status State active
         public static let displayAlertActive    = AlertStatus(rawValue: 1 << 2)
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Alert Status Type
     private(set) public var status: AlertStatus
-
+    
     /// Creates Alert Status Characteristic
     ///
     /// - Parameter status: AlertStatus options
     public init(status: AlertStatus) {
         self.status = status
-
-        super.init(name: CharacteristicAlertStatus.name,
-                   uuidString: CharacteristicAlertStatus.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicAlertStatus>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicAlertStatus, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let status: AlertStatus = AlertStatus(rawValue: decoder.decodeUInt8(data))
-
-        return.success(CharacteristicAlertStatus(status: status) as! C)
+        
+        return.success(CharacteristicAlertStatus(status: status))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
         msgData.append(status.rawValue)

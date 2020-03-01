@@ -29,28 +29,30 @@ import FitnessUnits
 /// BLE Battery Level State Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBatteryLevelState: Characteristic {
-
+final public class CharacteristicBatteryLevelState: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Battery Level State"
-    }
-
+    public static var name: String { "Battery Level State" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A1B"
-    }
-
+    public static var uuidString: String { "2A1B" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Battery Level
     ///
     /// The current charge level of a battery. 100% represents fully charged
     /// while 0% represents fully discharged.
     ///
     private(set) public var level: Measurement<UnitPercent>
-
+    
     /// Battery Power State
     private(set) public var state: BatteryPowerState?
-
+    
     /// Creates Battery Level State Characteristic
     ///
     /// - Parameters:
@@ -59,16 +61,13 @@ open class CharacteristicBatteryLevelState: Characteristic {
     public init(level: Measurement<UnitPercent>, state: BatteryPowerState?) {
         self.level = level
         self.state = state
-
-        super.init(name: CharacteristicBatteryLevelState.name,
-                   uuidString: CharacteristicBatteryLevelState.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBatteryLevelState>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBatteryLevelState, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let percent = Double(decoder.decodeUInt8(data))
@@ -84,31 +83,31 @@ open class CharacteristicBatteryLevelState: Characteristic {
         if stateValue > 0 {
             state = BatteryPowerState(stateValue)
         }
-
+        
         let char = CharacteristicBatteryLevelState(level: level,
                                                    state: state)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
-
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
         guard kBatteryBounds.contains(level.value) else {
             return.failure(BluetoothEncodeError.boundsError(title: "Battery level must be between",
                                                             msg: "Percent",
                                                             range: kBatteryBounds))
         }
-
+        
         var msgData = Data()
-
+        
         msgData.append(Data(from: Int8(level.value)))
-
+        
         if let battState = state {
             msgData.append(battState.rawValue)
         }
-
+        
         return.success(msgData)
     }
 }

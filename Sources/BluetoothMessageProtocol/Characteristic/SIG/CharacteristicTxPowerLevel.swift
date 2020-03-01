@@ -32,58 +32,57 @@ import FitnessUnits
 /// level in dBm, and the level ranges from -100 dBm to +20 dBm to a resolution of 1 dBm.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTxPowerLevel: Characteristic {
-
+final public class CharacteristicTxPowerLevel: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Tx Power Level"
-    }
-
+    public static var name: String { "Tx Power Level" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A95"
-    }
-
+    public static var uuidString: String { "2A95" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Tx Power Level
     private(set) public var txPower: Int8
-
+    
     /// Creates Tx Power Level Characteristic
     ///
     /// - Parameter txPower: Tx Power Level
     public init(txPower: Int8) {
         self.txPower = txPower
-
-        super.init(name: CharacteristicTxPowerLevel.name,
-                   uuidString: CharacteristicTxPowerLevel.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTxPowerLevel>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTxPowerLevel, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let txPower = decoder.decodeInt8(data)
-
+        
         let char = CharacteristicTxPowerLevel(txPower: txPower)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
-
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
         guard kTxPowerLevelBounds.contains(Int(txPower)) else {
             return.failure(BluetoothEncodeError.boundsError(title: "Tx Power Level must be between",
                                                             range: kTxPowerLevelBounds))
         }
-
+        
         var msgData = Data()
-
+        
         msgData.append(Data(from: Int8(txPower)))
-
+        
         return.success(msgData)
     }
 }

@@ -32,23 +32,19 @@ import FitnessUnits
 /// supported by the Server implementation
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFitnessMachineFeature: Characteristic {
-
+final public class CharacteristicFitnessMachineFeature: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Fitness Machine Feature"
-    }
-
+    public static var name: String { "Fitness Machine Feature" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ACC"
-    }
-
+    public static var uuidString: String { "2ACC" }
+    
     /// Supported Machine Features
     public struct MachineFeatures: OptionSet {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
-
+        
         /// Average Speed Supported
         public static let averageSpeedSupported     = MachineFeatures(rawValue: 1 << 0)
         /// Cadence Supported
@@ -84,12 +80,12 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
         /// User Data Retention Supported
         public static let userDataSupported         = MachineFeatures(rawValue: 1 << 16)
     }
-
+    
     /// Target Settings Features
     public struct TargetFeatures: OptionSet {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
-
+        
         /// Speed Target Setting Supported
         public static let speedSupported                = TargetFeatures(rawValue: 1 << 0)
         /// Inclination Target Setting Supported
@@ -125,13 +121,19 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
         /// Targeted Cadence Configuration Supported
         public static let cadenceConfigSupported        = TargetFeatures(rawValue: 1 << 4)
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Supported Machine Features
     private(set) public var supportedMachineFeatures: MachineFeatures
-
+    
     /// Supported Target Settings Features
     private(set) public var supportedTargetSettings: TargetFeatures
-
+    
     /// Creates Fitness Machine Feature Characteristic
     ///
     /// - Parameters:
@@ -140,30 +142,27 @@ open class CharacteristicFitnessMachineFeature: Characteristic {
     public init(supportedMachineFeatures: MachineFeatures, supportedTargetSettings: TargetFeatures) {
         self.supportedMachineFeatures = supportedMachineFeatures
         self.supportedTargetSettings = supportedTargetSettings
-
-        super.init(name: CharacteristicFitnessMachineFeature.name,
-                   uuidString: CharacteristicFitnessMachineFeature.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicFitnessMachineFeature>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicFitnessMachineFeature, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let features = MachineFeatures(rawValue: decoder.decodeUInt32(data))
         let targets = TargetFeatures(rawValue: decoder.decodeUInt32(data))
-
+        
         let char = CharacteristicFitnessMachineFeature(supportedMachineFeatures: features,
                                                        supportedTargetSettings: targets)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

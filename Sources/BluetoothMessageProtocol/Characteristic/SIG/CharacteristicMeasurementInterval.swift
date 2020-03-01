@@ -31,65 +31,64 @@ import FitnessUnits
 /// The Measurement Interval characteristic defines the time between measurements
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMeasurementInterval: Characteristic {
-
+final public class CharacteristicMeasurementInterval: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Measurement Interval"
-    }
-
+    public static var name: String { "Measurement Interval" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A21"
-    }
-
+    public static var uuidString: String { "2A21" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Measurement Interval
     ///
     /// - note: values from 1 second to 65535 seconds
     private(set) public var interval: Measurement<UnitDuration>
-
+    
     /// Creates Measurement Interval Characteristic
     ///
     /// - Parameter interval: Measurement Interval (1 second to 65535 second)
     public init(interval: Measurement<UnitDuration>) {
         self.interval = interval
-
-        super.init(name: CharacteristicMeasurementInterval.name,
-                   uuidString: CharacteristicMeasurementInterval.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMeasurementInterval>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMeasurementInterval, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Double(decoder.decodeUInt16(data))
         
         let interval = Measurement(value: value, unit: UnitDuration.seconds)
-
-        return.success(CharacteristicMeasurementInterval(interval: interval) as! C)
+        
+        return.success(CharacteristicMeasurementInterval(interval: interval))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Make sure we put this back to Seconds before we create Data
         let value = UInt16(interval.converted(to: UnitDuration.seconds).value)
-
+        
         guard kBluetoothMeasurementIntervalBounds.contains(Int(value)) else {
-
+            
             return.failure(BluetoothEncodeError.boundsError(title: "Measurement Interval must be between",
                                                             msg: "seconds",
                                                             range: kBluetoothMeasurementIntervalBounds))
         }
-
+        
         var msgData = Data()
-
+        
         msgData.append(Data(from: value.littleEndian))
-
+        
         return.success(msgData)
     }
 }

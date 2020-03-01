@@ -30,18 +30,14 @@ import DataDecoder
 /// Client, and an HTTP Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHTTPControlPoint: Characteristic {
-
+final public class CharacteristicHTTPControlPoint: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "HTTP Control Point"
-    }
-
+    public static var name: String { "HTTP Control Point" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ABA"
-    }
-
+    public static var uuidString: String { "2ABA" }
+    
     /// Command Types
     public enum Command: UInt8 {
         /// Unknow
@@ -69,42 +65,45 @@ open class CharacteristicHTTPControlPoint: Characteristic {
         /// Terminates any executing HTTP Request from the HPS Client
         case httpCancel     = 11
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Op Code
     ///
     /// Control Point Operations
     private(set) public var opCode: Command
-
+    
     /// Creates HTTP Control Point Characteristic
     ///
     /// - Parameter opCode: OpCode Commands
     public init(opCode: Command) {
         self.opCode = opCode
-
-        super.init(name: CharacteristicHTTPControlPoint.name,
-                   uuidString: CharacteristicHTTPControlPoint.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHTTPControlPoint>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHTTPControlPoint, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Command(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return.success(CharacteristicHTTPControlPoint(opCode: value) as! C)
+        
+        return.success(CharacteristicHTTPControlPoint(opCode: value))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(opCode.rawValue)
-
+        
         return.success(msgData)
     }
 }

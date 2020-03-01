@@ -34,28 +34,30 @@ import FitnessUnits
 /// - Light
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
-
+final public class CharacteristicThreeZoneHeartRateLimits: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Three Zone Heart Rate Limits"
-    }
-
+    public static var name: String { "Three Zone Heart Rate Limits" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A94"
-    }
-
+    public static var uuidString: String { "2A94" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Light
     ///
     /// Light (Fat burn) / Moderate (Aerobic) Limit
     private(set) public var lightHeartRate: Measurement<UnitCadence>
-
+    
     /// Moderate
     ///
     /// Moderate (Aerobic) / Hard (Anaerobic) Limit
     private(set) public var moderateHeartRate: Measurement<UnitCadence>
-
+    
     /// Creates Three Zone Heart Rate Limits Characteristic
     ///
     /// - Parameters:
@@ -64,35 +66,32 @@ open class CharacteristicThreeZoneHeartRateLimits: Characteristic {
     public init(lightHeartRate: UInt8, moderateHeartRate: UInt8) {
         self.lightHeartRate = Measurement(value: Double(lightHeartRate), unit: UnitCadence.beatsPerMinute)
         self.moderateHeartRate = Measurement(value: Double(moderateHeartRate), unit: UnitCadence.beatsPerMinute)
-
-        super.init(name: CharacteristicThreeZoneHeartRateLimits.name,
-                   uuidString: CharacteristicThreeZoneHeartRateLimits.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicThreeZoneHeartRateLimits>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicThreeZoneHeartRateLimits, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lightHeartRate: UInt8 = decoder.decodeUInt8(data)
         let moderateHeartRate: UInt8 = decoder.decodeUInt8(data)
-
+        
         let char = CharacteristicThreeZoneHeartRateLimits(lightHeartRate: lightHeartRate,
                                                           moderateHeartRate: moderateHeartRate)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: UInt8(lightHeartRate.value)))
         msgData.append(Data(from: UInt8(moderateHeartRate.value)))
-
+        
         return.success(msgData)
     }
 }

@@ -29,55 +29,40 @@ import FitnessUnits
 /// BLE Blood Pressure Measurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBloodPressureMeasurement: Characteristic {
-
+final public class CharacteristicBloodPressureMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Blood Pressure Measurement"
-    }
-
+    public static var name: String { "Blood Pressure Measurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A35"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt8
-        public init(rawValue: UInt8) { self.rawValue = rawValue }
-
-        /// Blood pressure for Systolic, Diastolic and MAP in units of kPa
-        public static let unitsIsKilopascals        = Flags(rawValue: 1 << 0)
-        /// Time Stamp present
-        public static let timestampPresent          = Flags(rawValue: 1 << 1)
-        /// Pulse Rate present
-        public static let pulseRatePresent          = Flags(rawValue: 1 << 2)
-        /// User ID present
-        public static let userIDPresent             = Flags(rawValue: 1 << 3)
-        /// Measurement Status present
-        public static let measurementStatusPresent  = Flags(rawValue: 1 << 4)
-    }
-
+    public static var uuidString: String { "2A35" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Systolic Blood Pressure
     private(set) public var systolic: Measurement<UnitPressure>
-
+    
     /// Diastolic Blood Pressure
     private(set) public var diastolic: Measurement<UnitPressure>
-
+    
     /// Mean Arterial Pressure
     private(set) public var meanArterial: Measurement<UnitPressure>
-
+    
     /// Timestamp
     private(set) public var timestamp: DateTime?
-
+    
     /// Pulse Rate
     private(set) public var pulseRate: Measurement<UnitCadence>?
-
+    
     /// User ID
     private(set) public var userID: User?
-
+    
     // TODO: add Measurement Status
-
+    
     /// Creates Blood Pressure Measurement Characteristic
     ///
     /// - Parameters:
@@ -100,16 +85,13 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         self.timestamp = timestamp
         self.pulseRate = pulseRate
         self.userID = userID
-
-        super.init(name: CharacteristicBloodPressureMeasurement.name,
-                   uuidString: CharacteristicBloodPressureMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBloodPressureMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBloodPressureMeasurement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -149,21 +131,42 @@ open class CharacteristicBloodPressureMeasurement: Characteristic {
         if flags.contains(.userIDPresent) {
             userID = User.create(decoder.decodeUInt8(data))
         }
-
+        
         let char = CharacteristicBloodPressureMeasurement(systolic: systolic,
                                                           diastolic: diastolic,
                                                           meanArterial: meanArterial,
                                                           timestamp: timestamp,
                                                           pulseRate: pulseRate,
                                                           userID: userID)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
         return.failure(BluetoothEncodeError.notSupported)
     }
+}
+
+private extension CharacteristicBloodPressureMeasurement {
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt8
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
+        
+        /// Blood pressure for Systolic, Diastolic and MAP in units of kPa
+        public static let unitsIsKilopascals        = Flags(rawValue: 1 << 0)
+        /// Time Stamp present
+        public static let timestampPresent          = Flags(rawValue: 1 << 1)
+        /// Pulse Rate present
+        public static let pulseRatePresent          = Flags(rawValue: 1 << 2)
+        /// User ID present
+        public static let userIDPresent             = Flags(rawValue: 1 << 3)
+        /// Measurement Status present
+        public static let measurementStatusPresent  = Flags(rawValue: 1 << 4)
+    }
+    
 }

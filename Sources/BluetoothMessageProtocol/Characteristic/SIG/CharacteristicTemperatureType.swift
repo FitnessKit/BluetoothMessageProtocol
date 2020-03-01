@@ -32,52 +32,51 @@ import FitnessUnits
 /// the temperature was measured
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTemperatureType: Characteristic {
-
+final public class CharacteristicTemperatureType: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Temperature Type"
-    }
-
+    public static var name: String { "Temperature Type" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A1D"
-    }
-
+    public static var uuidString: String { "2A1D" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Temperature Type
     private(set) public var type: TemperatureType
-
+    
     /// Creates Temperature Type Characteristic
     ///
     /// - Parameter type: Temperature Type
     public init(type: TemperatureType) {
         self.type = type
-
-        super.init(name: CharacteristicTemperatureType.name,
-                   uuidString: CharacteristicTemperatureType.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTemperatureType>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTemperatureType, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let type = TemperatureType(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
+        
         let char = CharacteristicTemperatureType(type: type)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(type.rawValue)
-
+        
         return.success(msgData)
     }
 }

@@ -31,56 +31,55 @@ import FitnessUnits
 /// Height of the User
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHeight: Characteristic {
-
+final public class CharacteristicHeight: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Height"
-    }
-
+    public static var name: String { "Height" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A8E"
-    }
-
+    public static var uuidString: String { "2A8E" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Height
     private(set) public var height: Measurement<UnitLength>
-
+    
     /// Creates Height Characteristic
     ///
     /// - Parameter height: Height
     public init(height: Measurement<UnitLength>) {
         self.height = height
-
-        super.init(name: CharacteristicHeight.name,
-                   uuidString: CharacteristicHeight.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHeight>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHeight, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let height = Measurement(value: meters, unit: UnitLength.meters)
-
-        return.success(CharacteristicHeight(height: height) as! C)
+        
+        return.success(CharacteristicHeight(height: height))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to Meters before we create Data
         let heightVal = height.converted(to: UnitLength.meters).value.resolution(.adding, resolution: Resolution.oneHundredth)
-
+        
         msgData.append(Data(from: UInt16(heightVal)))
-
+        
         return.success(msgData)
     }
 }

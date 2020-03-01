@@ -29,58 +29,57 @@ import FitnessUnits
 /// BLE Rainfall Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicRainfall: Characteristic {
-
+final public class CharacteristicRainfall: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Rainfall"
-    }
-
+    public static var name: String { "Rainfall" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A78"
-    }
-
+    public static var uuidString: String { "2A78" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Rainfall
     private(set) public var rainfall: Measurement<UnitLength>
-
+    
     /// Creates Rainfall Characteristic
     ///
     /// - Parameter rainfall: Rainfall
     public init(rainfall: Measurement<UnitLength>) {
         self.rainfall = rainfall
-
-        super.init(name: CharacteristicRainfall.name,
-                   uuidString: CharacteristicRainfall.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicRainfall>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicRainfall, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         // put into 0.1 PA then into KiloPascals
         let value = Double(decoder.decodeUInt16(data))
         
         let rainfall: Measurement = Measurement(value: value, unit: UnitLength.millimeters)
-
+        
         let char = CharacteristicRainfall(rainfall: rainfall)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to back before we create Data
         let value = rainfall.converted(to: UnitLength.millimeters).value
-
+        
         msgData.append(Data(from: UInt32(value).littleEndian))
-
+        
         return.success(msgData)
     }
 }

@@ -29,28 +29,30 @@ import FitnessUnits
 /// BLE Local Time Information Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicLocalTimeInformation: Characteristic {
-
+final public class CharacteristicLocalTimeInformation: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Local Time Information"
-    }
-
+    public static var name: String { "Local Time Information" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A0F"
-    }
-
+    public static var uuidString: String { "2A0F" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Timezone
     ///
     /// Offset from UTC in number of 15 minutes increments. A value of -128 means
     /// that the time zone offset is not known. The offset defined in this characteristic
     /// is constant, regardless whether daylight savings is in effect
     private(set) public var timeZone: Int8
-
+    
     /// DST Offset
     private(set) public var dstOffset: DSTOffset
-
+    
     /// Creates Local Time Information Characteristic
     ///
     /// - Parameters:
@@ -59,34 +61,31 @@ open class CharacteristicLocalTimeInformation: Characteristic {
     public init(timeZone: Int8, dstOffset: DSTOffset) {
         self.timeZone = timeZone
         self.dstOffset = dstOffset
-
-        super.init(name: CharacteristicLocalTimeInformation.name,
-                   uuidString: CharacteristicLocalTimeInformation.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicLocalTimeInformation>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicLocalTimeInformation, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let timez = decoder.decodeInt8(data)
         
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return.success(CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset) as! C)
+        
+        return.success(CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: timeZone))
         msgData.append(dstOffset.rawValue)
-
+        
         return.success(msgData)
     }
 }

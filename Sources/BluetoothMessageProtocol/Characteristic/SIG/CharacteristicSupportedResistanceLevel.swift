@@ -32,27 +32,29 @@ import FitnessUnits
 /// resistance level range as well as the minimum resistance increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicSupportedResistanceLevel: Characteristic {
-
+final public class CharacteristicSupportedResistanceLevel: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Supported Resistance Level"
-    }
-
+    public static var name: String { "Supported Resistance Level" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD6"
-    }
-
+    public static var uuidString: String { "2AD6" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Minimum Resistance Level
     private(set) public var minimum: Double
-
+    
     /// Maximum Resistance Level
     private(set) public var maximum: Double
-
+    
     /// Minimum Increment
     private(set) public var minimumIncrement: Double
-
+    
     /// Creates Supported Resistance Level Characteristic
     ///
     /// - Parameters:
@@ -63,42 +65,39 @@ open class CharacteristicSupportedResistanceLevel: Characteristic {
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
-
-        super.init(name: CharacteristicSupportedResistanceLevel.name,
-                   uuidString: CharacteristicSupportedResistanceLevel.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicSupportedResistanceLevel>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicSupportedResistanceLevel, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let maxValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-
+        
         let char = CharacteristicSupportedResistanceLevel(minimum: minValue,
                                                           maximum: maxValue,
                                                           minimumIncrement: incrValue)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let minValue = Int16(minimum.resolution(.adding, resolution: Resolution.oneTenth))
         let maxValue = Int16(maximum.resolution(.adding, resolution: Resolution.oneTenth))
         let incrValue = UInt16(maximum.resolution(.adding, resolution: Resolution.oneTenth))
-
+        
         msgData.append(Data(from: minValue.littleEndian))
         msgData.append(Data(from: maxValue.littleEndian))
         msgData.append(Data(from: incrValue.littleEndian))
-
+        
         return.success(msgData)
     }
 }

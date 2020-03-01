@@ -31,52 +31,51 @@ import FitnessUnits
 /// The Sensor Location characteristic is used to expose the location of the sensor
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicSensorLocation: Characteristic {
-
+final public class CharacteristicSensorLocation: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Sensor Location"
-    }
-
+    public static var name: String { "Sensor Location" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A5D"
-    }
-
+    public static var uuidString: String { "2A5D" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Sensor Location
     private(set) public var location: SensorLocation
-
+    
     /// Creates Sensor Location Characteristic
     ///
     /// - Parameter location: Sensor Location
     public init(location: SensorLocation) {
         self.location = location
-
-        super.init(name: CharacteristicSensorLocation.name,
-                   uuidString: CharacteristicSensorLocation.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicSensorLocation>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicSensorLocation, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let location = SensorLocation(rawValue: decoder.decodeUInt8(data)) ?? .other
-
+        
         let char = CharacteristicSensorLocation(location: location)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(location.rawValue)
-
+        
         return.success(msgData)
     }
 }

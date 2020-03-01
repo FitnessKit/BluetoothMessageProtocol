@@ -29,90 +29,59 @@ import FitnessUnits
 /// BLE Body Composition Measurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBodyCompositionMeasurement: Characteristic {
-
+final public class CharacteristicBodyCompositionMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Body Composition Measurement"
-    }
-
+    public static var name: String { "Body Composition Measurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A9C"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt16
-        public init(rawValue: UInt16) { self.rawValue = rawValue }
-
-        /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
-        public static let imperialUnits             = Flags(rawValue: 1 << 0)
-        /// Time Stamp Present
-        public static let timeStampPresent          = Flags(rawValue: 1 << 1)
-        /// User ID present
-        public static let userIDPresent             = Flags(rawValue: 1 << 2)
-        /// Basal Metabolism present
-        public static let basalMetabolismPresent    = Flags(rawValue: 1 << 3)
-        /// Muscle Percentage present
-        public static let musclePercentagePresent   = Flags(rawValue: 1 << 4)
-        /// Muscle Mass present
-        public static let muscleMassPresent         = Flags(rawValue: 1 << 5)
-        /// Fat Free Mass present
-        public static let fatFreeMassPresent        = Flags(rawValue: 1 << 6)
-        /// Soft Lean Mass present
-        public static let softLeanMassPresent       = Flags(rawValue: 1 << 7)
-        /// Body Water Mass present
-        public static let bodyWaterMassPresent      = Flags(rawValue: 1 << 8)
-        /// Impedance present
-        public static let impedancePresent          = Flags(rawValue: 1 << 9)
-        /// Weight present
-        public static let weightPresent             = Flags(rawValue: 1 << 10)
-        /// Height present
-        public static let heightPresent             = Flags(rawValue: 1 << 11)
-        /// Multiple Packet Measurement
-        public static let multiplePacketMeasrement  = Flags(rawValue: 1 << 12)
-    }
-
+    public static var uuidString: String { "2A9C" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Body Fat Percentage
     private(set) public var bodyFat: Measurement<UnitPercent>
-
+    
     /// Timestamp
     private(set) public var currentTime: DateTime?
-
+    
     /// User ID
     private(set) public var userID: User?
-
+    
     /// Basal Metabolism
     private(set) public var basalMetabolism: Measurement<UnitEnergy>?
-
+    
     /// Muscle Percentage
     private(set) public var musclePercentage: Measurement<UnitPercent>?
-
+    
     /// Muscle Mass
     private(set) public var muscleMass: Measurement<UnitMass>?
-
+    
     /// Fat Free Mass
     private(set) public var fatFreeMass: Measurement<UnitMass>?
-
+    
     /// Soft Lean Mass
     private(set) public var softLeanMass: Measurement<UnitMass>?
-
+    
     /// Body Water Mass
     private(set) public var bodyWaterMass: Measurement<UnitMass>?
-
+    
     /// Impedance
     private(set) public var impedance: Measurement<UnitElectricResistance>?
-
+    
     /// Weight
     private(set) public var weight: Measurement<UnitMass>?
-
+    
     /// Height
     private(set) public var height: Measurement<UnitLength>?
-
+    
     /// Multiple Packet Measurement
     private(set) public var multiplePacketMeasurement: Bool
-
+    
     /// Creates Body Composition Measurement Characteristic
     ///
     /// - Parameters:
@@ -142,7 +111,7 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                 weight: Measurement<UnitMass>?,
                 height: Measurement<UnitLength>?,
                 multiplePacketMeasurement: Bool) {
-
+        
         self.bodyFat = bodyFat
         self.currentTime = currentTime
         self.userID = userID
@@ -156,16 +125,13 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
         self.weight = weight
         self.height = height
         self.multiplePacketMeasurement = multiplePacketMeasurement
-
-        super.init(name: CharacteristicBodyCompositionMeasurement.name,
-                   uuidString: CharacteristicBodyCompositionMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBodyCompositionMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBodyCompositionMeasurement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -288,14 +254,51 @@ open class CharacteristicBodyCompositionMeasurement: Characteristic {
                                                             weight: weight,
                                                             height: height,
                                                             multiplePacketMeasurement: multiPacket)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not yet supportable
         return.failure(BluetoothEncodeError.notSupported)
     }
+}
+
+private extension CharacteristicBodyCompositionMeasurement {
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt16
+        public init(rawValue: UInt16) { self.rawValue = rawValue }
+        
+        /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
+        public static let imperialUnits             = Flags(rawValue: 1 << 0)
+        /// Time Stamp Present
+        public static let timeStampPresent          = Flags(rawValue: 1 << 1)
+        /// User ID present
+        public static let userIDPresent             = Flags(rawValue: 1 << 2)
+        /// Basal Metabolism present
+        public static let basalMetabolismPresent    = Flags(rawValue: 1 << 3)
+        /// Muscle Percentage present
+        public static let musclePercentagePresent   = Flags(rawValue: 1 << 4)
+        /// Muscle Mass present
+        public static let muscleMassPresent         = Flags(rawValue: 1 << 5)
+        /// Fat Free Mass present
+        public static let fatFreeMassPresent        = Flags(rawValue: 1 << 6)
+        /// Soft Lean Mass present
+        public static let softLeanMassPresent       = Flags(rawValue: 1 << 7)
+        /// Body Water Mass present
+        public static let bodyWaterMassPresent      = Flags(rawValue: 1 << 8)
+        /// Impedance present
+        public static let impedancePresent          = Flags(rawValue: 1 << 9)
+        /// Weight present
+        public static let weightPresent             = Flags(rawValue: 1 << 10)
+        /// Height present
+        public static let heightPresent             = Flags(rawValue: 1 << 11)
+        /// Multiple Packet Measurement
+        public static let multiplePacketMeasrement  = Flags(rawValue: 1 << 12)
+    }
+    
 }

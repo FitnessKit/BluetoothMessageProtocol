@@ -33,18 +33,14 @@ import FitnessUnits
 /// The Sport Type for Aerobic and Anaerobic Thresholds identifies how the measurement was performed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characteristic {
-
+final public class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Sport Type for Aerobic and Anaerobic Thresholds"
-    }
-
+    public static var name: String { "Sport Type for Aerobic and Anaerobic Thresholds" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A93"
-    }
-
+    public static var uuidString: String { "2A93" }
+    
     /// Sport Types
     public enum SportType: UInt8 {
         /// Unspecified
@@ -72,41 +68,44 @@ open class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Characterist
         /// Whole body exercising
         case wholeBodyExercising    = 11
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Sport Type for Aerobic and Anaerobic Thresholds
     private(set) public var exercise: SportType
-
+    
     /// Creates Sport Type for Aerobic and Anaerobic Thresholds Characteristic
     ///
     /// - Parameter exercise: Sport Type for Aerobic and Anaerobic Thresholds
     public init(exercise: SportType) {
         self.exercise = exercise
-
-        super.init(name: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.name,
-                   uuidString: CharacteristicSportTypeForAerobicAndAnaerobicThresholds.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicSportTypeForAerobicAndAnaerobicThresholds>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicSportTypeForAerobicAndAnaerobicThresholds, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let exercise = SportType(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
-
+        
         let char = CharacteristicSportTypeForAerobicAndAnaerobicThresholds(exercise: exercise)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(exercise.rawValue)
-
+        
         return.success(msgData)
     }
 }

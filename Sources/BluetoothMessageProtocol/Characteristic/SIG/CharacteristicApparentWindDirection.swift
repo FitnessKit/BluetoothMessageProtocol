@@ -30,18 +30,20 @@ import FitnessUnits
 ///
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicApparentWindDirection: Characteristic {
-
+final public class CharacteristicApparentWindDirection: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Apparent Wind Direction"
-    }
-
+    public static var name: String { "Apparent Wind Direction" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A73"
-    }
-
+    public static var uuidString: String { "2A73" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Wind Direction
     ///
     /// The apparent wind is the wind experienced by an observer in motion and is
@@ -53,40 +55,37 @@ open class CharacteristicApparentWindDirection: Characteristic {
     /// heading of the observer is given as 315 degrees.
     ///
     private(set) public var windDirection: Measurement<UnitAngle>
-
+    
     /// Creates Apparent Wind Direction Characteristic
     ///
     /// - Parameter windDirection: Angle of Wind Direction
     public init(windDirection: Measurement<UnitAngle>) {
         self.windDirection = windDirection
-
-        super.init(name: CharacteristicApparentWindDirection.name,
-                   uuidString: CharacteristicApparentWindDirection.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicApparentWindDirection>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicApparentWindDirection, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let direction = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let wind = Measurement(value: direction, unit: UnitAngle.degrees)
-
-        return.success(CharacteristicApparentWindDirection(windDirection: wind) as! C)
+        
+        return.success(CharacteristicApparentWindDirection(windDirection: wind))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to deg before we create Data
         let direction = windDirection.converted(to: UnitAngle.degrees).value.resolution(.adding, resolution: Resolution.oneHundredth)
-
+        
         msgData.append(Data(from: UInt16(direction).littleEndian))
         
         return.success(msgData)

@@ -29,52 +29,54 @@ import FitnessUnits
 /// BLE AWE Diagnostic Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
-
+final public class CharacteristicNorthPoleAweDiagnostics: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "AWE Diagnostic"
-    }
-
+    public static var name: String { "AWE Diagnostic" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "4B486501-6E6F-7274-6870-6F6C65656E67"
-    }
-
+    public static var uuidString: String { "4B486501-6E6F-7274-6870-6F6C65656E67" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Battery Swaps
     private(set) public var batterySwaps: UInt16
-
+    
     /// Date Programmed
     private(set) public var dateProgrammed: Date
-
+    
     /// Total Operating Time
     private(set) public var totalOperatingtime: UInt32
-
+    
     /// Advertising Time
     ///
     /// Time spent in a BLE Advertising
     private(set) public var advertisingTime: Measurement<UnitDuration>
-
+    
     /// Connected Time
     ///
     /// Time spent in a BLE Connection
     private(set) public var connectedTime: Measurement<UnitDuration>
-
+    
     /// Successful Firmware Update Events
     ///
     /// Number of times Firmware Update was requested and successul
     private(set) public var succesfulFirmwareUpdateEvents: UInt8
-
+    
     /// Failed Firmware Update Events
     ///
     /// Number of times Firmware Update was requested and failed
     private(set) public var failedFirmwareUpdateEvents: UInt8
-
+    
     /// Last Battery Level
     ///
     /// The battry level before the last device shutdown
     private(set) public var lastBatteryLevel: Measurement<UnitPercent>
-
+    
     /// Creates AWE Diagnostic Characteristic
     ///
     /// - Parameters:
@@ -90,7 +92,7 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
                 succesfulFirmwareUpdateEvents: UInt8,
                 failedFirmwareUpdateEvents: UInt8,
                 lastBatteryLevel: Measurement<UnitPercent>) {
-
+        
         self.batterySwaps = batterySwaps
         self.dateProgrammed = dateProgrammed
         self.totalOperatingtime = totalOperatingtime
@@ -99,16 +101,13 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
         self.succesfulFirmwareUpdateEvents = succesfulFirmwareUpdateEvents
         self.failedFirmwareUpdateEvents = failedFirmwareUpdateEvents
         self.lastBatteryLevel = lastBatteryLevel
-
-        super.init(name: CharacteristicNorthPoleAweDiagnostics.name,
-                   uuidString: CharacteristicNorthPoleAweDiagnostics.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicNorthPoleAweDiagnostics>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicNorthPoleAweDiagnostics, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let swaps = decoder.decodeUInt16(data)
@@ -138,13 +137,13 @@ open class CharacteristicNorthPoleAweDiagnostics: Characteristic {
                                                          succesfulFirmwareUpdateEvents: successFW,
                                                          failedFirmwareUpdateEvents: failedFW,
                                                          lastBatteryLevel: battLvl)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
         return.failure(BluetoothEncodeError.notSupported)
     }

@@ -31,39 +31,38 @@ import FitnessUnits
 /// The Fitness Machine Status characteristic is used to send the status of the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFitnessMachineStatus: Characteristic {
-
+final public class CharacteristicFitnessMachineStatus: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Fitness Machine Status"
-    }
-
+    public static var name: String { "Fitness Machine Status" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ADA"
-    }
-
+    public static var uuidString: String { "2ADA" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Fitness Machine Status Value
     ///
     /// Nil value represents a unknown Status Code
     private(set) public var status: FitnessMachineStatus?
-
+    
     /// Creates Fitness Machine Status Characteristic
     ///
     /// - Parameters:
     ///   - status: Fitness Machine Status Value
     public init(status: FitnessMachineStatus?) {
         self.status = status
-
-        super.init(name: CharacteristicFitnessMachineStatus.name,
-                   uuidString: CharacteristicFitnessMachineStatus.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicFitnessMachineStatus>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicFitnessMachineStatus, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         var statusValue: FitnessMachineStatus?
@@ -117,13 +116,13 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
                 statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
                 
             case .targetedTimeInTwoHrZoneChanged:
-                return.success(decodeTwoHrZoneChanged(data: data, decoder: &decoder) as! C)
+                return.success(decodeTwoHrZoneChanged(data: data, decoder: &decoder))
                 
             case .targetedTimeInThreeHrZoneChanged:
-                return.success(decodeThreeHrZoneChanged(data: data, decoder: &decoder) as! C)
+                return.success(decodeThreeHrZoneChanged(data: data, decoder: &decoder))
                 
             case .targetedTimeInFiveHrZoneChanged:
-                return.success(decodeFiveHrZoneChanged(data: data, decoder: &decoder) as! C)
+                return.success(decodeFiveHrZoneChanged(data: data, decoder: &decoder))
                 
             case .wheelCircumferenceChanged:
                 let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16(data))
@@ -142,20 +141,20 @@ open class CharacteristicFitnessMachineStatus: Characteristic {
             }
         }
         
-        return.success(CharacteristicFitnessMachineStatus(status: statusValue) as! C)
+        return.success(CharacteristicFitnessMachineStatus(status: statusValue))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
 private extension CharacteristicFitnessMachineStatus {
-
+    
     /// Decodes the Targeted Time in Two HR Zone Change OpCode
     ///
     /// - Parameters:
@@ -165,15 +164,15 @@ private extension CharacteristicFitnessMachineStatus {
     /// - Throws: BluetoothDecodeError
     private class func decodeTwoHrZoneChanged(data: Data, decoder: inout DecodeData) -> CharacteristicFitnessMachineStatus {
         var statusValue: FitnessMachineStatus?
-
+        
         let burn = decoder.decodeUInt16(data)
         let fitness = decoder.decodeUInt16(data)
         let time = FitnessMachineTargetTimeInTwoHrZone.create(fatBurnZone: burn, fitnessZone: fitness)
         statusValue = FitnessMachineStatusTargetedTimeInTwoHrZoneChanged(time: time)
-
+        
         return CharacteristicFitnessMachineStatus(status: statusValue)
     }
-
+    
     /// Decodes the Targeted Time in Three HR Zone Change OpCode
     ///
     /// - Parameters:
@@ -183,7 +182,7 @@ private extension CharacteristicFitnessMachineStatus {
     /// - Throws: BluetoothDecodeError
     private class func decodeThreeHrZoneChanged(data: Data, decoder: inout DecodeData) -> CharacteristicFitnessMachineStatus {
         var statusValue: FitnessMachineStatus?
-
+        
         let light = decoder.decodeUInt16(data)
         let moderate = decoder.decodeUInt16(data)
         let hard = decoder.decodeUInt16(data)
@@ -191,10 +190,10 @@ private extension CharacteristicFitnessMachineStatus {
                                                                 moderateZone: moderate,
                                                                 hardZone: hard)
         statusValue = FitnessMachineStatusTargetedTimeInThreeHrZoneChanged(time: time)
-
+        
         return CharacteristicFitnessMachineStatus(status: statusValue)
     }
-
+    
     /// Decodes the Targeted Time in Five HR Zone Change OpCode
     ///
     /// - Parameters:
@@ -204,7 +203,7 @@ private extension CharacteristicFitnessMachineStatus {
     /// - Throws: BluetoothDecodeError
     private class func decodeFiveHrZoneChanged(data: Data, decoder: inout DecodeData) -> CharacteristicFitnessMachineStatus {
         var statusValue: FitnessMachineStatus?
-
+        
         let veryLight = decoder.decodeUInt16(data)
         let light = decoder.decodeUInt16(data)
         let moderate = decoder.decodeUInt16(data)
@@ -216,8 +215,8 @@ private extension CharacteristicFitnessMachineStatus {
                                                                hardZone: hard,
                                                                maximumZone: max)
         statusValue = FitnessMachineStatusTargetedTimeInFiveHrZoneChanged(time: time)
-
+        
         return CharacteristicFitnessMachineStatus(status: statusValue)
     }
-
+    
 }

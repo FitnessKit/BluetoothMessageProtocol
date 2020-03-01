@@ -29,49 +29,48 @@ import FitnessUnits
 /// BLE Appearance Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicAppearance: Characteristic {
-
+final public class CharacteristicAppearance: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Appearance"
-    }
-
+    public static var name: String { "Appearance" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A01"
-    }
-
+    public static var uuidString: String { "2A01" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Appearance
     private(set) public var appearance: Appearance
-
+    
     /// Creates Appearance Characteristic
     ///
     /// - Parameter appearance: Appearance
     public init(appearance: Appearance) {
         self.appearance = appearance
-
-        super.init(name: CharacteristicAppearance.name,
-                   uuidString: CharacteristicAppearance.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicAppearance>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicAppearance, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let appearance = Appearance(rawValue: decoder.decodeUInt16(data)) ?? .unknown
-
-        return.success(CharacteristicAppearance(appearance: appearance) as! C)
+        
+        return.success(CharacteristicAppearance(appearance: appearance))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: appearance.rawValue.littleEndian))
         
         return.success(msgData)

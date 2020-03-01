@@ -29,30 +29,32 @@ import FitnessUnits
 /// BLE Heart Rate Meassurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHeartRateMeasurement: Characteristic {
-
+final class CharacteristicHeartRateMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Heart Rate Meassurement"
-    }
-
+    public static var name: String { "Heart Rate Meassurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A37"
-    }
-
+    public static var uuidString: String { "2A37" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Contact status of sensor
     private(set) public var contactStatus: HeartRateContactStatus = .notSupported
-
+    
     /// Heart Rate Value
     private(set) public var heartRate: Measurement<UnitCadence>
-
+    
     /// Energy Expended
     private(set) public var energyExpended: Measurement<UnitEnergy>?
-
+    
     /// RR-Interval
     private(set) public var rrIntervals: [Measurement<UnitDuration>]?
-
+    
     /// Creates Heart Rate Meassurement Characteristic
     ///
     /// - Parameters:
@@ -64,21 +66,17 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
                 heartRate: Measurement<UnitCadence>,
                 energyExpended: Measurement<UnitEnergy>? = nil,
                 rrIntervals: [Measurement<UnitDuration>]? = nil) {
-        
         self.contactStatus = contactStatus
         self.heartRate = heartRate
         self.energyExpended = energyExpended
         self.rrIntervals = rrIntervals
-
-        super.init(name: CharacteristicHeartRateMeasurement.name,
-                   uuidString: CharacteristicHeartRateMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHeartRateMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHeartRateMeasurement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = HeartRateMeasurementFlags(decoder.decodeUInt8(data))
@@ -123,13 +121,13 @@ open class CharacteristicHeartRateMeasurement: Characteristic {
                                                       heartRate: heartRate,
                                                       energyExpended: energy,
                                                       rrIntervals: rrIntervals)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

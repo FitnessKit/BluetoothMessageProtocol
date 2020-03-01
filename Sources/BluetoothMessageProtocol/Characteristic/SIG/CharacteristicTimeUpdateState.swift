@@ -29,18 +29,14 @@ import FitnessUnits
 /// BLE Time Update State Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTimeUpdateState: Characteristic {
-
+final public class CharacteristicTimeUpdateState: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Time Update State"
-    }
-
+    public static var name: String { "Time Update State" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A0E"
-    }
-
+    public static var uuidString: String { "2A0E" }
+    
     /// Current State Types
     public enum CurrentStateType: UInt8 {
         /// Idle
@@ -48,7 +44,7 @@ open class CharacteristicTimeUpdateState: Characteristic {
         /// Update Pending
         case updatePending  = 1
     }
-
+    
     /// Update Result Types
     public enum UpdateResultType: UInt8 {
         /// Successful
@@ -64,13 +60,19 @@ open class CharacteristicTimeUpdateState: Characteristic {
         /// Update not attempted after reset
         case noAttempt          = 5
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Current State
     private(set) public var currentState: CurrentStateType
-
+    
     /// Result
     private(set) public var result: UpdateResultType
-
+    
     /// Creates Time Update State Characteristic
     ///
     /// - Parameters:
@@ -79,35 +81,32 @@ open class CharacteristicTimeUpdateState: Characteristic {
     public init(currentState: CurrentStateType, result: UpdateResultType) {
         self.currentState = currentState
         self.result = result
-
-        super.init(name: CharacteristicTimeUpdateState.name,
-                   uuidString: CharacteristicTimeUpdateState.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTimeUpdateState>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTimeUpdateState, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let state = CurrentStateType(rawValue: decoder.decodeUInt8(data)) ?? .idle
         let result = UpdateResultType(rawValue: decoder.decodeUInt8(data)) ?? .successful
-
+        
         let char = CharacteristicTimeUpdateState(currentState: state,
                                                  result: result)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(currentState.rawValue)
         msgData.append(result.rawValue)
-
+        
         return.success(msgData)
     }
 }

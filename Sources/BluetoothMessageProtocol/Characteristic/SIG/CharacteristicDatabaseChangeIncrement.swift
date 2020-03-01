@@ -29,51 +29,50 @@ import FitnessUnits
 /// BLE Database Change Increment Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDatabaseChangeIncrement: Characteristic {
-
+final public class CharacteristicDatabaseChangeIncrement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Database Change Increment"
-    }
-
+    public static var name: String { "Database Change Increment" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A99"
-    }
-
+    public static var uuidString: String { "2A99" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Database Change Increment
     private(set) public var increment: UInt32
-
+    
     /// Creates Database Change Increment Characteristic
     ///
     /// - Parameter increment: Database Change Increment
     public init(increment: UInt32) {
         self.increment = increment
-
-        super.init(name: CharacteristicDatabaseChangeIncrement.name,
-                   uuidString: CharacteristicDatabaseChangeIncrement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDatabaseChangeIncrement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDatabaseChangeIncrement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let increment = decoder.decodeUInt32(data)
-
-        return.success(CharacteristicDatabaseChangeIncrement(increment: increment) as! C)
+        
+        return.success(CharacteristicDatabaseChangeIncrement(increment: increment))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: increment.littleEndian))
-
+        
         return.success(msgData)
     }
 }

@@ -29,40 +29,29 @@ import FitnessUnits
 /// BLE Temperature Measurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTemperatureMeasurement: Characteristic {
-
+final public class CharacteristicTemperatureMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Temperature Measurement"
-    }
-
+    public static var name: String { "Temperature Measurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A1C"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt8
-        public init(rawValue: UInt8) { self.rawValue = rawValue }
-
-        /// Temperature Measurement Value in units of Fahrenheit
-        public static let unitsFahrenheit            = Flags(rawValue: 1 << 0)
-        /// Time Stamp field present
-        public static let timestampPresent           = Flags(rawValue: 1 << 1)
-        /// Temperature Type field present
-        public static let temperatureTypePresent     = Flags(rawValue: 1 << 2)
-    }
-
+    public static var uuidString: String { "2A1C" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Temperature
     private(set) public var temperature: Measurement<UnitTemperature>
-
+    
     /// Timestamp
     private(set) public var timestamp: DateTime?
-
+    
     /// Temperature Type
     private(set) public var type: TemperatureType?
-
+    
     /// Creates Temperature Measurement Characteristic
     ///
     /// - Parameters:
@@ -73,16 +62,13 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
         self.temperature = temperature
         self.timestamp = timestamp
         self.type = type
-
-        super.init(name: CharacteristicTemperatureMeasurement.name,
-                   uuidString: CharacteristicTemperatureMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTemperatureMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTemperatureMeasurement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -105,18 +91,35 @@ open class CharacteristicTemperatureMeasurement: Characteristic {
         if flags.contains(.temperatureTypePresent) {
             type = TemperatureType(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         }
-
+        
         let char = CharacteristicTemperatureMeasurement(temperature: temperature,
                                                         timestamp: timestamp,
                                                         type: type)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
+}
+
+private extension CharacteristicTemperatureMeasurement {
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt8
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
+        
+        /// Temperature Measurement Value in units of Fahrenheit
+        public static let unitsFahrenheit            = Flags(rawValue: 1 << 0)
+        /// Time Stamp field present
+        public static let timestampPresent           = Flags(rawValue: 1 << 1)
+        /// Temperature Type field present
+        public static let temperatureTypePresent     = Flags(rawValue: 1 << 2)
+    }
+    
 }

@@ -33,33 +33,35 @@ import FitnessUnits
 /// also be included for the last alert in the category
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicNewAlert: Characteristic {
-
+final public class CharacteristicNewAlert: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "New Alert"
-    }
-
+    public static var name: String { "New Alert" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A3E"
-    }
-
+    public static var uuidString: String { "2A3E" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Alert Type
     ///
     /// Category of the new alert
     private(set) public var alertType: AlertCategory
-
+    
     /// Number of New Alerts
     ///
     /// Provides the number of new alerts in the server
     private(set) public var numberOfAlerts: UInt8
-
+    
     /// Alert Information
     ///
     /// Brief text information for the last alert
     private(set) public var alertInformation: String?
-
+    
     /// Creates New Alert Characteristic
     ///
     /// - Parameters:
@@ -70,16 +72,13 @@ open class CharacteristicNewAlert: Characteristic {
         self.alertType = alertType
         self.numberOfAlerts = numberOfAlerts
         self.alertInformation = alertInformation
-
-        super.init(name: CharacteristicNewAlert.name,
-                   uuidString: CharacteristicNewAlert.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicNewAlert>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicNewAlert, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
@@ -95,30 +94,30 @@ open class CharacteristicNewAlert: Characteristic {
         let char = CharacteristicNewAlert(alertType: alertType,
                                           numberOfAlerts: numberOfAlerts,
                                           alertInformation: alertInfo)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(alertType.rawValue)
         msgData.append(numberOfAlerts)
-
+        
         if let info = alertInformation {
             guard kNewAlertTextStringBounds.contains(info.count) else {
                 return.failure(BluetoothEncodeError.boundsError(title: "Alert Information must be between",
                                                                 msg: "characters in size",
                                                                 range: kNewAlertTextStringBounds))
             }
-
+            
             if let stringData = info.data(using: .utf8) {
                 msgData.append(stringData)
             }
         }
-
+        
         return.success(msgData)
     }
 }

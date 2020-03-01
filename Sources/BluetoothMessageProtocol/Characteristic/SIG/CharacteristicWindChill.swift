@@ -30,53 +30,52 @@ import FitnessUnits
 ///
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicWindChill: Characteristic {
-
+final public class CharacteristicWindChill: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Wind Chill"
-    }
+    public static var name: String { "Wind Chill" }
     
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A79"
-    }
-
+    public static var uuidString: String { "2A79" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Wind Chill
     private(set) public var windChill: Measurement<UnitTemperature>
-
+    
     /// Creates Wind Chill Characteristic
     ///
     /// - Parameter windChill: Wind Chill
     public init(windChill: Measurement<UnitTemperature>) {
         self.windChill = windChill
-
-        super.init(name: CharacteristicWindChill.name,
-                   uuidString: CharacteristicWindChill.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicWindChill>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicWindChill, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let windChill = Measurement(value: Double(decoder.decodeInt8(data)), unit: UnitTemperature.celsius)
-
+        
         let char = CharacteristicWindChill(windChill: windChill)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to Celsius before we create Data
         let chill = windChill.converted(to: UnitTemperature.celsius).value
-
+        
         msgData.append(Data(from: Int8(chill)))
         
         return.success(msgData)

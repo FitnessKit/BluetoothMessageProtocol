@@ -30,20 +30,34 @@ import FitnessUnits
 ///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerDataAppleiBeacon: ManufacturerData {
-
+final public class ManufacturerDataAppleiBeacon: ManufacturerData {
+    
+    enum CodeKeys: CodingKey {
+        case manufacturer
+        case proximityUUID
+        case majorID
+        case minorID
+        case measuredPower
+    }
+    
+    /// Manufacturer
+    public var manufacturer: CompanyIdentifier
+    
+    /// Data
+    public var specificData: Data?
+    
     /// Proximty UUID
     private(set) public var proximityUUID: UUID
-
+    
     /// Major ID
     private(set) public var majorID: UInt16
-
+    
     /// Minor ID
     private(set) public var minorID: UInt16
-
+    
     /// Measured Power
     private(set) public var measuredPower: Int8
-
+    
     /// Creates an Apple iBeacon Manufacturer Specific Data Class
     ///
     /// - Parameters:
@@ -51,38 +65,48 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
     ///   - majorID: Major ID
     ///   - minorID: Minor ID
     ///   - measuredPower: Measured Power
-    public init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: Int8) {
-
+    public init(proximityUUID: UUID,
+                majorID: UInt16,
+                minorID: UInt16,
+                measuredPower: Int8) {
+        self.manufacturer = .apple
+        self.specificData = nil
         self.proximityUUID = proximityUUID
         self.majorID = majorID
         self.minorID = minorID
         self.measuredPower = measuredPower
-
-        super.init(manufacturer: .apple, specificData: nil)
     }
-
-    internal init(proximityUUID: UUID, majorID: UInt16, minorID: UInt16, measuredPower: Int8, rawData: Data) {
+    
+    internal init(proximityUUID: UUID,
+                  majorID: UInt16,
+                  minorID: UInt16,
+                  measuredPower: Int8,
+                  specificData: Data) {
+        self.manufacturer = .apple
+        self.specificData = specificData
         self.proximityUUID = proximityUUID
         self.majorID = majorID
         self.minorID = minorID
         self.measuredPower = measuredPower
-
-        super.init(manufacturer: .apple, specificData: rawData)
     }
-
+    
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
+    
     /// Decodes Apple iBeacon Manufacturer Specific Data
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decode<M: ManufacturerDataAppleiBeacon>(with data: Data) -> Result<M, BluetoothDecodeError> {
-        let man = ManufacturerData(rawData: data)
+    public class func decode(with data: Data) -> Result<ManufacturerDataAppleiBeacon, BluetoothDecodeError> {
+        let man = ManufacturerSpecificData(rawData: data)
         
         guard man.manufacturer == .apple else {
             return.failure(BluetoothDecodeError.wrongIdentifier(.apple)) 
         }
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
-
+        
         //Apple iBeacon  Advert: Btye0 - 76 (apples id) byte2: Type (2 is proximity) Byte2: 15 remaining length
         //16 bytes - Proximity UUID
         //2 bytes - Major ID
@@ -127,16 +151,16 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
                                                   majorID: majorID,
                                                   minorID: minorID,
                                                   measuredPower: measuredPower,
-                                                  rawData: data)
-        return.success(beacon as! M)
+                                                  specificData: data)
+        return.success(beacon)
     }
-
+    
     /// Encodes Apple iBeacon Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(AppleDeviceType.iBeaccon.rawValue) //Type Proximity
         msgData.append(21) //Sub Type
@@ -144,21 +168,10 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
         msgData.append(Data(from: majorID.bigEndian))
         msgData.append(Data(from: minorID.bigEndian))
         msgData.append(UInt8(measuredPower))
-
+        
         return.success(msgData)
     }
-
-    enum CodeKeys: CodingKey {
-        case proximityUUID
-        case majorID
-        case minorID
-        case measuredPower
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -168,10 +181,10 @@ open class ManufacturerDataAppleiBeacon: ManufacturerData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-        try super.encode(to: encoder)
-
+        
+        try container.encode(manufacturer, forKey: .manufacturer)
         try container.encode(proximityUUID, forKey: .proximityUUID)
         try container.encode(majorID, forKey: .majorID)
         try container.encode(minorID, forKey: .minorID)

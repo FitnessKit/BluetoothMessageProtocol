@@ -29,23 +29,19 @@ import FitnessUnits
 /// BLE Blood Pressure Feature Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBloodPressureFeature: Characteristic {
-
+final public class CharacteristicBloodPressureFeature: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Blood Pressure Feature"
-    }
-
+    public static var name: String { "Blood Pressure Feature" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A49"
-    }
-
+    public static var uuidString: String { "2A49" }
+    
     /// Supported Feature Types
     public struct Feature: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Body Movement Detection feature supported
         public static let bodyMovementDetectionSupported            = Feature(rawValue: 1 << 0)
         /// Cuff Fit Detection feature supported
@@ -59,38 +55,41 @@ open class CharacteristicBloodPressureFeature: Characteristic {
         /// Multiple Bonds supported
         public static let multipleBondsSupported                    = Feature(rawValue: 1 << 5)
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Supported Features
     private(set) public var supportedFeatures: Feature
-
+    
     /// Creates Blood Pressure Feature Characteristic
     ///
     /// - Parameter status: Blood Pressure Features
     public init(status: Feature) {
         self.supportedFeatures = status
-
-        super.init(name: CharacteristicBloodPressureFeature.name,
-                   uuidString: CharacteristicBloodPressureFeature.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBloodPressureFeature>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBloodPressureFeature, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let status = Feature(rawValue: decoder.decodeUInt8(data))
-
-        return.success(CharacteristicBloodPressureFeature(status: status) as! C)
+        
+        return.success(CharacteristicBloodPressureFeature(status: status))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(supportedFeatures.rawValue)
         
         return.success(msgData)

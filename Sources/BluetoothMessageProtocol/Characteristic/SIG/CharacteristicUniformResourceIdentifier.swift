@@ -32,47 +32,46 @@ import FitnessUnits
 /// the URI for a subsequent request
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicUniformResourceIdentifier: Characteristic {
-
+final public class CharacteristicUniformResourceIdentifier: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "URI"
-    }
-
+    public static var name: String { "URI" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB6"
-    }
-
+    public static var uuidString: String { "2AB6" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Uniform Resource Identifier (URI)
     ///
     /// The URI to be used in the HTTP request
     private(set) public var uri: String
-
+    
     /// Creates URI Characteristic
     ///
     /// - Parameter uri: The URI to be used in the HTTP request
     public init(uri: String) {
         self.uri = uri
-
-        super.init(name: CharacteristicUniformResourceIdentifier.name,
-                   uuidString: CharacteristicUniformResourceIdentifier.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicUniformResourceIdentifier>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicUniformResourceIdentifier, BluetoothDecodeError> {
         guard let uri = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicUniformResourceIdentifier(uri: uri) as! C)
+        
+        return.success(CharacteristicUniformResourceIdentifier(uri: uri))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

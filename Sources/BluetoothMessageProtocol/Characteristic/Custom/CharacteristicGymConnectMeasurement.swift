@@ -29,18 +29,20 @@ import FitnessUnits
 /// GymConnect Equipment Data Measurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicGymConnectMeasurement: Characteristic {
-
+final public class CharacteristicGymConnectMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "GymConnect Measurement"
-    }
-
+    public static var name: String { "GymConnect Measurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "A026E01D-0A7D-4AB3-97FA-F1500F9FEB8B"
-    }
-
+    public static var uuidString: String { "A026E01D-0A7D-4AB3-97FA-F1500F9FEB8B" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// First Packet of Logical Update
     ///
     /// Measurement data can come from multiple notify events
@@ -48,29 +50,29 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
     /// All Updates until the final event can be considered one
     /// logical update
     private(set) public var firstUpdatePacket: Bool
-
+    
     /// Final Packet of Logical Update
     ///
     /// Indicates the last packet of the Logical Update
     private(set) public var finalUpdatePacket: Bool
-
+    
     /// Time Information
     private(set) public var time: FitnessMachineTime
-
+    
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
-
+    
     /// Intensity / Level
     ///
     /// This can mean Intesity or Level based on the equipment type
     private(set) public var intensity: UInt8?
-
+    
     /// Resistance
     private(set) public var resistnace: Double?
-
+    
     /// Current Speed
     private(set) public var speed: FitnessMachineSpeedType?
-
+    
     /// Cadence
     ///
     /// Each equpment type will determine how this should be
@@ -82,72 +84,72 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
     ///  - Rower: strokes/min
     ///  - CrosTrainer: strides/min
     private(set) public var cadence: Double?
-
+    
     /// Total Movements
     ///
     /// Total Count of Movements (Steps, strokes, etc..)
     private(set) public var totalMovements: Double?
-
+    
     /// Total Horizontal Distance
     private(set) public var totalHorizontalDistance: Measurement<UnitLength>?
-
+    
     /// Total Vertical Distance
     ///
     /// If totalNegitiveVerticalDistance is present then this should be
     /// interpreted as Positive Vertical Distance
     private(set) public var totalVerticalDistance: Measurement<UnitLength>?
-
+    
     /// Total Negitive Vertical Distance
     private(set) public var totalNegitiveVerticalDistance: Measurement<UnitLength>?
-
+    
     /// Total Energy
     private(set) public var totalEnergy: Measurement<UnitEnergy>?
-
+    
     /// Energy Per Hour
     private(set) public var energyPerHour: Measurement<UnitEnergy>?
-
+    
     /// Metabolic Equivalent (METs)
     private(set) public var metabolicEquivalent: Double?
-
+    
     /// Instantaneous Power
     private(set) public var power: FitnessMachinePowerType?
-
+    
     /// Torque
     private(set) public var torque: Measurement<UnitTorque>?
-
+    
     /// Current Gear
     private(set) public var currentGear: UInt8?
-
+    
     /// Current Grade
     ///
     /// - 100%: 45 degrees uphill
     /// - -100%: 45 degress downhill
     private(set) public var grade: Measurement<UnitPercent>?
-
+    
     /// Ramp Angle
     ///
     /// - 0 degrees: Flat
     /// - 90 degrees: Straight Up
     /// - -90 degrees: Straight Down
     private(set) public var rampAngle: Measurement<UnitAngle>?
-
+    
     /// Current Floor Rate
     private(set) public var floorRate: Measurement<UnitCadence>?
-
+    
     /// Total Floors
     ///
     /// Count of Floors
     private(set) public var totalFloors: Double?
-
+    
     /// Total Laps
     private(set) public var totalLaps: Double?
-
+    
     /// Current Movement Length
     ///
     /// Movement Length describes the movement length.  For example step length,
     /// stroke length.  This coincides with Cadence
     private(set) public var movementLength: Measurement<UnitLength>?
-
+    
     /// Creates Characteristic
     ///
     /// - Parameter equipment: Equipment Type
@@ -175,17 +177,17 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
                   totalFloors: Double?,
                   totalLaps: Double?,
                   movementLength: Measurement<UnitLength>?) {
-
+        
         self.firstUpdatePacket = firstUpdatePacket
         self.finalUpdatePacket = finalUpdatePacket
         self.time = time
-
+        
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
         } else {
             self.heartRate = nil
         }
-
+        
         self.intensity = intensity
         self.resistnace = resistnace
         self.speed = speed
@@ -206,16 +208,13 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
         self.totalFloors = totalFloors
         self.totalLaps = totalLaps
         self.movementLength = movementLength
-
-        super.init(name: CharacteristicGymConnectMeasurement.name,
-                   uuidString: CharacteristicGymConnectMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicGymConnectMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicGymConnectMeasurement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         var flagsOne: FlagsOne?
@@ -443,13 +442,13 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
                                                        totalFloors: totalFloors,
                                                        totalLaps: totalLaps,
                                                        movementLength: movementLength)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
         return.failure(BluetoothEncodeError.notSupported)
     }
@@ -457,12 +456,12 @@ open class CharacteristicGymConnectMeasurement: Characteristic {
 
 //MARK: - Flags
 private extension CharacteristicGymConnectMeasurement {
-
+    
     /// Flags
     private struct Flags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Flags One is Present
         public static let flagsOnePresent               = Flags(rawValue: 1 << 0)
         /// Flags Two is Present
@@ -487,12 +486,12 @@ private extension CharacteristicGymConnectMeasurement {
         /// Remaining Workout Time Present
         public static let remainingWorkoutTimePresent   = Flags(rawValue: 1 << 7)
     }
-
+    
     /// Flags One
     private struct FlagsOne: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Heartrate Present
         public static let heartRate                     = FlagsOne(rawValue: 1 << 0)
         /// Intensity Present
@@ -510,12 +509,12 @@ private extension CharacteristicGymConnectMeasurement {
         /// Cumulative Vertical Distance Present
         public static let totalVerticalDistance         = FlagsOne(rawValue: 1 << 7)
     }
-
+    
     /// Flags Two
     private struct FlagsTwo: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Negitive Vertical Distance Present
         public static let totalNegitiveVerticalDistance     = FlagsTwo(rawValue: 1 << 0)
         /// Total Energy Present
@@ -533,12 +532,12 @@ private extension CharacteristicGymConnectMeasurement {
         /// Grade Present
         public static let grade                             = FlagsTwo(rawValue: 1 << 7)
     }
-
+    
     /// Flags Three
     private struct FlagsThree: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Angle Present
         public static let angle                 = FlagsThree(rawValue: 1 << 0)
         /// Floor Rate Present
@@ -550,18 +549,18 @@ private extension CharacteristicGymConnectMeasurement {
         /// Movement length Present
         public static let movementLength        = FlagsThree(rawValue: 1 << 4)
     }
-
+    
     /// Flags Four
     private struct FlagsFour: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
     }
-
+    
 }
 
 //MARK: - Helpers
 private extension CharacteristicGymConnectMeasurement {
-
+    
     /// Decode Duration Data
     ///
     /// - Parameters:
@@ -572,12 +571,12 @@ private extension CharacteristicGymConnectMeasurement {
     ///   - decoder: Decoder
     /// - Returns: Measurement<UnitDuration>?
     /// - Throws: BluetoothDecodeError
-    private class func decodeDuration(supported: Flags,
-                                      flag: Flags,
-                                      unit: UnitDuration,
-                                      data: Data,
-                                      decoder: inout DecodeData) -> Measurement<UnitDuration>? {
-
+    private static func decodeDuration(supported: Flags,
+                                       flag: Flags,
+                                       unit: UnitDuration,
+                                       data: Data,
+                                       decoder: inout DecodeData) -> Measurement<UnitDuration>? {
+        
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))

@@ -31,18 +31,14 @@ import FitnessUnits
 /// The Network Availability characteristic represents if network is available or not available
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicNetworkAvailability: Characteristic {
-
+final public class CharacteristicNetworkAvailability: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Network Availability"
-    }
-
+    public static var name: String { "Network Availability" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A3E"
-    }
-
+    public static var uuidString: String { "2A3E" }
+    
     /// Network Availability Types
     public enum Availability: UInt8 {
         /// No network available
@@ -50,40 +46,43 @@ open class CharacteristicNetworkAvailability: Characteristic {
         /// One or more networks available
         case available          = 1
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Network Availability
     private(set) public var networkAvailable: Availability
-
+    
     /// Creates Network Availability Characteristic
     ///
     /// - Parameter networkAvailable: Network Availability
     public init(networkAvailable: Availability) {
         self.networkAvailable = networkAvailable
-
-        super.init(name: CharacteristicNetworkAvailability.name,
-                   uuidString: CharacteristicNetworkAvailability.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicNetworkAvailability>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicNetworkAvailability, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let avilability = Availability(rawValue: decoder.decodeUInt8(data)) ?? .notAvailable
-
-        return.success(CharacteristicNetworkAvailability(networkAvailable: avilability) as! C)
+        
+        return.success(CharacteristicNetworkAvailability(networkAvailable: avilability))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(networkAvailable.rawValue)
-
+        
         return.success(msgData)
     }
 }

@@ -31,28 +31,30 @@ import FitnessUnits
 /// Shows how many numbers of unread alerts exist in the specific category in the device.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicUnreadAlertStatus: Characteristic {
-
+final public class CharacteristicUnreadAlertStatus: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Unread Alert Status"
-    }
-
+    public static var name: String { "Unread Alert Status" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A45"
-    }
-
+    public static var uuidString: String { "2A45" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Alert Type
     ///
     /// Category of the unread alert
     private(set) public var alertType: AlertCategory
-
+    
     /// Number of Unread Alerts
     ///
     /// Provides the number of unread alerts in the server
     private(set) public var numberOfAlerts: UInt8
-
+    
     /// Creates Unread Alert Status Characteristic
     ///
     /// - Parameters:
@@ -61,35 +63,32 @@ open class CharacteristicUnreadAlertStatus: Characteristic {
     public init(alertType: AlertCategory, numberOfAlerts: UInt8) {
         self.alertType = alertType
         self.numberOfAlerts = numberOfAlerts
-
-        super.init(name: CharacteristicUnreadAlertStatus.name,
-                   uuidString: CharacteristicUnreadAlertStatus.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicUnreadAlertStatus>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicUnreadAlertStatus, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let alertType = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
         let numberOfAlerts = decoder.decodeUInt8(data)
-
+        
         let char = CharacteristicUnreadAlertStatus(alertType: alertType,
                                                    numberOfAlerts: numberOfAlerts)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(alertType.rawValue)
         msgData.append(numberOfAlerts)
-
+        
         return.success(msgData)
     }
 }

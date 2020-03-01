@@ -29,52 +29,51 @@ import FitnessUnits
 /// BLE DST Offset Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDSTOffset: Characteristic {
-
+final public class CharacteristicDSTOffset: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "DST Offset"
-    }
-
+    public static var name: String { "DST Offset" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A0D"
-    }
-
+    public static var uuidString: String { "2A0D" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// DST Offset
     private(set) public var dstOffset: DSTOffset
-
+    
     /// Creates DST Offset Characteristic
     ///
     /// - Parameter dstOffset: Daylight Savings Offset
     public init(dstOffset: DSTOffset) {
         self.dstOffset = dstOffset
-
-        super.init(name: CharacteristicDSTOffset.name,
-                   uuidString: CharacteristicDSTOffset.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDSTOffset>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDSTOffset, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return.success(CharacteristicDSTOffset(dstOffset: dstOffset) as! C)
+        
+        return.success(CharacteristicDSTOffset(dstOffset: dstOffset))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(dstOffset.rawValue)
-
+        
         return.success(msgData)
     }
-
+    
 }

@@ -30,18 +30,14 @@ import FitnessUnits
 ///
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicWeightScaleFeature: Characteristic {
-
+final public class CharacteristicWeightScaleFeature: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Weight Scale Feature"
-    }
-
+    public static var name: String { "Weight Scale Feature" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A9E"
-    }
-
+    public static var uuidString: String { "2A9E" }
+    
     /// Weight Resolution Types
     public enum WeightResolution: UInt8 {
         /// Not Specified
@@ -60,7 +56,7 @@ open class CharacteristicWeightScaleFeature: Characteristic {
         case resolution0_01kg           = 6
         /// Resolution of 0.005 kg or 0.01 lb
         case resolution0_005kg          = 7
-
+        
         /// Metric Resolution multiplier
         var metricValue: Double {
             switch self {
@@ -82,7 +78,7 @@ open class CharacteristicWeightScaleFeature: Characteristic {
                 return 1
             }
         }
-
+        
         /// Imperial Resolution mulitpler
         var imperialValue: Double {
             switch self {
@@ -105,7 +101,7 @@ open class CharacteristicWeightScaleFeature: Characteristic {
             }
         }
     }
-
+    
     /// Height Resolution Types
     public enum HeightResolution: UInt8 {
         /// Not Specified
@@ -116,7 +112,7 @@ open class CharacteristicWeightScaleFeature: Characteristic {
         case resolution0_005meter   = 2
         /// Resolution of 0.001 meter or 0.1 inch
         case resolution0_001meter   = 3
-
+        
         /// Metric Resolution multiplier
         var metricValue: Double {
             switch self {
@@ -130,7 +126,7 @@ open class CharacteristicWeightScaleFeature: Characteristic {
                 return 1.0
             }
         }
-
+        
         /// Imperial Resolution multiplier
         var imperialValue: Double {
             switch self {
@@ -145,22 +141,28 @@ open class CharacteristicWeightScaleFeature: Characteristic {
             }
         }
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Time Stamp Supported
     private(set) public var isTimestampSupported: Bool
-
+    
     /// Multiple Users Supported
     private(set) public var isMultipleUsersSupported: Bool
-
+    
     /// Body Mass Index (BMI) Supported
     private(set) public var isBMISupported: Bool
-
+    
     /// Weight Measurement Resolution
     private(set) public var weightResolution: WeightResolution
-
+    
     /// Height Measurement Resolution
     private(set) public var heightResolution: HeightResolution
-
+    
     /// Creates Weight Scale Feature Characteristic
     ///
     /// - Parameters:
@@ -174,22 +176,19 @@ open class CharacteristicWeightScaleFeature: Characteristic {
                 bmiSupported: Bool,
                 weightResolution: WeightResolution,
                 heightResolution: HeightResolution) {
-
+        
         self.isTimestampSupported = timestampSupported
         self.isMultipleUsersSupported = multipleUsersSupported
         self.isBMISupported = bmiSupported
         self.weightResolution = weightResolution
         self.heightResolution = heightResolution
-
-        super.init(name: CharacteristicWeightScaleFeature.name,
-                   uuidString: CharacteristicWeightScaleFeature.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicWeightScaleFeature>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicWeightScaleFeature, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt32(data)
@@ -209,13 +208,13 @@ open class CharacteristicWeightScaleFeature: Characteristic {
                                                     bmiSupported: bmi,
                                                     weightResolution: weightRes,
                                                     heightResolution: heightRes)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

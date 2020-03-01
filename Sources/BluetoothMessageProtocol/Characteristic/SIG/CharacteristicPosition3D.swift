@@ -29,31 +29,33 @@ import FitnessUnits
 /// BLE Position 3D Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicPosition3D: Characteristic {
-
+final public class CharacteristicPosition3D: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Position 3D"
-    }
-
+    public static var name: String { "Position 3D" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A30"
-    }
-
+    public static var uuidString: String { "2A30" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Latitude
     ///
     /// WGS84 North coordinate
     private(set) public var latitude: Int32
-
+    
     /// Longitude
     ///
     /// WGS84 East coordinate
     private(set) public var longitude: Int32
-
+    
     /// Elevation
     private(set) public var elevation: Measurement<UnitLength>
-
+    
     /// Creates Position 3D Characteristic
     ///
     /// - Parameters:
@@ -64,16 +66,13 @@ open class CharacteristicPosition3D: Characteristic {
         self.latitude = latitude
         self.longitude = longitude
         self.elevation = elevation
-
-        super.init(name: CharacteristicPosition3D.name,
-                   uuidString: CharacteristicPosition3D.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicPosition3D>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicPosition3D, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lat = decoder.decodeInt32(data)
@@ -82,17 +81,17 @@ open class CharacteristicPosition3D: Characteristic {
         let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
-
+        
         let char = CharacteristicPosition3D(latitude: lat,
                                             longitude: lon,
                                             elevation: elevation)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

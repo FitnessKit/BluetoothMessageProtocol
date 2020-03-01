@@ -29,18 +29,20 @@ import FitnessUnits
 /// BLE True Wind Direction Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTrueWindDirection: Characteristic {
-
+final public class CharacteristicTrueWindDirection: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "True Wind Direction"
-    }
-
+    public static var name: String { "True Wind Direction" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A71"
-    }
-
+    public static var uuidString: String { "2A71" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// True Wind Direction
     ///
     /// Wind direction is reported by the direction from which it originates and is
@@ -49,41 +51,38 @@ open class CharacteristicTrueWindDirection: Characteristic {
     /// given as 180 degrees, a wind coming from the east is given as 90 degrees and
     /// a wind coming from the west is given as 270 degrees
     private(set) public var windDirection: Measurement<UnitAngle>
-
+    
     /// Creates True Wind Direction Characteristic
     ///
     /// - Parameter windDirection: True Wind Direction
     public init(windDirection: Measurement<UnitAngle>) {
         self.windDirection = windDirection
-
-        super.init(name: CharacteristicTrueWindDirection.name,
-                   uuidString: CharacteristicTrueWindDirection.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTrueWindDirection>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTrueWindDirection, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         let direction = Measurement(value: value, unit: UnitAngle.degrees)
-
+        
         let char = CharacteristicTrueWindDirection(windDirection: direction)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let value = windDirection.converted(to: UnitAngle.degrees).value.resolution(.adding, resolution: Resolution.oneHundredth)
-
+        
         msgData.append(Data(from: UInt16(value).littleEndian))
-
+        
         return.success(msgData)
     }
 }

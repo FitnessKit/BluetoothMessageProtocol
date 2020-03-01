@@ -32,18 +32,14 @@ import FitnessUnits
 /// alert is being sounded, the new level should take effect.
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicAlertLevel: Characteristic {
-
+final public class CharacteristicAlertLevel: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Alert Level"
-    }
-
+    public static var name: String { "Alert Level" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A06"
-    }
-
+    public static var uuidString: String { "2A06" }
+    
     /// Alert Level Types
     public enum AlertLevel: UInt8 {
         /// No Alert
@@ -52,7 +48,7 @@ open class CharacteristicAlertLevel: Characteristic {
         case mildAlert      = 1
         /// High Alert
         case highAlert      = 2
-
+        
         /// String Value for AlertLevel
         public var stringValue: String {
             switch self {
@@ -65,38 +61,41 @@ open class CharacteristicAlertLevel: Characteristic {
             }
         }
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Alert Level
     private(set) public var alertLevel: AlertLevel
-
+    
     /// Creates Alert Level Characteristic
     ///
     /// - Parameter alertLevel: AlertLevel
     public init(alertLevel: AlertLevel) {
         self.alertLevel = alertLevel
-
-        super.init(name: CharacteristicAlertLevel.name,
-                   uuidString: CharacteristicAlertLevel.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicAlertLevel>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicAlertLevel, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let alertLevel: AlertLevel = AlertLevel(rawValue: decoder.decodeUInt8(data)) ?? .noAlert
-
-        return.success(CharacteristicAlertLevel(alertLevel: alertLevel) as! C)
+        
+        return.success(CharacteristicAlertLevel(alertLevel: alertLevel))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(alertLevel.rawValue)
         
         return.success(msgData)

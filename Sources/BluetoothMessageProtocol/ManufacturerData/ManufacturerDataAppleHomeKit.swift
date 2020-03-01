@@ -34,56 +34,73 @@ import CryptoSwift
 /// Apple HomeKit Manufacturer Specific Data
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerDataAppleHomeKit: ManufacturerData {
-
+final public class ManufacturerDataAppleHomeKit: ManufacturerData {
+    
+    enum CodeKeys: CodingKey {
+        case manufacturer
+        case statusFlags
+        case deviceId
+        case accessoryCategory
+        case globalState
+        case configuration
+        case compatibleVersion
+        case setupID
+        case setupHash
+    }
+    
     /// Types of Status Flags
     public struct StatusFlags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Pairing Enabled
         public static let pairingEnabled    = StatusFlags(rawValue: 1 << 0)
     }
-
+    
+    /// Manufacturer
+    public var manufacturer: CompanyIdentifier
+    
+    /// Data
+    public var specificData: Data?
+    
     /// Status Flags
     private(set) public var statusFlag: StatusFlags
-
+    
     /// Device ID
     private(set) public var deviceId: MACAddress
-
+    
     /// Accessory Category Identifier
     ///
     /// Identifier, which indicates the category that best describes
     /// the primary function of the accessory
     private(set) public var accessoryCategory: HomeKitAccessoryCategory
-
+    
     /// Global State Number
     ///
     /// Represents a change in the value of any of the characteristics
     /// that supports Disconnected Events.
     private(set) public var globalState: UInt16
-
+    
     /// Configuration Number
     ///
     /// Accessories must increment the config number after a firmware update.
     /// This value must have a range of 1-255 and wrap to 1 when it overflows.
     /// This value must persist across reboots, power cycles and firmware updates
     private(set) public var configuration: UInt8
-
+    
     /// Compatible Version
     ///
     /// The version of the HomeKit Accessory Protocol Used
     private(set) public var compatibleVersion: UInt8
-
+    
     /// Setup ID
     ///
     /// String of 4 Characters in Length
     private(set) public var setupID: String?
-
+    
     /// Setup Hash
     private(set) public var setupHash: UInt32
-
-
+    
     /// Creates an Apple HomeKit Manufacturer Specific Data Class
     ///
     /// - Parameters:
@@ -101,7 +118,8 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                 configuration: UInt8,
                 compatibleVersion: UInt8 = 2,
                 setupID: String) {
-
+        self.manufacturer = .apple
+        self.specificData = nil
         self.statusFlag = statusFlag
         self.deviceId = deviceId
         self.accessoryCategory = accessoryCategory
@@ -109,15 +127,15 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         self.configuration = configuration
         self.compatibleVersion = compatibleVersion
         self.setupID = String(setupID.prefix(4))
-
+        
         if let setupdata = setupID.data(using: .utf8),
             let deviceData = deviceId.stringValue.data(using: .utf8) {
-
+            
             #if canImport(CryptoKit)
             if #available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *) {
                 let shaTest = SHA512.hash(data: (setupdata + deviceData))
                 let hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
-
+                
                 if let hash = UInt32(String(hashString.prefix(8)), radix: 16)?.byteSwapped {
                     self.setupHash = hash
                 }
@@ -130,15 +148,13 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
             let shaTest = (setupdata + deviceData).sha512()
             self.setupHash = shaTest.prefix(4).to(type: UInt32.self)
             #endif
-
-
+            
+            
         } else {
             self.setupHash = 0
         }
-
-        super.init(manufacturer: .apple, specificData: nil)
     }
-
+    
     internal init(statusFlag: StatusFlags,
                   deviceId: MACAddress,
                   accessoryCategory: HomeKitAccessoryCategory,
@@ -146,33 +162,32 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                   configuration: UInt8,
                   compatibleVersion: UInt8,
                   setupHash: UInt32,
-                  rawData: Data) {
-
+                  specificData: Data) {
+        self.manufacturer = .apple
+        self.specificData = specificData
         self.statusFlag = statusFlag
         self.deviceId = deviceId
         self.accessoryCategory = accessoryCategory
         self.globalState = globalState
         self.configuration = configuration
         self.compatibleVersion = compatibleVersion
-
+        
         self.setupHash = setupHash
-
-        super.init(manufacturer: .apple, specificData: rawData)
     }
-
+    
     /// Decodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decode<M: ManufacturerDataAppleHomeKit>(with data: Data) -> Result<M, BluetoothDecodeError> {
-        let man = ManufacturerData(rawData: data)
+    public class func decode(with data: Data) -> Result<ManufacturerDataAppleHomeKit, BluetoothDecodeError> {
+        let man = ManufacturerSpecificData(rawData: data)
         
         guard man.manufacturer == .apple else {
             return.failure(BluetoothDecodeError.wrongIdentifier(.apple))
         }
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
-
+        
         var decoder = DecodeData()
         
         let type = decoder.decodeUInt8(data)
@@ -212,20 +227,20 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
                                                    configuration: configuration,
                                                    compatibleVersion: compatibleVersion,
                                                    setupHash: setupHash,
-                                                   rawData: data)
-        return.success(homekit as! M)
+                                                   specificData: data)
+        return.success(homekit)
     }
-
+    
     /// Encodes Apple HomeKit Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
-
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
         var msgData = Data()
-
+        
         msgData.append(Data(from: CompanyIdentifier.apple.companyID.littleEndian))
         msgData.append(AppleDeviceType.hap.rawValue)
-
+        
         /// HomeKit regular advertisement == 0x31
         msgData.append(0x31)
         msgData.append(statusFlag.rawValue)
@@ -234,25 +249,10 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
         msgData.append(Data(from: globalState.littleEndian))
         msgData.append(configuration)
         msgData.append(compatibleVersion)
-
+        
         return.success(msgData)
     }
-
-    enum CodeKeys: CodingKey {
-        case statusFlags
-        case deviceId
-        case accessoryCategory
-        case globalState
-        case configuration
-        case compatibleVersion
-        case setupID
-        case setupHash
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -262,10 +262,10 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-        try super.encode(to: encoder)
-
+        
+        try container.encode(manufacturer, forKey: .manufacturer)
         try container.encode(statusFlag, forKey: .statusFlags)
         try container.encode(deviceId.stringValue, forKey: .deviceId)
         try container.encode(accessoryCategory, forKey: .accessoryCategory)
@@ -279,11 +279,11 @@ open class ManufacturerDataAppleHomeKit: ManufacturerData {
 
 @available(swift 4.0)
 extension ManufacturerDataAppleHomeKit.StatusFlags: Encodable {
-
+    
     enum CodeKeys: CodingKey {
         case pairingEnabled
     }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -295,7 +295,7 @@ extension ManufacturerDataAppleHomeKit.StatusFlags: Encodable {
     /// - Parameter encoder: The encoder to write data to.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-
+        
         try container.encode(self.contains(.pairingEnabled), forKey: .pairingEnabled)
     }
 }

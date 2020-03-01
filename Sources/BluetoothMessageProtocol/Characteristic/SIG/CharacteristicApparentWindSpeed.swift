@@ -29,54 +29,53 @@ import FitnessUnits
 /// BLE Apparent Wind Speed Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicApparentWindSpeed: Characteristic {
-
+final public class CharacteristicApparentWindSpeed: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Apparent Wind Speed"
-    }
-
+    public static var name: String { "Apparent Wind Speed" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A72"
-    }
-
+    public static var uuidString: String { "2A72" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Wind speed
     private(set) public var windSpeed: Measurement<UnitSpeed>
-
+    
     /// Creates Apparent Wind Speed Characteristic
     ///
     /// - Parameter windSpeed: Wind Speed
     public init(windSpeed: Measurement<UnitSpeed>) {
         self.windSpeed = windSpeed
-
-        super.init(name: CharacteristicApparentWindSpeed.name,
-                   uuidString: CharacteristicApparentWindSpeed.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicApparentWindSpeed>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode<C: CharacteristicApparentWindSpeed>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let speed = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let wind = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
-
+        
         return.success(CharacteristicApparentWindSpeed(windSpeed: wind) as! C)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to m/s before we create Data
         let speed = windSpeed.converted(to: UnitSpeed.metersPerSecond).value.resolution(.adding, resolution: Resolution.oneHundredth)
-
+        
         msgData.append(Data(from: UInt16(speed).littleEndian))
         
         return.success(msgData)

@@ -28,48 +28,43 @@ import DataDecoder
 /// GymConnect Equipment State Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicGymConnectEquipmentState: Characteristic {
-
+final public class CharacteristicGymConnectEquipmentState: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "GymConnect Equipment State"
-    }
-
+    public static var name: String { "GymConnect Equipment State" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "A026E01E-0A7D-4AB3-97FA-F1500F9FEB8B"
-    }
-
+    public static var uuidString: String { "A026E01E-0A7D-4AB3-97FA-F1500F9FEB8B" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Equipment State
     private(set) public var state: GymConnectEquipmentState
-
+    
     /// Creates Characteristic
     ///
     /// - Parameter state: Equipment State
     public init(state: GymConnectEquipmentState) {
-
+        
         self.state = state
-
-        super.init(name: CharacteristicGymConnectEquipmentState.name,
-                   uuidString: CharacteristicGymConnectEquipmentState.uuidString)
     }
     
-    /// Decodes Characteristic Data into Characteristic
-    ///
-    /// - Parameter data: Characteristic Data
-    /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicGymConnectEquipmentState>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicGymConnectEquipmentState, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let state = GymConnectEquipmentState.create(decoder.decodeUInt8(data))
         
-        return.success(CharacteristicGymConnectEquipmentState(state: state) as! C)
+        return.success(CharacteristicGymConnectEquipmentState(state: state))
     }
     
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
         return.failure(BluetoothEncodeError.notSupported) 
     }

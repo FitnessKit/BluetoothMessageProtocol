@@ -24,27 +24,6 @@
 
 import Foundation
 
-/// A type that can convert itself into and out of an external representation.
-///
-/// `CharacteristicCodable` is a type alias for the `BluetoothEncodable` and `CharacteristicDecodable` protocols.
-/// When you use `CharacteristicCodable` as a type or a generic constraint, it matches
-/// any type that conforms to both protocols.
-public typealias CharacteristicCodable = CharacteristicDecodable & BluetoothEncodable
-
-/// A type that can convert itself into and out of an external representation.
-///
-/// `ServiceDataCodable` is a type alias for the `BluetoothEncodable` and `ServiceDataDecodable` protocols.
-/// When you use `ServiceDataCodable` as a type or a generic constraint, it matches
-/// any type that conforms to both protocols.
-public typealias ServiceDataCodable = ServiceDataDecodable & BluetoothEncodable
-
-/// A type that can convert itself into and out of an external representation.
-///
-/// `ManufacturerDataCodable` is a type alias for the `BluetoothEncodable` and `ManufacturerDataDecodable` protocols.
-/// When you use `ManufacturerDataCodable` as a type or a generic constraint, it matches
-/// any type that conforms to both protocols.
-public typealias ManufacturerDataCodable = ManufacturerDataDecodable & BluetoothEncodable
-
 /// Allows for Encoding of Objects into Data
 public protocol BluetoothEncodable {
     
@@ -52,34 +31,4 @@ public protocol BluetoothEncodable {
     ///
     /// - Returns: Encoded Data Result
     func encode() -> Result<Data, BluetoothEncodeError>
-}
-
-/// Allows for Decoding Characteristics
-public protocol CharacteristicDecodable: AnyObject {
-    
-    /// Decodes Characteristic Data into Characteristic
-    ///
-    /// - Parameter data: Characteristic Data
-    /// - Returns: Characteristic Result
-    static func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError>
-}
-
-/// Allows for Decoding ServiceData
-public protocol ServiceDataDecodable: AnyObject {
-    
-    /// Decodes Service Data AD Data into ServiceData
-    ///
-    /// - Parameter data: ServiceData Data
-    /// - Returns: ServiceData Result
-    static func decode<S: ServiceData>(with data: Data) -> Result<S, BluetoothDecodeError>
-}
-
-/// Allows for Decoding ManufacturerData
-public protocol ManufacturerDataDecodable: AnyObject {
-    
-    /// Decodes Manufacturer Specific Data into ManufacturerData
-    ///
-    /// - Parameter data: ManufacturerData Data
-    /// - Returns: ManufacturerData Result
-    static func decode<M: ManufacturerData>(with data: Data) -> Result<M, BluetoothDecodeError>
 }

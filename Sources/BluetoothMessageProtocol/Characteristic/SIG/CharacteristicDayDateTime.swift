@@ -29,56 +29,54 @@ import FitnessUnits
 /// BLE Day Date Time Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDayDateTime: Characteristic {
-
+final public class CharacteristicDayDateTime: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Day Date Time"
-    }
-
+    public static var name: String { "Day Date Time" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A0A"
-    }
-
+    public static var uuidString: String { "2A0A" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Time
     private(set) public var time: DateTime
-
+    
     /// Day of the Week
     private(set) public var dayOfWeek: DayOfWeek
-
+    
     /// Creates Day Date Time Characteristic
     ///
     /// - Parameters:
     ///   - time: Time
     ///   - dayOfWeek: Day of Week
     public init(time: DateTime, dayOfWeek: DayOfWeek) {
-
         self.time = time
         self.dayOfWeek = dayOfWeek
-
-        super.init(name: CharacteristicDayDateTime.name,
-                   uuidString: CharacteristicDayDateTime.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDayDateTime>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDayDateTime, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let time = DateTime.decode(data, decoder: &decoder)
         
         let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return.success(CharacteristicDayDateTime(time: time, dayOfWeek: weekday) as! C)
+        
+        return.success(CharacteristicDayDateTime(time: time, dayOfWeek: weekday))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

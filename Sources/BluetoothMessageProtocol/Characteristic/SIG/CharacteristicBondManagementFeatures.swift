@@ -29,23 +29,19 @@ import FitnessUnits
 /// BLE Bond Management Features Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBondManagementFeatures: Characteristic {
-
+final public class CharacteristicBondManagementFeatures: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Bond Management Features"
-    }
-
+    public static var name: String { "Bond Management Features" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AA5"
-    }
-
+    public static var uuidString: String { "2AA5" }
+        
     /// Flags
     public struct Flags: OptionSet {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
-
+        
         /// Delete Bond of current connection (BR/EDR and LE) supported
         public static let deleteBondCurrentConnectionSupported              = Flags(rawValue: 1 << 0)
         /// Authorization Code required for Delete bond of current connection (BR/EDR and LE)
@@ -87,36 +83,39 @@ open class CharacteristicBondManagementFeatures: Characteristic {
         /// Feature Extension
         public static let featureExtension                                  = Flags(rawValue: 1 << 23)
     }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
 
     /// Bond Management Features
     private(set) public var features: Flags
-
+    
     /// Creates Bond Management Features Characteristic
     ///
     /// - Parameter features: Bond Management Features
     public init(features: Flags) {
         self.features = features
-
-        super.init(name: CharacteristicBondManagementFeatures.name,
-                   uuidString: CharacteristicBondManagementFeatures.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBondManagementFeatures>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBondManagementFeatures, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let features = Flags(rawValue: decoder.decodeUInt32(data))
-
-        return.success(CharacteristicBondManagementFeatures(features: features) as! C)
+        
+        return.success(CharacteristicBondManagementFeatures(features: features))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

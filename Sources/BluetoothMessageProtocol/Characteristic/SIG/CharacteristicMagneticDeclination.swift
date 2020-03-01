@@ -29,69 +29,68 @@ import FitnessUnits
 /// BLE Magnetic Declination Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMagneticDeclination: Characteristic {
-
+final public class CharacteristicMagneticDeclination: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Magnetic Declination"
-    }
-
+    public static var name: String { "Magnetic Declination" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A2C"
-    }
-
+    public static var uuidString: String { "2A2C" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Magnetic Declination
     ///
     /// The magnetic declination is the angle on the horizontal plane between the
     /// direction of True North (geographic) and the direction of Magnetic North,
     /// measured clockwise from True North to Magnetic North
     private(set) public var declination: Measurement<UnitAngle>
-
+    
     /// Creates Magnetic Declination
     ///
     /// - Parameter declination: Magnetic Declination
     public init(declination: Measurement<UnitAngle>) {
         self.declination = declination
-
-        super.init(name: CharacteristicMagneticDeclination.name,
-                   uuidString: CharacteristicMagneticDeclination.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMagneticDeclination>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMagneticDeclination, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let dec = Measurement(value: value, unit: UnitAngle.degrees)
-
-        return.success(CharacteristicMagneticDeclination(declination: dec) as! C)
+        
+        return.success(CharacteristicMagneticDeclination(declination: dec))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to Degress before we create Data
         let value = declination.converted(to: UnitAngle.degrees).value
-
+        
         guard kBluetoothMagneticDeclinationBounds.contains(value) else {
             return.failure(BluetoothEncodeError.boundsError(title: "Magnetic Declination must be between",
                                                             msg: "degress",
                                                             range: kBluetoothMagneticDeclinationBounds))
         }
-
+        
         //put it back to uint16
         let dec = UInt16(value.resolution(.adding, resolution: Resolution.oneTenth))
-
+        
         msgData.append(Data(from: dec.littleEndian))
-
+        
         return.success(msgData)
     }
 }

@@ -29,48 +29,35 @@ import FitnessUnits
 /// BLE Weight Measurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicWeightMeasurement: Characteristic {
-
+final public class CharacteristicWeightMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Weight Measurement"
-    }
-
+    public static var name: String { "Weight Measurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A9D"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt8
-        public init(rawValue: UInt8) { self.rawValue = rawValue }
-
-        /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
-        public static let unitsImperial          = Flags(rawValue: 1 << 0)
-        /// Time stamp present
-        public static let timestampPresent       = Flags(rawValue: 1 << 1)
-        /// User ID present
-        public static let userIdPresent          = Flags(rawValue: 1 << 1)
-        /// BMI and Height present
-        public static let bmiHeightPresent       = Flags(rawValue: 1 << 1)
-    }
-
+    public static var uuidString: String { "2A9D" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Weight
     private(set) public var weight: Measurement<UnitMass>
-
+    
     /// Timestamp
     private(set) public var timestamp: DateTime?
-
+    
     /// User ID
     private(set) public var userId: User
-
+    
     /// Body Mass Index (BMI)
     private(set) public var bmi: Double?
-
+    
     /// Height
     private(set) public var height: Measurement<UnitLength>?
-
+    
     /// Creates Weight Measurement Characteristic
     ///
     /// - Parameters:
@@ -85,16 +72,13 @@ open class CharacteristicWeightMeasurement: Characteristic {
         self.userId = userId
         self.bmi = bmi
         self.height = height
-
-        super.init(name: CharacteristicWeightMeasurement.name,
-                   uuidString: CharacteristicWeightMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicWeightMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicWeightMeasurement, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -142,14 +126,33 @@ open class CharacteristicWeightMeasurement: Characteristic {
                                                    userId: userID,
                                                    bmi: bmi,
                                                    height: height)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
+}
+
+private extension CharacteristicWeightMeasurement {
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt8
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
+        
+        /// Imperial (Weight and Mass in units of pound (lb) and Height in units of inch (in))
+        public static let unitsImperial          = Flags(rawValue: 1 << 0)
+        /// Time stamp present
+        public static let timestampPresent       = Flags(rawValue: 1 << 1)
+        /// User ID present
+        public static let userIdPresent          = Flags(rawValue: 1 << 1)
+        /// BMI and Height present
+        public static let bmiHeightPresent       = Flags(rawValue: 1 << 1)
+    }
+    
 }

@@ -29,23 +29,19 @@ import FitnessUnits
 /// BLE Current Time Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicCurrentTime: Characteristic {
-
+final public class CharacteristicCurrentTime: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Current Time"
-    }
-
+    public static var name: String { "Current Time" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A2B"
-    }
-
+    public static var uuidString: String { "2A2B" }
+    
     /// Adjustment Reasons
     public struct AdjustReasons: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
-
+        
         /// Manual time update
         public static let manualTimeUpdate              = AdjustReasons(rawValue: 1 << 0)
         /// External reference time update
@@ -55,19 +51,25 @@ open class CharacteristicCurrentTime: Characteristic {
         /// Change of DST (daylight savings time)
         public static let changeofDaylightSavings       = AdjustReasons(rawValue: 1 << 3)
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Current Time Adjust Reason
     private(set) public var adjustmentReason: AdjustReasons
-
+    
     /// Time
     private(set) public var currentTime: DateTime
-
+    
     /// Day of the Week
     private(set) public var dayOfWeek: DayOfWeek
-
+    
     /// Fractional Seconds
     private(set) public var fractionalSeconds: Float
-
+    
     /// Creates Current Time Characteristic
     ///
     /// - Parameters:
@@ -79,21 +81,18 @@ open class CharacteristicCurrentTime: Characteristic {
                 currentTime: DateTime,
                 dayOfWeek: DayOfWeek,
                 fractionalSeconds: Float) {
-
+        
         self.adjustmentReason = adjustmentReason
         self.currentTime = currentTime
         self.dayOfWeek = dayOfWeek
         self.fractionalSeconds = fractionalSeconds
-
-        super.init(name: CharacteristicCurrentTime.name,
-                   uuidString: CharacteristicCurrentTime.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicCurrentTime>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicCurrentTime, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let currenTime = DateTime.decode(data, decoder: &decoder)
@@ -108,30 +107,30 @@ open class CharacteristicCurrentTime: Characteristic {
                                              currentTime: currenTime,
                                              dayOfWeek: weekday,
                                              fractionalSeconds: fractions)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         switch currentTime.encode() {
         case .success(let dateTimeData):
             msgData.append(dateTimeData)
-
+            
         case .failure(let error):
             return.failure(error)
         }
-
+        
         msgData.append(dayOfWeek.rawValue)
-
+        
         let frac = UInt8(fractionalSeconds * 256)
         msgData.append(frac)
-
+        
         msgData.append(adjustmentReason.rawValue)
-
+        
         return.success(msgData)
     }
 }

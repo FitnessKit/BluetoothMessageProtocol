@@ -32,90 +32,59 @@ import FitnessUnits
 /// Client from a rower (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicRowerData: Characteristic {
-
+final public class CharacteristicRowerData: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Rower Data"
-    }
-
+    public static var name: String { "Rower Data" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD1"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt16
-        public init(rawValue: UInt16) { self.rawValue = rawValue }
-
-        /// More Data not present (is defined opposite of the norm)
-        public static let moreData                       = Flags(rawValue: 1 << 0)
-        /// Average Stroke present
-        public static let averageStrokePresent           = Flags(rawValue: 1 << 1)
-        /// Total Distance Present
-        public static let totalDistancePresent           = Flags(rawValue: 1 << 2)
-        /// Instantaneous Pace present
-        public static let instantaneousPacePresent       = Flags(rawValue: 1 << 3)
-        /// Average Pace Present
-        public static let averagePacePresent             = Flags(rawValue: 1 << 4)
-        /// Instantaneous Power present
-        public static let instantaneousPowerPresent      = Flags(rawValue: 1 << 5)
-        /// Average Power present
-        public static let averagePowerPresent            = Flags(rawValue: 1 << 6)
-        /// Resistance Level present
-        public static let resistanceLevelPresent         = Flags(rawValue: 1 << 7)
-        /// Expended Energy present
-        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 8)
-        /// Heart Rate present
-        public static let heartRatePresent               = Flags(rawValue: 1 << 9)
-        /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 10)
-        /// Elapsed Time present
-        public static let elapsedTimePresent             = Flags(rawValue: 1 << 11)
-        /// Remaining Time present
-        public static let remainingTimePresent           = Flags(rawValue: 1 << 12)
-    }
-
+    public static var uuidString: String { "2AD1" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Stroke Rate
     private(set) public var strokeRate: Measurement<UnitCadence>?
-
+    
     /// Stroke Count
     private(set) public var strokeCount: UInt16?
-
+    
     /// Average Stroke Rate
     private(set) public var averageStrokeRate: Measurement<UnitCadence>?
-
+    
     /// Total Distance
     private(set) public var totalDistance: Measurement<UnitLength>?
-
+    
     /// Instantaneous Pace
     private(set) public var instantaneousPace: Measurement<UnitDuration>?
-
+    
     /// Average Pace
     private(set) public var averagePace: Measurement<UnitDuration>?
-
+    
     /// Instantaneous Power
     private(set) public var instantaneousPower: FitnessMachinePowerType?
-
+    
     /// Average Power
     private(set) public var averagePower: FitnessMachinePowerType?
-
+    
     /// Resistance Level
     private(set) public var resistanceLevel: Double?
-
+    
     /// Energy Information
     private(set) public var energy: FitnessMachineEnergy
-
+    
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
-
+    
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
-
+    
     /// Time Information
     private(set) public var time: FitnessMachineTime
-
+    
     /// Creates Rower Data Characteristic
     ///
     /// - Parameters:
@@ -145,7 +114,7 @@ open class CharacteristicRowerData: Characteristic {
                 heartRate: UInt8?,
                 metabolicEquivalent: Double?,
                 time: FitnessMachineTime) {
-
+        
         self.strokeRate = strokeRate
         self.strokeCount = strokeCount
         self.averageStrokeRate = averageStrokeRate
@@ -155,27 +124,24 @@ open class CharacteristicRowerData: Characteristic {
         self.instantaneousPower = instantaneousPower
         self.averagePower = averagePower
         self.resistanceLevel = resistanceLevel
-
+        
         self.energy = energy
-
+        
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
         } else {
             self.heartRate = nil
         }
-
+        
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
-
-        super.init(name: CharacteristicRowerData.name,
-                   uuidString: CharacteristicRowerData.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicRowerData>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicRowerData, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -270,20 +236,53 @@ open class CharacteristicRowerData: Characteristic {
                                             heartRate: heartRate,
                                             metabolicEquivalent: mets,
                                             time: time)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
 private extension CharacteristicRowerData {
-
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt16
+        public init(rawValue: UInt16) { self.rawValue = rawValue }
+        
+        /// More Data not present (is defined opposite of the norm)
+        public static let moreData                       = Flags(rawValue: 1 << 0)
+        /// Average Stroke present
+        public static let averageStrokePresent           = Flags(rawValue: 1 << 1)
+        /// Total Distance Present
+        public static let totalDistancePresent           = Flags(rawValue: 1 << 2)
+        /// Instantaneous Pace present
+        public static let instantaneousPacePresent       = Flags(rawValue: 1 << 3)
+        /// Average Pace Present
+        public static let averagePacePresent             = Flags(rawValue: 1 << 4)
+        /// Instantaneous Power present
+        public static let instantaneousPowerPresent      = Flags(rawValue: 1 << 5)
+        /// Average Power present
+        public static let averagePowerPresent            = Flags(rawValue: 1 << 6)
+        /// Resistance Level present
+        public static let resistanceLevelPresent         = Flags(rawValue: 1 << 7)
+        /// Expended Energy present
+        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 8)
+        /// Heart Rate present
+        public static let heartRatePresent               = Flags(rawValue: 1 << 9)
+        /// Metabolic Equivalent present
+        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 10)
+        /// Elapsed Time present
+        public static let elapsedTimePresent             = Flags(rawValue: 1 << 11)
+        /// Remaining Time present
+        public static let remainingTimePresent           = Flags(rawValue: 1 << 12)
+    }
+    
     /// Decode Duration Data
     ///
     /// - Parameters:
@@ -299,7 +298,7 @@ private extension CharacteristicRowerData {
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) -> Measurement<UnitDuration>? {
-
+        
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))

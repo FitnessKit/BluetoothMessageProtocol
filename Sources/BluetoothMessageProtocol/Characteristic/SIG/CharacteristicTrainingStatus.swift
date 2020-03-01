@@ -31,29 +31,14 @@ import FitnessUnits
 /// Provides the current training state while a user is exercising
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTrainingStatus: Characteristic {
-
+final public class CharacteristicTrainingStatus: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Training Status"
-    }
-
+    public static var name: String { "Training Status" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD3"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt8
-        public init(rawValue: UInt8) { self.rawValue = rawValue }
-
-        /// Training Status String present
-        public static let trainingStatusStringPresent    = Flags(rawValue: 1 << 0)
-        /// Extended String present
-        public static let extendedStringPresent          = Flags(rawValue: 1 << 1)
-    }
-
+    public static var uuidString: String { "2AD3" }
+    
     /// Training Status
     public enum TrainingStatus: UInt8 {
         /// Other
@@ -89,13 +74,19 @@ open class CharacteristicTrainingStatus: Characteristic {
         /// Post-Workout
         case postWorkout                    = 15
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Training Status
     private(set) public var status: TrainingStatus
-
+    
     /// Training Status String
     private(set) public var statusString: String?
-
+    
     /// Creates Training Status Characteristic
     ///
     /// - Parameters:
@@ -104,16 +95,13 @@ open class CharacteristicTrainingStatus: Characteristic {
     public init(status: TrainingStatus, statusString: String?) {
         self.status = status
         self.statusString = statusString
-
-        super.init(name: CharacteristicTrainingStatus.name,
-                   uuidString: CharacteristicTrainingStatus.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTrainingStatus>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTrainingStatus, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -129,33 +117,47 @@ open class CharacteristicTrainingStatus: Characteristic {
             let stringData = Data(data[2..<data.count])
             statusString = stringData.safeStringValue
         }
-
+        
         let char = CharacteristicTrainingStatus(status: status,
                                                 statusString: statusString)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         var flags = Flags()
-
+        
         if statusString != nil {
             flags.update(with: .trainingStatusStringPresent)
         }
-
+        
         msgData.append(flags.rawValue)
         msgData.append(status.rawValue)
-
+        
         if let stringData = statusString?.data(using: .utf8) {
             if flags.contains(.trainingStatusStringPresent) {
                 msgData.append(stringData)
             }
         }
-
+        
         return.success(msgData)
+    }
+}
+
+private extension CharacteristicTrainingStatus {
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt8
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
+        
+        /// Training Status String present
+        public static let trainingStatusStringPresent    = Flags(rawValue: 1 << 0)
+        /// Extended String present
+        public static let extendedStringPresent          = Flags(rawValue: 1 << 1)
     }
 }

@@ -29,57 +29,56 @@ import FitnessUnits
 /// BLE Time Zone Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTimeZone: Characteristic {
-
+final public class CharacteristicTimeZone: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Time Zone"
-    }
-
+    public static var name: String { "Time Zone" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A0E"
-    }
-
+    public static var uuidString: String { "2A0E" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Time Zone
     ///
     /// Offset from UTC in number of 15 minutes increments.  The offset defined
     /// in this characteristic is constant, regardless whether daylight savings
     /// is in effect
     private(set) public var timeZone: BluetoothTimeZone
-
+    
     /// Creates Time Zone Characteristic
     ///
     /// - Parameter timeZone: Offset from UTC
     public init(timeZone: BluetoothTimeZone) {
         self.timeZone = timeZone
-
-        super.init(name: CharacteristicTimeZone.name,
-                   uuidString: CharacteristicTimeZone.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTimeZone>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTimeZone, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeInt8(data)
         let timezone = BluetoothTimeZone(rawValue: value) ?? .unknown
-
+        
         let char = CharacteristicTimeZone(timeZone: timezone)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: timeZone.rawValue))
-
+        
         return.success(msgData)
     }
 }

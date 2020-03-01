@@ -29,50 +29,47 @@ import FitnessUnits
 /// BLE Tacx ANT-FEC Send Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTacxAntFecSend: Characteristic {
-
+final public class CharacteristicTacxAntFecSend: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Tacx ANT-FEC Send"
-    }
-
+    public static var name: String { "Tacx ANT-FEC Send" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "6E40FEC3-B5A3-F393-E0A9-E50E24DCCA9E"
-    }
-
+    public static var uuidString: String { "6E40FEC3-B5A3-F393-E0A9-E50E24DCCA9E" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// ANT-FEC Data
     private(set) public var antData: Data
-
+    
     /// Creates Tacx ANT-FEC Send Characteristic
     ///
     /// - Parameter antData: ANT Message
     public init(antData: Data) {
-
+        
         self.antData = antData
-
-        super.init(name: CharacteristicTacxAntFecSend.name,
-                   uuidString: CharacteristicTacxAntFecSend.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTacxAntFecSend>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTacxAntFecSend, BluetoothDecodeError> {
         /// We don't need to ever decode it
         return.failure(BluetoothDecodeError.notSupported) 
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Check to make sure the Sync byte is correct
-        guard antData[0] == 0xA4 else {
-            return.failure(BluetoothEncodeError.general("ANT Sync mismatch."))
-        }
-
+        guard antData[0] == 0xA4 else { return.failure(BluetoothEncodeError.general("ANT Sync mismatch.")) }
+        
         return.success(antData)
     }
 }

@@ -33,53 +33,52 @@ import FitnessUnits
 /// - Fat Burn
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTwoZoneHeartRateLimit: Characteristic {
-
+final public class CharacteristicTwoZoneHeartRateLimit: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Two Zone Heart Rate Limit"
-    }
-
+    public static var name: String { "Two Zone Heart Rate Limit" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A95"
-    }
-
+    public static var uuidString: String { "2A95" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Fat burn / Fitness Limit
     private(set) public var zoneLimit: Measurement<UnitCadence>
-
+    
     /// Creates Two Zone Heart Rate Limit Characteristic
     ///
     /// - Parameter zoneLimit: Fat burn / Fitness Limit
     public init(zoneLimit: UInt8) {
         self.zoneLimit = Measurement(value: Double(zoneLimit),
                                      unit: UnitCadence.beatsPerMinute)
-
-        super.init(name: CharacteristicTwoZoneHeartRateLimit.name,
-                   uuidString: CharacteristicTwoZoneHeartRateLimit.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTwoZoneHeartRateLimit>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTwoZoneHeartRateLimit, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let zoneLimit: UInt8 = decoder.decodeUInt8(data)
-
+        
         let char = CharacteristicTwoZoneHeartRateLimit(zoneLimit: zoneLimit)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: UInt8(zoneLimit.value)))
-
+        
         return.success(msgData)
     }
 }

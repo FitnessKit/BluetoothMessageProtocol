@@ -24,79 +24,102 @@
 
 import Foundation
 
-/// Bluetooth Characteristic base Class
-@available(swift 3.1)
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class Characteristic: CharacteristicCodable {
-    
-    /// Name of the Characteristic
-    open internal(set) var name: String
+/// A type that can convert itself into and out of an external representation.
+///
+/// `CharacteristicCodable` is a type alias for the `BluetoothEncodable` and `CharacteristicDecodable` protocols.
+/// When you use `CharacteristicCodable` as a type or a generic constraint, it matches
+/// any type that conforms to both protocols.
+public typealias CharacteristicCodable = CharacteristicDecodable & BluetoothEncodable
 
-    /// Characteristic UUID String
-    open internal(set) var uuidString: String
-
-    /// Init Characteristic
-    ///
-    /// - Parameters:
-    ///   - name: Name of Characteristic
-    ///   - uuidString: UUID String for Characteristic
-    public init(name: String, uuidString: String) {
-
-        self.name = name
-        self.uuidString = uuidString
-    }
+/// Allows for Decoding Characteristics
+public protocol CharacteristicDecodable: AnyObject {
     
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
-        fatalError("*** You must override in your class.")
-    }
-
-    /// Encodes the Characteristic into Data
-    ///
-    /// - Returns: Characteristic Data Result
-    open func encode() -> Result<Data, BluetoothEncodeError> {
-        fatalError("*** You must override in your class.")
-    }
+    static func decode(with data: Data) -> Result<Self, BluetoothDecodeError>
 }
 
+/// Bluetooth Characteristic
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-extension Characteristic: Hashable {
-
-    /// Hashes the essential components of this value by feeding them into the
-    /// given hasher.
-    ///
-    /// Implement this method to conform to the `Hashable` protocol. The
-    /// components used for hashing must be the same as the components compared
-    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
-    /// with each of these components.
-    ///
-    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
-    ///   compile-time error in the future.
-    ///
-    /// - Parameter hasher: The hasher to use when combining the components
-    ///   of this instance.
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-        hasher.combine(uuidString)
-    }
-}
-
-@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-extension Characteristic: Equatable {
-
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func == (lhs: Characteristic, rhs: Characteristic) -> Bool {
-        return (lhs.name == rhs.name) && (lhs.uuidString == rhs.uuidString)
-    }
+public protocol Characteristic: CharacteristicCodable {
     
+    /// Name of the Characteristic
+    var name: String { get }
+    
+    /// Characteristic UUID String
+    var uuidString: String { get }
 }
+
+//extension Characteristic {
+//    /// Hashes the essential components of this value by feeding them into the
+//    /// given hasher.
+//    ///
+//    /// Implement this method to conform to the `Hashable` protocol. The
+//    /// components used for hashing must be the same as the components compared
+//    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+//    /// with each of these components.
+//    ///
+//    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+//    ///   compile-time error in the future.
+//    ///
+//    /// - Parameter hasher: The hasher to use when combining the components
+//    ///   of this instance.
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(name)
+//        hasher.combine(uuidString)
+//    }
+//    
+//    /// Returns a Boolean value indicating whether two values are equal.
+//    ///
+//    /// Equality is the inverse of inequality. For any values `a` and `b`,
+//    /// `a == b` implies that `a != b` is `false`.
+//    ///
+//    /// - Parameters:
+//    ///   - lhs: A value to compare.
+//    ///   - rhs: Another value to compare.
+//    public static func == (lhs: Self, rhs: Self) -> Bool {
+//        return (lhs.name == rhs.name) && (lhs.uuidString == rhs.uuidString)
+//    }
+//
+//}
+//
+//@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+//extension Characteristic: Hashable {
+//
+//    /// Hashes the essential components of this value by feeding them into the
+//    /// given hasher.
+//    ///
+//    /// Implement this method to conform to the `Hashable` protocol. The
+//    /// components used for hashing must be the same as the components compared
+//    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+//    /// with each of these components.
+//    ///
+//    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+//    ///   compile-time error in the future.
+//    ///
+//    /// - Parameter hasher: The hasher to use when combining the components
+//    ///   of this instance.
+//    public func hash(into hasher: inout Hasher) {
+//        hasher.combine(name)
+//        hasher.combine(uuidString)
+//    }
+//}
+//
+//@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
+//extension Characteristic: Equatable {
+//
+//    /// Returns a Boolean value indicating whether two values are equal.
+//    ///
+//    /// Equality is the inverse of inequality. For any values `a` and `b`,
+//    /// `a == b` implies that `a != b` is `false`.
+//    ///
+//    /// - Parameters:
+//    ///   - lhs: A value to compare.
+//    ///   - rhs: Another value to compare.
+//    public static func == (lhs: Characteristic, rhs: Characteristic) -> Bool {
+//        return (lhs.name == rhs.name) && (lhs.uuidString == rhs.uuidString)
+//    }
+//
+//}

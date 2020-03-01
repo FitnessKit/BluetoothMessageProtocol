@@ -29,23 +29,19 @@ import FitnessUnits
 /// BLE Continuous Glucose Monitoring Feature Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
-
+final public class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Continuous Glucose Monitoring Feature"
-    }
-
+    public static var name: String { "Continuous Glucose Monitoring Feature" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AA8"
-    }
-
+    public static var uuidString: String { "2AA8" }
+    
     /// Characteristic Supported Features
     public struct Features: OptionSet {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
-
+        
         /// Calibration Supported
         public static let calibrationSupported                  = Features(rawValue: 1 << 0)
         /// Patient High/Low Alerts supported
@@ -81,7 +77,7 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         /// CGM Quality supported
         public static let qualitySupported                      = Features(rawValue: 1 << 16)
     }
-
+    
     /// Type of Continuous Glucose Monitor
     public enum TestType: UInt8 {
         /// Reserved for future use
@@ -107,7 +103,7 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         /// Control Solution
         case controlSolutions           = 10
     }
-
+    
     /// Location of Continuous Glucose Monitors
     public enum Location: UInt8 {
         /// Reserved for future use
@@ -125,19 +121,25 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         /// Sample Location value not available
         case notAvailable               = 6
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Supported Features
     private(set) public var features: Features
-
+    
     /// Type of CGM Test
     private(set) public var testType: TestType
-
+    
     /// Sample Location
     private(set) public var sampleLocation: Location
-
+    
     /// E2E-CRC
     private(set) public var crcValue: UInt16?
-
+    
     /// Creates Continuous Glucose Monitoring Feature Characteristic
     ///
     /// - Parameters:
@@ -150,16 +152,13 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
         self.testType = testType
         self.sampleLocation = sampleLocation
         self.crcValue = crcValue
-
-        super.init(name: CharacteristicContinuousGlucoseMonitoringFeature.name,
-                   uuidString: CharacteristicContinuousGlucoseMonitoringFeature.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicContinuousGlucoseMonitoringFeature>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicContinuousGlucoseMonitoringFeature, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let featureVal = decoder.decodeUInt24(data)
@@ -180,13 +179,13 @@ open class CharacteristicContinuousGlucoseMonitoringFeature: Characteristic {
                                                                     testType: testType,
                                                                     sampleLocation: sampleLocation,
                                                                     crcValue: crc)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

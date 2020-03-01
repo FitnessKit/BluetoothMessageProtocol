@@ -32,17 +32,19 @@ import DataDecoder
 /// to a Provisioning Client
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMeshProvisioningDataOut: Characteristic {
+final public class CharacteristicMeshProvisioningDataOut: Characteristic {
 
     /// Characteristic Name
-    public static var name: String {
-        return "Mesh Provisioning Data Out"
-    }
+    public static var name: String { "Mesh Provisioning Data Out" }
 
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ADC"
-    }
+    public static var uuidString: String { "2ADC" }
+
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
 
     /// Provisioning Protocol Data Unit (PDU) Message
     private(set) public var pduMessage: Data
@@ -52,16 +54,13 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
     /// - Parameter pduMessage: Protocol Data Unit Message
     public init(pduMessage: Data) {
         self.pduMessage = pduMessage
-
-        super.init(name: CharacteristicMeshProvisioningDataOut.name,
-                   uuidString: CharacteristicMeshProvisioningDataOut.uuidString)
     }
 
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMeshProvisioningDataOut>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMeshProvisioningDataOut, BluetoothDecodeError> {
         //The characteristic value is 66 octets long to accommodate the longest
         //known Proxy PDU containing Provisioning PDU.
         
@@ -70,13 +69,13 @@ open class CharacteristicMeshProvisioningDataOut: Characteristic {
         }
 
         let char = CharacteristicMeshProvisioningDataOut(pduMessage: data)
-        return.success(char as! C)
+        return.success(char)
     }
 
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

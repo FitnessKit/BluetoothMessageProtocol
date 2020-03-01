@@ -31,45 +31,48 @@ import FitnessUnits
 /// Last name of the user
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicLastName: Characteristic {
-
+public final class CharacteristicLastName: Characteristic {
+    
     /// Characteristic Name
     public static var name: String {
         return "Last Name"
     }
-
+    
     /// Characteristic UUID
     public static var uuidString: String {
         return "2A90"
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Last Name
     private(set) public var lastName: String
-
+    
     /// Creates Last Name Characteristic
     ///
     /// - Parameter lastName: Last Name
     public init(lastName: String) {
         self.lastName = lastName
-
-        super.init(name: CharacteristicLastName.name,
-                   uuidString: CharacteristicLastName.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicLastName>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicLastName, BluetoothDecodeError> {
         guard let lastName = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicLastName(lastName: lastName) as! C)
+        
+        return.success(CharacteristicLastName(lastName: lastName))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

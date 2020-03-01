@@ -29,55 +29,54 @@ import FitnessUnits
 /// BLE Dew Point Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDewPoint: Characteristic {
-
+final public class CharacteristicDewPoint: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Dew Point"
-    }
-
+    public static var name: String { "Dew Point" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A7B"
-    }
-
+    public static var uuidString: String { "2A7B" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Dew Point
     private(set) public var dewPoint: Measurement<UnitTemperature>
-
+    
     /// Creates Dew Point Characteristic
     ///
     /// - Parameter dewPoint: Dew Point Temperature
     public init(dewPoint: Measurement<UnitTemperature>) {
         self.dewPoint = dewPoint
-
-        super.init(name: CharacteristicDewPoint.name,
-                   uuidString: CharacteristicDewPoint.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDewPoint>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDewPoint, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let dewpoint: Measurement = Measurement(value: Double(decoder.decodeInt8(data)),
                                                 unit: UnitTemperature.celsius)
-
-        return.success(CharacteristicDewPoint(dewPoint: dewpoint) as! C)
+        
+        return.success(CharacteristicDewPoint(dewPoint: dewpoint))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to Celsius before we create Data
         let temperature = dewPoint.converted(to: UnitTemperature.celsius).value
-
+        
         msgData.append(Data(from: Int8(temperature)))
-
+        
         return.success(msgData)
     }
 }

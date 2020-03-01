@@ -31,56 +31,55 @@ import FitnessUnits
 /// Weight of the User
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicWeight: Characteristic {
-
+final public class CharacteristicWeight: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Weight"
-    }
-
+    public static var name: String { "Weight" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A98"
-    }
-
+    public static var uuidString: String { "2A98" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Weight
     private(set) public var weight: Measurement<UnitMass>
-
+    
     /// Creates Weight Characteristic
     ///
     /// - Parameter weight: Weight
     public init(weight: Measurement<UnitMass>) {
         self.weight = weight
-
-        super.init(name: CharacteristicWeight.name,
-                   uuidString: CharacteristicWeight.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicWeight>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicWeight, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneFiveThousandth)
         let weight = Measurement(value: value, unit: UnitMass.kilograms)
-
+        
         let char = CharacteristicWeight(weight: weight)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to KG before we create Data
         let value = UInt16(weight.converted(to: UnitMass.kilograms).value.resolution(.adding, resolution: Resolution.oneFiveThousandth))
-
+        
         msgData.append(Data(from: value))
-
+        
         return.success(msgData)
     }
 }

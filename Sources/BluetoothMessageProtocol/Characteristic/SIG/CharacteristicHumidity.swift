@@ -29,55 +29,54 @@ import FitnessUnits
 /// BLE Humidity Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHumidity: Characteristic {
-
+final public class CharacteristicHumidity: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Humidity"
-    }
-
+    public static var name: String { "Humidity" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A6F"
-    }
-
+    public static var uuidString: String { "2A6F" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Humidity Percentage
     private(set) public var humidity: Measurement<UnitPercent>
-
+    
     /// Creates Humidity Characteristic
     ///
     /// - Parameter humidity: Humidity Percentage
     public init(humidity: Measurement<UnitPercent>) {
         self.humidity = humidity
-
-        super.init(name: CharacteristicHumidity.name,
-                   uuidString: CharacteristicHumidity.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHumidity>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHumidity, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let humidity = Measurement(value: value, unit: UnitPercent.percent)
-
-        return.success(CharacteristicHumidity(humidity: humidity) as! C)
+        
+        return.success(CharacteristicHumidity(humidity: humidity))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let value = UInt16(humidity.value.resolution(.adding, resolution: Resolution.oneHundredth))
-
+        
         msgData.append(Data(from: value))
-
+        
         return.success(msgData)
     }
 }

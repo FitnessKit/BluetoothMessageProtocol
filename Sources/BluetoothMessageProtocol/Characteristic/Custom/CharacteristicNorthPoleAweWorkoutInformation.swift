@@ -29,70 +29,33 @@ import FitnessUnits
 /// BLE AWE Workout Information Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
-
+final public class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
+    
     private static let commandRange = ClosedRange(uncheckedBounds: (lower: 1, upper: 254))
-
+    
     /// Characteristic Name
-    public static var name: String {
-        return "AWE Workout Information"
-    }
-
+    public static var name: String { "AWE Workout Information" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "4B486402-6E6F-7274-6870-6F6C65656E67"
-    }
-
-    private struct Flags {
-        /// Points Present
-        private(set) public var isPointsPresent: Bool
-        /// Energy Expended (Calories) Present
-        private(set) public var isEnergyExpendedPresent: Bool
-        /// Command Present
-        private(set) public var isCommandPresent: Bool
-
-        /// Rawvalue
-        public var rawValue: UInt8 {
-            var value: UInt8 = UInt8(isPointsPresent == true ? 1 : 0)
-
-            value |= UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 1
-            value |= UInt8(isCommandPresent == true ? 1 : 0) << 2
-
-            return UInt8(value)
-        }
-
-        /// Creates Flags Struct
-        ///
-        /// - Parameter value: UInt8 Flag Data
-        public init(_ value: UInt8) {
-            self.isPointsPresent = (value & 0x01 == 0x01)
-            self.isEnergyExpendedPresent = (value & 0x02 == 0x02)
-            self.isCommandPresent = (value & 0x04 == 0x04)
-        }
-
-        /// Creates Flags Structs
-        ///
-        /// - Parameters:
-        ///   - isPointsPresent: Points Present
-        ///   - isEnergyExpendedPresent: Energy Expended Present
-        public init(isPointsPresent: Bool, isEnergyExpendedPresent: Bool, isCommandPresent: Bool) {
-            self.isPointsPresent = isPointsPresent
-            self.isEnergyExpendedPresent = isEnergyExpendedPresent
-            self.isCommandPresent = isCommandPresent
-        }
-    }
-
+    public static var uuidString: String { "4B486402-6E6F-7274-6870-6F6C65656E67" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Points Earned
     private(set) public var points: UInt16?
-
+    
     /// Energy Expanded
     private(set) public var energyExpended: Measurement<UnitEnergy>?
-
+    
     /// Command
     ///
     /// Values of 0 and 255 are Invalid
     private(set) public var command: UInt8?
-
+    
     /// Creates Workout Information Characteristic
     ///
     /// - Parameters:
@@ -100,10 +63,10 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
     ///   - energyExpended: Energy Expended
     ///   - command: Command
     public init(points: UInt16?, energyExpended: Measurement<UnitEnergy>?, command: UInt8?) {
-
+        
         self.points = points
         self.energyExpended = energyExpended
-
+        
         if let command = command {
             if CharacteristicNorthPoleAweWorkoutInformation.commandRange.contains(Int(command)) {
                 self.command = command
@@ -111,16 +74,13 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
         } else {
             self.command = nil
         }
-
-        super.init(name: CharacteristicNorthPoleAweWorkoutInformation.name,
-                   uuidString: CharacteristicNorthPoleAweWorkoutInformation.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicNorthPoleAweWorkoutInformation>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicNorthPoleAweWorkoutInformation, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(decoder.decodeUInt8(data))
@@ -149,14 +109,57 @@ open class CharacteristicNorthPoleAweWorkoutInformation: Characteristic {
         let char = CharacteristicNorthPoleAweWorkoutInformation(points: points,
                                                                 energyExpended: energy,
                                                                 command: command)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
         return.failure(BluetoothEncodeError.notSupported)
     }
+}
+
+private extension CharacteristicNorthPoleAweWorkoutInformation {
+    
+    struct Flags {
+        /// Points Present
+        private(set) public var isPointsPresent: Bool
+        /// Energy Expended (Calories) Present
+        private(set) public var isEnergyExpendedPresent: Bool
+        /// Command Present
+        private(set) public var isCommandPresent: Bool
+        
+        /// Rawvalue
+        public var rawValue: UInt8 {
+            var value: UInt8 = UInt8(isPointsPresent == true ? 1 : 0)
+            
+            value |= UInt8(isEnergyExpendedPresent == true ? 1 : 0) << 1
+            value |= UInt8(isCommandPresent == true ? 1 : 0) << 2
+            
+            return UInt8(value)
+        }
+        
+        /// Creates Flags Struct
+        ///
+        /// - Parameter value: UInt8 Flag Data
+        public init(_ value: UInt8) {
+            self.isPointsPresent = (value & 0x01 == 0x01)
+            self.isEnergyExpendedPresent = (value & 0x02 == 0x02)
+            self.isCommandPresent = (value & 0x04 == 0x04)
+        }
+        
+        /// Creates Flags Structs
+        ///
+        /// - Parameters:
+        ///   - isPointsPresent: Points Present
+        ///   - isEnergyExpendedPresent: Energy Expended Present
+        public init(isPointsPresent: Bool, isEnergyExpendedPresent: Bool, isCommandPresent: Bool) {
+            self.isPointsPresent = isPointsPresent
+            self.isEnergyExpendedPresent = isEnergyExpendedPresent
+            self.isCommandPresent = isCommandPresent
+        }
+    }
+    
 }

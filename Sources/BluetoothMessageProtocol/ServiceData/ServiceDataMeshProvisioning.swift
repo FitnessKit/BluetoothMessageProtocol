@@ -29,17 +29,19 @@ import FitnessUnits
 /// BLE Mesh Provisioning Service Data
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceDataMeshProvisioning: ServiceData {
+final public class ServiceDataMeshProvisioning: ServiceData {
 
     /// Service Data Name
-    public static var name: String {
-        return "Mesh Provisioning"
-    }
+    public static var name: String { "Mesh Provisioning" }
 
     /// Service Data UUID
-    public static var uuidString: String {
-        return "1827"
-    }
+    public static var uuidString: String { "1827" }
+
+    /// Name of the Service Data AD Type
+    public var name: String { Self.name }
+    
+    /// Service Data AD Type UUID String
+    public var uuidString: String { Self.uuidString }
 
     /// Device UUID
     private(set) public var deviceUUID: String
@@ -55,16 +57,13 @@ open class ServiceDataMeshProvisioning: ServiceData {
     public init(deviceUUID: String, oobInformation: MeshOutOfBandInformation) {
         self.deviceUUID = deviceUUID
         self.oobInformation = oobInformation
-
-        super.init(name: ServiceDataMeshProvisioning.name,
-                   uuidString: ServiceDataMeshProvisioning.uuidString)
     }
 
     /// Decodes Service Data AD Data into ServiceData
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    open override class func decode<S: ServiceDataMeshProvisioning>(with data: Data) -> Result<S, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<ServiceDataMeshProvisioning, BluetoothDecodeError> {
         guard data.count == 18 else {
             return.failure(BluetoothDecodeError.properySize("Mesh Provisioning must be 18 Bytes Long."))
         }
@@ -78,13 +77,13 @@ open class ServiceDataMeshProvisioning: ServiceData {
         
         let serviceData = ServiceDataMeshProvisioning(deviceUUID: deviceUUID,
                                                       oobInformation: oobInformation)
-        return.success(serviceData as! S)
+        return.success(serviceData)
     }
 
     /// Encodes the Service Data AD Type into Data
     ///
     /// - Returns: Service Data AD Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
@@ -98,14 +97,13 @@ open class ServiceDataMeshProvisioning: ServiceData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: StringKey.self)
 
         let dataKey = StringKey(stringValue: "data")!
         let uuidKey = StringKey(stringValue: "deviceUUID")!
         let oobKey = StringKey(stringValue: "oobInformation")!
 
-        try super.encode(to: encoder)
 
         var unitContainer = container.nestedContainer(keyedBy: StringKey.self, forKey: dataKey)
         try unitContainer.encode(deviceUUID, forKey: uuidKey)

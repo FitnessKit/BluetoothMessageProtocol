@@ -28,30 +28,32 @@ import FitnessUnits
 /// BLE AWE Heart Rate Measurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
-
+final public class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "AWE Heart Rate Meassurement"
-    }
-
+    public static var name: String { "AWE Heart Rate Meassurement" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "4B486401-6E6F-7274-6870-6F6C65656E67"
-    }
-
+    public static var uuidString: String { "4B486401-6E6F-7274-6870-6F6C65656E67" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Contact status of sensor
     private(set) public var contactStatus: HeartRateContactStatus = .notSupported
-
+    
     /// Heart Rate Value
     private(set) public var heartRate: Measurement<UnitCadence>
-
+    
     /// Energy Expended
     private(set) public var energyExpended: Measurement<UnitEnergy>?
-
+    
     /// RR-Interval
     private(set) public var rrIntervals: [Measurement<UnitDuration>]?
-
+    
     /// Creates Heart Rate Meassurement Characteristic
     ///
     /// - Parameters:
@@ -60,45 +62,42 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
     ///   - energyExpended: Energy Expended
     ///   - rrIntervals: RR-Intervals
     public init(contactStatus: HeartRateContactStatus, heartRate: UInt8, energyExpended: Measurement<UnitEnergy>? = nil, rrIntervals: [Measurement<UnitDuration>]? = nil) {
-
+        
         self.contactStatus = contactStatus
-
+        
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
-
+        
         self.energyExpended = energyExpended
         self.rrIntervals = rrIntervals
-
-        super.init(name: CharacteristicNorthPoleAweHeartRateMeasurement.name,
-                   uuidString: CharacteristicNorthPoleAweHeartRateMeasurement.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicNorthPoleAweHeartRateMeasurement>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicNorthPoleAweHeartRateMeasurement, BluetoothDecodeError> {
         /// Data from the AWE Heart Rate Measurement is not Notified or read.
         /// We don't need to ever decode it
         return.failure(BluetoothDecodeError.notSupported)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let energyPresent = self.energyExpended == nil ? false : true
-
+        
         // For now just not send RR Values.. Since they are not used
         let flags = HeartRateMeasurementFlags.init(valueFormat: .uint8,
                                                    contactStatus: self.contactStatus,
                                                    isEnergyExpendedPresent: energyPresent,
                                                    isRRIntervalPresent: false)
-
+        
         msgData.append(flags.rawValue)
         msgData.append(UInt8(heartRate.value))
-
+        
         if energyPresent == true {
             if let energyValue = energyExpended {
                 let energy = energyValue.converted(to: UnitEnergy.joules).value
@@ -108,7 +107,7 @@ open class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristic {
                 msgData.append(Data(from: UInt16(0)))
             }
         }
-
+        
         return.success(msgData)
     }
 }

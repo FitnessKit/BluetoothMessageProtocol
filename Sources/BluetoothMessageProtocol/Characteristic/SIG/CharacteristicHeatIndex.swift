@@ -29,54 +29,53 @@ import FitnessUnits
 /// BLE Heat Index Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHeatIndex: Characteristic {
-
+final public class CharacteristicHeatIndex: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Heat Index"
-    }
-
+    public static var name: String { "Heat Index" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A7A"
-    }
-
+    public static var uuidString: String { "2A7A" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Heat Index
     private(set) public var heatIndex: Measurement<UnitTemperature>
-
+    
     /// Creates Heat Index Characteristic
     ///
     /// - Parameter heatIndex: Heat Index
     public init(heatIndex: Measurement<UnitTemperature>) {
         self.heatIndex = heatIndex
-
-        super.init(name: CharacteristicHeatIndex.name,
-                   uuidString: CharacteristicHeatIndex.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHeatIndex>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHeatIndex, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let heatIndex = Measurement(value: Double(decoder.decodeInt8(data)), unit: UnitTemperature.celsius)
-
-        return.success(CharacteristicHeatIndex(heatIndex: heatIndex) as! C)
+        
+        return.success(CharacteristicHeatIndex(heatIndex: heatIndex))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to Celsius before we create Data
         let temperature = heatIndex.converted(to: UnitTemperature.celsius).value
-
+        
         msgData.append(Data(from: Int8(temperature)))
-
+        
         return.success(msgData)
     }
 }

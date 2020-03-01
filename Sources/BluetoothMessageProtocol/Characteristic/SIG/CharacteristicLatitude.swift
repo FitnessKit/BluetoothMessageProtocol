@@ -31,53 +31,52 @@ import FitnessUnits
 /// The Latitude characteristic describes the WGS84 North coordinate of the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicLatitude: Characteristic {
-
+final public class CharacteristicLatitude: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Latitude"
-    }
-
+    public static var name: String { "Latitude" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AAE"
-    }
-
+    public static var uuidString: String { "2AAE" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Latitude
     ///
     /// WGS84 North coordinate
     private(set) public var latitude: Int32
-
+    
     /// Creates Latitude Characteristic
     ///
     /// - Parameter latitude: WGS84 North coordinate
     public init(latitude: Int32) {
         self.latitude = latitude
-
-        super.init(name: CharacteristicLatitude.name,
-                   uuidString: CharacteristicLatitude.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicLatitude>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicLatitude, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lat = decoder.decodeInt32(data)
-
-        return.success(CharacteristicLatitude(latitude: lat) as! C)
+        
+        return.success(CharacteristicLatitude(latitude: lat))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: latitude.littleEndian))
-
+        
         return.success(msgData)
     }
 }

@@ -29,18 +29,14 @@ import FitnessUnits
 /// BLE Barometric Pressure Trend Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBarometricPressureTrend: Characteristic {
-
+final public class CharacteristicBarometricPressureTrend: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Barometric Pressure Trend"
-    }
-
+    public static var name: String { "Barometric Pressure Trend" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AA3"
-    }
-
+    public static var uuidString: String { "2AA3" }
+    
     /// Barometric Pressure Trends
     public enum BarometricPressureTrend: UInt8 {
         /// Unknown
@@ -64,38 +60,41 @@ open class CharacteristicBarometricPressureTrend: Characteristic {
         /// Steady
         case steady                             = 9
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Pressure Trend
     private(set) public var trend: BarometricPressureTrend
-
+    
     /// Creates Barometric Pressure Trend Characteristic
     ///
     /// - Parameter trend: Barometric Pressure Trend
     public init(trend: BarometricPressureTrend) {
         self.trend = trend
-
-        super.init(name: CharacteristicBarometricPressureTrend.name,
-                   uuidString: CharacteristicBarometricPressureTrend.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBarometricPressureTrend>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBarometricPressureTrend, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        return.success(CharacteristicBarometricPressureTrend(trend: trend) as! C)
+        
+        return.success(CharacteristicBarometricPressureTrend(trend: trend))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(trend.rawValue)
         
         return.success(msgData)

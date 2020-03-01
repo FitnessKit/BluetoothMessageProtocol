@@ -31,52 +31,51 @@ import FitnessUnits
 /// The Floor Number characteristic describes in which floor the device is installed
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicFloorNumber: Characteristic {
-
+final public class CharacteristicFloorNumber: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Floor Number"
-    }
-
+    public static var name: String { "Floor Number" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB2"
-    }
-
+    public static var uuidString: String { "2AB2" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Floor Number
     private(set) public var floorNumber: UInt8
-
+    
     /// Create Floor Number Characteristic
     ///
     /// - Parameter floorNumber: Floor Number
     public init(floorNumber: UInt8) {
         self.floorNumber = floorNumber
-
-        super.init(name: CharacteristicFloorNumber.name,
-                   uuidString: CharacteristicFloorNumber.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicFloorNumber>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicFloorNumber, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let floor = decoder.decodeUInt8(data)
         
-        return.success(CharacteristicFloorNumber(floorNumber: floor) as! C)
+        return.success(CharacteristicFloorNumber(floorNumber: floor))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(floorNumber)
-
+        
         return.success(msgData)
     }
-
+    
 }

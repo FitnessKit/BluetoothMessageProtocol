@@ -31,51 +31,50 @@ import FitnessUnits
 /// The Local East characteristic describes the East coordinate of the device using local coordinate system
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicLocalEastCoordinate: Characteristic {
-
+final public class CharacteristicLocalEastCoordinate: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Local East Coordinate"
-    }
-
+    public static var name: String { "Local East Coordinate" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB1"
-    }
-
+    public static var uuidString: String { "2AB1" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Local East Coordinate
     private(set) public var localEastCoordinate: Int32
-
+    
     /// Creates Local East Coordinate Characteristic
     ///
     /// - Parameter localEastCoordinate: Local East Coordinate
     public init(localEastCoordinate: Int32) {
         self.localEastCoordinate = localEastCoordinate
-
-        super.init(name: CharacteristicLocalEastCoordinate.name,
-                   uuidString: CharacteristicLocalEastCoordinate.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicLocalEastCoordinate>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicLocalEastCoordinate, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let local = decoder.decodeInt32(data)
-
-        return.success(CharacteristicLocalEastCoordinate(localEastCoordinate: local) as! C)
+        
+        return.success(CharacteristicLocalEastCoordinate(localEastCoordinate: local))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: localEastCoordinate.littleEndian))
-
+        
         return.success(msgData)
     }
 }

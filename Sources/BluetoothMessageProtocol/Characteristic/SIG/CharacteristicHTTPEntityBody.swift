@@ -29,47 +29,46 @@ import DataDecoder
 /// after any Transfer Encoding has been applied
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHTTPEntityBody: Characteristic {
-
+final public class CharacteristicHTTPEntityBody: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "HTTP Entity Body"
-    }
-
+    public static var name: String { "HTTP Entity Body" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB9"
-    }
-
+    public static var uuidString: String { "2AB9" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// HTTP Entity Body
     ///
     /// The HTTP entity body used in the HTTP request
     private(set) public var body: String
-
+    
     /// Creates HTTP Entity Body Characteristic
     ///
     /// - Parameter body: The HTTP Entity Body
     public init(body: String) {
         self.body = body
-
-        super.init(name: CharacteristicHTTPEntityBody.name,
-                   uuidString: CharacteristicHTTPEntityBody.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHTTPEntityBody>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHTTPEntityBody, BluetoothDecodeError> {
         guard let body = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicHTTPEntityBody(body: body) as! C)
+        
+        return.success(CharacteristicHTTPEntityBody(body: body))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

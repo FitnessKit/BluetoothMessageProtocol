@@ -31,17 +31,19 @@ import DataDecoder
 /// PDU message containing Provisioning PDU to the Provisioning Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMeshProvisioningDataIn: Characteristic {
+final public class CharacteristicMeshProvisioningDataIn: Characteristic {
 
     /// Characteristic Name
-    public static var name: String {
-        return "Mesh Provisioning Data In"
-    }
+    public static var name: String { "Mesh Provisioning Data In" }
 
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ADB"
-    }
+    public static var uuidString: String { "2ADB" }
+
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
 
     /// Protocol Data Unit (PDU) Message
     private(set) public var pduMessage: ProxyDataUnitProvisioning
@@ -51,23 +53,20 @@ open class CharacteristicMeshProvisioningDataIn: Characteristic {
     /// - Parameter pduMessage: PDU Message
     public init(pduMessage: ProxyDataUnitProvisioning) {
         self.pduMessage = pduMessage
-
-        super.init(name: CharacteristicMeshProvisioningDataIn.name,
-                   uuidString: CharacteristicMeshProvisioningDataIn.uuidString)
     }
 
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMeshProvisioningDataIn>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMeshProvisioningDataIn, BluetoothDecodeError> {
         return.failure(BluetoothDecodeError.notSupported)
     }
 
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //The characteristic value is 66 octets long to accommodate the longest
         //known Proxy PDU containing Provisioning PDU.
         

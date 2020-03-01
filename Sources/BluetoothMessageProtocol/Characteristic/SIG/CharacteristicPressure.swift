@@ -29,60 +29,59 @@ import FitnessUnits
 /// BLE Pressure Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicPressure: Characteristic {
-
+final public class CharacteristicPressure: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Pressure"
-    }
-
+    public static var name: String { "Pressure" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A6D"
-    }
-
+    public static var uuidString: String { "2A6D" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Pressure
     private(set) public var pressure: Measurement<UnitPressure>
-
+    
     /// Creates Pressure Characteristic
     ///
     /// - Parameter pressure: Pressure
     public init(pressure: Measurement<UnitPressure>) {
         self.pressure = pressure
-
-        super.init(name: CharacteristicPressure.name,
-                   uuidString: CharacteristicPressure.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicPressure>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicPressure, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         // put into 0.1 PA then into KiloPascals
         let value = decoder.decodeUInt32(data).resolution(.removing, resolution: Resolution.oneTenThousandth)
         
         let pressure: Measurement = Measurement(value: value, unit: UnitPressure.kilopascals)
-
+        
         let char = CharacteristicPressure(pressure: pressure)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to back before we create Data
         let value = pressure.converted(to: UnitPressure.kilopascals).value
-
+        
         let pressV = UInt32(value.resolution(.adding, resolution: Resolution.oneTenThousandth))
-
+        
         msgData.append(Data(from: pressV.littleEndian))
-
+        
         return.success(msgData)
     }
 }

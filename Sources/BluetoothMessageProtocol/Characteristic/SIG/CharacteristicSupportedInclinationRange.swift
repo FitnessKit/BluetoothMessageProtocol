@@ -32,27 +32,29 @@ import FitnessUnits
 /// inclination range as well as the minimum inclination increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicSupportedInclinationRange: Characteristic {
-
+final public class CharacteristicSupportedInclinationRange: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Supported Inclination Range"
-    }
-
+    public static var name: String { "Supported Inclination Range" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD5"
-    }
-
+    public static var uuidString: String { "2AD5" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Minimum Inclination
     private(set) public var minimum: FitnessMachineInclinationType
-
+    
     /// Maximum Inclination
     private(set) public var maximum: FitnessMachineInclinationType
-
+    
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitPercent>
-
+    
     /// Creates Supported Inclination Range Characteristic
     ///
     /// - Parameters:
@@ -62,20 +64,17 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
     public init(minimum: FitnessMachineInclinationType,
                 maximum: FitnessMachineInclinationType,
                 minimumIncrement: Measurement<UnitPercent>) {
-
+        
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
-
-        super.init(name: CharacteristicSupportedInclinationRange.name,
-                   uuidString: CharacteristicSupportedInclinationRange.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicSupportedInclinationRange>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicSupportedInclinationRange, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = FitnessMachineInclinationType.create(decoder.decodeInt16(data))
@@ -83,28 +82,28 @@ open class CharacteristicSupportedInclinationRange: Characteristic {
         
         let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPercent.percent)
-
+        
         let char = CharacteristicSupportedInclinationRange(minimum: minimum,
                                                            maximum: maximum,
                                                            minimumIncrement: minimumIncrement)
-        return.success(char as! C)
+        return.success(char)
     }
-
-
+    
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let minValue = minimum.encode()
         let maxValue = maximum.encode()
         let incrValue = UInt16(minimumIncrement.value.resolution(.adding, resolution: Resolution.oneTenth))
-
+        
         msgData.append(minValue)
         msgData.append(maxValue)
         msgData.append(Data(from: incrValue.littleEndian))
-
+        
         return.success(msgData)
     }
 }

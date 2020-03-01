@@ -29,54 +29,51 @@ import FitnessUnits
 /// BLE Tacx ANT-FEC Receive Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTacxAntFecReceive: Characteristic {
-
+final public class CharacteristicTacxAntFecReceive: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Tacx ANT-FEC Receive"
-    }
-
+    public static var name: String { "Tacx ANT-FEC Receive" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "6E40FEC2-B5A3-F393-E0A9-E50E24DCCA9E"
-    }
-
+    public static var uuidString: String { "6E40FEC2-B5A3-F393-E0A9-E50E24DCCA9E" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// ANT-FEC Data
     private(set) public var antData: Data
-
+    
     /// Creates Tacx ANT-FEC Receive Characteristic
     ///
     /// - Parameter antData: ANT Message
     public init(antData: Data) {
-
+        
         self.antData = antData
-
-        super.init(name: CharacteristicTacxAntFecReceive.name,
-                   uuidString: CharacteristicTacxAntFecReceive.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTacxAntFecReceive>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTacxAntFecReceive, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let sync = decoder.decodeUInt8(data)
         
         /// Check to make sure the Sync byte is correct
-        guard sync == 0xA4 else {
-            return.failure(BluetoothDecodeError.general("ANT Sync mismatch"))
-        }
+        guard sync == 0xA4 else { return.failure(BluetoothDecodeError.general("ANT Sync mismatch")) }
         
         /// Just return the data
-        return.success(CharacteristicTacxAntFecReceive(antData:data) as! C)
+        return.success(CharacteristicTacxAntFecReceive(antData:data))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// not writeable
         return.failure(BluetoothEncodeError.notSupported)
     }

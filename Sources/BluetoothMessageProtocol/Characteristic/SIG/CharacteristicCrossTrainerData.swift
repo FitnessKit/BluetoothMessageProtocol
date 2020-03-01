@@ -32,57 +32,19 @@ import FitnessUnits
 /// the Client from a cross trainer (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicCrossTrainerData: Characteristic {
+final public class CharacteristicCrossTrainerData: Characteristic {
     
     /// Characteristic Name
-    public static var name: String {
-        return "Cross Trainer Data"
-    }
+    public static var name: String { "Cross Trainer Data" }
     
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ACE"
-    }
+    public static var uuidString: String { "2ACE" }
     
-    /// Flags
-    private struct Flags: OptionSet {
-        //Defined as a 24bit by bluetooth
-        public let rawValue: UInt32
-        public init(rawValue: UInt32) { self.rawValue = rawValue }
-        
-        /// More Data not present (is defined opposite of the norm)
-        public static let moreData                      = Flags(rawValue: 1 << 0)
-        /// Average Speed present
-        public static let avgSpeedPresent               = Flags(rawValue: 1 << 1)
-        /// Total Distance Present
-        public static let totalDistancePresent          = Flags(rawValue: 1 << 2)
-        /// Step Count present
-        public static let stepCountPresent              = Flags(rawValue: 1 << 3)
-        /// Stride Count present
-        public static let strideCountPresent            = Flags(rawValue: 1 << 4)
-        /// Elevation Gain present
-        public static let elevationGainPresent          = Flags(rawValue: 1 << 5)
-        /// Inclination and Ramp Angle Setting present
-        public static let angleSettingpresent           = Flags(rawValue: 1 << 6)
-        /// Resistance Level Present
-        public static let resistanceLevelPresent        = Flags(rawValue: 1 << 7)
-        /// Instantaneous Power present
-        public static let instantPowerPresent           = Flags(rawValue: 1 << 8)
-        /// Average Power present
-        public static let averagePowerPresent           = Flags(rawValue: 1 << 9)
-        /// Expended Energy present
-        public static let expendedEnergyPresent         = Flags(rawValue: 1 << 10)
-        /// Heart Rate present
-        public static let heartRatePresent              = Flags(rawValue: 1 << 11)
-        /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent    = Flags(rawValue: 1 << 12)
-        /// Elapsed Time present
-        public static let elapsedTimePresent            = Flags(rawValue: 1 << 13)
-        /// Remaining Time present
-        public static let remainingTimePresent          = Flags(rawValue: 1 << 14)
-        /// Movement Direction Backwards
-        public static let backwardDirection             = Flags(rawValue: 1 << 15)
-    }
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
     
     /// Instantaneous Speed
     private(set) public var instantaneousSpeed: FitnessMachineSpeedType?
@@ -201,16 +163,13 @@ open class CharacteristicCrossTrainerData: Characteristic {
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
         self.movementDirection = movementDirection
-        
-        super.init(name: CharacteristicCrossTrainerData.name,
-                   uuidString: CharacteristicCrossTrainerData.uuidString)
     }
     
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicCrossTrainerData>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicCrossTrainerData, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: UInt32(decoder.decodeUInt24(data)))
@@ -349,19 +308,59 @@ open class CharacteristicCrossTrainerData: Characteristic {
                                                   metabolicEquivalent: mets,
                                                   time: time,
                                                   movementDirection: movementDirection)
-        return.success(char as! C)
+        return.success(char)
     }
     
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
 private extension CharacteristicCrossTrainerData {
+    
+    /// Flags
+    private struct Flags: OptionSet {
+        //Defined as a 24bit by bluetooth
+        public let rawValue: UInt32
+        public init(rawValue: UInt32) { self.rawValue = rawValue }
+        
+        /// More Data not present (is defined opposite of the norm)
+        public static let moreData                      = Flags(rawValue: 1 << 0)
+        /// Average Speed present
+        public static let avgSpeedPresent               = Flags(rawValue: 1 << 1)
+        /// Total Distance Present
+        public static let totalDistancePresent          = Flags(rawValue: 1 << 2)
+        /// Step Count present
+        public static let stepCountPresent              = Flags(rawValue: 1 << 3)
+        /// Stride Count present
+        public static let strideCountPresent            = Flags(rawValue: 1 << 4)
+        /// Elevation Gain present
+        public static let elevationGainPresent          = Flags(rawValue: 1 << 5)
+        /// Inclination and Ramp Angle Setting present
+        public static let angleSettingpresent           = Flags(rawValue: 1 << 6)
+        /// Resistance Level Present
+        public static let resistanceLevelPresent        = Flags(rawValue: 1 << 7)
+        /// Instantaneous Power present
+        public static let instantPowerPresent           = Flags(rawValue: 1 << 8)
+        /// Average Power present
+        public static let averagePowerPresent           = Flags(rawValue: 1 << 9)
+        /// Expended Energy present
+        public static let expendedEnergyPresent         = Flags(rawValue: 1 << 10)
+        /// Heart Rate present
+        public static let heartRatePresent              = Flags(rawValue: 1 << 11)
+        /// Metabolic Equivalent present
+        public static let metabolicEquivalentPresent    = Flags(rawValue: 1 << 12)
+        /// Elapsed Time present
+        public static let elapsedTimePresent            = Flags(rawValue: 1 << 13)
+        /// Remaining Time present
+        public static let remainingTimePresent          = Flags(rawValue: 1 << 14)
+        /// Movement Direction Backwards
+        public static let backwardDirection             = Flags(rawValue: 1 << 15)
+    }
     
     /// Decode Duration Data
     ///

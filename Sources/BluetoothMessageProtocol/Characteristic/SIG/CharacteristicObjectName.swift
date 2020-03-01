@@ -29,57 +29,56 @@ import FitnessUnits
 /// BLE Object Name Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicObjectName: Characteristic {
-
+final public class CharacteristicObjectName: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Object Name"
-    }
-
+    public static var name: String { "Object Name" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ABE"
-    }
-
+    public static var uuidString: String { "2ABE" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Object Name
     private(set) public var objectName: String
-
+    
     /// Creates Object Name Characteristic
     ///
     /// - Parameter objectName: Object Name
     public init(objectName: String) {
         self.objectName = objectName
-
-        super.init(name: CharacteristicObjectName.name,
-                   uuidString: CharacteristicObjectName.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicObjectName>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicObjectName, BluetoothDecodeError> {
         guard let objectName = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicObjectName(objectName: objectName) as! C)
+        
+        return.success(CharacteristicObjectName(objectName: objectName))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         guard kObjectNameStringBounds.contains(objectName.count) else {
             return.failure(BluetoothEncodeError.boundsError(title: "Object Name must be between",
                                                             msg: "characters in size",
                                                             range: kObjectNameStringBounds))
         }
-
+        
         if let stringData = objectName.data(using: .utf8) {
             msgData.append(stringData)
         }
-
+        
         return.success(msgData)
     }
 }

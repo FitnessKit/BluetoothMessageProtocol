@@ -29,28 +29,30 @@ import FitnessUnits
 /// BLE Position 2D Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicPosition2D: Characteristic {
-
+final public class CharacteristicPosition2D: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Position 2D"
-    }
-
+    public static var name: String { "Position 2D" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AAF"
-    }
-
+    public static var uuidString: String { "2AAF" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Latitude
     ///
     /// WGS84 North coordinate
     private(set) public var latitude: Int32
-
+    
     /// Longitude
     ///
     /// WGS84 East coordinate
     private(set) public var longitude: Int32
-
+    
     /// Creates Position 2D Characteristic
     ///
     /// - Parameters:
@@ -59,35 +61,32 @@ open class CharacteristicPosition2D: Characteristic {
     public init(latitude: Int32, longitude: Int32) {
         self.latitude = latitude
         self.longitude = longitude
-
-        super.init(name: CharacteristicPosition2D.name,
-                   uuidString: CharacteristicPosition2D.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicPosition2D>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicPosition2D, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lat = decoder.decodeInt32(data)
         let lon = decoder.decodeInt32(data)
-
+        
         let char = CharacteristicPosition2D(latitude: lat,
                                             longitude: lon)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: latitude.littleEndian))
         msgData.append(Data(from: longitude.littleEndian))
-
+        
         return.success(msgData)
     }
 }

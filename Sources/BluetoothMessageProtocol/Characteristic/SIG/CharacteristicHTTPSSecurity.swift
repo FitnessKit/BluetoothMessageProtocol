@@ -29,53 +29,52 @@ import DataDecoder
 /// HTTPS Server certificate for the URI
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHTTPSSecurity: Characteristic {
-
+final public class CharacteristicHTTPSSecurity: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "HTTPS Security"
-    }
-
+    public static var name: String { "HTTPS Security" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ABB"
-    }
-
+    public static var uuidString: String { "2ABB" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// HTTPS Security
     ///
     /// The known authenticity of the HTTP Server certificate for the URI
     private(set) public var security: Bool
-
+    
     /// Creates HTTPS Security Characteristic
     ///
     /// - Parameter security: HTTPS Security
     public init(security: Bool) {
         self.security = security
-
-        super.init(name: CharacteristicHTTPSSecurity.name,
-                   uuidString: CharacteristicHTTPSSecurity.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHTTPSSecurity>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHTTPSSecurity, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt8(data).boolValue
-
-        return.success(CharacteristicHTTPSSecurity(security: value) as! C)
+        
+        return.success(CharacteristicHTTPSSecurity(security: value))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: security))
-
+        
         return.success(msgData)
     }
 }

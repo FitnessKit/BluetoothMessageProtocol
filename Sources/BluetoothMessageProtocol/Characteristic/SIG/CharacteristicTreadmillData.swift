@@ -32,96 +32,65 @@ import FitnessUnits
 /// the Client from a treadmill (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTreadmillData: Characteristic {
-
+final public class CharacteristicTreadmillData: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Treadmill Data"
-    }
-
+    public static var name: String { "Treadmill Data" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2ACD"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt16
-        public init(rawValue: UInt16) { self.rawValue = rawValue }
-
-        /// More Data not present (is defined opposite of the norm)
-        public static let moreData                       = Flags(rawValue: 1 << 0)
-        /// Average Speed present
-        public static let averageSpeedPresent            = Flags(rawValue: 1 << 1)
-        /// Total Distance Present
-        public static let totalDistancePresent           = Flags(rawValue: 1 << 2)
-        /// Inclination and Ramp Angle Setting present
-        public static let angleSettingpresent            = Flags(rawValue: 1 << 3)
-        /// Elevation Gain present
-        public static let elevationGainPresent           = Flags(rawValue: 1 << 4)
-        /// Instantaneous Pace present
-        public static let instantaneousPacePresent       = Flags(rawValue: 1 << 5)
-        /// Average Pace present
-        public static let averagePacePresent             = Flags(rawValue: 1 << 6)
-        /// Expended Energy present
-        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 7)
-        /// Heart Rate present
-        public static let heartRatePresent               = Flags(rawValue: 1 << 8)
-        /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 9)
-        /// Elapsed Time present
-        public static let elapsedTimePresent             = Flags(rawValue: 1 << 10)
-        /// Remaining Time present
-        public static let remainingTimePresent           = Flags(rawValue: 1 << 11)
-        /// Force on Belt and Power Output present
-        public static let beltForcePowerOutputPresent    = Flags(rawValue: 1 << 12)
-    }
-
+    public static var uuidString: String { "2ACD" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Instantaneous Speed
     private(set) public var instantaneousSpeed: FitnessMachineSpeedType?
-
+    
     /// Average Speed
     private(set) public var averageSpeed: FitnessMachineSpeedType?
-
+    
     /// Total Distance
     private(set) public var totalDistance: Measurement<UnitLength>?
-
+    
     /// Inclination
     private(set) public var inclination: FitnessMachineInclinationType?
-
+    
     /// Ramp Angle Setting
     private(set) public var rampAngle: Measurement<UnitAngle>?
-
+    
     /// Positive Elevation Gain
     private(set) public var positiveElevationGain: Measurement<UnitLength>?
-
+    
     /// Negative Elevation Gain
     private(set) public var negativeElevationGain: Measurement<UnitLength>?
-
+    
     /// Instantaneous Pace
     private(set) public var instantaneousPace: Measurement<UnitSpeed>?
-
+    
     /// Average Pace
     private(set) public var averagePace: Measurement<UnitSpeed>?
-
+    
     /// Energy Information
     private(set) public var energy: FitnessMachineEnergy
-
+    
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
-
+    
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
-
+    
     /// Time Information
     private(set) public var time: FitnessMachineTime
-
+    
     /// Force on Belt
     private(set) public var forceOnBelt: Measurement<UnitForce>?
-
+    
     /// Power Output
     private(set) public var powerOutput: FitnessMachinePowerType?
-
+    
     /// Creates Treadmill Data Characteristic
     ///
     /// - Parameters:
@@ -155,7 +124,7 @@ open class CharacteristicTreadmillData: Characteristic {
                 time: FitnessMachineTime,
                 forceOnBelt: Measurement<UnitForce>?,
                 powerOutput: FitnessMachinePowerType?) {
-
+        
         self.instantaneousSpeed = instantaneousSpeed
         self.averageSpeed = averageSpeed
         self.totalDistance = totalDistance
@@ -166,27 +135,24 @@ open class CharacteristicTreadmillData: Characteristic {
         self.instantaneousPace = instantaneousPace
         self.averagePace = averagePace
         self.energy = energy
-
+        
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
         } else {
             self.heartRate = nil
         }
-
+        
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
         self.forceOnBelt = forceOnBelt
         self.powerOutput = powerOutput
-
-        super.init(name: CharacteristicTreadmillData.name,
-                   uuidString: CharacteristicTreadmillData.uuidString)
     }
     
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTreadmillData>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTreadmillData, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -307,20 +273,53 @@ open class CharacteristicTreadmillData: Characteristic {
                                                time: time,
                                                forceOnBelt: forceOnBelt,
                                                powerOutput: powerOutput)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
 private extension CharacteristicTreadmillData {
-
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt16
+        public init(rawValue: UInt16) { self.rawValue = rawValue }
+        
+        /// More Data not present (is defined opposite of the norm)
+        public static let moreData                       = Flags(rawValue: 1 << 0)
+        /// Average Speed present
+        public static let averageSpeedPresent            = Flags(rawValue: 1 << 1)
+        /// Total Distance Present
+        public static let totalDistancePresent           = Flags(rawValue: 1 << 2)
+        /// Inclination and Ramp Angle Setting present
+        public static let angleSettingpresent            = Flags(rawValue: 1 << 3)
+        /// Elevation Gain present
+        public static let elevationGainPresent           = Flags(rawValue: 1 << 4)
+        /// Instantaneous Pace present
+        public static let instantaneousPacePresent       = Flags(rawValue: 1 << 5)
+        /// Average Pace present
+        public static let averagePacePresent             = Flags(rawValue: 1 << 6)
+        /// Expended Energy present
+        public static let expendedEnergyPresent          = Flags(rawValue: 1 << 7)
+        /// Heart Rate present
+        public static let heartRatePresent               = Flags(rawValue: 1 << 8)
+        /// Metabolic Equivalent present
+        public static let metabolicEquivalentPresent     = Flags(rawValue: 1 << 9)
+        /// Elapsed Time present
+        public static let elapsedTimePresent             = Flags(rawValue: 1 << 10)
+        /// Remaining Time present
+        public static let remainingTimePresent           = Flags(rawValue: 1 << 11)
+        /// Force on Belt and Power Output present
+        public static let beltForcePowerOutputPresent    = Flags(rawValue: 1 << 12)
+    }
+    
     /// Decode Duration Data
     ///
     /// - Parameters:
@@ -336,7 +335,7 @@ private extension CharacteristicTreadmillData {
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) -> Measurement<UnitDuration>? {
-
+        
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))

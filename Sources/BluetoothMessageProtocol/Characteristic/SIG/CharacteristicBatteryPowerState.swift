@@ -29,49 +29,48 @@ import FitnessUnits
 /// BLE Battery Power State Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicBatteryPowerState: Characteristic {
-
+final public class CharacteristicBatteryPowerState: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Battery Power State"
-    }
-
+    public static var name: String { "Battery Power State" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A1A"
-    }
-
+    public static var uuidString: String { "2A1A" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Battery Power State
     private(set) public var state: BatteryPowerState
-
+    
     /// Creates Battery Power State Characteristic
     ///
     /// - Parameter state: Battery Power State
     public init(state: BatteryPowerState) {
         self.state = state
-
-        super.init(name: CharacteristicBatteryPowerState.name,
-                   uuidString: CharacteristicBatteryPowerState.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicBatteryPowerState>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicBatteryPowerState, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let state = BatteryPowerState(decoder.decodeUInt8(data))
-
-        return.success(CharacteristicBatteryPowerState(state: state) as! C)
+        
+        return.success(CharacteristicBatteryPowerState(state: state))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(state.rawValue)
         
         return.success(msgData)

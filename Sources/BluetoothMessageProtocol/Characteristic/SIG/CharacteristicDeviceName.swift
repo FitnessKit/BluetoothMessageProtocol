@@ -29,45 +29,44 @@ import FitnessUnits
 /// BLE Device Name Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDeviceName: Characteristic {
-
+final public class CharacteristicDeviceName: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Device Name"
-    }
-
+    public static var name: String { "Device Name" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A00"
-    }
-
+    public static var uuidString: String { "2A00" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Device Name
     private(set) public var deviceName: String
-
+    
     /// Creates Device Name Characteristic
     ///
     /// - Parameter deviceName: Device Name
     public init(deviceName: String) {
         self.deviceName = deviceName
-
-        super.init(name: CharacteristicDeviceName.name,
-                   uuidString: CharacteristicDeviceName.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDeviceName>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDeviceName, BluetoothDecodeError> {
         guard let name = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicDeviceName(deviceName: name) as! C)
+        
+        return.success(CharacteristicDeviceName(deviceName: name))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

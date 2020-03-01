@@ -29,45 +29,44 @@ import FitnessUnits
 /// BLE Email Address Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicEmailAddress: Characteristic {
-
+final public class CharacteristicEmailAddress: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Email Address"
-    }
-
+    public static var name: String { "Email Address" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A87"
-    }
-
+    public static var uuidString: String { "2A87" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Email Address
     private(set) public var emailAddress: String
-
+    
     /// Creates Email Address Characteristic
     ///
     /// - Parameter emailAddress: Email Address
     public init(emailAddress: String) {
         self.emailAddress = emailAddress
-
-        super.init(name: CharacteristicEmailAddress.name,
-                   uuidString: CharacteristicEmailAddress.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicEmailAddress>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicEmailAddress, BluetoothDecodeError> {
         guard let email = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicEmailAddress(emailAddress: email) as! C)
+        
+        return.success(CharacteristicEmailAddress(emailAddress: email))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

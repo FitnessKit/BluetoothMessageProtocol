@@ -29,18 +29,14 @@ import FitnessUnits
 /// BLE Time Source Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTimeSource: Characteristic {
-
+final public class CharacteristicTimeSource: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Time Source"
-    }
-
+    public static var name: String { "Time Source" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A13"
-    }
-
+    public static var uuidString: String { "2A13" }
+    
     /// Time Source Types
     public enum TimeSource: UInt8 {
         /// Unknown
@@ -58,41 +54,44 @@ open class CharacteristicTimeSource: Characteristic {
         /// Cellular Network
         case cellularNetwork        = 6
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Time Source
     private(set) public var source: TimeSource
-
+    
     /// Creates Time Source Characteristic
     ///
     /// - Parameter source: Time Source
     public init(source: TimeSource) {
         self.source = source
-
-        super.init(name: CharacteristicTimeSource.name,
-                   uuidString: CharacteristicTimeSource.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTimeSource>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTimeSource, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let source = TimeSource(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
+        
         let char = CharacteristicTimeSource(source: source)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(source.rawValue)
-
+        
         return.success(msgData)
     }
 }

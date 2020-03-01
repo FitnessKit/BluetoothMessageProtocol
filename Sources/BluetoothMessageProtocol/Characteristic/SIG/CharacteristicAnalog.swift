@@ -31,49 +31,48 @@ import FitnessUnits
 /// Used to read or write the value of one of the IO Module’s analog signals
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicAnalog: Characteristic {
-
+final public class CharacteristicAnalog: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Analog"
-    }
-
+    public static var name: String { "Analog" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A58"
-    }
-
+    public static var uuidString: String { "2A58" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Analog Value
     private(set) public var analogValue: UInt16
-
+    
     /// Creates Analog Characteristic
     ///
     /// - Parameter analogValue: Analog Data
     public init(analogValue: UInt16) {
         self.analogValue = analogValue
-
-        super.init(name: CharacteristicAnalog.name,
-                   uuidString: CharacteristicAnalog.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicAnalog>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicAnalog, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let analogValue = decoder.decodeUInt16(data)
-
-        return.success(CharacteristicAnalog(analogValue: analogValue) as! C)
+        
+        return.success(CharacteristicAnalog(analogValue: analogValue))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: analogValue.littleEndian))
         
         return.success(msgData)

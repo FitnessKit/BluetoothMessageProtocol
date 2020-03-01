@@ -32,27 +32,29 @@ import FitnessUnits
 /// range as well as the minimum speed increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicSupportedSpeedRange: Characteristic {
-
+final public class CharacteristicSupportedSpeedRange: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Supported Speed Range"
-    }
-
+    public static var name: String { "Supported Speed Range" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD4"
-    }
-
+    public static var uuidString: String { "2AD4" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Minimum Speed
     private(set) public var minimum: FitnessMachineSpeedType
-
+    
     /// Maximum Speed
     private(set) public var maximum: FitnessMachineSpeedType
-
+    
     /// Minimum Increment
     private(set) public var minimumIncrement: FitnessMachineSpeedType
-
+    
     /// Creates Supported Speed Range Characteristic
     ///
     /// - Parameters:
@@ -63,42 +65,39 @@ open class CharacteristicSupportedSpeedRange: Characteristic {
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
-
-        super.init(name: CharacteristicSupportedSpeedRange.name,
-                   uuidString: CharacteristicSupportedSpeedRange.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicSupportedSpeedRange>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicSupportedSpeedRange, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         let maximum = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
         let minimumIncrement = FitnessMachineSpeedType.create(decoder.decodeUInt16(data))
-
+        
         let char = CharacteristicSupportedSpeedRange(minimum: minimum,
                                                      maximum: maximum,
                                                      minimumIncrement: minimumIncrement)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let minValue = minimum.encode()
         let maxValue = maximum.encode()
         let incrValue = minimumIncrement.encode()
-
+        
         msgData.append(minValue)
         msgData.append(maxValue)
         msgData.append(incrValue)
-
+        
         return.success(msgData)
     }
 }

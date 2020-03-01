@@ -29,18 +29,20 @@ import FitnessUnits
 /// BLE Fitness Machine Service Data
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ServiceDataFitnessMachine: ServiceData {
+final public class ServiceDataFitnessMachine: ServiceData {
 
     /// Service Data Name
-    public static var name: String {
-        return "Fitness Machine"
-    }
+    public static var name: String { "Fitness Machine" }
 
     /// Service Data UUID
-    public static var uuidString: String {
-        return "1826"
-    }
+    public static var uuidString: String { "1826" }
     
+    /// Name of the Service Data AD Type
+    public var name: String { Self.name }
+    
+    /// Service Data AD Type UUID String
+    public var uuidString: String { Self.uuidString }
+
     struct Flags: OptionSet {
         let rawValue: UInt8
         init(rawValue: UInt8) { self.rawValue = rawValue }
@@ -82,17 +84,13 @@ open class ServiceDataFitnessMachine: ServiceData {
     public init(fitnessMachineAvailable: Bool, equipmentSupported: EquipmentType) {
         self.fitnessMachineAvailable = fitnessMachineAvailable
         self.equipmentSupported = equipmentSupported
-
-        super.init(name: ServiceDataFitnessMachine.name,
-                   uuidString: ServiceDataFitnessMachine.uuidString)
-
     }
 
     /// Decodes Service Data AD Data into ServiceData
     ///
     /// - Parameter data: ServiceData Data
     /// - Returns: ServiceData Result
-    open override class func decode<S: ServiceDataFitnessMachine>(with data: Data) -> Result<S, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<ServiceDataFitnessMachine, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt8(data))
@@ -107,13 +105,13 @@ open class ServiceDataFitnessMachine: ServiceData {
         
         let serviceData = ServiceDataFitnessMachine(fitnessMachineAvailable: ftmsAvailable,
                                                     equipmentSupported: supported)
-        return.success(serviceData as! S)
+        return.success(serviceData)
     }
 
     /// Encodes the Service Data AD Type into Data
     ///
     /// - Returns: Service Data AD Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         //Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
@@ -127,14 +125,12 @@ open class ServiceDataFitnessMachine: ServiceData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: StringKey.self)
 
         let dataKey = StringKey(stringValue: "data")!
         let fitKey = StringKey(stringValue: "fitnessMachineAvailable")!
         let eqipKey = StringKey(stringValue: "equipmentSupported")!
-
-        try super.encode(to: encoder)
 
         var unitContainer = container.nestedContainer(keyedBy: StringKey.self, forKey: dataKey)
         try unitContainer.encode(fitnessMachineAvailable, forKey: fitKey)

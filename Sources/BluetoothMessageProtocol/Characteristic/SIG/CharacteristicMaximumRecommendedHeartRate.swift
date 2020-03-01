@@ -32,51 +32,50 @@ import FitnessUnits
 /// The maximum recommended heart rate is smaller or equal to the maximal heart rate a user can reach
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicMaximumRecommendedHeartRate: Characteristic {
-
+final public class CharacteristicMaximumRecommendedHeartRate: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Maximum Recommended Heart Rate"
-    }
-
+    public static var name: String { "Maximum Recommended Heart Rate" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A91"
-    }
-
+    public static var uuidString: String { "2A91" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Maximum Recommended Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>
-
+    
     /// Creates Maximum Recommended Heart Rate Characteristic
     ///
     /// - Parameter heartRate: Maximum Recommended Heart Rate
     public init(heartRate: UInt8) {
         self.heartRate = Measurement(value: Double(heartRate), unit: UnitCadence.beatsPerMinute)
-
-        super.init(name: CharacteristicMaximumRecommendedHeartRate.name,
-                   uuidString: CharacteristicMaximumRecommendedHeartRate.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicMaximumRecommendedHeartRate>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicMaximumRecommendedHeartRate, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let heartRate: UInt8 = decoder.decodeUInt8(data)
-
-        return.success(CharacteristicMaximumRecommendedHeartRate(heartRate: heartRate) as! C)
+        
+        return.success(CharacteristicMaximumRecommendedHeartRate(heartRate: heartRate))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(Data(from: UInt8(heartRate.value)))
-
+        
         return.success(msgData)
     }
 }

@@ -32,45 +32,44 @@ import FitnessUnits
 /// the manufacturer of the device
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicManufacturerNameString: Characteristic {
-
+final public class CharacteristicManufacturerNameString: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Manufacturer Name String"
-    }
-
+    public static var name: String { "Manufacturer Name String" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A29"
-    }
-
+    public static var uuidString: String { "2A29" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Manufacturer Name
     private(set) public var manufacturerName: String
-
+    
     /// Creates Manufacturer Name String Characteristic
     ///
     /// - Parameter manufacturerName: Manufacturer Name
     public init(manufacturerName: String) {
         self.manufacturerName = manufacturerName
-
-        super.init(name: CharacteristicManufacturerNameString.name,
-                   uuidString: CharacteristicManufacturerNameString.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicManufacturerNameString>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicManufacturerNameString, BluetoothDecodeError> {
         guard let name = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicManufacturerNameString(manufacturerName: name) as! C)
+        
+        return.success(CharacteristicManufacturerNameString(manufacturerName: name))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

@@ -31,45 +31,44 @@ import FitnessUnits
 /// The Location Name characteristic describes the name of the location the device is installed in
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicLocationName: Characteristic {
-
+final public class CharacteristicLocationName: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Location Name"
-    }
-
+    public static var name: String { "Location Name" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB5"
-    }
-
+    public static var uuidString: String { "2AB5" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Location Name
     private(set) public var locationName: String
-
+    
     /// Creates Location Name Characteristic
     ///
     /// - Parameter locationName: Location Name
     public init(locationName: String) {
         self.locationName = locationName
-
-        super.init(name: CharacteristicLocationName.name,
-                   uuidString: CharacteristicLocationName.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicLocationName>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicLocationName, BluetoothDecodeError> {
         guard let locationName = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicLocationName(locationName: locationName) as! C)
+        
+        return.success(CharacteristicLocationName(locationName: locationName))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

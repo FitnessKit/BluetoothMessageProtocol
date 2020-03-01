@@ -29,54 +29,53 @@ import FitnessUnits
 /// BLE Heart Rate Control Point Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHeartRateControlPoint: Characteristic {
-
+final public class CharacteristicHeartRateControlPoint: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Heart Rate Control Point"
-    }
-
+    public static var name: String { "Heart Rate Control Point" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A39"
-    }
-
+    public static var uuidString: String { "2A39" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Control Point Commands
     public enum Command: UInt8 {
         /// Reset Energy Expended
         case resetEnergyExpended    = 1
     }
-
+    
     /// The Control Command for the Control Point
     public var controlMessage: Command
-
+    
     /// Creates Heart Rate Control Point Characteristic
     ///
     /// - Parameter controlMessage: Control Command
     public init(controlMessage: Command) {
         self.controlMessage = controlMessage
-
-        super.init(name: CharacteristicHeartRateControlPoint.name,
-                   uuidString: CharacteristicHeartRateControlPoint.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHeartRateControlPoint>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHeartRateControlPoint, BluetoothDecodeError> {
         //Not Yet Supported
         return.failure(BluetoothDecodeError.notSupported)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(controlMessage.rawValue)
-
+        
         return.success(msgData)
     }
 }

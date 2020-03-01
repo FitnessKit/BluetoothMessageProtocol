@@ -29,33 +29,35 @@ import FitnessUnits
 /// BLE Date of Birth Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicDateOfBirth: Characteristic {
-
+final public class CharacteristicDateOfBirth: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Date of Birth"
-    }
-
+    public static var name: String { "Date of Birth" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A85"
-    }
-
+    public static var uuidString: String { "2A85" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Year
     ///
     /// Year as defined by the Gregorian calendar. Valid between 1582 and 9999
     private(set) public var year: UInt16?
-
+    
     /// Month
     ///
     /// Month of the year as defined by the Gregorian calendar
     private(set) public var month: Month
-
+    
     /// Day of Month
     ///
     /// Day of the month as defined by the Gregorian calendar
     private(set) public var day: UInt8?
-
+    
     /// Creates Date of Birth Characteristic
     ///
     /// - Parameters:
@@ -66,16 +68,13 @@ open class CharacteristicDateOfBirth: Characteristic {
         self.year = year
         self.month = month
         self.day = day
-
-        super.init(name: CharacteristicDateOfBirth.name,
-                   uuidString: CharacteristicDateOfBirth.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicDateOfBirth>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicDateOfBirth, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         var year: UInt16?
@@ -92,18 +91,17 @@ open class CharacteristicDateOfBirth: Characteristic {
         if kBluetoothDayOfMonthBounds.contains(Int(day)) {
             dayOfMonth = day
         }
-
-        return.success(CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth) as! C)
+        
+        return.success(CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         if let yr = year {
-
             guard kBluetoothYearBounds.contains(Int(yr)) else {
                 return.failure(BluetoothEncodeError.boundsError(title: "Year must be between",
                                                                 range: kBluetoothYearBounds))
@@ -114,16 +112,16 @@ open class CharacteristicDateOfBirth: Characteristic {
             let noYear: UInt16 = 0
             msgData.append(Data(from: noYear.littleEndian))
         }
-
+        
         msgData.append(month.rawValue)
-
+        
         if let dayOfMonth = day {
             msgData.append(dayOfMonth)
         } else {
             let noDay: UInt8 = 0
             msgData.append(noDay)
         }
-
+        
         return.success(msgData)
     }
 }

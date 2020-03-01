@@ -29,52 +29,51 @@ import FitnessUnits
 /// BLE UV Index Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicUVIndex: Characteristic {
-
+final public class CharacteristicUVIndex: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "UV Index"
-    }
-
+    public static var name: String { "UV Index" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A76"
-    }
-
+    public static var uuidString: String { "2A76" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// UV Index
     private(set) public var uvIndex: UInt8
-
+    
     /// Creates UV Index Characteristic
     ///
     /// - Parameter uvIndex: UV Index
     public init(uvIndex: UInt8) {
         self.uvIndex = uvIndex
-
-        super.init(name: CharacteristicUVIndex.name,
-                   uuidString: CharacteristicUVIndex.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicUVIndex>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicUVIndex, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt8(data)
-
+        
         let char = CharacteristicUVIndex(uvIndex: value)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(uvIndex)
-
+        
         return.success(msgData)
     }
 }

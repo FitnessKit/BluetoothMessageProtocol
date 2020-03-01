@@ -31,51 +31,50 @@ import FitnessUnits
 /// Gender of the user
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicGender: Characteristic {
-
+final public class CharacteristicGender: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Gender"
-    }
-
+    public static var name: String { "Gender" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A8C"
-    }
-
+    public static var uuidString: String { "2A8C" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Gender
     fileprivate(set) public var gender: Gender
-
+    
     /// Creates Gender Characteristic
     ///
     /// - Parameter gender: Gender
     public init(gender: Gender) {
         self.gender = gender
-
-        super.init(name: CharacteristicGender.name,
-                   uuidString: CharacteristicGender.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicGender>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicGender, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let gender = Gender(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
-
-        return.success(CharacteristicGender(gender: gender) as! C)
+        
+        return.success(CharacteristicGender(gender: gender))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(gender.rawValue)
-
+        
         return.success(msgData)
     }
 }

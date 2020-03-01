@@ -31,18 +31,14 @@ import FitnessUnits
 /// The Ringer Setting characteristic defines the Setting of the Ringer
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicRingerSetting: Characteristic {
-
+final public class CharacteristicRingerSetting: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Ringer Setting"
-    }
-
+    public static var name: String { "Ringer Setting" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A41"
-    }
-
+    public static var uuidString: String { "2A41" }
+    
     /// Ringer Setting Types
     public enum RingerSetting: UInt8 {
         /// Ringer Silent
@@ -50,41 +46,44 @@ open class CharacteristicRingerSetting: Characteristic {
         /// Ringer Normal
         case normal         = 1
     }
-
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Ringer Setting
     private(set) public var setting: RingerSetting
-
+    
     /// Creates Ringer Setting Characteristic
     ///
     /// - Parameter setting: Ringer Setting
     public init(setting: RingerSetting) {
         self.setting = setting
-
-        super.init(name: CharacteristicRingerSetting.name,
-                   uuidString: CharacteristicRingerSetting.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicRingerSetting>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicRingerSetting, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let setting = RingerSetting(rawValue: decoder.decodeUInt8(data)) ?? .silent
-
+        
         let char = CharacteristicRingerSetting(setting: setting)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         msgData.append(setting.rawValue)
-
+        
         return.success(msgData)
     }
 }

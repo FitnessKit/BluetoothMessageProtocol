@@ -32,27 +32,29 @@ import FitnessUnits
 /// range as well as the minimum power increment supported by the Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicSupportedPowerRange: Characteristic {
-
+final public class CharacteristicSupportedPowerRange: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Supported Power Range"
-    }
-
+    public static var name: String { "Supported Power Range" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD8"
-    }
-
+    public static var uuidString: String { "2AD8" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Minimum Power
     private(set) public var minimum: FitnessMachinePowerType
-
+    
     /// Maximum Power
     private(set) public var maximum: FitnessMachinePowerType
-
+    
     /// Minimum Increment
     private(set) public var minimumIncrement: Measurement<UnitPower>
-
+    
     /// Creates Supported Power Range Characteristic
     ///
     /// - Parameters:
@@ -62,20 +64,17 @@ open class CharacteristicSupportedPowerRange: Characteristic {
     public init(minimum: FitnessMachinePowerType,
                 maximum: FitnessMachinePowerType,
                 minimumIncrement: Measurement<UnitPower>) {
-
+        
         self.minimum = minimum
         self.maximum = maximum
         self.minimumIncrement = minimumIncrement
-
-        super.init(name: CharacteristicSupportedPowerRange.name,
-                   uuidString: CharacteristicSupportedPowerRange.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicSupportedPowerRange>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicSupportedPowerRange, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = FitnessMachinePowerType.create(decoder.decodeInt16(data))
@@ -83,27 +82,27 @@ open class CharacteristicSupportedPowerRange: Characteristic {
         
         let incrValue = Double(decoder.decodeUInt16(data))
         let minimumIncrement = Measurement(value: incrValue, unit: UnitPower.watts)
-
+        
         let char = CharacteristicSupportedPowerRange(minimum: minimum,
                                                      maximum: maximum,
                                                      minimumIncrement: minimumIncrement)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let minValue = minimum.encode()
         let maxValue = maximum.encode()
         let incrValue = UInt16(minimumIncrement.converted(to: UnitPower.watts).value)
-
+        
         msgData.append(minValue)
         msgData.append(maxValue)
         msgData.append(Data(from: incrValue.littleEndian))
-
+        
         return.success(msgData)
     }
 }

@@ -29,47 +29,46 @@ import DataDecoder
 /// the HTTP Request or the headers contained within an HTTP response message from the HTTP Server
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicHTTPHeaders: Characteristic {
-
+final public class CharacteristicHTTPHeaders: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "HTTP Headers"
-    }
-
+    public static var name: String { "HTTP Headers" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AB7"
-    }
-
+    public static var uuidString: String { "2AB7" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// HTTP Headers
     ///
     /// The HTTP headers to be used in the HTTP request
     private(set) public var headers: String
-
+    
     /// Creates HTTP Headers Characteristic
     ///
     /// - Parameter headers: The HTTP Headers
     public init(headers: String) {
         self.headers = headers
-
-        super.init(name: CharacteristicHTTPHeaders.name,
-                   uuidString: CharacteristicHTTPHeaders.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicHTTPHeaders>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicHTTPHeaders, BluetoothDecodeError> {
         guard let body = data.safeStringValue else { return.failure(.invalidStringValue) }
-
-        return.success(CharacteristicHTTPHeaders(headers: body) as! C)
+        
+        return.success(CharacteristicHTTPHeaders(headers: body))
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }

@@ -30,23 +30,36 @@ import FitnessUnits
 ///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class ManufacturerDataAltBeacon: ManufacturerData {
-
+public final class ManufacturerDataAltBeacon: ManufacturerData {
+    
+    enum CodeKeys: CodingKey {
+        case manufacturer
+        case beaconID
+        case referencePower
+        case manufacturerReserved
+    }
+    
+    /// Manufacturer
+    public var manufacturer: CompanyIdentifier
+    
+    /// Data
+    public var specificData: Data?
+    
     /// Beacon ID
     ///
     /// A 20-byte value uniquely identifying the beacon
     private(set) public var beaconID: [UInt8]
-
+    
     /// Reference Power
     ///
     /// Average received signal strength at 1m from the advertiser
     private(set) public var referencePower: Int8
-
+    
     /// Manufacturer Reserved Value
     ///
     /// Reserved for use by the manufacturer to implement special features
     private(set) public var manufacturerReserved: UInt8
-
+    
     /// Creates an AltBeacon Manufacturer Specific Data Class
     ///
     /// - Parameters:
@@ -58,36 +71,38 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
                 beaconID: [UInt8],
                 referencePower: Int8,
                 manufacturerReserved: UInt8) {
-
+        self.manufacturer = manufacturer
+        self.specificData = nil
         self.beaconID = beaconID
         self.referencePower = referencePower
         self.manufacturerReserved = manufacturerReserved
-
-        super.init(manufacturer: manufacturer, specificData: nil)
     }
-
+    
     internal init(manufacturer: CompanyIdentifier,
                   beaconID: [UInt8],
                   referencePower: Int8,
                   manufacturerReserved: UInt8,
                   rawData: Data) {
-
+        self.manufacturer = manufacturer
+        self.specificData = rawData
         self.beaconID = beaconID
         self.referencePower = referencePower
         self.manufacturerReserved = manufacturerReserved
-
-        super.init(manufacturer: manufacturer, specificData: rawData)
+    }
+    
+    public init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
     }
     
     /// Decodes Manufacturer Specific Data into ManufacturerData
     ///
     /// - Parameter data: ManufacturerData Data
     /// - Returns: ManufacturerData Result
-    open override class func decode<M: ManufacturerDataAltBeacon>(with data: Data) -> Result<M, BluetoothDecodeError> {
-        let man = ManufacturerData(rawData: data)
+    public class func decode(with data: Data) -> Result<ManufacturerDataAltBeacon, BluetoothDecodeError> {
+        let man = ManufacturerSpecificData(rawData: data)
         
         guard let data = man.specificData else {return.failure(BluetoothDecodeError.noManufacturerSpecificData)}
-
+        
         var decoder = DecodeData()
         
         let beaconCode = decoder.decodeUInt16(data).bigEndian
@@ -107,43 +122,33 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
                                                referencePower: referencePower,
                                                manufacturerReserved: manData,
                                                rawData: data)
-        return.success(beacon as! M)
+        return.success(beacon)
     }
-
+    
     /// Encodes AltBeacon Manufacturer Specific Data
     ///
     /// - Returns: ManufacturerData Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
-
+    public func encode() -> Result<Data, BluetoothEncodeError> {
+        
         guard beaconID.count == 20 else {
             return.failure(BluetoothEncodeError.properySize("Beacon ID must be 20 bytes.")) 
         }
-
+        
         var msgData = Data()
-
+        
         msgData.append(Data(from: manufacturer.companyID.littleEndian))
         msgData.append(Data(from: UInt16(0xBEAC).bigEndian))
-
+        
         for byte in beaconID {
             msgData.append(byte)
         }
-
+        
         msgData.append(UInt8(referencePower))
         msgData.append(manufacturerReserved)
-
+        
         return.success(msgData)
     }
-
-    enum CodeKeys: CodingKey {
-        case beaconID
-        case referencePower
-        case manufacturerReserved
-    }
-
-    public init(from decoder: Decoder) throws {
-        fatalError("init(from:) has not been implemented")
-    }
-
+    
     /// Encodes this value into the given encoder.
     ///
     /// If the value fails to encode anything, `encoder` will encode an empty
@@ -153,13 +158,12 @@ open class ManufacturerDataAltBeacon: ManufacturerData {
     /// encoder's format.
     ///
     /// - Parameter encoder: The encoder to write data to.
-    open override func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodeKeys.self)
-        try super.encode(to: encoder)
-
+        
+        try container.encode(manufacturer, forKey: .manufacturer)
         try container.encode(beaconID, forKey: .beaconID)
         try container.encode(referencePower, forKey: .referencePower)
         try container.encode(manufacturerReserved, forKey: .manufacturerReserved)
     }
-
 }

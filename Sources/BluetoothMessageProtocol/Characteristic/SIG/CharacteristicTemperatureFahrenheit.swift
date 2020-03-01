@@ -29,55 +29,54 @@ import FitnessUnits
 /// BLE Temperature Fahrenheit Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicTemperatureFahrenheit: Characteristic {
-
+final public class CharacteristicTemperatureFahrenheit: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Temperature Fahrenheit"
-    }
-
+    public static var name: String { "Temperature Fahrenheit" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A20"
-    }
-
+    public static var uuidString: String { "2A20" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Temperature
     private(set) public var temperature: Measurement<UnitTemperature>
-
+    
     /// Creates Temperature Fahrenheit Characteristic
     ///
     /// - Parameter temperature: Temperature
     public init(temperature: Measurement<UnitTemperature>) {
         self.temperature = temperature
-
-        super.init(name: CharacteristicTemperatureFahrenheit.name,
-                   uuidString: CharacteristicTemperatureFahrenheit.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicTemperatureFahrenheit>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicTemperatureFahrenheit, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let tmpValue = Double(decoder.decodeInt16(data))
         let temp = Measurement(value: tmpValue, unit: UnitTemperature.fahrenheit)
-
+        
         let char = CharacteristicTemperatureFahrenheit(temperature: temp)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         let value = temperature.converted(to: UnitTemperature.fahrenheit).value
-
+        
         msgData.append(Data(from: Int16(value).littleEndian))
-
+        
         return.success(msgData)
     }
 }

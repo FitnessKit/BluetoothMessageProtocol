@@ -31,56 +31,55 @@ import FitnessUnits
 /// Used with the Hip Circumference value to calculate the Waist to Hip Ratio (WHR)
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicWaistCircumference: Characteristic {
-
+final public class CharacteristicWaistCircumference: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Waist Circumference"
-    }
-
+    public static var name: String { "Waist Circumference" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2A97"
-    }
-
+    public static var uuidString: String { "2A97" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Waist Circumference
     private(set) public var waistCircumference: Measurement<UnitLength>
-
+    
     /// Creates Waist Circumference Characteristic
     ///
     /// - Parameter waistCircumference: Waist Circumference
     public init(waistCircumference: Measurement<UnitLength>) {
         self.waistCircumference = waistCircumference
-
-        super.init(name: CharacteristicWaistCircumference.name,
-                   uuidString: CharacteristicWaistCircumference.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicWaistCircumference>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicWaistCircumference, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         let waistCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
-
+        
         let char = CharacteristicWaistCircumference(waistCircumference: waistCircumference)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         //Make sure we put this back to Meters before we create Data
         let value = UInt16(waistCircumference.converted(to: UnitLength.meters).value.resolution(.adding, resolution: Resolution.oneHundredth))
-
+        
         msgData.append(Data(from: value))
-
+        
         return.success(msgData)
     }
 }

@@ -32,87 +32,56 @@ import FitnessUnits
 /// the Client from an indoor bike (Server).
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-open class CharacteristicIndoorBikeData: Characteristic {
-
+final public class CharacteristicIndoorBikeData: Characteristic {
+    
     /// Characteristic Name
-    public static var name: String {
-        return "Indoor Bike Data"
-    }
-
+    public static var name: String { "Indoor Bike Data" }
+    
     /// Characteristic UUID
-    public static var uuidString: String {
-        return "2AD2"
-    }
-
-    /// Flags
-    private struct Flags: OptionSet {
-        public let rawValue: UInt16
-        public init(rawValue: UInt16) { self.rawValue = rawValue }
-
-        /// More Data not present (is defined opposite of the norm)
-        public static let moreData                      = Flags(rawValue: 1 << 0)
-        /// Average Speed present
-        public static let averageSpeedPresent           = Flags(rawValue: 1 << 1)
-        /// Instantaneous Cadence present
-        public static let instantaneousCadencePresent   = Flags(rawValue: 1 << 2)
-        /// Average Candence present
-        public static let averageCadencePresent         = Flags(rawValue: 1 << 3)
-        /// Total Distance Present
-        public static let totalDistancePresent          = Flags(rawValue: 1 << 4)
-        /// Resistance Level present
-        public static let resistanceLevelPresent        = Flags(rawValue: 1 << 5)
-        /// Instantaneous Power present
-        public static let instantaneousPowerPresent     = Flags(rawValue: 1 << 6)
-        /// Average Power present
-        public static let averagePowerPresent           = Flags(rawValue: 1 << 7)
-        /// Expended Energy present
-        public static let expendedEnergyPresent         = Flags(rawValue: 1 << 8)
-        /// Heart Rate present
-        public static let heartRatePresent              = Flags(rawValue: 1 << 9)
-        /// Metabolic Equivalent present
-        public static let metabolicEquivalentPresent    = Flags(rawValue: 1 << 10)
-        /// Elapsed Time present
-        public static let elapsedTimePresent            = Flags(rawValue: 1 << 11)
-        /// Remaining Time present
-        public static let remainingTimePresent          = Flags(rawValue: 1 << 12)
-    }
-
+    public static var uuidString: String { "2AD2" }
+    
+    /// Name of the Characteristic
+    public var name: String { Self.name }
+    
+    /// Characteristic UUID String
+    public var uuidString: String { Self.uuidString }
+    
     /// Instantaneous Speed
     private(set) public var instantaneousSpeed: FitnessMachineSpeedType?
-
+    
     /// Average Speed
     private(set) public var averageSpeed: FitnessMachineSpeedType?
-
+    
     /// Instantaneous Cadence
     private(set) public var instantaneousCadence: Measurement<UnitCadence>?
-
+    
     /// Average Cadence
     private(set) public var averageCadence: Measurement<UnitCadence>?
-
+    
     /// Total Distance
     private(set) public var totalDistance: Measurement<UnitLength>?
-
+    
     /// Resistance Level
     private(set) public var resistanceLevel: Double?
-
+    
     /// Instantaneous Power
     private(set) public var instantaneousPower: FitnessMachinePowerType?
-
+    
     /// Average Power
     private(set) public var averagePower: FitnessMachinePowerType?
-
+    
     /// Energy Information
     private(set) public var energy: FitnessMachineEnergy
-
+    
     /// Heart Rate
     private(set) public var heartRate: Measurement<UnitCadence>?
-
+    
     /// Metabolic Equivalent
     private(set) public var metabolicEquivalent: Double?
-
+    
     /// Time Information
     private(set) public var time: FitnessMachineTime
-
+    
     /// Creates Indoor Bike Data Characteristic
     ///
     /// - Parameters:
@@ -150,25 +119,22 @@ open class CharacteristicIndoorBikeData: Characteristic {
         self.instantaneousPower = instantaneousPower
         self.averagePower = averagePower
         self.energy = energy
-
+        
         if let hRate = heartRate {
             self.heartRate = Measurement(value: Double(hRate), unit: UnitCadence.beatsPerMinute)
         } else {
             self.heartRate = nil
         }
-
+        
         self.metabolicEquivalent = metabolicEquivalent
         self.time = time
-
-        super.init(name: CharacteristicIndoorBikeData.name,
-                   uuidString: CharacteristicIndoorBikeData.uuidString)
     }
-
+    
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    open override class func decode<C: CharacteristicIndoorBikeData>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode(with data: Data) -> Result<CharacteristicIndoorBikeData, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -257,20 +223,53 @@ open class CharacteristicIndoorBikeData: Characteristic {
                                                 heartRate: heartRate,
                                                 metabolicEquivalent: mets,
                                                 time: time)
-        return.success(char as! C)
+        return.success(char)
     }
-
+    
     /// Encodes the Characteristic into Data
     ///
     /// - Returns: Characteristic Data Result
-    open override func encode() -> Result<Data, BluetoothEncodeError> {
+    public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
 
 private extension CharacteristicIndoorBikeData {
-
+    
+    /// Flags
+    struct Flags: OptionSet {
+        public let rawValue: UInt16
+        public init(rawValue: UInt16) { self.rawValue = rawValue }
+        
+        /// More Data not present (is defined opposite of the norm)
+        public static let moreData                      = Flags(rawValue: 1 << 0)
+        /// Average Speed present
+        public static let averageSpeedPresent           = Flags(rawValue: 1 << 1)
+        /// Instantaneous Cadence present
+        public static let instantaneousCadencePresent   = Flags(rawValue: 1 << 2)
+        /// Average Candence present
+        public static let averageCadencePresent         = Flags(rawValue: 1 << 3)
+        /// Total Distance Present
+        public static let totalDistancePresent          = Flags(rawValue: 1 << 4)
+        /// Resistance Level present
+        public static let resistanceLevelPresent        = Flags(rawValue: 1 << 5)
+        /// Instantaneous Power present
+        public static let instantaneousPowerPresent     = Flags(rawValue: 1 << 6)
+        /// Average Power present
+        public static let averagePowerPresent           = Flags(rawValue: 1 << 7)
+        /// Expended Energy present
+        public static let expendedEnergyPresent         = Flags(rawValue: 1 << 8)
+        /// Heart Rate present
+        public static let heartRatePresent              = Flags(rawValue: 1 << 9)
+        /// Metabolic Equivalent present
+        public static let metabolicEquivalentPresent    = Flags(rawValue: 1 << 10)
+        /// Elapsed Time present
+        public static let elapsedTimePresent            = Flags(rawValue: 1 << 11)
+        /// Remaining Time present
+        public static let remainingTimePresent          = Flags(rawValue: 1 << 12)
+    }
+    
     /// Decode Cadence Data
     ///
     /// - Parameters:
@@ -285,7 +284,7 @@ private extension CharacteristicIndoorBikeData {
                                      unit: UnitCadence,
                                      data: Data,
                                      decoder: inout DecodeData) -> Measurement<UnitCadence>? {
-
+        
         var cadenceValue: Measurement<UnitCadence>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: Resolution.two)
@@ -293,7 +292,7 @@ private extension CharacteristicIndoorBikeData {
         }
         return cadenceValue
     }
-
+    
     /// Decode Duration Data
     ///
     /// - Parameters:
@@ -308,7 +307,7 @@ private extension CharacteristicIndoorBikeData {
                                       unit: UnitDuration,
                                       data: Data,
                                       decoder: inout DecodeData) -> Measurement<UnitDuration>? {
-
+        
         var durationData: Measurement<UnitDuration>?
         if supported.contains(flag) {
             let value = Double(decoder.decodeUInt16(data))
