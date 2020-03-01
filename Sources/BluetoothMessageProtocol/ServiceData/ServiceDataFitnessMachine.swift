@@ -52,7 +52,7 @@ final public class ServiceDataFitnessMachine: ServiceData {
     }
 
     /// Options for Equipment Type Supported by Service
-    public struct EquipmentType: OptionSet {
+    public struct EquipmentType: OptionSet, Hashable {
         public let rawValue: UInt16
         public init(rawValue: UInt16) { self.rawValue = rawValue }
 
@@ -168,5 +168,42 @@ extension ServiceDataFitnessMachine.EquipmentType: Encodable {
         try container.encode(self.contains(.stairClimberSupported), forKey: .stairClimberSupported)
         try container.encode(self.contains(.rowerSupported), forKey: .rowerSupported)
         try container.encode(self.contains(.indoorBikeSupported), forKey: .indoorBikeSupported)
+    }
+}
+
+extension ServiceDataFitnessMachine: Hashable {
+
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(fitnessMachineAvailable)
+        hasher.combine(equipmentSupported)
+    }
+}
+
+extension ServiceDataFitnessMachine: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: ServiceDataFitnessMachine, rhs: ServiceDataFitnessMachine) -> Bool {
+        return (lhs.fitnessMachineAvailable == rhs.fitnessMachineAvailable) &&
+            (lhs.equipmentSupported == rhs.equipmentSupported)
     }
 }
