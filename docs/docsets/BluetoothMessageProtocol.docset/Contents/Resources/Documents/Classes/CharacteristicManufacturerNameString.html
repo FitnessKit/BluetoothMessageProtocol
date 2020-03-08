@@ -50,7 +50,7 @@
                   <div class="language">
                     <pre class="highlight swift"><code><span class="kd">@available(swift 3.1)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">CharacteristicManufacturerNameString</span> <span class="p">:</span> <span class="kt"><a href="../Classes/Characteristic.html">Characteristic</a></span></code></pre>
+<span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">CharacteristicManufacturerNameString</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Characteristic.html">Characteristic</a></span></code></pre>
 
                   </div>
                 </div>
@@ -111,6 +111,60 @@ the manufacturer of the device</p>
                           <div class="language">
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">uuidString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC4nameSSvp"></a>
+                      <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC4nameSSvp">name</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Name of the Characteristic</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC04uuidG0SSvp"></a>
+                      <a name="//apple_ref/swift/Property/uuidString" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC04uuidG0SSvp">uuidString</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Characteristic UUID String</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">uuidString</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                           </div>
                         </div>
@@ -193,9 +247,9 @@ the manufacturer of the device</p>
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC6decode4withs6ResultOyxAA0A11DecodeErrorOG10Foundation4DataV_tACRbzlFZ"></a>
+                      <a name="/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC6decode4withs6ResultOyAcA0A11DecodeErrorOG10Foundation4DataV_tFZ"></a>
                       <a name="//apple_ref/swift/Method/decode(with:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC6decode4withs6ResultOyxAA0A11DecodeErrorOG10Foundation4DataV_tACRbzlFZ">decode(with:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC6decode4withs6ResultOyAcA0A11DecodeErrorOG10Foundation4DataV_tFZ">decode(with:)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -210,7 +264,7 @@ the manufacturer of the device</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">class</span> <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">with</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">C</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothDecodeError.html">BluetoothDecodeError</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt">CharacteristicManufacturerNameString</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">decode</span><span class="p">(</span><span class="n">with</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">CharacteristicManufacturerNameString</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothDecodeError.html">BluetoothDecodeError</a></span><span class="o">&gt;</span></code></pre>
 
                           </div>
                         </div>
@@ -260,13 +314,141 @@ the manufacturer of the device</p>
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothEncodeError.html">BluetoothEncodeError</a></span><span class="o">&gt;</span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt"><a href="../Enums/BluetoothEncodeError.html">BluetoothEncodeError</a></span><span class="o">&gt;</span></code></pre>
 
                           </div>
                         </div>
                         <div>
                           <h4>Return Value</h4>
                           <p>Characteristic Data Result</p>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC4hash4intoys6HasherVz_tF"></a>
+                      <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC4hash4intoys6HasherVz_tF">hash(into:)</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Hashes the essential components of this value by feeding them into the
+given hasher.</p>
+
+<p>Implement this method to conform to the <code>Hashable</code> protocol. The
+components used for hashing must be the same as the components compared
+in your type&rsquo;s <code>==</code> operator implementation. Call <code>hasher.combine(_:)</code>
+with each of these components.</p>
+<div class="aside aside-important">
+    <p class="aside-title">Important</p>
+    <p>Never call <code>finalize()</code> on <code>hasher</code>. Doing so may become a
+compile-time error in the future.</p>
+
+</div>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>hasher</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>The hasher to use when combining the components
+of this instance.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="task-group">
+                <ul>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC2eeoiySbAC_ACtFZ"></a>
+                      <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol36CharacteristicManufacturerNameStringC2eeoiySbAC_ACtFZ">==(_:_:)</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">CharacteristicManufacturerNameString</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">CharacteristicManufacturerNameString</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                          </div>
+                        </div>
+                        <div>
+                          <h4>Parameters</h4>
+                          <table class="graybox">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>lhs</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>A value to compare.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <code>
+                                  <em>rhs</em>
+                                  </code>
+                                </td>
+                                <td>
+                                  <div>
+                                    <p>Another value to compare.</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                       </section>
                     </div>
@@ -287,7 +469,7 @@ the manufacturer of the device</p>
                   <a href="../Classes/MemberIdentifier.html">MemberIdentifier</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Classes/Characteristic.html">Characteristic</a>
+                  <a href="../Protocols/Characteristic.html">Characteristic</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CompanyIdentifier.html">CompanyIdentifier</a>
@@ -296,7 +478,7 @@ the manufacturer of the device</p>
                   <a href="../Classes/Service.html">Service</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Classes/ServiceData.html">ServiceData</a>
+                  <a href="../Protocols/ServiceData.html">ServiceData</a>
                 </li>
               </ul>
             </li>
@@ -854,7 +1036,7 @@ the manufacturer of the device</p>
                   <a href="../Classes/CharacteristicHeartRateMax.html">CharacteristicHeartRateMax</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Classes/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
+                  <a href="../Extensions/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CharacteristicHeatIndex.html">CharacteristicHeatIndex</a>
@@ -1175,7 +1357,7 @@ the manufacturer of the device</p>
               <a href="../Manufacturer%20Data.html">Manufacturer Data</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
-                  <a href="../Classes/ManufacturerData.html">ManufacturerData</a>
+                  <a href="../Protocols/ManufacturerData.html">ManufacturerData</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ManufacturerDataAltBeacon.html">ManufacturerDataAltBeacon</a>

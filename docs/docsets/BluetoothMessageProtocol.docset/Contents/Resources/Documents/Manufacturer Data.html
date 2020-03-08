@@ -54,9 +54,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol16ManufacturerDataC"></a>
-                      <a name="//apple_ref/swift/Class/ManufacturerData" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol16ManufacturerDataC">ManufacturerData</a>
+                      <a name="/s:24BluetoothMessageProtocol16ManufacturerDataP"></a>
+                      <a name="//apple_ref/swift/Protocol/ManufacturerData" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol16ManufacturerDataP">ManufacturerData</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -66,15 +66,14 @@
                         <div class="abstract">
                           <p>Bluetooth Manufacturer Specific Data</p>
 
-                          <a href="Classes/ManufacturerData.html" class="slightly-smaller">See more</a>
+                          <a href="Protocols/ManufacturerData.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
-<span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerData</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt"><a href="Other%20Typealiases.html#/s:24BluetoothMessageProtocol23ManufacturerDataCodablea">ManufacturerDataCodable</a></span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ManufacturerData</span> <span class="p">:</span> <span class="kt"><a href="Protocols/BluetoothEncodable.html">BluetoothEncodable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ManufacturerDataDecodable.html">ManufacturerDataDecodable</a></span><span class="p">,</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
 
                           </div>
                         </div>
@@ -108,7 +107,7 @@
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAltBeacon</span> <span class="p">:</span> <span class="kt"><a href="Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAltBeacon</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ManufacturerData.html">ManufacturerData</a></span></code></pre>
 
                           </div>
                         </div>
@@ -142,7 +141,7 @@
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleHomeKit</span> <span class="p">:</span> <span class="kt"><a href="Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+<span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleHomeKit</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ManufacturerData.html">ManufacturerData</a></span></code></pre>
 
                           </div>
                         </div>
@@ -179,7 +178,7 @@ that are configured for Broadcasted Events.</p>
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleHomeKitEncryptedNotification</span> <span class="p">:</span> <span class="kt"><a href="Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+<span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleHomeKitEncryptedNotification</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ManufacturerData.html">ManufacturerData</a></span></code></pre>
 
                           </div>
                         </div>
@@ -213,7 +212,7 @@ that are configured for Broadcasted Events.</p>
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleiBeacon</span> <span class="p">:</span> <span class="kt"><a href="Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+<span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">ManufacturerDataAppleiBeacon</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ManufacturerData.html">ManufacturerData</a></span></code></pre>
 
                           </div>
                         </div>
@@ -247,7 +246,7 @@ that are configured for Broadcasted Events.</p>
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataGymConnect</span> <span class="p">:</span> <span class="kt"><a href="Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ManufacturerDataGymConnect</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ManufacturerData.html">ManufacturerData</a></span></code></pre>
 
                           </div>
                         </div>
@@ -284,7 +283,7 @@ Polar H10 supported</p>
                             <p class="aside-title">Swift</p>
                             <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ManufacturerDataPolarHeartRate</span> <span class="p">:</span> <span class="kt"><a href="Classes/ManufacturerData.html">ManufacturerData</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">ManufacturerDataPolarHeartRate</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ManufacturerData.html">ManufacturerData</a></span></code></pre>
 
                           </div>
                         </div>
@@ -307,7 +306,7 @@ Polar H10 supported</p>
                   <a href="Classes/MemberIdentifier.html">MemberIdentifier</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="Classes/Characteristic.html">Characteristic</a>
+                  <a href="Protocols/Characteristic.html">Characteristic</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/CompanyIdentifier.html">CompanyIdentifier</a>
@@ -316,7 +315,7 @@ Polar H10 supported</p>
                   <a href="Classes/Service.html">Service</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="Classes/ServiceData.html">ServiceData</a>
+                  <a href="Protocols/ServiceData.html">ServiceData</a>
                 </li>
               </ul>
             </li>
@@ -874,7 +873,7 @@ Polar H10 supported</p>
                   <a href="Classes/CharacteristicHeartRateMax.html">CharacteristicHeartRateMax</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="Classes/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
+                  <a href="Extensions/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/CharacteristicHeatIndex.html">CharacteristicHeatIndex</a>
@@ -1195,7 +1194,7 @@ Polar H10 supported</p>
               <a href="Manufacturer%20Data.html">Manufacturer Data</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
-                  <a href="Classes/ManufacturerData.html">ManufacturerData</a>
+                  <a href="Protocols/ManufacturerData.html">ManufacturerData</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/ManufacturerDataAltBeacon.html">ManufacturerDataAltBeacon</a>

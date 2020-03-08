@@ -89,9 +89,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol14CharacteristicC"></a>
-                      <a name="//apple_ref/swift/Class/Characteristic" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol14CharacteristicC">Characteristic</a>
+                      <a name="/s:24BluetoothMessageProtocol14CharacteristicP"></a>
+                      <a name="//apple_ref/swift/Protocol/Characteristic" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol14CharacteristicP">Characteristic</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -99,17 +99,16 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Bluetooth Characteristic base Class</p>
+                          <p>Bluetooth Characteristic</p>
 
-                          <a href="Classes/Characteristic.html" class="slightly-smaller">See more</a>
+                          <a href="Protocols/Characteristic.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">@available(swift 3.1)</span>
-<span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">Characteristic</span> <span class="p">:</span> <span class="kt"><a href="Other%20Typealiases.html#/s:24BluetoothMessageProtocol21CharacteristicCodablea">CharacteristicCodable</a></span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Characteristic</span> <span class="p">:</span> <span class="kt"><a href="Protocols/BluetoothEncodable.html">BluetoothEncodable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/CharacteristicDecodable.html">CharacteristicDecodable</a></span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
 
                           </div>
                         </div>
@@ -192,9 +191,9 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol11ServiceDataC"></a>
-                      <a name="//apple_ref/swift/Class/ServiceData" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol11ServiceDataC">ServiceData</a>
+                      <a name="/s:24BluetoothMessageProtocol11ServiceDataP"></a>
+                      <a name="//apple_ref/swift/Protocol/ServiceData" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol11ServiceDataP">ServiceData</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -202,17 +201,16 @@
                       <section class="section">
                         <div class="pointer"></div>
                         <div class="abstract">
-                          <p>Bluetooth Service Data AD Type base Class</p>
+                          <p>Bluetooth Characteristic</p>
 
-                          <a href="Classes/ServiceData.html" class="slightly-smaller">See more</a>
+                          <a href="Protocols/ServiceData.html" class="slightly-smaller">See more</a>
                         </div>
                         <div class="declaration">
                           <h4>Declaration</h4>
                           <div class="language">
                             <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
-<span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">ServiceData</span> <span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt"><a href="Other%20Typealiases.html#/s:24BluetoothMessageProtocol18ServiceDataCodablea">ServiceDataCodable</a></span></code></pre>
+                            <pre class="highlight swift"><code><span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ServiceData</span> <span class="p">:</span> <span class="kt"><a href="Protocols/BluetoothEncodable.html">BluetoothEncodable</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/ServiceDataDecodable.html">ServiceDataDecodable</a></span><span class="p">,</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">Hashable</span></code></pre>
 
                           </div>
                         </div>
@@ -235,7 +233,7 @@
                   <a href="Classes/MemberIdentifier.html">MemberIdentifier</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="Classes/Characteristic.html">Characteristic</a>
+                  <a href="Protocols/Characteristic.html">Characteristic</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/CompanyIdentifier.html">CompanyIdentifier</a>
@@ -244,7 +242,7 @@
                   <a href="Classes/Service.html">Service</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="Classes/ServiceData.html">ServiceData</a>
+                  <a href="Protocols/ServiceData.html">ServiceData</a>
                 </li>
               </ul>
             </li>
@@ -802,7 +800,7 @@
                   <a href="Classes/CharacteristicHeartRateMax.html">CharacteristicHeartRateMax</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="Classes/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
+                  <a href="Extensions/CharacteristicHeartRateMeasurement.html">CharacteristicHeartRateMeasurement</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/CharacteristicHeatIndex.html">CharacteristicHeatIndex</a>
@@ -1123,7 +1121,7 @@
               <a href="Manufacturer%20Data.html">Manufacturer Data</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
-                  <a href="Classes/ManufacturerData.html">ManufacturerData</a>
+                  <a href="Protocols/ManufacturerData.html">ManufacturerData</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="Classes/ManufacturerDataAltBeacon.html">ManufacturerDataAltBeacon</a>
