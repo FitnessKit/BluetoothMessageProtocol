@@ -29,6 +29,22 @@ public extension MemberIdentifier {
     /// Array of all Supported MemberIdentifier values
     static var supportedMemberIdentifers: [MemberIdentifier] = {
 
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD75, name: "Insulet Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD76, name: "Insulet Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD77, name: "Withings"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD78, name: "Withings"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD79, name: "Withings"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD7A, name: "Withings"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD7B, name: "WYZE LABS, INC."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD7C, name: "Toshiba Information Systems(Japan) Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD7D, name: "Center for Advanced Research Wernher Von Braun"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD7E, name: "Samsung Electronics Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD7F, name: "Husqvarna AB"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD80, name: "Phindex Technologies, Inc"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD81, name: "CANDY HOUSE, Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD82, name: "Sony Corporation"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD83, name: "iNFORM Technology GmbH"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD84, name: "Tile, Inc."))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD85, name: "Husqvarna AB"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD86, name: "Abbott"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD87, name: "Google LLC"))

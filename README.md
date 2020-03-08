@@ -1,6 +1,6 @@
 # BluetoothMessageProtocol
 
-[![Swift5](https://img.shields.io/badge/swift5-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift5.1](https://img.shields.io/badge/swift5.1-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
 [![Version](https://img.shields.io/cocoapods/v/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![License](https://img.shields.io/cocoapods/l/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
@@ -21,7 +21,7 @@ pod 'BluetoothMessageProtocol'
 Swift Package Manager:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "1.2.1")
+    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "2.0.0")
 ]
 ```
 
