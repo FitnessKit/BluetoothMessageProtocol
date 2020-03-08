@@ -248,6 +248,67 @@ final public class CharacteristicRowerData: Characteristic {
     }
 }
 
+extension CharacteristicRowerData: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(strokeRate)
+        hasher.combine(strokeCount)
+        hasher.combine(averageStrokeRate)
+        hasher.combine(totalDistance)
+        hasher.combine(instantaneousPace)
+        hasher.combine(averagePace)
+        hasher.combine(instantaneousPower)
+        hasher.combine(averagePower)
+        hasher.combine(resistanceLevel)
+        hasher.combine(energy)
+        hasher.combine(heartRate)
+        hasher.combine(metabolicEquivalent)
+        hasher.combine(time)
+    }
+}
+
+extension CharacteristicRowerData: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicRowerData, rhs: CharacteristicRowerData) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.strokeRate == rhs.strokeRate)
+            && (lhs.strokeCount == rhs.strokeCount)
+            && (lhs.averageStrokeRate == rhs.averageStrokeRate)
+            && (lhs.totalDistance == rhs.totalDistance)
+            && (lhs.instantaneousPace == rhs.instantaneousPace)
+            && (lhs.averagePace == rhs.averagePace)
+            && (lhs.instantaneousPower == rhs.instantaneousPower)
+            && (lhs.averagePower == rhs.averagePower)
+            && (lhs.resistanceLevel == rhs.resistanceLevel)
+            && (lhs.energy == rhs.energy)
+            && (lhs.heartRate == rhs.heartRate)
+            && (lhs.metabolicEquivalent == rhs.metabolicEquivalent)
+            && (lhs.time == rhs.time)
+    }
+}
+
 private extension CharacteristicRowerData {
     
     /// Flags

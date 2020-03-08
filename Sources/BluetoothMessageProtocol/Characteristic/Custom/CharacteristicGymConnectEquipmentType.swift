@@ -73,3 +73,40 @@ final public class CharacteristicGymConnectEquipmentType: Characteristic {
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
+
+extension CharacteristicGymConnectEquipmentType: Hashable {
+
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(equipment)
+    }
+}
+
+extension CharacteristicGymConnectEquipmentType: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicGymConnectEquipmentType, rhs: CharacteristicGymConnectEquipmentType) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.equipment == rhs.equipment)
+    }
+}

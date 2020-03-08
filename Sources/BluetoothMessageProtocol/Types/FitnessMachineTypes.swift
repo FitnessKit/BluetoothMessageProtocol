@@ -49,7 +49,7 @@ public enum FitnessMachineStopPauseType: UInt8 {
 /// Fitness Machine Time Information
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTime {
+public struct FitnessMachineTime: Hashable {
 
     /// Elapsed Time
     private(set) public var elapsed: Measurement<UnitDuration>?
@@ -61,7 +61,7 @@ public struct FitnessMachineTime {
 /// Fitness Machine Energy Information
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineEnergy {
+public struct FitnessMachineEnergy: Hashable {
 
     /// Energy Data Not available
     internal static let energyNotAvailable: UInt16 = UInt16.max
@@ -113,7 +113,7 @@ internal extension FitnessMachineEnergy {
 /// Fitness Machine Inclination Type
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineInclinationType {
+public struct FitnessMachineInclinationType: Hashable {
 
     /// Target Incline
     private(set) public var incline: Measurement<UnitPercent>
@@ -139,7 +139,7 @@ public struct FitnessMachineInclinationType {
 /// Fitness Machine Power Type
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachinePowerType {
+public struct FitnessMachinePowerType: Hashable {
 
     /// Power
     private(set) public var power: Measurement<UnitPower>
@@ -166,7 +166,7 @@ public struct FitnessMachinePowerType {
 /// Fitness Machine Speed Type
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineSpeedType {
+public struct FitnessMachineSpeedType: Hashable {
 
     /// Speed
     private(set) public var speed: Measurement<UnitSpeed>
@@ -192,7 +192,7 @@ public struct FitnessMachineSpeedType {
 /// Fitness Machine Wheel Circumference Type
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineWheelCircumferenceType {
+public struct FitnessMachineWheelCircumferenceType: Hashable {
 
     /// Wheel Circumference
     private(set) public var circumference: Measurement<UnitLength>

@@ -41,7 +41,7 @@ final public class CharacteristicFitnessMachineFeature: Characteristic {
     public static var uuidString: String { "2ACC" }
     
     /// Supported Machine Features
-    public struct MachineFeatures: OptionSet {
+    public struct MachineFeatures: OptionSet, Hashable {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
         
@@ -82,7 +82,7 @@ final public class CharacteristicFitnessMachineFeature: Characteristic {
     }
     
     /// Target Settings Features
-    public struct TargetFeatures: OptionSet {
+    public struct TargetFeatures: OptionSet, Hashable {
         public let rawValue: UInt32
         public init(rawValue: UInt32) { self.rawValue = rawValue }
         
@@ -165,5 +165,44 @@ final public class CharacteristicFitnessMachineFeature: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         /// Not Yet Supported
         return.failure(BluetoothEncodeError.notSupported)
+    }
+}
+
+extension CharacteristicFitnessMachineFeature: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(supportedMachineFeatures)
+        hasher.combine(supportedTargetSettings)
+    }
+}
+
+extension CharacteristicFitnessMachineFeature: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicFitnessMachineFeature, rhs: CharacteristicFitnessMachineFeature) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.supportedMachineFeatures == rhs.supportedMachineFeatures)
+            && (lhs.supportedTargetSettings == rhs.supportedTargetSettings)
     }
 }

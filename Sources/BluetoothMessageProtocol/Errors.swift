@@ -37,7 +37,6 @@ public enum BluetoothEncodeError {
 
     /// General Error
     case general(String)
-
 }
 
 extension BluetoothEncodeError {
@@ -106,9 +105,7 @@ extension BluetoothEncodeError: Encodable {
         case .general(_):
             try container.encode("general", forKey: typeKey)
             try container.encode(self.localizedDescription, forKey: errkey)
-
         }
-        
     }
 }
 

@@ -26,7 +26,7 @@ import Foundation
 
 /// Battery Power State Information
 @available(swift 4.0)
-public struct BatteryPowerState: Codable {
+public struct BatteryPowerState: Codable, Hashable {
 
     /// If Power State is supported
     public enum StateSupport: UInt8, Codable {

@@ -99,7 +99,7 @@ public enum Month: UInt8 {
 }
 
 /// Bluetooth Date Time Type
-public struct DateTime {
+public struct DateTime: Hashable {
 
     /// Year
     ///

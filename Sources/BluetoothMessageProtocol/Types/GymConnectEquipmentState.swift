@@ -28,7 +28,7 @@ import Foundation
 ///
 /// Provides the Equipment Types for GymConnect
 @available(swift 4.0)
-public enum GymConnectEquipmentState: UInt8 {
+public enum GymConnectEquipmentState: UInt8, Hashable {
     /// Unknown
     case unknown                    = 0
     /// Idle

@@ -148,3 +148,55 @@ final public class CharacteristicNorthPoleAweDiagnostics: Characteristic {
         return.failure(BluetoothEncodeError.notSupported)
     }
 }
+
+extension CharacteristicNorthPoleAweDiagnostics: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(batterySwaps)
+        hasher.combine(dateProgrammed)
+        hasher.combine(totalOperatingtime)
+        hasher.combine(advertisingTime)
+        hasher.combine(connectedTime)
+        hasher.combine(succesfulFirmwareUpdateEvents)
+        hasher.combine(failedFirmwareUpdateEvents)
+        hasher.combine(lastBatteryLevel)
+    }
+}
+
+extension CharacteristicNorthPoleAweDiagnostics: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicNorthPoleAweDiagnostics, rhs: CharacteristicNorthPoleAweDiagnostics) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.batterySwaps == rhs.batterySwaps)
+            && (lhs.dateProgrammed == rhs.dateProgrammed)
+            && (lhs.totalOperatingtime == rhs.totalOperatingtime)
+            && (lhs.advertisingTime == rhs.advertisingTime)
+            && (lhs.connectedTime == rhs.connectedTime)
+            && (lhs.succesfulFirmwareUpdateEvents == rhs.succesfulFirmwareUpdateEvents)
+            && (lhs.failedFirmwareUpdateEvents == rhs.failedFirmwareUpdateEvents)
+            && (lhs.lastBatteryLevel == rhs.lastBatteryLevel)
+        
+    }
+}

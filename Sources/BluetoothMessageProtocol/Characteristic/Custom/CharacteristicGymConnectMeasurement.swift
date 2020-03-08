@@ -454,6 +454,89 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
     }
 }
 
+extension CharacteristicGymConnectMeasurement: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(firstUpdatePacket)
+        hasher.combine(finalUpdatePacket)
+        hasher.combine(time)
+        hasher.combine(heartRate)
+        hasher.combine(intensity)
+        hasher.combine(resistnace)
+        hasher.combine(speed)
+        hasher.combine(cadence)
+        hasher.combine(totalMovements)
+        hasher.combine(totalHorizontalDistance)
+        hasher.combine(totalVerticalDistance)
+        hasher.combine(totalNegitiveVerticalDistance)
+        hasher.combine(totalEnergy)
+        hasher.combine(energyPerHour)
+        hasher.combine(metabolicEquivalent)
+        hasher.combine(power)
+        hasher.combine(torque)
+        hasher.combine(currentGear)
+        hasher.combine(grade)
+        hasher.combine(rampAngle)
+        hasher.combine(floorRate)
+        hasher.combine(totalFloors)
+        hasher.combine(totalLaps)
+        hasher.combine(movementLength)
+    }
+}
+
+extension CharacteristicGymConnectMeasurement: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicGymConnectMeasurement, rhs: CharacteristicGymConnectMeasurement) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.firstUpdatePacket == rhs.firstUpdatePacket)
+            && (lhs.finalUpdatePacket == rhs.finalUpdatePacket)
+            && (lhs.time == rhs.time)
+            && (lhs.heartRate == rhs.heartRate)
+            && (lhs.intensity == rhs.intensity)
+            && (lhs.resistnace == rhs.resistnace)
+            && (lhs.speed == rhs.speed)
+            && (lhs.cadence == rhs.cadence)
+            && (lhs.totalMovements == rhs.totalMovements)
+            && (lhs.totalHorizontalDistance == rhs.totalHorizontalDistance)
+            && (lhs.totalVerticalDistance == rhs.totalVerticalDistance)
+            && (lhs.totalNegitiveVerticalDistance == rhs.totalNegitiveVerticalDistance)
+            && (lhs.totalEnergy == rhs.totalEnergy)
+            && (lhs.energyPerHour == rhs.energyPerHour)
+            && (lhs.metabolicEquivalent == rhs.metabolicEquivalent)
+            && (lhs.power == rhs.power)
+            && (lhs.torque == rhs.torque)
+            && (lhs.currentGear == rhs.currentGear)
+            && (lhs.grade == rhs.grade)
+            && (lhs.rampAngle == rhs.rampAngle)
+            && (lhs.floorRate == rhs.floorRate)
+            && (lhs.totalFloors == rhs.totalFloors)
+            && (lhs.totalLaps == rhs.totalLaps)
+            && (lhs.movementLength == rhs.movementLength)
+    }
+}
+
 //MARK: - Flags
 private extension CharacteristicGymConnectMeasurement {
     

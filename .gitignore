@@ -102,6 +102,7 @@ Packages
 .build
 xcuserdata
 *.xcodeproj
+.swiftpm
 
 Example
 

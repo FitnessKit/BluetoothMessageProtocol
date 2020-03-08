@@ -235,6 +235,65 @@ final public class CharacteristicIndoorBikeData: Characteristic {
     }
 }
 
+extension CharacteristicIndoorBikeData: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(instantaneousSpeed)
+        hasher.combine(averageSpeed)
+        hasher.combine(instantaneousCadence)
+        hasher.combine(averageCadence)
+        hasher.combine(totalDistance)
+        hasher.combine(resistanceLevel)
+        hasher.combine(instantaneousPower)
+        hasher.combine(averagePower)
+        hasher.combine(energy)
+        hasher.combine(heartRate)
+        hasher.combine(metabolicEquivalent)
+        hasher.combine(time)
+    }
+}
+
+extension CharacteristicIndoorBikeData: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicIndoorBikeData, rhs: CharacteristicIndoorBikeData) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.instantaneousSpeed == rhs.instantaneousSpeed)
+            && (lhs.averageSpeed == rhs.averageSpeed)
+            && (lhs.instantaneousCadence == rhs.instantaneousCadence)
+            && (lhs.averageCadence == rhs.averageCadence)
+            && (lhs.totalDistance == rhs.totalDistance)
+            && (lhs.resistanceLevel == rhs.resistanceLevel)
+            && (lhs.instantaneousPower == rhs.instantaneousPower)
+            && (lhs.averagePower == rhs.averagePower)
+            && (lhs.energy == rhs.energy)
+            && (lhs.heartRate == rhs.heartRate)
+            && (lhs.metabolicEquivalent == rhs.metabolicEquivalent)
+            && (lhs.time == rhs.time)
+    }
+}
+
 private extension CharacteristicIndoorBikeData {
     
     /// Flags

@@ -38,7 +38,7 @@ final public class CharacteristicBloodPressureFeature: Characteristic {
     public static var uuidString: String { "2A49" }
     
     /// Supported Feature Types
-    public struct Feature: OptionSet {
+    public struct Feature: OptionSet, Hashable {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
         
@@ -93,5 +93,42 @@ final public class CharacteristicBloodPressureFeature: Characteristic {
         msgData.append(supportedFeatures.rawValue)
         
         return.success(msgData)
+    }
+}
+
+extension CharacteristicBloodPressureFeature: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(supportedFeatures)
+    }
+}
+
+extension CharacteristicBloodPressureFeature: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicBloodPressureFeature, rhs: CharacteristicBloodPressureFeature) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.supportedFeatures == rhs.supportedFeatures)
     }
 }

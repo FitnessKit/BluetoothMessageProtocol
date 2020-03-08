@@ -266,6 +266,67 @@ final public class CharacteristicBodyCompositionMeasurement: Characteristic {
     }
 }
 
+extension CharacteristicBodyCompositionMeasurement: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(bodyFat)
+        hasher.combine(currentTime)
+        hasher.combine(userID)
+        hasher.combine(basalMetabolism)
+        hasher.combine(musclePercentage)
+        hasher.combine(muscleMass)
+        hasher.combine(fatFreeMass)
+        hasher.combine(softLeanMass)
+        hasher.combine(bodyWaterMass)
+        hasher.combine(impedance)
+        hasher.combine(weight)
+        hasher.combine(height)
+        hasher.combine(multiplePacketMeasurement)
+    }
+}
+
+extension CharacteristicBodyCompositionMeasurement: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicBodyCompositionMeasurement, rhs: CharacteristicBodyCompositionMeasurement) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.bodyFat == rhs.bodyFat)
+            && (lhs.currentTime == rhs.currentTime)
+            && (lhs.userID == rhs.userID)
+            && (lhs.basalMetabolism == rhs.basalMetabolism)
+            && (lhs.musclePercentage == rhs.musclePercentage)
+            && (lhs.muscleMass == rhs.muscleMass)
+            && (lhs.fatFreeMass == rhs.fatFreeMass)
+            && (lhs.softLeanMass == rhs.softLeanMass)
+            && (lhs.bodyWaterMass == rhs.bodyWaterMass)
+            && (lhs.impedance == rhs.impedance)
+            && (lhs.weight == rhs.weight)
+            && (lhs.height == rhs.height)
+            && (lhs.multiplePacketMeasurement == rhs.multiplePacketMeasurement)
+    }
+}
+
 private extension CharacteristicBodyCompositionMeasurement {
     
     /// Flags

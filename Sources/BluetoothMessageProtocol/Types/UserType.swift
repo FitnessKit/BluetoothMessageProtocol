@@ -25,7 +25,7 @@
 import Foundation
 
 /// Bluetooth User
-public enum User {
+public enum User: Hashable {
     /// Unknown User
     case unknown
     /// Users Index/ID Value

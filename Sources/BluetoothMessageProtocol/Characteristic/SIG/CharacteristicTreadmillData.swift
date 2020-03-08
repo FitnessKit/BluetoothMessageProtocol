@@ -285,6 +285,71 @@ final public class CharacteristicTreadmillData: Characteristic {
     }
 }
 
+extension CharacteristicTreadmillData: Hashable {
+    
+    /// Hashes the essential components of this value by feeding them into the
+    /// given hasher.
+    ///
+    /// Implement this method to conform to the `Hashable` protocol. The
+    /// components used for hashing must be the same as the components compared
+    /// in your type's `==` operator implementation. Call `hasher.combine(_:)`
+    /// with each of these components.
+    ///
+    /// - Important: Never call `finalize()` on `hasher`. Doing so may become a
+    ///   compile-time error in the future.
+    ///
+    /// - Parameter hasher: The hasher to use when combining the components
+    ///   of this instance.
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuidString)
+        hasher.combine(instantaneousSpeed)
+        hasher.combine(averageSpeed)
+        hasher.combine(totalDistance)
+        hasher.combine(inclination)
+        hasher.combine(rampAngle)
+        hasher.combine(positiveElevationGain)
+        hasher.combine(negativeElevationGain)
+        hasher.combine(instantaneousPace)
+        hasher.combine(averagePace)
+        hasher.combine(energy)
+        hasher.combine(heartRate)
+        hasher.combine(metabolicEquivalent)
+        hasher.combine(time)
+        hasher.combine(forceOnBelt)
+        hasher.combine(powerOutput)
+    }
+}
+
+extension CharacteristicTreadmillData: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func == (lhs: CharacteristicTreadmillData, rhs: CharacteristicTreadmillData) -> Bool {
+        return (lhs.uuidString == rhs.uuidString)
+            && (lhs.instantaneousSpeed == rhs.instantaneousSpeed)
+            && (lhs.averageSpeed == rhs.averageSpeed)
+            && (lhs.totalDistance == rhs.totalDistance)
+            && (lhs.inclination == rhs.inclination)
+            && (lhs.rampAngle == rhs.rampAngle)
+            && (lhs.positiveElevationGain == rhs.positiveElevationGain)
+            && (lhs.negativeElevationGain == rhs.negativeElevationGain)
+            && (lhs.instantaneousPace == rhs.instantaneousPace)
+            && (lhs.averagePace == rhs.averagePace)
+            && (lhs.energy == rhs.energy)
+            && (lhs.heartRate == rhs.heartRate)
+            && (lhs.metabolicEquivalent == rhs.metabolicEquivalent)
+            && (lhs.time == rhs.time)
+            && (lhs.forceOnBelt == rhs.forceOnBelt)
+            && (lhs.powerOutput == rhs.powerOutput)
+    }
+}
+
 private extension CharacteristicTreadmillData {
     
     /// Flags

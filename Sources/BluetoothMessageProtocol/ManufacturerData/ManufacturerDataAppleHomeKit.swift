@@ -27,7 +27,8 @@ import DataDecoder
 import FitnessUnits
 #if canImport(CryptoKit)
 import CryptoKit
-#else
+#endif
+#if canImport(CryptoSwift)
 import CryptoSwift
 #endif
 
@@ -128,25 +129,31 @@ final public class ManufacturerDataAppleHomeKit: ManufacturerData {
         self.compatibleVersion = compatibleVersion
         self.setupID = String(setupID.prefix(4))
         
-        if let setupdata = setupID.data(using: .utf8),
-            let deviceData = deviceId.stringValue.data(using: .utf8) {
-            
+        self.setupHash = 0
+        if let setupdata = setupID.data(using: .utf8), let deviceData = deviceId.stringValue.data(using: .utf8) {
+
+            func useCryptoSwift() {
+                #if canImport(CryptoSwift)
+                let shaTest = (setupdata + deviceData).sha512()
+                self.setupHash = shaTest.prefix(4).to(type: UInt32.self)
+                #endif
+            }
+
             #if canImport(CryptoKit)
-            let shaTest = SHA512.hash(data: (setupdata + deviceData))
-            let hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
-            
-            self.setupHash = 0
-            if let hash = UInt32(String(hashString.prefix(8)), radix: 16)?.byteSwapped {
-                self.setupHash = hash
+            // Needs to be here for the extensions.
+            if #available(iOS 13.0, tvOS 13.0, watchOS 6.0, watchOSApplicationExtension 6.0, *) {
+                let shaTest = SHA512.hash(data: (setupdata + deviceData))
+                let hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
+                
+                if let hash = UInt32(String(hashString.prefix(8)), radix: 16)?.byteSwapped {
+                    self.setupHash = hash
+                }
+            } else {
+                useCryptoSwift()
             }
             #else
-            let shaTest = (setupdata + deviceData).sha512()
-            self.setupHash = shaTest.prefix(4).to(type: UInt32.self)
+            useCryptoSwift()
             #endif
-            
-            
-        } else {
-            self.setupHash = 0
         }
     }
     

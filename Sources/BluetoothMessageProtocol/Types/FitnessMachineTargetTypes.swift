@@ -29,7 +29,7 @@ import FitnessUnits
 /// Fitness Machine Target Resistance Level Type
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetResistanceLevelType {
+public struct FitnessMachineTargetResistanceLevelType: Hashable {
 
     /// Target Resistance Level
     private(set) public var level: Double
@@ -56,7 +56,7 @@ public struct FitnessMachineTargetResistanceLevelType {
 /// Fitness Machine Target Expended Energy
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetExpendedEnergy {
+public struct FitnessMachineTargetExpendedEnergy: Hashable {
 
     /// Target Expended Energy
     private(set) public var energy: Measurement<UnitEnergy>
@@ -82,7 +82,7 @@ public struct FitnessMachineTargetExpendedEnergy {
 /// Fitness Machine Target Distance
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetDistance {
+public struct FitnessMachineTargetDistance: Hashable {
 
     /// Target Distance
     private(set) public var energy: Measurement<UnitLength>
@@ -112,7 +112,7 @@ public struct FitnessMachineTargetDistance {
 /// Fitness Machine Target Distance
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetTime {
+public struct FitnessMachineTargetTime: Hashable {
 
     /// Target Time
     private(set) public var time: Measurement<UnitDuration>
@@ -137,7 +137,7 @@ public struct FitnessMachineTargetTime {
 /// Fitness Machine Target Time in Two HR Zone
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetTimeInTwoHrZone {
+public struct FitnessMachineTargetTimeInTwoHrZone: Hashable {
 
     /// Targeted Time in Fat Burn Zone
     private(set) public var fatBurnZone: Measurement<UnitDuration>
@@ -169,7 +169,7 @@ public struct FitnessMachineTargetTimeInTwoHrZone {
 /// Fitness Machine Target Time in Three HR Zone
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetTimeInThreeHrZone {
+public struct FitnessMachineTargetTimeInThreeHrZone: Hashable {
 
     /// Targeted Time in Light Zone
     private(set) public var lightZone: Measurement<UnitDuration>
@@ -211,7 +211,7 @@ public struct FitnessMachineTargetTimeInThreeHrZone {
 /// Fitness Machine Target Time in Five HR Zone
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetTimeInFiveHrZone {
+public struct FitnessMachineTargetTimeInFiveHrZone: Hashable {
 
     /// Targeted Time in Very Light Zone
     private(set) public var veryLightZone: Measurement<UnitDuration>
@@ -269,7 +269,7 @@ public struct FitnessMachineTargetTimeInFiveHrZone {
 /// Fitness Machine Target Cadence
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public struct FitnessMachineTargetCadence {
+public struct FitnessMachineTargetCadence: Hashable {
 
     /// Target Cadence
     ///

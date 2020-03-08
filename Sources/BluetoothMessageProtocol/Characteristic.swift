@@ -43,7 +43,7 @@ public protocol CharacteristicDecodable: AnyObject {
 
 /// Bluetooth Characteristic
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public protocol Characteristic: CharacteristicCodable {
+public protocol Characteristic: Hashable, CharacteristicCodable {
     
     /// Name of the Characteristic
     var name: String { get }
