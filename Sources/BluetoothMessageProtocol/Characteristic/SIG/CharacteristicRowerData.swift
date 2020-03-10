@@ -71,7 +71,7 @@ final public class CharacteristicRowerData: Characteristic {
     private(set) public var averagePower: FitnessMachinePowerType?
     
     /// Resistance Level
-    private(set) public var resistanceLevel: Double?
+    private(set) public var resistanceLevel: Int16?
     
     /// Energy Information
     private(set) public var energy: FitnessMachineEnergy
@@ -109,7 +109,7 @@ final public class CharacteristicRowerData: Characteristic {
                 averagePace: Measurement<UnitDuration>?,
                 instantaneousPower: FitnessMachinePowerType?,
                 averagePower: FitnessMachinePowerType?,
-                resistanceLevel: Double?,
+                resistanceLevel: Int16?,
                 energy: FitnessMachineEnergy,
                 heartRate: UInt8?,
                 metabolicEquivalent: Double?,
@@ -152,7 +152,7 @@ final public class CharacteristicRowerData: Characteristic {
         var totalDistance: Measurement<UnitLength>?
         var iPower: FitnessMachinePowerType?
         var aPower: FitnessMachinePowerType?
-        var resistanceLevel: Double?
+        var resistanceLevel: Int16?
         var heartRate: UInt8?
         var mets: Double?
         
@@ -193,7 +193,7 @@ final public class CharacteristicRowerData: Characteristic {
         }
         
         if flags.contains(.resistanceLevelPresent) {
-            resistanceLevel = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+            resistanceLevel = decoder.decodeInt16(data)
         }
         
         var fitEnergy: FitnessMachineEnergy

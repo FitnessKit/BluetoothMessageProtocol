@@ -62,7 +62,7 @@ final public class CharacteristicIndoorBikeData: Characteristic {
     private(set) public var totalDistance: Measurement<UnitLength>?
     
     /// Resistance Level
-    private(set) public var resistanceLevel: Double?
+    private(set) public var resistanceLevel: Int16?
     
     /// Instantaneous Power
     private(set) public var instantaneousPower: FitnessMachinePowerType?
@@ -102,7 +102,7 @@ final public class CharacteristicIndoorBikeData: Characteristic {
                 instantaneousCadence: Measurement<UnitCadence>?,
                 averageCadence: Measurement<UnitCadence>?,
                 totalDistance: Measurement<UnitLength>?,
-                resistanceLevel: Double?,
+                resistanceLevel: Int16?,
                 instantaneousPower: FitnessMachinePowerType?,
                 averagePower: FitnessMachinePowerType?,
                 energy: FitnessMachineEnergy,
@@ -169,9 +169,9 @@ final public class CharacteristicIndoorBikeData: Characteristic {
             totalDistance = Measurement(value: value, unit: UnitLength.meters)
         }
         
-        var resistanceLevel: Double?
+        var resistanceLevel: Int16?
         if flags.contains(.resistanceLevelPresent) {
-            resistanceLevel = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+            resistanceLevel = decoder.decodeInt16(data)
         }
         
         var iPower: FitnessMachinePowerType?
