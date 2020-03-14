@@ -29,7 +29,7 @@ import FitnessUnits
 /// BLE Heart Rate Meassurement Characteristic
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-final class CharacteristicHeartRateMeasurement: Characteristic {
+final public class CharacteristicHeartRateMeasurement: Characteristic {
     
     /// Characteristic Name
     public static var name: String { "Heart Rate Meassurement" }
