@@ -62,10 +62,11 @@ final public class CharacteristicUniformResourceIdentifier: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicUniformResourceIdentifier, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         guard let uri = data.safeStringValue else { return.failure(.invalidStringValue) }
         
-        return.success(CharacteristicUniformResourceIdentifier(uri: uri))
+        let char = CharacteristicUniformResourceIdentifier(uri: uri)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

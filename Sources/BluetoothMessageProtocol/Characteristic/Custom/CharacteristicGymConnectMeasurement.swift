@@ -214,7 +214,7 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicGymConnectMeasurement, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         var flagsOne: FlagsOne?
@@ -442,7 +442,7 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
                                                        totalFloors: totalFloors,
                                                        totalLaps: totalLaps,
                                                        movementLength: movementLength)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

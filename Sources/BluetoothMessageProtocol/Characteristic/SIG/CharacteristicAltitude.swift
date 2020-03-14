@@ -59,12 +59,13 @@ final public class CharacteristicAltitude: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAltitude, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let altitude: UInt16 = decoder.decodeUInt16(data)
         
-        return.success(CharacteristicAltitude(altitude: altitude))
+        let char = CharacteristicAltitude(altitude: altitude)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

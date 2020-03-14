@@ -63,14 +63,14 @@ final public class CharacteristicObjectSize: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicObjectSize, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let currentSize = decoder.decodeUInt32(data)
         let allocatedSize = decoder.decodeUInt32(data)
         
-        return.success(CharacteristicObjectSize(currentSize: currentSize,
-                                                allocatedSize: allocatedSize))
+        let char = CharacteristicObjectSize(currentSize: currentSize, allocatedSize: allocatedSize)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

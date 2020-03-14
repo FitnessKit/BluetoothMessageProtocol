@@ -57,13 +57,13 @@ final public class CharacteristicPollenConcentration: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicPollenConcentration, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let concentration = Measurement(value: Double(decoder.decodeUInt24(data)), unit: UnitVolume.cubicMeters)
         
         let char = CharacteristicPollenConcentration(concentration: concentration)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

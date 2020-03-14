@@ -30,7 +30,7 @@ import FitnessUnits
 ///
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public final class ManufacturerDataAltBeacon: ManufacturerData {
+final public class ManufacturerDataAltBeacon: ManufacturerData {
     
     enum CodeKeys: CodingKey {
         case manufacturer

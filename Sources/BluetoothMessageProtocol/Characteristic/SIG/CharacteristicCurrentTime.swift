@@ -92,7 +92,7 @@ final public class CharacteristicCurrentTime: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicCurrentTime, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let currenTime = DateTime.decode(data, decoder: &decoder)
@@ -107,7 +107,7 @@ final public class CharacteristicCurrentTime: Characteristic {
                                              currentTime: currenTime,
                                              dayOfWeek: weekday,
                                              fractionalSeconds: fractions)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

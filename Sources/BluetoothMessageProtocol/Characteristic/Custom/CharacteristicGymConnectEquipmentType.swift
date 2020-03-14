@@ -57,12 +57,13 @@ final public class CharacteristicGymConnectEquipmentType: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicGymConnectEquipmentType, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let equip = GymConnectEquipmentType.create(decoder.decodeUInt8(data))
         
-        return.success(CharacteristicGymConnectEquipmentType(equipment: equip))
+        let char = CharacteristicGymConnectEquipmentType(equipment: equip)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

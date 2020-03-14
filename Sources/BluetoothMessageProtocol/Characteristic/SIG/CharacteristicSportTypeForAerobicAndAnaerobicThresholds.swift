@@ -89,13 +89,13 @@ final public class CharacteristicSportTypeForAerobicAndAnaerobicThresholds: Char
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSportTypeForAerobicAndAnaerobicThresholds, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let exercise = SportType(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
         
         let char = CharacteristicSportTypeForAerobicAndAnaerobicThresholds(exercise: exercise)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -62,7 +62,7 @@ final public class CharacteristicMeshProxyDataOut: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicMeshProxyDataOut, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         if let pduType = decoder.decodeUInt8IfPresent(data) {
@@ -85,7 +85,7 @@ final public class CharacteristicMeshProxyDataOut: Characteristic {
         }
 
         let char = CharacteristicMeshProxyDataOut(pduMessage: data[decoder.index...])
-        return.success(char)
+        return.success(char as! C)
     }
 
     /// Encodes the Characteristic into Data

@@ -60,7 +60,7 @@ final public class CharacteristicMeshProvisioningDataOut: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicMeshProvisioningDataOut, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         //The characteristic value is 66 octets long to accommodate the longest
         //known Proxy PDU containing Provisioning PDU.
         
@@ -69,7 +69,7 @@ final public class CharacteristicMeshProvisioningDataOut: Characteristic {
         }
 
         let char = CharacteristicMeshProvisioningDataOut(pduMessage: data)
-        return.success(char)
+        return.success(char as! C)
     }
 
     /// Encodes the Characteristic into Data

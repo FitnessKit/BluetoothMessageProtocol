@@ -74,7 +74,7 @@ final public class CharacteristicDateOfBirth: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicDateOfBirth, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         var year: UInt16?
@@ -92,7 +92,8 @@ final public class CharacteristicDateOfBirth: Characteristic {
             dayOfMonth = day
         }
         
-        return.success(CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth))
+        let char = CharacteristicDateOfBirth(year: year, month: month, day: dayOfMonth)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

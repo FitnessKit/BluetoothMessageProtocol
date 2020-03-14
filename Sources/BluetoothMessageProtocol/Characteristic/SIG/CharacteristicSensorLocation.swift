@@ -59,13 +59,13 @@ final public class CharacteristicSensorLocation: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSensorLocation, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let location = SensorLocation(rawValue: decoder.decodeUInt8(data)) ?? .other
         
         let char = CharacteristicSensorLocation(location: location)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

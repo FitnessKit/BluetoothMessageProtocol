@@ -57,14 +57,14 @@ final public class CharacteristicUserIndex: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicUserIndex, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt8(data)
         let userIndex = User.create(value)
         
         let char = CharacteristicUserIndex(userIndex: userIndex)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -61,12 +61,13 @@ final public class CharacteristicLongitude: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicLongitude, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lon = decoder.decodeInt32(data)
         
-        return.success(CharacteristicLongitude(longitude: lon))
+        let char = CharacteristicLongitude(longitude: lon)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

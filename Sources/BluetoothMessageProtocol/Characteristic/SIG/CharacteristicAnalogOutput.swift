@@ -60,12 +60,13 @@ final public class CharacteristicAnalogOutput: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAnalogOutput, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let analogValue = decoder.decodeUInt16(data)
         
-        return.success(CharacteristicAnalogOutput(analogValue: analogValue))
+        let char = CharacteristicAnalogOutput(analogValue: analogValue)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

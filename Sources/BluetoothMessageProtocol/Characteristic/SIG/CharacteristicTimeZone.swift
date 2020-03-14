@@ -61,14 +61,14 @@ final public class CharacteristicTimeZone: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTimeZone, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeInt8(data)
         let timezone = BluetoothTimeZone(rawValue: value) ?? .unknown
         
         let char = CharacteristicTimeZone(timeZone: timezone)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -57,14 +57,14 @@ final public class CharacteristicTemperature: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTemperature, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let tmpValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
         let temp = Measurement(value: tmpValue, unit: UnitTemperature.celsius)
         
         let char = CharacteristicTemperature(temperature: temp)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

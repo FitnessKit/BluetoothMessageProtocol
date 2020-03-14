@@ -59,12 +59,13 @@ final public class CharacteristicGender: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicGender, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let gender = Gender(rawValue: decoder.decodeUInt8(data)) ?? .unspecified
         
-        return.success(CharacteristicGender(gender: gender))
+        let char = CharacteristicGender(gender: gender)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

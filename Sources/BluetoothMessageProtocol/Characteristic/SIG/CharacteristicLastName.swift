@@ -31,7 +31,7 @@ import FitnessUnits
 /// Last name of the user
 @available(swift 3.1)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public final class CharacteristicLastName: Characteristic {
+final public class CharacteristicLastName: Characteristic {
     
     /// Characteristic Name
     public static var name: String {
@@ -63,10 +63,11 @@ public final class CharacteristicLastName: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicLastName, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         guard let lastName = data.safeStringValue else { return.failure(.invalidStringValue) }
         
-        return.success(CharacteristicLastName(lastName: lastName))
+        let char = CharacteristicLastName(lastName: lastName)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

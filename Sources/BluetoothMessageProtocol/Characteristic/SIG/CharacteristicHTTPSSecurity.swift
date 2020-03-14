@@ -59,12 +59,13 @@ final public class CharacteristicHTTPSSecurity: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicHTTPSSecurity, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt8(data).boolValue
         
-        return.success(CharacteristicHTTPSSecurity(security: value))
+        let char = CharacteristicHTTPSSecurity(security: value)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -22,7 +22,7 @@ class GymConnectTests: XCTestCase {
     
         let data = Data([10])
         
-        let state = CharacteristicGymConnectEquipmentState.decode(with: data)
+        let state: Result<CharacteristicGymConnectEquipmentState, BluetoothDecodeError> = CharacteristicGymConnectEquipmentState.decode(with: data)
 
         switch state {
         case .success(let char):

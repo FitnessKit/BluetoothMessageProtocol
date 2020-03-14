@@ -61,14 +61,15 @@ final public class CharacteristicMagneticDeclination: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicMagneticDeclination, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let dec = Measurement(value: value, unit: UnitAngle.degrees)
         
-        return.success(CharacteristicMagneticDeclination(declination: dec))
+        let char = CharacteristicMagneticDeclination(declination: dec)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

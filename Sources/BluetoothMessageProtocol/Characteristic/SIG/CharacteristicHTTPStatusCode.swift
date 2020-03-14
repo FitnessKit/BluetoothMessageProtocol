@@ -83,13 +83,14 @@ final public class CharacteristicHTTPStatusCode: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicHTTPStatusCode, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let statusCode = decoder.decodeUInt16(data)
         let dataStatus = DataStatus(rawValue: decoder.decodeUInt8(data))
         
-        return.success(CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus))
+        let char = CharacteristicHTTPStatusCode(statusCode: statusCode, dataStatus: dataStatus)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -169,7 +169,7 @@ final public class CharacteristicCrossTrainerData: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicCrossTrainerData, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: UInt32(decoder.decodeUInt24(data)))
@@ -308,7 +308,7 @@ final public class CharacteristicCrossTrainerData: Characteristic {
                                                   metabolicEquivalent: mets,
                                                   time: time,
                                                   movementDirection: movementDirection)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

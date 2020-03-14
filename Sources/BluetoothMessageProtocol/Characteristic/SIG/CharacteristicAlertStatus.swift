@@ -70,12 +70,13 @@ final public class CharacteristicAlertStatus: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAlertStatus, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let status: AlertStatus = AlertStatus(rawValue: decoder.decodeUInt8(data))
         
-        return.success(CharacteristicAlertStatus(status: status))
+        let char = CharacteristicAlertStatus(status: status)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

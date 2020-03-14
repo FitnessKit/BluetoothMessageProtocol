@@ -61,14 +61,15 @@ final public class CharacteristicMeasurementInterval: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicMeasurementInterval, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Double(decoder.decodeUInt16(data))
         
         let interval = Measurement(value: value, unit: UnitDuration.seconds)
         
-        return.success(CharacteristicMeasurementInterval(interval: interval))
+        let char = CharacteristicMeasurementInterval(interval: interval)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

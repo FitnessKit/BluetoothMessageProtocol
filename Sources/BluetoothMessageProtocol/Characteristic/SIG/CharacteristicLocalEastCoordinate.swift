@@ -59,12 +59,13 @@ final public class CharacteristicLocalEastCoordinate: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicLocalEastCoordinate, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let local = decoder.decodeInt32(data)
         
-        return.success(CharacteristicLocalEastCoordinate(localEastCoordinate: local))
+        let char = CharacteristicLocalEastCoordinate(localEastCoordinate: local)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

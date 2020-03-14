@@ -59,14 +59,14 @@ final public class CharacteristicV02Max: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicV02Max, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Double(decoder.decodeUInt8(data))
         let consumption = Measurement(value: value, unit: UnitOxygenConsumption.consumption)
         
         let char = CharacteristicV02Max(maxVO2: consumption)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

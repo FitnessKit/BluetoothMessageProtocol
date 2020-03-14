@@ -81,12 +81,13 @@ final public class CharacteristicBarometricPressureTrend: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicBarometricPressureTrend, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let trend = BarometricPressureTrend(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        return.success(CharacteristicBarometricPressureTrend(trend: trend))
+        let char = CharacteristicBarometricPressureTrend(trend: trend)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

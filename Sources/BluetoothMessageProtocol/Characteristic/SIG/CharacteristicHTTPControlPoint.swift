@@ -88,12 +88,13 @@ final public class CharacteristicHTTPControlPoint: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicHTTPControlPoint, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = Command(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        return.success(CharacteristicHTTPControlPoint(opCode: value))
+        let char = CharacteristicHTTPControlPoint(opCode: value)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

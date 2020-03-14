@@ -57,12 +57,13 @@ final public class CharacteristicAge: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAge, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let age: UInt8 = decoder.decodeUInt8(data)
         
-        return.success(CharacteristicAge(age: age))
+        let char = CharacteristicAge(age: age)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

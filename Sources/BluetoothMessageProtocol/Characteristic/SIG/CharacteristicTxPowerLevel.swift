@@ -60,13 +60,13 @@ final public class CharacteristicTxPowerLevel: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTxPowerLevel, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let txPower = decoder.decodeInt8(data)
         
         let char = CharacteristicTxPowerLevel(txPower: txPower)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

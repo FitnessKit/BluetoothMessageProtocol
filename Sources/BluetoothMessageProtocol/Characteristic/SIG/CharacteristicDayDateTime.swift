@@ -63,14 +63,15 @@ final public class CharacteristicDayDateTime: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicDayDateTime, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let time = DateTime.decode(data, decoder: &decoder)
         
         let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        return.success(CharacteristicDayDateTime(time: time, dayOfWeek: weekday))
+        let char = CharacteristicDayDateTime(time: time, dayOfWeek: weekday)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

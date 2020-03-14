@@ -116,7 +116,7 @@ final public class CharacteristicStairClimberData: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicStairClimberData, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -187,7 +187,7 @@ final public class CharacteristicStairClimberData: Characteristic {
                                                   heartRate: heartRate,
                                                   metabolicEquivalent: mets,
                                                   time: time)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

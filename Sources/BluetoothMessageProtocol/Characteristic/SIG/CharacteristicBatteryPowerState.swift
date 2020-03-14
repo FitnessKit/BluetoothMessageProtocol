@@ -57,12 +57,13 @@ final public class CharacteristicBatteryPowerState: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicBatteryPowerState, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let state = BatteryPowerState(decoder.decodeUInt8(data))
         
-        return.success(CharacteristicBatteryPowerState(state: state))
+        let char = CharacteristicBatteryPowerState(state: state)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

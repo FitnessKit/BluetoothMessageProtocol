@@ -65,7 +65,7 @@ final public class CharacteristicTimeUpdateControlPoint: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTimeUpdateControlPoint, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         //Not Yet Supported
         return.failure(BluetoothDecodeError.notSupported)
     }

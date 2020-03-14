@@ -104,12 +104,13 @@ final public class CharacteristicBondManagementFeatures: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicBondManagementFeatures, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let features = Flags(rawValue: decoder.decodeUInt32(data))
         
-        return.success(CharacteristicBondManagementFeatures(features: features))
+        let char = CharacteristicBondManagementFeatures(features: features)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -76,7 +76,7 @@ final public class CharacteristicHeartRateMeasurement: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicHeartRateMeasurement, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = HeartRateMeasurementFlags(decoder.decodeUInt8(data))
@@ -121,7 +121,7 @@ final public class CharacteristicHeartRateMeasurement: Characteristic {
                                                       heartRate: heartRate,
                                                       energyExpended: energy,
                                                       rrIntervals: rrIntervals)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

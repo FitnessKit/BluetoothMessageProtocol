@@ -57,14 +57,15 @@ final public class CharacteristicHumidity: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicHumidity, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let humidity = Measurement(value: value, unit: UnitPercent.percent)
         
-        return.success(CharacteristicHumidity(humidity: humidity))
+        let char = CharacteristicHumidity(humidity: humidity)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -131,7 +131,7 @@ final public class CharacteristicBodyCompositionMeasurement: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicBodyCompositionMeasurement, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(rawValue: decoder.decodeUInt16(data))
@@ -254,7 +254,7 @@ final public class CharacteristicBodyCompositionMeasurement: Characteristic {
                                                             weight: weight,
                                                             height: height,
                                                             multiplePacketMeasurement: multiPacket)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

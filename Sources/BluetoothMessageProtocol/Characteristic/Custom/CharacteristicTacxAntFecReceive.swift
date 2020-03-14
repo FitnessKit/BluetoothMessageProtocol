@@ -58,7 +58,7 @@ final public class CharacteristicTacxAntFecReceive: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTacxAntFecReceive, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let sync = decoder.decodeUInt8(data)
@@ -67,7 +67,8 @@ final public class CharacteristicTacxAntFecReceive: Characteristic {
         guard sync == 0xA4 else { return.failure(BluetoothDecodeError.general("ANT Sync mismatch")) }
         
         /// Just return the data
-        return.success(CharacteristicTacxAntFecReceive(antData:data))
+        let char = CharacteristicTacxAntFecReceive(antData:data)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

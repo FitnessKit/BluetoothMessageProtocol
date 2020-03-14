@@ -57,14 +57,15 @@ final public class CharacteristicApparentWindSpeed: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode<C: CharacteristicApparentWindSpeed>(with data: Data) -> Result<C, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let speed = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let wind = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
         
-        return.success(CharacteristicApparentWindSpeed(windSpeed: wind) as! C)
+        let char = CharacteristicApparentWindSpeed(windSpeed: wind)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

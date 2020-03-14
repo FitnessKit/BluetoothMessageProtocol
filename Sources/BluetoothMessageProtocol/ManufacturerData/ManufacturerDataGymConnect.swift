@@ -28,7 +28,7 @@ import DataDecoder
 /// GymConnect Manufacturer Specific Data
 @available(swift 4.0)
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public final class ManufacturerDataGymConnect: ManufacturerData {
+final public class ManufacturerDataGymConnect: ManufacturerData {
     
     enum CodeKeys: CodingKey {
         case manufacturer

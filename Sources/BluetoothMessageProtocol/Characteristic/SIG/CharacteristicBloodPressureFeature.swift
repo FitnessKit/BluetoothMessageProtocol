@@ -76,12 +76,13 @@ final public class CharacteristicBloodPressureFeature: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicBloodPressureFeature, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let status = Feature(rawValue: decoder.decodeUInt8(data))
         
-        return.success(CharacteristicBloodPressureFeature(status: status))
+        let char = CharacteristicBloodPressureFeature(status: status)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

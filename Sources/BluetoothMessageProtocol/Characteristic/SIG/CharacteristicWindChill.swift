@@ -58,13 +58,13 @@ final public class CharacteristicWindChill: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicWindChill, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let windChill = Measurement(value: Double(decoder.decodeInt8(data)), unit: UnitTemperature.celsius)
         
         let char = CharacteristicWindChill(windChill: windChill)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

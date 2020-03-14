@@ -60,10 +60,11 @@ final public class CharacteristicSoftwareRevisionString: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSoftwareRevisionString, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         guard let softwareRevision = data.safeStringValue else { return.failure(.invalidStringValue) }
         
-        return.success(CharacteristicSoftwareRevisionString(softwareRevision: softwareRevision))
+        let char = CharacteristicSoftwareRevisionString(softwareRevision: softwareRevision)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

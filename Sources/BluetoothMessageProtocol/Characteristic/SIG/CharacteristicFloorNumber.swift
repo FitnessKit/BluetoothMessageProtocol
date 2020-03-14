@@ -59,12 +59,13 @@ final public class CharacteristicFloorNumber: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicFloorNumber, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let floor = decoder.decodeUInt8(data)
         
-        return.success(CharacteristicFloorNumber(floorNumber: floor))
+        let char = CharacteristicFloorNumber(floorNumber: floor)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

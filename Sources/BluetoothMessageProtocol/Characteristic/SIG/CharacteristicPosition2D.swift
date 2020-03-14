@@ -67,7 +67,7 @@ final public class CharacteristicPosition2D: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicPosition2D, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let lat = decoder.decodeInt32(data)
@@ -75,7 +75,7 @@ final public class CharacteristicPosition2D: Characteristic {
         
         let char = CharacteristicPosition2D(latitude: lat,
                                             longitude: lon)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

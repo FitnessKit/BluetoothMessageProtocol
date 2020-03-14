@@ -80,7 +80,7 @@ final public class CharacteristicNorthPoleAweWorkoutInformation: Characteristic 
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicNorthPoleAweWorkoutInformation, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let flags = Flags(decoder.decodeUInt8(data))
@@ -109,7 +109,7 @@ final public class CharacteristicNorthPoleAweWorkoutInformation: Characteristic 
         let char = CharacteristicNorthPoleAweWorkoutInformation(points: points,
                                                                 energyExpended: energy,
                                                                 command: command)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

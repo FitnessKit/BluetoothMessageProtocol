@@ -57,12 +57,13 @@ final public class CharacteristicAppearance: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAppearance, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let appearance = Appearance(rawValue: decoder.decodeUInt16(data)) ?? .unknown
         
-        return.success(CharacteristicAppearance(appearance: appearance))
+        let char = CharacteristicAppearance(appearance: appearance)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

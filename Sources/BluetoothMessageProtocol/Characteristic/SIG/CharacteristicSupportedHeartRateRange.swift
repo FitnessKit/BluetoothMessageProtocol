@@ -75,7 +75,7 @@ final public class CharacteristicSupportedHeartRateRange: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSupportedHeartRateRange, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = decoder.decodeUInt8(data)
@@ -85,7 +85,7 @@ final public class CharacteristicSupportedHeartRateRange: Characteristic {
         let char = CharacteristicSupportedHeartRateRange(minimum: minimum,
                                                          maximum: maximum,
                                                          minimumIncrement: minimumIncrement)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

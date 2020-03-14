@@ -74,7 +74,7 @@ final public class CharacteristicSupportedPowerRange: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSupportedPowerRange, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minimum = FitnessMachinePowerType.create(decoder.decodeInt16(data))
@@ -86,7 +86,7 @@ final public class CharacteristicSupportedPowerRange: Characteristic {
         let char = CharacteristicSupportedPowerRange(minimum: minimum,
                                                      maximum: maximum,
                                                      minimumIncrement: minimumIncrement)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

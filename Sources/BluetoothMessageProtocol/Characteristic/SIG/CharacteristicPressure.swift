@@ -57,7 +57,7 @@ final public class CharacteristicPressure: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicPressure, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         // put into 0.1 PA then into KiloPascals
@@ -66,7 +66,7 @@ final public class CharacteristicPressure: Characteristic {
         let pressure: Measurement = Measurement(value: value, unit: UnitPressure.kilopascals)
         
         let char = CharacteristicPressure(pressure: pressure)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

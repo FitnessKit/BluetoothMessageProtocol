@@ -57,12 +57,13 @@ final public class CharacteristicAnaerobicThreshold: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAnaerobicThreshold, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let heartRate = decoder.decodeUInt8(data)
         
-        return.success(CharacteristicAnaerobicThreshold(heartRate: heartRate))
+        let char = CharacteristicAnaerobicThreshold(heartRate: heartRate)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

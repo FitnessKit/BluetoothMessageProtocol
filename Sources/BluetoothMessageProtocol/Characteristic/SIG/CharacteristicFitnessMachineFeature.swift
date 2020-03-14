@@ -148,7 +148,7 @@ final public class CharacteristicFitnessMachineFeature: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicFitnessMachineFeature, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let features = MachineFeatures(rawValue: decoder.decodeUInt32(data))
@@ -156,7 +156,7 @@ final public class CharacteristicFitnessMachineFeature: Characteristic {
         
         let char = CharacteristicFitnessMachineFeature(supportedMachineFeatures: features,
                                                        supportedTargetSettings: targets)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

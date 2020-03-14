@@ -57,14 +57,15 @@ final public class CharacteristicElevation: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicElevation, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
         
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
         
-        return.success(CharacteristicElevation(elevation: elevation))
+        let char = CharacteristicElevation(elevation: elevation)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

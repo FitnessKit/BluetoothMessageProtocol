@@ -59,7 +59,7 @@ final public class CharacteristicMeshProvisioningDataIn: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicMeshProvisioningDataIn, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         return.failure(BluetoothDecodeError.notSupported)
     }
 

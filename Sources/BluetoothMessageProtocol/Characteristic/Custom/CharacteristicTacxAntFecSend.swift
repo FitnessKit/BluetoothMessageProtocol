@@ -58,7 +58,7 @@ final public class CharacteristicTacxAntFecSend: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTacxAntFecSend, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         /// We don't need to ever decode it
         return.failure(BluetoothDecodeError.notSupported) 
     }

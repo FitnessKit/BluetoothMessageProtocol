@@ -158,7 +158,7 @@ final public class CharacteristicContinuousGlucoseMonitoringFeature: Characteris
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicContinuousGlucoseMonitoringFeature, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let featureVal = decoder.decodeUInt24(data)
@@ -179,7 +179,7 @@ final public class CharacteristicContinuousGlucoseMonitoringFeature: Characteris
                                                                     testType: testType,
                                                                     sampleLocation: sampleLocation,
                                                                     crcValue: crc)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

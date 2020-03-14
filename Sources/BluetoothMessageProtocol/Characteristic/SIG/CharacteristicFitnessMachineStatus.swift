@@ -62,7 +62,7 @@ final public class CharacteristicFitnessMachineStatus: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicFitnessMachineStatus, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         var statusValue: FitnessMachineStatus?
@@ -116,13 +116,13 @@ final public class CharacteristicFitnessMachineStatus: Characteristic {
                 statusValue = FitnessMachineStatusTargetedTrainingTime(time: time)
                 
             case .targetedTimeInTwoHrZoneChanged:
-                return.success(decodeTwoHrZoneChanged(data: data, decoder: &decoder))
+                return.success(decodeTwoHrZoneChanged(data: data, decoder: &decoder) as! C)
                 
             case .targetedTimeInThreeHrZoneChanged:
-                return.success(decodeThreeHrZoneChanged(data: data, decoder: &decoder))
+                return.success(decodeThreeHrZoneChanged(data: data, decoder: &decoder) as! C)
                 
             case .targetedTimeInFiveHrZoneChanged:
-                return.success(decodeFiveHrZoneChanged(data: data, decoder: &decoder))
+                return.success(decodeFiveHrZoneChanged(data: data, decoder: &decoder) as! C)
                 
             case .wheelCircumferenceChanged:
                 let circumference = FitnessMachineWheelCircumferenceType.create(decoder.decodeUInt16(data))
@@ -141,7 +141,8 @@ final public class CharacteristicFitnessMachineStatus: Characteristic {
             }
         }
         
-        return.success(CharacteristicFitnessMachineStatus(status: statusValue))
+        let char = CharacteristicFitnessMachineStatus(status: statusValue)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

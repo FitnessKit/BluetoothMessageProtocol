@@ -59,14 +59,14 @@ final public class CharacteristicWaistCircumference: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicWaistCircumference, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
         let waistCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
         
         let char = CharacteristicWaistCircumference(waistCircumference: waistCircumference)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

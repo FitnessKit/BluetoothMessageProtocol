@@ -57,12 +57,13 @@ final public class CharacteristicAnaerobicHeartRateUpperLimit: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicAnaerobicHeartRateUpperLimit, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let heartRate = decoder.decodeUInt8(data)
         
-        return.success(CharacteristicAnaerobicHeartRateUpperLimit(heartRate: heartRate))
+        let char = CharacteristicAnaerobicHeartRateUpperLimit(heartRate: heartRate)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

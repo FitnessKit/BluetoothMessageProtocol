@@ -38,12 +38,12 @@ public protocol CharacteristicDecodable: AnyObject {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    static func decode(with data: Data) -> Result<Self, BluetoothDecodeError>
+    static func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError>
 }
 
 /// Bluetooth Characteristic
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
-public protocol Characteristic: Hashable, CharacteristicCodable {
+public protocol Characteristic: CharacteristicCodable {
     
     /// Name of the Characteristic
     var name: String { get }

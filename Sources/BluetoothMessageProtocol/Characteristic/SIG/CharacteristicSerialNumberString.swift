@@ -60,10 +60,11 @@ final public class CharacteristicSerialNumberString: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSerialNumberString, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         guard let serialNumber = data.safeStringValue else { return.failure(.invalidStringValue) }
         
-        return.success(CharacteristicSerialNumberString(serialNumber: serialNumber))
+        let char = CharacteristicSerialNumberString(serialNumber: serialNumber)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

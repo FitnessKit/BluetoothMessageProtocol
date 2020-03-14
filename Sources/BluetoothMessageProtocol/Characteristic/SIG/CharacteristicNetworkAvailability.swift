@@ -67,12 +67,13 @@ final public class CharacteristicNetworkAvailability: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicNetworkAvailability, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let avilability = Availability(rawValue: decoder.decodeUInt8(data)) ?? .notAvailable
         
-        return.success(CharacteristicNetworkAvailability(networkAvailable: avilability))
+        let char = CharacteristicNetworkAvailability(networkAvailable: avilability)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

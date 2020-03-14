@@ -60,10 +60,11 @@ final public class CharacteristicFirmwareRevisionString: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicFirmwareRevisionString, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         guard let firmwareRevision = data.safeStringValue else { return.failure(.invalidStringValue) }
         
-        return.success(CharacteristicFirmwareRevisionString(firmwareRevision: firmwareRevision))
+        let char = CharacteristicFirmwareRevisionString(firmwareRevision: firmwareRevision)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

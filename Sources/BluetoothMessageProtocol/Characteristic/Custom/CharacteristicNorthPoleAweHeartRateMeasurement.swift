@@ -75,7 +75,7 @@ final public class CharacteristicNorthPoleAweHeartRateMeasurement: Characteristi
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicNorthPoleAweHeartRateMeasurement, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         /// Data from the AWE Heart Rate Measurement is not Notified or read.
         /// We don't need to ever decode it
         return.failure(BluetoothDecodeError.notSupported)

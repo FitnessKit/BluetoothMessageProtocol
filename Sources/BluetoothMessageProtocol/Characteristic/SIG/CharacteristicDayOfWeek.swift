@@ -57,12 +57,13 @@ final public class CharacteristicDayOfWeek: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicDayOfWeek, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let weekday = DayOfWeek(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        return.success(CharacteristicDayOfWeek(dayOfWeek: weekday))
+        let char = CharacteristicDayOfWeek(dayOfWeek: weekday)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

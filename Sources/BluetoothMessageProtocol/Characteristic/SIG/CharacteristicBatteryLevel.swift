@@ -61,14 +61,15 @@ final public class CharacteristicBatteryLevel: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicBatteryLevel, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let percent = Double(decoder.decodeUInt8(data))
         
         let level = Measurement(value: percent, unit: UnitPercent.percent)
         
-        return.success(CharacteristicBatteryLevel(level: level))
+        let char = CharacteristicBatteryLevel(level: level)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

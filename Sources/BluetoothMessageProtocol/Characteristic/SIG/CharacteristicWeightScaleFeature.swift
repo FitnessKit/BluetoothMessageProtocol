@@ -188,7 +188,7 @@ final public class CharacteristicWeightScaleFeature: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicWeightScaleFeature, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let value = decoder.decodeUInt32(data)
@@ -208,7 +208,7 @@ final public class CharacteristicWeightScaleFeature: Characteristic {
                                                     bmiSupported: bmi,
                                                     weightResolution: weightRes,
                                                     heightResolution: heightRes)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -78,7 +78,7 @@ final public class CharacteristicNewAlert: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicNewAlert, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let alertType: AlertCategory = AlertCategory(rawValue: decoder.decodeUInt8(data)) ?? .simpleAlert
@@ -94,7 +94,7 @@ final public class CharacteristicNewAlert: Characteristic {
         let char = CharacteristicNewAlert(alertType: alertType,
                                           numberOfAlerts: numberOfAlerts,
                                           alertInformation: alertInfo)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

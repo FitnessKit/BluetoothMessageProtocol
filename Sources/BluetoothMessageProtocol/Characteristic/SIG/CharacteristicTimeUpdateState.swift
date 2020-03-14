@@ -87,7 +87,7 @@ final public class CharacteristicTimeUpdateState: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicTimeUpdateState, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let state = CurrentStateType(rawValue: decoder.decodeUInt8(data)) ?? .idle
@@ -95,7 +95,7 @@ final public class CharacteristicTimeUpdateState: Characteristic {
         
         let char = CharacteristicTimeUpdateState(currentState: state,
                                                  result: result)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

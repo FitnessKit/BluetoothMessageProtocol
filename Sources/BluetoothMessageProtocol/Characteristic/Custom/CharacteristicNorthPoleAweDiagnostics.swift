@@ -107,7 +107,7 @@ final public class CharacteristicNorthPoleAweDiagnostics: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicNorthPoleAweDiagnostics, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let swaps = decoder.decodeUInt16(data)
@@ -137,7 +137,7 @@ final public class CharacteristicNorthPoleAweDiagnostics: Characteristic {
                                                          succesfulFirmwareUpdateEvents: successFW,
                                                          failedFirmwareUpdateEvents: failedFW,
                                                          lastBatteryLevel: battLvl)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

@@ -60,10 +60,11 @@ final public class CharacteristicManufacturerNameString: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicManufacturerNameString, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         guard let name = data.safeStringValue else { return.failure(.invalidStringValue) }
         
-        return.success(CharacteristicManufacturerNameString(manufacturerName: name))
+        let char = CharacteristicManufacturerNameString(manufacturerName: name)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

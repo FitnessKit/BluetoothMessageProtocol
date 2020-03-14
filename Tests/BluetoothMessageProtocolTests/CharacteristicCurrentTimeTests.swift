@@ -37,7 +37,8 @@ class CharacteristicCurrentTimeTests: XCTestCase {
         do {
             let data = try char.encode().get()
 
-            switch CharacteristicCurrentTime.decode(with: data) {
+            let result: Result<CharacteristicCurrentTime, BluetoothDecodeError> = CharacteristicCurrentTime.decode(with: data)
+            switch result {
             case .success(let newChar):
                 if newChar.adjustmentReason.contains(.manualTimeUpdate) == false {
                     XCTFail()

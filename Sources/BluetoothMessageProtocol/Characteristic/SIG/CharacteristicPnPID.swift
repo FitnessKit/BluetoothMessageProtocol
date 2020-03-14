@@ -96,7 +96,7 @@ final public class CharacteristicPnPID: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicPnPID, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let vendorIdSource = VendorSource(rawValue: decoder.decodeUInt8(data)) ?? .unknown
@@ -109,7 +109,7 @@ final public class CharacteristicPnPID: Characteristic {
                                        vendorId: vendorId,
                                        productId: productId,
                                        productVersion: productVersion)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

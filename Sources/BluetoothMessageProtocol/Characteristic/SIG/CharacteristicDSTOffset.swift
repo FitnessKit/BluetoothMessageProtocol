@@ -57,12 +57,13 @@ final public class CharacteristicDSTOffset: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicDSTOffset, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        return.success(CharacteristicDSTOffset(dstOffset: dstOffset))
+        let char = CharacteristicDSTOffset(dstOffset: dstOffset)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

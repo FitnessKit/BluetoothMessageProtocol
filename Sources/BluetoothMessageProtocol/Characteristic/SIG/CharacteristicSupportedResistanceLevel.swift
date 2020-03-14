@@ -71,7 +71,7 @@ final public class CharacteristicSupportedResistanceLevel: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicSupportedResistanceLevel, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
@@ -81,7 +81,7 @@ final public class CharacteristicSupportedResistanceLevel: Characteristic {
         let char = CharacteristicSupportedResistanceLevel(minimum: minValue,
                                                           maximum: maxValue,
                                                           minimumIncrement: incrValue)
-        return.success(char)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

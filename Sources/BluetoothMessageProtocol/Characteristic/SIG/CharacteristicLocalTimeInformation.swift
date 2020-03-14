@@ -67,14 +67,15 @@ final public class CharacteristicLocalTimeInformation: Characteristic {
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
-    public class func decode(with data: Data) -> Result<CharacteristicLocalTimeInformation, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let timez = decoder.decodeInt8(data)
         
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        return.success(CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset))
+        let char = CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data

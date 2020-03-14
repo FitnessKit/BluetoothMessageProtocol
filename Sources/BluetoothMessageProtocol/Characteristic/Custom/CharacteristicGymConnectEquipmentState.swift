@@ -53,12 +53,13 @@ final public class CharacteristicGymConnectEquipmentState: Characteristic {
         self.state = state
     }
     
-    public class func decode(with data: Data) -> Result<CharacteristicGymConnectEquipmentState, BluetoothDecodeError> {
+    public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
         let state = GymConnectEquipmentState.create(decoder.decodeUInt8(data))
         
-        return.success(CharacteristicGymConnectEquipmentState(state: state))
+        let char = CharacteristicGymConnectEquipmentState(state: state)
+        return.success(char as! C)
     }
     
     /// Encodes the Characteristic into Data
