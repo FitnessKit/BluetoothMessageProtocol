@@ -200,10 +200,10 @@ final public class CharacteristicTreadmillData: Characteristic {
         
         if flags.contains(.elevationGainPresent) {
             let pValue = Double(decoder.decodeUInt16(data))
-            pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
+            pElevaionGain = Measurement(value: pValue, unit: UnitLength.decimeters)
             
             let nValue = Double(decoder.decodeUInt16(data))
-            nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
+            nElevaionGain = Measurement(value: nValue, unit: UnitLength.decimeters)
         }
         
         if flags.contains(.instantaneousPacePresent) {
