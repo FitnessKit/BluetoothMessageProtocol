@@ -199,11 +199,11 @@ final public class CharacteristicTreadmillData: Characteristic {
         }
         
         if flags.contains(.elevationGainPresent) {
-            let pValue = Double(decoder.decodeUInt16(data))
-            pElevaionGain = Measurement(value: pValue, unit: UnitLength.decimeters)
-            
-            let nValue = Double(decoder.decodeUInt16(data))
-            nElevaionGain = Measurement(value: nValue, unit: UnitLength.decimeters)
+            let pValue = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
+            pElevaionGain = Measurement(value: pValue, unit: UnitLength.meters)
+
+            let nValue = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
+            nElevaionGain = Measurement(value: nValue, unit: UnitLength.meters)
         }
         
         if flags.contains(.instantaneousPacePresent) {
