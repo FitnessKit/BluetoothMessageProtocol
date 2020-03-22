@@ -1,6 +1,6 @@
 # BluetoothMessageProtocol
 
-[![Swift5.1](https://img.shields.io/badge/swift5.1-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
+[![Swift5.2](https://img.shields.io/badge/swift5.2-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift)
 [![Version](https://img.shields.io/cocoapods/v/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![License](https://img.shields.io/cocoapods/l/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)
 [![Platform](https://img.shields.io/cocoapods/p/BluetoothMessageProtocol.svg?style=flat)](http://cocoapods.org/pods/BluetoothMessageProtocol)

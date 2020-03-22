@@ -114,19 +114,6 @@ public extension CompanyIdentifier {
     /// - Parameter company: CompanyIdentifer Object
     /// - Throws: CompanyIdentifierError
     class func registerCompany(_ company: CompanyIdentifier) -> Result<Bool, CompanyIdentifierError>  {
-
-        let id = CompanyIdentifier.supportedCompanyIdentifers.first { (compObj) -> Bool in
-            if compObj.companyID == company.companyID {
-                return true
-            }
-
-            return false
-        }
-
-        if let _ = id {
-            return.failure(CompanyIdentifierError.alreadyRegistered)
-        }
-
         if CompanyIdentifier.supportedCompanyIdentifers.contains(company) == false {
             allCompanyIdentifiers.append(company)
             return.success(true)
@@ -140,15 +127,6 @@ public extension CompanyIdentifier {
     /// - Parameter id: Company Identifier per Bluetooth SIG
     /// - Returns: CompanyIdentifier Instance
     class func company(id: UInt16) -> CompanyIdentifier? {
-
-        let id = CompanyIdentifier.supportedCompanyIdentifers.first { (compObj) -> Bool in
-            if compObj.companyID == id {
-                return true
-            }
-
-            return false
-        }
-
-        return id
+        return CompanyIdentifier.supportedCompanyIdentifers.first(where: { $0.companyID == id })
     }
 }
