@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -9,7 +9,7 @@ let supportedPlatform: [PackageDescription.SupportedPlatform]
 
 #if canImport(CryptoKit)
     packageDependencies = [
-        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.0.0"),
+        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
         .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0")
     ]
     targetDependencies = [
@@ -19,7 +19,7 @@ let supportedPlatform: [PackageDescription.SupportedPlatform]
     supportedPlatform = [.iOS("13.0"), .macOS("10.15"), .tvOS("13.0"), .watchOS("6.0")]
 #else
     packageDependencies = [
-        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.0.0"),
+        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
         .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0"),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "1.0.0")
     ]
