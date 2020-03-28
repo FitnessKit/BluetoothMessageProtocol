@@ -28,8 +28,7 @@ import DataDecoder
 internal extension Data {
 
     init<T>(from value: T) {
-        var value = value
-        self.init(bytes: &value, count: MemoryLayout<T>.size)
+        self = Swift.withUnsafeBytes(of: value) { Data($0) }
     }
     
     func to<T>(type: T.Type) -> T where T: ExpressibleByIntegerLiteral {

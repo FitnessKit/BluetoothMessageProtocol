@@ -40,7 +40,7 @@ Support for HomeKit, BLE Mesh and Custom Services/Characteristics.
 
 #Dependancy
   s.dependency 'DataDecoder', '>= 5.0.0'
-  s.dependency 'FitnessUnits', '>= 3.0.0'
+  s.dependency 'FitnessUnits', '>= 3.1.0'
   s.dependency 'CryptoSwift'
 
 end
