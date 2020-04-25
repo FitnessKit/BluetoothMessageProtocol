@@ -4465,4 +4465,50 @@ public extension CompanyIdentifier {
     class var fraunhoferIIS: CompanyIdentifier { return CompanyIdentifier(id: 2217, name: "Fraunhofer IIS") }
     /// SZ DJI TECHNOLOGY CO.,LTD
     class var szDjiTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2218, name: "SZ DJI TECHNOLOGY CO.,LTD") }
+    /// Coburn Technology, LLC
+    class var coburnTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2219, name: "Coburn Technology, LLC") }
+    /// Topre Corporation
+    class var topreCorporation: CompanyIdentifier { return CompanyIdentifier(id: 2220, name: "Topre Corporation") }
+    /// Kayamatics Limited
+    class var kayamaticsLimited: CompanyIdentifier { return CompanyIdentifier(id: 2221, name: "Kayamatics Limited") }
+    /// Moticon ReGo AG
+    class var moticonReGo: CompanyIdentifier { return CompanyIdentifier(id: 2222, name: "Moticon ReGo AG") }
+    /// Polidea Sp. z o.o.
+    class var polidea: CompanyIdentifier { return CompanyIdentifier(id: 2223, name: "Polidea Sp. z o.o.") }
+    /// Trivedi Advanced Technologies LLC
+    class var trivediAdvancedTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 2224, name: "Trivedi Advanced Technologies LLC") }
+    /// CORE|vision BV
+    class var coreVision: CompanyIdentifier { return CompanyIdentifier(id: 2225, name: "CORE|vision BV") }
+    /// PF SCHWEISSTECHNOLOGIE GMBH
+    class var pfSchweissTechnologie: CompanyIdentifier { return CompanyIdentifier(id: 2226, name: "PF SCHWEISSTECHNOLOGIE GMBH") }
+    /// IONIQ Skincare GmbH & Co. KG
+    class var ioniqSkincare: CompanyIdentifier { return CompanyIdentifier(id: 2227, name: "IONIQ Skincare GmbH & Co. KG") }
+    /// Sengled Co., Ltd.
+    class var sengled: CompanyIdentifier { return CompanyIdentifier(id: 2228, name: "Sengled Co., Ltd.") }
+    /// TransferFi
+    class var transferFi: CompanyIdentifier { return CompanyIdentifier(id: 2229, name: "TransferFi") }
+    /// Boehringer Ingelheim Vetmedica GmbH
+    class var boehringerIngelheimVetmedica: CompanyIdentifier { return CompanyIdentifier(id: 2230, name: "Boehringer Ingelheim Vetmedica GmbH") }
+    /// ABB Inc
+    class var abbInc: CompanyIdentifier { return CompanyIdentifier(id: 2231, name: "ABB Inc") }
+    /// Check Technology Solutions LLC
+    class var checkTechnologySolutions: CompanyIdentifier { return CompanyIdentifier(id: 2232, name: "Check Technology Solutions LLC") }
+    /// U-Shin Ltd.
+    class var uShin: CompanyIdentifier { return CompanyIdentifier(id: 2233, name: "U-Shin Ltd.") }
+    /// HYPER ICE, INC.
+    class var hyperIce: CompanyIdentifier { return CompanyIdentifier(id: 2234, name: "HYPER ICE, INC.") }
+    /// Tokai-rika co.,ltd.
+    class var tokaiRikia: CompanyIdentifier { return CompanyIdentifier(id: 2235, name: "Tokai-rika co.,ltd.") }
+    /// Prevayl Limited
+    class var prevaylLimited: CompanyIdentifier { return CompanyIdentifier(id: 2236, name: "Prevayl Limited") }
+    /// bf1systems limited
+    class var bf1systemsLimited: CompanyIdentifier { return CompanyIdentifier(id: 2237, name: "bf1systems limited") }
+    /// ubisys technologies GmbH
+    class var ubisysTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 2238, name: "ubisys technologies GmbH") }
+    /// SIRC Co., Ltd.
+    class var sircCo: CompanyIdentifier { return CompanyIdentifier(id: 2239, name: "SIRC Co., Ltd.") }
+    /// Accent Advanced Systems SLU
+    class var accentAdvancedSystems: CompanyIdentifier { return CompanyIdentifier(id: 2240, name: "Accent Advanced Systems SLU") }
+    /// Rayden.Earth LTD
+    class var raydenEarth: CompanyIdentifier { return CompanyIdentifier(id: 2241, name: "Rayden.Earth LTD") }
 }
