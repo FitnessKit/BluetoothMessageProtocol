@@ -29,6 +29,17 @@ public extension MemberIdentifier {
     /// Array of all Supported MemberIdentifier values
     static var supportedMemberIdentifers: [MemberIdentifier] = {
 
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD6A, name: "Emerson"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD6B, name: "rapitag GmbH"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD6C, name: "Samsung Electronics Co., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD6D, name: "Sigma Elektro GmbH"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD6E, name: "Polidea sp. z o.o."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD6F, name: "Apple, Inc."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD70, name: "GuangDong Oppo Mobile Telecommunications Corp., Ltd."))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD71, name: "GN Hearing A/S"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD72, name: "Logitech International SA"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD73, name: "BRControls Products BV"))
+        allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD74, name: "BRControls Products BV"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD75, name: "Insulet Corporation"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD76, name: "Insulet Corporation"))
         allMemberIdentifiers.append(MemberIdentifier(assignedNumber: 0xFD77, name: "Withings"))
