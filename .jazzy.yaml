@@ -155,6 +155,7 @@ custom_categories:
     - CharacteristicAerobicThreshold
     - CharacteristicAge
     - CharacteristicAlertCategoryID
+    - CharacteristicAlertCategoryIDBitMask
     - CharacteristicAlertLevel
     - CharacteristicAlertStatus
     - CharacteristicAltitude
