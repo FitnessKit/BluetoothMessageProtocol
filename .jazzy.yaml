@@ -157,6 +157,7 @@ custom_categories:
     - CharacteristicAlertCategoryID
     - CharacteristicAlertCategoryIDBitMask
     - CharacteristicAlertLevel
+    - CharacteristicAlertNotificationControlPoint
     - CharacteristicAlertStatus
     - CharacteristicAltitude
     - CharacteristicAnaerobicHeartRateLowerLimit
