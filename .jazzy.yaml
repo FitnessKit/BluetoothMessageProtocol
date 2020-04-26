@@ -182,6 +182,7 @@ custom_categories:
     - CharacteristicCurrentTime
     - CharacteristicDatabaseChangeIncrement
     - CharacteristicDateOfBirth
+    - CharacteristicDateofThresholdAssessment
     - CharacteristicDateTime
     - CharacteristicDayDateTime
     - CharacteristicDayOfWeek

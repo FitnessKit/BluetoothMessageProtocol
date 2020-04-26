@@ -24,113 +24,40 @@
 
 import Foundation
 import DataDecoder
-import FitnessUnits
-
-/// Daylight Savings Time Offset
-public enum DSTOffset: UInt8 {
-    /// Standard Time
-    case standardTime           = 0
-    /// Half An Hour Daylight Time (+0.5h)
-    case halfHourDaylightTime   = 2
-    /// Daylight Time (+1h)
-    case daylightTime           = 4
-    /// Double Daylight Time (+2h))
-    case doubleDaylightTime     = 8
-    /// Unknown
-    case unknown                = 255
-}
-
-/// Bluetooth Days of the Week
-public enum DayOfWeek: UInt8 {
-    /// Unknown
-    case unknown        = 0
-    /// Monday
-    case monday         = 1
-    /// Tuesday
-    case tuesday        = 2
-    /// Wednesday
-    case wednesday      = 3
-    /// Thursday
-    case thursday       = 4
-    /// Friday
-    case friday         = 5
-    /// Saturday
-    case saturday       = 6
-    /// Sunday
-    case sunday         = 7
-
-    /// Uses Current System Date to create DayOfWeek
-    public static var fromCurrentDate: DayOfWeek {
-
-        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: Date())
-
-        return DayOfWeek(rawValue: UInt8(comp.weekday ?? 0)) ?? DayOfWeek.unknown
-    }
-}
-
-/// Bluetooth Months
-public enum Month: UInt8 {
-    /// Unknow
-    case unknown        = 0
-    /// January
-    case january        = 1
-    /// February
-    case february       = 2
-    /// March
-    case march          = 3
-    /// April
-    case april          = 4
-    /// May
-    case may            = 5
-    /// June
-    case june           = 6
-    /// July
-    case july           = 7
-    /// August
-    case august         = 8
-    /// September
-    case september      = 9
-    /// October
-    case october        = 10
-    /// November
-    case november       = 11
-    /// December
-    case december       = 12
-}
 
 /// Bluetooth Date Time Type
 public struct DateTime: Hashable {
-
+    
     /// Year
     ///
     /// Year as defined by the Gregorian calendar. Valid between 1582 and 9999
     private(set) public var year: UInt16?
-
+    
     /// Month
     ///
     /// Month of the year as defined by the Gregorian calendar
     private(set) public var month: Month
-
+    
     /// Day of Month
     ///
     /// Day of the month as defined by the Gregorian calendar
     private(set) public var day: UInt8?
-
+    
     /// Hours
     ///
     /// Number of hours past midnight
     private(set) public var hours: UInt8
-
+    
     /// Minutes
     ///
     /// Number of minutes since the start of the hour
     private(set) public var minutes: UInt8
-
+    
     /// Seconds
     ///
     /// Number of seconds since the start of the minute
     private(set) public var seconds: UInt8
-
+    
     /// Create Bluetooth Date Time Type
     ///
     /// - Parameters:
@@ -141,7 +68,6 @@ public struct DateTime: Hashable {
     ///   - minutes: Minutes
     ///   - seconds: Seconds
     public init(year: UInt16?, month: Month, day: UInt8?, hours: UInt8, minutes: UInt8, seconds: UInt8) {
-
         self.year = year
         self.month = month
         self.day = day
@@ -149,14 +75,14 @@ public struct DateTime: Hashable {
         self.minutes = minutes
         self.seconds = seconds
     }
-
+    
     /// Creates a DateTime Object from the current date
     ///
     /// Dates are represented in the Gregorian Calendar using current timezone
     public static var fromCurrentDate: DateTime {
         return DateTime(Date())
     }
-
+    
     private init(_ comps: DateComponents) {
         self = DateTime(year: UInt16(comps.year ?? 2000),
                         month: Month(rawValue: UInt8(comps.month ?? 1)) ?? Month.january,
@@ -165,69 +91,56 @@ public struct DateTime: Hashable {
                         minutes: UInt8(comps.minute ?? 0),
                         seconds: UInt8(comps.second ?? 0))
     }
-
+    
     /// Create Bluetooth Date Time Type
     ///
     /// - Parameters:
     ///   - from: Date
     ///   - calendar: Calendar used for Date
     public init(_ from: Date, calendar: Calendar = Calendar(identifier: .gregorian)) {
-
+        
         let comps = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second],
                                             from: from)
-
+        
         self = DateTime(comps)
     }
 }
 
 public extension DateTime {
-
+    
     internal static func decode(_ data: Data, decoder: inout DecodeData) -> DateTime {
-        var year: UInt16?
-
-        let yr = decoder.decodeUInt16(data)
-        if kBluetoothYearBounds.contains(Int(yr)) {
-            year = yr
-        }
-
-        let month = Month(rawValue: decoder.decodeUInt8(data)) ?? .unknown
-
-        var dayOfMonth: UInt8?
-        let day = decoder.decodeUInt8(data)
-        if kBluetoothDayOfMonthBounds.contains(Int(day)) {
-            dayOfMonth = day
-        }
-
+        let yearMonthDay = YearMonthDay.decode(data, decoder: &decoder)
+        
         let hours = decoder.decodeUInt8(data)
-
+        
         let minutes = decoder.decodeUInt8(data)
-
+        
         let seconds = decoder.decodeUInt8(data)
-
-        return DateTime(year: year,
-                        month: month,
-                        day: dayOfMonth,
+        
+        return DateTime(year: yearMonthDay.year,
+                        month: yearMonthDay.month,
+                        day: yearMonthDay.day,
                         hours: hours,
                         minutes: minutes,
                         seconds: seconds)
     }
-
+    
     /// Decode DateTime
     ///
     /// - Parameter data: DateTime Data
     /// - Returns: DateTime Instance
     /// - Throws: BluetoothDecodeError
     static func decode(data: Data) -> DateTime {
-
+        
         var decoder = DecodeData()
-
+        
         return decode(data, decoder: &decoder)
     }
-
+    
 }
 
 extension DateTime: Equatable {
-
+    
     /// Returns a Boolean value indicating whether two values are equal.
     ///
     /// Equality is the inverse of inequality. For any values `a` and `b`,
@@ -237,52 +150,48 @@ extension DateTime: Equatable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func == (lhs: DateTime, rhs: DateTime) -> Bool {
-
-        if lhs.year == rhs.year &&
+        return lhs.year == rhs.year &&
             lhs.month.rawValue == rhs.month.rawValue &&
             lhs.day == rhs.day &&
             lhs.hours == rhs.hours &&
             lhs.minutes == rhs.minutes &&
-            lhs.seconds == rhs.seconds {
-            return true
-        }
-        return false
+            lhs.seconds == rhs.seconds
     }
 }
 
 extension DateTime: BluetoothEncodable {
-
+    
     /// Encodes Object into Data
     ///
     /// - Returns: Encoded Data Result
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
-
+        
         guard let year = year else {
             return.failure(BluetoothEncodeError.missingProperties("Year can not be nil for encoding"))
         }
-
+        
         guard kBluetoothYearBounds.contains(Int(year)) else {
             return.failure(BluetoothEncodeError.boundsError(title: "Year must be between",
                                                             range: kBluetoothYearBounds))
         }
-
+        
         guard let day = day else {
             return.failure(BluetoothEncodeError.missingProperties("Day can not be nil for encoding"))
         }
-
+        
         guard kBluetoothDayOfMonthBounds.contains(Int(day)) else {
             return.failure(BluetoothEncodeError.boundsError(title: "Day must be between",
                                                             range: kBluetoothDayOfMonthBounds))
         }
-
+        
         msgData.append(Data(from: UInt16(year)))
         msgData.append(month.rawValue)
         msgData.append(day)
         msgData.append(hours)
         msgData.append(minutes)
         msgData.append(seconds)
-
+        
         return.success(msgData)
     }
 }
