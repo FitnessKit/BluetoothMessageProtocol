@@ -39,8 +39,8 @@ final public class CharacteristicBloodPressureFeature: Characteristic {
     
     /// Supported Feature Types
     public struct Feature: OptionSet, Hashable {
-        public let rawValue: UInt8
-        public init(rawValue: UInt8) { self.rawValue = rawValue }
+        public let rawValue: UInt16
+        public init(rawValue: UInt16) { self.rawValue = rawValue }
         
         /// Body Movement Detection feature supported
         public static let bodyMovementDetectionSupported            = Feature(rawValue: 1 << 0)
@@ -79,7 +79,7 @@ final public class CharacteristicBloodPressureFeature: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let status = Feature(rawValue: decoder.decodeUInt8(data))
+        let status = Feature(rawValue: decoder.decodeUInt16(data))
         
         let char = CharacteristicBloodPressureFeature(status: status)
         return.success(char as! C)
@@ -91,8 +91,8 @@ final public class CharacteristicBloodPressureFeature: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
-        msgData.append(supportedFeatures.rawValue)
-        
+        msgData.append(Data(from: UInt16(supportedFeatures.rawValue.littleEndian)))
+
         return.success(msgData)
     }
 }
