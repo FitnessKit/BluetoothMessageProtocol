@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">BluetoothMessageProtocol Docs</a>
-          <span class="no-mobile"> (98% documented)</span>
+          <a href="../index.html">BluetoothMessageProtocol 2.0.0 Docs</a>
+          <span class="no-mobile"> (99% documented)</span>
         </p>
     
         <p class="header-right">
@@ -51,6 +51,8 @@
                     <pre class="highlight swift"><code><span class="kd">@available(swift 3.1)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
 <span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">CharacteristicTreadmillData</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Characteristic.html">Characteristic</a></span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CharacteristicTreadmillData</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">CharacteristicTreadmillData</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                   </div>
                 </div>
@@ -581,7 +583,7 @@ the Client from a treadmill (Server).</p>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC18instantaneousSpeed07averageH013totalDistance11inclination9rampAngle21positiveElevationGain08negativepQ00G4Pace0iS06energy9heartRate19metabolicEquivalent4time11forceOnBelt11powerOutputAcA014FitnessMachineH4TypeVSg_AU10Foundation11MeasurementVySo12NSUnitLengthCGSgAA29FitnessMachineInclinationTypeVSgAXySo06NSUnitN0CGSgA0_A0_AXySo06NSUnitH0CGSgA11_AA20FitnessMachineEnergyVs5UInt8VSgSdSgAA18FitnessMachineTimeVAXy12FitnessUnits9UnitForceCGSgAA23FitnessMachinePowerTypeVSgtcfc"></a>
                       <a name="//apple_ref/swift/Method/init(instantaneousSpeed:averageSpeed:totalDistance:inclination:rampAngle:positiveElevationGain:negativeElevationGain:instantaneousPace:averagePace:energy:heartRate:metabolicEquivalent:time:forceOnBelt:powerOutput:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC18instantaneousSpeed07averageH013totalDistance11inclination9rampAngle21positiveElevationGain08negativepQ00G4Pace0iS06energy9heartRate19metabolicEquivalent4time11forceOnBelt11powerOutputAcA014FitnessMachineH4TypeVSg_AU10Foundation11MeasurementVySo12NSUnitLengthCGSgAA29FitnessMachineInclinationTypeVSgAXySo06NSUnitN0CGSgA0_A0_AXySo06NSUnitH0CGSgA11_AA20FitnessMachineEnergyVs5UInt8VSgSdSgAA18FitnessMachineTimeVAXy12FitnessUnits9UnitForceCGSgAA23FitnessMachinePowerTypeVSgtcfc">init(instantaneousSpeed:averageSpeed:totalDistance:inclination:rampAngle:positiveElevationGain:negativeElevationGain:instantaneousPace:averagePace:energy:heartRate:metabolicEquivalent:time:forceOnBelt:powerOutput:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC18instantaneousSpeed07averageH013totalDistance11inclination9rampAngle21positiveElevationGain08negativepQ00G4Pace0iS06energy9heartRate19metabolicEquivalent4time11forceOnBelt11powerOutputAcA014FitnessMachineH4TypeVSg_AU10Foundation11MeasurementVySo12NSUnitLengthCGSgAA29FitnessMachineInclinationTypeVSgAXySo06NSUnitN0CGSgA0_A0_AXySo06NSUnitH0CGSgA11_AA20FitnessMachineEnergyVs5UInt8VSgSdSgAA18FitnessMachineTimeVAXy12FitnessUnits9UnitForceCGSgAA23FitnessMachinePowerTypeVSgtcfc">init(instantaneousSpeed:<wbr>averageSpeed:<wbr>totalDistance:<wbr>inclination:<wbr>rampAngle:<wbr>positiveElevationGain:<wbr>negativeElevationGain:<wbr>instantaneousPace:<wbr>averagePace:<wbr>energy:<wbr>heartRate:<wbr>metabolicEquivalent:<wbr>time:<wbr>forceOnBelt:<wbr>powerOutput:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -809,7 +811,7 @@ the Client from a treadmill (Server).</p>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC6decode4withs6ResultOyxAA0A11DecodeErrorOG10Foundation0F0V_tAA0D0RzlFZ"></a>
                       <a name="//apple_ref/swift/Method/decode(with:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC6decode4withs6ResultOyxAA0A11DecodeErrorOG10Foundation0F0V_tAA0D0RzlFZ">decode(with:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC6decode4withs6ResultOyxAA0A11DecodeErrorOG10Foundation0F0V_tAA0D0RzlFZ">decode(with:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -885,16 +887,12 @@ the Client from a treadmill (Server).</p>
                       </section>
                     </div>
                   </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
                   <li class="item">
                     <div>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC4hash4intoys6HasherVz_tF"></a>
                       <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC4hash4intoys6HasherVz_tF">hash(into:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -948,16 +946,12 @@ of this instance.</p>
                       </section>
                     </div>
                   </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
                   <li class="item">
                     <div>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC2eeoiySbAC_ACtFZ"></a>
                       <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC2eeoiySbAC_ACtFZ">==(_:_:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol27CharacteristicTreadmillDataC2eeoiySbAC_ACtFZ">==(_:<wbr>_:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -1036,9 +1030,6 @@ of this instance.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/Service.html">Service</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Classes/Service/CodeKeys.html">– CodeKeys</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Protocols/ServiceData.html">ServiceData</a>
@@ -1210,6 +1201,9 @@ of this instance.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ServiceGoogleGlass.html">ServiceGoogleGlass</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceKomoot.html">ServiceKomoot</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ServiceMyoClassifierEvent.html">ServiceMyoClassifierEvent</a>
@@ -2232,9 +2226,6 @@ of this instance.</p>
                   <a href="../Structs/MeshOutOfBandInformation.html">MeshOutOfBandInformation</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Structs/MeshOutOfBandInformation/CodeKeys.html">– CodeKeys</a>
-                </li>
-                <li class="nav-group-task">
                   <a href="../Structs/MeshTransitionTime.html">MeshTransitionTime</a>
                 </li>
                 <li class="nav-group-task">
@@ -2436,14 +2427,6 @@ of this instance.</p>
               </ul>
             </li>
             <li class="nav-group-name">
-              <a href="../Other%20Classes.html">Other Classes</a>
-              <ul class="nav-group-tasks">
-                <li class="nav-group-task">
-                  <a href="../Classes/ServiceKomoot.html">ServiceKomoot</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-group-name">
               <a href="../Other%20Enums.html">Other Enumerations</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
@@ -2511,24 +2494,6 @@ of this instance.</p>
             <li class="nav-group-name">
               <a href="../Other%20Extensions.html">Other Extensions</a>
               <ul class="nav-group-tasks">
-                <li class="nav-group-task">
-                  <a href="../Extensions/Data.html">Data</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/Double.html">Double</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/Int16.html">Int16</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/UInt16.html">UInt16</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/UInt32.html">UInt32</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/UInt8.html">UInt8</a>
-                </li>
                 <li class="nav-group-task">
                   <a href="../Extensions/UUID.html">UUID</a>
                 </li>
@@ -2600,7 +2565,7 @@ of this instance.</p>
       <div class="footer-wrapper">
         <section id="footer">
           <p>© 2017 Kevin A. Hoogheem</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.12.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </div>
     </div>

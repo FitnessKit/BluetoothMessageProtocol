@@ -16,8 +16,8 @@
     <header>
       <div class="content-wrapper">
         <p>
-          <a href="../index.html">BluetoothMessageProtocol Docs</a>
-          <span class="no-mobile"> (98% documented)</span>
+          <a href="../index.html">BluetoothMessageProtocol 2.0.0 Docs</a>
+          <span class="no-mobile"> (99% documented)</span>
         </p>
     
         <p class="header-right">
@@ -51,6 +51,9 @@
                     <pre class="highlight swift"><code><span class="kd">@available(swift 4.0)</span>
 <span class="kd">@available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">Service</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Service</span><span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Service</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Service</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                   </div>
                 </div>
@@ -146,7 +149,7 @@
                       <code>
                       <a name="/s:24BluetoothMessageProtocol7ServiceC4name10uuidString17uniformIdentifierACSS_S2Stcfc"></a>
                       <a name="//apple_ref/swift/Method/init(name:uuidString:uniformIdentifier:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC4name10uuidString17uniformIdentifierACSS_S2Stcfc">init(name:uuidString:uniformIdentifier:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC4name10uuidString17uniformIdentifierACSS_S2Stcfc">init(name:<wbr>uuidString:<wbr>uniformIdentifier:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -217,9 +220,11 @@
                 <div class="task-name-container">
                   <a name="/HomeKit%20Accessory%20Protocol%20Services"></a>
                   <a name="//apple_ref/swift/Section/HomeKit Accessory Protocol Services" class="dashAnchor"></a>
-                  <a href="#/HomeKit%20Accessory%20Protocol%20Services">
-                    <h3 class="section-name">HomeKit Accessory Protocol Services</h3>
-                  </a>
+                  <div class="section-name-container">
+                    <a class="section-name-link" href="#/HomeKit%20Accessory%20Protocol%20Services"></a>
+                    <h3 class="section-name"><p>HomeKit Accessory Protocol Services</p>
+</h3>
+                  </div>
                 </div>
                 <ul>
                   <li class="item">
@@ -1356,44 +1361,12 @@
                       </section>
                     </div>
                   </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
-                  <li class="item">
-                    <div>
-                      <code>
-                      <a name="/s:24BluetoothMessageProtocol7ServiceC8CodeKeysO"></a>
-                      <a name="//apple_ref/swift/Enum/CodeKeys" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC8CodeKeysO">CodeKeys</a>
-                      </code>
-                    </div>
-                    <div class="height-container">
-                      <div class="pointer-container"></div>
-                      <section class="section">
-                        <div class="pointer"></div>
-                        <div class="abstract">
-                          <p>Undocumented</p>
-
-                          <a href="../Classes/Service/CodeKeys.html" class="slightly-smaller">See more</a>
-                        </div>
-                        <div class="declaration">
-                          <h4>Declaration</h4>
-                          <div class="language">
-                            <p class="aside-title">Swift</p>
-                            <pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">CodeKeys</span> <span class="p">:</span> <span class="kt">CodingKey</span></code></pre>
-
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </li>
                   <li class="item">
                     <div>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol7ServiceC6encode2toys7Encoder_p_tKF"></a>
                       <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC6encode2toys7Encoder_p_tKF">encode(to:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -1440,16 +1413,12 @@ encoder&rsquo;s format.</p>
                       </section>
                     </div>
                   </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
                   <li class="item">
                     <div>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol7ServiceC4hash4intoys6HasherVz_tF"></a>
                       <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC4hash4intoys6HasherVz_tF">hash(into:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -1503,16 +1472,12 @@ of this instance.</p>
                       </section>
                     </div>
                   </li>
-                </ul>
-              </div>
-              <div class="task-group">
-                <ul>
                   <li class="item">
                     <div>
                       <code>
                       <a name="/s:24BluetoothMessageProtocol7ServiceC2eeoiySbAC_ACtFZ"></a>
                       <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC2eeoiySbAC_ACtFZ">==(_:_:)</a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol7ServiceC2eeoiySbAC_ACtFZ">==(_:<wbr>_:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -1574,9 +1539,11 @@ of this instance.</p>
                 <div class="task-name-container">
                   <a name="/Non%20Bluetooth%20SIG%20Services"></a>
                   <a name="//apple_ref/swift/Section/Non Bluetooth SIG Services" class="dashAnchor"></a>
-                  <a href="#/Non%20Bluetooth%20SIG%20Services">
-                    <h3 class="section-name">Non Bluetooth SIG Services</h3>
-                  </a>
+                  <div class="section-name-container">
+                    <a class="section-name-link" href="#/Non%20Bluetooth%20SIG%20Services"></a>
+                    <h3 class="section-name"><p>Non Bluetooth SIG Services</p>
+</h3>
+                  </div>
                 </div>
                 <ul>
                   <li class="item">
@@ -2260,9 +2227,11 @@ of this instance.</p>
                 <div class="task-name-container">
                   <a name="/Supported%20Bluetooth%20SIG%20Services"></a>
                   <a name="//apple_ref/swift/Section/Supported Bluetooth SIG Services" class="dashAnchor"></a>
-                  <a href="#/Supported%20Bluetooth%20SIG%20Services">
-                    <h3 class="section-name">Supported Bluetooth SIG Services</h3>
-                  </a>
+                  <div class="section-name-container">
+                    <a class="section-name-link" href="#/Supported%20Bluetooth%20SIG%20Services"></a>
+                    <h3 class="section-name"><p>Supported Bluetooth SIG Services</p>
+</h3>
+                  </div>
                 </div>
                 <ul>
                   <li class="item">
@@ -3370,9 +3339,6 @@ of this instance.</p>
                   <a href="../Classes/Service.html">Service</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Classes/Service/CodeKeys.html">– CodeKeys</a>
-                </li>
-                <li class="nav-group-task">
                   <a href="../Protocols/ServiceData.html">ServiceData</a>
                 </li>
               </ul>
@@ -3542,6 +3508,9 @@ of this instance.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ServiceGoogleGlass.html">ServiceGoogleGlass</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/ServiceKomoot.html">ServiceKomoot</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/ServiceMyoClassifierEvent.html">ServiceMyoClassifierEvent</a>
@@ -4564,9 +4533,6 @@ of this instance.</p>
                   <a href="../Structs/MeshOutOfBandInformation.html">MeshOutOfBandInformation</a>
                 </li>
                 <li class="nav-group-task">
-                  <a href="../Structs/MeshOutOfBandInformation/CodeKeys.html">– CodeKeys</a>
-                </li>
-                <li class="nav-group-task">
                   <a href="../Structs/MeshTransitionTime.html">MeshTransitionTime</a>
                 </li>
                 <li class="nav-group-task">
@@ -4768,14 +4734,6 @@ of this instance.</p>
               </ul>
             </li>
             <li class="nav-group-name">
-              <a href="../Other%20Classes.html">Other Classes</a>
-              <ul class="nav-group-tasks">
-                <li class="nav-group-task">
-                  <a href="../Classes/ServiceKomoot.html">ServiceKomoot</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-group-name">
               <a href="../Other%20Enums.html">Other Enumerations</a>
               <ul class="nav-group-tasks">
                 <li class="nav-group-task">
@@ -4843,24 +4801,6 @@ of this instance.</p>
             <li class="nav-group-name">
               <a href="../Other%20Extensions.html">Other Extensions</a>
               <ul class="nav-group-tasks">
-                <li class="nav-group-task">
-                  <a href="../Extensions/Data.html">Data</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/Double.html">Double</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/Int16.html">Int16</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/UInt16.html">UInt16</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/UInt32.html">UInt32</a>
-                </li>
-                <li class="nav-group-task">
-                  <a href="../Extensions/UInt8.html">UInt8</a>
-                </li>
                 <li class="nav-group-task">
                   <a href="../Extensions/UUID.html">UUID</a>
                 </li>
@@ -4932,7 +4872,7 @@ of this instance.</p>
       <div class="footer-wrapper">
         <section id="footer">
           <p>© 2017 Kevin A. Hoogheem</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.12.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </div>
     </div>

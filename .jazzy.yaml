@@ -79,6 +79,7 @@ custom_categories:
     - ServiceEliteTrainer
     - ServiceGymConnect
     - ServiceGoogleGlass
+    - ServiceKomoot
     - ServiceMyoClassifierEvent
     - ServiceMyoControl
     - ServiceMyoImu
