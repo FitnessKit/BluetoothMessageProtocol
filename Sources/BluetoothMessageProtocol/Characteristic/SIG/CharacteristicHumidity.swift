@@ -60,7 +60,7 @@ final public class CharacteristicHumidity: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
         
         let humidity = Measurement(value: value, unit: UnitPercent.percent)
         
@@ -74,7 +74,7 @@ final public class CharacteristicHumidity: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
-        let value = UInt16(humidity.value.resolution(.adding, resolution: Resolution.oneHundredth))
+        let value = UInt16(humidity.value.resolution(.adding, resolution: .oneHundredth))
         
         msgData.append(Data(from: value))
         

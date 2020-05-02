@@ -78,7 +78,7 @@ final public class CharacteristicPosition3D: Characteristic {
         let lat = decoder.decodeInt32(data)
         let lon = decoder.decodeInt32(data)
         
-        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
+        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: .oneHundredth)
         
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
         

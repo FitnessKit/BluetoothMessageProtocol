@@ -303,7 +303,7 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C8
             if flags.contains(.resistance) {
-                resistnace = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+                resistnace = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
             }
             
             /// C9
@@ -313,12 +313,12 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C10
             if flags.contains(.cadence) {
-                cadence = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+                cadence = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
             }
             
             /// C11
             if flags.contains(.totalMovements) {
-                totalMovements = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.one)
+                totalMovements = decoder.decodeUInt16(data).resolution(.removing, resolution: .one)
             }
             
             /// C12
@@ -329,7 +329,7 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C13
             if flags.contains(.totalVerticalDistance) {
-                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
                 totalVerticalDistance = Measurement(value: value, unit: UnitLength.meters)
             }
         }
@@ -339,25 +339,25 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C14
             if flags.contains(.totalNegitiveVerticalDistance) {
-                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
                 totalNegitiveVerticalDistance = Measurement(value: value, unit: UnitLength.meters)
             }
             
             /// C15
             if flags.contains(.totalEnergy) {
-                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.one)
+                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .one)
                 totalEnergy = Measurement(value: value, unit: UnitEnergy.kilocalories)
             }
             
             /// C16
             if flags.contains(.energyRate) {
-                let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: Resolution.one)
+                let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: .one)
                 energyPerHour = Measurement(value: value, unit: UnitEnergy.kilocalories)
             }
             
             /// C17
             if flags.contains(.mets) {
-                metabolicEquivalent = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+                metabolicEquivalent = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
             }
             
             /// C18
@@ -367,7 +367,7 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C19
             if flags.contains(.torque) {
-                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
                 torque = Measurement(value: value, unit: UnitTorque.newtonMeter)
             }
             
@@ -378,7 +378,7 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C21
             if flags.contains(.grade) {
-                let value = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+                let value = decoder.decodeInt16(data).resolution(.removing, resolution: .oneTenth)
                 grade = Measurement(value: value, unit: UnitPercent.percent)
             }
         }
@@ -388,29 +388,29 @@ final public class CharacteristicGymConnectMeasurement: Characteristic {
             
             /// C22
             if flags.contains(.angle) {
-                let value = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+                let value = decoder.decodeInt16(data).resolution(.removing, resolution: .oneHundredth)
                 rampAngle = Measurement(value: value, unit: UnitAngle.degrees)
             }
             
             /// C23
             if flags.contains(.floorRate) {
-                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
                 floorRate = Measurement(value: value, unit: UnitCadence.floorsPerMinute)
             }
             
             /// C24
             if flags.contains(.totalFloors) {
-                totalFloors = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+                totalFloors = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
             }
             
             /// C25
             if flags.contains(.totalLaps) {
-                totalLaps = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.one)
+                totalLaps = decoder.decodeUInt8(data).resolution(.removing, resolution: .one)
             }
             
             /// C26
             if flags.contains(.movementLength) {
-                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneThousandth)
+                let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneThousandth)
                 movementLength = Measurement(value: value, unit: UnitLength.millimeters)
             }
         }

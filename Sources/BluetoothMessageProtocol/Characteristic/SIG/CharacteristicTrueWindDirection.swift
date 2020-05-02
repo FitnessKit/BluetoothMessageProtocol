@@ -66,7 +66,7 @@ final public class CharacteristicTrueWindDirection: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
         let direction = Measurement(value: value, unit: UnitAngle.degrees)
         
         let char = CharacteristicTrueWindDirection(windDirection: direction)
@@ -79,7 +79,7 @@ final public class CharacteristicTrueWindDirection: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
-        let value = windDirection.converted(to: UnitAngle.degrees).value.resolution(.adding, resolution: Resolution.oneHundredth)
+        let value = windDirection.converted(to: UnitAngle.degrees).value.resolution(.adding, resolution: .oneHundredth)
         
         msgData.append(Data(from: UInt16(value).littleEndian))
         

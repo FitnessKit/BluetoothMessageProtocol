@@ -60,7 +60,7 @@ final public class CharacteristicElevation: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: Resolution.oneHundredth)
+        let meters = Double(decoder.decodeInt24(data)).resolution(.removing, resolution: .oneHundredth)
         
         let elevation: Measurement = Measurement(value: meters, unit: UnitLength.meters)
         

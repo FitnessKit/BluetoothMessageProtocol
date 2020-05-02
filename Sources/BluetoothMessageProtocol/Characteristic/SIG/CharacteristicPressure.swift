@@ -61,7 +61,7 @@ final public class CharacteristicPressure: Characteristic {
         var decoder = DecodeData()
         
         // put into 0.1 PA then into KiloPascals
-        let value = decoder.decodeUInt32(data).resolution(.removing, resolution: Resolution.oneTenThousandth)
+        let value = decoder.decodeUInt32(data).resolution(.removing, resolution: .oneTenThousandth)
         
         let pressure: Measurement = Measurement(value: value, unit: UnitPressure.kilopascals)
         
@@ -78,7 +78,7 @@ final public class CharacteristicPressure: Characteristic {
         //Make sure we put this back to back before we create Data
         let value = pressure.converted(to: UnitPressure.kilopascals).value
         
-        let pressV = UInt32(value.resolution(.adding, resolution: Resolution.oneTenThousandth))
+        let pressV = UInt32(value.resolution(.adding, resolution: .oneTenThousandth))
         
         msgData.append(Data(from: pressV.littleEndian))
         

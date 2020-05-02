@@ -193,7 +193,7 @@ final public class CharacteristicTreadmillData: Characteristic {
             }
             
             if ramp != Int16.max {
-                let rValue = ramp.resolution(.removing, resolution: Resolution.oneTenth)
+                let rValue = ramp.resolution(.removing, resolution: .oneTenth)
                 rampAngle = Measurement(value: rValue, unit: UnitAngle.degrees)
             }
         }
@@ -207,12 +207,12 @@ final public class CharacteristicTreadmillData: Characteristic {
         }
         
         if flags.contains(.instantaneousPacePresent) {
-            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
             instantaneousPace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
         }
         
         if flags.contains(.averagePacePresent) {
-            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
             averagePace = Measurement(value: value, unit: UnitSpeed.kilometersPerMinute)
         }
         
@@ -228,7 +228,7 @@ final public class CharacteristicTreadmillData: Characteristic {
         }
         
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
         }
         
         let elapsedTime = decodeDuration(supported: flags,

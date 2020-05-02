@@ -62,7 +62,7 @@ final public class CharacteristicHipCircumference: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
         
         let hipCircumference: Measurement = Measurement(value: meters, unit: UnitLength.meters)
         
@@ -77,7 +77,7 @@ final public class CharacteristicHipCircumference: Characteristic {
         var msgData = Data()
         
         //Make sure we put this back to Meters before we create Data
-        let value = UInt16(hipCircumference.converted(to: UnitLength.meters).value.resolution(.adding, resolution: Resolution.oneHundredth))
+        let value = UInt16(hipCircumference.converted(to: UnitLength.meters).value.resolution(.adding, resolution: .oneHundredth))
         
         msgData.append(Data(from: value))
         

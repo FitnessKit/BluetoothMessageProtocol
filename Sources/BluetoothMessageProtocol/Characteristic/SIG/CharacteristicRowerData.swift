@@ -158,14 +158,14 @@ final public class CharacteristicRowerData: Characteristic {
         
         /// Available only when More data is NOT present
         if flags.contains(.moreData) == false {
-            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.two)
+            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: .two)
             strokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
             
             strokeCount = decoder.decodeUInt16(data)
         }
         
         if flags.contains(.averageStrokePresent) {
-            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.two)
+            let value = decoder.decodeUInt8(data).resolution(.removing, resolution: .two)
             averageStrokeRate = Measurement(value: value, unit: UnitCadence.strokesPerMinute)
         }
         
@@ -208,7 +208,7 @@ final public class CharacteristicRowerData: Characteristic {
         }
         
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
         }
         
         let elapsedTime = decodeDuration(supported: flags,

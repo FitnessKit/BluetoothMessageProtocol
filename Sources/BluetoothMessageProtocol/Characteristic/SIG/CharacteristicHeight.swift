@@ -62,7 +62,7 @@ final public class CharacteristicHeight: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let meters = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
         
         let height = Measurement(value: meters, unit: UnitLength.meters)
         
@@ -77,7 +77,7 @@ final public class CharacteristicHeight: Characteristic {
         var msgData = Data()
         
         //Make sure we put this back to Meters before we create Data
-        let heightVal = height.converted(to: UnitLength.meters).value.resolution(.adding, resolution: Resolution.oneHundredth)
+        let heightVal = height.converted(to: UnitLength.meters).value.resolution(.adding, resolution: .oneHundredth)
         
         msgData.append(Data(from: UInt16(heightVal)))
         

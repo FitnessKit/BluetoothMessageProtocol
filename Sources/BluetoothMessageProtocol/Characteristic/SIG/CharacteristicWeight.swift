@@ -62,7 +62,7 @@ final public class CharacteristicWeight: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneFiveThousandth)
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneFiveThousandth)
         let weight = Measurement(value: value, unit: UnitMass.kilograms)
         
         let char = CharacteristicWeight(weight: weight)
@@ -76,7 +76,7 @@ final public class CharacteristicWeight: Characteristic {
         var msgData = Data()
         
         //Make sure we put this back to KG before we create Data
-        let value = UInt16(weight.converted(to: UnitMass.kilograms).value.resolution(.adding, resolution: Resolution.oneFiveThousandth))
+        let value = UInt16(weight.converted(to: UnitMass.kilograms).value.resolution(.adding, resolution: .oneFiveThousandth))
         
         msgData.append(Data(from: value))
         

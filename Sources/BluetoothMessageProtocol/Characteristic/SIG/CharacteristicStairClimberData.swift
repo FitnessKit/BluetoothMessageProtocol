@@ -162,7 +162,7 @@ final public class CharacteristicStairClimberData: Characteristic {
         
         var mets: Double?
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
         }
         
         let elapsedTime = decodeDuration(supported: flags,

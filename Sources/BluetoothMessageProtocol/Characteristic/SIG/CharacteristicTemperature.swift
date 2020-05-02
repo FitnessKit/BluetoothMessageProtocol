@@ -60,7 +60,7 @@ final public class CharacteristicTemperature: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let tmpValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+        let tmpValue = decoder.decodeInt16(data).resolution(.removing, resolution: .oneTenth)
         let temp = Measurement(value: tmpValue, unit: UnitTemperature.celsius)
         
         let char = CharacteristicTemperature(temperature: temp)
@@ -73,7 +73,7 @@ final public class CharacteristicTemperature: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
-        let value = temperature.converted(to: UnitTemperature.celsius).value.resolution(.adding, resolution: Resolution.oneTenth)
+        let value = temperature.converted(to: UnitTemperature.celsius).value.resolution(.adding, resolution: .oneTenth)
         
         msgData.append(Data(from: Int16(value).littleEndian))
         

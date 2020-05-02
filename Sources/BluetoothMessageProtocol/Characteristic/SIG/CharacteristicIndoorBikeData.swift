@@ -196,7 +196,7 @@ final public class CharacteristicIndoorBikeData: Characteristic {
         }
         
         if flags.contains(.metabolicEquivalentPresent) {
-            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: Resolution.oneTenth)
+            mets = decoder.decodeUInt8(data).resolution(.removing, resolution: .oneTenth)
         }
         
         let elapsedTime = decodeDuration(supported: flags,
@@ -346,7 +346,7 @@ private extension CharacteristicIndoorBikeData {
         
         var cadenceValue: Measurement<UnitCadence>?
         if supported.contains(flag) {
-            let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: Resolution.two)
+            let value = Double(decoder.decodeUInt16(data)).resolution(.removing, resolution: .two)
             cadenceValue = Measurement(value: value, unit: unit)
         }
         return cadenceValue

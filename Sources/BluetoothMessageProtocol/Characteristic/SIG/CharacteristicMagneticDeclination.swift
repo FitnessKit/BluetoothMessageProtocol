@@ -64,7 +64,7 @@ final public class CharacteristicMagneticDeclination: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let value = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
         
         let dec = Measurement(value: value, unit: UnitAngle.degrees)
         
@@ -88,7 +88,7 @@ final public class CharacteristicMagneticDeclination: Characteristic {
         }
         
         //put it back to uint16
-        let dec = UInt16(value.resolution(.adding, resolution: Resolution.oneTenth))
+        let dec = UInt16(value.resolution(.adding, resolution: .oneTenth))
         
         msgData.append(Data(from: dec.littleEndian))
         

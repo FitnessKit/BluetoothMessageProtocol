@@ -74,9 +74,9 @@ final public class CharacteristicSupportedResistanceLevel: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-        let maxValue = decoder.decodeInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
-        let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneTenth)
+        let minValue = decoder.decodeInt16(data).resolution(.removing, resolution: .oneTenth)
+        let maxValue = decoder.decodeInt16(data).resolution(.removing, resolution: .oneTenth)
+        let incrValue = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneTenth)
         
         let char = CharacteristicSupportedResistanceLevel(minimum: minValue,
                                                           maximum: maxValue,
@@ -90,9 +90,9 @@ final public class CharacteristicSupportedResistanceLevel: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
-        let minValue = Int16(minimum.resolution(.adding, resolution: Resolution.oneTenth))
-        let maxValue = Int16(maximum.resolution(.adding, resolution: Resolution.oneTenth))
-        let incrValue = UInt16(maximum.resolution(.adding, resolution: Resolution.oneTenth))
+        let minValue = Int16(minimum.resolution(.adding, resolution: .oneTenth))
+        let maxValue = Int16(maximum.resolution(.adding, resolution: .oneTenth))
+        let incrValue = UInt16(maximum.resolution(.adding, resolution: .oneTenth))
         
         msgData.append(Data(from: minValue.littleEndian))
         msgData.append(Data(from: maxValue.littleEndian))

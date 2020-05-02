@@ -60,7 +60,7 @@ final public class CharacteristicApparentWindSpeed: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let speed = decoder.decodeUInt16(data).resolution(.removing, resolution: Resolution.oneHundredth)
+        let speed = decoder.decodeUInt16(data).resolution(.removing, resolution: .oneHundredth)
         
         let wind = Measurement(value: speed, unit: UnitSpeed.metersPerSecond)
         
@@ -75,7 +75,7 @@ final public class CharacteristicApparentWindSpeed: Characteristic {
         var msgData = Data()
         
         //Make sure we put this back to m/s before we create Data
-        let speed = windSpeed.converted(to: UnitSpeed.metersPerSecond).value.resolution(.adding, resolution: Resolution.oneHundredth)
+        let speed = windSpeed.converted(to: UnitSpeed.metersPerSecond).value.resolution(.adding, resolution: .oneHundredth)
         
         msgData.append(Data(from: UInt16(speed).littleEndian))
         
