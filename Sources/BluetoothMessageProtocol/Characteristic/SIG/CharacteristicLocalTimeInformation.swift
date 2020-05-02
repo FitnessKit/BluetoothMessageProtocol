@@ -48,7 +48,7 @@ final public class CharacteristicLocalTimeInformation: Characteristic {
     /// Offset from UTC in number of 15 minutes increments. A value of -128 means
     /// that the time zone offset is not known. The offset defined in this characteristic
     /// is constant, regardless whether daylight savings is in effect
-    private(set) public var timeZone: Int8
+    private(set) public var timeZone: BluetoothTimeZone
     
     /// DST Offset
     private(set) public var dstOffset: DSTOffset
@@ -58,7 +58,7 @@ final public class CharacteristicLocalTimeInformation: Characteristic {
     /// - Parameters:
     ///   - timeZone: Timezone Offset from UTC
     ///   - dstOffset: Daylight Savings Offset
-    public init(timeZone: Int8, dstOffset: DSTOffset) {
+    public init(timeZone: BluetoothTimeZone, dstOffset: DSTOffset) {
         self.timeZone = timeZone
         self.dstOffset = dstOffset
     }
@@ -71,10 +71,11 @@ final public class CharacteristicLocalTimeInformation: Characteristic {
         var decoder = DecodeData()
         
         let timez = decoder.decodeInt8(data)
-        
+        let timezone = BluetoothTimeZone(rawValue: timez) ?? .unknown
+
         let dstOffset = DSTOffset(rawValue: decoder.decodeUInt8(data)) ?? .unknown
         
-        let char = CharacteristicLocalTimeInformation(timeZone: timez, dstOffset: dstOffset)
+        let char = CharacteristicLocalTimeInformation(timeZone: timezone, dstOffset: dstOffset)
         return.success(char as! C)
     }
     
@@ -84,7 +85,7 @@ final public class CharacteristicLocalTimeInformation: Characteristic {
     public func encode() -> Result<Data, BluetoothEncodeError> {
         var msgData = Data()
         
-        msgData.append(Data(from: timeZone))
+        msgData.append(Data(from: timeZone.rawValue))
         msgData.append(dstOffset.rawValue)
         
         return.success(msgData)
