@@ -243,6 +243,7 @@ custom_categories:
     - CharacteristicRestingHeartRate
     - CharacteristicRingerSetting
     - CharacteristicRowerData
+    - CharacteristicScanIntervalWindow
     - CharacteristicSensorLocation
     - CharacteristicSerialNumberString
     - CharacteristicSoftwareRevisionString
