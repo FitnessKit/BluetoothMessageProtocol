@@ -201,6 +201,7 @@ custom_categories:
     - CharacteristicFiveZoneHeartRateLimits
     - CharacteristicFloorNumber
     - CharacteristicGender
+    - CharacteristicGustFactor
     - CharacteristicHardwareRevisionString
     - CharacteristicHeartRateControlPoint
     - CharacteristicHeartRateMax
