@@ -244,6 +244,7 @@ custom_categories:
     - CharacteristicRingerSetting
     - CharacteristicRowerData
     - CharacteristicScanIntervalWindow
+    - CharacteristicScanRefresh
     - CharacteristicSensorLocation
     - CharacteristicSerialNumberString
     - CharacteristicSoftwareRevisionString
