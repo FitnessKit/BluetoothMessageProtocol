@@ -264,6 +264,7 @@ custom_categories:
     - CharacteristicTimeSource
     - CharacteristicTimeUpdateControlPoint
     - CharacteristicTimeUpdateState
+    - CharacteristicTimeWithDst
     - CharacteristicTimeZone
     - CharacteristicTrainingStatus
     - CharacteristicTreadmillData
