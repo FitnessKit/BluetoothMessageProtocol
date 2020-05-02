@@ -224,6 +224,7 @@ custom_categories:
     - CharacteristicLocalNorthCoordinate
     - CharacteristicLocalTimeInformation
     - CharacteristicLocationName
+    - CharacteristicLocationNavigationFeature
     - CharacteristicLongitude
     - CharacteristicMagneticDeclination
     - CharacteristicManufacturerNameString
