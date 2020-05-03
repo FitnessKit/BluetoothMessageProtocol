@@ -61,7 +61,8 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
     /// User ID
     private(set) public var userID: User?
     
-    // TODO: add Measurement Status
+    /// Measurement Status
+    private(set) public var status: BloodPressureMeasurementStatus?
     
     /// Creates Blood Pressure Measurement Characteristic
     ///
@@ -77,7 +78,8 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
                 meanArterial: Measurement<UnitPressure>,
                 timestamp: DateTime?,
                 pulseRate: Measurement<UnitCadence>?,
-                userID: User?) {
+                userID: User?,
+                status: BloodPressureMeasurementStatus?) {
         
         self.systolic = systolic
         self.diastolic = diastolic
@@ -85,6 +87,7 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
         self.timestamp = timestamp
         self.pulseRate = pulseRate
         self.userID = userID
+        self.status = status
     }
     
     /// Decodes Characteristic Data into Characteristic
@@ -132,12 +135,19 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
             userID = User.create(decoder.decodeUInt8(data))
         }
         
+        var status: BloodPressureMeasurementStatus?
+        if flags.contains(.measurementStatusPresent) {
+            let statusValue = decoder.decodeUInt16(data)
+            status = BloodPressureMeasurementStatus(rawValue: statusValue)
+        }
+        
         let char = CharacteristicBloodPressureMeasurement(systolic: systolic,
                                                           diastolic: diastolic,
                                                           meanArterial: meanArterial,
                                                           timestamp: timestamp,
                                                           pulseRate: pulseRate,
-                                                          userID: userID)
+                                                          userID: userID,
+                                                          status: status)
         return.success(char as! C)
     }
     
@@ -173,6 +183,7 @@ extension CharacteristicBloodPressureMeasurement: Hashable {
         hasher.combine(timestamp)
         hasher.combine(pulseRate)
         hasher.combine(userID)
+        hasher.combine(status)
     }
 }
 
@@ -194,12 +205,13 @@ extension CharacteristicBloodPressureMeasurement: Equatable {
             && (lhs.timestamp == rhs.timestamp)
             && (lhs.pulseRate == rhs.pulseRate)
             && (lhs.userID == rhs.userID)
+            && (lhs.status == rhs.status)
     }
 }
 
 internal extension CharacteristicBloodPressureMeasurement {
     
-    /// Flags
+    /// Blood Pressure Flags
     struct BloodPressureFlags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }

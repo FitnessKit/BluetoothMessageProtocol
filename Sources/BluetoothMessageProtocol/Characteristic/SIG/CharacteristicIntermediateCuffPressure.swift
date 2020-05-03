@@ -54,7 +54,10 @@ final public class CharacteristicIntermediateCuffPressure: Characteristic {
     
     /// User ID
     private(set) public var userID: User?
-        
+    
+    /// Measurement Status
+    private(set) public var status: BloodPressureMeasurementStatus?
+    
     /// Creates Intermediate Cuff Pressure Characteristic
     ///
     /// - Parameters:
@@ -65,12 +68,14 @@ final public class CharacteristicIntermediateCuffPressure: Characteristic {
     public init(cuffPressure: Measurement<UnitPressure>,
                 timestamp: DateTime?,
                 pulseRate: Measurement<UnitCadence>?,
-                userID: User?) {
+                userID: User?,
+                status: BloodPressureMeasurementStatus?) {
         
         self.cuffPressure = cuffPressure
         self.timestamp = timestamp
         self.pulseRate = pulseRate
         self.userID = userID
+        self.status = status
     }
     
     /// Decodes Characteristic Data into Characteristic
@@ -108,10 +113,17 @@ final public class CharacteristicIntermediateCuffPressure: Characteristic {
             userID = User.create(decoder.decodeUInt8(data))
         }
         
+        var status: BloodPressureMeasurementStatus?
+        if flags.contains(.measurementStatusPresent) {
+            let statusValue = decoder.decodeUInt16(data)
+            status = BloodPressureMeasurementStatus(rawValue: statusValue)
+        }
+        
         let char = CharacteristicIntermediateCuffPressure(cuffPressure: cuffPressure,
                                                           timestamp: timestamp,
                                                           pulseRate: pulseRate,
-                                                          userID: userID)
+                                                          userID: userID,
+                                                          status: status)
         return.success(char as! C)
     }
     
@@ -145,6 +157,7 @@ extension CharacteristicIntermediateCuffPressure: Hashable {
         hasher.combine(timestamp)
         hasher.combine(pulseRate)
         hasher.combine(userID)
+        hasher.combine(status)
     }
 }
 
@@ -164,5 +177,6 @@ extension CharacteristicIntermediateCuffPressure: Equatable {
             && lhs.timestamp == rhs.timestamp
             && lhs.pulseRate == rhs.pulseRate
             && lhs.userID == rhs.userID
+            && lhs.status == rhs.status
     }
 }
