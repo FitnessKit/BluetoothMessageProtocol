@@ -216,6 +216,7 @@ custom_categories:
     - CharacteristicHTTPStatusCode
     - CharacteristicHumidity
     - CharacteristicIndoorBikeData
+    - CharacteristicIntermediateCuffPressure
     - CharacteristicIntermediateTemperature
     - CharacteristicLanguage
     - CharacteristicLastName

@@ -94,7 +94,7 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let flags = Flags(rawValue: decoder.decodeUInt8(data))
+        let flags = BloodPressureFlags(rawValue: decoder.decodeUInt8(data))
         
         var systolic: Measurement<UnitPressure>
         let systolicV = Double(decoder.decodeSFloatValue(data))
@@ -197,23 +197,23 @@ extension CharacteristicBloodPressureMeasurement: Equatable {
     }
 }
 
-private extension CharacteristicBloodPressureMeasurement {
+internal extension CharacteristicBloodPressureMeasurement {
     
     /// Flags
-    struct Flags: OptionSet {
+    struct BloodPressureFlags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
         
         /// Blood pressure for Systolic, Diastolic and MAP in units of kPa
-        public static let unitsIsKilopascals        = Flags(rawValue: 1 << 0)
+        public static let unitsIsKilopascals        = BloodPressureFlags(rawValue: 1 << 0)
         /// Time Stamp present
-        public static let timestampPresent          = Flags(rawValue: 1 << 1)
+        public static let timestampPresent          = BloodPressureFlags(rawValue: 1 << 1)
         /// Pulse Rate present
-        public static let pulseRatePresent          = Flags(rawValue: 1 << 2)
+        public static let pulseRatePresent          = BloodPressureFlags(rawValue: 1 << 2)
         /// User ID present
-        public static let userIDPresent             = Flags(rawValue: 1 << 3)
+        public static let userIDPresent             = BloodPressureFlags(rawValue: 1 << 3)
         /// Measurement Status present
-        public static let measurementStatusPresent  = Flags(rawValue: 1 << 4)
+        public static let measurementStatusPresent  = BloodPressureFlags(rawValue: 1 << 4)
     }
     
 }
