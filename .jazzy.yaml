@@ -180,6 +180,7 @@ custom_categories:
     - CharacteristicBondManagementFeatures
     - CharacteristicContinuousGlucoseMonitoringFeature
     - CharacteristicCrossTrainerData
+    - CharacteristicCyclingSpeedCadenceFeature
     - CharacteristicCurrentTime
     - CharacteristicDatabaseChangeIncrement
     - CharacteristicDateOfBirth
