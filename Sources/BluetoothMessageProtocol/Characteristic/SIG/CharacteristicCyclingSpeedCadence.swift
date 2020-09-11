@@ -23,61 +23,71 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
     public static var uuidString: String { "2A5B" }
     
     
+    public struct Flags: OptionSet, Hashable {
+        public let rawValue: UInt8
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
+        
+        /// Ringer State active
+        public static let wheelRevolutionDataPresent = Flags(rawValue: 1 << 0)
+        /// Vibrate State active
+        public static let crankRevolutionDataPresent = Flags(rawValue: 1 << 1)
+
+    }
+    
     /// Name of the Characteristic
     public var name: String { Self.name }
     
     /// Characteristic UUID String
     public var uuidString: String { Self.uuidString }
     
-    
-    public enum Flags: UInt8 {
-        case wheelPresent = 0
-        case crankPresent = 1
-    }
-    
     private(set) public var flags: Flags
+
+    private(set) public var cumulativeWheelRevoluations: UInt32
+    private(set) public var lastWheelEventTime: UInt16
+    private(set) public var cumulativeCrankRevolutions: UInt16
+    private(set) public var lastCrankEventTime: UInt16
         
-    public enum PresentData {
-        case wheel(revolutions: UInt32, time: UInt16)
-        case crank(revolutions: UInt16, time: UInt16)
-    }
-    
-    private(set) public var presentData: PresentData
-    
     public init(flags: Flags,
-                presentData: PresentData) {
+                cumulativeWheelRevoluations: UInt32,
+                lastWheelEventTime: UInt16,
+                cumulativeCrankRevolutions: UInt16,
+                lastCrankEventTime: UInt16){
         self.flags = flags
-        self.presentData = presentData
+        self.cumulativeWheelRevoluations = cumulativeWheelRevoluations
+        self.lastWheelEventTime = lastWheelEventTime
+        self.cumulativeCrankRevolutions = cumulativeCrankRevolutions
+        self.lastCrankEventTime = lastCrankEventTime
     }
     
     /// Decodes Characteristic Data into Characteristic
     ///
     /// - Parameter data: Characteristic Data
     /// - Returns: Characteristic Result
+    
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let flags = Flags(rawValue: decoder.decodeUInt8(data))
-        let presentData: PresentData
+        let flags: Flags = Flags(rawValue: decoder.decodeUInt8(data))
+        var cumulativeWheelRevoluations: UInt32 = 0
+        var lastWheelEventTime: UInt16 = 0
+        var cumulativeCrankRevolutions: UInt16 = 0
+        var lastCrankEventTime: UInt16 = 0
         
-        switch flags {
-        case .wheelPresent:
-            let cumulativeWheelRevolutions = decoder.decodeUInt32(data)
-            let lastWheelEventTime = decoder.decodeUInt16(data)
-            
-            presentData = PresentData.wheel(revolutions: cumulativeWheelRevolutions, time: lastWheelEventTime)
-            
-        case .crankPresent:
-            let cumulativeCrankRevolutions = decoder.decodeUInt16(data)
-            let lastCrankEventTime = decoder.decodeUInt16(data)
-            
-            presentData = PresentData.crank(revolutions: cumulativeCrankRevolutions, time: lastCrankEventTime)
-        default:
-            fatalError("invalid field type")
+        if flags == .wheelRevolutionDataPresent {
+            cumulativeWheelRevoluations = decoder.decodeUInt32(data)
+            lastWheelEventTime = decoder.decodeUInt16(data)
         }
-
+        if flags == .crankRevolutionDataPresent {
+            cumulativeCrankRevolutions = decoder.decodeUInt16(data)
+            lastCrankEventTime = decoder.decodeUInt16(data)
+        }
+        
         let char = CharacteristicCyclingSpeedCadence(flags: flags,
-                                                     presentData: presentData)
+                                                     cumulativeWheelRevoluations: cumulativeWheelRevoluations,
+                                                     lastWheelEventTime: lastWheelEventTime,
+                                                     cumulativeCrankRevolutions: cumulativeCrankRevolutions,
+                                                     lastCrankEventTime: lastCrankEventTime)
+        
         return.success(char as! C)
     }
     
@@ -108,7 +118,10 @@ extension CharacteristicCyclingSpeedCadence: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(uuidString)
         hasher.combine(flags)
-        hasher.combine(presentData)
+        hasher.combine(cumulativeWheelRevoluations)
+        hasher.combine(lastWheelEventTime)
+        hasher.combine(cumulativeCrankRevolutions)
+        hasher.combine(lastCrankEventTime)
     }
 }
 
@@ -125,6 +138,9 @@ extension CharacteristicCyclingSpeedCadence: Equatable {
     public static func == (lhs: CharacteristicCyclingSpeedCadence, rhs: CharacteristicCyclingSpeedCadence) -> Bool {
         return (lhs.uuidString == rhs.uuidString)
             && (lhs.flags == rhs.flags)
-            && (lhs.presentData == rhs.presentData)
+            && (lhs.cumulativeWheelRevoluations == rhs.cumulativeWheelRevoluations)
+            && (lhs.lastWheelEventTime == rhs.lastWheelEventTime)
+            && (lhs.cumulativeCrankRevolutions == rhs.cumulativeCrankRevolutions)
+            && (lhs.lastCrankEventTime == rhs.lastCrankEventTime)
     }
 }
