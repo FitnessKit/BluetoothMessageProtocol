@@ -45,16 +45,17 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
     /// Characteristic UUID String
     public var uuidString: String { Self.uuidString }
     
+    /// Determine if sensor is a wheel or crank sensor
+    private(set) public var flags: Flags
+    
     public enum Flags: UInt8 {
         case wheelPresent = 0
         case crankPresent = 1
     }
     
-    private(set) public var flags: Flags
-    
     public enum Revolution: Equatable, Hashable {
-        case crank(UInt16)
         case wheel(UInt32)
+        case crank(UInt16)
     }
         
     public struct PresentData: Equatable, Hashable {
@@ -89,8 +90,6 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
         case .crankPresent:
             presentData = PresentData(revolution: .crank(decoder.decodeUInt16(data)),
                                       lastEventTime: decoder.decodeUInt16(data))
-        default:
-            return.failure(.invalidStringValue)
         }
 
         let char = CharacteristicCyclingSpeedCadence(flags: flags,

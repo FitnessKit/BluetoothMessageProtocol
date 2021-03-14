@@ -181,6 +181,7 @@ custom_categories:
     - CharacteristicContinuousGlucoseMonitoringFeature
     - CharacteristicCrossTrainerData
     - CharacteristicCurrentTime
+    - CharacteristicCyclingSpeedCadence
     - CharacteristicDatabaseChangeIncrement
     - CharacteristicDateOfBirth
     - CharacteristicDateofThresholdAssessment
