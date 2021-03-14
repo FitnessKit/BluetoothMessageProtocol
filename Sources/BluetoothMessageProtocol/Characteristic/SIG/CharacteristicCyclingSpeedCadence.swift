@@ -48,27 +48,35 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
     /// Determine if sensor is a wheel or crank sensor
     private(set) public var flags: Flags
     
+    /// Revolution data and last event timestamp
+    private(set) public var sampleData: SampleData
+    
+    /// Determine if sensor is a wheel or crank
     public enum Flags: UInt8 {
         case wheelPresent = 0
         case crankPresent = 1
     }
     
+    /// Revolution type
     public enum Revolution: Equatable, Hashable {
         case wheel(UInt32)
         case crank(UInt16)
     }
-        
-    public struct PresentData: Equatable, Hashable {
+    
+    /// Revolution type and timestamp of last revolution type
+    public struct SampleData: Equatable, Hashable {
         var revolution: Revolution
         var lastEventTime: UInt16
     }
     
-    private(set) public var presentData: PresentData
-    
+    /// Init
+    /// - Parameters:
+    ///   - flags: Determine if sensor is a wheel or crank sensor
+    ///   - presentData: Revolution type and timestamp of last revolution type
     public init(flags: Flags,
-                presentData: PresentData) {
+                sampleData: SampleData) {
         self.flags = flags
-        self.presentData = presentData
+        self.sampleData = sampleData
     }
     
     /// Decodes Characteristic Data into Characteristic
@@ -81,19 +89,19 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
         guard let flags = Flags(rawValue: decoder.decodeUInt8(data)) else {
             return.failure(.properySize("Can not decode flag"))
         }
-        let presentData: PresentData
+        let sampleData: SampleData
         
         switch flags {
         case .wheelPresent:
-            presentData = PresentData(revolution: .wheel(decoder.decodeUInt32(data)),
+            sampleData = SampleData(revolution: .wheel(decoder.decodeUInt32(data)),
                                       lastEventTime: decoder.decodeUInt16(data))
         case .crankPresent:
-            presentData = PresentData(revolution: .crank(decoder.decodeUInt16(data)),
+            sampleData = SampleData(revolution: .crank(decoder.decodeUInt16(data)),
                                       lastEventTime: decoder.decodeUInt16(data))
         }
 
         let char = CharacteristicCyclingSpeedCadence(flags: flags,
-                                                     presentData: presentData)
+                                                     sampleData: sampleData)
         return.success(char as! C)
     }
     
@@ -124,7 +132,7 @@ extension CharacteristicCyclingSpeedCadence: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(uuidString)
         hasher.combine(flags)
-        hasher.combine(presentData)
+        hasher.combine(sampleData)
     }
 }
 
@@ -141,6 +149,6 @@ extension CharacteristicCyclingSpeedCadence: Equatable {
     public static func == (lhs: CharacteristicCyclingSpeedCadence, rhs: CharacteristicCyclingSpeedCadence) -> Bool {
         return (lhs.uuidString == rhs.uuidString)
             && (lhs.flags == rhs.flags)
-            && (lhs.presentData == rhs.presentData)
+            && (lhs.sampleData == rhs.sampleData)
     }
 }
