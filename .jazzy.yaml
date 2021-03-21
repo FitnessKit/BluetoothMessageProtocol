@@ -182,6 +182,7 @@ custom_categories:
     - CharacteristicCrossTrainerData
     - CharacteristicCyclingSpeedCadenceFeature
     - CharacteristicCurrentTime
+    - CharacteristicCyclingSpeedCadence
     - CharacteristicDatabaseChangeIncrement
     - CharacteristicDateOfBirth
     - CharacteristicDateofThresholdAssessment
