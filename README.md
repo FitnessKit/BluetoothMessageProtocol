@@ -74,7 +74,7 @@ func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CB
 
 func doDecodeHRMess(sensorData: Data) {
 
-    let hrData = CharacteristicHeartRateMeasurement.decode(with: sensorData)
+    let hrData: Result<CharacteristicHeartRateMeasurement, BluetoothDecodeError> = CharacteristicHeartRateMeasurement.decode(with: sensorData)
 
     switch hrData {
     case .success(let char):
@@ -97,7 +97,7 @@ func doDecodeHRMess(sensorData: Data) {
 
 func doDecodeBody(sensorData: Data) {
 
-    let sensor = CharacteristicBodySensorLocation.decode(with: sensorData)
+    let sensor: Result<CharacteristicBodySensorLocation, BluetoothDecodeError> = CharacteristicBodySensorLocation.decode(with: sensorData)
 
     switch sensor {
     case .success(let char):

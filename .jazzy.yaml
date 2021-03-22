@@ -180,6 +180,7 @@ custom_categories:
     - CharacteristicBondManagementFeatures
     - CharacteristicContinuousGlucoseMonitoringFeature
     - CharacteristicCrossTrainerData
+    - CharacteristicCyclingSpeedCadenceFeature
     - CharacteristicCurrentTime
     - CharacteristicCyclingSpeedCadence
     - CharacteristicDatabaseChangeIncrement
@@ -217,6 +218,7 @@ custom_categories:
     - CharacteristicHTTPStatusCode
     - CharacteristicHumidity
     - CharacteristicIndoorBikeData
+    - CharacteristicIntermediateCuffPressure
     - CharacteristicIntermediateTemperature
     - CharacteristicLanguage
     - CharacteristicLastName
@@ -225,6 +227,7 @@ custom_categories:
     - CharacteristicLocalNorthCoordinate
     - CharacteristicLocalTimeInformation
     - CharacteristicLocationName
+    - CharacteristicLocationNavigationFeature
     - CharacteristicLongitude
     - CharacteristicMagneticDeclination
     - CharacteristicManufacturerNameString
@@ -244,6 +247,8 @@ custom_categories:
     - CharacteristicRestingHeartRate
     - CharacteristicRingerSetting
     - CharacteristicRowerData
+    - CharacteristicScanIntervalWindow
+    - CharacteristicScanRefresh
     - CharacteristicSensorLocation
     - CharacteristicSerialNumberString
     - CharacteristicSoftwareRevisionString

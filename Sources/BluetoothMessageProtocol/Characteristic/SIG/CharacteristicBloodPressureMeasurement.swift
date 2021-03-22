@@ -61,7 +61,8 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
     /// User ID
     private(set) public var userID: User?
     
-    // TODO: add Measurement Status
+    /// Measurement Status
+    private(set) public var status: BloodPressureMeasurementStatus?
     
     /// Creates Blood Pressure Measurement Characteristic
     ///
@@ -77,7 +78,8 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
                 meanArterial: Measurement<UnitPressure>,
                 timestamp: DateTime?,
                 pulseRate: Measurement<UnitCadence>?,
-                userID: User?) {
+                userID: User?,
+                status: BloodPressureMeasurementStatus?) {
         
         self.systolic = systolic
         self.diastolic = diastolic
@@ -85,6 +87,7 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
         self.timestamp = timestamp
         self.pulseRate = pulseRate
         self.userID = userID
+        self.status = status
     }
     
     /// Decodes Characteristic Data into Characteristic
@@ -94,7 +97,7 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
     public class func decode<C: Characteristic>(with data: Data) -> Result<C, BluetoothDecodeError> {
         var decoder = DecodeData()
         
-        let flags = Flags(rawValue: decoder.decodeUInt8(data))
+        let flags = BloodPressureFlags(rawValue: decoder.decodeUInt8(data))
         
         var systolic: Measurement<UnitPressure>
         let systolicV = Double(decoder.decodeSFloatValue(data))
@@ -132,12 +135,19 @@ final public class CharacteristicBloodPressureMeasurement: Characteristic {
             userID = User.create(decoder.decodeUInt8(data))
         }
         
+        var status: BloodPressureMeasurementStatus?
+        if flags.contains(.measurementStatusPresent) {
+            let statusValue = decoder.decodeUInt16(data)
+            status = BloodPressureMeasurementStatus(rawValue: statusValue)
+        }
+        
         let char = CharacteristicBloodPressureMeasurement(systolic: systolic,
                                                           diastolic: diastolic,
                                                           meanArterial: meanArterial,
                                                           timestamp: timestamp,
                                                           pulseRate: pulseRate,
-                                                          userID: userID)
+                                                          userID: userID,
+                                                          status: status)
         return.success(char as! C)
     }
     
@@ -173,6 +183,7 @@ extension CharacteristicBloodPressureMeasurement: Hashable {
         hasher.combine(timestamp)
         hasher.combine(pulseRate)
         hasher.combine(userID)
+        hasher.combine(status)
     }
 }
 
@@ -194,26 +205,27 @@ extension CharacteristicBloodPressureMeasurement: Equatable {
             && (lhs.timestamp == rhs.timestamp)
             && (lhs.pulseRate == rhs.pulseRate)
             && (lhs.userID == rhs.userID)
+            && (lhs.status == rhs.status)
     }
 }
 
-private extension CharacteristicBloodPressureMeasurement {
+internal extension CharacteristicBloodPressureMeasurement {
     
-    /// Flags
-    struct Flags: OptionSet {
+    /// Blood Pressure Flags
+    struct BloodPressureFlags: OptionSet {
         public let rawValue: UInt8
         public init(rawValue: UInt8) { self.rawValue = rawValue }
         
         /// Blood pressure for Systolic, Diastolic and MAP in units of kPa
-        public static let unitsIsKilopascals        = Flags(rawValue: 1 << 0)
+        public static let unitsIsKilopascals        = BloodPressureFlags(rawValue: 1 << 0)
         /// Time Stamp present
-        public static let timestampPresent          = Flags(rawValue: 1 << 1)
+        public static let timestampPresent          = BloodPressureFlags(rawValue: 1 << 1)
         /// Pulse Rate present
-        public static let pulseRatePresent          = Flags(rawValue: 1 << 2)
+        public static let pulseRatePresent          = BloodPressureFlags(rawValue: 1 << 2)
         /// User ID present
-        public static let userIDPresent             = Flags(rawValue: 1 << 3)
+        public static let userIDPresent             = BloodPressureFlags(rawValue: 1 << 3)
         /// Measurement Status present
-        public static let measurementStatusPresent  = Flags(rawValue: 1 << 4)
+        public static let measurementStatusPresent  = BloodPressureFlags(rawValue: 1 << 4)
     }
     
 }

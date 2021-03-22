@@ -336,9 +336,36 @@
                   <li class="item">
                     <div>
                       <code>
-                      <a name="/s:24BluetoothMessageProtocol38CharacteristicBloodPressureMeasurementC8systolic9diastolic12meanArterial9timestamp9pulseRate6userIDAC10Foundation0G0VySo06NSUnitF0CG_A2oA8DateTimeVSgALy12FitnessUnits11UnitCadenceCGSgAA4UserOSgtcfc"></a>
-                      <a name="//apple_ref/swift/Method/init(systolic:diastolic:meanArterial:timestamp:pulseRate:userID:)" class="dashAnchor"></a>
-                      <a class="token" href="#/s:24BluetoothMessageProtocol38CharacteristicBloodPressureMeasurementC8systolic9diastolic12meanArterial9timestamp9pulseRate6userIDAC10Foundation0G0VySo06NSUnitF0CG_A2oA8DateTimeVSgALy12FitnessUnits11UnitCadenceCGSgAA4UserOSgtcfc">init(systolic:<wbr>diastolic:<wbr>meanArterial:<wbr>timestamp:<wbr>pulseRate:<wbr>userID:<wbr>)</a>
+                      <a name="/s:24BluetoothMessageProtocol38CharacteristicBloodPressureMeasurementC6statusAA0efG6StatusVSgvp"></a>
+                      <a name="//apple_ref/swift/Property/status" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol38CharacteristicBloodPressureMeasurementC6statusAA0efG6StatusVSgvp">status</a>
+                      </code>
+                    </div>
+                    <div class="height-container">
+                      <div class="pointer-container"></div>
+                      <section class="section">
+                        <div class="pointer"></div>
+                        <div class="abstract">
+                          <p>Measurement Status</p>
+
+                        </div>
+                        <div class="declaration">
+                          <h4>Declaration</h4>
+                          <div class="language">
+                            <p class="aside-title">Swift</p>
+                            <pre class="highlight swift"><code><span class="kd">private(set)</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">status</span><span class="p">:</span> <span class="kt"><a href="../Structs/BloodPressureMeasurementStatus.html">BloodPressureMeasurementStatus</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div>
+                      <code>
+                      <a name="/s:24BluetoothMessageProtocol38CharacteristicBloodPressureMeasurementC8systolic9diastolic12meanArterial9timestamp9pulseRate6userID6statusAC10Foundation0G0VySo06NSUnitF0CG_A2pA8DateTimeVSgAMy12FitnessUnits11UnitCadenceCGSgAA4UserOSgAA0efG6StatusVSgtcfc"></a>
+                      <a name="//apple_ref/swift/Method/init(systolic:diastolic:meanArterial:timestamp:pulseRate:userID:status:)" class="dashAnchor"></a>
+                      <a class="token" href="#/s:24BluetoothMessageProtocol38CharacteristicBloodPressureMeasurementC8systolic9diastolic12meanArterial9timestamp9pulseRate6userID6statusAC10Foundation0G0VySo06NSUnitF0CG_A2pA8DateTimeVSgAMy12FitnessUnits11UnitCadenceCGSgAA4UserOSgAA0efG6StatusVSgtcfc">init(systolic:<wbr>diastolic:<wbr>meanArterial:<wbr>timestamp:<wbr>pulseRate:<wbr>userID:<wbr>status:<wbr>)</a>
                       </code>
                     </div>
                     <div class="height-container">
@@ -358,7 +385,8 @@
             <span class="nv">meanArterial</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitPressure</span><span class="o">&gt;</span><span class="p">,</span>
             <span class="nv">timestamp</span><span class="p">:</span> <span class="kt"><a href="../Structs/DateTime.html">DateTime</a></span><span class="p">?,</span>
             <span class="nv">pulseRate</span><span class="p">:</span> <span class="kt">Measurement</span><span class="o">&lt;</span><span class="kt">UnitCadence</span><span class="o">&gt;</span><span class="p">?,</span>
-            <span class="nv">userID</span><span class="p">:</span> <span class="kt"><a href="../Enums/User.html">User</a></span><span class="p">?)</span></code></pre>
+            <span class="nv">userID</span><span class="p">:</span> <span class="kt"><a href="../Enums/User.html">User</a></span><span class="p">?,</span>
+            <span class="nv">status</span><span class="p">:</span> <span class="kt"><a href="../Structs/BloodPressureMeasurementStatus.html">BloodPressureMeasurementStatus</a></span><span class="p">?)</span></code></pre>
 
                           </div>
                         </div>
@@ -1168,6 +1196,12 @@ of this instance.</p>
                   <a href="../Classes/CharacteristicCrossTrainerData.html">CharacteristicCrossTrainerData</a>
                 </li>
                 <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicCyclingSpeedCadenceFeature.html">CharacteristicCyclingSpeedCadenceFeature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicCyclingSpeedCadenceFeature/Features.html">– Features</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Classes/CharacteristicCurrentTime.html">CharacteristicCurrentTime</a>
                 </li>
                 <li class="nav-group-task">
@@ -1306,6 +1340,9 @@ of this instance.</p>
                   <a href="../Classes/CharacteristicIndoorBikeData.html">CharacteristicIndoorBikeData</a>
                 </li>
                 <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicIntermediateCuffPressure.html">CharacteristicIntermediateCuffPressure</a>
+                </li>
+                <li class="nav-group-task">
                   <a href="../Classes/CharacteristicIntermediateTemperature.html">CharacteristicIntermediateTemperature</a>
                 </li>
                 <li class="nav-group-task">
@@ -1328,6 +1365,12 @@ of this instance.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CharacteristicLocationName.html">CharacteristicLocationName</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLocationNavigationFeature.html">CharacteristicLocationNavigationFeature</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicLocationNavigationFeature/SupportedFeatures.html">– SupportedFeatures</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CharacteristicLongitude.html">CharacteristicLongitude</a>
@@ -1394,6 +1437,15 @@ of this instance.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CharacteristicRowerData.html">CharacteristicRowerData</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicScanIntervalWindow.html">CharacteristicScanIntervalWindow</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicScanRefresh.html">CharacteristicScanRefresh</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Classes/CharacteristicScanRefresh/Command.html">– Command</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Classes/CharacteristicSensorLocation.html">CharacteristicSensorLocation</a>
@@ -2189,6 +2241,12 @@ of this instance.</p>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/BatteryPowerState/Level.html">– Level</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/BloodPressureMeasurementStatus.html">BloodPressureMeasurementStatus</a>
+                </li>
+                <li class="nav-group-task">
+                  <a href="../Structs/BloodPressureMeasurementStatus/PulseRateRange.html">– PulseRateRange</a>
                 </li>
                 <li class="nav-group-task">
                   <a href="../Structs/DateTime.html">DateTime</a>
