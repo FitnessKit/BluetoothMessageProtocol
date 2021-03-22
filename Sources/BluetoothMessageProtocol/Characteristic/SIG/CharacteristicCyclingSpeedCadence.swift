@@ -53,8 +53,8 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
     
     /// Determine if sensor is a wheel or crank
     public enum Flags: UInt8 {
-        case wheelPresent = 0
-        case crankPresent = 1
+        case wheelPresent = 1
+        case crankPresent = 2
     }
     
     /// Revolution type
