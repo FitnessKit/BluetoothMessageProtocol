@@ -65,8 +65,8 @@ final public class CharacteristicCyclingSpeedCadence: Characteristic {
     
     /// Revolution type and timestamp of last revolution type
     public struct SampleData: Equatable, Hashable {
-        var revolution: Revolution
-        var lastEventTime: UInt16
+        public var revolution: Revolution
+        public var lastEventTime: UInt16
     }
     
     /// Init
