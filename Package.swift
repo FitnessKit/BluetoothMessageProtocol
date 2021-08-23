@@ -7,29 +7,17 @@ let packageDependencies: [PackageDescription.Package.Dependency]
 let targetDependencies: [PackageDescription.Target.Dependency]
 let supportedPlatform: [PackageDescription.SupportedPlatform]
 
-#if canImport(CryptoKit)
-    packageDependencies = [
-        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
-        .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0")
-    ]
-    targetDependencies = [
-        "FitnessUnits",
-        "DataDecoder"
-    ]
-    supportedPlatform = [.iOS("13.0"), .macOS("10.15"), .tvOS("13.0"), .watchOS("6.0")]
-#else
-    packageDependencies = [
-        .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
-        .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0"),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "1.0.0")
-    ]
-    targetDependencies = [
-        "FitnessUnits",
-        "DataDecoder",
-        "CryptoSwift",
-    ]
-    supportedPlatform = [.iOS("10.0"), .macOS("10.12"), .tvOS("10.0"), .watchOS("3.0")]
-#endif
+packageDependencies = [
+    .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
+    .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0"),
+    .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "1.0.0")
+]
+targetDependencies = [
+    "FitnessUnits",
+    "DataDecoder",
+    "CryptoSwift",
+]
+supportedPlatform = [.iOS("10.0"), .macOS("10.12"), .tvOS("10.0"), .watchOS("3.0")]
 
 let package = Package(
     name: "BluetoothMessageProtocol",
