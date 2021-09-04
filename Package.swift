@@ -7,7 +7,7 @@ let packageDependencies: [PackageDescription.Package.Dependency]
 let targetDependencies: [PackageDescription.Target.Dependency]
 let supportedPlatform: [PackageDescription.SupportedPlatform]
 
-#if canImport(CryptoKit)
+if #available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, watchOSApplicationExtension 6.0, *) {
     packageDependencies = [
         .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
         .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0")
@@ -17,7 +17,7 @@ let supportedPlatform: [PackageDescription.SupportedPlatform]
         "DataDecoder"
     ]
     supportedPlatform = [.iOS("13.0"), .macOS("10.15"), .tvOS("13.0"), .watchOS("6.0")]
-#else
+} else {
     packageDependencies = [
         .package(url: "https://github.com/FitnessKit/FitnessUnits", from: "3.1.0"),
         .package(url: "https://github.com/FitnessKit/DataDecoder", from: "5.0.0"),
@@ -29,7 +29,7 @@ let supportedPlatform: [PackageDescription.SupportedPlatform]
         "CryptoSwift",
     ]
     supportedPlatform = [.iOS("10.0"), .macOS("10.12"), .tvOS("10.0"), .watchOS("3.0")]
-#endif
+}
 
 let package = Package(
     name: "BluetoothMessageProtocol",
