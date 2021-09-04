@@ -120,10 +120,26 @@ public enum Appearance: UInt16 {
     case rotaryControlDevice                        = 1221
     /// Touch-panel
     case touchPanelControlDevice                    = 1222
+    /// Single Switch
+    case singleSwitchControlDevice                  = 1223
+    /// Double Switch
+    case doubleSwitchControlDevice                  = 1224
+    /// Triple Switch
+    case tripleSwitchControlDevice                  = 1225
+    /// Battery Switch
+    case batterySwitchControlDevice                 = 1226
+    /// Energy Harvesting Switch
+    case energyHarvestingSwitchControlDevice        = 1227
+    /// Push Button
+    case pushButttonControlDevice                   = 1228
     /// Generic Network Device
     case networkDevice                              = 1280
     /// Access Point
     case accessPointNetworkDevice                   = 1281
+    /// Mesh Device
+    case meshNetworkDevice                          = 1282
+    /// Mesh Network Proxy
+    case meshNetworkProxyNetworkDevice              = 1283
     /// Generic Sensor
     case genericSensor                              = 1344
     /// Motion Sensor
@@ -162,6 +178,20 @@ public enum Appearance: UInt16 {
     case proximitySensor                            = 1361
     /// Multi-Sensor
     case multiSensor                                = 1362
+    /// Flush mounted sensor
+    case flushMountedSensor                         = 1363
+    /// Ceiling mounted sensor
+    case ceilingMountedSensor                       = 1364
+    /// Wall mounted sensor
+    case wallMountedSensor                          = 1365
+    /// Multisensor
+    case multiSensorSensor                          = 1366
+    /// Energy Meter
+    case energyMeterSensor                          = 1367
+    /// Flame Detector
+    case flameDetectorSensor                        = 1368
+    /// Vehicle Tire Pressure Sensor
+    case vehicleTirePressureSensor                  = 1369
     /// Generic Light Fixtures
     case genericLightFixture                        = 1408
     /// Wall Light
@@ -204,6 +234,16 @@ public enum Appearance: UInt16 {
     case highBaylowBayLightFixture                  = 1427
     /// Emergency Exit Light
     case emergancyExitLightFixture                  = 1428
+    /// Light controller
+    case lightController                            = 1429
+    /// Light driver
+    case lightDriver                                = 1430
+    /// Light Bulb
+    case lightBulb                                  = 1431
+    /// Low­-bay Light
+    case lowBayLightFixture                         = 1432
+    /// High­-bay Light
+    case highBayLightFixture                        = 1433
     /// Generic Fan
     case genericFan                                 = 1472
     /// Ceiling Fan
@@ -222,6 +262,26 @@ public enum Appearance: UInt16 {
     case genericHvac                                = 1536
     /// Thermostat
     case thermostat                                 = 1537
+    /// Humidifier
+    case humidifierHvac                             = 1538
+    /// De-Humidifier
+    case deHumidifierHvac                           = 1539
+    /// Heater
+    case heaterHvac                                 = 1540
+    /// Radiator
+    case radiatorHvac                               = 1541
+    /// Boiler
+    case boilerHvac                                 = 1542
+    /// Heat pump
+    case heatPumpHvac                               = 1543
+    /// Infrared heater
+    case infraredHeaterHvac                         = 1544
+    /// Radiant panel heater
+    case radiantPanelHeaterHvac                     = 1545
+    /// Fan heater
+    case fanHeaterHvac                              = 1546
+    /// Air curtain
+    case airCurtainHvac                             = 157
     /// Generic Air Conditioning
     case genericAirConditioning                     = 1600
     /// Generic Humidifier
@@ -258,6 +318,10 @@ public enum Appearance: UInt16 {
     case window                                     = 1798
     /// Entrance Gate
     case entranceGate                               = 1799
+    /// Door Lock
+    case doorLock                                   = 1800
+    /// Locker
+    case locker                                     = 1801
     /// Generic Motorized Device
     case genericMotorizedDevice                     = 1856
     /// Motorized Gate
@@ -286,6 +350,10 @@ public enum Appearance: UInt16 {
     case fluorescentLampGear                        = 1926
     /// HID Lamp Gear
     case hidLampGear                                = 1927
+    /// Charge Case
+    case chargeCase                                 = 1928
+    /// Power Bank
+    case powerBank                                  = 1929
     /// Generic Light Source
     case genericLightSource                         = 1984
     /// Incandescent Light Bulb
@@ -300,6 +368,137 @@ public enum Appearance: UInt16 {
     case ledArray                                   = 1989
     /// Multi-Color LED Array
     case multiColorLedArray                         = 1990
+    /// Generic Window Covering
+    case genericWindowCovering                      = 2048
+    /// Window Shades
+    case windowShades                               = 2049
+    /// Window Blinds
+    case windowBlinds                               = 2050
+    /// Window Awning
+    case windowAwning                               = 2051
+    /// Window Curtain
+    case windowCurtain                              = 2052
+    /// Exterior Shutter
+    case exteriorShutter                            = 2053
+    /// Exterior Screen
+    case exteriorScreen                             = 2054
+    /// Generic Audio Sink
+    case genericAudioSink                           = 2112
+    /// Standalone Speaker
+    case standaloneSpeaker                          = 2113
+    /// Soundbar
+    case soundbar                                   = 2114
+    /// Bookshelf Speaker
+    case bookshelfSpeaker                           = 2115
+    /// Standmounted Speaker
+    case standmountedSpeaker                        = 2116
+    /// Speakerphone
+    case speakerphone                               = 2117
+    /// Generic Audio Source
+    case genericAudioSource                         = 2176
+    /// Microphone
+    case microphone                                 = 2177
+    /// Alarm
+    case alarm                                      = 2178
+    /// Bell
+    case bell                                       = 2179
+    /// Horn
+    case horn                                       = 2180
+    /// Broadcasting Device
+    case broadcastingDevice                         = 2181
+    /// Service Desk
+    case serviceDeskAudioSource                     = 2182
+    /// Kiosk
+    case kioskAudioSource                           = 2183
+    /// Broadcasting Room
+    case broadcastingRoom                           = 2184
+    /// Auditorium
+    case auditorium                                 = 2185
+    /// Generic Motorized Vehicle
+    case genericMotorizedVehicle                    = 2240
+    /// Car
+    case car                                        = 2241
+    /// Large Goods Vehicle
+    case largeGoodsVehicle                          = 2242
+    /// 2­ Wheeled Vehicle
+    case twoWheeledVehicle                          = 2243
+    /// Motorbike
+    case motorbike                                  = 2244
+    /// Scooter
+    case scooter                                    = 2245
+    /// Moped
+    case moped                                      = 2246
+    /// 3­ Wheeled Vehicle
+    case threeWheeledVehicle                        = 2247
+    /// Light Vehicle
+    case lightVehicle                               = 2248
+    /// Quad Bike
+    case quadBike                                   = 2249
+    /// Minibus
+    case minibus                                    = 2250
+    /// Bus
+    case bus                                        = 2251
+    /// Trolley
+    case trolley                                    = 2252
+    /// Agricultural Vehicle
+    case agriculturalVehicle                        = 2253
+    /// Camper / Caravan
+    case camperCaravan                              = 2254
+    /// Recreational Vehicle / Motor Home
+    case recreationalVehicle                        = 2255
+    /// Generic Domestic Appliance
+    case genericDomesticAppliance                   = 2304
+    /// Refrigerator
+    case refrigerator                               = 2305
+    /// Freezer
+    case freezer                                    = 2306
+    /// Oven
+    case oven                                       = 2307
+    /// Microwave
+    case microwave                                  = 2308
+    /// Toaster
+    case toaster                                    = 2309
+    /// Washing Machine
+    case washingMachine                             = 2310
+    /// Dryer
+    case dryer                                      = 2311
+    /// Coffee maker
+    case coffeeMaker                                = 2312
+    /// Clothes iron
+    case clothesIron                                = 2313
+    /// Curling iron
+    case curlingIron                                = 2314
+    /// Hair dryer
+    case hairDryer                                  = 2315
+    /// Vacuum cleaner
+    case vacuumCleaner                              = 2316
+    /// Robotic Vacuum cleaner
+    case roboticVacuumCleaner                       = 2317
+    /// Rice cooker
+    case riceCooker                                 = 2318
+    /// Clothes steamer
+    case clothesSteamer                             = 2319
+    /// Generic Wearable Audio Device
+    case genericWearableAudioDevice                 = 2368
+    /// Earbud
+    case earbudAudioDevice                          = 2369
+    /// Headset
+    case headsetAudioDevice                         = 2370
+    /// Headphones
+    case headphonesAudioDevice                      = 2371
+    /// Neck Band
+    case neckBandAudioDevice                        = 2372
+    /// Generic Aircraft
+    case genericAircraft                            = 2432
+    /// Light Aircraft
+    case lightAircraft                              = 2433
+    /// Microlight
+    case licrolightAircraft                         = 2434
+    /// Paraglider
+    case paragliderAircraft                         = 2435
+    /// Large Passenger Aircraft
+    case largePassengerAircraft                     = 2436
+
     /// Generic: Pulse Oximeter
     case genericPulseOximeter                       = 3136
     /// Fingertip
