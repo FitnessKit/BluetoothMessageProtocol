@@ -21,14 +21,7 @@ pod 'BluetoothMessageProtocol'
 Swift Package Manager:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "2.0.0")
-]
-```
-
-Swift4
-```swift
-dependencies: [
-    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", .branch("swift42")),
+    .package(url: "https://github.com/FitnessKit/BluetoothMessageProtocol", from: "2.0.1")
 ]
 ```
 
