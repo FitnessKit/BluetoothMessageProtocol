@@ -35,7 +35,7 @@ class HomeKitTests: XCTestCase {
         let hashString: String
         
         #if canImport(CryptoKit)
-        if #available(iOS 13.0, OSX 10.15, *) {
+        if #available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, watchOSApplicationExtension 6.0, *) {
             let shaTest = SHA512.hash(data: test)
             hashString = shaTest.compactMap { String(format: "%02x", $0) }.joined()
             
