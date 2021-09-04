@@ -51,3 +51,15 @@ public extension CompanyIdentifier {
     class var dropcam: CompanyIdentifier { return CompanyIdentifier(id: 35888, name: "Dropcam") }
 
 }
+
+// MARK: - allCompanyIdentifiers
+extension CompanyIdentifier {
+    
+    static func allCompanyIdentifiersAddNonAssigned() {
+        //Non offical IDs
+        allCompanyIdentifiers.append(.viiiiva)
+        allCompanyIdentifiers.append(.exogal)
+        allCompanyIdentifiers.append(.uniKey)
+        allCompanyIdentifiers.append(.dropcam)
+    }
+}

@@ -204,6 +204,18 @@ public enum GapDataType: UInt8 {
     ///
     /// Mesh Profile Specification Section 3.9
     case meshBeacon                     = 0x2B
+    /// BIGInfo
+    case bigInfo                        = 0x2C
+    /// Broadcast_Code
+    case broadcastCode                  = 0x2D
+    /// Resolvable Set Identifier
+    ///
+    /// Coordinated Set Identification Profile 1.0
+    case resolvableSetIdentifier        = 0x2E
+    /// Advertising Interval - long
+    ///
+    /// Core Specification Supplement v10, Part A, Section 1.15
+    case advertisingIntervalLong        = 0x2F
     /// 3D Information Data
     ///
     /// 3D Synchronization Profile, v1.0 or later
@@ -212,5 +224,5 @@ public enum GapDataType: UInt8 {
     ///
     /// Bluetooth Core Specification:Vol. 3, Part C, section 8.1.4 (v2.1 + EDR, 3.0 + HS and 4.0)
     /// Vol. 3, Part C, sections 11.1.4 and 18.11 (v4.0)Core Specification Supplement, Part A, section 1.4
-    case manufacturerSpecificData        = 0xFF
+    case manufacturerSpecificData       = 0xFF
 }
