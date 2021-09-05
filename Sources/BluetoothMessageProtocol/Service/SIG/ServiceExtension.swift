@@ -28,11 +28,6 @@ import Foundation
 @available(iOS 10.0, tvOS 10.0, watchOS 3.0, OSX 10.12, *)
 public extension Service {
 
-    /// Generic Access
-    class var genericAccess: ServiceGenericAccess {
-        return ServiceGenericAccess()
-    }
-
     /// Alert Notification
     class var alertNotification: ServiceAlertNotification {
         return ServiceAlertNotification()
@@ -73,9 +68,19 @@ public extension Service {
         return ServiceBondManagement()
     }
 
+    /// Constant Tone Extension
+    class var constantToneExtension: ServiceConstantToneExtension {
+        return ServiceConstantToneExtension()
+    }
+    
     /// Continuous Glucose Monitoring
     class var continuousGlucoseMonitoring: ServiceContinuousGlucoseMonitoring {
         return ServiceContinuousGlucoseMonitoring()
+    }
+
+    /// Coordinated Set Identification
+    class var coordinatedSetIdentification: ServiceCoordinatedSetIdentification {
+        return ServiceCoordinatedSetIdentification()
     }
 
     /// Current Time
@@ -98,6 +103,11 @@ public extension Service {
         return ServiceDeviceInformation()
     }
     
+    /// Device Time
+    class var deviceTime: ServiceDeviceTime {
+        return ServiceDeviceTime()
+    }
+
     /// Emergency Configuration
     class var emergencyConfiguration: ServiceEmergencyConfiguration {
         return ServiceEmergencyConfiguration()
@@ -113,9 +123,24 @@ public extension Service {
         return ServiceFitnessMachine()
     }
 
+    /// Generic Access
+    class var genericAccess: ServiceGenericAccess {
+        return ServiceGenericAccess()
+    }
+
     /// Generic Attribute
     class var genericAttribute: ServiceGenericAttribute {
         return ServiceGenericAttribute()
+    }
+    
+    /// Generic Media Control
+    class var genericMediaControl: ServiceGenericMediaControl {
+        return ServiceGenericMediaControl()
+    }
+    
+    /// Generic Telephone Bearer
+    class var genericTelephoneBearer: ServiceGenericTelephoneBearer {
+        return ServiceGenericTelephoneBearer()
     }
 
     /// Glucose
@@ -172,6 +197,11 @@ public extension Service {
     class var locationAndNavigation: ServiceLocationAndNavigation {
         return ServiceLocationAndNavigation()
     }
+    
+    /// Media Control
+    class var mediaControl: ServiceMediaControl {
+        return ServiceMediaControl()
+    }
 
     /// Mesh Provisioning
     class var meshProvisioning: ServiceMeshProvisioning {
@@ -183,6 +213,11 @@ public extension Service {
         return ServiceMeshProxy()
     }
 
+    /// Microphone Control
+    class var microphoneControl: ServiceMicrophoneControl {
+        return ServiceMicrophoneControl()
+    }
+    
     /// Next Daylight Savings Time (DST) Change
     class var nextDSTChange: ServiceNextDSTChange {
         return ServiceNextDSTChange()
@@ -223,6 +258,11 @@ public extension Service {
         return ServiceRunningSpeedAndCadence()
     }
 
+    /// Telephone Bearer
+    class var telephoneBearer: ServiceTelephoneBearer {
+        return ServiceTelephoneBearer()
+    }
+    
     /// Scan Parameters
     class var scanParameters: ServiceScanParameters {
         return ServiceScanParameters()
