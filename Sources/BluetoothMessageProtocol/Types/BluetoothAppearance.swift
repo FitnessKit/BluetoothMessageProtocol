@@ -498,7 +498,56 @@ public enum Appearance: UInt16 {
     case paragliderAircraft                         = 2435
     /// Large Passenger Aircraft
     case largePassengerAircraft                     = 2436
-
+    /// Generic AV Equipment
+    case genericAvEquipment                         = 2496
+    /// Amplifier
+    case amplifierAvEquipment                       = 2497
+    /// Receiver
+    case receiverAvEquipment                        = 2498
+    /// Radio
+    case radioAvEquipment                           = 2499
+    /// Tuner
+    case tunerAvEquipment                           = 2500
+    /// Turntable
+    case turntableAvEquipment                       = 2501
+    /// CD Player
+    case cdPlayerAvEquipment                        = 2502
+    /// DVD Player
+    case dvdPlayerAvEquipment                       = 2503
+    /// Bluray Player
+    case bluerayPlayerAvEquipment                   = 2504
+    /// Optical Disc Player
+    case opticalDiscPlayerAvEquipment               = 2505
+    /// Set­Top Box
+    case setTopBoxAvEquipment                       = 2506
+    /// Generic Display Equipment
+    case genericDisplayEquipment                    = 2560
+    /// Television
+    case televisionDisplayEquipment                 = 2561
+    /// Monitor
+    case monitorDisplayEquipment                    = 2562
+    /// Projector
+    case projectorDisplayEquipment                  = 2563
+    /// Generic Hearing aid
+    case genericHearingAid                          = 2624
+    /// In-ear hearing aid
+    case InEarHearingAid                            = 2625
+    /// Behind-ear hearing aid
+    case behindEarHearingAid                        = 2626
+    /// Cochlear Implant
+    case cochlearImplantHearingAid                  = 2627
+    /// Generic Gaming
+    case genericGaming                              = 2688
+    /// Home Video Game Console
+    case homeVideoGameConsoleGaming                 = 2689
+    /// Portable handheld console
+    case portableHandheldConsoleGaming              = 2690
+    /// Generic Signage
+    case genericSignage                             = 2752
+    /// Digital Signage
+    case digitalSignage                             = 2753
+    /// Electronic Label
+    case electronicLabelSignage                     = 2754
     /// Generic: Pulse Oximeter
     case genericPulseOximeter                       = 3136
     /// Fingertip
