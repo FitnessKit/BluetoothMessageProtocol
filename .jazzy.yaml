@@ -30,7 +30,6 @@ custom_categories:
 
   - name: Services - Bluetooth SIG
     children:
-    - ServiceGenericAccess
     - ServiceAlertNotification
     - ServiceAudioInputControl
     - ServiceAutomationInputOutput
@@ -39,15 +38,21 @@ custom_categories:
     - ServiceBloodPressure
     - ServiceBodyComposition
     - ServiceBondManagement
+    - ServiceConstantToneExtension
     - ServiceContinuousGlucoseMonitoring
+    - ServiceCoordinatedSetIdentification
     - ServiceCurrentTime
     - ServiceCyclingPower
     - ServiceCyclingSpeedAndCadence
     - ServiceDeviceInformation
+    - ServiceDeviceTime
     - ServiceEmergencyConfiguration
     - ServiceEnvironmentalSensing
     - ServiceFitnessMachine
+    - ServiceGenericAccess
     - ServiceGenericAttribute
+    - ServiceGenericMediaControl
+    - ServiceGenericTelephoneBearer
     - ServiceGlucose
     - ServiceHealthThermometer
     - ServiceHeartRate
@@ -59,8 +64,10 @@ custom_categories:
     - ServiceInternetProtocolSupport
     - ServiceLinkLoss
     - ServiceLocationAndNavigation
+    - ServiceMediaControl
     - ServiceMeshProvisioning
     - ServiceMeshProxy
+    - ServiceMicrophoneControl
     - ServiceNextDSTChange
     - ServiceObjectTransfer
     - ServicePhoneAlertStatus
@@ -69,6 +76,7 @@ custom_categories:
     - ServiceReconnectionConfiguration
     - ServiceReferenceTimeUpdate
     - ServiceRunningSpeedAndCadence
+    - ServiceTelephoneBearer
     - ServiceScanParameters
     - ServiceTransportDiscovery
     - ServiceTxPower
