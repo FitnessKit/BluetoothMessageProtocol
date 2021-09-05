@@ -32,6 +32,22 @@ public enum AppearanceCategory: String {
     case generic                = "Generic"
     /// Watch
     case watch                  = "Watch"
+    /// Clock
+    case clock                  = "Clock"
+    /// Display
+    case display                = "Display"
+    /// Remote Control
+    case remoteControl          = "Remote Control"
+    /// Eye Glasses
+    case eyeGlasses             = "Eye Glasses"
+    /// Tag
+    case tag                    = "Tag"
+    /// Keyring
+    case keyring                = "Keyring"
+    /// Media Player
+    case mediaPlayer            = "Media Player"
+    /// Barcode Scanner
+    case barcodeScanner         = "Barcode Scanner"
     /// Thermometer
     case thermometer            = "Thermometer"
     /// Heart Rate Sensor
@@ -40,12 +56,16 @@ public enum AppearanceCategory: String {
     case bloodPressure          = "Blood Pressure"
     /// HID
     case hid                    = "HID"
+    /// Glucose Meter
+    case glucoseMeter           = "Glucose Meter"
     /// Running Walking Sensor
     case runningWalking         = "Running Walking Sensor"
     /// Cycling
     case cycling                = "Cycling"
     /// Control Device
     case control                = "Control"
+    /// Network Device
+    case network                = "Network"
     /// Sensor
     case sensor                 = "Sensor"
     /// Light Fixture
@@ -64,6 +84,30 @@ public enum AppearanceCategory: String {
     case power                  = "Power"
     /// Light
     case light                  = "Light"
+    /// Window Covering
+    case windowCovering         = "Window Covering"
+    /// Audio Sink
+    case audioSink              = "Audio Sink"
+    /// Audio Source
+    case audioSource            = "Audio Source"
+    /// Motorized Vehicle
+    case motorizedVehicle       = "Motorized Vehicle"
+    /// Domestic Appliance
+    case domesticAppliance      = "Domestic Appliance"
+    /// Wearable Audio Device
+    case wearableAudioDevice    = "Wearable Audio Device"
+    /// Aircraft
+    case aircraft               = "Aircraft"
+    /// AV Equipment
+    case avEquipment            = "AV Equipment"
+    /// Display Equipment
+    case displayEquipment       = "Display Equipment"
+    /// Hearing aid
+    case hearingAid             = "Hearing aid"
+    /// Gaming
+    case gaming                 = "Gaming"
+    /// Signage
+    case signage                = "Signage"
     /// Pulse Oximeter
     case pulseOximeter          = "Pulse Oximeter"
     /// Weight Scale
