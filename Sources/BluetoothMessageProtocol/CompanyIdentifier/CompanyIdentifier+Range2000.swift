@@ -626,4 +626,66 @@ public extension CompanyIdentifier {
     class var troo: CompanyIdentifier { return CompanyIdentifier(id: 2298, name: "Troo Corporation") }
     /// Darkglass Electronics Oy
     class var darkglassElectronics: CompanyIdentifier { return CompanyIdentifier(id: 2299, name: "Darkglass Electronics Oy") }
+    /// Hill-Rom
+    class var hillRom: CompanyIdentifier { return CompanyIdentifier(id: 2300, name: "Hill-Rom") }
+    /// BioIntelliSense, Inc.
+    class var bioIntelliSense: CompanyIdentifier { return CompanyIdentifier(id: 2301, name: "BioIntelliSense, Inc.") }
+    /// Ketronixs Sdn Bhd
+    class var ketronixs: CompanyIdentifier { return CompanyIdentifier(id: 2302, name: "Ketronixs Sdn Bhd") }
+    /// Plastimold Products, Inc
+    class var plastimoldProducts: CompanyIdentifier { return CompanyIdentifier(id: 2303, name: "Plastimold Products, Inc") }
+    /// Beijing Zizai Technology Co., LTD.
+    class var beijingZizaiTechnology: CompanyIdentifier { return CompanyIdentifier(id: 2304, name: "Beijing Zizai Technology Co., LTD.") }
+    /// Lucimed
+    class var lucimed: CompanyIdentifier { return CompanyIdentifier(id: 2305, name: "Lucimed") }
+    /// TSC Auto-ID Technology Co., Ltd.
+    class var tscAutoId: CompanyIdentifier { return CompanyIdentifier(id: 2306, name: "TSC Auto-ID Technology Co., Ltd.") }
+    /// DATAMARS, Inc.
+    class var datamars: CompanyIdentifier { return CompanyIdentifier(id: 2307, name: "DATAMARS, Inc.") }
+    /// SUNCORPORATION
+    class var sunCorporation: CompanyIdentifier { return CompanyIdentifier(id: 2308, name: "SUNCORPORATION") }
+    /// Yandex Services AG
+    class var yandexServices: CompanyIdentifier { return CompanyIdentifier(id: 2309, name: "Yandex Services AG") }
+    /// Scope Logistical Solutions
+    class var scopeLogisticalSolutions: CompanyIdentifier { return CompanyIdentifier(id: 2310, name: "Scope Logistical Solutions") }
+    /// User Hello, LLC
+    class var userHello: CompanyIdentifier { return CompanyIdentifier(id: 2311, name: "User Hello, LLC") }
+    /// Pinpoint Innovations Limited
+    class var pinpointInnovations: CompanyIdentifier { return CompanyIdentifier(id: 2312, name: "Pinpoint Innovations Limited") }
+    /// 70mai Co.,Ltd.
+    class var seventyMai: CompanyIdentifier { return CompanyIdentifier(id: 2313, name: "70mai Co.,Ltd.") }
+    /// Zhuhai Hoksi Technology CO.,LTD
+    class var zhuhaiHoksi: CompanyIdentifier { return CompanyIdentifier(id: 2314, name: "Zhuhai Hoksi Technology CO.,LTD") }
+    /// EMBR labs, INC
+    class var embrLabs: CompanyIdentifier { return CompanyIdentifier(id: 2315, name: "EMBR labs, INC") }
+    /// Radiawave Technologies Co.,Ltd.
+    class var radiawaveTechnologies: CompanyIdentifier { return CompanyIdentifier(id: 2316, name: "Radiawave Technologies Co.,Ltd.") }
+    /// IOT Invent GmbH
+    class var iotInvent: CompanyIdentifier { return CompanyIdentifier(id: 2317, name: "IOT Invent GmbH") }
+    /// OPTIMUSIOT TECH LLP
+    class var optimusiotTech: CompanyIdentifier { return CompanyIdentifier(id: 2318, name: "OPTIMUSIOT TECH LLP") }
+    /// VC Inc.
+    class var vcInc: CompanyIdentifier { return CompanyIdentifier(id: 2319, name: "VC Inc.") }
+    /// ASR Microelectronics (Shanghai) Co., Ltd.
+    class var asrMicroelectronicsShanghai: CompanyIdentifier { return CompanyIdentifier(id: 2320, name: "ASR Microelectronics (Shanghai) Co., Ltd.") }
+    /// Douglas Lighting Controls Inc.
+    class var douglasLightingControls: CompanyIdentifier { return CompanyIdentifier(id: 2321, name: "Douglas Lighting Controls Inc.") }
+    /// Nerbio Medical Software Platforms Inc
+    class var nerbioMedicalSoftwarePlatforms: CompanyIdentifier { return CompanyIdentifier(id: 2322, name: "Nerbio Medical Software Platforms Inc") }
+    /// Braveheart Wireless, Inc.
+    class var braveheartWireless: CompanyIdentifier { return CompanyIdentifier(id: 2323, name: "Braveheart Wireless, Inc.") }
+    /// INEO-SENSE
+    class var ineoSense: CompanyIdentifier { return CompanyIdentifier(id: 2324, name: "INEO-SENSE") }
+    /// Honda Motor Co., Ltd.
+    class var hondaMotor: CompanyIdentifier { return CompanyIdentifier(id: 2325, name: "Honda Motor Co., Ltd.") }
+    /// Ambient Sensors LLC
+    class var ambientSensors: CompanyIdentifier { return CompanyIdentifier(id: 2326, name: "Ambient Sensors LLC") }
+    /// ASR Microelectronics(ShenZhen)Co., Ltd.
+    class var asrMicroelectronicsShenZhen: CompanyIdentifier { return CompanyIdentifier(id: 2327, name: "ASR Microelectronics(ShenZhen)Co., Ltd.") }
+    /// Technosphere Labs Pvt. Ltd.
+    class var technosphereLabs: CompanyIdentifier { return CompanyIdentifier(id: 2328, name: "Technosphere Labs Pvt. Ltd.") }
+    /// NO SMD LIMITED
+    class var noSmd: CompanyIdentifier { return CompanyIdentifier(id: 2329, name: "NO SMD LIMITED") }
+    /// Albertronic BV
+    class var albertronic: CompanyIdentifier { return CompanyIdentifier(id: 2330, name: "Albertronic BV") }
 }
