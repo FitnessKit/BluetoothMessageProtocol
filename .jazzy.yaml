@@ -32,8 +32,10 @@ custom_categories:
     children:
     - ServiceGenericAccess
     - ServiceAlertNotification
+    - ServiceAudioInputControl
     - ServiceAutomationInputOutput
     - ServiceBattery
+    - ServiceBinarySensor
     - ServiceBloodPressure
     - ServiceBodyComposition
     - ServiceBondManagement
@@ -42,6 +44,7 @@ custom_categories:
     - ServiceCyclingPower
     - ServiceCyclingSpeedAndCadence
     - ServiceDeviceInformation
+    - ServiceEmergencyConfiguration
     - ServiceEnvironmentalSensing
     - ServiceFitnessMachine
     - ServiceGenericAttribute
@@ -61,6 +64,7 @@ custom_categories:
     - ServiceNextDSTChange
     - ServiceObjectTransfer
     - ServicePhoneAlertStatus
+    - ServicePhysicalActivityMonitor
     - ServicePulseOximeter
     - ServiceReconnectionConfiguration
     - ServiceReferenceTimeUpdate
@@ -69,6 +73,8 @@ custom_categories:
     - ServiceTransportDiscovery
     - ServiceTxPower
     - ServiceUserData
+    - ServiceVolumeControl
+    - ServiceVolumeOffsetControl
     - ServiceWeightScale
    
   - name: Services - Custom

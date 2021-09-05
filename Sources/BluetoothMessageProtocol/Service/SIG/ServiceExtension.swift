@@ -38,6 +38,11 @@ public extension Service {
         return ServiceAlertNotification()
     }
 
+    /// Audio Input Control
+    class var audioInputControl: ServiceAudioInputControl {
+        return ServiceAudioInputControl()
+    }
+
     /// Automation IO
     class var automationInputOutput: ServiceAutomationInputOutput {
         return ServiceAutomationInputOutput()
@@ -46,6 +51,11 @@ public extension Service {
     /// Battery
     class var battery: ServiceBattery {
         return ServiceBattery()
+    }
+
+    /// Binary Sensor
+    class var binarySensor: ServiceBinarySensor {
+        return ServiceBinarySensor()
     }
 
     /// Blood Pressure
@@ -86,6 +96,11 @@ public extension Service {
     /// Device Information
     class var deviceInformation: ServiceDeviceInformation {
         return ServiceDeviceInformation()
+    }
+    
+    /// Emergency Configuration
+    class var emergencyConfiguration: ServiceEmergencyConfiguration {
+        return ServiceEmergencyConfiguration()
     }
 
     /// Environmental Sensing
@@ -183,6 +198,11 @@ public extension Service {
         return ServicePhoneAlertStatus()
     }
 
+    /// Physical Activity Monitor
+    class var physicalActivityMonitor: ServicePhysicalActivityMonitor {
+        return ServicePhysicalActivityMonitor()
+    }
+
     /// Pulse Oximeter
     class var pulseOximeter: ServicePulseOximeter {
         return ServicePulseOximeter()
@@ -221,6 +241,16 @@ public extension Service {
     /// User Data
     class var userData: ServiceUserData {
         return ServiceUserData()
+    }
+
+    /// Volume Control
+    class var volumeControl: ServiceVolumeControl {
+        return ServiceVolumeControl()
+    }
+
+    /// Volume Offset Control
+    class var volumeOffsetControl: ServiceVolumeOffsetControl {
+        return ServiceVolumeOffsetControl()
     }
 
     /// Weight Scale
